@@ -1,0 +1,80 @@
+import CyberCorners from './CyberCorners'
+
+export default function LiveStatsBar() {
+  return (
+    <div className="CC__stats-section CC__container">
+      <div className="CC__stats-bar CC__cyber-accent" role="region" aria-label="Live Stats">
+        <CyberCorners />
+
+        <div className="CC__stats-bar__live" aria-label="Live stats indicator">
+          <span className="CC__stats-bar__live-label">LIVE</span>
+          <span className="CC__stats-bar__live-sub">
+            STATS
+            <span className="CC__stats-bar__live-dot" aria-hidden="true" />
+          </span>
+        </div>
+
+        <ul className="CC__stats-bar__items">
+          <li className="CC__stats-bar__item">
+            <div className="CC__stats-bar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
+            <div className="CC__stats-bar__info">
+              <span className="CC__stats-bar__label">Total Revenue</span>
+              <span className="CC__stats-bar__value">$0</span>
+              <span className="CC__stats-bar__delta">+ $0 today</span>
+            </div>
+          </li>
+
+          <li className="CC__stats-bar__item">
+            <div className="CC__stats-bar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="8 17 12 21 16 17" />
+                <line x1="12" y1="12" x2="12" y2="21" />
+                <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29" />
+              </svg>
+            </div>
+            <div className="CC__stats-bar__info">
+              <span className="CC__stats-bar__label">Total Installs</span>
+              <span className="CC__stats-bar__value">0</span>
+              <span className="CC__stats-bar__delta">+ 0 today</span>
+            </div>
+          </li>
+
+          <li className="CC__stats-bar__item">
+            <div className="CC__stats-bar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                <line x1="7" y1="7" x2="7.01" y2="7" />
+              </svg>
+            </div>
+            <div className="CC__stats-bar__info">
+              <span className="CC__stats-bar__label">Extensions Built</span>
+              <span className="CC__stats-bar__value CC__stats-bar__value--white">1</span>
+              <span className="CC__stats-bar__delta CC__stats-bar__delta--info">+ 1 in progress</span>
+            </div>
+          </li>
+
+          <li className="CC__stats-bar__item">
+            <div className="CC__stats-bar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <div className="CC__stats-bar__info">
+              <span className="CC__stats-bar__label">Days Into Journey</span>
+              <span className="CC__stats-bar__value CC__stats-bar__value--white">6</span>
+              <span className="CC__stats-bar__delta CC__stats-bar__delta--muted">Since Day 1</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  )
+}

@@ -96,70 +96,6 @@
 }
 
 /* ==========================================================================
-   LIVE STATS BAR
-   ========================================================================== */
-.CC__stats-section {
-  margin-top: calc(var(--CC__space-xl) * -1 + 2rem);
-  position: relative;
-  z-index: 10;
-}
-
-.CC__stats-grid {
-  display: grid;
-  grid-template-columns: 1.2fr repeat(4, 1fr);
-  background-color: var(--CC__color-bg-surface);
-  border: 1px solid var(--CC__color-border);
-  padding: var(--CC__space-md);
-}
-
-.CC__stat-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 var(--CC__space-sm);
-  border-right: 1px solid var(--CC__color-border);
-}
-
-.CC__stat-box:last-child {
-  border-right: none;
-}
-
-.CC__stat-box--live {
-  color: var(--CC__color-primary);
-  font-family: var(--CC__font-display);
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-}
-
-.CC__stat-label {
-  font-size: 0.75rem;
-  color: var(--CC__color-text-muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-
-.CC__stat-value {
-  font-family: var(--CC__font-display);
-  font-size: 1.8rem;
-  line-height: 1.2;
-}
-
-.CC__stat-change {
-  font-size: 0.75rem;
-  color: var(--CC__color-success);
-  font-family: var(--CC__font-sans);
-  margin-left: var(--CC__space-xs);
-}
-
-.CC__stat-subtext {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--CC__color-text-muted);
-  margin-top: 2px;
-}
-
-/* ==========================================================================
    EXTENSIONS SECTION
    ========================================================================== */
 .CC__extensions.CC__container {
@@ -191,12 +127,14 @@
 }
 
 .CC__extension-card {
-  background-color: var(--CC__color-bg-surface);
-  border: 1px solid var(--CC__color-border);
   padding: var(--CC__space-md);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.CC__extension-card.CC__cyber-accent {
+  background-color: var(--CC__color-bg-surface);
 }
 
 .CC__extension-top {
@@ -400,10 +338,12 @@
 }
 
 .CC__about-image-frame {
-  border: 1px solid var(--CC__color-border-glow);
   padding: var(--CC__space-xs);
-  background-color: var(--CC__color-bg-surface);
   min-height: 200px;
+}
+
+.CC__about-image-frame.CC__cyber-accent {
+  background-color: var(--CC__color-bg-surface);
 }
 
 .CC__about-image-frame img {
@@ -586,16 +526,6 @@ html {
     padding: 0;
     cursor: pointer;
     background-color: rgba(9, 11, 16, 0.75);
-  }
-
-  .CC__stats-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--CC__space-sm);
-  }
-
-  .CC__stat-box {
-    border-right: none;
-    padding: var(--CC__space-xs) 0;
   }
 
   .CC__extensions-grid,

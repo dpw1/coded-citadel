@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import LiveStatsBar from './components/LiveStatsBar'
+import CyberCorners from './components/CyberCorners'
 import './App.css'
 
 const RSS2JSON_URL =
@@ -125,37 +127,7 @@ export default function App() {
         </div>
       </section>
 
-      <div className="CC__stats-section CC__container">
-        <div className="CC__stats-grid CC__cyber-accent">
-          <div className="CC__stat-box CC__stat-box--live">
-            <span>LIVE STATS •</span>
-          </div>
-          <div className="CC__stat-box">
-            <span className="CC__stat-label">Total Revenue</span>
-            <span className="CC__stat-value">
-              $0 <span className="CC__stat-change">+$0 today</span>
-            </span>
-          </div>
-          <div className="CC__stat-box">
-            <span className="CC__stat-label">Total Installs</span>
-            <span className="CC__stat-value">
-              0 <span className="CC__stat-change">+$0 today</span>
-            </span>
-          </div>
-          <div className="CC__stat-box">
-            <span className="CC__stat-label">Extensions Built</span>
-            <span className="CC__stat-value">
-              1 <span className="CC__stat-subtext">+1 in progress</span>
-            </span>
-          </div>
-          <div className="CC__stat-box">
-            <span className="CC__stat-label">Days Into Journey</span>
-            <span className="CC__stat-value">
-              6 <span className="CC__stat-subtext">Since Day 1</span>
-            </span>
-          </div>
-        </div>
-      </div>
+      <LiveStatsBar />
 
       <section id="extensions" className="CC__extensions CC__container">
         <div className="CC__section-header-row">
@@ -170,6 +142,7 @@ export default function App() {
 
         <div className="CC__extensions-grid">
           <div className="CC__extension-card CC__cyber-accent">
+            <CyberCorners />
             <div className="CC__extension-inner">
               <div className="CC__extension-top">
                 <div className="CC__extension-icon-box">⚡</div>
@@ -204,6 +177,7 @@ export default function App() {
           </div>
 
           <div className="CC__extension-card CC__extension-card--disabled CC__cyber-accent">
+            <CyberCorners />
             <div className="CC__extension-inner">
               <div className="CC__extension-top">
                 <div className="CC__extension-icon-box">🛡️</div>
@@ -308,6 +282,7 @@ export default function App() {
           <div
             className={`CC__about-image-frame CC__cyber-accent${avatarError ? ' CC__about-image-frame--empty' : ''}`}
           >
+            <CyberCorners />
             {!avatarError ? (
               <img
                 src={`${import.meta.env.BASE_URL}avatar-citadel.png`}
