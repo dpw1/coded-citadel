@@ -30,8 +30,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Build
         run: npm run build
+
+      - name: Verify production bundle
+        run: |
+          test -f dist/index.html
+          test -f dist/favicon.svg
+          if grep -qE '\.jsx|/src/main' dist/index.html; then
+            echo "dist/index.html still references source JSX — build misconfigured"
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

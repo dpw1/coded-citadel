@@ -310,7 +310,7 @@ export default function App() {
           >
             {!avatarError ? (
               <img
-                src="/avatar-citadel.png"
+                src={`${import.meta.env.BASE_URL}avatar-citadel.png`}
                 alt="Coded Citadel Dev Portrait"
                 onError={() => setAvatarError(true)}
               />

@@ -58,7 +58,7 @@
   padding: var(--CC__space-xl) 0;
   background:
     linear-gradient(90deg, var(--CC__color-bg-base) 40%, rgba(9, 11, 16, 0.4) 100%),
-    url('/hero-image.png') no-repeat center right;
+    var(--CC__hero-image) no-repeat center right;
   background-size: contain;
   min-height: 75vh;
   display: flex;
