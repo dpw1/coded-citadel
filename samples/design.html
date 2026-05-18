@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coded Citadel — Building In Public</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           CSS VARIABLES & RESET
+           ========================================================================== */
+        :root {
+            /* Colors */
+            --CC__color-bg-base: #090B10;
+            --CC__color-bg-surface: #0E121A;
+            --CC__color-bg-card: #131824;
+            --CC__color-primary: #FF9900;
+            --CC__color-primary-hover: #E68A00;
+            --CC__color-text-main: #FFFFFF;
+            --CC__color-text-muted: #7A8599;
+            --CC__color-border: #1F2636;
+            --CC__color-border-glow: #303B54;
+            --CC__color-success: #22C55E;
+
+            /* Typography */
+            --CC__font-sans: 'Inter', sans-serif;
+            --CC__font-display: 'Oswald', sans-serif;
+
+            /* Layout & Spacing */
+            --CC__max-width: 1200px;
+            --CC__space-xs: 0.5rem;
+            --CC__space-sm: 1rem;
+            --CC__space-md: 2rem;
+            --CC__space-lg: 4rem;
+            --CC__space-xl: 6rem;
+            
+            /* UI Elements */
+            --CC__radius: 4px;
+            --CC__transition: all 0.25s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--CC__color-bg-base);
+            color: var(--CC__color-text-main);
+            font-family: var(--CC__font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--CC__transition);
+        }
+
+        /* ==========================================================================
+           REUSABLE UTILITIES & COMPONENTS
+           ========================================================================== */
+        .CC__container {
+            max-width: var(--CC__max-width);
+            margin: 0 auto;
+            padding: 0 var(--CC__space-md);
+        }
+
+        .CC__btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 2rem;
+            font-family: var(--CC__font-sans);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: var(--CC__radius);
+            border: none;
+            cursor: pointer;
+            transition: var(--CC__transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .CC__btn--primary {
+            background-color: var(--CC__color-primary);
+            color: #000000;
+        }
+
+        .CC__btn--primary:hover {
+            background-color: var(--CC__color-primary-hover);
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.3);
+        }
+
+        .CC__btn--outline {
+            background-color: transparent;
+            border: 1px solid var(--CC__color-border-glow);
+            color: var(--CC__color-text-main);
+        }
+
+        .CC__btn--outline:hover {
+            border-color: var(--CC__color-primary);
+            background-color: rgba(255, 153, 0, 0.05);
+        }
+
+        .CC__section-eyebrow {
+            color: var(--CC__color-primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: var(--CC__space-xs);
+        }
+
+        .CC__section-title {
+            font-family: var(--CC__font-display);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        /* Tech Cyber-Corners Accent Modifier */
+        .CC__cyber-accent {
+            position: relative;
+        }
+        .CC__cyber-accent::before,
+        .CC__cyber-accent::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border: 1.5px solid var(--CC__color-primary);
+        }
+        .CC__cyber-accent::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .CC__cyber-accent::after { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+
+        /* ==========================================================================
+           HEADER
+           ========================================================================== */
+        .CC__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--CC__space-md) var(--CC__space-md);
+            border-bottom: 1px solid var(--CC__color-border);
+        }
+
+        .CC__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--CC__space-xs);
+            font-family: var(--CC__font-display);
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .CC__logo-icon {
+            color: var(--CC__color-primary);
+            font-weight: bold;
+        }
+
+        .CC__nav {
+            display: flex;
+            gap: var(--CC__space-md);
+        }
+
+        .CC__nav-link {
+            font-size: 0.9rem;
+            color: var(--CC__color-text-muted);
+        }
+
+        .CC__nav-link:hover {
+            color: var(--CC__color-text-main);
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .CC__hero {
+            position: relative;
+            padding: var(--CC__space-xl) 0;
+            background: linear-gradient(90deg, var(--CC__color-bg-base) 40%, rgba(9, 11, 16, 0.4) 100%), 
+                        url('citadel-bg.png') no-repeat center right;
+            background-size: contain;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .CC__hero-inner {
+            max-width: 650px;
+        }
+
+        .CC__hero-title {
+            font-family: var(--CC__font-display);
+            font-size: 4.5rem;
+            line-height: 1.05;
+            text-transform: uppercase;
+            margin: var(--CC__space-sm) 0;
+            letter-spacing: 1px;
+        }
+
+        .CC__hero-title span {
+            color: var(--CC__color-primary);
+        }
+
+        .CC__hero-description {
+            color: var(--CC__color-text-muted);
+            font-size: 1.1rem;
+            margin-bottom: var(--CC__space-md);
+            max-width: 500px;
+        }
+
+        .CC__hero-actions {
+            display: flex;
+            gap: var(--CC__space-sm);
+        }
+
+        /* ==========================================================================
+           LIVE STATS BAR
+           ========================================================================== */
+        .CC__stats-section {
+            margin-top: calc(var(--CC__space-xl) * -1 + 2rem);
+            position: relative;
+            z-index: 10;
+        }
+
+        .CC__stats-grid {
+            display: grid;
+            grid-template-columns: 1.2fr repeat(4, 1fr);
+            background-color: var(--CC__color-bg-surface);
+            border: 1px solid var(--CC__color-border);
+            padding: var(--CC__space-md);
+        }
+
+        .CC__stat-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 var(--CC__space-sm);
+            border-right: 1px solid var(--CC__color-border);
+        }
+
+        .CC__stat-box:last-child {
+            border-right: none;
+        }
+
+        .CC__stat-box--live {
+            color: var(--CC__color-primary);
+            font-family: var(--CC__font-display);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .CC__stat-label {
+            font-size: 0.75rem;
+            color: var(--CC__color-text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .CC__stat-value {
+            font-family: var(--CC__font-display);
+            font-size: 1.8rem;
+            line-height: 1.2;
+        }
+
+        .CC__stat-change {
+            font-size: 0.75rem;
+            color: var(--CC__color-success);
+            font-family: var(--CC__font-sans);
+            margin-left: var(--CC__space-xs);
+        }
+
+        .CC__stat-subtext {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--CC__color-text-muted);
+            margin-top: 2px;
+        }
+
+        /* ==========================================================================
+           EXTENSIONS SECTION
+           ========================================================================== */
+        .CC__extensions {
+            padding: var(--CC__space-xl) 0;
+        }
+
+        .CC__section-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: var(--CC__space-lg);
+        }
+
+        .CC__view-all-link {
+            color: var(--CC__color-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .CC__view-all-link:hover {
+            text-decoration: underline;
+        }
+
+        .CC__extensions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--CC__space-md);
+        }
+
+        .CC__extension-card {
+            background-color: var(--CC__color-bg-surface);
+            border: 1px solid var(--CC__color-border);
+            padding: var(--CC__space-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .CC__extension-top {
+            display: flex;
+            gap: var(--CC__space-sm);
+            margin-bottom: var(--CC__space-md);
+        }
+
+        .CC__extension-icon-box {
+            width: 54px;
+            height: 54px;
+            background-color: rgba(255, 153, 0, 0.1);
+            border: 1px solid rgba(255, 153, 0, 0.2);
+            border-radius: var(--CC__radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--CC__color-primary);
+            font-size: 1.5rem;
+        }
+
+        .CC__extension-meta h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--CC__space-xs);
+        }
+
+        .CC__extension-version {
+            font-size: 0.75rem;
+            background-color: var(--CC__color-border);
+            color: var(--CC__color-text-muted);
+            padding: 2px 6px;
+            border-radius: 2px;
+        }
+
+        .CC__extension-summary {
+            color: var(--CC__color-text-muted);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .CC__extension-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            border-top: 1px dashed var(--CC__color-border);
+            border-bottom: 1px dashed var(--CC__color-border);
+            padding: var(--CC__space-sm) 0;
+            margin-bottom: var(--CC__space-md);
+        }
+
+        .CC__metric-item-label {
+            font-size: 0.75rem;
+            color: var(--CC__color-text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .CC__metric-item-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .CC__btn--full {
+            width: 100%;
+        }
+
+        /* Inactive State Card Styling */
+        .CC__extension-card--disabled {
+            opacity: 0.6;
+        }
+        .CC__extension-card--disabled .CC__extension-icon-box {
+            background-color: var(--CC__color-border);
+            border-color: transparent;
+            color: var(--CC__color-text-muted);
+        }
+
+        /* ==========================================================================
+           YOUTUBE SECTION
+           ========================================================================== */
+        .CC__youtube {
+            padding-bottom: var(--CC__space-xl);
+        }
+
+        .CC__youtube-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--CC__space-md);
+        }
+
+        .CC__video-card {
+            background-color: var(--CC__color-bg-surface);
+            border: 1px solid var(--CC__color-border);
+            overflow: hidden;
+        }
+
+        .CC__video-thumb-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+        }
+
+        .CC__video-thumb-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .CC__video-duration {
+            position: absolute;
+            bottom: var(--CC__space-xs);
+            right: var(--CC__space-xs);
+            background-color: rgba(0,0,0,0.8);
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 2px;
+        }
+
+        .CC__video-info {
+            padding: var(--CC__space-sm);
+        }
+
+        .CC__video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .CC__video-meta {
+            font-size: 0.8rem;
+            color: var(--CC__color-text-muted);
+        }
+
+        /* ==========================================================================
+           ABOUT SECTION
+           ========================================================================== */
+        .CC__about {
+            padding: var(--CC__space-xl) 0;
+            border-top: 1px solid var(--CC__color-border);
+        }
+
+        .CC__about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: var(--CC__space-lg);
+            align-items: center;
+        }
+
+        .CC__about-content h2 {
+            margin-bottom: var(--CC__space-md);
+        }
+
+        .CC__about-text {
+            color: var(--CC__color-text-muted);
+            margin-bottom: var(--CC__space-md);
+        }
+
+        .CC__about-signature {
+            font-family: var(--CC__font-display);
+            color: var(--CC__color-primary);
+            font-size: 1.5rem;
+            margin-bottom: var(--CC__space-md);
+        }
+
+        .CC__tag-cloud {
+            display: flex;
+            gap: var(--CC__space-xs);
+        }
+
+        .CC__tag {
+            font-size: 0.75rem;
+            border: 1px solid var(--CC__color-border-glow);
+            padding: 4px 10px;
+            color: var(--CC__color-text-muted);
+            text-transform: uppercase;
+        }
+
+        .CC__about-image-frame {
+            border: 1px solid var(--CC__color-border-glow);
+            padding: var(--CC__space-xs);
+            background-color: var(--CC__color-bg-surface);
+        }
+
+        .CC__about-image-frame img {
+            width: 100%;
+            display: block;
+            filter: grayscale(20%);
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        .CC__footer {
+            background-color: var(--CC__color-bg-surface);
+            border-top: 1px solid var(--CC__color-border);
+            padding: var(--CC__space-lg) 0 var(--CC__space-md) 0;
+            font-size: 0.9rem;
+        }
+
+        .CC__footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(2, 1fr) 2fr;
+            gap: var(--CC__space-lg);
+            margin-bottom: var(--CC__space-lg);
+        }
+
+        .CC__footer-brand p {
+            color: var(--CC__color-text-muted);
+            margin-top: var(--CC__space-sm);
+            font-size: 0.85rem;
+        }
+
+        .CC__footer-col-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--CC__color-text-main);
+            margin-bottom: var(--CC__space-sm);
+            text-transform: uppercase;
+        }
+
+        .CC__footer-list {
+            list-style: none;
+        }
+
+        .CC__footer-list li {
+            margin-bottom: var(--CC__space-xs);
+        }
+
+        .CC__footer-list a {
+            color: var(--CC__color-text-muted);
+        }
+
+        .CC__footer-list a:hover {
+            color: var(--CC__color-primary);
+        }
+
+        .CC__newsletter-form {
+            display: flex;
+            gap: var(--CC__space-xs);
+            margin-top: var(--CC__space-sm);
+        }
+
+        .CC__newsletter-input {
+            background-color: var(--CC__color-bg-base);
+            border: 1px solid var(--CC__color-border-glow);
+            padding: 0.6rem var(--CC__space-sm);
+            color: var(--CC__color-text-main);
+            border-radius: var(--CC__radius);
+            flex-grow: 1;
+        }
+
+        .CC__newsletter-input:focus {
+            outline: none;
+            border-color: var(--CC__color-primary);
+        }
+
+        .CC__footer-bottom {
+            text-align: center;
+            color: var(--CC__color-text-muted);
+            font-size: 0.75rem;
+            border-top: 1px solid var(--CC__color-border);
+            padding-top: var(--CC__space-md);
+        }
+
+        /* ==========================================================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 968px) {
+            .CC__hero { background-size: cover; }
+            .CC__stats-grid { grid-template-columns: 1fr 1fr; gap: var(--CC__space-sm); }
+            .CC__stat-box { border-right: none; padding: var(--CC__space-xs) 0; }
+            .CC__extensions-grid, .CC__youtube-grid, .CC__about-grid, .CC__footer-grid { grid-template-columns: 1fr; }
+            .CC__hero-title { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="CC__header CC__container">
+        <div class="CC__header-brand">
+            <a href="#" class="CC__logo"><span class="CC__logo-icon">&lt;/&gt;</span> CODED CITADEL</a>
+        </div>
+        <nav class="CC__nav">
+            <a href="#extensions" class="CC__nav-link">Extensions</a>
+            <a href="#youtube" class="CC__nav-link">YouTube</a>
+            <a href="#about" class="CC__nav-link">About</a>
+            <a href="#" class="CC__nav-link">Roadmap</a>
+        </nav>
+    </header>
+
+    <section class="CC__hero">
+        <div class="CC__hero-inner CC__container">
+            <p class="CC__section-eyebrow">• Building In Public</p>
+            <h1 class="CC__hero-title">Follow the journey of a man coding his way to <span>$100K</span></h1>
+            <p class="CC__hero-description">Building Chrome extensions. Sharing every win, fail, and lesson learned. One extension at a time.</p>
+            <div class="CC__hero-actions">
+                <a href="https://www.youtube.com/@CodedCitadel" target="_blank" class="CC__btn CC__btn--primary">Subscribe on YouTube</a>
+                <a href="#extensions" class="CC__btn CC__btn--outline">View Extensions</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="CC__stats-section CC__container">
+        <div class="CC__stats-grid CC__cyber-accent">
+            <div class="CC__stat-box CC__stat-box--live">
+                <span>LIVE STATS •</span>
+            </div>
+            <div class="CC__stat-box">
+                <span class="CC__stat-label">Total Revenue</span>
+                <span class="CC__stat-value">$0 <span class="CC__stat-change">+$0 today</span></span>
+            </div>
+            <div class="CC__stat-box">
+                <span class="CC__stat-label">Total Installs</span>
+                <span class="CC__stat-value">0 <span class="CC__stat-change">+$0 today</span></span>
+            </div>
+            <div class="CC__stat-box">
+                <span class="CC__stat-label">Extensions Built</span>
+                <span class="CC__stat-value">1 <span class="CC__stat-subtext">+1 in progress</span></span>
+            </div>
+            <div class="CC__stat-box">
+                <span class="CC__stat-label">Days Into Journey</span>
+                <span class="CC__stat-value">6 <span class="CC__stat-subtext">Since Day 1</span></span>
+            </div>
+        </div>
+    </div>
+
+    <section id="extensions" class="CC__extensions CC__container">
+        <div class="CC__section-header-row">
+            <div>
+                <p class="CC__section-eyebrow">My Extensions</p>
+                <h2 class="CC__section-title">Built To Solve Real Problems</h2>
+            </div>
+            <a href="#" class="CC__view-all-link">View all extensions →</a>
+        </div>
+
+        <div class="CC__extensions-grid">
+            <div class="CC__extension-card CC__cyber-accent">
+                <div class="CC__extension-inner">
+                    <div class="CC__extension-top">
+                        <div class="CC__extension-icon-box">⚡</div>
+                        <div class="CC__extension-meta">
+                            <h3>YT Comments Exporter <span class="CC__extension-version">v1.0.0</span></h3>
+                            <p class="CC__extension-summary">Export YouTube comments flawlessly into structured analysis layouts.</p>
+                        </div>
+                    </div>
+                    <div class="CC__extension-metrics">
+                        <div>
+                            <span class="CC__metric-item-label">INSTALLS</span>
+                            <div class="CC__metric-item-value">0</div>
+                        </div>
+                        <div>
+                            <span class="CC__metric-item-label">REVENUE</span>
+                            <div class="CC__metric-item-value">$0</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://chromewebstore.google.com/detail/youtube-comments-exporter/epokpidfnienjjfncmhnallghfhaijbj" target="_blank" class="CC__btn CC__btn--primary CC__btn--full">Install on Chrome</a>
+            </div>
+
+            <div class="CC__extension-card CC__extension-card--disabled CC__cyber-accent">
+                <div class="CC__extension-inner">
+                    <div class="CC__extension-top">
+                        <div class="CC__extension-icon-box">🛡️</div>
+                        <div class="CC__extension-meta">
+                            <h3>Shieldy <span class="CC__extension-version">v1.0.3</span></h3>
+                            <p class="CC__extension-summary">Block distractions, filter out clickbait, and reclaim your digital focus.</p>
+                        </div>
+                    </div>
+                    <div class="CC__extension-metrics">
+                        <div>
+                            <span class="CC__metric-item-label">INSTALLS</span>
+                            <div class="CC__metric-item-value">—</div>
+                        </div>
+                        <div>
+                            <span class="CC__metric-item-label">REVENUE</span>
+                            <div class="CC__metric-item-value">—</div>
+                        </div>
+                    </div>
+                </div>
+                <button disabled class="CC__btn CC__btn--outline CC__btn--full">Coming Soon</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="youtube" class="CC__youtube CC__container">
+        <div class="CC__section-header-row">
+            <div>
+                <p class="CC__section-eyebrow">YouTube Series</p>
+                <h2 class="CC__section-title">The Journey</h2>
+            </div>
+            <a href="https://www.youtube.com/@CodedCitadel" target="_blank" class="CC__view-all-link">View all videos on YouTube →</a>
+        </div>
+
+        <div class="CC__youtube-grid">
+            <div class="CC__video-card">
+                <div class="CC__video-thumb-wrapper">
+                    <img src="video1-thumb.png" alt="Day 1 Video Thumbnail">
+                    <span class="CC__video-duration">10:42</span>
+                </div>
+                <div class="CC__video-info">
+                    <h3 class="CC__video-title">Day 1: The Plan (Starting with $0)</h3>
+                    <p class="CC__video-meta">I'm starting from scratch. Here's the roadmap, the tools, and execution strategies.</p>
+                </div>
+            </div>
+
+            <div class="CC__video-card">
+                <div class="CC__video-thumb-wrapper">
+                    <img src="video2-thumb.png" alt="Day 30 Video Thumbnail">
+                    <span class="CC__video-duration">12:18</span>
+                </div>
+                <div class="CC__video-info">
+                    <h3 class="CC__video-title">30 Days In: First $3k with One Extension</h3>
+                    <p class="CC__video-meta">Traffic loops, direct iterations, and community building mechanics that worked.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="CC__about CC__container">
+        <div class="CC__about-grid">
+            <div class="CC__about-content">
+                <p class="CC__section-eyebrow">About Me</p>
+                <h2 class="CC__section-title">Builder. Learner.<br>Documenting it all.</h2>
+                <p class="CC__about-text">I'm just a guy who loves building things on the internet. No massive seed funding rounds, no large complex dev team—just code, curiosity, and execution consistency. I believe in working transparently, helping devs scale, and proving indie hackers can craft real businesses.</p>
+                <p class="CC__about-signature">— Coded Citadel</p>
+                <div class="CC__tag-cloud">
+                    <span class="CC__tag"># Indie Hacker</span>
+                    <span class="CC__tag"># Chrome Extension Dev</span>
+                    <span class="CC__tag"># Lifelong Learner</span>
+                </div>
+            </div>
+            <div class="CC__about-image-frame CC__cyber-accent">
+                <img src="avatar-citadel.png" alt="Coded Citadel Dev Portrait">
+            </div>
+        </div>
+    </section>
+
+    <footer class="CC__footer">
+        <div class="CC__footer-grid CC__container">
+            <div class="CC__footer-brand">
+                <a href="#" class="CC__logo"><span class="CC__logo-icon">&lt;/&gt;</span> CODED CITADEL</a>
+                <p>Building in public.<br>From $0 to $100k.<br>One extension at a time.</p>
+            </div>
+            <div>
+                <h4 class="CC__footer-col-title">Explore</h4>
+                <ul class="CC__footer-list">
+                    <li><a href="#extensions">Chrome Extensions</a></li>
+                    <li><a href="#youtube">YouTube Channel</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="CC__footer-col-title">Connect</h4>
+                <ul class="CC__footer-list">
+                    <li><a href="https://www.youtube.com/@CodedCitadel" target="_blank">YouTube</a></li>
+                    <li><a href="https://www.instagram.com/CodedCitadel" target="_blank">Instagram</a></li>
+                    <li><a href="#">X (Twitter)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="CC__footer-col-title">Stay Updated</h4>
+                <p style="color: var(--CC__color-text-muted); font-size: 0.85rem;">Get updates on new apps, failures, and breakthroughs.</p>
+                <form class="CC__newsletter-form" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Enter your email" class="CC__newsletter-input" required>
+                    <button type="submit" class="CC__btn CC__btn--primary" style="padding: 0 1rem;">➔</button>
+                </form>
+            </div>
+        </div>
+        <div class="CC__footer-bottom">
+            <p>&copy; 2026 Coded Citadel. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
