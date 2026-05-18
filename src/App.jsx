@@ -102,29 +102,89 @@ export default function App() {
         </nav>
       </header>
 
-      <section className="CC__hero">
-        <div className="CC__hero-inner CC__container">
-          <p className="CC__section-eyebrow">• Building In Public</p>
-          <h1 className="CC__hero-title">
-            Follow the journey of a man coding his way to <span>$100K</span>
-          </h1>
-          <p className="CC__hero-description">
-            Building Chrome extensions. Sharing every win, fail, and lesson learned. One extension at a time.
-          </p>
-          <div className="CC__hero-actions">
-            <a
-              href="https://www.youtube.com/@CodedCitadel"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="CC__btn CC__btn--primary"
-            >
-              Subscribe on YouTube
-            </a>
-            <a href="#extensions" className="CC__btn CC__btn--outline">
-              View Extensions
-            </a>
+      <section className="CC__hero" aria-label="Hero – Code to $100K">
+        <div className="CC__hero__image" aria-hidden="true">
+          <img
+            src={`${import.meta.env.BASE_URL}hero-img.png`}
+            alt="Glowing dark castle with code symbols – the $100K journey"
+          />
+        </div>
+
+        <div className="CC__hero__inner">
+          <div className="CC__hero__rail" aria-hidden="true">
+            <div className="CC__hero__rail-line" />
+            <div className="CC__hero__rail-dots">
+              <span className="CC__hero__rail-dot" />
+              <span className="CC__hero__rail-dot" />
+              <span className="CC__hero__rail-dot" />
+              <span className="CC__hero__rail-dot" />
+            </div>
+          </div>
+
+          <div className="CC__hero__content">
+            <div className="CC__hero__tag">
+              <span className="CC__hero__tag-dot" aria-hidden="true" />
+              <span className="CC__hero__tag-text">Building in Public</span>
+            </div>
+            <h1 className="CC__hero__headline">
+              Follow the
+              <br />
+              Journey of a Man
+              <br />
+              Coding His Way
+              <br />
+              to <span className="CC__hero__headline-accent">$100K</span>
+            </h1>
+
+            <p className="CC__hero__sub">
+              Building Chrome extensions. Sharing every win, fail, and lesson learned. One extension at a
+              time.
+            </p>
+
+            <div className="CC__hero__actions">
+              <a
+                href="https://www.youtube.com/@CodedCitadel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="CC__hero__btn CC__hero__btn--primary"
+                aria-label="Subscribe on YouTube"
+              >
+                <span className="CC__hero__btn-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.25 3.5-6.25 3.5z" />
+                  </svg>
+                </span>
+                Subscribe on YouTube
+              </a>
+              <a
+                href="#extensions"
+                className="CC__hero__btn CC__hero__btn--secondary"
+                aria-label="View Extensions"
+                onClick={closeMenu}
+              >
+                <span className="CC__hero__btn-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                    <line x1="7" y1="7" x2="7.01" y2="7" />
+                  </svg>
+                </span>
+                View Extensions
+              </a>
+            </div>
           </div>
         </div>
+
+        <span className="CC__hero__coords" aria-hidden="true">
+          37.7749° N, 122.4194° W
+        </span>
       </section>
 
       <LiveStatsBar />
