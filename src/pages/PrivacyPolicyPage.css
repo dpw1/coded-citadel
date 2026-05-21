@@ -1,0 +1,125 @@
+.CC__privacy-page {
+  padding: 3rem 0 5rem;
+  min-height: 50vh;
+}
+
+.CC__privacy-page__inner {
+  max-width: 42rem;
+}
+
+.CC__privacy-page__title {
+  font-family: var(--CC__font-display);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.CC__privacy-page__meta {
+  font-size: 0.9rem;
+  color: var(--CC__color-text-muted);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.CC__privacy-page__meta a {
+  color: var(--CC__color-primary);
+}
+
+.CC__privacy-page__meta a:hover {
+  text-decoration: underline;
+}
+
+.CC__privacy__body section {
+  margin-bottom: 2rem;
+}
+
+.CC__privacy__body h2 {
+  font-family: var(--CC__font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--CC__color-text-main);
+  margin-bottom: 0.75rem;
+}
+
+.CC__privacy__body p,
+.CC__privacy__body li {
+  font-size: 0.95rem;
+  color: var(--CC__color-text-muted);
+  line-height: 1.7;
+}
+
+.CC__privacy__body p {
+  margin-bottom: 0.85rem;
+}
+
+.CC__privacy__body p:last-child {
+  margin-bottom: 0;
+}
+
+.CC__privacy__body ul {
+  margin: 0 0 0.85rem 1.25rem;
+  padding: 0;
+}
+
+.CC__privacy__body li {
+  margin-bottom: 0.5rem;
+}
+
+.CC__privacy__body li strong {
+  color: var(--CC__color-text-main);
+  font-weight: 600;
+}
+
+.CC__privacy__body a {
+  color: var(--CC__color-primary);
+}
+
+.CC__privacy__body a:hover {
+  text-decoration: underline;
+}
+
+.CC__privacy__body code {
+  font-size: 0.88em;
+  color: var(--CC__color-text-main);
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: 2px;
+  padding: 0.1em 0.35em;
+}
+
+.CC__privacy__body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+}
+
+.CC__privacy__body th,
+.CC__privacy__body td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--CC__color-border);
+  color: var(--CC__color-text-muted);
+  line-height: 1.5;
+}
+
+.CC__privacy__body th {
+  font-weight: 600;
+  color: var(--CC__color-text-main);
+  background: var(--CC__color-bg-card);
+}
+
+.CC__privacy__end {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--CC__color-border);
+  font-size: 0.85rem;
+  color: var(--CC__color-text-sub);
+  text-align: center;
+}

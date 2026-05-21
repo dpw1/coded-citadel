@@ -7,6 +7,8 @@ import prerender from '@prerenderer/rollup-plugin'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
+const PRIVACY_POLICY_SLUGS = ['claude-deep-search']
+
 function getPrerenderRoutes() {
   const { apps } = JSON.parse(
     readFileSync(join(__dirname, 'src', 'data', 'apps.json'), 'utf8'),
@@ -15,6 +17,7 @@ function getPrerenderRoutes() {
     '/',
     '/apps',
     ...(apps || []).map((app) => `/apps/${app.slug}`),
+    ...PRIVACY_POLICY_SLUGS.map((slug) => `/privacy-policy/${slug}`),
   ]
 }
 

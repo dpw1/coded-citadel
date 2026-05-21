@@ -13,6 +13,9 @@ const APPS_FILE = resolve(ROOT, 'src', 'data', 'apps.json')
 const OUT_FILE = resolve(ROOT, 'public', 'sitemap.xml')
 const SITE_URL = (process.env.SITE_URL || 'https://codedcitadel.com').replace(/\/$/, '')
 
+/** Keep in sync with src/utils/privacyPolicies.js */
+const PRIVACY_POLICY_SLUGS = ['claude-deep-search']
+
 function escapeXml(text) {
   return String(text)
     .replace(/&/g, '&amp;')
@@ -54,6 +57,13 @@ function main() {
         lastmod: app.lastUpdated || defaultLastmod,
         changefreq: 'monthly',
         priority: '0.9',
+      })
+    ),
+    ...PRIVACY_POLICY_SLUGS.map((slug) =>
+      urlEntry(`${SITE_URL}/privacy-policy/${slug}`, {
+        lastmod: defaultLastmod,
+        changefreq: 'yearly',
+        priority: '0.5',
       })
     ),
   ]
