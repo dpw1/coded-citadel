@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run fetch-youtube && npm run extract-chrome-apps && vite build",
+    "build": "npm run fetch-youtube && npm run generate-sitemap && vite build",
     "preview": "vite preview",
     "fetch-youtube": "npm install --prefix back-end && node back-end/fetch-youtube-videos.mjs",
     "extract-chrome-apps": "node back-end/extract-chrome-apps.mjs",
+    "generate-sitemap": "node back-end/generate-sitemap.mjs",
     "resize-favicon": "node back-end/resize-favicon.mjs"
   },
   "dependencies": {

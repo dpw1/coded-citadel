@@ -2,6 +2,7 @@ import { useEffect, useId, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
+import ExtensionPageSEO from '../components/ExtensionPageSEO'
 import CyberCorners from '../components/CyberCorners'
 import ExtensionCharts, { DonutLegend, regionDotColor } from '../components/extension/ExtensionCharts'
 import {
@@ -93,6 +94,7 @@ export default function ExtensionLandingPage() {
   if (!isAppLive(ext) || !ext.analytics) {
     return (
       <AppPageShell>
+      <ExtensionPageSEO extension={ext} />
       <main className="ext-page">
         <div className="CC__container" style={{ padding: '4rem 0' }}>
           <Link to="/apps" className="ext-page__back">
@@ -147,6 +149,7 @@ export default function ExtensionLandingPage() {
 
   return (
     <AppPageShell>
+    <ExtensionPageSEO extension={ext} />
     <main className="ext-page">
       <ExtensionCharts analytics={an} chartIds={chartIds} />
 
