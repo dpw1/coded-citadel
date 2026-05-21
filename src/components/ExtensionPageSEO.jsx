@@ -51,6 +51,26 @@ function restoreEntry({ el, created, previousValue, attribute = 'content' }) {
   }
 }
 
+function buildAggregateRating(analytics) {
+  const ratingValue = analytics?.rating
+  const reviewCount = analytics?.ratingCount ?? analytics?.reviewCount
+
+  if (
+    ratingValue == null ||
+    ratingValue === '' ||
+    reviewCount == null ||
+    reviewCount === ''
+  ) {
+    return undefined
+  }
+
+  return {
+    '@type': 'AggregateRating',
+    ratingValue,
+    reviewCount,
+  }
+}
+
 export default function ExtensionPageSEO({ extension }) {
   useEffect(() => {
     if (!extension) return undefined
@@ -90,38 +110,40 @@ export default function ExtensionPageSEO({ extension }) {
     managed.push(upsertMeta({ name: 'twitter:description', content: description }))
     managed.push(upsertMeta({ name: 'twitter:image', content: image }))
 
-    const jsonLd = [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'SoftwareApplication',
-        name: extension.name,
-        applicationCategory: 'BrowserApplication',
-        operatingSystem: 'Google Chrome',
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD',
-        },
-        description: extension.description?.short,
-        url: pageUrl,
-        downloadUrl: extension.chromeStoreUrl,
-        dateModified: extension.lastUpdated,
-        softwareVersion: extension.version,
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: extension.analytics?.rating,
-          reviewCount: extension.analytics?.ratingCount,
-        },
-        author: {
-          '@type': 'Person',
-          name: 'Coded Citadel',
-          url: SITE_URL,
-          sameAs: [
-            'https://www.youtube.com/@CodedCitadel',
-            'https://www.instagram.com/CodedCitadel',
-          ],
-        },
+    const softwareApplication = {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: extension.name,
+      applicationCategory: 'BrowserApplication',
+      operatingSystem: 'Google Chrome',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
       },
+      description: extension.description?.short,
+      url: pageUrl,
+      downloadUrl: extension.chromeStoreUrl,
+      dateModified: extension.lastUpdated,
+      softwareVersion: extension.version,
+      author: {
+        '@type': 'Person',
+        name: 'Coded Citadel',
+        url: SITE_URL,
+        sameAs: [
+          'https://www.youtube.com/@CodedCitadel',
+          'https://www.instagram.com/CodedCitadel',
+        ],
+      },
+    }
+
+    const aggregateRating = buildAggregateRating(extension.analytics)
+    if (aggregateRating) {
+      softwareApplication.aggregateRating = aggregateRating
+    }
+
+    const jsonLd = [
+      softwareApplication,
       {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
