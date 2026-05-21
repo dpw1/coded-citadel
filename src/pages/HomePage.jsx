@@ -79,14 +79,14 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="CC__hero__btn CC__hero__btn--primary"
-                aria-label="Subscribe on YouTube"
+                aria-label="Watch on Youtube"
               >
                 <span className="CC__hero__btn-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.25 3.5-6.25 3.5z" />
                   </svg>
                 </span>
-                Subscribe on YouTube
+                Watch on Youtube
               </a>
               <Link to="/apps" className="CC__hero__btn CC__hero__btn--secondary" aria-label="View Apps">
                 <span className="CC__hero__btn-icon" aria-hidden="true">
@@ -173,7 +173,7 @@ export default function HomePage() {
             <p className="CC__section-eyebrow">About Me</p>
             <h2 className="CC__section-title">Transparency is my priority.</h2>
             <p className="CC__about-text">
-              I came across many projects of "making $x USD to "
+              I came across many projects of "making $x in Y days". They all seemed 
             </p>
             <p className="CC__about-signature">— Coded Citadel</p>
             <div className="CC__tag-cloud">

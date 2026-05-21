@@ -385,15 +385,49 @@
 
 .ext-hero__browser-content {
   position: relative;
+  padding: 0.65rem;
   background: #0a0e15;
 }
 
-/* YouTube iframe wrapper */
+.ext-hero__browser-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ext-hero__browser-bg img {
+  position: absolute;
+  top: 0;
+  right: -8%;
+  width: 115%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.ext-hero__browser-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(9, 11, 16, 0.88) 0%,
+    rgba(9, 11, 16, 0.55) 45%,
+    rgba(9, 11, 16, 0.35) 100%
+  );
+}
+
+/* YouTube iframe / screenshot — above hero art */
 .ext-hero__yt-wrap {
   position: relative;
+  z-index: 1;
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
 }
 
 .ext-hero__yt-wrap iframe,
@@ -592,13 +626,21 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 2rem;
+  margin-bottom: 0.35rem;
+}
+
+.ext-analytics__updated {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--CC__color-text-muted);
+  margin-bottom: 0;
 }
 
 .ext-analytics__header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
@@ -959,60 +1001,11 @@
 .ext-source-row__val { color: var(--CC__color-text-main); font-weight: 600; min-width: 36px; text-align: right; }
 .ext-source-row__pct { color: var(--CC__color-text-muted); min-width: 42px; }
 
-/* ===== FEATURES GRID ===== */
-.ext-features {
+/* ===== BUILD STORY / TECH / AUDIENCE ===== */
+.ext-bottom {
   padding: 4rem 0 2rem;
 }
 
-.ext-features__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.ext-feat-card {
-  padding: 1.75rem 1.5rem;
-}
-
-.ext-feat-card__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--CC__color-icon-bg);
-  border: 1px solid var(--CC__color-border);
-  margin-bottom: 1.1rem;
-}
-
-.ext-feat-card__icon svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: var(--CC__color-primary);
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.ext-feat-card__title {
-  font-family: var(--CC__font-display);
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.6rem;
-}
-
-.ext-feat-card__desc {
-  font-size: 0.82rem;
-  color: var(--CC__color-text-muted);
-  line-height: 1.55;
-}
-
-/* ===== BUILD STORY / TECH / AUDIENCE ===== */
 .ext-bottom-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr;
@@ -1284,10 +1277,6 @@
   /* Secondary stats */
   .ext-secondary-stats__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-  /* Features */
-  .ext-features { padding: 3rem 0 1.5rem; }
-  .ext-features__grid { grid-template-columns: repeat(2, 1fr); }
-
   /* Bottom grid */
   .ext-bottom-grid { grid-template-columns: 1fr 1fr; }
   .ext-bottom-grid > *:first-child { grid-column: 1 / -1; }
@@ -1360,11 +1349,7 @@
   .ext-source-row__name { width: 80px; font-size: 0.68rem; }
   .ext-source-row__pct { display: none; } /* save space on mobile */
 
-  /* Features */
-  .ext-features { padding: 2.5rem 0 1rem; }
-  .ext-features__grid { grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1rem; }
-  .ext-feat-card { padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
-  .ext-feat-card__icon { margin-bottom: 0; flex-shrink: 0; width: 44px; height: 44px; }
+  .ext-bottom { padding: 2.5rem 0 1rem; }
 
   /* Bottom grid: single column */
   .ext-bottom-grid { grid-template-columns: 1fr; gap: 0.75rem; padding-bottom: 2.5rem; }

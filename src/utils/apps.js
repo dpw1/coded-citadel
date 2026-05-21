@@ -3,7 +3,12 @@ import appsData from '../data/apps.json'
 const SLUG_ALIASES = { test: 'yt-comments-exporter' }
 
 export function getAllApps() {
-  return appsData.apps
+  return appsData.apps ?? []
+}
+
+/** ISO date (YYYY-MM-DD) when apps.json was last generated from Chrome exports. */
+export function getAppsUpdatedAt() {
+  return appsData.updatedAt ?? null
 }
 
 export function resolveAppSlug(slug) {

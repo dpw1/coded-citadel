@@ -12,6 +12,7 @@ import {
   formatAppDate,
   formatLabel,
   formatNumber,
+  getAppsUpdatedAt,
   getAppBySlug,
   isAppLive,
   splitAppTitle,
@@ -23,13 +24,6 @@ import {
 } from '../utils/apps'
 import '../App.css'
 import './ExtensionLandingPage.css'
-
-const FEATURE_ICONS = [
-  <svg key="f0" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
-  <svg key="f1" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>,
-  <svg key="f2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>,
-  <svg key="f3" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="3" y1="15" x2="21" y2="15" /><line x1="9" y1="3" x2="9" y2="21" /><line x1="15" y1="3" x2="15" y2="21" /></svg>,
-]
 
 const TECH_ICONS = [
   <svg key="t0" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /></svg>,
@@ -134,7 +128,6 @@ export default function ExtensionLandingPage() {
     techStack: [],
     ...ext.buildStory,
   }
-  const features = ext.features ?? []
   const audience = ext.audience ?? []
   const enabledVsDisabled = an.enabledVsDisabled ?? { enabled: 0, disabled: 0 }
   const pageViewsBySource = an.pageViewsBySource ?? {}
@@ -150,6 +143,7 @@ export default function ExtensionLandingPage() {
 
   const liveLabel =
     ext.status === 'live' ? 'Live on Chrome Web Store' : `${ext.status} — ${ext.platform}`
+  const analyticsUpdatedAt = getAppsUpdatedAt() ?? ext.lastUpdated
 
   return (
     <AppPageShell>
@@ -262,6 +256,12 @@ export default function ExtensionLandingPage() {
                   </div>
                 </div>
                 <div className="ext-hero__browser-content">
+                  <div className="ext-hero__browser-bg" aria-hidden="true">
+                    <img
+                      src={`${import.meta.env.BASE_URL}hero-img.png`}
+                      alt=""
+                    />
+                  </div>
                   <div className="ext-hero__yt-wrap">
                     {heroEmbedId ? (
                       <iframe
@@ -356,6 +356,11 @@ export default function ExtensionLandingPage() {
             <div>
               <div className="ext-analytics__eyebrow">Analytics Overview</div>
               <h2 className="ext-analytics__title">Live Performance</h2>
+              {analyticsUpdatedAt ? (
+                <small className="ext-analytics__updated">
+                  Last updated at: {formatAppDate(analyticsUpdatedAt)}
+                </small>
+              ) : null}
             </div>
             <div className="ext-analytics__filter">Last 30 days</div>
           </div>
@@ -499,21 +504,8 @@ export default function ExtensionLandingPage() {
           </div>
         </section>
 
-        {(features.length > 0 || buildStory.episode || buildStory.techStack.length > 0 || audience.length > 0) ? (
-        <section className="ext-features">
-          {features.length > 0 ? (
-            <div className="ext-features__grid">
-              {features.map((feat, i) => (
-                <div key={feat.title} className="ext-feat-card CC__cyber-accent">
-                  <CyberCorners />
-                  <div className="ext-feat-card__icon">{FEATURE_ICONS[i] || FEATURE_ICONS[0]}</div>
-                  <div className="ext-feat-card__title">{feat.title}</div>
-                  <p className="ext-feat-card__desc">{feat.description}</p>
-                </div>
-              ))}
-            </div>
-          ) : null}
-
+        {(buildStory.episode || buildStory.builtInDays != null || buildStory.techStack.length > 0 || audience.length > 0) ? (
+        <section className="ext-bottom">
           <div className="ext-bottom-grid">
             {(buildStory.episode || buildStory.builtInDays != null) ? (
             <div className="ext-build-card CC__cyber-accent">
