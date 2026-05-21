@@ -25,15 +25,27 @@
 .CC__logo {
   display: flex;
   align-items: center;
-  gap: var(--CC__space-xs);
+  gap: 0.625rem;
   font-family: var(--CC__font-display);
   font-size: 1.5rem;
   letter-spacing: 1px;
+  text-decoration: none;
 }
 
-.CC__logo-icon {
-  color: var(--CC__color-primary);
-  font-weight: bold;
+.CC__logo-img {
+  height: 32px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+.CC__logo-text {
+  color: var(--CC__color-text-main);
+  font-weight: 600;
+}
+
+.CC__footer-brand .CC__logo-img {
+  height: 28px;
 }
 
 .CC__nav {
@@ -48,6 +60,10 @@
 
 .CC__nav-link:hover {
   color: var(--CC__color-text-main);
+}
+
+.CC__nav-link--active {
+  color: var(--CC__color-primary);
 }
 
 /* ==========================================================================
@@ -366,6 +382,11 @@
 /* ==========================================================================
    EXTENSIONS SECTION
    ========================================================================== */
+.CC__apps-page {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
 .CC__extensions.CC__container {
   padding-top: var(--CC__space-lg);
   padding-bottom: var(--CC__space-lg);
@@ -414,6 +435,7 @@
 .CC__extension-icon-box {
   width: 54px;
   height: 54px;
+  flex-shrink: 0;
   background-color: rgba(255, 153, 0, 0.1);
   border: 1px solid rgba(255, 153, 0, 0.2);
   border-radius: var(--CC__radius);
@@ -422,14 +444,24 @@
   justify-content: center;
   color: var(--CC__color-primary);
   font-size: 1.5rem;
+  overflow: hidden;
+}
+
+.CC__extension-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--CC__radius) - 1px);
 }
 
 .CC__extension-meta h3 {
   font-size: 1.25rem;
   font-weight: 600;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--CC__space-xs);
+  min-height: 3.25rem;
+  line-height: 1.3;
 }
 
 .CC__extension-version {
@@ -444,6 +476,12 @@
   color: var(--CC__color-text-muted);
   font-size: 0.9rem;
   margin-top: 4px;
+  min-height: 2.75rem;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .CC__extension-metrics {
@@ -801,5 +839,13 @@ html {
 
   .CC__logo {
     font-size: 1.15rem;
+  }
+
+  .CC__logo-img {
+    height: 28px;
+  }
+
+  .CC__footer-brand .CC__logo-img {
+    height: 24px;
   }
 }

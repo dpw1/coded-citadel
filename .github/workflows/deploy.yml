@@ -39,7 +39,7 @@ jobs:
       - name: Verify production bundle
         run: |
           test -f dist/index.html
-          test -f dist/favicon.svg
+          test -f dist/favicon-32.png
           if grep -qE '\.jsx|/src/main' dist/index.html; then
             echo "dist/index.html still references source JSX — build misconfigured"
             exit 1

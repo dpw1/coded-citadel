@@ -1,0 +1,11 @@
+{
+  "name": "coded-citadel-back-end",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch-youtube": "node fetch-youtube-videos.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

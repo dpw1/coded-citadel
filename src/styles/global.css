@@ -178,7 +178,7 @@ button {
    LIVE STATS BAR
    ========================================================================== */
 .CC__stats-section {
-  margin-top: calc(var(--CC__space-xl) * -1 + 2rem);
+  margin-top: 50px;
   position: relative;
   z-index: 10;
 }

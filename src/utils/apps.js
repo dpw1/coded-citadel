@@ -1,0 +1,215 @@
+import appsData from '../data/apps.json'
+
+const SLUG_ALIASES = { test: 'yt-comments-exporter' }
+
+export function getAllApps() {
+  return appsData.apps
+}
+
+export function resolveAppSlug(slug) {
+  return SLUG_ALIASES[slug] ?? slug
+}
+
+export function getAppBySlug(slug) {
+  const resolved = resolveAppSlug(slug)
+  return appsData.apps.find((app) => app.slug === resolved) ?? null
+}
+
+export function isAppLive(app) {
+  return app?.status === 'live'
+}
+
+export function appStoreUrl(app) {
+  const url = app?.chromeStoreUrl
+  return url && url !== '#' ? url : null
+}
+
+export function appCardSummary(app) {
+  const short = app.description?.short?.trim()
+  if (short) return short.split('\n')[0].trim()
+  return app.tagline ?? ''
+}
+
+export function appIconUrl(app) {
+  return app.chromeExtensionIcon || null
+}
+
+function parseRevenueValue(revenue) {
+  if (revenue == null) return 0
+  const m = String(revenue).match(/\$?([\d,.]+)/)
+  return m ? Number(m[1].replace(/,/g, '')) : 0
+}
+
+export function formatRevenue(total) {
+  return `$${Math.round(total).toLocaleString('en-US')}`
+}
+
+/** Day 1 of the public journey — May 12, 2026 at local midnight. */
+const JOURNEY_DAY_ONE = new Date(2026, 4, 12)
+const MS_PER_DAY = 24 * 60 * 60 * 1000
+
+function startOfLocalDay(ms) {
+  const d = new Date(ms)
+  d.setHours(0, 0, 0, 0)
+  return d.getTime()
+}
+
+/** Inclusive day count since journey start (Day 1 on May 12, 2026). */
+export function getDaysIntoJourney(now = Date.now()) {
+  const elapsed = Math.floor(
+    (startOfLocalDay(now) - startOfLocalDay(JOURNEY_DAY_ONE)) / MS_PER_DAY,
+  )
+  if (elapsed < 0) return null
+  return elapsed + 1
+}
+
+export function getHomeStats() {
+  const apps = getAllApps()
+  const live = apps.filter(isAppLive)
+  let totalInstalls = 0
+  let installDelta = 0
+
+  for (const app of live) {
+    const installs = app.analytics?.totalInstalls
+    if (installs != null) totalInstalls += installs
+    const weeks = app.analytics?.weeklyUsers
+    if (weeks?.length >= 2) {
+      installDelta += weeks[weeks.length - 1].count - weeks[weeks.length - 2].count
+    }
+  }
+
+  const totalRevenue = live.reduce((sum, app) => sum + parseRevenueValue(appCardRevenue(app)), 0)
+  const built = apps.length
+  const inProgress = apps.filter((a) => a.status !== 'live').length
+
+  return {
+    totalRevenue,
+    totalRevenueLabel: formatRevenue(totalRevenue),
+    totalInstalls,
+    installDelta,
+    built,
+    inProgress,
+    daysIntoJourney: getDaysIntoJourney(),
+  }
+}
+
+export function appCardInstalls(app) {
+  if (!isAppLive(app)) return null
+  const installs = app.analytics?.totalInstalls
+  return installs != null ? installs : 0
+}
+
+export function appCardRevenue(app) {
+  if (!isAppLive(app)) return null
+  if (app.revenue != null) return app.revenue
+  return app.price === 'Free' ? '$0' : '—'
+}
+
+export function splitAppTitle(name) {
+  const parts = name.trim().split(/\s+/)
+  if (parts.length <= 1) return { main: name, accent: '' }
+  const accent = parts.pop()
+  return { main: parts.join(' '), accent }
+}
+
+export function formatAppDate(iso) {
+  if (!iso) return '—'
+  const d = new Date(`${iso}T12:00:00`)
+  return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
+}
+
+export function formatWeekLabel(week) {
+  if (!week) return ''
+  const d = new Date(`${week}T12:00:00`)
+  return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })
+}
+
+/** `dd-mm-yyyy` from extractor → ISO date for charts */
+export function installDateToIso(ddMmYyyy) {
+  const [d, m, y] = ddMmYyyy.split('-')
+  return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`
+}
+
+export function formatInstallDate(ddMmYyyy) {
+  if (!ddMmYyyy) return ''
+  const d = new Date(`${installDateToIso(ddMmYyyy)}T12:00:00`)
+  return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })
+}
+
+export function getInstallationsSeries(analytics) {
+  return analytics?.installations ?? []
+}
+
+export function installationsTotal(series) {
+  return series.reduce((sum, row) => sum + (row.total ?? 0), 0)
+}
+
+export function installationsDelta(series) {
+  if (!series?.length || series.length < 2) return null
+  const prev = series[series.length - 2].total
+  const last = series[series.length - 1].total
+  if (!prev) return null
+  const pct = Math.round(((last - prev) / prev) * 100)
+  return { pct, last, prev }
+}
+
+export function formatNumber(n) {
+  return Number(n).toLocaleString('en-US')
+}
+
+export function formatLabel(key) {
+  const labels = {
+    other: 'Other',
+    chromeWebStore: 'Chrome Web Store',
+    google: 'Google',
+    direct: 'Direct',
+  }
+  if (labels[key]) return labels[key]
+  if (/^[A-Z]{2}$/.test(key)) return key
+  return key.charAt(0).toUpperCase() + key.slice(1)
+}
+
+export function titleCaseAudience(value) {
+  return value
+    .split(/\s+/)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ')
+}
+
+export function weeklyUsersDelta(weeklyUsers) {
+  if (!weeklyUsers?.length || weeklyUsers.length < 2) return null
+  const prev = weeklyUsers[weeklyUsers.length - 2].count
+  const last = weeklyUsers[weeklyUsers.length - 1].count
+  if (!prev) return null
+  const pct = Math.round(((last - prev) / prev) * 100)
+  return { pct, last, prev }
+}
+
+export function youtubeEmbedId(url) {
+  if (!url || url === '#') return null
+  try {
+    const u = new URL(url)
+    let id = null
+    if (u.hostname.includes('youtu.be')) {
+      id = u.pathname.replace(/^\//, '').split('/')[0]
+    } else {
+      id = u.searchParams.get('v')
+    }
+    if (!id || !/^[\w-]{11}$/.test(id) || /^1234567890/i.test(id)) return null
+    return id
+  } catch {
+    return null
+  }
+}
+
+/** Valid promotional YouTube URL from the edit page, or null. */
+export function appHeroYoutubeUrl(app) {
+  const url = app?.buildStory?.youtubeUrl
+  return youtubeEmbedId(url) ? url : null
+}
+
+/** Store screenshot used when there is no YouTube promo video. */
+export function appHeroPreviewUrl(app) {
+  const shot = app?.screenshots?.[0]
+  return typeof shot === 'string' && shot.startsWith('http') ? shot : null
+}

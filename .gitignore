@@ -5,4 +5,11 @@ samples/
 *.local
 .env
 .env.*
+.ENV
+back-end/node_modules
+
+# Ignore entire back-end except fetch scripts (API key stays in root .env)
+back-end/*
+!back-end/fetch-youtube-videos.mjs
+!back-end/package.json
 .vite

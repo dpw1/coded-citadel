@@ -1,6 +1,15 @@
 import CyberCorners from './CyberCorners'
+import { formatNumber, getHomeStats } from '../utils/apps'
 
 export default function LiveStatsBar() {
+  const stats = getHomeStats()
+  const installDeltaLabel =
+    stats.installDelta > 0
+      ? `+ ${formatNumber(stats.installDelta)} this week`
+      : stats.installDelta < 0
+        ? `${formatNumber(stats.installDelta)} this week`
+        : 'From Chrome Web Store'
+
   return (
     <div className="CC__stats-section CC__container">
       <div className="CC__stats-bar CC__cyber-accent" role="region" aria-label="Live Stats">
@@ -24,8 +33,8 @@ export default function LiveStatsBar() {
             </div>
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Total Revenue</span>
-              <span className="CC__stats-bar__value">$0</span>
-              <span className="CC__stats-bar__delta">+ $0 today</span>
+              <span className="CC__stats-bar__value">{stats.totalRevenueLabel}</span>
+              <span className="CC__stats-bar__delta">From live apps</span>
             </div>
           </li>
 
@@ -39,8 +48,8 @@ export default function LiveStatsBar() {
             </div>
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Total Installs</span>
-              <span className="CC__stats-bar__value">0</span>
-              <span className="CC__stats-bar__delta">+ 0 today</span>
+              <span className="CC__stats-bar__value">{formatNumber(stats.totalInstalls)}</span>
+              <span className="CC__stats-bar__delta">{installDeltaLabel}</span>
             </div>
           </li>
 
@@ -52,9 +61,11 @@ export default function LiveStatsBar() {
               </svg>
             </div>
             <div className="CC__stats-bar__info">
-              <span className="CC__stats-bar__label">Extensions Built</span>
-              <span className="CC__stats-bar__value CC__stats-bar__value--white">1</span>
-              <span className="CC__stats-bar__delta CC__stats-bar__delta--info">+ 1 in progress</span>
+              <span className="CC__stats-bar__label">Apps Built</span>
+              <span className="CC__stats-bar__value CC__stats-bar__value--white">{stats.built}</span>
+              <span className="CC__stats-bar__delta CC__stats-bar__delta--info">
+                {stats.inProgress > 0 ? `+ ${stats.inProgress} in progress` : 'All live'}
+              </span>
             </div>
           </li>
 
@@ -69,7 +80,9 @@ export default function LiveStatsBar() {
             </div>
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Days Into Journey</span>
-              <span className="CC__stats-bar__value CC__stats-bar__value--white">6</span>
+              <span className="CC__stats-bar__value CC__stats-bar__value--white">
+                {stats.daysIntoJourney ?? '—'}
+              </span>
               <span className="CC__stats-bar__delta CC__stats-bar__delta--muted">Since Day 1</span>
             </div>
           </li>
