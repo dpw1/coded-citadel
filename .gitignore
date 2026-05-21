@@ -8,9 +8,10 @@ samples/
 .ENV
 back-end/node_modules
 
-# Ignore entire back-end except fetch scripts (API key stays in root .env)
+# Ignore entire back-end except build scripts (API key stays in root .env)
 back-end/*
 !back-end/fetch-youtube-videos.mjs
 !back-end/extract-chrome-apps.mjs
+!back-end/generate-sitemap.mjs
 !back-end/package.json
 .vite

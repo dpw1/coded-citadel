@@ -253,8 +253,8 @@ export default function ExtensionLandingPage() {
                     <div className="ext-hero__browser-dot ext-hero__browser-dot--green" />
                   </div>
                   <div className="ext-hero__browser-url">
-                    {heroEmbedId
-                      ? `youtube.com/watch?v=${heroEmbedId}`
+                    {storeUrl
+                      ? storeUrl.replace(/^https?:\/\//, '')
                       : 'chromewebstore.google.com'}
                   </div>
                 </div>
