@@ -39,8 +39,16 @@ function main() {
   const defaultLastmod = updatedAt || new Date().toISOString().slice(0, 10)
 
   const entries = [
-    urlEntry(`${SITE_URL}/`, { changefreq: 'weekly', priority: '1.0' }),
-    urlEntry(`${SITE_URL}/apps`, { changefreq: 'weekly', priority: '0.8' }),
+    urlEntry(`${SITE_URL}/`, {
+      changefreq: 'weekly',
+      priority: '1.0',
+      lastmod: defaultLastmod,
+    }),
+    urlEntry(`${SITE_URL}/apps`, {
+      changefreq: 'weekly',
+      priority: '0.8',
+      lastmod: defaultLastmod,
+    }),
     ...(apps || []).map((app) =>
       urlEntry(`${SITE_URL}/apps/${app.slug}`, {
         lastmod: app.lastUpdated || defaultLastmod,
