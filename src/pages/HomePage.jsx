@@ -6,6 +6,7 @@ import AppsGridSection from '../components/AppsGridSection'
 import YoutubeSection from '../components/YoutubeSection'
 import LiveStatsBar from '../components/LiveStatsBar'
 import CyberCorners from '../components/CyberCorners'
+import HomePageSEO from '../components/HomePageSEO'
 import { scrollToSection } from '../utils/scroll'
 import '../App.css'
 
@@ -27,6 +28,7 @@ export default function HomePage() {
 
   return (
     <>
+      <HomePageSEO />
       <SiteHeader />
 
       <section className="CC__hero" aria-label="Hero – Code to $100K">
@@ -102,10 +104,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        <span className="CC__hero__coords" aria-hidden="true">
-          37.7749° N, 122.4194° W
-        </span>
       </section>
 
       <LiveStatsBar />

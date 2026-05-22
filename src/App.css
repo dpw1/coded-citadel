@@ -304,19 +304,6 @@
   height: 18px;
 }
 
-.CC__hero__coords {
-  position: absolute;
-  bottom: 1.25rem;
-  right: 1.5rem;
-  z-index: 5;
-  font-family: var(--CC__font-sans);
-  font-size: 0.55rem;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.2);
-  pointer-events: none;
-  user-select: none;
-}
-
 @media (max-width: 768px) {
   .CC__hero {
     min-height: 100svh;
@@ -366,10 +353,6 @@
   .CC__hero__btn {
     padding: 0.8rem 1.25rem;
     font-size: 0.78rem;
-  }
-
-  .CC__hero__coords {
-    display: none;
   }
 }
 
