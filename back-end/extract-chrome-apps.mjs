@@ -9,14 +9,73 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.join(__dirname, '..')
-const HTML_DIR = path.join(ROOT, 'samples/chrome-extension-html/html')
+const HTML_DIR = path.join(ROOT, 'chrome-extension-html/html')
+const PROCESSED_HTML_DIR = path.join(ROOT, 'chrome-extension-html/processed_html')
 const APPS_JSON = path.join(ROOT, 'src/data/apps.json')
-const APPS_EXAMPLE = path.join(ROOT, 'samples/chrome-extension-html/apps-example.json')
-const DB_JSON = path.join(ROOT, 'samples/chrome-extension-html/db.json')
+const APPS_EXAMPLE = path.join(ROOT, 'chrome-extension-html/apps-example.json')
+const DB_JSON = path.join(ROOT, 'chrome-extension-html/db.json')
 
 const ID_TO_SLUG = {
   epokpidfnienjjfncmhnallghfhaijbj: 'yt-comments-exporter',
   dbkkcbfafkckhmefkpgnelikibobcabb: 'youtube-filter-pro',
+}
+
+function stripHtmlTags(text) {
+  return text.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
+}
+
+/** Package title from edit page: article > section:first-of-type > div:first-of-type > p+p */
+export function extractSlugNameFromEdit(html) {
+  const fixed = fixEncoding(html)
+  const articleMatch = fixed.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)
+  const scope = articleMatch ? articleMatch[1] : fixed
+
+  const sectionMatch = scope.match(/<section\b[^>]*>([\s\S]*?)<\/section>/i)
+  if (sectionMatch) {
+    const divMatch = sectionMatch[1].match(/<div\b[^>]*>([\s\S]*?)<\/div>/i)
+    if (divMatch) {
+      const ps = [...divMatch[1].matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map((m) =>
+        stripHtmlTags(m[1]),
+      )
+      if (ps.length >= 2 && ps[1]) return ps[1]
+    }
+  }
+
+  const packageTitle = fixed.match(/<p class="HXbL8" jsname="GYcwYe">([^<]+)</)?.[1]
+  if (packageTitle) return stripHtmlTags(packageTitle)
+
+  const titleM = fixed.match(/class="pBYElf">([^<]+)</)
+  if (titleM) return stripHtmlTags(titleM[1])
+
+  return null
+}
+
+export function slugify(name) {
+  if (!name) return ''
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\s+/g, '-')
+}
+
+function emptyAnalytics() {
+  return {
+    totalInstalls: 0,
+    installations: [],
+    weeklyUsers: [],
+    weeklyUsersByRegion: {},
+    installsByRegion: {},
+    uninstalls: 0,
+    uninstallsByRegion: {},
+    pageViews: 0,
+    pageViewsOverTime: [],
+    pageViewsBySource: {},
+    impressions: 0,
+    impressionsAcrossChromeWebStore: [],
+    enabledVsDisabled: { enabled: 0, disabled: 0 },
+  }
 }
 
 const CATEGORY_MAP = {
@@ -94,11 +153,18 @@ export function listHtmlFiles() {
   return fs.readdirSync(HTML_DIR).filter((f) => f.endsWith('.html'))
 }
 
-function deleteHtmlExports(files) {
+function moveHtmlToProcessed(files) {
+  fs.mkdirSync(PROCESSED_HTML_DIR, { recursive: true })
   for (const file of files) {
-    fs.unlinkSync(path.join(HTML_DIR, file))
+    const src = path.join(HTML_DIR, file)
+    let dest = path.join(PROCESSED_HTML_DIR, file)
+    if (fs.existsSync(dest)) {
+      const stamp = new Date().toISOString().replace(/[:.]/g, '-')
+      dest = path.join(PROCESSED_HTML_DIR, `${stamp}--${file}`)
+    }
+    fs.renameSync(src, dest)
   }
-  console.log(`Removed ${files.length} HTML export(s) from ${HTML_DIR}`)
+  console.log(`Moved ${files.length} HTML export(s) to ${PROCESSED_HTML_DIR}`)
 }
 
 function groupByExtension(files) {
@@ -112,12 +178,26 @@ function groupByExtension(files) {
   return groups
 }
 
+/** Locate `[["YYYY-MM-DD", …], …]` regardless of ds:N layout (data[1] vs data[2]). */
+function dailySeriesEntries(data) {
+  if (!Array.isArray(data)) return []
+  for (let i = 1; i < data.length; i++) {
+    const block = data[i]
+    if (!Array.isArray(block) || !block.length) continue
+    const first = block[0]
+    if (Array.isArray(first) && typeof first[0] === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(first[0])) {
+      return block
+    }
+  }
+  return []
+}
+
 /** Sum daily series like [["2026-05-16",[[1,[[3,2,"INSTALLS"]]]]], ...] */
 function sumMetricSeries(data, metricType) {
   const byDate = {}
-  if (!Array.isArray(data) || !Array.isArray(data[1])) return { total: 0, byDate, weekly: [] }
+  if (!data) return { total: 0, byDate, weekly: [] }
 
-  for (const day of data[1]) {
+  for (const day of dailySeriesEntries(data)) {
     if (!Array.isArray(day) || day.length < 2) continue
     const date = day[0]
     let count = 0
@@ -129,12 +209,64 @@ function sumMetricSeries(data, metricType) {
       for (const child of node) walk(child)
     }
     walk(day[1])
-    if (count) byDate[date] = count
+    byDate[date] = count
   }
 
   const total = Object.values(byDate).reduce((a, b) => a + b, 0)
   const weekly = aggregateDailyToWeekly(byDate)
   return { total, byDate, weekly }
+}
+
+function sumDimensionSeries(data, dimensionKey) {
+  const totals = {}
+  if (!data) return totals
+
+  for (const day of dailySeriesEntries(data)) {
+    if (!Array.isArray(day) || day.length < 2) continue
+    const walk = (node) => {
+      if (!Array.isArray(node)) return
+      if (node.length >= 3 && node[0] === dimensionKey && typeof node[1] === 'number') {
+        const label = String(node[2])
+        totals[label] = (totals[label] || 0) + node[1]
+      }
+      for (const child of node) walk(child)
+    }
+    walk(day[1])
+  }
+  return totals
+}
+
+function byDateToSeries(byDate) {
+  return Object.entries(byDate)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([iso, total]) => ({ date: isoToDdMmYyyy(iso), total }))
+}
+
+function mergeSeriesByIso(...seriesList) {
+  const byIso = {}
+  for (const series of seriesList) {
+    for (const row of series) {
+      const iso = ddMmYyyyToIso(row.date)
+      byIso[iso] = row.total
+    }
+  }
+  return byDateToSeries(byIso)
+}
+
+const ENABLED_LABELS = /ativado|enabled/i
+const DISABLED_LABELS = /desativado|disabled/i
+
+function parseEnabledVsDisabled(totals) {
+  const out = { enabled: 0, disabled: 0 }
+  for (const [label, count] of Object.entries(totals ?? {})) {
+    if (ENABLED_LABELS.test(label)) out.enabled += count
+    else if (DISABLED_LABELS.test(label)) out.disabled += count
+  }
+  return out
+}
+
+function sskMatchesSeries(sskLower, patterns) {
+  return patterns.some((p) => sskLower.includes(p))
 }
 
 /** Aggregate COUNTRY dimension from ds:4 style data */
@@ -271,9 +403,46 @@ function parseInstallPointFromDescription(desc) {
 }
 
 /**
- * Daily install points from chart accessibility labels on analytics/installs HTML.
- * Selector: div[data-accessible-description][ssk*='page views'] (and Total installs series).
+ * Daily chart points from accessibility labels (installs / users / page views / impressions).
  */
+function extractChartSeriesFromAccessible(html, sskPatterns) {
+  const byIso = {}
+  const tagRe = /<div\b[^>]*>/gi
+  let tagMatch
+
+  while ((tagMatch = tagRe.exec(html)) !== null) {
+    const tag = tagMatch[0]
+    if (!tag.includes('data-accessible-description')) continue
+
+    const desc = tag.match(/data-accessible-description="([^"]*)"/)?.[1]
+    const ssk = tag.match(/ssk='([^']*)'/)?.[1] || tag.match(/ssk="([^"]*)"/)?.[1]
+    if (!desc || !ssk) continue
+    if (!sskMatchesSeries(ssk.toLowerCase(), sskPatterns)) continue
+
+    const point = parseInstallPointFromDescription(desc)
+    if (!point) continue
+
+    byIso[point.iso] = point.total
+  }
+
+  return byDateToSeries(byIso)
+}
+
+/** Chart tooltip templates: `<div class="DehJj">May 6, 2026</div>…<span class="Gqyh1c">0</span>` */
+function extractChartSeriesFromTooltips(html, labelPattern) {
+  const byIso = {}
+  for (const m of html.matchAll(
+    /class="DehJj">([^<]+)<[\s\S]{0,500}?class="qckqjc">([^<]+)[\s\S]{0,120}?class="Gqyh1c">(\d+)/g,
+  )) {
+    const label = fixEncoding(m[2]).trim()
+    if (!labelPattern.test(label)) continue
+    const point = parseInstallPointFromDescription(`${fixEncoding(m[1]).trim()}, ${m[3]}`)
+    if (!point) continue
+    byIso[point.iso] = point.total
+  }
+  return byDateToSeries(byIso)
+}
+
 function extractInstallationsFromAccessible(html) {
   const byIso = {}
   const tagRe = /<div\b[^>]*>/gi
@@ -301,17 +470,56 @@ function extractInstallationsFromAccessible(html) {
     byIso[point.iso] = (byIso[point.iso] || 0) + point.total
   }
 
-  return Object.entries(byIso)
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([iso, total]) => ({ date: isoToDdMmYyyy(iso), total }))
+  return byDateToSeries(byIso)
+}
+
+function extractWeeklyUsersSeries(usersHtml, usersAf) {
+  const fromAf = byDateToSeries(sumMetricSeries(usersAf['ds:2'], 'WEEKLY_USERS').byDate)
+  const fromAccessible = extractChartSeriesFromAccessible(usersHtml, [
+    'weekly users',
+    'total users',
+  ])
+  const fromTooltips = extractChartSeriesFromTooltips(usersHtml, /weekly users|total users|usuários semanais/i)
+  return mergeSeriesByIso(fromAf, fromAccessible, fromTooltips)
+}
+
+function extractPageViewsSeries(impressionsHtml, impAf) {
+  const fromAf = byDateToSeries(sumMetricSeries(impAf['ds:6'], 'DETAIL_PAGEVIEWS').byDate)
+  const fromAccessible = extractChartSeriesFromAccessible(impressionsHtml, [
+    'page views',
+    'page view',
+    'visualizações de página',
+  ])
+  const fromTooltips = extractChartSeriesFromTooltips(
+    impressionsHtml,
+    /page views|visualizações de página/i,
+  )
+  return mergeSeriesByIso(fromAf, fromAccessible, fromTooltips)
+}
+
+function extractImpressionsSeries(impressionsHtml, impAf) {
+  const fromAf = byDateToSeries(sumMetricSeries(impAf['ds:5'], 'IMPRESSIONS').byDate)
+  const fromAccessible = extractChartSeriesFromAccessible(impressionsHtml, ['impressions', 'impressões'])
+  const fromTooltips = extractChartSeriesFromTooltips(
+    impressionsHtml,
+    /impressions|impressões/i,
+  )
+  return mergeSeriesByIso(fromAf, fromAccessible, fromTooltips)
+}
+
+function extractPageViewsBySource(impAf) {
+  const totals = sumDimensionSeries(impAf['ds:4'], 'UTM_SOURCE')
+  const out = {}
+  for (const [source, count] of Object.entries(totals)) {
+    out[source.replace(/\./g, '_')] = count
+  }
+  return out
 }
 
 function installationsFromDs5(html) {
   const af = parseAfCallbacks(html)
   const { byDate } = sumMetricSeries(af['ds:5'], 'INSTALLS')
-  return Object.entries(byDate)
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([iso, total]) => ({ date: isoToDdMmYyyy(iso), total }))
+  return byDateToSeries(byDate)
 }
 
 function filterInstallationsLast30Days(installations, endIso) {
@@ -492,8 +700,6 @@ function extractAnalyticsFromPages(installsHtml, usersHtml, impressionsHtml, exp
 
   const installs = sumMetricSeries(instAf['ds:5'], 'INSTALLS')
   const uninstalls = sumMetricSeries(instAf['ds:5'], 'UNINSTALLS')
-  const users = sumMetricSeries(usersAf['ds:5'], 'USERS')
-  const impressions = sumMetricSeries(impAf['ds:5'], 'IMPRESSIONS')
 
   const installsByRegion = sumCountrySeries(instAf['ds:4'])
   const weeklyUsersByRegion = sumCountrySeries(usersAf['ds:4'])
@@ -504,20 +710,32 @@ function extractAnalyticsFromPages(installsHtml, usersHtml, impressionsHtml, exp
   }
   installations = filterInstallationsLast30Days(installations, exportDate)
 
+  const weeklyUsers = extractWeeklyUsersSeries(usersHtml, usersAf)
+  const pageViewsOverTime = extractPageViewsSeries(impressionsHtml, impAf)
+  const impressionsAcrossChromeWebStore = extractImpressionsSeries(impressionsHtml, impAf)
+  const pageViewsBySource = extractPageViewsBySource(impAf)
+  const enabledVsDisabled = parseEnabledVsDisabled(
+    sumDimensionSeries(usersAf['ds:3'], 'ENABLED_AND_DISABLED'),
+  )
+
   const totalFromSeries = installations.reduce((s, row) => s + row.total, 0)
+  const pageViewsTotal = pageViewsOverTime.reduce((s, row) => s + row.total, 0)
+  const impressionsTotal = impressionsAcrossChromeWebStore.reduce((s, row) => s + row.total, 0)
 
   return {
     totalInstalls: installs.total || totalFromSeries,
     installations,
-    weeklyUsers: users.weekly,
+    weeklyUsers,
     weeklyUsersByRegion: topRegions(weeklyUsersByRegion),
     installsByRegion: topRegions(installsByRegion),
     uninstalls: uninstalls.total,
     uninstallsByRegion: {},
-    pageViews: 0,
-    pageViewsBySource: {},
-    impressions: impressions.total,
-    enabledVsDisabled: { enabled: 0, disabled: 0 },
+    pageViews: pageViewsTotal,
+    pageViewsOverTime,
+    pageViewsBySource,
+    impressions: impressionsTotal,
+    impressionsAcrossChromeWebStore,
+    enabledVsDisabled,
   }
 }
 
@@ -543,21 +761,15 @@ function loadTemplate(slug) {
   } catch {
     /* */
   }
-  return fromPage || {}
-}
-
-function slugify(name) {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
+  return fromPage ?? null
 }
 
 function buildApp(id, pages, exportDate) {
-  const template = loadTemplate(ID_TO_SLUG[id] || slugify(''))
-  const slug = ID_TO_SLUG[id] || template.slug || slugify(template.name || id)
-
   const editHtml = fs.readFileSync(pages.edit, 'utf8')
+  const slugName = extractSlugNameFromEdit(editHtml)
+  const slug = slugify(slugName) || ID_TO_SLUG[id] || slugify(id)
+  const template = loadTemplate(slug) || loadTemplate(ID_TO_SLUG[id]) || {}
+
   const installsHtml = fs.readFileSync(pages.analytics_installs, 'utf8')
   const instAf = parseAfCallbacks(installsHtml)
   const metaFromStore = extractDs1Metadata(instAf['ds:1'], id)
@@ -577,11 +789,10 @@ function buildApp(id, pages, exportDate) {
   )
 
   const isLive = edit.status === 'live'
-  const hasAnalytics = analyticsRaw.totalInstalls > 0 || analyticsRaw.impressions > 0
 
   const app = {
     slug,
-    name: edit.name || template.name || slug,
+    name: edit.name || template.name || slugName || slug,
     icon: template.icon || '⚡',
     chromeExtensionIcon: edit.chromeExtensionIcon || template.chromeExtensionIcon || null,
     tagline: edit.tagline || template.tagline || '',
@@ -622,7 +833,7 @@ function buildApp(id, pages, exportDate) {
           : [],
   }
 
-  if (isLive && hasAnalytics) {
+  if (isLive) {
     app.analytics = analyticsRaw
   }
 
@@ -634,7 +845,7 @@ function chromeExtensionIdFromApp(app) {
   return m ? m[1] : null
 }
 
-/** Append a full apps.json snapshot to samples/chrome-extension-html/db.json (local archive). */
+/** Append a full apps.json snapshot to chrome-extension-html/db.json (local archive). */
 export function appendAppsJsonToDb({ updatedAt, apps }) {
   let db = {
     schemaVersion: 1,
@@ -696,8 +907,9 @@ export function main() {
     apps.push(app)
     console.log(`Parsed ${app.name} (${id}) → /apps/${app.slug}`)
     if (app.analytics) {
+      const a = app.analytics
       console.log(
-        `  installs: ${app.analytics.totalInstalls}, impressions: ${app.analytics.impressions}, installation days: ${app.analytics.installations?.length ?? 0}`,
+        `  installs: ${a.totalInstalls}, pageViews: ${a.pageViews}, impressions: ${a.impressions}, weeklyUser days: ${a.weeklyUsers?.length ?? 0}, enabled: ${a.enabledVsDisabled?.enabled ?? 0}`,
       )
     } else {
       console.log(`  status: ${app.status} (no analytics block)`)
@@ -715,7 +927,7 @@ export function main() {
 
   appendAppsJsonToDb(payload)
 
-  deleteHtmlExports(files)
+  moveHtmlToProcessed(files)
 }
 
 const isDirectRun =

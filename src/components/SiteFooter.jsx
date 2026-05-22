@@ -45,10 +45,15 @@ export default function SiteFooter() {
                 Instagram
               </a>
             </li>
+            <li>
+              <a href="https://x.com/codedCitadel" target="_blank" rel="noopener noreferrer">
+                X
+              </a>
+            </li>
           </ul>
         </div>
       </div>
-      <div className="CC__footer-bottom">
+      <div className="CC__footer-bottom CC__container">
         <p>&copy; 2026 Coded Citadel. All rights reserved.</p>
       </div>
     </footer>

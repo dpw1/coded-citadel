@@ -2,7 +2,7 @@
   "updatedAt": "2026-05-22",
   "apps": [
     {
-      "slug": "youtube-filter-pro",
+      "slug": "youtube-filter-pro-filter-by-views-duration-date-and-more",
       "name": "Youtube Filter Pro: filter by views, duration, date, and more",
       "icon": "⚡",
       "chromeExtensionIcon": "https://lh3.googleusercontent.com/cT5IsRijPKr64wr862UQQHyrC1A2YsAaG4JM9fTE4OAiwLxxMfTmEqUG0HsFW9TdB2CQtotPwmSdFldxRvpG3pyOTg",
@@ -48,7 +48,12 @@
             "total": 9
           }
         ],
-        "weeklyUsers": [],
+        "weeklyUsers": [
+          {
+            "date": "20-05-2026",
+            "total": 1
+          }
+        ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
           "US": 17,
@@ -56,17 +61,43 @@
         },
         "uninstalls": 0,
         "uninstallsByRegion": {},
-        "pageViews": 0,
-        "pageViewsBySource": {},
+        "pageViews": 26,
+        "pageViewsOverTime": [
+          {
+            "date": "18-05-2026",
+            "total": 12
+          },
+          {
+            "date": "19-05-2026",
+            "total": 8
+          },
+          {
+            "date": "20-05-2026",
+            "total": 6
+          }
+        ],
+        "pageViewsBySource": {
+          "chatgpt_com": 1
+        },
         "impressions": 32,
+        "impressionsAcrossChromeWebStore": [
+          {
+            "date": "19-05-2026",
+            "total": 10
+          },
+          {
+            "date": "20-05-2026",
+            "total": 22
+          }
+        ],
         "enabledVsDisabled": {
-          "enabled": 0,
+          "enabled": 1,
           "disabled": 0
         }
       }
     },
     {
-      "slug": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+      "slug": "claude-deep-search",
       "name": "Claude Deep Search",
       "icon": "⚡",
       "chromeExtensionIcon": "https://lh3.googleusercontent.com/mcn5iQN1cvgDAg-D53kSenW9tO29dnyiDOh9Mq2HFrS08NK7lzb7jOyWYOCX7-gpWf837NNuLGBSN6JEZgfPVt6NTw",
@@ -96,10 +127,28 @@
       "screenshots": [
         "https://lh3.googleusercontent.com/h4PK7js_fXI4bZEmOlAxrf2J0OVicq6imF3fIPt0lFn3qxHmjkkjMWhv6BOTbfBrXIogMfFQuSieaA7vEY3-S_QN",
         "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0"
-      ]
+      ],
+      "analytics": {
+        "totalInstalls": 0,
+        "installations": [],
+        "weeklyUsers": [],
+        "weeklyUsersByRegion": {},
+        "installsByRegion": {},
+        "uninstalls": 0,
+        "uninstallsByRegion": {},
+        "pageViews": 0,
+        "pageViewsOverTime": [],
+        "pageViewsBySource": {},
+        "impressions": 0,
+        "impressionsAcrossChromeWebStore": [],
+        "enabledVsDisabled": {
+          "enabled": 0,
+          "disabled": 0
+        }
+      }
     },
     {
-      "slug": "yt-comments-exporter",
+      "slug": "youtube-comments-exporter",
       "name": "YouTube Comments Exporter",
       "icon": "⚡",
       "chromeExtensionIcon": "https://lh3.googleusercontent.com/4x9fxtByjyQCfo0pjqfSMxFBeccYhAm1MOrJJrAyxDkrODcz7ivgRo4QKtoCwMUIUB-rXPhVD-sGhD5-FQi6p3rE",
@@ -192,9 +241,55 @@
         },
         "uninstalls": 0,
         "uninstallsByRegion": {},
-        "pageViews": 0,
-        "pageViewsBySource": {},
+        "pageViews": 10,
+        "pageViewsOverTime": [
+          {
+            "date": "14-05-2026",
+            "total": 1
+          },
+          {
+            "date": "15-05-2026",
+            "total": 1
+          },
+          {
+            "date": "16-05-2026",
+            "total": 1
+          },
+          {
+            "date": "17-05-2026",
+            "total": 6
+          },
+          {
+            "date": "20-05-2026",
+            "total": 1
+          }
+        ],
+        "pageViewsBySource": {
+          "bgads1": 1
+        },
         "impressions": 19,
+        "impressionsAcrossChromeWebStore": [
+          {
+            "date": "15-05-2026",
+            "total": 1
+          },
+          {
+            "date": "16-05-2026",
+            "total": 14
+          },
+          {
+            "date": "17-05-2026",
+            "total": 2
+          },
+          {
+            "date": "18-05-2026",
+            "total": 1
+          },
+          {
+            "date": "20-05-2026",
+            "total": 1
+          }
+        ],
         "enabledVsDisabled": {
           "enabled": 0,
           "disabled": 0

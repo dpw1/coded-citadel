@@ -12,7 +12,7 @@ import {
   DoughnutController,
   ArcElement,
 } from 'chart.js'
-import { formatInstallDate, formatLabel, getInstallationsSeries } from '../../utils/apps'
+import { formatInstallDate, formatLabel, getInstallationsSeries, getWeeklyUsersSeries, getPageViewsSeries, getImpressionsSeries } from '../../utils/apps'
 
 Chart.register(
   LineController,
@@ -54,6 +54,62 @@ export default function ExtensionCharts({ analytics, chartIds }) {
     const installations = getInstallationsSeries(analytics)
     const installLabels = installations.map((d) => formatInstallDate(d.date))
     const installCounts = installations.map((d) => d.total)
+
+    const weeklyUsers = getWeeklyUsersSeries(analytics)
+    const pageViews = getPageViewsSeries(analytics)
+    const impressions = getImpressionsSeries(analytics)
+
+    function buildLineChart(canvasId, series, tooltipLabel, height = 180) {
+      const canvas = document.getElementById(canvasId)
+      if (!canvas || !series?.length) return
+      const labels = series.map((d) => formatInstallDate(d.date))
+      const values = series.map((d) => d.total)
+      charts.push(
+        new Chart(canvas, {
+          type: 'line',
+          data: {
+            labels,
+            datasets: [
+              {
+                data: values,
+                borderColor: '#ff9900',
+                borderWidth: 2.5,
+                fill: true,
+                backgroundColor: (ctx) => gradientFill(ctx.chart, height, 0.2),
+                tension: 0.4,
+                pointRadius: 4,
+                pointBackgroundColor: '#ff9900',
+                pointBorderColor: '#090b10',
+                pointBorderWidth: 2,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#131824',
+                borderColor: '#1f2636',
+                borderWidth: 1,
+                titleColor: '#7a8599',
+                bodyColor: '#ffffff',
+                callbacks: { label: (ctx) => ` ${ctx.parsed.y.toLocaleString()} ${tooltipLabel}` },
+              },
+            },
+            scales: {
+              x: { grid: { color: '#1a2130' }, ticks: { color: '#7a8599' } },
+              y: {
+                grid: { color: '#1a2130' },
+                ticks: { color: '#7a8599' },
+                beginAtZero: true,
+              },
+            },
+          },
+        }),
+      )
+    }
 
     const charts = []
 
@@ -173,6 +229,10 @@ export default function ExtensionCharts({ analytics, chartIds }) {
         }),
       )
     }
+
+    buildLineChart(chartIds.weeklyUsers, weeklyUsers, 'users')
+    buildLineChart(chartIds.pageViews, pageViews, 'page views')
+    buildLineChart(chartIds.impressions, impressions, 'impressions')
 
     buildDonut(chartIds.installRegion, analytics.installsByRegion, analytics.totalInstalls)
     const weeklyRegionTotal = Object.values(analytics.weeklyUsersByRegion).reduce((a, b) => a + b, 0)

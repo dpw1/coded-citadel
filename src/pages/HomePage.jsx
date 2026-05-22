@@ -1,35 +1,29 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import AppsGridSection from '../components/AppsGridSection'
+import YoutubeSection from '../components/YoutubeSection'
 import LiveStatsBar from '../components/LiveStatsBar'
 import CyberCorners from '../components/CyberCorners'
-import youtubeFeed from '../data/youtube-videos.json'
+import { scrollToSection } from '../utils/scroll'
 import '../App.css'
-
-const YOUTUBE_DISPLAY_COUNT = 2
-const featuredVideos = youtubeFeed.videos.slice(0, YOUTUBE_DISPLAY_COUNT)
-
-function stripHtml(html) {
-  if (!html) return ''
-  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
-}
-
-function excerpt(text, len = 160) {
-  const t = stripHtml(text)
-  if (!t) return ''
-  return t.length <= len ? t : `${t.slice(0, len)}…`
-}
-
-function extractDuration(text) {
-  if (!text) return null
-  const m = stripHtml(text).match(/\b(\d{1,2}:\d{2}(?::\d{2})?)\b/)
-  return m ? m[1] : null
-}
 
 export default function HomePage() {
   const [avatarError, setAvatarError] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    const shouldScroll =
+      location.hash === '#youtube' || location.state?.scrollTo === 'youtube'
+    if (!shouldScroll) return undefined
+
+    const timer = window.setTimeout(() => {
+      scrollToSection('youtube', { updateHash: true })
+    }, 50)
+
+    return () => window.clearTimeout(timer)
+  }, [location.hash, location.state])
 
   return (
     <>
@@ -118,69 +112,18 @@ export default function HomePage() {
 
       <AppsGridSection sectionId="apps" showViewAllLink />
 
-      <section id="youtube" className="CC__youtube CC__container">
-        <div className="CC__section-header-row">
-          <div>
-            <p className="CC__section-eyebrow">YouTube Series</p>
-            <h2 className="CC__section-title">The Journey</h2>
-          </div>
-          <a
-            href="https://www.youtube.com/@CodedCitadel"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="CC__view-all-link"
-          >
-            View all videos on YouTube →
-          </a>
-        </div>
-
-        <div className="CC__youtube-grid">
-          {featuredVideos.length > 0 ? (
-            featuredVideos.map((vid) => {
-              const meta = excerpt(vid.description, 200)
-              const duration = vid.duration || extractDuration(vid.description)
-              return (
-                <a
-                  key={vid.id || vid.link}
-                  href={vid.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="CC__video-card"
-                >
-                  <div className="CC__video-thumb-wrapper">
-                    {vid.thumbnail && <img src={vid.thumbnail} alt={vid.title} />}
-                    {duration ? <span className="CC__video-duration">{duration}</span> : null}
-                  </div>
-                  <div className="CC__video-info">
-                    <h3 className="CC__video-title">{vid.title}</h3>
-                    {meta ? <p className="CC__video-meta">{meta}</p> : null}
-                  </div>
-                </a>
-              )
-            })
-          ) : (
-            <p className="CC__youtube-loading">
-              No videos in feed yet. Run <code>npm run fetch-youtube</code> locally, then commit{' '}
-              <code>src/data/youtube-videos.json</code>.
-            </p>
-          )}
-        </div>
-      </section>
+      <YoutubeSection />
 
       <section id="about" className="CC__about CC__container">
         <div className="CC__about-grid">
           <div className="CC__about-content">
             <p className="CC__section-eyebrow">About Me</p>
-            <h2 className="CC__section-title">Transparency is my priority.</h2>
+            <h2 className="CC__section-title">Welcome!</h2>
             <p className="CC__about-text">
-              I came across many projects of "making $x in Y days". They all seemed 
+            My name is Diego. I'm a senior software engineer and computer scientist with over a decade of experience. I have always had the desire to start a project of the "going from 0 to X USD" sort, but I was never completely sure what exactly I should do or how to make progress with it. And that hasn't changed: I still have no clue. All I know is that the only way through is forward. So join me on my journey, and let's see where it leads us.
             </p>
-            <p className="CC__about-signature">— Coded Citadel</p>
-            <div className="CC__tag-cloud">
-              <span className="CC__tag"># Indie Hacker</span>
-              <span className="CC__tag"># Chrome Extension Dev</span>
-              <span className="CC__tag"># Lifelong Learner</span>
-            </div>
+            
+    
           </div>
           <div
             className={`CC__about-image-frame CC__cyber-accent${avatarError ? ' CC__about-image-frame--empty' : ''}`}

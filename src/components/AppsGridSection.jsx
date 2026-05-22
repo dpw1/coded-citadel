@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import CyberCorners from './CyberCorners'
 import {
+  appActiveUsers,
   appCardInstalls,
-  appCardRevenue,
   appCardSummary,
   appIconUrl,
   appStoreUrl,
@@ -14,10 +14,11 @@ import {
 export default function AppsGridSection({
   sectionId = 'apps',
   showViewAllLink = false,
+  excludeSlug = null,
   eyebrow = 'My Apps',
   title = 'Built To Solve Real Problems',
 }) {
-  const apps = getAllApps()
+  const apps = getAllApps().filter((app) => app.slug !== excludeSlug)
 
   return (
     <section id={sectionId} className="CC__extensions CC__container">
@@ -38,7 +39,7 @@ export default function AppsGridSection({
           const live = isAppLive(app)
           const storeUrl = appStoreUrl(app)
           const installs = appCardInstalls(app)
-          const revenue = appCardRevenue(app)
+          const activeUsers = appActiveUsers(app)
           const summary = appCardSummary(app)
           const iconUrl = appIconUrl(app)
 
@@ -79,8 +80,10 @@ export default function AppsGridSection({
                     </div>
                   </div>
                   <div>
-                    <span className="CC__metric-item-label">REVENUE</span>
-                    <div className="CC__metric-item-value">{revenue ?? '—'}</div>
+                    <span className="CC__metric-item-label">ACTIVE USERS</span>
+                    <div className="CC__metric-item-value">
+                      {activeUsers != null ? formatNumber(activeUsers) : '—'}
+                    </div>
                   </div>
                 </div>
               </div>

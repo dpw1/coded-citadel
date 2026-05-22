@@ -1,6 +1,11 @@
 import appsData from '../data/apps.json'
 
-const SLUG_ALIASES = { test: 'yt-comments-exporter' }
+const SLUG_ALIASES = {
+  test: 'youtube-comments-exporter',
+  'yt-comments-exporter': 'youtube-comments-exporter',
+  'youtube-filter-pro': 'youtube-filter-pro-filter-by-views-duration-date-and-more',
+  dfkkbbcdbjaecgnaocgfonoodmfmkmmm: 'claude-deep-search',
+}
 
 export function getAllApps() {
   return appsData.apps ?? []
@@ -68,28 +73,39 @@ export function getDaysIntoJourney(now = Date.now()) {
   return elapsed + 1
 }
 
+export function appActiveUsers(app) {
+  if (!isAppLive(app) || !app.analytics) return null
+  const series = app.analytics.weeklyUsers
+  if (series?.length) {
+    return series[series.length - 1].total ?? 0
+  }
+  return app.analytics.enabledVsDisabled?.enabled ?? 0
+}
+
 export function getHomeStats() {
   const apps = getAllApps()
   const live = apps.filter(isAppLive)
   let totalInstalls = 0
+  let totalActiveUsers = 0
   let installDelta = 0
 
   for (const app of live) {
     const installs = app.analytics?.totalInstalls
     if (installs != null) totalInstalls += installs
+    totalActiveUsers += appActiveUsers(app) ?? 0
     const weeks = app.analytics?.weeklyUsers
     if (weeks?.length >= 2) {
-      installDelta += weeks[weeks.length - 1].count - weeks[weeks.length - 2].count
+      const prev = weeks[weeks.length - 2].total ?? weeks[weeks.length - 2].count ?? 0
+      const last = weeks[weeks.length - 1].total ?? weeks[weeks.length - 1].count ?? 0
+      installDelta += last - prev
     }
   }
 
-  const totalRevenue = live.reduce((sum, app) => sum + parseRevenueValue(appCardRevenue(app)), 0)
   const built = apps.length
   const inProgress = apps.filter((a) => a.status !== 'live').length
 
   return {
-    totalRevenue,
-    totalRevenueLabel: formatRevenue(totalRevenue),
+    totalActiveUsers,
     totalInstalls,
     installDelta,
     built,
@@ -145,6 +161,31 @@ export function getInstallationsSeries(analytics) {
   return analytics?.installations ?? []
 }
 
+export function getWeeklyUsersSeries(analytics) {
+  return analytics?.weeklyUsers ?? []
+}
+
+export function getPageViewsSeries(analytics) {
+  return analytics?.pageViewsOverTime ?? []
+}
+
+export function getImpressionsSeries(analytics) {
+  return analytics?.impressionsAcrossChromeWebStore ?? []
+}
+
+export function analyticsSeriesTotal(series) {
+  return series.reduce((sum, row) => sum + (row.total ?? 0), 0)
+}
+
+export function analyticsSeriesDelta(series) {
+  if (!series?.length || series.length < 2) return null
+  const prev = series[series.length - 2].total ?? 0
+  const last = series[series.length - 1].total ?? 0
+  if (!prev) return null
+  const pct = Math.round(((last - prev) / prev) * 100)
+  return { pct, last, prev }
+}
+
 export function installationsTotal(series) {
   return series.reduce((sum, row) => sum + (row.total ?? 0), 0)
 }
@@ -182,12 +223,7 @@ export function titleCaseAudience(value) {
 }
 
 export function weeklyUsersDelta(weeklyUsers) {
-  if (!weeklyUsers?.length || weeklyUsers.length < 2) return null
-  const prev = weeklyUsers[weeklyUsers.length - 2].count
-  const last = weeklyUsers[weeklyUsers.length - 1].count
-  if (!prev) return null
-  const pct = Math.round(((last - prev) / prev) * 100)
-  return { pct, last, prev }
+  return analyticsSeriesDelta(weeklyUsers)
 }
 
 export function youtubeEmbedId(url) {

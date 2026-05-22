@@ -1,12 +1,25 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { scrollToSection } from '../utils/scroll'
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname, hash } = useLocation()
+  const navigate = useNavigate()
+  const isHome = pathname === '/'
   const appsNavActive = pathname === '/apps' || pathname.startsWith('/apps/')
 
   const closeMenu = () => setMenuOpen(false)
+
+  const handleYoutubeNav = (e) => {
+    e.preventDefault()
+    closeMenu()
+    if (isHome) {
+      scrollToSection('youtube', { updateHash: true })
+    } else {
+      navigate('/', { state: { scrollTo: 'youtube' } })
+    }
+  }
 
   useEffect(() => {
     setMenuOpen(false)
@@ -61,9 +74,13 @@ export default function SiteHeader() {
           >
             Apps
           </Link>
-          <Link to="/#youtube" className="CC__nav-link" onClick={closeMenu}>
+          <a
+            href={isHome ? '#youtube' : '/'}
+            className="CC__nav-link"
+            onClick={handleYoutubeNav}
+          >
             YouTube
-          </Link>
+          </a>
           <Link to="/#about" className="CC__nav-link" onClick={closeMenu}>
             About
           </Link>

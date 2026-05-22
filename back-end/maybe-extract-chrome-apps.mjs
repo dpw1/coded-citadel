@@ -1,5 +1,5 @@
 /**
- * Run extract-chrome-apps only when samples/chrome-extension-html/html has exports.
+ * Run extract-chrome-apps only when chrome-extension-html/html has exports.
  * Used by npm run build (CI skips when html/ is empty).
  */
 
@@ -9,7 +9,7 @@ import { listHtmlFiles, main } from './extract-chrome-apps.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.join(__dirname, '..')
-const HTML_DIR = path.join(ROOT, 'samples/chrome-extension-html/html')
+const HTML_DIR = path.join(ROOT, 'chrome-extension-html/html')
 const APPS_JSON = path.join(ROOT, 'src/data/apps.json')
 
 const files = listHtmlFiles()

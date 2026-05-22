@@ -45,7 +45,12 @@
 }
 
 .CC__footer-brand .CC__logo-img {
-  height: 28px;
+  height: 52px;
+  width: auto;
+}
+
+.CC__footer-brand .CC__logo {
+  margin-bottom: 0.25rem;
 }
 
 .CC__nav {
@@ -523,6 +528,7 @@
    ========================================================================== */
 .CC__youtube {
   padding-bottom: var(--CC__space-xl);
+  scroll-margin-top: 5.5rem;
 }
 
 .CC__youtube-grid {
@@ -674,15 +680,17 @@
 .CC__footer {
   background-color: var(--CC__color-bg-surface);
   border-top: 1px solid var(--CC__color-border);
-  padding: var(--CC__space-lg) 0 var(--CC__space-md) 0;
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  padding: clamp(2rem, 5vw, 3rem) 0 clamp(1.5rem, 4vw, 2.5rem);
   font-size: 0.9rem;
 }
 
 .CC__footer-grid {
   display: grid;
   grid-template-columns: 2fr repeat(2, 1fr);
-  gap: var(--CC__space-lg);
-  margin-bottom: var(--CC__space-lg);
+  gap: var(--CC__space-md);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  padding-bottom: 40px !important;
 }
 
 .CC__footer-brand p {
@@ -751,7 +759,13 @@
   color: var(--CC__color-text-muted);
   font-size: 0.75rem;
   border-top: 1px solid var(--CC__color-border);
-  padding-top: var(--CC__space-md);
+  padding-top: clamp(1.25rem, 3vw, 1.5rem);
+  margin: 0;
+}
+
+.CC__footer-bottom p {
+  margin: 0;
+  margin-top: 30px;
 }
 
 html {
@@ -846,6 +860,6 @@ html {
   }
 
   .CC__footer-brand .CC__logo-img {
-    height: 24px;
+    height: 44px;
   }
 }
