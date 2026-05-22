@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-21",
+  "updatedAt": "2026-05-22",
   "apps": [
     {
       "slug": "youtube-filter-pro",
@@ -12,7 +12,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
       "version": "1.0.03",
-      "lastUpdated": "2026-05-21",
+      "lastUpdated": "2026-05-22",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -33,7 +33,7 @@
         "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA"
       ],
       "analytics": {
-        "totalInstalls": 12,
+        "totalInstalls": 21,
         "installations": [
           {
             "date": "18-05-2026",
@@ -42,24 +42,61 @@
           {
             "date": "19-05-2026",
             "total": 9
+          },
+          {
+            "date": "20-05-2026",
+            "total": 9
           }
         ],
         "weeklyUsers": [],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 9,
+          "US": 17,
           "BR": 1
         },
         "uninstalls": 0,
         "uninstallsByRegion": {},
         "pageViews": 0,
         "pageViewsBySource": {},
-        "impressions": 10,
+        "impressions": 32,
         "enabledVsDisabled": {
           "enabled": 0,
           "disabled": 0
         }
       }
+    },
+    {
+      "slug": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+      "name": "Claude Deep Search",
+      "icon": "⚡",
+      "chromeExtensionIcon": "https://lh3.googleusercontent.com/mcn5iQN1cvgDAg-D53kSenW9tO29dnyiDOh9Mq2HFrS08NK7lzb7jOyWYOCX7-gpWf837NNuLGBSN6JEZgfPVt6NTw",
+      "tagline": "Full-text search across all your Claude conversations. Fully local, fully private. No servers.",
+      "status": "live",
+      "price": "Free",
+      "revenue": "$0",
+      "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+      "version": "1.0.01",
+      "lastUpdated": "2026-05-22",
+      "category": "Productivity",
+      "platform": "Google Chrome",
+      "description": {
+        "short": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago?",
+        "full": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago? \n\nClaude Deep Search adds full-text search across your entire Claude.ai history - something the built-in sidebar search does not do on its own. \n\nAnd it's all 100% private. All conversations are stored locally (via IndexedDB) and never leave your machine.\n\n---\n\nHow to use\n\n1. Install the extension\n2. Click on the button \"Deep Search\" below the \"Search\" button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac) \n3. Search away!"
+      },
+      "audience": [],
+      "features": [],
+      "buildStory": {
+        "youtubeUrl": "#",
+        "builtInDays": null,
+        "techStack": [],
+        "episode": ""
+      },
+      "primaryKeywords": [],
+      "geo": [],
+      "screenshots": [
+        "https://lh3.googleusercontent.com/h4PK7js_fXI4bZEmOlAxrf2J0OVicq6imF3fIPt0lFn3qxHmjkkjMWhv6BOTbfBrXIogMfFQuSieaA7vEY3-S_QN",
+        "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0"
+      ]
     },
     {
       "slug": "yt-comments-exporter",
@@ -72,7 +109,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
       "version": "1.0.31",
-      "lastUpdated": "2026-05-21",
+      "lastUpdated": "2026-05-22",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -117,7 +154,7 @@
         "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ"
       ],
       "analytics": {
-        "totalInstalls": 12,
+        "totalInstalls": 15,
         "installations": [
           {
             "date": "14-05-2026",
@@ -142,18 +179,22 @@
           {
             "date": "19-05-2026",
             "total": 1
+          },
+          {
+            "date": "20-05-2026",
+            "total": 3
           }
         ],
         "weeklyUsers": [],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 12
+          "US": 15
         },
         "uninstalls": 0,
         "uninstallsByRegion": {},
         "pageViews": 0,
         "pageViewsBySource": {},
-        "impressions": 18,
+        "impressions": 19,
         "enabledVsDisabled": {
           "enabled": 0,
           "disabled": 0

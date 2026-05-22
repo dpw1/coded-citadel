@@ -12,6 +12,7 @@ const ROOT = path.join(__dirname, '..')
 const HTML_DIR = path.join(ROOT, 'samples/chrome-extension-html/html')
 const APPS_JSON = path.join(ROOT, 'src/data/apps.json')
 const APPS_EXAMPLE = path.join(ROOT, 'samples/chrome-extension-html/apps-example.json')
+const DB_JSON = path.join(ROOT, 'samples/chrome-extension-html/db.json')
 
 const ID_TO_SLUG = {
   epokpidfnienjjfncmhnallghfhaijbj: 'yt-comments-exporter',
@@ -88,7 +89,7 @@ function parseFilename(name) {
   return { id: m[1], page: m[2], day: m[3], month: m[4], date: `2026-${m[4]}-${m[3]}` }
 }
 
-function listHtmlFiles() {
+export function listHtmlFiles() {
   if (!fs.existsSync(HTML_DIR)) return []
   return fs.readdirSync(HTML_DIR).filter((f) => f.endsWith('.html'))
 }
@@ -628,7 +629,48 @@ function buildApp(id, pages, exportDate) {
   return app
 }
 
-function main() {
+function chromeExtensionIdFromApp(app) {
+  const m = app?.chromeStoreUrl?.match(/\/detail\/([^/?]+)/)
+  return m ? m[1] : null
+}
+
+/** Append a full apps.json snapshot to samples/chrome-extension-html/db.json (local archive). */
+export function appendAppsJsonToDb({ updatedAt, apps }) {
+  let db = {
+    schemaVersion: 1,
+    description:
+      'Local archive of every apps.json produced from Chrome Web Store HTML scrapes. Not committed to git (samples/ is ignored).',
+    snapshots: [],
+  }
+
+  if (fs.existsSync(DB_JSON)) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(DB_JSON, 'utf8'))
+      db = { ...db, ...parsed, snapshots: parsed.snapshots ?? [] }
+    } catch {
+      console.warn(`Could not parse ${DB_JSON}; starting a new db.json`)
+    }
+  }
+
+  const entry = {
+    extractedAt: new Date().toISOString(),
+    updatedAt,
+    outputPath: 'src/data/apps.json',
+    appCount: apps.length,
+    slugs: apps.map((a) => a.slug),
+    chromeExtensionIds: apps.map(chromeExtensionIdFromApp).filter(Boolean),
+    appsJson: { updatedAt, apps },
+  }
+
+  db.snapshots.push(entry)
+  fs.mkdirSync(path.dirname(DB_JSON), { recursive: true })
+  fs.writeFileSync(DB_JSON, `${JSON.stringify(db, null, 2)}\n`, 'utf8')
+  console.log(
+    `Recorded snapshot in ${path.relative(ROOT, DB_JSON)} (${db.snapshots.length} total)`,
+  )
+}
+
+export function main() {
   const files = listHtmlFiles()
   if (!files.length) {
     console.log(
@@ -666,14 +708,18 @@ function main() {
     updatedAt = new Date().toISOString().slice(0, 10)
   }
 
-  fs.writeFileSync(
-    APPS_JSON,
-    `${JSON.stringify({ updatedAt, apps }, null, 2)}\n`,
-    'utf8',
-  )
+  const payload = { updatedAt, apps }
+
+  fs.writeFileSync(APPS_JSON, `${JSON.stringify(payload, null, 2)}\n`, 'utf8')
   console.log(`\nWrote ${apps.length} apps to ${APPS_JSON}`)
+
+  appendAppsJsonToDb(payload)
 
   deleteHtmlExports(files)
 }
 
-main()
+const isDirectRun =
+  process.argv[1] &&
+  path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url))
+
+if (isDirectRun) main()
