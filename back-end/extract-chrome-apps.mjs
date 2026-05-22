@@ -12,13 +12,9 @@ const ROOT = path.join(__dirname, '..')
 const HTML_DIR = path.join(ROOT, 'chrome-extension-html/html')
 const PROCESSED_HTML_DIR = path.join(ROOT, 'chrome-extension-html/processed_html')
 const APPS_JSON = path.join(ROOT, 'src/data/apps.json')
+const APPS_SLUGS_JSON = path.join(ROOT, 'src/data/apps-slugs.json')
 const APPS_EXAMPLE = path.join(ROOT, 'chrome-extension-html/apps-example.json')
 const DB_JSON = path.join(ROOT, 'chrome-extension-html/db.json')
-
-const ID_TO_SLUG = {
-  epokpidfnienjjfncmhnallghfhaijbj: 'yt-comments-exporter',
-  dbkkcbfafkckhmefkpgnelikibobcabb: 'youtube-filter-pro',
-}
 
 function stripHtmlTags(text) {
   return text.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
@@ -58,6 +54,48 @@ export function slugify(name) {
     .replace(/\s+/g, ' ')
     .trim()
     .replace(/\s+/g, '-')
+}
+
+/** Chrome extension ID from a Web Store URL (32-char id, with or without a name segment). */
+export function extractChromeExtensionId(chromeStoreUrl) {
+  if (!chromeStoreUrl) return null
+  const withName = chromeStoreUrl.match(/\/detail\/(?:[^/?]+\/)?([a-z0-9]{32})/i)
+  if (withName) return withName[1]
+  const bare = chromeStoreUrl.match(/\/detail\/([^/?]+)/)
+  return bare ? bare[1] : null
+}
+
+function loadSlugMap() {
+  if (!fs.existsSync(APPS_SLUGS_JSON)) {
+    console.error(
+      `Missing ${path.relative(ROOT, APPS_SLUGS_JSON)} — add Chrome extension ID → slug mappings before extracting.`,
+    )
+    process.exit(1)
+  }
+
+  let data
+  try {
+    data = JSON.parse(fs.readFileSync(APPS_SLUGS_JSON, 'utf8'))
+  } catch (err) {
+    console.error(`Could not parse ${path.relative(ROOT, APPS_SLUGS_JSON)}:`, err.message)
+    process.exit(1)
+  }
+
+  const map = new Map()
+  for (const entry of data.slugs ?? []) {
+    if (entry?.id && entry?.slug) {
+      map.set(entry.id, entry.slug)
+    }
+  }
+
+  if (!map.size) {
+    console.error(
+      `${path.relative(ROOT, APPS_SLUGS_JSON)} has no slug entries — add { "id": "…", "slug": "…" } objects.`,
+    )
+    process.exit(1)
+  }
+
+  return map
 }
 
 function emptyAnalytics() {
@@ -764,11 +802,10 @@ function loadTemplate(slug) {
   return fromPage ?? null
 }
 
-function buildApp(id, pages, exportDate) {
+function buildApp(id, pages, exportDate, slug) {
   const editHtml = fs.readFileSync(pages.edit, 'utf8')
   const slugName = extractSlugNameFromEdit(editHtml)
-  const slug = slugify(slugName) || ID_TO_SLUG[id] || slugify(id)
-  const template = loadTemplate(slug) || loadTemplate(ID_TO_SLUG[id]) || {}
+  const template = loadTemplate(slug) || {}
 
   const installsHtml = fs.readFileSync(pages.analytics_installs, 'utf8')
   const instAf = parseAfCallbacks(installsHtml)
@@ -792,6 +829,7 @@ function buildApp(id, pages, exportDate) {
 
   const app = {
     slug,
+    chromeExtensionId: extractChromeExtensionId(edit.chromeStoreUrl) || id,
     name: edit.name || template.name || slugName || slug,
     icon: template.icon || '⚡',
     chromeExtensionIcon: edit.chromeExtensionIcon || template.chromeExtensionIcon || null,
@@ -841,8 +879,67 @@ function buildApp(id, pages, exportDate) {
 }
 
 function chromeExtensionIdFromApp(app) {
-  const m = app?.chromeStoreUrl?.match(/\/detail\/([^/?]+)/)
-  return m ? m[1] : null
+  return app?.chromeExtensionId ?? extractChromeExtensionId(app?.chromeStoreUrl)
+}
+
+/**
+ * Apply slugs from apps-slugs.json onto existing apps.json (no HTML scrape).
+ * Used when html/ is empty (e.g. CI) but slug mappings changed.
+ */
+export function syncAppsJsonSlugs() {
+  const slugMap = loadSlugMap()
+
+  if (!fs.existsSync(APPS_JSON)) {
+    console.warn(`No ${path.relative(ROOT, APPS_JSON)} — nothing to sync`)
+    return false
+  }
+
+  let payload
+  try {
+    payload = JSON.parse(fs.readFileSync(APPS_JSON, 'utf8'))
+  } catch (err) {
+    console.error(`Could not parse ${path.relative(ROOT, APPS_JSON)}:`, err.message)
+    process.exit(1)
+  }
+
+  const apps = payload.apps ?? []
+  let changed = false
+
+  for (const app of apps) {
+    const id = chromeExtensionIdFromApp(app)
+    if (!id) {
+      console.warn(`App "${app.name ?? 'unknown'}" has no Chrome extension ID — cannot sync slug`)
+      continue
+    }
+
+    if (app.chromeExtensionId !== id) {
+      app.chromeExtensionId = id
+      changed = true
+    }
+
+    const slug = slugMap.get(id)
+    if (!slug) {
+      console.warn(
+        `No slug in apps-slugs.json for ${id} (${app.name ?? 'unknown'}) — keeping "${app.slug}"`,
+      )
+      continue
+    }
+
+    if (app.slug !== slug) {
+      console.log(`Slug sync (${id}): ${app.slug} → ${slug}`)
+      app.slug = slug
+      changed = true
+    }
+  }
+
+  if (changed) {
+    fs.writeFileSync(APPS_JSON, `${JSON.stringify(payload, null, 2)}\n`, 'utf8')
+    console.log(`Updated ${path.relative(ROOT, APPS_JSON)} from apps-slugs.json`)
+  } else {
+    console.log(`${path.relative(ROOT, APPS_JSON)} slugs already match apps-slugs.json`)
+  }
+
+  return changed
 }
 
 /** Append a full apps.json snapshot to chrome-extension-html/db.json (local archive). */
@@ -885,12 +982,14 @@ export function main() {
   const files = listHtmlFiles()
   if (!files.length) {
     console.log(
-      `No HTML in ${HTML_DIR} — skipping extract (keeping existing ${path.relative(ROOT, APPS_JSON)})`,
+      `No HTML in ${HTML_DIR} — skipping extract (syncing slugs from apps-slugs.json)`,
     )
+    syncAppsJsonSlugs()
     return
   }
 
   const groups = groupByExtension(files)
+  const slugMap = loadSlugMap()
   const apps = []
   let updatedAt = ''
 
@@ -899,11 +998,20 @@ export function main() {
       console.warn(`Skipping ${id}: missing pages`, Object.keys(pages))
       continue
     }
+
+    const slug = slugMap.get(id)
+    if (!slug) {
+      console.warn(
+        `Skipping ${id}: no slug in apps-slugs.json — add { "id": "${id}", "slug": "your-slug" }`,
+      )
+      continue
+    }
+
     if (pages.date && (!updatedAt || pages.date > updatedAt)) {
       updatedAt = pages.date
     }
 
-    const app = buildApp(id, pages, pages.date)
+    const app = buildApp(id, pages, pages.date, slug)
     apps.push(app)
     console.log(`Parsed ${app.name} (${id}) → /apps/${app.slug}`)
     if (app.analytics) {

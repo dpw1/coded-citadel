@@ -3,7 +3,7 @@ import appsData from '../data/apps.json'
 const SLUG_ALIASES = {
   test: 'youtube-comments-exporter',
   'yt-comments-exporter': 'youtube-comments-exporter',
-  'youtube-filter-pro': 'youtube-filter-pro-filter-by-views-duration-date-and-more',
+  'youtube-filter-pro-filter-by-views-duration-date-and-more': 'youtube-filter-pro',
   dfkkbbcdbjaecgnaocgfonoodmfmkmmm: 'claude-deep-search',
 }
 

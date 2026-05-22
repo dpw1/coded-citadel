@@ -5,7 +5,7 @@
 
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { listHtmlFiles, main } from './extract-chrome-apps.mjs'
+import { listHtmlFiles, main, syncAppsJsonSlugs } from './extract-chrome-apps.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.join(__dirname, '..')
@@ -15,8 +15,9 @@ const APPS_JSON = path.join(ROOT, 'src/data/apps.json')
 const files = listHtmlFiles()
 if (!files.length) {
   console.log(
-    `No HTML in ${HTML_DIR} — skipping extract-chrome-apps (keeping existing ${path.relative(ROOT, APPS_JSON)})`,
+    `No HTML in ${HTML_DIR} — skipping extract-chrome-apps (syncing slugs into ${path.relative(ROOT, APPS_JSON)})`,
   )
+  syncAppsJsonSlugs()
   process.exit(0)
 }
 
