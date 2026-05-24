@@ -181,7 +181,9 @@ function parseAfCallbacks(html) {
 }
 
 function parseFilename(name) {
-  const m = name.match(/^([a-z]+)--([^-]+)--(\d{2})-(\d{2})\.html$/i)
+  const m = name.match(
+    /^(?:chrome-analytics-data--)?([a-z]{32})--([a-z_]+)--(\d{2})-(\d{2})\.html$/i,
+  )
   if (!m) return null
   return { id: m[1], page: m[2], day: m[3], month: m[4], date: `2026-${m[4]}-${m[3]}` }
 }

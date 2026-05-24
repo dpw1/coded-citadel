@@ -1,7 +1,9 @@
 node_modules
 dist
 samples/
-chrome-extension-html/
+# Ignore chrome-extension-html except db.json (local archive tracked in repo)
+chrome-extension-html/*
+!chrome-extension-html/db.json
 .DS_Store
 *.local
 .env

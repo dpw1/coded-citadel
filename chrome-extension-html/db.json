@@ -1,0 +1,2038 @@
+{
+  "schemaVersion": 1,
+  "description": "Local archive of every apps.json produced from Chrome Web Store HTML scrapes. Not committed to git (samples/ is ignored).",
+  "snapshots": [
+    {
+      "extractedAt": "2026-05-22T08:10:22.775Z",
+      "updatedAt": "2026-05-21",
+      "outputPath": "src/data/apps.json",
+      "appCount": 2,
+      "slugs": [
+        "youtube-filter-pro",
+        "yt-comments-exporter"
+      ],
+      "chromeExtensionIds": [
+        "dbkkcbfafkckhmefkpgnelikibobcabb",
+        "epokpidfnienjjfncmhnallghfhaijbj"
+      ],
+      "appsJson": {
+        "updatedAt": "2026-05-21",
+        "apps": [
+          {
+            "slug": "youtube-filter-pro",
+            "name": "Youtube Filter Pro: filter by views, duration, date, and more",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/cT5IsRijPKr64wr862UQQHyrC1A2YsAaG4JM9fTE4OAiwLxxMfTmEqUG0HsFW9TdB2CQtotPwmSdFldxRvpG3pyOTg",
+            "tagline": "Filter YouTube search results in real time by duration, views, publish date, channel, and more.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
+            "version": "1.0.03",
+            "lastUpdated": "2026-05-21",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?",
+              "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📺 Channel — Include channels whose names contain certain keywords, or block specific channels with exclude tags.\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Lightweight: only needs storage permission; no account required\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA"
+            ],
+            "analytics": {
+              "totalInstalls": 12,
+              "installations": [
+                {
+                  "date": "18-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 9
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 9,
+                "BR": 1
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 0,
+              "pageViewsBySource": {},
+              "impressions": 10,
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "yt-comments-exporter",
+            "name": "YouTube Comments Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/4x9fxtByjyQCfo0pjqfSMxFBeccYhAm1MOrJJrAyxDkrODcz7ivgRo4QKtoCwMUIUB-rXPhVD-sGhD5-FQi6p3rE",
+            "tagline": "Export YouTube comments to CSV, JSON, TXT or analyze with Claude",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
+            "version": "1.0.31",
+            "lastUpdated": "2026-05-21",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.",
+              "full": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.\n\nWhy install it:\n\n- Save time: Pull comments into CSV, JSON, or a TXT layout suited for analysis instead of copying threads by hand.\n- Flexible export: Download files, copy all to the clipboard, or open the payload in Claude or ChatGPT (your account on those sites).\n- Bulk workflow: download comments from multiple videos at once\nHistory: Recent exports help you revisit past runs.\n\nHow to use it:\n- Open a YouTube watch page\n- Click on the extension’s button\n- Click on \"Fetch Comments\" \n- Export or open in your preferred tool.\n\nNote\nClaude and ChatGPT are third-party services; this extension prepares and transfers text for you to use on those sites under your login. It is not affiliated with Google, YouTube, Anthropic, or OpenAI."
+            },
+            "audience": [
+              "content creators",
+              "researchers",
+              "marketers",
+              "data analysts"
+            ],
+            "features": [
+              {
+                "title": "One-click CSV export",
+                "description": "Downloads all comments from the current video as a .csv file instantly."
+              }
+            ],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": 6,
+              "techStack": [
+                "Chrome Extension API",
+                "Vanilla JS",
+                "CSV Export"
+              ],
+              "episode": "Episode 1 — $0 to Launch"
+            },
+            "primaryKeywords": [
+              "export YouTube comments",
+              "YouTube comments to CSV"
+            ],
+            "geo": [
+              "US",
+              "CA",
+              "AU",
+              "GB",
+              "DE",
+              "BR"
+            ],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ"
+            ],
+            "analytics": {
+              "totalInstalls": 12,
+              "installations": [
+                {
+                  "date": "14-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 1
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 12
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 0,
+              "pageViewsBySource": {},
+              "impressions": 18,
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "extractedAt": "2026-05-22T11:18:13.731Z",
+      "updatedAt": "2026-05-22",
+      "outputPath": "src/data/apps.json",
+      "appCount": 3,
+      "slugs": [
+        "youtube-filter-pro",
+        "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "yt-comments-exporter"
+      ],
+      "chromeExtensionIds": [
+        "dbkkcbfafkckhmefkpgnelikibobcabb",
+        "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "epokpidfnienjjfncmhnallghfhaijbj"
+      ],
+      "appsJson": {
+        "updatedAt": "2026-05-22",
+        "apps": [
+          {
+            "slug": "youtube-filter-pro",
+            "name": "Youtube Filter Pro: filter by views, duration, date, and more",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/cT5IsRijPKr64wr862UQQHyrC1A2YsAaG4JM9fTE4OAiwLxxMfTmEqUG0HsFW9TdB2CQtotPwmSdFldxRvpG3pyOTg",
+            "tagline": "Filter YouTube search results in real time by duration, views, publish date, channel, and more.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
+            "version": "1.0.03",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?",
+              "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📺 Channel — Include channels whose names contain certain keywords, or block specific channels with exclude tags.\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Lightweight: only needs storage permission; no account required\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA"
+            ],
+            "analytics": {
+              "totalInstalls": 21,
+              "installations": [
+                {
+                  "date": "18-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 9
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 17,
+                "BR": 1
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 0,
+              "pageViewsBySource": {},
+              "impressions": 32,
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "name": "Claude Deep Search",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/mcn5iQN1cvgDAg-D53kSenW9tO29dnyiDOh9Mq2HFrS08NK7lzb7jOyWYOCX7-gpWf837NNuLGBSN6JEZgfPVt6NTw",
+            "tagline": "Full-text search across all your Claude conversations. Fully local, fully private. No servers.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "version": "1.0.01",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago?",
+              "full": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago? \n\nClaude Deep Search adds full-text search across your entire Claude.ai history - something the built-in sidebar search does not do on its own. \n\nAnd it's all 100% private. All conversations are stored locally (via IndexedDB) and never leave your machine.\n\n---\n\nHow to use\n\n1. Install the extension\n2. Click on the button \"Deep Search\" below the \"Search\" button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac) \n3. Search away!"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/h4PK7js_fXI4bZEmOlAxrf2J0OVicq6imF3fIPt0lFn3qxHmjkkjMWhv6BOTbfBrXIogMfFQuSieaA7vEY3-S_QN",
+              "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0"
+            ]
+          },
+          {
+            "slug": "yt-comments-exporter",
+            "name": "YouTube Comments Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/4x9fxtByjyQCfo0pjqfSMxFBeccYhAm1MOrJJrAyxDkrODcz7ivgRo4QKtoCwMUIUB-rXPhVD-sGhD5-FQi6p3rE",
+            "tagline": "Export YouTube comments to CSV, JSON, TXT or analyze with Claude",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
+            "version": "1.0.31",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.",
+              "full": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.\n\nWhy install it:\n\n- Save time: Pull comments into CSV, JSON, or a TXT layout suited for analysis instead of copying threads by hand.\n- Flexible export: Download files, copy all to the clipboard, or open the payload in Claude or ChatGPT (your account on those sites).\n- Bulk workflow: download comments from multiple videos at once\nHistory: Recent exports help you revisit past runs.\n\nHow to use it:\n- Open a YouTube watch page\n- Click on the extension’s button\n- Click on \"Fetch Comments\" \n- Export or open in your preferred tool.\n\nNote\nClaude and ChatGPT are third-party services; this extension prepares and transfers text for you to use on those sites under your login. It is not affiliated with Google, YouTube, Anthropic, or OpenAI."
+            },
+            "audience": [
+              "content creators",
+              "researchers",
+              "marketers",
+              "data analysts"
+            ],
+            "features": [
+              {
+                "title": "One-click CSV export",
+                "description": "Downloads all comments from the current video as a .csv file instantly."
+              }
+            ],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": 6,
+              "techStack": [
+                "Chrome Extension API",
+                "Vanilla JS",
+                "CSV Export"
+              ],
+              "episode": "Episode 1 — $0 to Launch"
+            },
+            "primaryKeywords": [
+              "export YouTube comments",
+              "YouTube comments to CSV"
+            ],
+            "geo": [
+              "US",
+              "CA",
+              "AU",
+              "GB",
+              "DE",
+              "BR"
+            ],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ"
+            ],
+            "analytics": {
+              "totalInstalls": 15,
+              "installations": [
+                {
+                  "date": "14-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 3
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 15
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 0,
+              "pageViewsBySource": {},
+              "impressions": 19,
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "extractedAt": "2026-05-22T11:40:07.538Z",
+      "updatedAt": "2026-05-22",
+      "outputPath": "src/data/apps.json",
+      "appCount": 3,
+      "slugs": [
+        "youtube-filter-pro",
+        "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "yt-comments-exporter"
+      ],
+      "chromeExtensionIds": [
+        "dbkkcbfafkckhmefkpgnelikibobcabb",
+        "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "epokpidfnienjjfncmhnallghfhaijbj"
+      ],
+      "appsJson": {
+        "updatedAt": "2026-05-22",
+        "apps": [
+          {
+            "slug": "youtube-filter-pro",
+            "name": "Youtube Filter Pro: filter by views, duration, date, and more",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/cT5IsRijPKr64wr862UQQHyrC1A2YsAaG4JM9fTE4OAiwLxxMfTmEqUG0HsFW9TdB2CQtotPwmSdFldxRvpG3pyOTg",
+            "tagline": "Filter YouTube search results in real time by duration, views, publish date, channel, and more.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
+            "version": "1.0.03",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?",
+              "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📺 Channel — Include channels whose names contain certain keywords, or block specific channels with exclude tags.\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Lightweight: only needs storage permission; no account required\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA"
+            ],
+            "analytics": {
+              "totalInstalls": 21,
+              "installations": [
+                {
+                  "date": "18-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 9
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 17,
+                "BR": 1
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 26,
+              "pageViewsOverTime": [
+                {
+                  "date": "18-05-2026",
+                  "total": 12
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 6
+                }
+              ],
+              "pageViewsBySource": {
+                "chatgpt_com": 1
+              },
+              "impressions": 32,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "19-05-2026",
+                  "total": 10
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 22
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 1,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "name": "Claude Deep Search",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/mcn5iQN1cvgDAg-D53kSenW9tO29dnyiDOh9Mq2HFrS08NK7lzb7jOyWYOCX7-gpWf837NNuLGBSN6JEZgfPVt6NTw",
+            "tagline": "Full-text search across all your Claude conversations. Fully local, fully private. No servers.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "version": "1.0.01",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago?",
+              "full": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago? \n\nClaude Deep Search adds full-text search across your entire Claude.ai history - something the built-in sidebar search does not do on its own. \n\nAnd it's all 100% private. All conversations are stored locally (via IndexedDB) and never leave your machine.\n\n---\n\nHow to use\n\n1. Install the extension\n2. Click on the button \"Deep Search\" below the \"Search\" button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac) \n3. Search away!"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/h4PK7js_fXI4bZEmOlAxrf2J0OVicq6imF3fIPt0lFn3qxHmjkkjMWhv6BOTbfBrXIogMfFQuSieaA7vEY3-S_QN",
+              "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0"
+            ]
+          },
+          {
+            "slug": "yt-comments-exporter",
+            "name": "YouTube Comments Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/4x9fxtByjyQCfo0pjqfSMxFBeccYhAm1MOrJJrAyxDkrODcz7ivgRo4QKtoCwMUIUB-rXPhVD-sGhD5-FQi6p3rE",
+            "tagline": "Export YouTube comments to CSV, JSON, TXT or analyze with Claude",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
+            "version": "1.0.31",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.",
+              "full": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.\n\nWhy install it:\n\n- Save time: Pull comments into CSV, JSON, or a TXT layout suited for analysis instead of copying threads by hand.\n- Flexible export: Download files, copy all to the clipboard, or open the payload in Claude or ChatGPT (your account on those sites).\n- Bulk workflow: download comments from multiple videos at once\nHistory: Recent exports help you revisit past runs.\n\nHow to use it:\n- Open a YouTube watch page\n- Click on the extension’s button\n- Click on \"Fetch Comments\" \n- Export or open in your preferred tool.\n\nNote\nClaude and ChatGPT are third-party services; this extension prepares and transfers text for you to use on those sites under your login. It is not affiliated with Google, YouTube, Anthropic, or OpenAI."
+            },
+            "audience": [
+              "content creators",
+              "researchers",
+              "marketers",
+              "data analysts"
+            ],
+            "features": [
+              {
+                "title": "One-click CSV export",
+                "description": "Downloads all comments from the current video as a .csv file instantly."
+              }
+            ],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": 6,
+              "techStack": [
+                "Chrome Extension API",
+                "Vanilla JS",
+                "CSV Export"
+              ],
+              "episode": "Episode 1 — $0 to Launch"
+            },
+            "primaryKeywords": [
+              "export YouTube comments",
+              "YouTube comments to CSV"
+            ],
+            "geo": [
+              "US",
+              "CA",
+              "AU",
+              "GB",
+              "DE",
+              "BR"
+            ],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ"
+            ],
+            "analytics": {
+              "totalInstalls": 15,
+              "installations": [
+                {
+                  "date": "14-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 3
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 15
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 10,
+              "pageViewsOverTime": [
+                {
+                  "date": "14-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                }
+              ],
+              "pageViewsBySource": {
+                "bgads1": 1
+              },
+              "impressions": 19,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 14
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "extractedAt": "2026-05-22T11:59:17.058Z",
+      "updatedAt": "2026-05-22",
+      "outputPath": "src/data/apps.json",
+      "appCount": 3,
+      "slugs": [
+        "youtube-filter-pro-filter-by-views-duration-date-and-more",
+        "claude-deep-search",
+        "youtube-comments-exporter"
+      ],
+      "chromeExtensionIds": [
+        "dbkkcbfafkckhmefkpgnelikibobcabb",
+        "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "epokpidfnienjjfncmhnallghfhaijbj"
+      ],
+      "appsJson": {
+        "updatedAt": "2026-05-22",
+        "apps": [
+          {
+            "slug": "youtube-filter-pro-filter-by-views-duration-date-and-more",
+            "name": "Youtube Filter Pro: filter by views, duration, date, and more",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/cT5IsRijPKr64wr862UQQHyrC1A2YsAaG4JM9fTE4OAiwLxxMfTmEqUG0HsFW9TdB2CQtotPwmSdFldxRvpG3pyOTg",
+            "tagline": "Filter YouTube search results in real time by duration, views, publish date, channel, and more.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
+            "version": "1.0.03",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?",
+              "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📺 Channel — Include channels whose names contain certain keywords, or block specific channels with exclude tags.\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Lightweight: only needs storage permission; no account required\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA"
+            ],
+            "analytics": {
+              "totalInstalls": 21,
+              "installations": [
+                {
+                  "date": "18-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 9
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 17,
+                "BR": 1
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 26,
+              "pageViewsOverTime": [
+                {
+                  "date": "18-05-2026",
+                  "total": 12
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 6
+                }
+              ],
+              "pageViewsBySource": {
+                "chatgpt_com": 1
+              },
+              "impressions": 32,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "19-05-2026",
+                  "total": 10
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 22
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 1,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "claude-deep-search",
+            "name": "Claude Deep Search",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/mcn5iQN1cvgDAg-D53kSenW9tO29dnyiDOh9Mq2HFrS08NK7lzb7jOyWYOCX7-gpWf837NNuLGBSN6JEZgfPVt6NTw",
+            "tagline": "Full-text search across all your Claude conversations. Fully local, fully private. No servers.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "version": "1.0.01",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago?",
+              "full": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago? \n\nClaude Deep Search adds full-text search across your entire Claude.ai history - something the built-in sidebar search does not do on its own. \n\nAnd it's all 100% private. All conversations are stored locally (via IndexedDB) and never leave your machine.\n\n---\n\nHow to use\n\n1. Install the extension\n2. Click on the button \"Deep Search\" below the \"Search\" button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac) \n3. Search away!"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/h4PK7js_fXI4bZEmOlAxrf2J0OVicq6imF3fIPt0lFn3qxHmjkkjMWhv6BOTbfBrXIogMfFQuSieaA7vEY3-S_QN",
+              "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0"
+            ],
+            "analytics": {
+              "totalInstalls": 0,
+              "installations": [],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {},
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 0,
+              "pageViewsOverTime": [],
+              "pageViewsBySource": {},
+              "impressions": 0,
+              "impressionsAcrossChromeWebStore": [],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "youtube-comments-exporter",
+            "name": "YouTube Comments Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/4x9fxtByjyQCfo0pjqfSMxFBeccYhAm1MOrJJrAyxDkrODcz7ivgRo4QKtoCwMUIUB-rXPhVD-sGhD5-FQi6p3rE",
+            "tagline": "Export YouTube comments to CSV, JSON, TXT or analyze with Claude",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
+            "version": "1.0.31",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.",
+              "full": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.\n\nWhy install it:\n\n- Save time: Pull comments into CSV, JSON, or a TXT layout suited for analysis instead of copying threads by hand.\n- Flexible export: Download files, copy all to the clipboard, or open the payload in Claude or ChatGPT (your account on those sites).\n- Bulk workflow: download comments from multiple videos at once\nHistory: Recent exports help you revisit past runs.\n\nHow to use it:\n- Open a YouTube watch page\n- Click on the extension’s button\n- Click on \"Fetch Comments\" \n- Export or open in your preferred tool.\n\nNote\nClaude and ChatGPT are third-party services; this extension prepares and transfers text for you to use on those sites under your login. It is not affiliated with Google, YouTube, Anthropic, or OpenAI."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ"
+            ],
+            "analytics": {
+              "totalInstalls": 15,
+              "installations": [
+                {
+                  "date": "14-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 3
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 15
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 10,
+              "pageViewsOverTime": [
+                {
+                  "date": "14-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                }
+              ],
+              "pageViewsBySource": {
+                "bgads1": 1
+              },
+              "impressions": 19,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 14
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "extractedAt": "2026-05-22T11:59:54.255Z",
+      "updatedAt": "2026-05-22",
+      "outputPath": "src/data/apps.json",
+      "appCount": 3,
+      "slugs": [
+        "youtube-filter-pro-filter-by-views-duration-date-and-more",
+        "claude-deep-search",
+        "youtube-comments-exporter"
+      ],
+      "chromeExtensionIds": [
+        "dbkkcbfafkckhmefkpgnelikibobcabb",
+        "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "epokpidfnienjjfncmhnallghfhaijbj"
+      ],
+      "appsJson": {
+        "updatedAt": "2026-05-22",
+        "apps": [
+          {
+            "slug": "youtube-filter-pro-filter-by-views-duration-date-and-more",
+            "name": "Youtube Filter Pro: filter by views, duration, date, and more",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/cT5IsRijPKr64wr862UQQHyrC1A2YsAaG4JM9fTE4OAiwLxxMfTmEqUG0HsFW9TdB2CQtotPwmSdFldxRvpG3pyOTg",
+            "tagline": "Filter YouTube search results in real time by duration, views, publish date, channel, and more.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
+            "version": "1.0.03",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?",
+              "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📺 Channel — Include channels whose names contain certain keywords, or block specific channels with exclude tags.\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Lightweight: only needs storage permission; no account required\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA"
+            ],
+            "analytics": {
+              "totalInstalls": 21,
+              "installations": [
+                {
+                  "date": "18-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 9
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 17,
+                "BR": 1
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 26,
+              "pageViewsOverTime": [
+                {
+                  "date": "18-05-2026",
+                  "total": 12
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 6
+                }
+              ],
+              "pageViewsBySource": {
+                "chatgpt_com": 1
+              },
+              "impressions": 32,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "19-05-2026",
+                  "total": 10
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 22
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 1,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "claude-deep-search",
+            "name": "Claude Deep Search",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/mcn5iQN1cvgDAg-D53kSenW9tO29dnyiDOh9Mq2HFrS08NK7lzb7jOyWYOCX7-gpWf837NNuLGBSN6JEZgfPVt6NTw",
+            "tagline": "Full-text search across all your Claude conversations. Fully local, fully private. No servers.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "version": "1.0.01",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago?",
+              "full": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago? \n\nClaude Deep Search adds full-text search across your entire Claude.ai history - something the built-in sidebar search does not do on its own. \n\nAnd it's all 100% private. All conversations are stored locally (via IndexedDB) and never leave your machine.\n\n---\n\nHow to use\n\n1. Install the extension\n2. Click on the button \"Deep Search\" below the \"Search\" button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac) \n3. Search away!"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/h4PK7js_fXI4bZEmOlAxrf2J0OVicq6imF3fIPt0lFn3qxHmjkkjMWhv6BOTbfBrXIogMfFQuSieaA7vEY3-S_QN",
+              "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0"
+            ],
+            "analytics": {
+              "totalInstalls": 0,
+              "installations": [],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {},
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 0,
+              "pageViewsOverTime": [],
+              "pageViewsBySource": {},
+              "impressions": 0,
+              "impressionsAcrossChromeWebStore": [],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "youtube-comments-exporter",
+            "name": "YouTube Comments Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/4x9fxtByjyQCfo0pjqfSMxFBeccYhAm1MOrJJrAyxDkrODcz7ivgRo4QKtoCwMUIUB-rXPhVD-sGhD5-FQi6p3rE",
+            "tagline": "Export YouTube comments to CSV, JSON, TXT or analyze with Claude",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
+            "version": "1.0.31",
+            "lastUpdated": "2026-05-22",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.",
+              "full": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.\n\nWhy install it:\n\n- Save time: Pull comments into CSV, JSON, or a TXT layout suited for analysis instead of copying threads by hand.\n- Flexible export: Download files, copy all to the clipboard, or open the payload in Claude or ChatGPT (your account on those sites).\n- Bulk workflow: download comments from multiple videos at once\nHistory: Recent exports help you revisit past runs.\n\nHow to use it:\n- Open a YouTube watch page\n- Click on the extension’s button\n- Click on \"Fetch Comments\" \n- Export or open in your preferred tool.\n\nNote\nClaude and ChatGPT are third-party services; this extension prepares and transfers text for you to use on those sites under your login. It is not affiliated with Google, YouTube, Anthropic, or OpenAI."
+            },
+            "audience": [
+              "content creators",
+              "researchers",
+              "marketers",
+              "data analysts"
+            ],
+            "features": [
+              {
+                "title": "One-click CSV export",
+                "description": "Downloads all comments from the current video as a .csv file instantly."
+              }
+            ],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": 6,
+              "techStack": [
+                "Chrome Extension API",
+                "Vanilla JS",
+                "CSV Export"
+              ],
+              "episode": "Episode 1 — $0 to Launch"
+            },
+            "primaryKeywords": [
+              "export YouTube comments",
+              "YouTube comments to CSV"
+            ],
+            "geo": [
+              "US",
+              "CA",
+              "AU",
+              "GB",
+              "DE",
+              "BR"
+            ],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ"
+            ],
+            "analytics": {
+              "totalInstalls": 15,
+              "installations": [
+                {
+                  "date": "14-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 3
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 15
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 10,
+              "pageViewsOverTime": [
+                {
+                  "date": "14-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                }
+              ],
+              "pageViewsBySource": {
+                "bgads1": 1
+              },
+              "impressions": 19,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 14
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "extractedAt": "2026-05-23T08:54:35.497Z",
+      "updatedAt": "2026-05-23",
+      "outputPath": "src/data/apps.json",
+      "appCount": 3,
+      "slugs": [
+        "youtube-filter-pro",
+        "claude-deep-search",
+        "youtube-comments-exporter"
+      ],
+      "chromeExtensionIds": [
+        "dbkkcbfafkckhmefkpgnelikibobcabb",
+        "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "epokpidfnienjjfncmhnallghfhaijbj"
+      ],
+      "appsJson": {
+        "updatedAt": "2026-05-23",
+        "apps": [
+          {
+            "slug": "youtube-filter-pro",
+            "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
+            "name": "Youtube Filter Pro: filter by views, duration, date, and more",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/cT5IsRijPKr64wr862UQQHyrC1A2YsAaG4JM9fTE4OAiwLxxMfTmEqUG0HsFW9TdB2CQtotPwmSdFldxRvpG3pyOTg",
+            "tagline": "Filter YouTube search results in real time by duration, views, publish date, channel, and more.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
+            "version": "1.0.03",
+            "lastUpdated": "2026-05-23",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?",
+              "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📺 Channel — Include channels whose names contain certain keywords, or block specific channels with exclude tags.\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Lightweight: only needs storage permission; no account required\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA"
+            ],
+            "analytics": {
+              "totalInstalls": 25,
+              "installations": [
+                {
+                  "date": "18-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 4
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 2
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 19,
+                "BR": 1
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 34,
+              "pageViewsOverTime": [
+                {
+                  "date": "18-05-2026",
+                  "total": 12
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 8
+                }
+              ],
+              "pageViewsBySource": {
+                "chatgpt_com": 1
+              },
+              "impressions": 41,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "19-05-2026",
+                  "total": 10
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 22
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 9
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 3,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "claude-deep-search",
+            "chromeExtensionId": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "name": "Claude Deep Search",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/mcn5iQN1cvgDAg-D53kSenW9tO29dnyiDOh9Mq2HFrS08NK7lzb7jOyWYOCX7-gpWf837NNuLGBSN6JEZgfPVt6NTw",
+            "tagline": "Full-text search across all your Claude conversations. Fully local, fully private. No servers.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "version": "1.0.01",
+            "lastUpdated": "2026-05-23",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago?",
+              "full": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago? \n\nClaude Deep Search adds full-text search across your entire Claude.ai history - something the built-in sidebar search does not do on its own. \n\nAnd it's all 100% private. All conversations are stored locally (via IndexedDB) and never leave your machine.\n\n---\n\nHow to use\n\n1. Install the extension\n2. Click on the button \"Deep Search\" below the \"Search\" button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac) \n3. Search away!"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/h4PK7js_fXI4bZEmOlAxrf2J0OVicq6imF3fIPt0lFn3qxHmjkkjMWhv6BOTbfBrXIogMfFQuSieaA7vEY3-S_QN",
+              "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0"
+            ],
+            "analytics": {
+              "totalInstalls": 0,
+              "installations": [],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {},
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 0,
+              "pageViewsOverTime": [],
+              "pageViewsBySource": {},
+              "impressions": 0,
+              "impressionsAcrossChromeWebStore": [],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "youtube-comments-exporter",
+            "chromeExtensionId": "epokpidfnienjjfncmhnallghfhaijbj",
+            "name": "YouTube Comments Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/4x9fxtByjyQCfo0pjqfSMxFBeccYhAm1MOrJJrAyxDkrODcz7ivgRo4QKtoCwMUIUB-rXPhVD-sGhD5-FQi6p3rE",
+            "tagline": "Export YouTube comments to CSV, JSON, TXT or analyze with Claude",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
+            "version": "1.0.31",
+            "lastUpdated": "2026-05-23",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.",
+              "full": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.\n\nWhy install it:\n\n- Save time: Pull comments into CSV, JSON, or a TXT layout suited for analysis instead of copying threads by hand.\n- Flexible export: Download files, copy all to the clipboard, or open the payload in Claude or ChatGPT (your account on those sites).\n- Bulk workflow: download comments from multiple videos at once\nHistory: Recent exports help you revisit past runs.\n\nHow to use it:\n- Open a YouTube watch page\n- Click on the extension’s button\n- Click on \"Fetch Comments\" \n- Export or open in your preferred tool.\n\nNote\nClaude and ChatGPT are third-party services; this extension prepares and transfers text for you to use on those sites under your login. It is not affiliated with Google, YouTube, Anthropic, or OpenAI."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ"
+            ],
+            "analytics": {
+              "totalInstalls": 17,
+              "installations": [
+                {
+                  "date": "14-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 2
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 17
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 12,
+              "pageViewsOverTime": [
+                {
+                  "date": "14-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 2
+                }
+              ],
+              "pageViewsBySource": {
+                "bgads1": 1
+              },
+              "impressions": 20,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 14
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 1
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "extractedAt": "2026-05-24T14:39:35.430Z",
+      "updatedAt": "2026-05-24",
+      "outputPath": "src/data/apps.json",
+      "appCount": 3,
+      "slugs": [
+        "youtube-filter-pro",
+        "claude-deep-search",
+        "youtube-comments-exporter"
+      ],
+      "chromeExtensionIds": [
+        "dbkkcbfafkckhmefkpgnelikibobcabb",
+        "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "epokpidfnienjjfncmhnallghfhaijbj"
+      ],
+      "appsJson": {
+        "updatedAt": "2026-05-24",
+        "apps": [
+          {
+            "slug": "youtube-filter-pro",
+            "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
+            "name": "Youtube Filter Pro: filter by views, duration, date, and more",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/cT5IsRijPKr64wr862UQQHyrC1A2YsAaG4JM9fTE4OAiwLxxMfTmEqUG0HsFW9TdB2CQtotPwmSdFldxRvpG3pyOTg",
+            "tagline": "Filter YouTube search results in real time by duration, views, publish date, channel, and more.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
+            "version": "1.0.03",
+            "lastUpdated": "2026-05-24",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?",
+              "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📺 Channel — Include channels whose names contain certain keywords, or block specific channels with exclude tags.\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Lightweight: only needs storage permission; no account required\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA"
+            ],
+            "analytics": {
+              "totalInstalls": 32,
+              "installations": [
+                {
+                  "date": "18-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "22-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 4
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "22-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 8
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 22,
+                "BR": 1,
+                "DE": 1
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 41,
+              "pageViewsOverTime": [
+                {
+                  "date": "18-05-2026",
+                  "total": 12
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "22-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 4
+                }
+              ],
+              "pageViewsBySource": {
+                "ext_sidebar": 2,
+                "chatgpt_com": 1
+              },
+              "impressions": 76,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "19-05-2026",
+                  "total": 10
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 22
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "22-05-2026",
+                  "total": 15
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 20
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 15,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "claude-deep-search",
+            "chromeExtensionId": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "name": "Claude Deep Search",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/mcn5iQN1cvgDAg-D53kSenW9tO29dnyiDOh9Mq2HFrS08NK7lzb7jOyWYOCX7-gpWf837NNuLGBSN6JEZgfPVt6NTw",
+            "tagline": "Full-text search across all your Claude conversations. Fully local, fully private. No servers.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "version": "1.0.05",
+            "lastUpdated": "2026-05-24",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago?",
+              "full": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago? \n\nClaude Deep Search adds full-text search across your entire Claude.ai history - something the built-in sidebar search does not do on its own. \n\nAnd it's all 100% private. All conversations are stored locally (via IndexedDB) and never leave your machine.\n\n---\n\nHow to use\n\n1. Install the extension\n2. Click on the button \"Deep Search\" below the \"Search\" button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac) \n3. Search away!"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/h4PK7js_fXI4bZEmOlAxrf2J0OVicq6imF3fIPt0lFn3qxHmjkkjMWhv6BOTbfBrXIogMfFQuSieaA7vEY3-S_QN",
+              "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0"
+            ],
+            "analytics": {
+              "totalInstalls": 10,
+              "installations": [
+                {
+                  "date": "22-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 4
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "22-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 2
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 8,
+                "BR": 2
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 7,
+              "pageViewsOverTime": [
+                {
+                  "date": "22-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 3
+                }
+              ],
+              "pageViewsBySource": {},
+              "impressions": 2,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "22-05-2026",
+                  "total": 2
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 4,
+                "disabled": 0
+              }
+            }
+          },
+          {
+            "slug": "youtube-comments-exporter",
+            "chromeExtensionId": "epokpidfnienjjfncmhnallghfhaijbj",
+            "name": "YouTube Comments Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/4x9fxtByjyQCfo0pjqfSMxFBeccYhAm1MOrJJrAyxDkrODcz7ivgRo4QKtoCwMUIUB-rXPhVD-sGhD5-FQi6p3rE",
+            "tagline": "Export YouTube comments to CSV, JSON, TXT or analyze with Claude",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
+            "version": "1.0.31",
+            "lastUpdated": "2026-05-24",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.",
+              "full": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.\n\nWhy install it:\n\n- Save time: Pull comments into CSV, JSON, or a TXT layout suited for analysis instead of copying threads by hand.\n- Flexible export: Download files, copy all to the clipboard, or open the payload in Claude or ChatGPT (your account on those sites).\n- Bulk workflow: download comments from multiple videos at once\nHistory: Recent exports help you revisit past runs.\n\nHow to use it:\n- Open a YouTube watch page\n- Click on the extension’s button\n- Click on \"Fetch Comments\" \n- Export or open in your preferred tool.\n\nNote\nClaude and ChatGPT are third-party services; this extension prepares and transfers text for you to use on those sites under your login. It is not affiliated with Google, YouTube, Anthropic, or OpenAI."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ"
+            ],
+            "analytics": {
+              "totalInstalls": 22,
+              "installations": [
+                {
+                  "date": "14-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "22-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 2
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 21
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 12,
+              "pageViewsOverTime": [
+                {
+                  "date": "14-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 2
+                }
+              ],
+              "pageViewsBySource": {
+                "bgads1": 1
+              },
+              "impressions": 21,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 14
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 1
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
