@@ -99,7 +99,7 @@ function loadCustomDataMap() {
   return map
 }
 
-/** Merge manual fields from apps-custom-data.json (slug, created, overrides, etc.). */
+/** Merge manual fields from apps-custom-data.json (slug, created display string, overrides, etc.). */
 function applyCustomDataToApp(app, custom) {
   if (!custom) return app
   for (const [key, value] of Object.entries(custom)) {

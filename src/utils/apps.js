@@ -161,7 +161,7 @@ export function getInstallationsSeries(analytics) {
   return analytics?.installations ?? []
 }
 
-/** ISO date: `app.created` from custom data, else earliest install day in analytics. */
+/** Display string from custom data, or ISO date from earliest install day in analytics. */
 export function appCreatedDate(app) {
   if (app?.created) return app.created
   const series = getInstallationsSeries(app?.analytics)
@@ -176,6 +176,7 @@ export function appCreatedDate(app) {
 }
 
 export function formatAppCreatedDate(app) {
+  if (app?.created) return app.created
   return formatAppDate(appCreatedDate(app))
 }
 
