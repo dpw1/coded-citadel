@@ -12,7 +12,7 @@ const ROOT = path.join(__dirname, '..')
 const HTML_DIR = path.join(ROOT, 'chrome-extension-html/html')
 const PROCESSED_HTML_DIR = path.join(ROOT, 'chrome-extension-html/processed_html')
 const APPS_JSON = path.join(ROOT, 'src/data/apps.json')
-const APPS_SLUGS_JSON = path.join(ROOT, 'src/data/apps-slugs.json')
+const APPS_CUSTOM_DATA_JSON = path.join(ROOT, 'src/data/apps-custom-data.json')
 const APPS_EXAMPLE = path.join(ROOT, 'chrome-extension-html/apps-example.json')
 const DB_JSON = path.join(ROOT, 'chrome-extension-html/db.json')
 
@@ -65,37 +65,48 @@ export function extractChromeExtensionId(chromeStoreUrl) {
   return bare ? bare[1] : null
 }
 
-function loadSlugMap() {
-  if (!fs.existsSync(APPS_SLUGS_JSON)) {
+function loadCustomDataMap() {
+  if (!fs.existsSync(APPS_CUSTOM_DATA_JSON)) {
     console.error(
-      `Missing ${path.relative(ROOT, APPS_SLUGS_JSON)} — add Chrome extension ID → slug mappings before extracting.`,
+      `Missing ${path.relative(ROOT, APPS_CUSTOM_DATA_JSON)} — add Chrome extension ID entries before extracting.`,
     )
     process.exit(1)
   }
 
   let data
   try {
-    data = JSON.parse(fs.readFileSync(APPS_SLUGS_JSON, 'utf8'))
+    data = JSON.parse(fs.readFileSync(APPS_CUSTOM_DATA_JSON, 'utf8'))
   } catch (err) {
-    console.error(`Could not parse ${path.relative(ROOT, APPS_SLUGS_JSON)}:`, err.message)
+    console.error(`Could not parse ${path.relative(ROOT, APPS_CUSTOM_DATA_JSON)}:`, err.message)
     process.exit(1)
   }
 
   const map = new Map()
-  for (const entry of data.slugs ?? []) {
-    if (entry?.id && entry?.slug) {
-      map.set(entry.id, entry.slug)
+  const entries = data.apps ?? data.slugs ?? []
+  for (const entry of entries) {
+    if (entry?.id) {
+      map.set(entry.id, entry)
     }
   }
 
-  if (!map.size) {
+  if (!map.size || ![...map.values()].some((e) => e.slug)) {
     console.error(
-      `${path.relative(ROOT, APPS_SLUGS_JSON)} has no slug entries — add { "id": "…", "slug": "…" } objects.`,
+      `${path.relative(ROOT, APPS_CUSTOM_DATA_JSON)} needs app entries with "id" and "slug" — e.g. { "id": "…", "slug": "…" }.`,
     )
     process.exit(1)
   }
 
   return map
+}
+
+/** Merge manual fields from apps-custom-data.json (slug, created, overrides, etc.). */
+function applyCustomDataToApp(app, custom) {
+  if (!custom) return app
+  for (const [key, value] of Object.entries(custom)) {
+    if (key === 'id' || value === undefined) continue
+    app[key] = value
+  }
+  return app
 }
 
 function emptyAnalytics() {
@@ -880,16 +891,21 @@ function buildApp(id, pages, exportDate, slug) {
   return app
 }
 
+function finalizeApp(app, id, customMap) {
+  applyCustomDataToApp(app, customMap.get(id))
+  return app
+}
+
 function chromeExtensionIdFromApp(app) {
   return app?.chromeExtensionId ?? extractChromeExtensionId(app?.chromeStoreUrl)
 }
 
 /**
- * Apply slugs from apps-slugs.json onto existing apps.json (no HTML scrape).
- * Used when html/ is empty (e.g. CI) but slug mappings changed.
+ * Apply apps-custom-data.json onto existing apps.json (no HTML scrape).
+ * Used when html/ is empty (e.g. CI) but manual mappings changed.
  */
-export function syncAppsJsonSlugs() {
-  const slugMap = loadSlugMap()
+export function syncAppsJsonCustomData() {
+  const customMap = loadCustomDataMap()
 
   if (!fs.existsSync(APPS_JSON)) {
     console.warn(`No ${path.relative(ROOT, APPS_JSON)} — nothing to sync`)
@@ -910,7 +926,7 @@ export function syncAppsJsonSlugs() {
   for (const app of apps) {
     const id = chromeExtensionIdFromApp(app)
     if (!id) {
-      console.warn(`App "${app.name ?? 'unknown'}" has no Chrome extension ID — cannot sync slug`)
+      console.warn(`App "${app.name ?? 'unknown'}" has no Chrome extension ID — cannot sync custom data`)
       continue
     }
 
@@ -919,29 +935,34 @@ export function syncAppsJsonSlugs() {
       changed = true
     }
 
-    const slug = slugMap.get(id)
-    if (!slug) {
+    const custom = customMap.get(id)
+    if (!custom) {
       console.warn(
-        `No slug in apps-slugs.json for ${id} (${app.name ?? 'unknown'}) — keeping "${app.slug}"`,
+        `No entry in apps-custom-data.json for ${id} (${app.name ?? 'unknown'}) — keeping existing fields`,
       )
       continue
     }
 
-    if (app.slug !== slug) {
-      console.log(`Slug sync (${id}): ${app.slug} → ${slug}`)
-      app.slug = slug
+    const before = JSON.stringify(app)
+    applyCustomDataToApp(app, custom)
+    if (JSON.stringify(app) !== before) {
       changed = true
     }
   }
 
   if (changed) {
     fs.writeFileSync(APPS_JSON, `${JSON.stringify(payload, null, 2)}\n`, 'utf8')
-    console.log(`Updated ${path.relative(ROOT, APPS_JSON)} from apps-slugs.json`)
+    console.log(`Updated ${path.relative(ROOT, APPS_JSON)} from apps-custom-data.json`)
   } else {
-    console.log(`${path.relative(ROOT, APPS_JSON)} slugs already match apps-slugs.json`)
+    console.log(`${path.relative(ROOT, APPS_JSON)} already matches apps-custom-data.json`)
   }
 
   return changed
+}
+
+/** @deprecated Use syncAppsJsonCustomData */
+export function syncAppsJsonSlugs() {
+  return syncAppsJsonCustomData()
 }
 
 /** Append a full apps.json snapshot to chrome-extension-html/db.json (local archive). */
@@ -984,14 +1005,14 @@ export function main() {
   const files = listHtmlFiles()
   if (!files.length) {
     console.log(
-      `No HTML in ${HTML_DIR} — skipping extract (syncing slugs from apps-slugs.json)`,
+      `No HTML in ${HTML_DIR} — skipping extract (syncing apps-custom-data.json)`,
     )
-    syncAppsJsonSlugs()
+    syncAppsJsonCustomData()
     return
   }
 
   const groups = groupByExtension(files)
-  const slugMap = loadSlugMap()
+  const customMap = loadCustomDataMap()
   const apps = []
   let updatedAt = ''
 
@@ -1001,10 +1022,11 @@ export function main() {
       continue
     }
 
-    const slug = slugMap.get(id)
+    const custom = customMap.get(id)
+    const slug = custom?.slug
     if (!slug) {
       console.warn(
-        `Skipping ${id}: no slug in apps-slugs.json — add { "id": "${id}", "slug": "your-slug" }`,
+        `Skipping ${id}: no slug in apps-custom-data.json — add { "id": "${id}", "slug": "your-slug" }`,
       )
       continue
     }
@@ -1013,7 +1035,7 @@ export function main() {
       updatedAt = pages.date
     }
 
-    const app = buildApp(id, pages, pages.date, slug)
+    const app = finalizeApp(buildApp(id, pages, pages.date, slug), id, customMap)
     apps.push(app)
     console.log(`Parsed ${app.name} (${id}) → /apps/${app.slug}`)
     if (app.analytics) {

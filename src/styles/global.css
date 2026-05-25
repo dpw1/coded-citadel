@@ -12,6 +12,7 @@
   --CC__color-border: #1f2636;
   --CC__color-border-glow: #303b54;
   --CC__color-success: #22c55e;
+  --CC__color-danger: #f06560;
 
   --CC__font-sans: 'Inter', sans-serif;
   --CC__font-display: 'Oswald', sans-serif;
@@ -350,6 +351,10 @@ button {
 
 .CC__stats-bar__delta--info {
   color: var(--CC__color-info);
+}
+
+.CC__stats-bar__delta--negative {
+  color: var(--CC__color-danger);
 }
 
 @media (max-width: 640px) {

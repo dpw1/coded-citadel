@@ -7,7 +7,7 @@ export default function SiteFooter() {
         <div className="CC__footer-brand">
           <Link to="/" className="CC__logo">
             <img
-              src={`${import.meta.env.BASE_URL}cc-logo.png`}
+              src={`${import.meta.env.BASE_URL}cc-logo-footer.png`}
               alt="Coded Citadel"
               className="CC__logo-img"
             />

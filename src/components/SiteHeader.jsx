@@ -47,7 +47,7 @@ export default function SiteHeader() {
         <div className="CC__header-brand">
           <Link to="/" className="CC__logo" onClick={closeMenu}>
             <img
-              src={`${import.meta.env.BASE_URL}cc-logo.png`}
+              src={`${import.meta.env.BASE_URL}cc-logo-header.png`}
               alt="Coded Citadel"
               className="CC__logo-img"
             />

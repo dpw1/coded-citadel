@@ -161,6 +161,24 @@ export function getInstallationsSeries(analytics) {
   return analytics?.installations ?? []
 }
 
+/** ISO date: `app.created` from custom data, else earliest install day in analytics. */
+export function appCreatedDate(app) {
+  if (app?.created) return app.created
+  const series = getInstallationsSeries(app?.analytics)
+  if (!series.length) return null
+  let earliest = null
+  for (const row of series) {
+    if (!row?.date) continue
+    const iso = installDateToIso(row.date)
+    if (!earliest || iso < earliest) earliest = iso
+  }
+  return earliest
+}
+
+export function formatAppCreatedDate(app) {
+  return formatAppDate(appCreatedDate(app))
+}
+
 export function getWeeklyUsersSeries(analytics) {
   return analytics?.weeklyUsers ?? []
 }
@@ -177,10 +195,14 @@ export function analyticsSeriesTotal(series) {
   return series.reduce((sum, row) => sum + (row.total ?? 0), 0)
 }
 
+function seriesPointValue(row) {
+  return row?.total ?? row?.count ?? 0
+}
+
 export function analyticsSeriesDelta(series) {
   if (!series?.length || series.length < 2) return null
-  const prev = series[series.length - 2].total ?? 0
-  const last = series[series.length - 1].total ?? 0
+  const prev = seriesPointValue(series[series.length - 2])
+  const last = seriesPointValue(series[series.length - 1])
   if (!prev) return null
   const pct = Math.round(((last - prev) / prev) * 100)
   return { pct, last, prev }
@@ -192,8 +214,8 @@ export function installationsTotal(series) {
 
 export function installationsDelta(series) {
   if (!series?.length || series.length < 2) return null
-  const prev = series[series.length - 2].total
-  const last = series[series.length - 1].total
+  const prev = seriesPointValue(series[series.length - 2])
+  const last = seriesPointValue(series[series.length - 1])
   if (!prev) return null
   const pct = Math.round(((last - prev) / prev) * 100)
   return { pct, last, prev }

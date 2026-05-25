@@ -14,6 +14,7 @@ import {
   appIconUrl,
   appStoreUrl,
   formatAppDate,
+  formatAppCreatedDate,
   formatLabel,
   formatNumber,
   getAppsUpdatedAt,
@@ -36,6 +37,18 @@ function AppPageShell({ children }) {
       {children}
       <SiteFooter />
     </>
+  )
+}
+
+function StatsBarPercentDelta({ delta, suffix }) {
+  if (!delta) return null
+  const negative = delta.pct < 0
+  return (
+    <span
+      className={`CC__stats-bar__delta${negative ? ' CC__stats-bar__delta--negative' : ''}`}
+    >
+      {negative ? '↓' : '↑'} {Math.abs(delta.pct)}% {suffix}
+    </span>
   )
 }
 
@@ -186,8 +199,8 @@ export default function ExtensionLandingPage() {
                   <span className="ext-hero__badge-value">{ext.category}</span>
                 </div>
                 <div className="ext-hero__badge">
-                  <span className="ext-hero__badge-label">Platform</span>
-                  <span className="ext-hero__badge-value">{ext.platform}</span>
+                  <span className="ext-hero__badge-label">Created</span>
+                  <span className="ext-hero__badge-value">{formatAppCreatedDate(ext)}</span>
                 </div>
               </div>
 
@@ -321,9 +334,7 @@ export default function ExtensionLandingPage() {
                   <span className="CC__stats-bar__label">Active Users</span>
                   <span className="CC__stats-bar__value">{formatNumber(activeUsers)}</span>
                   {activeUsersDelta ? (
-                    <span className="CC__stats-bar__delta">
-                      ↑ {activeUsersDelta.pct}% vs prev period
-                    </span>
+                    <StatsBarPercentDelta delta={activeUsersDelta} suffix="vs previous day" />
                   ) : (
                     <span className="CC__stats-bar__delta">↑ Live</span>
                   )}
@@ -375,7 +386,14 @@ export default function ExtensionLandingPage() {
               <div className="ext-kpi__label">Installs (Last 30 Days)</div>
               <div className="ext-kpi__value">{formatNumber(installsLast30)}</div>
               {installDelta ? (
-                <div className="ext-kpi__delta">↑ {installDelta.pct}% vs previous day</div>
+                <div
+                  className={`ext-kpi__delta${
+                    installDelta.pct < 0 ? ' ext-kpi__delta--negative' : ''
+                  }`}
+                >
+                  {installDelta.pct < 0 ? '↓' : '↑'}{' '}
+                  {Math.abs(installDelta.pct)}% vs previous day
+                </div>
               ) : null}
               <div className="ext-kpi__chart">
                 <canvas id={chartIds.sparkline} />

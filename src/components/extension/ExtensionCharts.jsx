@@ -31,6 +31,24 @@ const PALETTE = ['#ff9900', '#3b82f6', '#22c55e', '#a855f7', '#94a3b8']
 
 const REGION_COLORS = { US: '#ff9900', BR: '#3b82f6', IN: '#22c55e', GB: '#a855f7', other: '#94a3b8' }
 
+const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
+
+function getFlagHTML(code) {
+  return `<img 
+    src="https://flagcdn.com/w20/${code.toLowerCase()}.png"
+    alt="${regionNames.of(code) ?? code}"
+    style="width:1.2em;height:0.9em;object-fit:cover;margin-right:6px;vertical-align:middle"
+  />`
+}
+
+function getCountryName(code) {
+  return regionNames.of(code) ?? code
+}
+
+function isRegionCode(key) {
+  return /^[A-Z]{2}$/.test(key)
+}
+
 function chartDefaults() {
   Chart.defaults.color = '#7a8599'
   Chart.defaults.font.family = "'Inter', sans-serif"
@@ -59,7 +77,7 @@ export default function ExtensionCharts({ analytics, chartIds }) {
     const pageViews = getPageViewsSeries(analytics)
     const impressions = getImpressionsSeries(analytics)
 
-    function buildLineChart(canvasId, series, tooltipLabel, height = 180) {
+    function buildLineChart(canvasId, series, tooltipLabel, height = 180, compact = false) {
       const canvas = document.getElementById(canvasId)
       if (!canvas || !series?.length) return
       const labels = series.map((d) => formatInstallDate(d.date))
@@ -73,20 +91,22 @@ export default function ExtensionCharts({ analytics, chartIds }) {
               {
                 data: values,
                 borderColor: '#ff9900',
-                borderWidth: 2.5,
+                borderWidth: compact ? 2 : 2.5,
                 fill: true,
-                backgroundColor: (ctx) => gradientFill(ctx.chart, height, 0.2),
+                backgroundColor: (ctx) => gradientFill(ctx.chart, height, compact ? 0.2 : 0.2),
                 tension: 0.4,
                 pointRadius: 4,
                 pointBackgroundColor: '#ff9900',
                 pointBorderColor: '#090b10',
                 pointBorderWidth: 2,
+                pointHoverRadius: 6,
               },
             ],
           },
           options: {
             responsive: true,
             maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
             plugins: {
               legend: { display: false },
               tooltip: {
@@ -98,14 +118,16 @@ export default function ExtensionCharts({ analytics, chartIds }) {
                 callbacks: { label: (ctx) => ` ${ctx.parsed.y.toLocaleString()} ${tooltipLabel}` },
               },
             },
-            scales: {
-              x: { grid: { color: '#1a2130' }, ticks: { color: '#7a8599' } },
-              y: {
-                grid: { color: '#1a2130' },
-                ticks: { color: '#7a8599' },
-                beginAtZero: true,
-              },
-            },
+            scales: compact
+              ? { x: { display: false }, y: { display: false } }
+              : {
+                  x: { grid: { color: '#1a2130' }, ticks: { color: '#7a8599' } },
+                  y: {
+                    grid: { color: '#1a2130' },
+                    ticks: { color: '#7a8599' },
+                    beginAtZero: true,
+                  },
+                },
           },
         }),
       )
@@ -113,34 +135,7 @@ export default function ExtensionCharts({ analytics, chartIds }) {
 
     const charts = []
 
-    const sparkCanvas = document.getElementById(chartIds.sparkline)
-    if (sparkCanvas) {
-      charts.push(
-        new Chart(sparkCanvas, {
-          type: 'line',
-          data: {
-            labels: installLabels,
-            datasets: [
-              {
-                data: installCounts,
-                borderColor: '#ff9900',
-                borderWidth: 2,
-                fill: true,
-                backgroundColor: (ctx) => gradientFill(ctx.chart, 50),
-                tension: 0.4,
-                pointRadius: 0,
-              },
-            ],
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false }, tooltip: { enabled: false } },
-            scales: { x: { display: false }, y: { display: false } },
-          },
-        }),
-      )
-    }
+    buildLineChart(chartIds.sparkline, installations, 'installs', 100, true)
 
     const weeklyCanvas = document.getElementById(chartIds.weekly)
     if (weeklyCanvas) {
@@ -262,7 +257,15 @@ export function DonutLegend({ dataObj, total }) {
           <li key={key} className="ext-chart-legend__item">
             <span className="ext-chart-legend__left">
               <span className="ext-chart-legend__dot" style={{ background: PALETTE[i] }} />
-              {formatLabel(key)}
+              {isRegionCode(key) ? (
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: `${getFlagHTML(key)}${getCountryName(key)}`,
+                  }}
+                />
+              ) : (
+                formatLabel(key)
+              )}
             </span>
             <span>
               <span className="ext-chart-legend__val">{value.toLocaleString()}</span>

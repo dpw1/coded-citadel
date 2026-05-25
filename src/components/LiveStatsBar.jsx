@@ -3,11 +3,12 @@ import { formatNumber, getHomeStats } from '../utils/apps'
 
 export default function LiveStatsBar() {
   const stats = getHomeStats()
+  const installDeltaNegative = stats.installDelta < 0
   const installDeltaLabel =
     stats.installDelta > 0
-      ? `+ ${formatNumber(stats.installDelta)} this week`
-      : stats.installDelta < 0
-        ? `${formatNumber(stats.installDelta)} this week`
+      ? `↑ +${formatNumber(stats.installDelta)} this week`
+      : installDeltaNegative
+        ? `↓ ${formatNumber(Math.abs(stats.installDelta))} this week`
         : 'From Chrome Web Store'
 
   return (
@@ -51,7 +52,13 @@ export default function LiveStatsBar() {
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Total Installs</span>
               <span className="CC__stats-bar__value">{formatNumber(stats.totalInstalls)}</span>
-              <span className="CC__stats-bar__delta">{installDeltaLabel}</span>
+              <span
+                className={`CC__stats-bar__delta${
+                  installDeltaNegative ? ' CC__stats-bar__delta--negative' : ''
+                }`}
+              >
+                {installDeltaLabel}
+              </span>
             </div>
           </li>
 

@@ -607,6 +607,7 @@
 
 .CC__stats-bar__delta--muted { color: var(--CC__color-text-muted); }
 .CC__stats-bar__delta--info  { color: var(--CC__color-info); }
+.CC__stats-bar__delta--negative { color: var(--CC__color-danger); }
 
 /* ===== ANALYTICS SECTION ===== */
 .ext-analytics {
@@ -740,6 +741,7 @@
 }
 
 .ext-kpi__delta--muted { color: var(--CC__color-text-muted); }
+.ext-kpi__delta--negative { color: var(--CC__color-danger); }
 
 /* stars inside kpi */
 .ext-kpi__stars {
