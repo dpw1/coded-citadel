@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-25",
+  "updatedAt": "2026-05-26",
   "apps": [
     {
       "slug": "youtube-filter-pro",
@@ -13,7 +13,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
       "version": "1.0.03",
-      "lastUpdated": "2026-05-25",
+      "lastUpdated": "2026-05-26",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -34,7 +34,7 @@
         "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA"
       ],
       "analytics": {
-        "totalInstalls": 32,
+        "totalInstalls": 36,
         "installations": [
           {
             "date": "18-05-2026",
@@ -59,6 +59,10 @@
           {
             "date": "23-05-2026",
             "total": 4
+          },
+          {
+            "date": "24-05-2026",
+            "total": 4
           }
         ],
         "weeklyUsers": [
@@ -77,17 +81,22 @@
           {
             "date": "23-05-2026",
             "total": 8
+          },
+          {
+            "date": "24-05-2026",
+            "total": 9
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 22,
+          "US": 24,
           "DE": 1,
+          "CA": 1,
           "BR": 1
         },
         "uninstalls": 0,
         "uninstallsByRegion": {},
-        "pageViews": 41,
+        "pageViews": 47,
         "pageViewsOverTime": [
           {
             "date": "18-05-2026",
@@ -112,13 +121,17 @@
           {
             "date": "23-05-2026",
             "total": 4
+          },
+          {
+            "date": "24-05-2026",
+            "total": 6
           }
         ],
         "pageViewsBySource": {
           "ext_sidebar": 2,
           "chatgpt_com": 1
         },
-        "impressions": 76,
+        "impressions": 93,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "19-05-2026",
@@ -139,10 +152,14 @@
           {
             "date": "23-05-2026",
             "total": 20
+          },
+          {
+            "date": "24-05-2026",
+            "total": 17
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 15,
+          "enabled": 23,
           "disabled": 0
         }
       },
@@ -160,7 +177,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
       "version": "1.0.05",
-      "lastUpdated": "2026-05-25",
+      "lastUpdated": "2026-05-26",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -182,7 +199,7 @@
         "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0"
       ],
       "analytics": {
-        "totalInstalls": 10,
+        "totalInstalls": 12,
         "installations": [
           {
             "date": "22-05-2026",
@@ -191,6 +208,10 @@
           {
             "date": "23-05-2026",
             "total": 4
+          },
+          {
+            "date": "24-05-2026",
+            "total": 2
           }
         ],
         "weeklyUsers": [
@@ -201,11 +222,15 @@
           {
             "date": "23-05-2026",
             "total": 2
+          },
+          {
+            "date": "24-05-2026",
+            "total": 2
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 8,
+          "US": 10,
           "BR": 2
         },
         "uninstalls": 0,
@@ -230,7 +255,7 @@
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 4,
+          "enabled": 5,
           "disabled": 0
         }
       },
@@ -248,7 +273,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
       "version": "1.0.31",
-      "lastUpdated": "2026-05-25",
+      "lastUpdated": "2026-05-26",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -269,7 +294,7 @@
         "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ"
       ],
       "analytics": {
-        "totalInstalls": 22,
+        "totalInstalls": 24,
         "installations": [
           {
             "date": "14-05-2026",
@@ -310,12 +335,16 @@
           {
             "date": "23-05-2026",
             "total": 2
+          },
+          {
+            "date": "24-05-2026",
+            "total": 2
           }
         ],
         "weeklyUsers": [],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 21
+          "US": 23
         },
         "uninstalls": 0,
         "uninstallsByRegion": {},
@@ -386,6 +415,58 @@
         }
       },
       "created": "May 21, 2026"
+    },
+    {
+      "slug": "instagram-dm-exporter",
+      "chromeExtensionId": "hgojieiehkjgjhdnbglfhbcojeeggigi",
+      "name": "Instagram DM Exporter",
+      "icon": "⚡",
+      "chromeExtensionIcon": "https://lh3.googleusercontent.com/KMLJjOLT-e2szDYHjS5o6AkN4htQ7gF9XcaYUyKdVQLpFiac1iZD0miiYQFazkhCRWxr4_x4Vh_iYAA98E_0UlYj",
+      "tagline": "Export Instagram direct message conversations as TXT, HTML, or JSON.",
+      "status": "live",
+      "price": "Free",
+      "revenue": "$0",
+      "chromeStoreUrl": "https://chromewebstore.google.com/detail/hgojieiehkjgjhdnbglfhbcojeeggigi",
+      "version": "1.0.02",
+      "lastUpdated": "2026-05-26",
+      "category": "Productivity",
+      "platform": "Google Chrome",
+      "description": {
+        "short": "Exporting Instagram messages in the official way takes a long time.",
+        "full": "Exporting Instagram messages in the official way takes a long time. \n\nWith Instagram DM Exporter, you can export any Instagram direct message in one click! The entirety of the conversation: all single messages sent and received.\n\nYou can export as .TXT, .HTML or even .JSON.\n\nHow to use:\n\n- Go to the DM page. For example: https://www.instagram.com/direct/t/123\n- You will see a download icon on the top right\n- Click on it and you're done.\n\nPRIVACY\n\nYour conversations are not stored whatsoever. No external servers. It's 100% local and private."
+      },
+      "audience": [],
+      "features": [],
+      "buildStory": {
+        "youtubeUrl": "#",
+        "builtInDays": null,
+        "techStack": [],
+        "episode": ""
+      },
+      "primaryKeywords": [],
+      "geo": [],
+      "screenshots": [
+        "https://lh3.googleusercontent.com/i7LCz39sQrFFDl2T73q15Xf22pvtZmwPRMNQ309Z-JTjkPTeQSzxziPBEe9FqIjpjfODCh7rK1hRx4jgGr1jmMSM"
+      ],
+      "analytics": {
+        "totalInstalls": 0,
+        "installations": [],
+        "weeklyUsers": [],
+        "weeklyUsersByRegion": {},
+        "installsByRegion": {},
+        "uninstalls": 0,
+        "uninstallsByRegion": {},
+        "pageViews": 0,
+        "pageViewsOverTime": [],
+        "pageViewsBySource": {},
+        "impressions": 0,
+        "impressionsAcrossChromeWebStore": [],
+        "enabledVsDisabled": {
+          "enabled": 0,
+          "disabled": 0
+        }
+      },
+      "created": "May 26, 2026"
     }
   ]
 }

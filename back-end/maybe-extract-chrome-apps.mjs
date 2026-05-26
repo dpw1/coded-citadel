@@ -21,4 +21,4 @@ if (!files.length) {
   process.exit(0)
 }
 
-main()
+await main()

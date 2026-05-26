@@ -1,10 +1,15 @@
 /**
  * Parse Chrome Web Store dev console HTML exports → src/data/apps.json
  * Run: node back-end/extract-chrome-apps.mjs
+ *
+ * After writing apps.json, prints a summary and asks to move HTML to processed_html/
+ * (Windows: Yes/No dialog). Set SKIP_HTML_MOVE_CONFIRM=1 or CI=true to skip and always move.
  */
 
+import { execFileSync } from 'node:child_process'
 import fs from 'fs'
 import path from 'path'
+import readline from 'node:readline/promises'
 import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -13,6 +18,16 @@ const HTML_DIR = path.join(ROOT, 'chrome-extension-html/html')
 const PROCESSED_HTML_DIR = path.join(ROOT, 'chrome-extension-html/processed_html')
 const APPS_JSON = path.join(ROOT, 'src/data/apps.json')
 const APPS_CUSTOM_DATA_JSON = path.join(ROOT, 'src/data/apps-custom-data.json')
+
+/** Each Chrome extension export batch: edit + installs + users + impressions. */
+export const HTML_FILES_PER_APP = 4
+
+const REQUIRED_HTML_PAGES = [
+  'edit',
+  'analytics_installs',
+  'analytics_users',
+  'analytics_impressions',
+]
 const APPS_EXAMPLE = path.join(ROOT, 'chrome-extension-html/apps-example.json')
 const DB_JSON = path.join(ROOT, 'chrome-extension-html/db.json')
 
@@ -227,6 +242,52 @@ function groupByExtension(files) {
     groups[meta.id][meta.page] = path.join(HTML_DIR, file)
   }
   return groups
+}
+
+/**
+ * Ensures HTML batch size matches app count (N files ⇒ N÷4 apps) and every extension has all 4 pages.
+ * @throws {Error} when counts or grouping do not line up
+ */
+export function assertHtmlBatchMatchesApps(files, groups, apps) {
+  const fileCount = files.length
+
+  if (fileCount % HTML_FILES_PER_APP !== 0) {
+    throw new Error(
+      `Expected a multiple of ${HTML_FILES_PER_APP} HTML files in ${path.relative(ROOT, HTML_DIR)} (one set per app: edit, installs, users, impressions), but found ${fileCount}.`,
+    )
+  }
+
+  const expectedAppCount = fileCount / HTML_FILES_PER_APP
+
+  const unparseable = files.filter((f) => !parseFilename(f))
+  if (unparseable.length) {
+    throw new Error(
+      `Could not parse ${unparseable.length} HTML filename(s) (expected chrome-analytics-data--{id}--{page}--{dd}-{mm}.html): ${unparseable.join(', ')}`,
+    )
+  }
+
+  const extensionIds = Object.keys(groups)
+  if (extensionIds.length !== expectedAppCount) {
+    throw new Error(
+      `Found ${fileCount} HTML file(s) (${expectedAppCount} app(s) expected), but grouped ${extensionIds.length} extension ID(s). Check for duplicate or mixed export dates in the same folder.`,
+    )
+  }
+
+  for (const id of extensionIds) {
+    const pages = groups[id]
+    const missing = REQUIRED_HTML_PAGES.filter((page) => !pages[page])
+    if (missing.length) {
+      throw new Error(
+        `Extension ${id} is missing ${missing.length} required HTML page(s): ${missing.join(', ')} (each app needs exactly ${HTML_FILES_PER_APP} files).`,
+      )
+    }
+  }
+
+  if (apps.length !== expectedAppCount) {
+    throw new Error(
+      `Expected ${expectedAppCount} app(s) in apps.json (${fileCount} HTML files ÷ ${HTML_FILES_PER_APP}), but only ${apps.length} were produced. Ensure every extension has an entry with "slug" in apps-custom-data.json and was not skipped.`,
+    )
+  }
 }
 
 /** Locate `[["YYYY-MM-DD", …], …]` regardless of ds:N layout (data[1] vs data[2]). */
@@ -1001,7 +1062,72 @@ export function appendAppsJsonToDb({ updatedAt, apps }) {
   )
 }
 
-export function main() {
+function formatProcessedAppsSummaryLines(apps) {
+  return apps.map((app, i) => {
+    const a = app.analytics
+    if (!a) return `${i + 1}. ${app.name} (no analytics)`
+    const installs = a.totalInstalls ?? 0
+    const lastWeeklyUsers =
+      a.weeklyUsers?.length > 0
+        ? a.weeklyUsers[a.weeklyUsers.length - 1]?.total ?? 0
+        : 0
+    return `${i + 1}. ${app.name} (${installs} installs, ${lastWeeklyUsers} weekly users)`
+  })
+}
+
+function printProcessedAppsSummary(apps) {
+  console.log('\nProcessed apps:\n')
+  for (const line of formatProcessedAppsSummaryLines(apps)) {
+    console.log(line)
+  }
+  console.log('')
+}
+
+function shouldSkipMoveHtmlConfirm() {
+  return (
+    process.env.CI === 'true' ||
+    process.env.SKIP_HTML_MOVE_CONFIRM === '1' ||
+    process.env.SKIP_HTML_MOVE_CONFIRM === 'true'
+  )
+}
+
+function confirmMoveHtmlWin32Dialog() {
+  const ps =
+    "Add-Type -AssemblyName System.Windows.Forms; " +
+    "$r=[System.Windows.Forms.MessageBox]::Show(" +
+    "'Move HTML exports from html/ to processed_html?','Chrome extract - Is this OK?','YesNo','Question'); " +
+    "if ($r -eq 'Yes') { exit 0 } else { exit 1 }"
+  execFileSync('powershell.exe', ['-NoProfile', '-Sta', '-Command', ps], {
+    stdio: 'ignore',
+    windowsHide: true,
+  })
+  return true
+}
+
+async function confirmMoveHtmlToProcessed() {
+  if (shouldSkipMoveHtmlConfirm()) return true
+
+  if (process.platform === 'win32') {
+    console.log('\nIs this OK? A Yes / No dialog will open.')
+    try {
+      return confirmMoveHtmlWin32Dialog()
+    } catch (err) {
+      const code = err?.status ?? err?.code
+      if (code === 1) return false
+      console.warn('Could not open dialog; using terminal prompt instead.', err?.message ?? err)
+    }
+  }
+
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
+  try {
+    const answer = await rl.question('Is this OK? Move HTML to processed_html? [yes/no]: ')
+    return /^y(es)?$/i.test(String(answer).trim())
+  } finally {
+    rl.close()
+  }
+}
+
+export async function main() {
   const files = listHtmlFiles()
   if (!files.length) {
     console.log(
@@ -1052,12 +1178,26 @@ export function main() {
     updatedAt = new Date().toISOString().slice(0, 10)
   }
 
+  assertHtmlBatchMatchesApps(files, groups, apps)
+
   const payload = { updatedAt, apps }
 
   fs.writeFileSync(APPS_JSON, `${JSON.stringify(payload, null, 2)}\n`, 'utf8')
-  console.log(`\nWrote ${apps.length} apps to ${APPS_JSON}`)
+  console.log(
+    `\nAdded ${apps.length} app${apps.length === 1 ? '' : 's'} to ${path.relative(ROOT, APPS_JSON)} (${files.length} HTML files ÷ ${HTML_FILES_PER_APP} = ${apps.length}).`,
+  )
 
   appendAppsJsonToDb(payload)
+
+  printProcessedAppsSummary(apps)
+
+  const moveOk = await confirmMoveHtmlToProcessed()
+  if (!moveOk) {
+    console.log(
+      '\nYou chose No: HTML files were not moved (they remain in chrome-extension-html/html/).',
+    )
+    return
+  }
 
   moveHtmlToProcessed(files)
 }
@@ -1066,4 +1206,9 @@ const isDirectRun =
   process.argv[1] &&
   path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url))
 
-if (isDirectRun) main()
+if (isDirectRun) {
+  main().catch((err) => {
+    console.error(err)
+    process.exit(1)
+  })
+}
