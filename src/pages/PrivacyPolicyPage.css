@@ -32,6 +32,18 @@
   text-decoration: underline;
 }
 
+.CC__privacy__body .CC__privacy__callout {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: 8px;
+}
+
+.CC__privacy__body .CC__privacy__callout p {
+  margin-bottom: 0;
+}
+
 .CC__privacy__body section {
   margin-bottom: 2rem;
 }

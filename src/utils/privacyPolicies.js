@@ -1,4 +1,5 @@
 import ClaudeDeepSearchPrivacyContent from '../content/privacy/claude-deep-search'
+import InstagramDmExporterPrivacyContent from '../content/privacy/instagram-dm-exporter'
 
 const PRIVACY_POLICIES = {
   'claude-deep-search': {
@@ -6,6 +7,12 @@ const PRIVACY_POLICIES = {
     lastUpdated: 'May 21, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: ClaudeDeepSearchPrivacyContent,
+  },
+  'instagram-dm-exporter': {
+    appName: 'Instagram DM Exporter',
+    lastUpdated: 'May 26, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: InstagramDmExporterPrivacyContent,
   },
 }
 
