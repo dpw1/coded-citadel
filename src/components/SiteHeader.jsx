@@ -21,6 +21,16 @@ export default function SiteHeader() {
     }
   }
 
+  const handleAboutNav = (e) => {
+    e.preventDefault()
+    closeMenu()
+    if (isHome) {
+      scrollToSection('about', { updateHash: true })
+    } else {
+      navigate('/', { state: { scrollTo: 'about' } })
+    }
+  }
+
   useEffect(() => {
     setMenuOpen(false)
   }, [pathname, hash])
@@ -81,9 +91,13 @@ export default function SiteHeader() {
           >
             YouTube
           </a>
-          <Link to="/#about" className="CC__nav-link" onClick={closeMenu}>
+          <a
+            href={isHome ? '#about' : '/'}
+            className="CC__nav-link"
+            onClick={handleAboutNav}
+          >
             About
-          </Link>
+          </a>
         </nav>
       </header>
     </>

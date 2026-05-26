@@ -588,6 +588,7 @@
    ========================================================================== */
 .CC__about {
   border-top: 1px solid var(--CC__color-border);
+  scroll-margin-top: 5.5rem;
 }
 
 .CC__about.CC__container {

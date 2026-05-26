@@ -15,12 +15,16 @@ export default function HomePage() {
   const location = useLocation()
 
   useEffect(() => {
-    const shouldScroll =
-      location.hash === '#youtube' || location.state?.scrollTo === 'youtube'
-    if (!shouldScroll) return undefined
+    const sectionId =
+      location.hash === '#about' || location.state?.scrollTo === 'about'
+        ? 'about'
+        : location.hash === '#youtube' || location.state?.scrollTo === 'youtube'
+          ? 'youtube'
+          : null
+    if (!sectionId) return undefined
 
     const timer = window.setTimeout(() => {
-      scrollToSection('youtube', { updateHash: true })
+      scrollToSection(sectionId, { updateHash: true })
     }, 50)
 
     return () => window.clearTimeout(timer)
