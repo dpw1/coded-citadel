@@ -113,7 +113,7 @@ export default function ExtensionLandingPage() {
             {ext.name}
           </h1>
           <p className="ext-hero__tagline" style={{ maxWidth: 'none' }}>
-            {ext.description?.short ?? ext.tagline}
+            {ext.tagline}
           </p>
           <p className="CC__btn CC__btn--outline" style={{ marginTop: '1.5rem', display: 'inline-flex' }}>
             Coming Soon
@@ -179,7 +179,7 @@ export default function ExtensionLandingPage() {
                 ) : null}
               </h1>
 
-              <p className="ext-hero__tagline">{ext.description?.short ?? ext.tagline}</p>
+              <p className="ext-hero__tagline">{ext.tagline}</p>
 
               <div className="ext-hero__meta">
                 <div className="ext-hero__badge">
@@ -293,10 +293,10 @@ export default function ExtensionLandingPage() {
           </div>
         </section>
 
-        {ext.description?.short ? (
+        {ext.tagline || ext.description?.full ? (
           <section className="ext-description">
-            <p className="ext-description__short">{ext.description.short}</p>
-            {ext.description.full ? <p className="ext-description__full">{ext.description.full}</p> : null}
+            {ext.tagline ? <p className="ext-description__short">{ext.tagline}</p> : null}
+            {ext.description?.full ? <p className="ext-description__full">{ext.description.full}</p> : null}
           </section>
         ) : null}
 

@@ -1189,6 +1189,9 @@ export async function main() {
 
   appendAppsJsonToDb(payload)
 
+  const { updateAppsJsonPortfolioStats } = await import('./compute-portfolio-stats.mjs')
+  updateAppsJsonPortfolioStats()
+
   printProcessedAppsSummary(apps)
 
   const moveOk = await confirmMoveHtmlToProcessed()

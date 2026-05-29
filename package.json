@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run maybe-extract-chrome-apps && npm run fetch-youtube && npm run generate-sitemap && vite build",
+    "build": "npm run maybe-extract-chrome-apps && npm run compute-portfolio-stats && npm run fetch-youtube && npm run generate-sitemap && vite build",
+    "compute-portfolio-stats": "node back-end/compute-portfolio-stats.mjs",
     "maybe-extract-chrome-apps": "node back-end/maybe-extract-chrome-apps.mjs",
     "preview": "vite preview",
     "fetch-youtube": "npm install --prefix back-end && node back-end/fetch-youtube-videos.mjs",

@@ -614,5 +614,45 @@
       },
       "created": "May 26, 2026"
     }
-  ]
+  ],
+  "portfolioStats": {
+    "totalActiveUsers": 14,
+    "activeUsersDelta7d": 8,
+    "baselineDate": "2026-05-22",
+    "baselineTotalActiveUsers": 6,
+    "byApp": [
+      {
+        "slug": "youtube-filter-pro",
+        "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
+        "now": 12,
+        "baseline": 4,
+        "delta": 8
+      },
+      {
+        "slug": "claude-deep-search",
+        "chromeExtensionId": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "now": 2,
+        "baseline": 2,
+        "delta": 0
+      },
+      {
+        "slug": "youtube-comments-exporter",
+        "chromeExtensionId": "epokpidfnienjjfncmhnallghfhaijbj",
+        "now": 0,
+        "baseline": 0,
+        "delta": 0
+      },
+      {
+        "slug": "instagram-dm-exporter",
+        "chromeExtensionId": "hgojieiehkjgjhdnbglfhbcojeeggigi",
+        "now": 0,
+        "baseline": 0,
+        "delta": 0
+      }
+    ],
+    "totalInstalls": 99,
+    "installsDelta7d": 45,
+    "baselineTotalInstalls": 54,
+    "computedAt": "2026-05-29"
+  }
 }

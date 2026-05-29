@@ -50,6 +50,9 @@ export default function SiteFooter() {
                 X
               </a>
             </li>
+            <li>
+              <a href="mailto:codedCitadel@gmail.com">codedCitadel@gmail.com</a>
+            </li>
           </ul>
         </div>
       </div>

@@ -35,8 +35,6 @@ export function appStoreUrl(app) {
 }
 
 export function appCardSummary(app) {
-  const short = app.description?.short?.trim()
-  if (short) return short.split('\n')[0].trim()
   return app.tagline ?? ''
 }
 
@@ -52,6 +50,28 @@ function parseRevenueValue(revenue) {
 
 export function formatRevenue(total) {
   return `$${Math.round(total).toLocaleString('en-US')}`
+}
+
+/** Live portfolio totals for the site announcement bar. */
+export function getAnnouncementBarStats() {
+  const live = getAllApps().filter(isAppLive)
+  let totalInstalls = 0
+  let totalActiveUsers = 0
+  let totalProfit = 0
+
+  for (const app of live) {
+    const installs = app.analytics?.totalInstalls
+    if (installs != null) totalInstalls += installs
+    totalActiveUsers += appActiveUsers(app) ?? 0
+    totalProfit += parseRevenueValue(app.revenue)
+  }
+
+  return {
+    liveApps: live.length,
+    totalActiveUsers,
+    totalInstalls,
+    totalProfit,
+  }
 }
 
 /** Day 1 of the public journey — May 12, 2026 at local midnight. */
@@ -73,6 +93,15 @@ export function getDaysIntoJourney(now = Date.now()) {
   return elapsed + 1
 }
 
+/** Display label for journey Day 1 (e.g. "May 12, 2026"). */
+export function getJourneyStartDateLabel() {
+  return JOURNEY_DAY_ONE.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
+}
+
 export function appActiveUsers(app) {
   if (!isAppLive(app) || !app.analytics) return null
   const series = app.analytics.weeklyUsers
@@ -87,19 +116,16 @@ export function getHomeStats() {
   const live = apps.filter(isAppLive)
   let totalInstalls = 0
   let totalActiveUsers = 0
-  let installDelta = 0
 
   for (const app of live) {
     const installs = app.analytics?.totalInstalls
     if (installs != null) totalInstalls += installs
     totalActiveUsers += appActiveUsers(app) ?? 0
-    const weeks = app.analytics?.weeklyUsers
-    if (weeks?.length >= 2) {
-      const prev = weeks[weeks.length - 2].total ?? weeks[weeks.length - 2].count ?? 0
-      const last = weeks[weeks.length - 1].total ?? weeks[weeks.length - 1].count ?? 0
-      installDelta += last - prev
-    }
   }
+
+  const installsDelta7d =
+    appsData.portfolioStats?.installsDelta7d ??
+    computeInstallsDelta7dFromApps(apps).installsDelta7d
 
   const built = apps.length
   const inProgress = apps.filter((a) => a.status !== 'live').length
@@ -107,7 +133,8 @@ export function getHomeStats() {
   return {
     totalActiveUsers,
     totalInstalls,
-    installDelta,
+    installDelta: installsDelta7d,
+    activeUsersDelta7d: appsData.portfolioStats?.activeUsersDelta7d ?? null,
     built,
     inProgress,
     daysIntoJourney: getDaysIntoJourney(),
@@ -149,6 +176,41 @@ export function formatWeekLabel(week) {
 export function installDateToIso(ddMmYyyy) {
   const [d, m, y] = ddMmYyyy.split('-')
   return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`
+}
+
+const INSTALL_LOOKBACK_DAYS = 7
+
+function baselineDateIsoLocal(now = Date.now()) {
+  const d = new Date(now - INSTALL_LOOKBACK_DAYS * MS_PER_DAY)
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+/** Sum installs on or before baselineDate from daily installation rows. */
+export function computeInstallsDelta7dFromApps(apps, baselineDateIso = baselineDateIsoLocal()) {
+  let currentTotal = 0
+  let baselineTotal = 0
+
+  for (const app of apps.filter(isAppLive)) {
+    const now = app.analytics?.totalInstalls ?? 0
+    currentTotal += now
+
+    let baseline = 0
+    for (const row of app.analytics?.installations ?? []) {
+      if (!row?.date) continue
+      const iso = installDateToIso(row.date)
+      if (iso <= baselineDateIso) baseline += row.total ?? 0
+    }
+    baselineTotal += baseline
+  }
+
+  return {
+    totalInstalls: currentTotal,
+    baselineTotalInstalls: baselineTotal,
+    installsDelta7d: currentTotal - baselineTotal,
+  }
 }
 
 export function formatInstallDate(ddMmYyyy) {

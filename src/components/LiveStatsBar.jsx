@@ -1,15 +1,26 @@
 import CyberCorners from './CyberCorners'
-import { formatNumber, getHomeStats } from '../utils/apps'
+import { formatNumber, getHomeStats, getJourneyStartDateLabel } from '../utils/apps'
 
 export default function LiveStatsBar() {
   const stats = getHomeStats()
-  const installDeltaNegative = stats.installDelta < 0
+  const userDeltaNegative = stats.activeUsersDelta7d != null && stats.activeUsersDelta7d < 0
+  const userDeltaLabel =
+    stats.activeUsersDelta7d != null && stats.activeUsersDelta7d > 0
+      ? `↑ +${formatNumber(stats.activeUsersDelta7d)} past 7 days`
+      : userDeltaNegative
+        ? `↓ ${formatNumber(Math.abs(stats.activeUsersDelta7d))} past 7 days`
+        : stats.activeUsersDelta7d === 0
+          ? 'No change past 7 days'
+          : 'From live apps'
+  const installDeltaNegative = stats.installDelta != null && stats.installDelta < 0
   const installDeltaLabel =
-    stats.installDelta > 0
-      ? `↑ +${formatNumber(stats.installDelta)} this week`
+    stats.installDelta != null && stats.installDelta > 0
+      ? `↑ +${formatNumber(stats.installDelta)} past 7 days`
       : installDeltaNegative
-        ? `↓ ${formatNumber(Math.abs(stats.installDelta))} this week`
-        : 'From Chrome Web Store'
+        ? `↓ ${formatNumber(Math.abs(stats.installDelta))} past 7 days`
+        : stats.installDelta === 0
+          ? 'No change past 7 days'
+          : 'From Chrome Web Store'
 
   return (
     <div className="CC__stats-section CC__container">
@@ -37,7 +48,13 @@ export default function LiveStatsBar() {
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Total Users</span>
               <span className="CC__stats-bar__value">{formatNumber(stats.totalActiveUsers)}</span>
-              <span className="CC__stats-bar__delta">From live apps</span>
+              <span
+                className={`CC__stats-bar__delta${
+                  userDeltaNegative ? ' CC__stats-bar__delta--negative' : ''
+                }`}
+              >
+                {userDeltaLabel}
+              </span>
             </div>
           </li>
 
@@ -92,7 +109,9 @@ export default function LiveStatsBar() {
               <span className="CC__stats-bar__value CC__stats-bar__value--white">
                 {stats.daysIntoJourney ?? '—'}
               </span>
-              <span className="CC__stats-bar__delta CC__stats-bar__delta--muted">Since Day 1</span>
+              <span className="CC__stats-bar__delta CC__stats-bar__delta--muted">
+                Since {getJourneyStartDateLabel()}
+              </span>
             </div>
           </li>
         </ul>

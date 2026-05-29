@@ -1,13 +1,24 @@
 {
-  "fetchedAt": "2026-05-26T17:54:20.259Z",
+  "fetchedAt": "2026-05-29T15:04:36.421Z",
   "channel": {
     "id": "UC4Ts3s6hRQXY1L-Awh4PzPg",
     "title": "Coded Citadel",
     "handle": "CodedCitadel",
     "url": "https://www.youtube.com/@CodedCitadel"
   },
-  "videoCount": 3,
+  "videoCount": 4,
   "videos": [
+    {
+      "id": "tBSZ1oD5OM8",
+      "title": "Export Instagram Conversations in One Click | VibeCoding Until I Make $100k | Ep. 4",
+      "description": "No Instagram API key needed, 100% free. \n\nI built a Chrome extension that exports any Instagram conversation to HTML or TXT in one click - by reverse engineering how Instagram loads messages directly in the browser.\n\nIn this episode I walk through the full process: finding a crowded niche and spotting a gap anyway, reverse engineering Instagram's internal API using the network tab, using Claude to write the pagination fetch loop, and my exact workflow for injecting UI that blends natively into Instagram's design.\n\nThis is episode 4 of my build-in-public series shipping Chrome extensions on the road to $100k. No sales yet - but that's not the point right now.\n\nExtension live on the Chrome Web Store (link below)\nSubscribe to follow the journey\n\n\nTIMESTAMPS\n0:00 - What I built: export any Instagram DM in one click\n0:30 - Finding the idea: browsing Instagram Chrome extensions\n0:50 - Spotting the gap: only 2 message exporters, both with bad reviews\n1:05 - Reverse engineering Instagram's API via the network tab\n1:25 - Using Ctrl+F in the network tab to find the exact request\n1:40 - How Instagram's pagination works - and how to automate it\n1:55 - Sending the API response to Claude to generate the fetch loop\n2:10 - Implementing HTML and TXT export formats\n2:20 - Extracting Instagram's CSS so the UI blends in natively\n2:35 - UX decision: same button in both the popup and the page\n2:50 - Setting up the samples folder as AI reference context\n3:05 - Finding a unique CSS selector on an obfuscated codebase\n3:25 - Writing the Cursor prompt - 30 prompts total, but not complex\n3:50 - Fixing the main bug: fetching the wrong conversation on URL change\n4:10 - Watching URL changes and reinjecting the script on new users\n4:25 - Designing the download icon with Claude + logo with ChatGPT\n4:35 - Publishing to the Chrome Web Store\n4:45 - No sales yet - and why that's fine at episode 4\n\n#Instagram #ChromeExtension #VibeCoding #BuildInPublic #ReverseEngineering #IndieHacker #SideProject #ChromeExtensionDevelopment #SoloFounder #CodedCitadel",
+      "link": "https://www.youtube.com/watch?v=tBSZ1oD5OM8",
+      "thumbnail": "https://i.ytimg.com/vi/tBSZ1oD5OM8/maxresdefault.jpg",
+      "publishedAt": "2026-05-28T11:12:11Z",
+      "duration": "4:52",
+      "durationIso": "PT4M52S",
+      "viewCount": 3
+    },
     {
       "id": "BGhB0gFwv1M",
       "title": "I built Claude's missing search feature for free | VibeCoding Until I Make $100k | Ep. 3",
@@ -17,7 +28,7 @@
       "publishedAt": "2026-05-23T16:20:26Z",
       "duration": "4:47",
       "durationIso": "PT4M47S",
-      "viewCount": 9
+      "viewCount": 10
     },
     {
       "id": "-saFrB1W9ug",
@@ -28,7 +39,7 @@
       "publishedAt": "2026-05-17T09:21:51Z",
       "duration": "8:09",
       "durationIso": "PT8M9S",
-      "viewCount": 23
+      "viewCount": 26
     },
     {
       "id": "m4iuYN7vsRo",
@@ -39,7 +50,7 @@
       "publishedAt": "2026-05-12T20:41:55Z",
       "duration": "11:47",
       "durationIso": "PT11M47S",
-      "viewCount": 83
+      "viewCount": 86
     }
   ]
 }
