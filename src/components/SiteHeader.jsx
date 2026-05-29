@@ -9,6 +9,7 @@ export default function SiteHeader() {
   const navigate = useNavigate()
   const isHome = pathname === '/'
   const appsNavActive = pathname === '/apps' || pathname.startsWith('/apps/')
+  const blogNavActive = pathname === '/blog' || pathname.startsWith('/blog/')
 
   const closeMenu = () => setMenuOpen(false)
 
@@ -86,6 +87,13 @@ export default function SiteHeader() {
               onClick={closeMenu}
             >
               Apps
+            </Link>
+            <Link
+              to="/blog"
+              className={`CC__nav-link${blogNavActive ? ' CC__nav-link--active' : ''}`}
+              onClick={closeMenu}
+            >
+              Blog
             </Link>
             <a
               href={isHome ? '#youtube' : '/'}

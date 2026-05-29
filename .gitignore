@@ -18,5 +18,9 @@ back-end/*
 !back-end/maybe-extract-chrome-apps.mjs
 !back-end/generate-sitemap.mjs
 !back-end/compute-portfolio-stats.mjs
+!back-end/generate-blog-manifest.mjs
+!back-end/youtube-utils.mjs
+!back-end/vite-plugin-blog-dev.mjs
 !back-end/package.json
+public/blog-content/
 .vite

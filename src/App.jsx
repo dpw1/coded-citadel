@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage'
 import AppsPage from './pages/AppsPage'
 import ExtensionLandingPage from './pages/ExtensionLandingPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
+import BlogIndexPage from './pages/BlogIndexPage'
+import BlogPostPage from './pages/BlogPostPage'
 
 function AppRoutes() {
   const location = useLocation()
@@ -15,6 +17,8 @@ function AppRoutes() {
         <Route path="/apps" element={<AppsPage />} />
         <Route path="/apps/:slug" element={<ExtensionLandingPage />} />
         <Route path="/privacy-policy/:slug" element={<PrivacyPolicyPage />} />
+        <Route path="/blog" element={<BlogIndexPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/extensions" element={<Navigate to="/apps" replace />} />
       </Routes>
     </div>

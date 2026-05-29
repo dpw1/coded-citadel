@@ -28,6 +28,9 @@ export default function SiteFooter() {
               <Link to="/apps">Apps</Link>
             </li>
             <li>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
               <Link to="/#youtube">YouTube Channel</Link>
             </li>
           </ul>

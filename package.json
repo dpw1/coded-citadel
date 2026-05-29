@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run maybe-extract-chrome-apps && npm run compute-portfolio-stats && npm run fetch-youtube && npm run generate-sitemap && vite build",
+    "build": "npm run maybe-extract-chrome-apps && npm run compute-portfolio-stats && npm run fetch-youtube && npm run generate-blog-manifest && npm run generate-sitemap && vite build",
+    "generate-blog-manifest": "node back-end/generate-blog-manifest.mjs",
     "compute-portfolio-stats": "node back-end/compute-portfolio-stats.mjs",
     "maybe-extract-chrome-apps": "node back-end/maybe-extract-chrome-apps.mjs",
     "preview": "vite preview",
@@ -28,6 +29,8 @@
     "@vitejs/plugin-react": "^4.3.1",
     "puppeteer": "^25.0.4",
     "sharp": "^0.34.2",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "gray-matter": "^4.0.3",
+    "marked": "^15.0.7"
   }
 }

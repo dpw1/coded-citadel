@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import prerender from '@prerenderer/rollup-plugin'
+import blogDevPlugin from './back-end/vite-plugin-blog-dev.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -13,17 +14,30 @@ function getPrerenderRoutes() {
   const { apps } = JSON.parse(
     readFileSync(join(__dirname, 'src', 'data', 'apps.json'), 'utf8'),
   )
+  let blogPosts = []
+  try {
+    const blog = JSON.parse(
+      readFileSync(join(__dirname, 'src', 'data', 'blog.json'), 'utf8'),
+    )
+    blogPosts = blog.posts ?? []
+  } catch {
+    blogPosts = []
+  }
+
   return [
     '/',
     '/apps',
+    '/blog',
     ...(apps || []).map((app) => `/apps/${app.slug}`),
     ...PRIVACY_POLICY_SLUGS.map((slug) => `/privacy-policy/${slug}`),
+    ...blogPosts.map((post) => `/blog/${post.slug}`),
   ]
 }
 
 export default defineConfig({
   plugins: [
     react(),
+    blogDevPlugin(),
     prerender({
       routes: getPrerenderRoutes(),
       renderer: '@prerenderer/renderer-puppeteer',

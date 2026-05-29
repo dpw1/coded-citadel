@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '..')
 const APPS_FILE = resolve(ROOT, 'src', 'data', 'apps.json')
+const BLOG_FILE = resolve(ROOT, 'src', 'data', 'blog.json')
 const OUT_FILE = resolve(ROOT, 'public', 'sitemap.xml')
 const SITE_URL = (process.env.SITE_URL || 'https://codedcitadel.com').replace(/\/$/, '')
 
@@ -37,8 +38,18 @@ function urlEntry(loc, { changefreq, priority, lastmod } = {}) {
   return lines.join('\n')
 }
 
+function loadBlogPosts() {
+  try {
+    const { posts } = JSON.parse(readFileSync(BLOG_FILE, 'utf8'))
+    return posts ?? []
+  } catch {
+    return []
+  }
+}
+
 function main() {
   const { updatedAt, apps } = JSON.parse(readFileSync(APPS_FILE, 'utf8'))
+  const blogPosts = loadBlogPosts()
   const defaultLastmod = updatedAt || new Date().toISOString().slice(0, 10)
 
   const entries = [
@@ -64,6 +75,18 @@ function main() {
         lastmod: defaultLastmod,
         changefreq: 'yearly',
         priority: '0.5',
+      })
+    ),
+    urlEntry(`${SITE_URL}/blog`, {
+      changefreq: 'weekly',
+      priority: '0.8',
+      lastmod: blogPosts[0]?.date || defaultLastmod,
+    }),
+    ...blogPosts.map((post) =>
+      urlEntry(`${SITE_URL}/blog/${post.slug}`, {
+        lastmod: post.date || defaultLastmod,
+        changefreq: 'weekly',
+        priority: '0.8',
       })
     ),
   ]
