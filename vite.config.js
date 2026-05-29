@@ -14,6 +14,8 @@ const PRIVACY_POLICY_SLUGS = [
   'save-to-drive-chrome-extension',
 ]
 
+const TERMS_OF_SERVICE_SLUGS = ['save-to-drive-chrome-extension']
+
 function getPrerenderRoutes() {
   const { apps } = JSON.parse(
     readFileSync(join(__dirname, 'src', 'data', 'apps.json'), 'utf8'),
@@ -34,6 +36,7 @@ function getPrerenderRoutes() {
     '/blog',
     ...(apps || []).map((app) => `/apps/${app.slug}`),
     ...PRIVACY_POLICY_SLUGS.map((slug) => `/privacy-policy/${slug}`),
+    ...TERMS_OF_SERVICE_SLUGS.map((slug) => `/terms-of-service/${slug}`),
     ...blogPosts.map((post) => `/blog/${post.slug}`),
   ]
 }

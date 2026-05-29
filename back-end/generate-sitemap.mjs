@@ -21,6 +21,9 @@ const PRIVACY_POLICY_SLUGS = [
   'save-to-drive-chrome-extension',
 ]
 
+/** Keep in sync with src/utils/termsOfService.js */
+const TERMS_OF_SERVICE_SLUGS = ['save-to-drive-chrome-extension']
+
 function escapeXml(text) {
   return String(text)
     .replace(/&/g, '&amp;')
@@ -76,6 +79,13 @@ function main() {
     ),
     ...PRIVACY_POLICY_SLUGS.map((slug) =>
       urlEntry(`${SITE_URL}/privacy-policy/${slug}`, {
+        lastmod: defaultLastmod,
+        changefreq: 'yearly',
+        priority: '0.5',
+      })
+    ),
+    ...TERMS_OF_SERVICE_SLUGS.map((slug) =>
+      urlEntry(`${SITE_URL}/terms-of-service/${slug}`, {
         lastmod: defaultLastmod,
         changefreq: 'yearly',
         priority: '0.5',
