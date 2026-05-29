@@ -5,6 +5,7 @@ import AppsPage from './pages/AppsPage'
 import ExtensionLandingPage from './pages/ExtensionLandingPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsOfServicePage from './pages/TermsOfServicePage'
+import SaveDirectlyToDrivePage from './pages/SaveDirectlyToDrivePage'
 import BlogIndexPage from './pages/BlogIndexPage'
 import BlogPostPage from './pages/BlogPostPage'
 
@@ -19,6 +20,7 @@ function AppRoutes() {
         <Route path="/apps/:slug" element={<ExtensionLandingPage />} />
         <Route path="/privacy-policy/:slug" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service/:slug" element={<TermsOfServicePage />} />
+        <Route path="/save-directly-to-drive" element={<SaveDirectlyToDrivePage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/extensions" element={<Navigate to="/apps" replace />} />

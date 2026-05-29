@@ -70,6 +70,11 @@ function main() {
       priority: '0.8',
       lastmod: defaultLastmod,
     }),
+    urlEntry(`${SITE_URL}/save-directly-to-drive`, {
+      changefreq: 'monthly',
+      priority: '0.9',
+      lastmod: defaultLastmod,
+    }),
     ...(apps || []).map((app) =>
       urlEntry(`${SITE_URL}/apps/${app.slug}`, {
         lastmod: app.lastUpdated || defaultLastmod,
