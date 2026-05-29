@@ -1,5 +1,6 @@
 import ClaudeDeepSearchPrivacyContent from '../content/privacy/claude-deep-search'
 import InstagramDmExporterPrivacyContent from '../content/privacy/instagram-dm-exporter'
+import SaveToDrivePrivacyContent from '../content/privacy/save-to-drive-chrome-extension'
 
 const PRIVACY_POLICIES = {
   'claude-deep-search': {
@@ -13,6 +14,12 @@ const PRIVACY_POLICIES = {
     lastUpdated: 'May 26, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: InstagramDmExporterPrivacyContent,
+  },
+  'save-to-drive-chrome-extension': {
+    appName: 'Save Directly to Drive',
+    lastUpdated: 'May 29, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: SaveToDrivePrivacyContent,
   },
 }
 

@@ -203,6 +203,17 @@
   word-break: break-all;
 }
 
+.CC__blog-post__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.CC__blog-post__download {
+  text-decoration: none;
+}
+
 .CC__blog-post__cover {
   max-width: 600px;
   width: 100%;

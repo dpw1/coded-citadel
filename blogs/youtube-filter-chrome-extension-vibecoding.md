@@ -5,6 +5,8 @@ date: "2026-05-29"
 description: "Episode 2 of VibeCoding Until I Make $100k: how I built YouTube Filter Pro - a Chrome extension that filters videos by view count and duration - using 96 AI prompts, and the ytInitialData bug that cost me hours."
 tags: ["chrome-extensions", "vibecoding", "building-in-public", "youtube", "javascript"]
 youtubeId: "https://www.youtube.com/watch?v=-saFrB1W9ug"
+extensionSlug: "youtube-filter-pro"
+downloadUrl: https://chromewebstore.google.com/detail/youtube-filter-pro-filter/dbkkcbfafkckhmefkpgnelikibobcabb
 draft: false
 keyTakeaways:
   - "YouTube has no native view count or precise duration filter - that gap is the product."

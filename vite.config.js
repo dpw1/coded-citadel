@@ -8,7 +8,11 @@ import blogDevPlugin from './back-end/vite-plugin-blog-dev.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const PRIVACY_POLICY_SLUGS = ['claude-deep-search']
+const PRIVACY_POLICY_SLUGS = [
+  'claude-deep-search',
+  'instagram-dm-exporter',
+  'save-to-drive-chrome-extension',
+]
 
 function getPrerenderRoutes() {
   const { apps } = JSON.parse(

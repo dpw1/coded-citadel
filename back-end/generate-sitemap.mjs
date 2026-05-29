@@ -15,7 +15,11 @@ const OUT_FILE = resolve(ROOT, 'public', 'sitemap.xml')
 const SITE_URL = (process.env.SITE_URL || 'https://codedcitadel.com').replace(/\/$/, '')
 
 /** Keep in sync with src/utils/privacyPolicies.js */
-const PRIVACY_POLICY_SLUGS = ['claude-deep-search', 'instagram-dm-exporter']
+const PRIVACY_POLICY_SLUGS = [
+  'claude-deep-search',
+  'instagram-dm-exporter',
+  'save-to-drive-chrome-extension',
+]
 
 function escapeXml(text) {
   return String(text)

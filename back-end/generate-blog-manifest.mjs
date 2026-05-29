@@ -17,6 +17,7 @@ const ROOT = resolve(__dirname, '..')
 const BLOGS_DIR = resolve(ROOT, 'blogs')
 const REDIRECTS_FILE = resolve(ROOT, 'blog-redirects.json')
 const MANIFEST_FILE = resolve(ROOT, 'src', 'data', 'blog.json')
+const APPS_FILE = resolve(ROOT, 'src', 'data', 'apps.json')
 const CONTENT_DIR = resolve(ROOT, 'public', 'blog-content')
 
 const WORDS_PER_MINUTE = 200
@@ -71,6 +72,9 @@ function normalizeFrontmatter(raw, filenameSlug) {
     canonicalUrl: raw.canonicalUrl ? String(raw.canonicalUrl) : null,
     youtubeId,
     coverImage: raw.coverImage ? String(raw.coverImage) : null,
+    extensionSlug: raw.extensionSlug ? String(raw.extensionSlug).trim() : null,
+    downloadUrl: raw.downloadUrl ? String(raw.downloadUrl).trim() : null,
+    downloadLabel: raw.downloadLabel ? String(raw.downloadLabel).trim() : null,
     keyTakeaways,
     draft: Boolean(raw.draft),
   }
@@ -108,6 +112,48 @@ async function resolvePostCover(meta) {
   }
 
   return { coverImage: null, coverImageUrl: null }
+}
+
+function loadApps() {
+  try {
+    const { apps } = JSON.parse(readFileSync(APPS_FILE, 'utf8'))
+    return apps ?? []
+  } catch {
+    return []
+  }
+}
+
+function resolvePostDownload(meta, apps) {
+  const defaultLabel = 'Install on Chrome'
+
+  if (meta.downloadUrl && meta.downloadUrl !== '#') {
+    return {
+      downloadUrl: meta.downloadUrl,
+      downloadLabel: meta.downloadLabel || defaultLabel,
+      extensionSlug: meta.extensionSlug || null,
+    }
+  }
+
+  if (meta.extensionSlug) {
+    const app = apps.find((entry) => entry.slug === meta.extensionSlug)
+    const storeUrl = app?.chromeStoreUrl
+    if (storeUrl && storeUrl !== '#') {
+      return {
+        downloadUrl: storeUrl,
+        downloadLabel: meta.downloadLabel || `Install ${app.name}`,
+        extensionSlug: app.slug,
+      }
+    }
+    console.warn(
+      `  ${meta.slug}: extensionSlug "${meta.extensionSlug}" not found or has no Chrome store URL`,
+    )
+  }
+
+  return {
+    downloadUrl: null,
+    downloadLabel: null,
+    extensionSlug: null,
+  }
 }
 
 function processMarkdownFile(filePath, filenameSlug) {
@@ -150,6 +196,7 @@ function collectBlogFiles() {
 async function main() {
   const redirects = readRedirects()
   const processed = collectBlogFiles()
+  const apps = loadApps()
   const slugSet = new Set()
   const posts = []
 
@@ -175,6 +222,7 @@ async function main() {
 
     const readingTime = estimateReadingTime(bodyHtml)
     const { coverImage, coverImageUrl } = await resolvePostCover(meta)
+    const download = resolvePostDownload(meta, apps)
 
     writeFileSync(resolve(CONTENT_DIR, `${meta.slug}.html`), bodyHtml, 'utf8')
 
@@ -188,13 +236,17 @@ async function main() {
       youtubeId: meta.youtubeId,
       coverImage,
       coverImageUrl,
+      extensionSlug: download.extensionSlug,
+      downloadUrl: download.downloadUrl,
+      downloadLabel: download.downloadLabel,
       keyTakeaways: meta.keyTakeaways,
       readingTime,
       contentHtml: bodyHtml,
     })
 
     const coverNote = coverImageUrl && !meta.coverImage ? ' (cover from YouTube)' : ''
-    console.log(`  ${meta.slug} (${readingTime} min read)${coverNote}`)
+    const downloadNote = download.downloadUrl ? ' + download link' : ''
+    console.log(`  ${meta.slug} (${readingTime} min read)${coverNote}${downloadNote}`)
   }
 
   posts.sort((a, b) => b.date.localeCompare(a.date))

@@ -176,6 +176,23 @@ export default function BlogPostPage() {
                 </a>
               </p>
             ) : null}
+            {post.downloadUrl ? (
+              <div className="CC__blog-post__actions">
+                <a
+                  href={post.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="CC__btn CC__btn--primary CC__blog-post__download"
+                >
+                  {post.downloadLabel || 'Install on Chrome'}
+                </a>
+                {post.extensionSlug ? (
+                  <Link to={`/apps/${post.extensionSlug}`} className="CC__btn CC__btn--outline">
+                    View app details
+                  </Link>
+                ) : null}
+              </div>
+            ) : null}
           </header>
 
           {cover ? (
