@@ -25,7 +25,9 @@ export default function LiveStatsBar() {
   return (
     <div className="CC__stats-section CC__container">
       <div className="CC__stats-bar CC__cyber-accent" role="region" aria-label="Live Stats">
-        <CyberCorners />
+        <div className="CC__stats-bar__corners" aria-hidden="true">
+          <CyberCorners />
+        </div>
 
         <div className="CC__stats-bar__live" aria-label="Live stats indicator">
           <span className="CC__stats-bar__live-label">LIVE</span>

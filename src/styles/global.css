@@ -209,6 +209,14 @@ button {
   width: 100%;
 }
 
+/* Corner overlay — spans full stats card so brackets align on mobile stack layout */
+.CC__stats-bar__corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
 .CC__stats-bar__live {
   display: flex;
   flex-direction: column;
@@ -364,7 +372,33 @@ button {
   }
 
   .CC__stats-bar.CC__cyber-accent {
+    position: relative;
     border-radius: var(--CC__radius);
+  }
+
+  .CC__stats-bar__corners {
+    position: static;
+  }
+
+  .CC__stats-bar__corners .CC__cyber-accent__corner--tl {
+    right: auto;
+    bottom: auto;
+    transform: none;
+  }
+
+  .CC__stats-bar__corners .CC__cyber-accent__corner--tr {
+    top: 0;
+    right: 0;
+  }
+
+  .CC__stats-bar__corners .CC__cyber-accent__corner--bl {
+    left: 0;
+    bottom: 0;
+  }
+
+  .CC__stats-bar__corners .CC__cyber-accent__corner--br {
+    right: 0;
+    bottom: 0;
   }
 
   .CC__stats-bar__live {
@@ -397,6 +431,10 @@ button {
     border-bottom: none;
   }
 
+  .CC__stats-section.CC__container .CC__stats-bar__icon {
+    display: none;
+  }
+
   .CC__stats-bar__icon {
     width: 42px;
     height: 42px;
@@ -409,11 +447,6 @@ button {
 
   .CC__stats-bar__value {
     font-size: 1.4rem;
-  }
-
-  .CC__cyber-accent__corner {
-    width: 24px;
-    height: 24px;
   }
 }
 

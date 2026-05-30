@@ -341,7 +341,9 @@ export default function ExtensionLandingPage() {
 
         <section className="CC__stats-section">
           <div className="CC__cyber-accent CC__stats-bar">
-            <CyberCorners />
+            <div className="CC__stats-bar__corners" aria-hidden="true">
+              <CyberCorners />
+            </div>
             <div className="CC__stats-bar__live">
               <span className="CC__stats-bar__live-label">Stats</span>
               <span className="CC__stats-bar__live-sub">

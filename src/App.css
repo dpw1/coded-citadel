@@ -466,7 +466,8 @@
 
 @media (max-width: 768px) {
   .CC__hero {
-    min-height: 100svh;
+    min-height: unset;
+    margin-top: 40px;
     align-items: flex-end;
   }
 

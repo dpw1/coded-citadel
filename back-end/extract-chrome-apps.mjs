@@ -31,6 +31,9 @@ const REQUIRED_HTML_PAGES = [
 const APPS_EXAMPLE = path.join(ROOT, 'chrome-extension-html/apps-example.json')
 const DB_JSON = path.join(ROOT, 'chrome-extension-html/db.json')
 
+/** Placeholder slug written to apps-custom-data.json until you set the real one. */
+const TEMPORARY_EXTENSION_SLUG = 'custom-data'
+
 function stripHtmlTags(text) {
   return text.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
 }
@@ -112,6 +115,40 @@ function loadCustomDataMap() {
   }
 
   return map
+}
+
+function readAppsCustomDataFile() {
+  return JSON.parse(fs.readFileSync(APPS_CUSTOM_DATA_JSON, 'utf8'))
+}
+
+function writeAppsCustomDataFile(data) {
+  fs.writeFileSync(APPS_CUSTOM_DATA_JSON, `${JSON.stringify(data, null, 2)}\n`, 'utf8')
+}
+
+/** Pick a temporary slug and persist a new apps-custom-data.json entry for unknown extensions. */
+function ensureCustomDataSlug(id, customMap) {
+  const existing = customMap.get(id)
+  if (existing?.slug) return existing.slug
+
+  const usedSlugs = new Set(
+    [...customMap.values()].map((e) => e.slug).filter(Boolean),
+  )
+  let slug = TEMPORARY_EXTENSION_SLUG
+  if (usedSlugs.has(slug)) {
+    slug = `${TEMPORARY_EXTENSION_SLUG}-${id.slice(0, 8)}`
+  }
+
+  const entry = { id, slug }
+  const data = readAppsCustomDataFile()
+  if (!data.apps) data.apps = []
+  data.apps.push(entry)
+  writeAppsCustomDataFile(data)
+  customMap.set(id, entry)
+
+  console.warn(
+    `Temporary slug "${slug}" added to ${path.relative(ROOT, APPS_CUSTOM_DATA_JSON)} for ${id} — replace with the final slug and metadata when ready.`,
+  )
+  return slug
 }
 
 /** Merge manual fields from apps-custom-data.json (slug, created display string, overrides, etc.). */
@@ -1148,14 +1185,7 @@ export async function main() {
       continue
     }
 
-    const custom = customMap.get(id)
-    const slug = custom?.slug
-    if (!slug) {
-      console.warn(
-        `Skipping ${id}: no slug in apps-custom-data.json — add { "id": "${id}", "slug": "your-slug" }`,
-      )
-      continue
-    }
+    const slug = ensureCustomDataSlug(id, customMap)
 
     if (pages.date && (!updatedAt || pages.date > updatedAt)) {
       updatedAt = pages.date
