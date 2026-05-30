@@ -1,4 +1,5 @@
 import appsData from '../data/apps.json'
+import appsCustomData from '../data/apps-custom-data.json'
 
 const SLUG_ALIASES = {
   test: 'youtube-comments-exporter',
@@ -40,6 +41,48 @@ export function appCardSummary(app) {
 
 export function appIconUrl(app) {
   return app.chromeExtensionIcon || null
+}
+
+/** Build/deploy duration from apps.json or apps-custom-data.json. */
+export function appEstimatedTime(app) {
+  if (app?.estimatedTime) return app.estimatedTime
+
+  const custom = (appsCustomData.apps ?? []).find(
+    (entry) =>
+      entry.slug === app?.slug ||
+      entry.id === app?.chromeExtensionId,
+  )
+  return custom?.estimatedTime ?? null
+}
+
+/** AI prompt count from apps.json or apps-custom-data.json. */
+export function appPrompts(app) {
+  if (app?.prompts != null) return app.prompts
+
+  const custom = (appsCustomData.apps ?? []).find(
+    (entry) =>
+      entry.slug === app?.slug ||
+      entry.id === app?.chromeExtensionId,
+  )
+  return custom?.prompts ?? null
+}
+
+function findCustomAppEntry(app) {
+  return (appsCustomData.apps ?? []).find(
+    (entry) =>
+      entry.slug === app?.slug ||
+      entry.id === app?.chromeExtensionId,
+  )
+}
+
+/** Build-story YouTube URL from apps.json or apps-custom-data.json. */
+export function appBuildYoutubeUrl(app) {
+  if (app?.youtube && youtubeEmbedId(app.youtube)) return app.youtube
+
+  const custom = findCustomAppEntry(app)
+  if (custom?.youtube && youtubeEmbedId(custom.youtube)) return custom.youtube
+
+  return null
 }
 
 function parseRevenueValue(revenue) {

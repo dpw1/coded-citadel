@@ -12,6 +12,9 @@ import {
   appHeroPreviewUrl,
   appHeroYoutubeUrl,
   appIconUrl,
+  appBuildYoutubeUrl,
+  appEstimatedTime,
+  appPrompts,
   appStoreUrl,
   formatAppDate,
   formatAppCreatedDate,
@@ -136,6 +139,8 @@ export default function ExtensionLandingPage() {
   const uninstallsByRegion = an.uninstallsByRegion ?? {}
   const heroYoutube = appHeroYoutubeUrl(ext)
   const heroEmbedId = heroYoutube ? youtubeEmbedId(heroYoutube) : null
+  const buildYoutube = appBuildYoutubeUrl(ext)
+  const buildVideoEmbedId = buildYoutube ? youtubeEmbedId(buildYoutube) : null
   const heroPreview = appHeroPreviewUrl(ext)
   const storeUrl = appStoreUrl(ext)
   const iconUrl = appIconUrl(ext)
@@ -183,8 +188,14 @@ export default function ExtensionLandingPage() {
 
               <div className="ext-hero__meta">
                 <div className="ext-hero__badge">
-                  <span className="ext-hero__badge-label">Version</span>
-                  <span className="ext-hero__badge-value">{ext.version}</span>
+                  <span className="ext-hero__badge-label">Built &amp; Deployed In</span>
+                  <span className="ext-hero__badge-value">{appEstimatedTime(ext) ?? '—'}</span>
+                </div>
+                <div className="ext-hero__badge">
+                  <span className="ext-hero__badge-label">Prompts</span>
+                  <span className="ext-hero__badge-value">
+                    {appPrompts(ext) != null ? formatNumber(appPrompts(ext)) : '—'}
+                  </span>
                 </div>
                 <div className="ext-hero__badge">
                   <span className="ext-hero__badge-label">Updated</span>
@@ -297,6 +308,23 @@ export default function ExtensionLandingPage() {
           <section className="ext-description">
             {ext.tagline ? <p className="ext-description__short">{ext.tagline}</p> : null}
             {ext.description?.full ? <p className="ext-description__full">{ext.description.full}</p> : null}
+          </section>
+        ) : null}
+
+        {buildVideoEmbedId ? (
+          <section className="ext-build-video" aria-label="Build video">
+            <h2 className="ext-build-video__title">Watch how I built this</h2>
+            <p className="ext-build-video__sub">
+              from validating idea to publishing on Chrome web store
+            </p>
+            <div className="ext-build-video__embed ext-hero__yt-wrap">
+              <iframe
+                title={`How ${ext.name} was built`}
+                src={`https://www.youtube.com/embed/${buildVideoEmbedId}?rel=0&modestbranding=1`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
           </section>
         ) : null}
 
