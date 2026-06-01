@@ -1,13 +1,24 @@
 {
-  "fetchedAt": "2026-05-30T12:36:59.997Z",
+  "fetchedAt": "2026-06-01T17:31:59.119Z",
   "channel": {
     "id": "UC4Ts3s6hRQXY1L-Awh4PzPg",
     "title": "Coded Citadel",
     "handle": "CodedCitadel",
     "url": "https://www.youtube.com/@CodedCitadel"
   },
-  "videoCount": 4,
+  "videoCount": 5,
   "videos": [
+    {
+      "id": "D4-1VtvkdIw",
+      "title": "I Turned Google Drive Into My Browser's Download Folder | VibeCoding Until I Make $100k | Ep.5",
+      "description": "I found a Chrome extension idea on Reddit, built it in 8 hours, and submitted it to the Chrome Web Store, all in one session. In this video I walk you through the full process: finding the idea, architecting the extension, handling Google OAuth in the background script, building the right-click save functionality, and designing the UI using AI tools.\n\nThis is Episode 5 of Vibe Coding Until I Make $100k - a series where I build and ship Chrome extensions from scratch and document everything publicly.\n\nWhat I cover:\n- How I found the idea browsing Reddit\n- Setting up Google OAuth correctly in a Chrome extension (always in background.js, never the popup)\n- Getting a permanent Chrome extension ID for development\n- Using Cursor to build the upload functionality\n- Designing the UI with ShadeGPT and coding it with Claude\n- Creating the logo with AI\n- Submitting to the Chrome Web Store\n\nTech used: Chrome Extensions, Google Drive API, Google OAuth, Cursor, Claude, ChatGPT, JavaScript\n\nDownload: still waiting for Chrome webstore's approval!\n\n--\nTIMESTAMPS\n00:00 - Built a Chrome extension in 8 hours\n00:34 - How I found the idea on Reddit\n00:56 - Why competing extensions had bad reviews (permissions issue)\n01:27 - Setting up Google OAuth via Google Cloud\n01:36 - Getting a permanent Chrome extension ID\n01:55 - Sending the first prompt to Cursor\n02:04 - Key rule: always do auth in background.js, never the popup\n02:29 - Building the upload functionality\n02:58 - Adding right-click save to Google Drive\n03:12 - Designing the UI with ShadeGPT + Claude\n03:49 - Creating the logo with ChatGPT\n04:14 - Final fixes: Google login, popup, auth verification\n04:24 - Publishing to the Chrome Web Store\n---\n\n🔔 Subscribe for weekly build-in-public episodes\n🌐 codedcitadel.com",
+      "link": "https://www.youtube.com/watch?v=D4-1VtvkdIw",
+      "thumbnail": "https://i.ytimg.com/vi/D4-1VtvkdIw/maxresdefault.jpg",
+      "publishedAt": "2026-06-01T00:19:50Z",
+      "duration": "4:54",
+      "durationIso": "PT4M54S",
+      "viewCount": 0
+    },
     {
       "id": "tBSZ1oD5OM8",
       "title": "Export Instagram Conversations in One Click | VibeCoding Until I Make $100k | Ep. 4",
@@ -39,7 +50,7 @@
       "publishedAt": "2026-05-17T09:21:51Z",
       "duration": "8:09",
       "durationIso": "PT8M9S",
-      "viewCount": 27
+      "viewCount": 29
     },
     {
       "id": "m4iuYN7vsRo",
@@ -50,7 +61,7 @@
       "publishedAt": "2026-05-12T20:41:55Z",
       "duration": "11:47",
       "durationIso": "PT11M47S",
-      "viewCount": 86
+      "viewCount": 88
     }
   ]
 }
