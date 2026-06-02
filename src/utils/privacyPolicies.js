@@ -1,4 +1,5 @@
 import ClaudeDeepSearchPrivacyContent from '../content/privacy/claude-deep-search'
+import ClaudeLimitMonitorPrivacyContent from '../content/privacy/claude-limit-monitor'
 import InstagramDmExporterPrivacyContent from '../content/privacy/instagram-dm-exporter'
 import SaveToDrivePrivacyContent from '../content/privacy/save-to-drive-chrome-extension'
 
@@ -8,6 +9,12 @@ const PRIVACY_POLICIES = {
     lastUpdated: 'May 21, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: ClaudeDeepSearchPrivacyContent,
+  },
+  'claude-limit-monitor': {
+    appName: 'Claude Limit Monitor',
+    lastUpdated: 'June 2, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: ClaudeLimitMonitorPrivacyContent,
   },
   'instagram-dm-exporter': {
     appName: 'Instagram DM Exporter',

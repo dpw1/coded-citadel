@@ -17,6 +17,7 @@ const SITE_URL = (process.env.SITE_URL || 'https://codedcitadel.com').replace(/\
 /** Keep in sync with src/utils/privacyPolicies.js */
 const PRIVACY_POLICY_SLUGS = [
   'claude-deep-search',
+  'claude-limit-monitor',
   'instagram-dm-exporter',
   'save-to-drive-chrome-extension',
 ]

@@ -11,6 +11,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const PRIVACY_POLICY_SLUGS = [
   'claude-deep-search',
+  'claude-limit-monitor',
   'instagram-dm-exporter',
   'save-to-drive-chrome-extension',
 ]
