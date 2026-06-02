@@ -16,6 +16,10 @@ import {
   appIdentityKey,
   installDateToIso,
 } from './compute-portfolio-stats.mjs'
+import {
+  dedupeAnalyticsObject,
+  dedupeAnalyticsSeriesByDate,
+} from './analytics-series-utils.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.join(__dirname, '..')
@@ -41,19 +45,9 @@ function sumRegionMaps(maps) {
   return out
 }
 
-/** Dedupe rows by date; later rows in the array win. */
-function dedupeSeriesByDate(series) {
-  const byDate = new Map()
-  for (const row of series ?? []) {
-    if (!row?.date) continue
-    byDate.set(row.date, row.total ?? row.count ?? 0)
-  }
-  return byDate
-}
-
 /** Merge one app's series across snapshots (chronological — later snapshot wins per date). */
 function mergeAppSeriesFromSnapshots(snapshots, identityKey, pickSeries) {
-  const byDate = new Map()
+  const byIso = new Map()
   const sorted = [...snapshots].sort(
     (a, b) => new Date(a.extractedAt).getTime() - new Date(b.extractedAt).getTime(),
   )
@@ -61,25 +55,27 @@ function mergeAppSeriesFromSnapshots(snapshots, identityKey, pickSeries) {
   for (const snapshot of sorted) {
     const app = findAppInSnapshotApps(snapshot.appsJson?.apps ?? [], identityKey)
     if (!app) continue
-    const series = pickSeries(app)
-    for (const [date, total] of dedupeSeriesByDate(series)) {
-      byDate.set(date, total)
+    const series = dedupeAnalyticsSeriesByDate(pickSeries(app) ?? [])
+    for (const row of series) {
+      byIso.set(installDateToIso(row.date), row.total)
     }
   }
 
-  return [...byDate.entries()]
-    .map(([date, total]) => ({ date, total }))
-    .sort((a, b) => installDateToIso(a.date).localeCompare(installDateToIso(b.date)))
+  return [...byIso.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([iso, total]) => {
+      const [y, m, d] = iso.split('-')
+      return { date: `${d}-${m}-${y}`, total }
+    })
 }
 
-/** Sum per-date totals across many per-app series (already deduped per app). */
+/** Sum per-date totals across apps (each app already deduped; one row per day). */
 function sumSeriesAcrossApps(appSeriesList) {
   const byIso = new Map()
   for (const series of appSeriesList) {
-    for (const row of series) {
-      if (!row?.date) continue
+    for (const row of dedupeAnalyticsSeriesByDate(series)) {
       const iso = installDateToIso(row.date)
-      byIso.set(iso, (byIso.get(iso) ?? 0) + (row.total ?? 0))
+      byIso.set(iso, (byIso.get(iso) ?? 0) + row.total)
     }
   }
 
@@ -158,7 +154,7 @@ export function aggregatePortfolioAnalytics(db) {
     pageViewsBySourceMaps.push(an.pageViewsBySource)
   }
 
-  const analytics = {
+  const analytics = dedupeAnalyticsObject({
     totalInstalls,
     installations: sumSeriesAcrossApps(installationsByApp),
     weeklyUsers: sumSeriesAcrossApps(weeklyUsersByApp),
@@ -172,7 +168,7 @@ export function aggregatePortfolioAnalytics(db) {
     impressions,
     impressionsAcrossChromeWebStore: sumSeriesAcrossApps(impressionsByApp),
     enabledVsDisabled: { enabled, disabled },
-  }
+  })
 
   return {
     updatedAt: latest.updatedAt ?? latest.appsJson?.updatedAt ?? null,

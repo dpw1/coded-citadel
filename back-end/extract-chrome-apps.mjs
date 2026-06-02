@@ -11,6 +11,7 @@ import fs from 'fs'
 import path from 'path'
 import readline from 'node:readline/promises'
 import { fileURLToPath } from 'url'
+import { dedupeAnalyticsObject, dedupeAppsAnalytics } from './analytics-series-utils.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.join(__dirname, '..')
@@ -616,7 +617,7 @@ function extractInstallationsFromAccessible(html) {
     const point = parseInstallPointFromDescription(desc)
     if (!point) continue
 
-    byIso[point.iso] = (byIso[point.iso] || 0) + point.total
+    byIso[point.iso] = point.total
   }
 
   return byDateToSeries(byIso)
@@ -871,7 +872,7 @@ function extractAnalyticsFromPages(installsHtml, usersHtml, impressionsHtml, exp
   const pageViewsTotal = pageViewsOverTime.reduce((s, row) => s + row.total, 0)
   const impressionsTotal = impressionsAcrossChromeWebStore.reduce((s, row) => s + row.total, 0)
 
-  return {
+  return dedupeAnalyticsObject({
     totalInstalls: installs.total || totalFromSeries,
     installations,
     weeklyUsers,
@@ -885,7 +886,7 @@ function extractAnalyticsFromPages(installsHtml, usersHtml, impressionsHtml, exp
     impressions: impressionsTotal,
     impressionsAcrossChromeWebStore,
     enabledVsDisabled,
-  }
+  })
 }
 
 function pickShortDescription(edit, template) {
@@ -1088,7 +1089,7 @@ export function appendAppsJsonToDb({ updatedAt, apps }) {
     appCount: apps.length,
     slugs: apps.map((a) => a.slug),
     chromeExtensionIds: apps.map(chromeExtensionIdFromApp).filter(Boolean),
-    appsJson: { updatedAt, apps },
+    appsJson: { updatedAt, apps: dedupeAppsAnalytics(apps) },
   }
 
   db.snapshots.push(entry)

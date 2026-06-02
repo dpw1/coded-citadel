@@ -1,9 +1,9 @@
 {
   "updatedAt": "2026-06-02",
-  "extractedAt": "2026-06-02T03:53:26.323Z",
+  "extractedAt": "2026-06-02T19:42:31.216Z",
   "appCount": 4,
   "analytics": {
-    "totalInstalls": 143,
+    "totalInstalls": 154,
     "installations": [
       {
         "date": "14-05-2026",
@@ -76,6 +76,10 @@
       {
         "date": "31-05-2026",
         "total": 16
+      },
+      {
+        "date": "01-06-2026",
+        "total": 11
       }
     ],
     "weeklyUsers": [
@@ -126,19 +130,24 @@
       {
         "date": "31-05-2026",
         "total": 25
+      },
+      {
+        "date": "01-06-2026",
+        "total": 30
       }
     ],
     "weeklyUsersByRegion": {},
     "installsByRegion": {
-      "US": 104,
-      "IN": 3,
-      "DE": 2,
+      "US": 112,
       "BR": 4,
-      "CA": 1
+      "DE": 2,
+      "IN": 3,
+      "CA": 1,
+      "GB": 1
     },
     "uninstalls": 0,
     "uninstallsByRegion": {},
-    "pageViews": 132,
+    "pageViews": 150,
     "pageViewsOverTime": [
       {
         "date": "14-05-2026",
@@ -211,16 +220,20 @@
       {
         "date": "31-05-2026",
         "total": 19
+      },
+      {
+        "date": "01-06-2026",
+        "total": 18
       }
     ],
     "pageViewsBySource": {
-      "ext_sidebar": 6,
+      "ext_sidebar": 7,
       "item-share-cp": 1,
-      "ext_app_menu": 1,
+      "ext_app_menu": 2,
       "chatgpt_com": 1,
       "bgads1": 1
     },
-    "impressions": 254,
+    "impressions": 286,
     "impressionsAcrossChromeWebStore": [
       {
         "date": "15-05-2026",
@@ -289,10 +302,14 @@
       {
         "date": "31-05-2026",
         "total": 24
+      },
+      {
+        "date": "01-06-2026",
+        "total": 32
       }
     ],
     "enabledVsDisabled": {
-      "enabled": 129,
+      "enabled": 158,
       "disabled": 0
     }
   }

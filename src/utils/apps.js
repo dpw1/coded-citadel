@@ -1,4 +1,5 @@
 import appsData from '../data/apps.json'
+import { dedupeAnalyticsSeriesByDate } from './analyticsSeries'
 import appsCustomData from '../data/apps-custom-data.json'
 
 const SLUG_ALIASES = {
@@ -263,7 +264,7 @@ export function formatInstallDate(ddMmYyyy) {
 }
 
 export function getInstallationsSeries(analytics) {
-  return analytics?.installations ?? []
+  return dedupeAnalyticsSeriesByDate(analytics?.installations ?? [])
 }
 
 /** Display string from custom data, or ISO date from earliest install day in analytics. */
@@ -286,15 +287,15 @@ export function formatAppCreatedDate(app) {
 }
 
 export function getWeeklyUsersSeries(analytics) {
-  return analytics?.weeklyUsers ?? []
+  return dedupeAnalyticsSeriesByDate(analytics?.weeklyUsers ?? [])
 }
 
 export function getPageViewsSeries(analytics) {
-  return analytics?.pageViewsOverTime ?? []
+  return dedupeAnalyticsSeriesByDate(analytics?.pageViewsOverTime ?? [])
 }
 
 export function getImpressionsSeries(analytics) {
-  return analytics?.impressionsAcrossChromeWebStore ?? []
+  return dedupeAnalyticsSeriesByDate(analytics?.impressionsAcrossChromeWebStore ?? [])
 }
 
 export function analyticsSeriesTotal(series) {
