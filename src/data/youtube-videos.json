@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-01T17:31:59.119Z",
+  "fetchedAt": "2026-06-02T04:03:58.234Z",
   "channel": {
     "id": "UC4Ts3s6hRQXY1L-Awh4PzPg",
     "title": "Coded Citadel",
@@ -32,7 +32,7 @@
     },
     {
       "id": "BGhB0gFwv1M",
-      "title": "I built Claude's missing search feature for free | VibeCoding Until I Make $100k | Ep. 3",
+      "title": "How to Deep Search In Claude | VibeCoding Until I Make $100k | Ep. 3",
       "description": "Claude's search only lets you search conversation titles - not the actual content inside them. So I built a free Chrome extension to fix it. Total time: 3 hours, including the extension, logo, screenshots, and a landing page.\n\nIn this episode I walk through the full process: how I accidentally stumbled onto the idea while doing product research, how I validated it in minutes, how I reverse engineered Claude's internal API to fetch full conversation content, and my exact step-by-step workflow for shipping a Chrome extension as fast as possible.\n\nIf you use Claude daily and have ever lost a conversation because you couldn't search what was actually inside it - this extension is for you, and it's completely free.\n\nExtension live on the Chrome Web Store: https://codedcitadel.com/apps/claude-deep-search\nSubscribe to follow the $100k journey!\n\n\nTIMESTAMPS\n0:00 - Claude's search is broken - here's what I built to fix it\n0:39 - How I look for new Chrome extension ideas (Reddit scraping method)\n0:58 - Scraping the Chrome extension subreddit since October - result: nothing useful\n1:06 - Finding the idea by accident while using Claude\n1:17 - Validating the idea: Googling the problem and checking alternatives\n1:44 - All existing alternatives are paid - so I built a free one\n1:48 - First step: prototype in the browser before touching the extension\n1:57 - Reverse engineering Claude's internal API via the network tab\n2:16 - Fetching all conversations + full content successfully\n2:30 - Setting up the samples folder as AI reference context\n2:43 - Matching Claude's UI: copying HTML for the search button and modal\n2:53 - Extracting CSS variables directly from Claude's website\n3:01 - Using Claude to generate the Cursor prompt (token-saving trick)\n3:14 - One prompt, almost working - fixing the conversation storage bug\n3:27 - Adding word highlighting (and its current limitation with long chats)\n3:44 - Logo design with ChatGPT - search icon + Claude colors + C letter\n3:59 - Generating Chrome Web Store screenshots with ChatGPT\n4:15 - Publishing to the Chrome Web Store\n4:21 - The Coded Citadel landing page - live stats from all extensions\n4:36 - What's coming in Episode 4",
       "link": "https://www.youtube.com/watch?v=BGhB0gFwv1M",
       "thumbnail": "https://i.ytimg.com/vi/BGhB0gFwv1M/maxresdefault.jpg",
@@ -61,7 +61,7 @@
       "publishedAt": "2026-05-12T20:41:55Z",
       "duration": "11:47",
       "durationIso": "PT11M47S",
-      "viewCount": 88
+      "viewCount": 89
     }
   ]
 }

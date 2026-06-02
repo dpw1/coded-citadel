@@ -1,0 +1,36 @@
+.CC__stats-page {
+  padding-top: 2rem;
+}
+
+.CC__stats-page__header {
+  margin-bottom: 2.5rem;
+  max-width: 42rem;
+}
+
+.CC__stats-page__intro {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--CC__color-text-muted);
+}
+
+.CC__stats-page__apps-link {
+  display: inline-flex;
+  margin-top: 1.5rem;
+  text-decoration: none;
+}
+
+.CC__stats-page__empty {
+  color: var(--CC__color-text-muted);
+  font-size: 1rem;
+}
+
+@media (max-width: 767px) {
+  .CC__stats-page {
+    padding-top: 1.25rem;
+  }
+
+  .CC__stats-page__header {
+    margin-bottom: 2rem;
+  }
+}

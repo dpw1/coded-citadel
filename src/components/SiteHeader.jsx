@@ -10,6 +10,7 @@ export default function SiteHeader() {
   const isHome = pathname === '/'
   const appsNavActive = pathname === '/apps' || pathname.startsWith('/apps/')
   const blogNavActive = pathname === '/blog' || pathname.startsWith('/blog/')
+  const liveStatsNavActive = pathname === '/live-stats'
 
   const closeMenu = () => setMenuOpen(false)
 
@@ -94,6 +95,21 @@ export default function SiteHeader() {
               onClick={closeMenu}
             >
               Blog
+            </Link>
+            <Link
+              to="/live-stats"
+              className={`CC__nav-link CC__nav-link--with-badge${
+                liveStatsNavActive ? ' CC__nav-link--active' : ''
+              }`}
+              onClick={closeMenu}
+            >
+              Live Stats
+              <span className="CC__nav-badge">
+                <span className="CC__nav-badge__fire" aria-hidden="true">
+                  🔥
+                </span>
+                <span className="CC__nav-badge__label">hot</span>
+              </span>
             </Link>
             <a
               href={isHome ? '#youtube' : '/'}

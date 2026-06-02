@@ -5,6 +5,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import prerender from '@prerenderer/rollup-plugin'
 import blogDevPlugin from './back-end/vite-plugin-blog-dev.mjs'
+import portfolioAnalyticsDevPlugin from './back-end/vite-plugin-portfolio-analytics-dev.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -34,6 +35,7 @@ function getPrerenderRoutes() {
     '/',
     '/apps',
     '/blog',
+    '/live-stats',
     '/save-directly-to-drive',
     ...(apps || []).map((app) => `/apps/${app.slug}`),
     ...PRIVACY_POLICY_SLUGS.map((slug) => `/privacy-policy/${slug}`),
@@ -46,6 +48,7 @@ export default defineConfig({
   plugins: [
     react(),
     blogDevPlugin(),
+    portfolioAnalyticsDevPlugin(),
     prerender({
       routes: getPrerenderRoutes(),
       renderer: '@prerenderer/renderer-puppeteer',

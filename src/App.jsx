@@ -8,6 +8,7 @@ import TermsOfServicePage from './pages/TermsOfServicePage'
 import SaveDirectlyToDrivePage from './pages/SaveDirectlyToDrivePage'
 import BlogIndexPage from './pages/BlogIndexPage'
 import BlogPostPage from './pages/BlogPostPage'
+import StatsPage from './pages/StatsPage'
 
 function AppRoutes() {
   const location = useLocation()
@@ -23,6 +24,8 @@ function AppRoutes() {
         <Route path="/save-directly-to-drive" element={<SaveDirectlyToDrivePage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/live-stats" element={<StatsPage />} />
+        <Route path="/stats" element={<Navigate to="/live-stats" replace />} />
         <Route path="/extensions" element={<Navigate to="/apps" replace />} />
       </Routes>
     </div>

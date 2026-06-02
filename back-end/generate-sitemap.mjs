@@ -70,6 +70,11 @@ function main() {
       priority: '0.8',
       lastmod: defaultLastmod,
     }),
+    urlEntry(`${SITE_URL}/live-stats`, {
+      changefreq: 'daily',
+      priority: '0.85',
+      lastmod: defaultLastmod,
+    }),
     urlEntry(`${SITE_URL}/save-directly-to-drive`, {
       changefreq: 'monthly',
       priority: '0.9',

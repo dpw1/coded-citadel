@@ -26,7 +26,7 @@ function seriesPointValue(row) {
 }
 
 /** `dd-mm-yyyy` from extractor → ISO date for comparison */
-function installDateToIso(ddMmYyyy) {
+export function installDateToIso(ddMmYyyy) {
   const [d, m, y] = ddMmYyyy.split('-')
   return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`
 }

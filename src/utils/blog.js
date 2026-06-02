@@ -14,6 +14,13 @@ export function getBlogPostBySlug(slug) {
   return getAllBlogPosts().find((post) => post.slug === slug) ?? null
 }
 
+/** Other posts for “Keep reading” (newest first, excludes current). */
+export function getKeepReadingPosts(currentSlug, limit = 3) {
+  return getAllBlogPosts()
+    .filter((post) => post.slug !== currentSlug)
+    .slice(0, limit)
+}
+
 export function getBlogRedirects() {
   return blogData.redirects ?? []
 }

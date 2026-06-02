@@ -2,12 +2,15 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
+import BlogPostCover from '../components/BlogPostCover'
+import BlogPostGrid from '../components/BlogPostGrid'
 import { BlogPostSEO } from '../components/BlogPageSEO'
 import {
   blogContentUrl,
   formatBlogDate,
   getBlogPostBySlug,
   getBlogRedirectTarget,
+  getKeepReadingPosts,
   getPostCoverUrl,
   getPostYoutubeEmbedId,
 } from '../utils/blog'
@@ -139,6 +142,7 @@ export default function BlogPostPage() {
   if (!post) return <BlogNotFound />
 
   const cover = getPostCoverUrl(post)
+  const keepReadingPosts = getKeepReadingPosts(post.slug, 3)
 
   return (
     <>
@@ -195,10 +199,13 @@ export default function BlogPostPage() {
             ) : null}
           </header>
 
-          {cover ? (
-            <div className="CC__blog-post__cover">
-              <img src={cover} alt="" />
-            </div>
+          {cover || youtubeEmbedId ? (
+            <BlogPostCover
+              key={post.slug}
+              coverUrl={cover}
+              youtubeId={youtubeEmbedId}
+              title={post.title}
+            />
           ) : null}
 
           <div className="CC__blog-post__body">
@@ -227,21 +234,23 @@ export default function BlogPostPage() {
                 />
               )}
 
-              {youtubeEmbedId ? (
-                <section id="watch-video" className="CC__blog-post__video-section" aria-label="Related video">
-                  <h2 className="CC__blog-post__video-heading">Watch on YouTube</h2>
-                  <div className="CC__blog-post__video">
-                    <iframe
-                      title={`YouTube video: ${post.title}`}
-                      src={`https://www.youtube.com/embed/${youtubeEmbedId}`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  </div>
-                </section>
-              ) : null}
             </div>
           </div>
+
+          {keepReadingPosts.length > 0 ? (
+            <section
+              className="CC__blog-post__keep-reading"
+              aria-labelledby="keep-reading-heading"
+            >
+              <header className="CC__blog-post__keep-reading-header">
+                <p className="CC__section-eyebrow">More from the blog</p>
+                <h2 id="keep-reading-heading" className="CC__section-title">
+                  Keep reading
+                </h2>
+              </header>
+              <BlogPostGrid posts={keepReadingPosts} gridClassName="CC__blog-grid--cols-3" />
+            </section>
+          ) : null}
         </article>
       </main>
       <SiteFooter />

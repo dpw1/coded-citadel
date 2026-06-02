@@ -1,0 +1,100 @@
+import { useEffect, useId, useMemo } from 'react'
+import { Link } from 'react-router-dom'
+import SiteHeader from '../components/SiteHeader'
+import SiteFooter from '../components/SiteFooter'
+import ExtensionAnalyticsBlock from '../components/extension/ExtensionAnalyticsBlock'
+import ExtensionLiveStatsBar from '../components/extension/ExtensionLiveStatsBar'
+import {
+  analyticsSeriesDelta,
+  formatNumber,
+  getWeeklyUsersSeries,
+} from '../utils/apps'
+import {
+  getPortfolioAnalytics,
+  getPortfolioAnalyticsPayload,
+  getPortfolioAnalyticsUpdatedAt,
+} from '../utils/portfolioAnalytics'
+import '../App.css'
+import './ExtensionLandingPage.css'
+import './StatsPage.css'
+
+function portfolioActiveUsers(analytics) {
+  const series = getWeeklyUsersSeries(analytics)
+  if (series?.length) {
+    const last = series[series.length - 1]
+    return last?.total ?? last?.count ?? 0
+  }
+  return analytics?.enabledVsDisabled?.enabled ?? 0
+}
+
+export default function StatsPage() {
+  const payload = getPortfolioAnalyticsPayload()
+  const analytics = getPortfolioAnalytics()
+  const updatedAt = getPortfolioAnalyticsUpdatedAt()
+  const uid = useId().replace(/:/g, '')
+
+  const chartIds = useMemo(
+    () => ({
+      sparkline: `stats-spark-${uid}`,
+      weekly: `stats-weekly-${uid}`,
+      weeklyUsers: `stats-wusers-${uid}`,
+      pageViews: `stats-pviews-${uid}`,
+      impressions: `stats-impr-${uid}`,
+      installRegion: `stats-install-${uid}`,
+      weeklyRegion: `stats-wregion-${uid}`,
+    }),
+    [uid],
+  )
+
+  const activeUsers = analytics ? portfolioActiveUsers(analytics) : 0
+  const activeUsersDelta = analytics ? analyticsSeriesDelta(getWeeklyUsersSeries(analytics)) : null
+
+  useEffect(() => {
+    document.title = 'Portfolio Stats — Coded Citadel'
+    return () => {
+      document.title = 'Coded Citadel'
+    }
+  }, [])
+
+  return (
+    <>
+      <SiteHeader />
+      <main className="ext-page CC__stats-page">
+        <div className="CC__container">
+          <header className="CC__stats-page__header">
+            <p className="CC__section-eyebrow">Building in public</p>
+            <h1 className="CC__section-title">Portfolio Stats</h1>
+            <p className="CC__stats-page__intro">
+              Combined Chrome Web Store analytics across{' '}
+              {payload.appCount ? formatNumber(payload.appCount) : 'all'} live extensions — installs,
+              users, regions, and store impressions in one place.
+            </p>
+            <Link to="/apps" className="CC__btn CC__btn--outline CC__stats-page__apps-link">
+              View all apps
+            </Link>
+          </header>
+
+          {!analytics ? (
+            <p className="CC__stats-page__empty">Analytics data is not available yet. Check back soon.</p>
+          ) : (
+            <>
+              <ExtensionLiveStatsBar
+                analytics={analytics}
+                activeUsers={activeUsers}
+                activeUsersDelta={activeUsersDelta}
+              />
+              <ExtensionAnalyticsBlock
+                analytics={analytics}
+                chartIds={chartIds}
+                updatedAt={updatedAt}
+                eyebrow="Portfolio Analytics"
+                title="All Extensions Combined"
+              />
+            </>
+          )}
+        </div>
+      </main>
+      <SiteFooter />
+    </>
+  )
+}
