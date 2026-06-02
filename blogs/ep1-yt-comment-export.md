@@ -4,7 +4,7 @@ slug: "vibecoding-to-100k-youtube-comments-scraper"
 date: "2026-05-12"
 description: "Episode 1 of VibeCoding Until I Make $100K. I built a free YouTube comments scraper Chrome extension from scratch — design, API, logo, review prompt, and publish. Here's the full process."
 tags: ["chrome-extensions", "youtube-api", "indie-hacker", "building-in-public", "vibe-coding", "supabase"]
-draft: true
+draft: false
 keyTakeaways:
   - "Chrome extensions have almost no overhead — no hosting, no domain, and the store does a lot of the distribution for you."
   - "Start with a samples folder. Any HTML/CSS reference you give the AI produces much more accurate output."

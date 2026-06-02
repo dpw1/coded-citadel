@@ -2,11 +2,11 @@
 title: "Why I'm Building in Public Toward $100K"
 slug: "building-in-public-journey"
 date: "2026-05-12"
-description: "The honest start of my indie dev journey — no course funnels, no fake timelines. Just shipping Chrome extensions and documenting every step on YouTube."
+description: "The honest start of my indie dev journey - no course funnels, no fake timelines. Just shipping Chrome extensions and documenting every step on YouTube."
 tags: ["chrome-extensions", "building-in-public"]
 draft: false
 keyTakeaways:
-  - "Building in public means sharing real metrics, wins, and failures — not a polished highlight reel."
+  - "Building in public means sharing real metrics, wins, and failures - not a polished highlight reel."
   - "Chrome extensions are a fast path to shipping products and learning distribution on the Chrome Web Store."
   - "The goal is $100K in revenue, but the real prize is a repeatable system for making useful software."
 ---
