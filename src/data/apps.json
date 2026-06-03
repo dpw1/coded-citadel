@@ -927,16 +927,16 @@
   ],
   "portfolioStats": {
     "totalActiveUsers": 30,
-    "activeUsersDelta7d": 16,
-    "baselineDate": "2026-05-26",
-    "baselineTotalActiveUsers": 14,
+    "activeUsersDelta7d": 15,
+    "baselineDate": "2026-05-27",
+    "baselineTotalActiveUsers": 15,
     "byApp": [
       {
         "slug": "youtube-filter-pro",
         "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
         "now": 23,
-        "baseline": 11,
-        "delta": 12
+        "baseline": 12,
+        "delta": 11
       },
       {
         "slug": "claude-deep-search",
@@ -961,8 +961,8 @@
       }
     ],
     "totalInstalls": 154,
-    "installsDelta7d": 65,
-    "baselineTotalInstalls": 89,
-    "computedAt": "2026-06-02"
+    "installsDelta7d": 55,
+    "baselineTotalInstalls": 99,
+    "computedAt": "2026-06-03"
   }
 }

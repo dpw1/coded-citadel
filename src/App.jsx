@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import GoogleAnalytics from './components/GoogleAnalytics'
 import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
 import AppsPage from './pages/AppsPage'
@@ -36,6 +37,7 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <GoogleAnalytics />
       <AppRoutes />
     </>
   )
