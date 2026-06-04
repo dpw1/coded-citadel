@@ -15,6 +15,7 @@ export default function ExtensionAnalyticsBlock({
   updatedAt,
   eyebrow = 'Analytics Overview',
   title = 'Live Performance',
+  appFilter = null,
 }) {
   if (!analytics || !chartIds) return null
 
@@ -37,7 +38,7 @@ export default function ExtensionAnalyticsBlock({
 
       <section className="ext-analytics">
         <div className="ext-analytics__header">
-          <div>
+          <div className="ext-analytics__header-main">
             <div className="ext-analytics__eyebrow">{eyebrow}</div>
             <h2 className="ext-analytics__title">{title}</h2>
             {updatedAt ? (
@@ -45,8 +46,8 @@ export default function ExtensionAnalyticsBlock({
                 Last updated at: {formatAppDate(updatedAt)}
               </small>
             ) : null}
+            {appFilter}
           </div>
-          <div className="ext-analytics__filter">Last 30 days</div>
         </div>
 
         <div className="ext-analytics__kpis">

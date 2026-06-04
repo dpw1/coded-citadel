@@ -5,6 +5,13 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  max-width: 100%;
+}
+
+@media (max-width: 749px) {
+  .CC__site-top {
+    overflow-x: hidden;
+  }
 }
 
 .CC__announcement-bar {
@@ -39,7 +46,6 @@
 .CC__announcement-bar__track {
   display: flex;
   width: max-content;
-  animation: CC__announcement-marquee 28s linear infinite;
 }
 
 .CC__announcement-bar__segment {
@@ -101,16 +107,17 @@
 
 @keyframes CC__announcement-marquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 @media (max-width: 749px) {
   .CC__announcement-bar {
     width: 100%;
+    overflow-x: hidden;
   }
 
   .CC__announcement-bar__desktop {
@@ -121,6 +128,14 @@
     display: block;
     width: 100%;
     padding: 0.5rem 0;
+    overflow: hidden;
+    overscroll-behavior-x: none;
+    touch-action: pan-y;
+  }
+
+  .CC__announcement-bar__track {
+    animation: CC__announcement-marquee 28s linear infinite;
+    will-change: transform;
   }
 }
 
@@ -134,7 +149,10 @@
   .CC__announcement-bar__track {
     animation: none;
     width: 100%;
+    max-width: 100%;
     justify-content: center;
+    transform: none;
+    will-change: auto;
   }
 
   .CC__announcement-bar__segment + .CC__announcement-bar__segment {
@@ -143,12 +161,26 @@
 
   @media (max-width: 749px) {
     .CC__announcement-bar__marquee {
-      overflow-x: auto;
+      overflow: hidden;
     }
 
     .CC__announcement-bar__track {
-      justify-content: flex-start;
-      padding: 0 1rem;
+      justify-content: center;
+      padding: 0 0.75rem;
+    }
+
+    .CC__announcement-bar__segment {
+      flex-wrap: wrap;
+      justify-content: center;
+      white-space: normal;
+      text-align: center;
+      padding-right: 0;
+      gap: 0.35rem 0.75rem;
+    }
+
+    .CC__announcement-bar__segment .CC__announcement-bar__stats {
+      flex-wrap: wrap;
+      justify-content: center;
     }
   }
 }

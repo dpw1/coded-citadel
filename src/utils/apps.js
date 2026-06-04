@@ -40,6 +40,13 @@ export function appCardSummary(app) {
   return app.tagline ?? ''
 }
 
+/** Short label for filters and compact UI (Chrome listing title before colon). */
+export function appFilterLabel(app) {
+  const name = app?.name ?? ''
+  const short = name.split(':')[0]?.trim()
+  return short || name || app?.slug || 'Extension'
+}
+
 export function appIconUrl(app) {
   return app.chromeExtensionIcon || null
 }

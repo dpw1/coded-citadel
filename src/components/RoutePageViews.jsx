@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom'
 
 const GA_MEASUREMENT_ID = 'G-E0D1EJTW08'
 
-export default function GoogleAnalytics() {
+/** Sends SPA route changes to gtag (script in index.html). */
+export default function RoutePageViews() {
   const { pathname, search } = useLocation()
   const isInitialLoad = useRef(true)
 

@@ -96,37 +96,41 @@ function getLatestSnapshot(snapshots) {
   })
 }
 
-export function aggregatePortfolioAnalytics(db) {
-  const snapshots = db?.snapshots ?? []
-  const latest = getLatestSnapshot(snapshots)
-  if (!latest) {
-    return {
-      updatedAt: null,
-      extractedAt: null,
-      appCount: 0,
-      analytics: null,
-    }
-  }
+function buildAppAnalytics(app, snapshots) {
+  const key = appIdentityKey(app)
+  const an = app.analytics ?? {}
 
-  const liveApps = (latest.appsJson?.apps ?? []).filter(isAppLive)
-  const identityKeys = liveApps.map(appIdentityKey).filter(Boolean)
-
-  const installationsByApp = identityKeys.map((key) =>
-    mergeAppSeriesFromSnapshots(snapshots, key, (app) => app.analytics?.installations),
-  )
-  const weeklyUsersByApp = identityKeys.map((key) =>
-    mergeAppSeriesFromSnapshots(snapshots, key, (app) => app.analytics?.weeklyUsers),
-  )
-  const pageViewsByApp = identityKeys.map((key) =>
-    mergeAppSeriesFromSnapshots(snapshots, key, (app) => app.analytics?.pageViewsOverTime),
-  )
-  const impressionsByApp = identityKeys.map((key) =>
-    mergeAppSeriesFromSnapshots(
+  return dedupeAnalyticsObject({
+    totalInstalls: an.totalInstalls ?? 0,
+    installations: mergeAppSeriesFromSnapshots(snapshots, key, (a) => a.analytics?.installations),
+    weeklyUsers: mergeAppSeriesFromSnapshots(snapshots, key, (a) => a.analytics?.weeklyUsers),
+    weeklyUsersByRegion: an.weeklyUsersByRegion ?? {},
+    installsByRegion: an.installsByRegion ?? {},
+    uninstalls: an.uninstalls ?? 0,
+    uninstallsByRegion: an.uninstallsByRegion ?? {},
+    pageViews: an.pageViews ?? 0,
+    pageViewsOverTime: mergeAppSeriesFromSnapshots(
       snapshots,
       key,
-      (app) => app.analytics?.impressionsAcrossChromeWebStore,
+      (a) => a.analytics?.pageViewsOverTime,
     ),
-  )
+    pageViewsBySource: an.pageViewsBySource ?? {},
+    impressions: an.impressions ?? 0,
+    impressionsAcrossChromeWebStore: mergeAppSeriesFromSnapshots(
+      snapshots,
+      key,
+      (a) => a.analytics?.impressionsAcrossChromeWebStore,
+    ),
+    enabledVsDisabled: {
+      enabled: an.enabledVsDisabled?.enabled ?? 0,
+      disabled: an.enabledVsDisabled?.disabled ?? 0,
+    },
+  })
+}
+
+function aggregateFromAppEntries(appEntries) {
+  const analyticsList = appEntries.map((entry) => entry.analytics).filter(Boolean)
+  if (!analyticsList.length) return null
 
   let totalInstalls = 0
   let pageViews = 0
@@ -135,26 +139,33 @@ export function aggregatePortfolioAnalytics(db) {
   let enabled = 0
   let disabled = 0
 
+  const installationsByApp = []
+  const weeklyUsersByApp = []
+  const pageViewsByApp = []
+  const impressionsByApp = []
   const installsByRegionMaps = []
   const weeklyUsersByRegionMaps = []
   const uninstallsByRegionMaps = []
   const pageViewsBySourceMaps = []
 
-  for (const app of liveApps) {
-    const an = app.analytics ?? {}
+  for (const an of analyticsList) {
     totalInstalls += an.totalInstalls ?? 0
     pageViews += an.pageViews ?? 0
     impressions += an.impressions ?? 0
     uninstalls += an.uninstalls ?? 0
     enabled += an.enabledVsDisabled?.enabled ?? 0
     disabled += an.enabledVsDisabled?.disabled ?? 0
+    installationsByApp.push(an.installations)
+    weeklyUsersByApp.push(an.weeklyUsers)
+    pageViewsByApp.push(an.pageViewsOverTime)
+    impressionsByApp.push(an.impressionsAcrossChromeWebStore)
     installsByRegionMaps.push(an.installsByRegion)
     weeklyUsersByRegionMaps.push(an.weeklyUsersByRegion)
     uninstallsByRegionMaps.push(an.uninstallsByRegion)
     pageViewsBySourceMaps.push(an.pageViewsBySource)
   }
 
-  const analytics = dedupeAnalyticsObject({
+  return dedupeAnalyticsObject({
     totalInstalls,
     installations: sumSeriesAcrossApps(installationsByApp),
     weeklyUsers: sumSeriesAcrossApps(weeklyUsersByApp),
@@ -169,11 +180,37 @@ export function aggregatePortfolioAnalytics(db) {
     impressionsAcrossChromeWebStore: sumSeriesAcrossApps(impressionsByApp),
     enabledVsDisabled: { enabled, disabled },
   })
+}
+
+export function aggregatePortfolioAnalytics(db) {
+  const snapshots = db?.snapshots ?? []
+  const latest = getLatestSnapshot(snapshots)
+  if (!latest) {
+    return {
+      updatedAt: null,
+      extractedAt: null,
+      appCount: 0,
+      apps: [],
+      analytics: null,
+    }
+  }
+
+  const liveApps = (latest.appsJson?.apps ?? []).filter(isAppLive)
+
+  const apps = liveApps.map((app) => ({
+    key: appIdentityKey(app),
+    slug: app.slug,
+    name: app.name,
+    analytics: buildAppAnalytics(app, snapshots),
+  }))
+
+  const analytics = aggregateFromAppEntries(apps)
 
   return {
     updatedAt: latest.updatedAt ?? latest.appsJson?.updatedAt ?? null,
     extractedAt: latest.extractedAt ?? null,
     appCount: liveApps.length,
+    apps,
     analytics,
   }
 }
@@ -183,7 +220,7 @@ function main() {
     console.warn(`Missing ${DB_JSON} — writing empty portfolio analytics`)
     fs.writeFileSync(
       OUT_JSON,
-      `${JSON.stringify({ updatedAt: null, extractedAt: null, appCount: 0, analytics: null }, null, 2)}\n`,
+      `${JSON.stringify({ updatedAt: null, extractedAt: null, appCount: 0, apps: [], analytics: null }, null, 2)}\n`,
     )
     return
   }

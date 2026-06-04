@@ -1,8 +1,9 @@
-import { useEffect, useId, useMemo } from 'react'
+import { useEffect, useId, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import ExtensionAnalyticsBlock from '../components/extension/ExtensionAnalyticsBlock'
+import ExtensionAppFilter from '../components/extension/ExtensionAppFilter'
 import ExtensionLiveStatsBar from '../components/extension/ExtensionLiveStatsBar'
 import {
   analyticsSeriesDelta,
@@ -11,8 +12,11 @@ import {
 } from '../utils/apps'
 import {
   getPortfolioAnalytics,
+  getPortfolioAnalyticsForKeys,
   getPortfolioAnalyticsPayload,
   getPortfolioAnalyticsUpdatedAt,
+  getPortfolioApps,
+  portfolioAnalyticsTitle,
 } from '../utils/portfolioAnalytics'
 import '../App.css'
 import './ExtensionLandingPage.css'
@@ -29,9 +33,19 @@ function portfolioActiveUsers(analytics) {
 
 export default function StatsPage() {
   const payload = getPortfolioAnalyticsPayload()
-  const analytics = getPortfolioAnalytics()
+  const portfolioApps = useMemo(() => getPortfolioApps(), [])
   const updatedAt = getPortfolioAnalyticsUpdatedAt()
   const uid = useId().replace(/:/g, '')
+
+  const [selectedKeys, setSelectedKeys] = useState(
+    () => new Set(portfolioApps.map((app) => app.key)),
+  )
+
+  const analytics = useMemo(() => {
+    const filtered = getPortfolioAnalyticsForKeys(selectedKeys)
+    if (filtered) return filtered
+    return getPortfolioAnalytics()
+  }, [selectedKeys])
 
   const chartIds = useMemo(
     () => ({
@@ -48,6 +62,15 @@ export default function StatsPage() {
 
   const activeUsers = analytics ? portfolioActiveUsers(analytics) : 0
   const activeUsersDelta = analytics ? analyticsSeriesDelta(getWeeklyUsersSeries(analytics)) : null
+  const sectionTitle = portfolioAnalyticsTitle(selectedKeys)
+
+  const appFilter = portfolioApps.length ? (
+    <ExtensionAppFilter
+      apps={portfolioApps}
+      selectedKeys={selectedKeys}
+      onChange={setSelectedKeys}
+    />
+  ) : null
 
   useEffect(() => {
     document.title = 'Portfolio Stats — Coded Citadel'
@@ -88,7 +111,8 @@ export default function StatsPage() {
                 chartIds={chartIds}
                 updatedAt={updatedAt}
                 eyebrow="Portfolio Analytics"
-                title="All Extensions Combined"
+                title={sectionTitle}
+                appFilter={appFilter}
               />
             </>
           )}
