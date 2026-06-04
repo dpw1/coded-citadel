@@ -973,7 +973,7 @@
       "prompts": 65
     },
     {
-      "slug": "custom-data",
+      "slug": "claude-limit-monitor",
       "chromeExtensionId": "mljfhcfnjbfibedpiaheeihpbjajfcal",
       "name": "Claude Limit Monitor: Track Free Usage & When Limit Resets",
       "icon": "⚡",
@@ -1021,7 +1021,11 @@
           "enabled": 0,
           "disabled": 0
         }
-      }
+      },
+      "estimatedTime": "4 hours",
+      "created": "June 4, 2026",
+      "youtube": "https://www.youtube.com/watch?v=iyXIi6pNq-M",
+      "prompts": 49
     }
   ],
   "portfolioStats": {
@@ -1059,7 +1063,7 @@
         "delta": 6
       },
       {
-        "slug": "custom-data",
+        "slug": "claude-limit-monitor",
         "chromeExtensionId": "mljfhcfnjbfibedpiaheeihpbjajfcal",
         "now": 0,
         "baseline": 0,
