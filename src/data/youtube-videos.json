@@ -1,13 +1,24 @@
 {
-  "fetchedAt": "2026-06-03T04:35:34.703Z",
+  "fetchedAt": "2026-06-04T19:39:19.888Z",
   "channel": {
     "id": "UC4Ts3s6hRQXY1L-Awh4PzPg",
     "title": "Coded Citadel",
     "handle": "CodedCitadel",
     "url": "https://www.youtube.com/@CodedCitadel"
   },
-  "videoCount": 5,
+  "videoCount": 6,
   "videos": [
+    {
+      "id": "iyXIi6pNq-M",
+      "title": "I \"Hacked\" Claude to Track My Usage Limit | VibeCoding Until I make $100k | Ep. 6",
+      "description": "Claude keeps cutting you off mid-thought. So I built a Chrome extension that shows \nyou exactly how much of your limit is left - and reverse engineered Claude's website \nto make it work.\n\nIn this video I break down how I found Claude's internal usage API, how the extension \nintercepts the response stream to read your messages remaining in real time, and how \nI built and shipped the whole thing.\n\nInstall Claude Limit Monitor → [link]\nBlog with more technical details → [link]\nView this extension's live stats (installs, how many users, views, etc) → [link]\n\nThis is extension #6 on my journey of vibecoding until I make $100k.\n\nTIMESTAMPS\n\n00:00 - The problem\n00:41 - Finding the idea (was it a good one?)\n00:58 - Reverse engineering Claude's API\n01:20 - Building the extension\n01:47 - Customization options & polish\n02:07 - Logo\n02:22 - Notification feature\n02:34 - Shipping to Chrome Web Store\n02:45 - What's next",
+      "link": "https://www.youtube.com/watch?v=iyXIi6pNq-M",
+      "thumbnail": "https://i.ytimg.com/vi/iyXIi6pNq-M/maxresdefault.jpg",
+      "publishedAt": "2026-06-04T19:00:00Z",
+      "duration": "3:13",
+      "durationIso": "PT3M13S",
+      "viewCount": 0
+    },
     {
       "id": "D4-1VtvkdIw",
       "title": "I Turned Google Drive Into My Browser's Download Folder | VibeCoding Until I Make $100k | Ep.5",
@@ -17,7 +28,7 @@
       "publishedAt": "2026-06-01T00:19:50Z",
       "duration": "4:54",
       "durationIso": "PT4M54S",
-      "viewCount": 5
+      "viewCount": 6
     },
     {
       "id": "tBSZ1oD5OM8",
@@ -28,7 +39,7 @@
       "publishedAt": "2026-05-28T11:12:11Z",
       "duration": "4:52",
       "durationIso": "PT4M52S",
-      "viewCount": 4
+      "viewCount": 7
     },
     {
       "id": "BGhB0gFwv1M",
@@ -39,7 +50,7 @@
       "publishedAt": "2026-05-23T16:20:26Z",
       "duration": "4:47",
       "durationIso": "PT4M47S",
-      "viewCount": 12
+      "viewCount": 18
     },
     {
       "id": "-saFrB1W9ug",
@@ -61,7 +72,7 @@
       "publishedAt": "2026-05-12T20:41:55Z",
       "duration": "11:47",
       "durationIso": "PT11M47S",
-      "viewCount": 90
+      "viewCount": 93
     }
   ]
 }
