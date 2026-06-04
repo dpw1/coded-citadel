@@ -7953,6 +7953,1055 @@
           }
         ]
       }
+    },
+    {
+      "extractedAt": "2026-06-04T13:24:47.679Z",
+      "updatedAt": "2026-06-04",
+      "outputPath": "src/data/apps.json",
+      "appCount": 6,
+      "slugs": [
+        "youtube-filter-pro",
+        "claude-deep-search",
+        "youtube-comments-exporter",
+        "instagram-dm-exporter",
+        "save-directly-to-drive",
+        "custom-data"
+      ],
+      "chromeExtensionIds": [
+        "dbkkcbfafkckhmefkpgnelikibobcabb",
+        "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "epokpidfnienjjfncmhnallghfhaijbj",
+        "hgojieiehkjgjhdnbglfhbcojeeggigi",
+        "jadjgiiaompdjacagaomgogdihbpgcpg",
+        "mljfhcfnjbfibedpiaheeihpbjajfcal"
+      ],
+      "appsJson": {
+        "updatedAt": "2026-06-04",
+        "apps": [
+          {
+            "slug": "youtube-filter-pro",
+            "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
+            "name": "Youtube Filter Pro: filter by views, duration, date, and more",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/cT5IsRijPKr64wr862UQQHyrC1A2YsAaG4JM9fTE4OAiwLxxMfTmEqUG0HsFW9TdB2CQtotPwmSdFldxRvpG3pyOTg",
+            "tagline": "Filter YouTube search results in real time by duration, views, publish date, channel, and more.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
+            "version": "1.0.03",
+            "lastUpdated": "2026-06-04",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?",
+              "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📺 Channel — Include channels whose names contain certain keywords, or block specific channels with exclude tags.\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Lightweight: only needs storage permission; no account required\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=U9RfbwYkqfM",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA"
+            ],
+            "analytics": {
+              "totalInstalls": 75,
+              "installations": [
+                {
+                  "date": "18-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "22-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "24-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 5
+                },
+                {
+                  "date": "26-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 5
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 5
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "22-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "24-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "26-05-2026",
+                  "total": 11
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 12
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 14
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 16
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 16
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 22
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 23
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 25
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 43,
+                "BR": 3,
+                "DE": 2,
+                "IN": 2,
+                "CA": 1
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 108,
+              "pageViewsOverTime": [
+                {
+                  "date": "18-05-2026",
+                  "total": 12
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "22-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "24-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 7
+                },
+                {
+                  "date": "26-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 5
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 10
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 17
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 8
+                }
+              ],
+              "pageViewsBySource": {
+                "ext_sidebar": 6,
+                "item-share-cp": 1,
+                "ext_app_menu": 2,
+                "chatgpt_com": 1
+              },
+              "impressions": 224,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "19-05-2026",
+                  "total": 10
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 22
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "22-05-2026",
+                  "total": 15
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 20
+                },
+                {
+                  "date": "24-05-2026",
+                  "total": 17
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 24
+                },
+                {
+                  "date": "26-05-2026",
+                  "total": 9
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 16
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 7
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 20
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 20
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 25
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 153,
+                "disabled": 0
+              }
+            },
+            "created": "May 17, 2026",
+            "prompts": 96,
+            "estimatedTime": "5 hours",
+            "youtube": "https://youtu.be/-saFrB1W9ug"
+          },
+          {
+            "slug": "claude-deep-search",
+            "chromeExtensionId": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "name": "Claude Deep Search",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/mcn5iQN1cvgDAg-D53kSenW9tO29dnyiDOh9Mq2HFrS08NK7lzb7jOyWYOCX7-gpWf837NNuLGBSN6JEZgfPVt6NTw",
+            "tagline": "Full-text search across all your Claude conversations. Fully local, fully private. No servers.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "version": "1.0.05",
+            "lastUpdated": "2026-06-04",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago?",
+              "full": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago? \n\nClaude Deep Search adds full-text search across your entire Claude.ai history - something the built-in sidebar search does not do on its own. \n\nAnd it's all 100% private. All conversations are stored locally (via IndexedDB) and never leave your machine.\n\n---\n\nHow to use\n\n1. Install the extension\n2. Click on the button \"Deep Search\" below the \"Search\" button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac) \n3. Search away!"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/h4PK7js_fXI4bZEmOlAxrf2J0OVicq6imF3fIPt0lFn3qxHmjkkjMWhv6BOTbfBrXIogMfFQuSieaA7vEY3-S_QN",
+              "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0"
+            ],
+            "analytics": {
+              "totalInstalls": 29,
+              "installations": [
+                {
+                  "date": "22-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "24-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "26-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 3
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "22-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "24-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "26-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 1
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 26,
+                "BR": 2
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 10,
+              "pageViewsOverTime": [
+                {
+                  "date": "22-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 1
+                }
+              ],
+              "pageViewsBySource": {},
+              "impressions": 29,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "22-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "26-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 3
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 14,
+                "disabled": 0
+              }
+            },
+            "created": "May 11, 2026",
+            "prompts": 41,
+            "estimatedTime": "3 hours",
+            "youtube": "https://youtu.be/BGhB0gFwv1M"
+          },
+          {
+            "slug": "youtube-comments-exporter",
+            "chromeExtensionId": "epokpidfnienjjfncmhnallghfhaijbj",
+            "name": "YouTube Comments Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/4x9fxtByjyQCfo0pjqfSMxFBeccYhAm1MOrJJrAyxDkrODcz7ivgRo4QKtoCwMUIUB-rXPhVD-sGhD5-FQi6p3rE",
+            "tagline": "Export YouTube comments to CSV, JSON, TXT or analyze with Claude",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
+            "version": "1.0.31",
+            "lastUpdated": "2026-06-04",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.",
+              "full": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.\n\nWhy install it:\n\n- Save time: Pull comments into CSV, JSON, or a TXT layout suited for analysis instead of copying threads by hand.\n- Flexible export: Download files, copy all to the clipboard, or open the payload in Claude or ChatGPT (your account on those sites).\n- Bulk workflow: download comments from multiple videos at once\nHistory: Recent exports help you revisit past runs.\n\nHow to use it:\n- Open a YouTube watch page\n- Click on the extension’s button\n- Click on \"Fetch Comments\" \n- Export or open in your preferred tool.\n\nNote\nClaude and ChatGPT are third-party services; this extension prepares and transfers text for you to use on those sites under your login. It is not affiliated with Google, YouTube, Anthropic, or OpenAI."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ"
+            ],
+            "analytics": {
+              "totalInstalls": 41,
+              "installations": [
+                {
+                  "date": "14-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "22-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "24-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "26-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 3
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 37
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 17,
+              "pageViewsOverTime": [
+                {
+                  "date": "14-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 6
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 2
+                }
+              ],
+              "pageViewsBySource": {
+                "bgads1": 1
+              },
+              "impressions": 30,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "15-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-05-2026",
+                  "total": 14
+                },
+                {
+                  "date": "17-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "18-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "25-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 1
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            },
+            "created": "May 21, 2026",
+            "prompts": 116,
+            "estimatedTime": "8 hours",
+            "youtube": "https://youtu.be/m4iuYN7vsRo"
+          },
+          {
+            "slug": "instagram-dm-exporter",
+            "chromeExtensionId": "hgojieiehkjgjhdnbglfhbcojeeggigi",
+            "name": "Instagram DM Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/KMLJjOLT-e2szDYHjS5o6AkN4htQ7gF9XcaYUyKdVQLpFiac1iZD0miiYQFazkhCRWxr4_x4Vh_iYAA98E_0UlYj",
+            "tagline": "Export Instagram direct message conversations as TXT, HTML, or JSON.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/hgojieiehkjgjhdnbglfhbcojeeggigi",
+            "version": "1.0.02",
+            "lastUpdated": "2026-06-04",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Exporting Instagram messages in the official way takes a long time.",
+              "full": "Exporting Instagram messages in the official way takes a long time. \n\nWith Instagram DM Exporter, you can export any Instagram direct message in one click! The entirety of the conversation: all single messages sent and received.\n\nYou can export as .TXT, .HTML or even .JSON.\n\nHow to use:\n\n- Go to the DM page. For example: https://www.instagram.com/direct/t/123\n- You will see a download icon on the top right\n- Click on it and you're done.\n\nPRIVACY\n\nYour conversations are not stored whatsoever. No external servers. It's 100% local and private."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=IzrBfg349Eo",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/i7LCz39sQrFFDl2T73q15Xf22pvtZmwPRMNQ309Z-JTjkPTeQSzxziPBEe9FqIjpjfODCh7rK1hRx4jgGr1jmMSM"
+            ],
+            "analytics": {
+              "totalInstalls": 22,
+              "installations": [
+                {
+                  "date": "26-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 5
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 2
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "28-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 7
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 15,
+                "IN": 1,
+                "GB": 1
+              },
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 25,
+              "pageViewsOverTime": [
+                {
+                  "date": "26-05-2026",
+                  "total": 1
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 4
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 11
+                }
+              ],
+              "pageViewsBySource": {
+                "ext_sidebar": 1
+              },
+              "impressions": 35,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "26-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "27-05-2026",
+                  "total": 8
+                },
+                {
+                  "date": "28-05-2026",
+                  "total": 3
+                },
+                {
+                  "date": "29-05-2026",
+                  "total": 7
+                },
+                {
+                  "date": "30-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "31-05-2026",
+                  "total": 2
+                },
+                {
+                  "date": "01-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "02-06-2026",
+                  "total": 4
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 19,
+                "disabled": 0
+              }
+            },
+            "created": "May 26, 2026",
+            "prompts": 47,
+            "estimatedTime": "4 hours",
+            "youtube": "https://youtu.be/tBSZ1oD5OM8"
+          },
+          {
+            "slug": "save-directly-to-drive",
+            "chromeExtensionId": "jadjgiiaompdjacagaomgogdihbpgcpg",
+            "name": "Save Directly to Drive",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/yfpsx7AGdnzCssZEU7MTTDwee8G0VB-2PuTUj3zA2RgUh0KZNTFBpvV-Ln1tsIqvZDXI-wG1TUOLwqDGazKP0xruMvk",
+            "tagline": "Save file links directly to a folder in Google Drive.",
+            "status": "coming-soon",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/jadjgiiaompdjacagaomgogdihbpgcpg",
+            "version": "1.0.0",
+            "lastUpdated": "2026-06-04",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Right-click file links and images on any page to upload them straight to a folder in your Google Drive. Files are not downloaded locally.",
+              "full": "Right-click file links and images on any page to upload them straight to a folder in your Google Drive. Files are not downloaded locally.\n\nHow it works\n\n- Install the extension and click Connect Google Drive in the popup.\n- Right-click a file link or image on almost any website.\n- Choose \"Save to Google Drive\"\n- A small on-page message confirms progress; when it’s done, open the file in Drive with one click.\n\nFeatures\n\n- Right-click to save: works on file links and images across the web\n- Your folder: choose where files go in Drive (default: “Downloads”)\n- Rename before save: optional dialog to edit the filename before upload\n- Recent saves: quickly reopen your last uploads from the extension popup\n- Open Google Drive: one click from the popup to your Drive\n- Supports all major image formats\n\nFeatures coming soon (not coded yet)\n- Website to PDF and JPG => Google Drive - coming soon!\n- Gmail to PDF => Google Drive - coming soon!\n\nPrivacy & permissions\n\n- Files go only to your Google account. nothing is stored on third-party servers.\n- Saves happen only when you ask, nothing uploads in the background.\n- The extension uses Google’s drive.file scope: it can upload files you choose, but cannot browse, edit, or delete your existing Drive files.\n- Log out anytime from the extension menu.\n\nRequirements\nA Google account with Google Drive."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/Vl5ThSd-jXW_b9KEQ8fZsOEQTP_rS8_qKMQ1l_cMUtHSxeF4uMGqyZnxNhwXQJeb3Ezgitwx3zvrAvbdBlZo-D2T"
+            ],
+            "estimatedTime": "9 hours",
+            "prompts": 65
+          },
+          {
+            "slug": "custom-data",
+            "chromeExtensionId": "mljfhcfnjbfibedpiaheeihpbjajfcal",
+            "name": "Claude Limit Monitor: Track Free Usage & When Limit Resets",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/3cYDG58PPLTqHaniw459Hj1o8YoOOThKCHK6BLIOaUTL4Vir0AjOj0KwJCS0u41XMhkXs7VMPdUdJ_3puuN41Eqq",
+            "tagline": "Monitor your Claude.ai usage in real time. See how much free usage you have left and when your limit resets.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/mljfhcfnjbfibedpiaheeihpbjajfcal",
+            "version": "1.0.01",
+            "lastUpdated": "2026-06-04",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever hit Claude's usage limit mid-conversation and had no idea it was coming? Or spent time looking for when exactly your allowance resets so you can get back to work?",
+              "full": "Have you ever hit Claude's usage limit mid-conversation and had no idea it was coming? Or spent time looking for when exactly your allowance resets so you can get back to work? \n\nNot anymore!\n\nWHAT IT DOES\nClaude Limit Monitor adds a small status bar to claude.ai showing exactly how much of your usage allowance you've used and when it resets. It's extremely lightweight and runs exclusively on the Claude.ai website, ensuring that it doesn't slow down your browsing experience.\n\nYou can see your current session limit, your weekly limit, and a countdown to the next reset, all while you chat. \n\nYou can also turn on a desktop notification so Chrome pings you the moment your limit refreshes.\n\nWHO IS THIS FOR\nAnyone who uses Claude regularly and has ever been caught off guard by a usage limit. Especially useful if you rely on Claude for work and need to plan around reset times.\n\nHOW DOES IT WORK\n1. Go to Claude.ai \n2. You should see the widget above your chat box. \n3. (optional) click on the Chrome Extension popup to change options as per your needs.\n\nIS IT FREE?\n100%. No trial, no paywall, no premium tier.\n\nIS IT SECURE?\n100% private. It only runs on claude.ai, reads usage data that's already on the page, and sends nothing anywhere. No accounts, no tracking, no data collection of any kind.\n\nFEEDBACK, BUGS OR QUESTIONS?\nCodedCitadel@gmail.com"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/jsQMFy85gcSp9xjYgO5cByX33eTZxUwCnjxmUCoSGqGJTBC9PH5eVl9_ZeBcJ3EmCq6lWogJ__5aytc4nIzFLwSxHg"
+            ],
+            "analytics": {
+              "totalInstalls": 0,
+              "installations": [],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {},
+              "uninstalls": 0,
+              "uninstallsByRegion": {},
+              "pageViews": 0,
+              "pageViewsOverTime": [],
+              "pageViewsBySource": {},
+              "impressions": 0,
+              "impressionsAcrossChromeWebStore": [],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0
+              }
+            }
+          }
+        ]
+      }
     }
   ]
 }
