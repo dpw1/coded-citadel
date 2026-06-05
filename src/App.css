@@ -53,19 +53,29 @@
   width: 100%;
 }
 
-.CC__announcement-bar__track {
-  display: inline-flex;
-  flex-wrap: nowrap;
-  width: max-content;
+.CC__announcement-bar__marquee-root {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  padding: 0;
+  width: 100%;
+}
+
+.CC__announcement-bar__marquee-content {
+  white-space: nowrap;
+}
+
+.ccAnnouncementMarquee__wrapper {
+  white-space: nowrap;
 }
 
 .CC__announcement-bar__segment {
-  display: flex;
+  display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
   gap: 1rem;
-  padding-right: 3rem;
   white-space: nowrap;
+  vertical-align: middle;
 }
 
 .CC__announcement-bar__segment .CC__announcement-bar__tagline {
@@ -116,15 +126,6 @@
   color: var(--CC__color-text-main);
 }
 
-@keyframes CC__announcement-marquee {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(calc(-1 * var(--CC__announcement-shift, 0px)), 0, 0);
-  }
-}
-
 @media (max-width: 749px) {
   .CC__announcement-bar {
     width: 100%;
@@ -143,12 +144,6 @@
     overscroll-behavior-x: none;
     touch-action: pan-y;
   }
-
-  .CC__announcement-bar__track--ready {
-    -webkit-animation: CC__announcement-marquee 28s linear infinite;
-    animation: CC__announcement-marquee 28s linear infinite;
-    will-change: transform;
-  }
 }
 
 @media (min-width: 750px) {
@@ -158,29 +153,17 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .CC__announcement-bar__track,
-  .CC__announcement-bar__track--ready {
-    -webkit-animation: none;
-    animation: none;
-    width: 100%;
-    max-width: 100%;
-    justify-content: center;
-    transform: none;
-    will-change: auto;
-  }
-
-  .CC__announcement-bar__segment + .CC__announcement-bar__segment {
-    display: none;
-  }
-
   @media (max-width: 749px) {
-    .CC__announcement-bar__marquee {
-      overflow: hidden;
+    .CC__announcement-bar__marquee-root .ccAnnouncementMarquee__wrapper {
+      transform: none !important;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      white-space: normal;
     }
 
-    .CC__announcement-bar__track {
-      justify-content: center;
-      padding: 0 0.75rem;
+    .CC__announcement-bar__marquee-root .ccAnnouncementMarquee__copy + .ccAnnouncementMarquee__copy {
+      display: none;
     }
 
     .CC__announcement-bar__segment {
@@ -188,7 +171,6 @@
       justify-content: center;
       white-space: normal;
       text-align: center;
-      padding-right: 0;
       gap: 0.35rem 0.75rem;
     }
 

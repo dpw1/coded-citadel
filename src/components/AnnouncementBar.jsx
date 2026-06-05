@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { formatNumber, formatRevenue, getAnnouncementBarStats } from '../utils/apps'
 
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@CodedCitadel'
@@ -20,8 +20,6 @@ function AnnouncementContent({ liveApps, totalActiveUsers, totalInstalls, totalP
 export default function AnnouncementBar() {
   const { liveApps, totalActiveUsers, totalInstalls, totalProfit } = getAnnouncementBarStats()
   const stats = { liveApps, totalActiveUsers, totalInstalls, totalProfit }
-  const segmentRef = useRef(null)
-  const [marqueeShift, setMarqueeShift] = useState(0)
 
   const ariaLabel = [
     'VibeCoding Until I Make $100k USD',
@@ -32,28 +30,29 @@ export default function AnnouncementBar() {
   ].join(' | ')
 
   useEffect(() => {
-    const segment = segmentRef.current
-    if (!segment) return undefined
+    let cancelled = false
 
-    const update = () => {
-      setMarqueeShift(segment.getBoundingClientRect().width)
+    function startMarquee() {
+      if (cancelled) return
+      import('../utils/marquee3k.js').then(({ initAnnouncementMarquee }) => {
+        if (!cancelled) initAnnouncementMarquee()
+      })
     }
 
-    update()
-    const observer = new ResizeObserver(update)
-    observer.observe(segment)
-    window.addEventListener('resize', update)
+    if (document.readyState === 'complete') {
+      startMarquee()
+    } else {
+      window.addEventListener('load', startMarquee)
+    }
 
     return () => {
-      observer.disconnect()
-      window.removeEventListener('resize', update)
+      cancelled = true
+      window.removeEventListener('load', startMarquee)
+      import('../utils/marquee3k.js').then(({ destroyAnnouncementMarquee }) => {
+        destroyAnnouncementMarquee()
+      })
     }
-  }, [liveApps, totalActiveUsers, totalInstalls, totalProfit])
-
-  const trackStyle =
-    marqueeShift > 0
-      ? { '--CC__announcement-shift': `${marqueeShift}px` }
-      : undefined
+  }, [])
 
   return (
     <div className="CC__announcement-bar">
@@ -71,16 +70,19 @@ export default function AnnouncementBar() {
 
       <div className="CC__announcement-bar__marquee" aria-hidden="true">
         <div
-          className={`CC__announcement-bar__track${
-            marqueeShift > 0 ? ' CC__announcement-bar__track--ready' : ''
-          }`}
-          style={trackStyle}
+          className="CC__announcement-bar__marquee-root"
+          data-cc-announcement-marquee
+          data-speed-desktop="0.55"
+          data-speed-mobile="0.65"
+          data-pausable="true"
+          data-reverse="false"
+          data-gap-desktop="48"
+          data-gap-mobile="32"
         >
-          <div ref={segmentRef} className="CC__announcement-bar__segment">
-            <AnnouncementContent {...stats} />
-          </div>
-          <div className="CC__announcement-bar__segment">
-            <AnnouncementContent {...stats} />
+          <div className="CC__announcement-bar__marquee-content">
+            <div className="CC__announcement-bar__segment">
+              <AnnouncementContent {...stats} />
+            </div>
           </div>
         </div>
       </div>
