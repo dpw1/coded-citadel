@@ -489,12 +489,15 @@
 .CC__extensions.CC__container {
   padding-top: var(--CC__space-lg);
   padding-bottom: var(--CC__space-lg);
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 .CC__section-header-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  gap: var(--CC__space-sm);
   margin-bottom: var(--CC__space-lg);
 }
 
@@ -512,6 +515,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--CC__space-md);
+  min-width: 0;
 }
 
 .CC__extension-card {
@@ -519,16 +523,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 0;
 }
 
 .CC__extension-card.CC__cyber-accent {
   background-color: var(--CC__color-bg-surface);
+  overflow: hidden;
 }
 
 .CC__extension-top {
   display: flex;
   gap: var(--CC__space-sm);
   margin-bottom: var(--CC__space-md);
+  min-width: 0;
+}
+
+.CC__extension-meta {
+  min-width: 0;
+  flex: 1;
 }
 
 .CC__extension-icon-box {
@@ -557,10 +569,13 @@
   font-size: 1.25rem;
   font-weight: 600;
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: var(--CC__space-xs);
+  min-width: 0;
   min-height: 3.25rem;
   line-height: 1.3;
+  overflow-wrap: anywhere;
 }
 
 .CC__extension-version {
@@ -942,6 +957,20 @@ html {
     padding: 0;
     cursor: pointer;
     background-color: rgba(9, 11, 16, 0.75);
+  }
+
+  .CC__container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .CC__section-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .CC__section-title {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
   }
 
   .CC__extensions-grid,
