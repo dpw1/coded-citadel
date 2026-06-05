@@ -657,12 +657,39 @@
   margin-bottom: 0;
 }
 
-.ext-analytics__header {
+.ext-analytics__header-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
   margin-bottom: 2rem;
+}
+
+.ext-analytics__header {
+  margin-bottom: 0;
 }
 
 .ext-analytics__header-main {
   max-width: 100%;
+  min-width: 0;
+}
+
+.ext-analytics__header-actions {
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .ext-analytics__header-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .ext-analytics__header-actions {
+    margin-left: auto;
+    align-self: flex-start;
+  }
 }
 
 /* App filter dropdown (portfolio /live-stats) */
@@ -1510,7 +1537,7 @@
 
   /* Analytics section */
   .ext-analytics { padding: 2.5rem 0; }
-  .ext-analytics__header { margin-bottom: 1.25rem; }
+  .ext-analytics__header-layout { margin-bottom: 1.25rem; }
   .ext-analytics__title { font-size: 1.9rem; margin-bottom: 0; overflow-wrap: break-word; }
   .ext-analytics__kpis { gap: 0.75rem; }
   .ext-kpi { padding: 1.1rem; }

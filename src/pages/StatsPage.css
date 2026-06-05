@@ -14,9 +14,15 @@
   color: var(--CC__color-text-muted);
 }
 
+.CC__stats-page__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+}
+
 .CC__stats-page__apps-link {
   display: inline-flex;
-  margin-top: 1.5rem;
   text-decoration: none;
 }
 
@@ -31,6 +37,21 @@
   }
 
   .CC__stats-page__header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .ext-analytics__header-actions .stats-filter,
+  .ext-analytics__header-actions .stats-filter__trigger {
+    width: 100%;
+  }
+
+  .CC__stats-page__footer {
+    margin-top: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .CC__stats-page__apps-link {
+    width: 100%;
+    justify-content: center;
   }
 }

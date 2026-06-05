@@ -3,18 +3,13 @@ import { Link } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import ExtensionAnalyticsBlock from '../components/extension/ExtensionAnalyticsBlock'
-import ExtensionAppFilter from '../components/extension/ExtensionAppFilter'
-import ExtensionLiveStatsBar from '../components/extension/ExtensionLiveStatsBar'
+import PortfolioStatsFilter from '../components/extension/PortfolioStatsFilter'
 import {
-  analyticsSeriesDelta,
-  formatNumber,
-  getWeeklyUsersSeries,
-} from '../utils/apps'
-import {
+  filterAnalyticsByDateRange,
+  formatAnalyticsDateRangeLabel,
   getPortfolioAnalytics,
+  getPortfolioAnalyticsDateRange,
   getPortfolioAnalyticsForKeys,
-  getPortfolioAnalyticsPayload,
-  formatPortfolioAnalyticsDateRange,
   getPortfolioApps,
   portfolioAnalyticsTitle,
 } from '../utils/portfolioAnalytics'
@@ -22,30 +17,27 @@ import '../App.css'
 import './ExtensionLandingPage.css'
 import './StatsPage.css'
 
-function portfolioActiveUsers(analytics) {
-  const series = getWeeklyUsersSeries(analytics)
-  if (series?.length) {
-    const last = series[series.length - 1]
-    return last?.total ?? last?.count ?? 0
-  }
-  return analytics?.enabledVsDisabled?.enabled ?? 0
-}
-
 export default function StatsPage() {
-  const payload = getPortfolioAnalyticsPayload()
   const portfolioApps = useMemo(() => getPortfolioApps(), [])
-  const analyticsDateRangeLabel = formatPortfolioAnalyticsDateRange()
+  const portfolioDateBounds = useMemo(() => getPortfolioAnalyticsDateRange(), [])
   const uid = useId().replace(/:/g, '')
 
   const [selectedKeys, setSelectedKeys] = useState(
     () => new Set(portfolioApps.map((app) => app.key)),
   )
+  const [dateFrom, setDateFrom] = useState('')
+  const [dateTo, setDateTo] = useState('')
 
-  const analytics = useMemo(() => {
+  const baseAnalytics = useMemo(() => {
     const filtered = getPortfolioAnalyticsForKeys(selectedKeys)
     if (filtered) return filtered
     return getPortfolioAnalytics()
   }, [selectedKeys])
+
+  const analytics = useMemo(() => {
+    if (!baseAnalytics) return null
+    return filterAnalyticsByDateRange(baseAnalytics, dateFrom || null, dateTo || null)
+  }, [baseAnalytics, dateFrom, dateTo])
 
   const chartIds = useMemo(
     () => ({
@@ -60,17 +52,8 @@ export default function StatsPage() {
     [uid],
   )
 
-  const activeUsers = analytics ? portfolioActiveUsers(analytics) : 0
-  const activeUsersDelta = analytics ? analyticsSeriesDelta(getWeeklyUsersSeries(analytics)) : null
   const sectionTitle = portfolioAnalyticsTitle(selectedKeys)
-
-  const appFilter = portfolioApps.length ? (
-    <ExtensionAppFilter
-      apps={portfolioApps}
-      selectedKeys={selectedKeys}
-      onChange={setSelectedKeys}
-    />
-  ) : null
+  const analyticsDateRangeLabel = formatAnalyticsDateRangeLabel(dateFrom || null, dateTo || null)
 
   useEffect(() => {
     document.title = 'Portfolio Stats — Coded Citadel'
@@ -88,32 +71,42 @@ export default function StatsPage() {
             <p className="CC__section-eyebrow">Building in public</p>
             <h1 className="CC__section-title">Portfolio Stats</h1>
             <p className="CC__stats-page__intro">
-            To go one step further' , I'm manually scraping all my "Chrome Web Store" private data and making it publicly accessible here. You can view all installations, users, views, and all private data of my apps. 
+              To go one step further, I&apos;m manually scraping all my Chrome Web Store private data
+              and making it publicly accessible here. You can view installations, users, views, and
+              other metrics for my apps.
             </p>
-            <Link to="/apps" className="CC__btn CC__btn--outline CC__stats-page__apps-link">
-              View all apps
-            </Link>
           </header>
 
           {!analytics ? (
             <p className="CC__stats-page__empty">Analytics data is not available yet. Check back soon.</p>
           ) : (
-            <>
-              <ExtensionLiveStatsBar
-                analytics={analytics}
-                activeUsers={activeUsers}
-                activeUsersDelta={activeUsersDelta}
-              />
-              <ExtensionAnalyticsBlock
-                analytics={analytics}
-                chartIds={chartIds}
-                updatedLabel={analyticsDateRangeLabel}
-                eyebrow="Portfolio Analytics"
-                title={sectionTitle}
-                appFilter={appFilter}
-              />
-            </>
+            <ExtensionAnalyticsBlock
+              analytics={analytics}
+              chartIds={chartIds}
+              updatedLabel={analyticsDateRangeLabel}
+              eyebrow="Portfolio Analytics"
+              title={sectionTitle}
+              appFilter={
+                <PortfolioStatsFilter
+                  apps={portfolioApps}
+                  selectedKeys={selectedKeys}
+                  onSelectedKeysChange={setSelectedKeys}
+                  dateFrom={dateFrom}
+                  dateTo={dateTo}
+                  onDateFromChange={setDateFrom}
+                  onDateToChange={setDateTo}
+                  minDate={portfolioDateBounds?.from ?? ''}
+                  maxDate={portfolioDateBounds?.to ?? ''}
+                />
+              }
+            />
           )}
+
+          <footer className="CC__stats-page__footer">
+            <Link to="/apps" className="CC__btn CC__btn--outline CC__stats-page__apps-link">
+              View all apps
+            </Link>
+          </footer>
         </div>
       </main>
       <SiteFooter />

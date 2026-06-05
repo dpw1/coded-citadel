@@ -38,19 +38,23 @@ export default function ExtensionAnalyticsBlock({
       <ExtensionCharts analytics={analytics} chartIds={chartIds} />
 
       <section className="ext-analytics">
-        <div className="ext-analytics__header">
-          <div className="ext-analytics__header-main">
-            <div className="ext-analytics__eyebrow">{eyebrow}</div>
-            <h2 className="ext-analytics__title">{title}</h2>
-            {updatedLabel ? (
-              <small className="ext-analytics__updated">{updatedLabel}</small>
-            ) : updatedAt ? (
-              <small className="ext-analytics__updated">
-                Last updated at: {formatAppDate(updatedAt)}
-              </small>
-            ) : null}
-            {appFilter}
+        <div className="ext-analytics__header-layout">
+          <div className="ext-analytics__header">
+            <div className="ext-analytics__header-main">
+              <div className="ext-analytics__eyebrow">{eyebrow}</div>
+              <h2 className="ext-analytics__title">{title}</h2>
+              {updatedLabel ? (
+                <small className="ext-analytics__updated">{updatedLabel}</small>
+              ) : updatedAt ? (
+                <small className="ext-analytics__updated">
+                  Last updated at: {formatAppDate(updatedAt)}
+                </small>
+              ) : null}
+            </div>
           </div>
+          {appFilter ? (
+            <div className="ext-analytics__header-actions">{appFilter}</div>
+          ) : null}
         </div>
 
         <div className="ext-analytics__kpis">
