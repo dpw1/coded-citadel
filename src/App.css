@@ -144,6 +144,14 @@
     overscroll-behavior-x: none;
     touch-action: pan-y;
   }
+
+  .CC__announcement-bar__segment {
+    padding-right: 2.5rem;
+  }
+
+  .CC__announcement-bar__stats li:last-child {
+    margin-right: 1.25rem;
+  }
 }
 
 @media (min-width: 750px) {

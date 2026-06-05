@@ -72,12 +72,12 @@ export default function AnnouncementBar() {
         <div
           className="CC__announcement-bar__marquee-root"
           data-cc-announcement-marquee
-          data-speed-desktop="0.55"
-          data-speed-mobile="0.65"
+          data-speed-desktop="0.35"
+          data-speed-mobile="0.28"
           data-pausable="true"
           data-reverse="false"
           data-gap-desktop="48"
-          data-gap-mobile="32"
+          data-gap-mobile="56"
         >
           <div className="CC__announcement-bar__marquee-content">
             <div className="CC__announcement-bar__segment">
