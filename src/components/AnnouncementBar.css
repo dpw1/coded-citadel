@@ -1,0 +1,221 @@
+/* Announcement bar — pure CSS marquee (samples/new-marquee.html). Co-located; not purged. */
+
+.CC__announcement-bar {
+  --CC__announcement-speed: 38s;
+  position: relative;
+  display: block;
+  background-color: var(--CC__color-bg-surface);
+  border-bottom: 1px solid var(--CC__color-border);
+  color: inherit;
+}
+
+.CC__announcement-bar__link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.CC__announcement-bar__link:focus-visible {
+  outline: 2px solid var(--CC__color-primary);
+  outline-offset: -2px;
+}
+
+.CC__announcement-bar:hover {
+  background-color: #121722;
+}
+
+/* Desktop — static centered row */
+.CC__announcement-bar__desktop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 1rem;
+  padding: 0.5rem var(--CC__space-md);
+}
+
+.CC__announcement-bar__tagline {
+  margin: 0;
+  font-family: var(--CC__font-display);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--CC__color-primary);
+}
+
+.CC__announcement-bar__stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.75rem;
+  color: var(--CC__color-text-muted);
+}
+
+.CC__announcement-bar__stats li {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.CC__announcement-bar__stats li + li::before {
+  content: '|';
+  margin-right: 0.65rem;
+  color: var(--CC__color-border-glow);
+  font-weight: 300;
+}
+
+.CC__announcement-bar__stats li:last-child {
+  color: var(--CC__color-text-main);
+}
+
+/* Mobile marquee — hidden on desktop */
+.CC__announcement-bar__marquee-row {
+  display: none;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 0.45rem 0;
+}
+
+.CC__announcement-bar__marquee-row::before,
+.CC__announcement-bar__marquee-row::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 48px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.CC__announcement-bar__marquee-row::before {
+  left: 0;
+  background: linear-gradient(to right, var(--CC__color-bg-surface), transparent);
+}
+
+.CC__announcement-bar__marquee-row::after {
+  right: 0;
+  background: linear-gradient(to left, var(--CC__color-bg-surface), transparent);
+}
+
+.CC__announcement-bar__marquee-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: max-content;
+  gap: 0;
+}
+
+.CC__announcement-bar__marquee-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 1.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--CC__color-text-muted);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.CC__announcement-bar__marquee-item--tagline {
+  font-family: var(--CC__font-display);
+  font-weight: 500;
+  color: var(--CC__color-primary);
+}
+
+.CC__announcement-bar__marquee-item--profit {
+  color: var(--CC__color-text-main);
+  padding-right: 2rem;
+}
+
+.CC__announcement-bar__sep {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--CC__color-border-glow);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.CC__announcement-bar__sep--trail {
+  margin-right: 1.5rem;
+}
+
+/* Keyframes kept in this file so they always ship with AnnouncementBar */
+@keyframes CC__announcement-scroll-ltr {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 749px) {
+  .CC__announcement-bar {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .CC__announcement-bar__desktop {
+    display: none;
+  }
+
+  .CC__announcement-bar__marquee-row {
+    display: flex;
+  }
+
+  .CC__announcement-bar__marquee-row--ltr .CC__announcement-bar__marquee-track {
+    will-change: transform;
+    -webkit-animation-name: CC__announcement-scroll-ltr;
+    animation-name: CC__announcement-scroll-ltr;
+    -webkit-animation-duration: var(--CC__announcement-speed);
+    animation-duration: var(--CC__announcement-speed);
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-fill-mode: none;
+    animation-fill-mode: none;
+  }
+
+  .CC__announcement-bar__marquee-row:hover .CC__announcement-bar__marquee-track {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+}
+
+@media (min-width: 750px) {
+  .CC__announcement-bar__marquee-row {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @media (max-width: 749px) {
+    .CC__announcement-bar__marquee-row--ltr .CC__announcement-bar__marquee-track {
+      -webkit-animation: none !important;
+      animation: none !important;
+      width: 100%;
+      max-width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      white-space: normal;
+      padding: 0 0.75rem;
+      transform: none !important;
+    }
+
+    .CC__announcement-bar__marquee-duplicate {
+      display: none !important;
+    }
+  }
+}
