@@ -47,43 +47,72 @@
   padding: 0.5rem var(--CC__space-md);
 }
 
+/* Mobile marquee (component returns null on desktop) */
 .CC__announcement-bar__marquee {
-  display: none;
-  overflow: hidden;
+  display: block;
   width: 100%;
-}
-
-.CC__announcement-bar__marquee-root {
+  padding: 0.5rem 0;
   overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-  padding: 0;
+  touch-action: pan-y;
+}
+
+.CC__announcement-bar__marquee-viewport {
   width: 100%;
+  overflow: hidden;
 }
 
-.CC__announcement-bar__marquee-content {
-  white-space: nowrap;
+.CC__announcement-bar__marquee-track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
 }
 
-.ccAnnouncementMarquee__wrapper {
-  white-space: nowrap;
-}
-
-.CC__announcement-bar__segment {
+.CC__announcement-bar__marquee-item {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
   gap: 1rem;
+  padding-right: 2.75rem;
   white-space: nowrap;
-  vertical-align: middle;
 }
 
-.CC__announcement-bar__segment .CC__announcement-bar__tagline {
+.CC__announcement-bar__marquee-item .CC__announcement-bar__tagline {
   margin: 0;
 }
 
-.CC__announcement-bar__segment .CC__announcement-bar__stats {
+.CC__announcement-bar__marquee-item .CC__announcement-bar__stats {
   flex-wrap: nowrap;
+}
+
+.CC__announcement-bar__stat-profit {
+  padding-right: 1.5rem;
+}
+
+.CC__announcement-bar__marquee--static {
+  display: flex;
+  justify-content: center;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.CC__announcement-bar__marquee--static .CC__announcement-bar__marquee-item {
+  padding-right: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  white-space: normal;
+  text-align: center;
+}
+
+.CC__announcement-bar__marquee--static .CC__announcement-bar__stats {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.CC__announcement-bar__marquee--static .CC__announcement-bar__stat-profit {
+  padding-right: 0;
 }
 
 .CC__announcement-bar__tagline {
@@ -135,57 +164,12 @@
   .CC__announcement-bar__desktop {
     display: none;
   }
-
-  .CC__announcement-bar__marquee {
-    display: block;
-    width: 100%;
-    padding: 0.5rem 0;
-    overflow: hidden;
-    overscroll-behavior-x: none;
-    touch-action: pan-y;
-  }
-
-  .CC__announcement-bar__segment {
-    padding-right: 2.5rem;
-  }
-
-  .CC__announcement-bar__stats li:last-child {
-    margin-right: 1.25rem;
-  }
 }
 
 @media (min-width: 750px) {
-  .CC__announcement-bar__marquee {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  @media (max-width: 749px) {
-    .CC__announcement-bar__marquee-root .ccAnnouncementMarquee__wrapper {
-      transform: none !important;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      white-space: normal;
-    }
-
-    .CC__announcement-bar__marquee-root .ccAnnouncementMarquee__copy + .ccAnnouncementMarquee__copy {
-      display: none;
-    }
-
-    .CC__announcement-bar__segment {
-      flex-wrap: wrap;
-      justify-content: center;
-      white-space: normal;
-      text-align: center;
-      gap: 0.35rem 0.75rem;
-    }
-
-    .CC__announcement-bar__segment .CC__announcement-bar__stats {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+  .CC__announcement-bar__marquee,
+  .CC__announcement-bar__marquee--static {
+    display: none !important;
   }
 }
 
