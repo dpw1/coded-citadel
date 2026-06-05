@@ -49,6 +49,10 @@ function isRegionCode(key) {
   return /^[A-Z]{2}$/.test(key)
 }
 
+function sortEntriesByValueDesc(dataObj) {
+  return Object.entries(dataObj ?? {}).sort(([, a], [, b]) => b - a)
+}
+
 function chartDefaults() {
   Chart.defaults.color = '#7a8599'
   Chart.defaults.font.family = "'Inter', sans-serif"
@@ -189,8 +193,9 @@ export default function ExtensionCharts({ analytics, chartIds }) {
     function buildDonut(canvasId, dataObj, total) {
       const canvas = document.getElementById(canvasId)
       if (!canvas || !dataObj) return
-      const labels = Object.keys(dataObj).map(formatLabel)
-      const values = Object.values(dataObj)
+      const entries = sortEntriesByValueDesc(dataObj)
+      const labels = entries.map(([key]) => formatLabel(key))
+      const values = entries.map(([, value]) => value)
       charts.push(
         new Chart(canvas, {
           type: 'doughnut',
@@ -248,7 +253,7 @@ export default function ExtensionCharts({ analytics, chartIds }) {
 
 export function DonutLegend({ dataObj, total }) {
   if (!dataObj) return null
-  const entries = Object.entries(dataObj)
+  const entries = sortEntriesByValueDesc(dataObj)
   return (
     <ul className="ext-chart-legend">
       {entries.map(([key, value], i) => {

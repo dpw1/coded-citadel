@@ -13,6 +13,7 @@ export default function ExtensionAnalyticsBlock({
   analytics,
   chartIds,
   updatedAt,
+  updatedLabel = null,
   eyebrow = 'Analytics Overview',
   title = 'Live Performance',
   appFilter = null,
@@ -41,7 +42,9 @@ export default function ExtensionAnalyticsBlock({
           <div className="ext-analytics__header-main">
             <div className="ext-analytics__eyebrow">{eyebrow}</div>
             <h2 className="ext-analytics__title">{title}</h2>
-            {updatedAt ? (
+            {updatedLabel ? (
+              <small className="ext-analytics__updated">{updatedLabel}</small>
+            ) : updatedAt ? (
               <small className="ext-analytics__updated">
                 Last updated at: {formatAppDate(updatedAt)}
               </small>
@@ -203,7 +206,9 @@ export default function ExtensionAnalyticsBlock({
             <CyberCorners />
             <div className="ext-sec-card__label">Page Views by Source</div>
             <div className="ext-sources">
-              {Object.entries(pageViewsBySource).map(([source, count]) => {
+              {[...Object.entries(pageViewsBySource)]
+                .sort(([, a], [, b]) => b - a)
+                .map(([source, count]) => {
                 const pct = analytics.pageViews
                   ? ((count / analytics.pageViews) * 100).toFixed(1)
                   : '0.0'

@@ -37,10 +37,16 @@ export default function HomePage() {
 
       <section className="CC__hero" aria-label="Hero – Code to $100K">
         <div className="CC__hero__image" aria-hidden="true">
-          <img
-            src={`${import.meta.env.BASE_URL}hero-img.png`}
-            alt="Glowing dark castle with code symbols – the $100K journey"
-          />
+          <picture>
+            <source
+              media="(max-width: 768px)"
+              srcSet={`${import.meta.env.BASE_URL}diego-hero-mobile.png`}
+            />
+            <img
+              src={`${import.meta.env.BASE_URL}diego-hero.png`}
+              alt="Diego — Coded Citadel founder on the $100K journey"
+            />
+          </picture>
         </div>
 
         <div className="CC__hero__inner">
@@ -70,7 +76,7 @@ export default function HomePage() {
             </h1>
 
             <p className="CC__hero__sub">
-              This is not a marketing gist of "making X in Y days" to sell you some course. This is a true, transparent diary of my personal path.
+            This is not marketing. Not a "making X in Y days" type of video to sell you some course. This my true, transparent journey.
             </p>
 
             <div className="CC__hero__actions">
@@ -104,6 +110,12 @@ export default function HomePage() {
                   </svg>
                 </span>
                 View Apps
+              </Link>
+              <Link to="/live-stats" className="CC__hero__btn CC__hero__btn--secondary" aria-label="View stats">
+                <span className="CC__hero__btn-icon" aria-hidden="true">
+                  🔥
+                </span>
+                View Stats
               </Link>
             </div>
           </div>

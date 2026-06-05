@@ -14,7 +14,7 @@ import {
   getPortfolioAnalytics,
   getPortfolioAnalyticsForKeys,
   getPortfolioAnalyticsPayload,
-  getPortfolioAnalyticsUpdatedAt,
+  formatPortfolioAnalyticsDateRange,
   getPortfolioApps,
   portfolioAnalyticsTitle,
 } from '../utils/portfolioAnalytics'
@@ -34,7 +34,7 @@ function portfolioActiveUsers(analytics) {
 export default function StatsPage() {
   const payload = getPortfolioAnalyticsPayload()
   const portfolioApps = useMemo(() => getPortfolioApps(), [])
-  const updatedAt = getPortfolioAnalyticsUpdatedAt()
+  const analyticsDateRangeLabel = formatPortfolioAnalyticsDateRange()
   const uid = useId().replace(/:/g, '')
 
   const [selectedKeys, setSelectedKeys] = useState(
@@ -88,9 +88,7 @@ export default function StatsPage() {
             <p className="CC__section-eyebrow">Building in public</p>
             <h1 className="CC__section-title">Portfolio Stats</h1>
             <p className="CC__stats-page__intro">
-              Combined Chrome Web Store analytics across{' '}
-              {payload.appCount ? formatNumber(payload.appCount) : 'all'} live extensions — installs,
-              users, regions, and store impressions in one place.
+            To go one step further' , I'm manually scraping all my "Chrome Web Store" private data and making it publicly accessible here. You can view all installations, users, views, and all private data of my apps. 
             </p>
             <Link to="/apps" className="CC__btn CC__btn--outline CC__stats-page__apps-link">
               View all apps
@@ -109,7 +107,7 @@ export default function StatsPage() {
               <ExtensionAnalyticsBlock
                 analytics={analytics}
                 chartIds={chartIds}
-                updatedAt={updatedAt}
+                updatedLabel={analyticsDateRangeLabel}
                 eyebrow="Portfolio Analytics"
                 title={sectionTitle}
                 appFilter={appFilter}
