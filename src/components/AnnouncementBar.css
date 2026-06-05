@@ -200,7 +200,7 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+
   @media (max-width: 749px) {
     .CC__announcement-bar__marquee-row--ltr .CC__announcement-bar__marquee-track {
       -webkit-animation: none !important;
@@ -218,4 +218,4 @@
       display: none !important;
     }
   }
-}
+
