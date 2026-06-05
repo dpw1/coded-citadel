@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { formatNumber, formatRevenue, getAnnouncementBarStats } from '../utils/apps'
 
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@CodedCitadel'
@@ -19,6 +20,8 @@ function AnnouncementContent({ liveApps, totalActiveUsers, totalInstalls, totalP
 export default function AnnouncementBar() {
   const { liveApps, totalActiveUsers, totalInstalls, totalProfit } = getAnnouncementBarStats()
   const stats = { liveApps, totalActiveUsers, totalInstalls, totalProfit }
+  const segmentRef = useRef(null)
+  const [marqueeShift, setMarqueeShift] = useState(0)
 
   const ariaLabel = [
     'VibeCoding Until I Make $100k USD',
@@ -28,28 +31,59 @@ export default function AnnouncementBar() {
     `profit: ${formatRevenue(totalProfit)}`,
   ].join(' | ')
 
+  useEffect(() => {
+    const segment = segmentRef.current
+    if (!segment) return undefined
+
+    const update = () => {
+      setMarqueeShift(segment.getBoundingClientRect().width)
+    }
+
+    update()
+    const observer = new ResizeObserver(update)
+    observer.observe(segment)
+    window.addEventListener('resize', update)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', update)
+    }
+  }, [liveApps, totalActiveUsers, totalInstalls, totalProfit])
+
+  const trackStyle =
+    marqueeShift > 0
+      ? { '--CC__announcement-shift': `${marqueeShift}px` }
+      : undefined
+
   return (
-    <a
-      href={YOUTUBE_CHANNEL_URL}
-      className="CC__announcement-bar"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${ariaLabel}. Open Coded Citadel on YouTube`}
-    >
+    <div className="CC__announcement-bar">
+      <a
+        href={YOUTUBE_CHANNEL_URL}
+        className="CC__announcement-bar__link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${ariaLabel}. Open Coded Citadel on YouTube`}
+      />
+
       <div className="CC__announcement-bar__desktop CC__container">
         <AnnouncementContent {...stats} />
       </div>
 
-      <div className="CC__announcement-bar__marquee">
-        <div className="CC__announcement-bar__track">
-          <div className="CC__announcement-bar__segment">
+      <div className="CC__announcement-bar__marquee" aria-hidden="true">
+        <div
+          className={`CC__announcement-bar__track${
+            marqueeShift > 0 ? ' CC__announcement-bar__track--ready' : ''
+          }`}
+          style={trackStyle}
+        >
+          <div ref={segmentRef} className="CC__announcement-bar__segment">
             <AnnouncementContent {...stats} />
           </div>
-          <div className="CC__announcement-bar__segment" aria-hidden="true">
+          <div className="CC__announcement-bar__segment">
             <AnnouncementContent {...stats} />
           </div>
         </div>
       </div>
-    </a>
+    </div>
   )
 }

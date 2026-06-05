@@ -15,13 +15,23 @@
 }
 
 .CC__announcement-bar {
+  position: relative;
   display: block;
   background-color: var(--CC__color-bg-surface);
   border-bottom: 1px solid var(--CC__color-border);
   color: inherit;
-  text-decoration: none;
+}
+
+.CC__announcement-bar__link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   cursor: pointer;
-  transition: background-color 0.25s ease;
+}
+
+.CC__announcement-bar__link:focus-visible {
+  outline: 2px solid var(--CC__color-primary);
+  outline-offset: -2px;
 }
 
 .CC__announcement-bar:hover {
@@ -44,7 +54,8 @@
 }
 
 .CC__announcement-bar__track {
-  display: flex;
+  display: inline-flex;
+  flex-wrap: nowrap;
   width: max-content;
 }
 
@@ -110,7 +121,7 @@
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(calc(-1 * var(--CC__announcement-shift, 0px)), 0, 0);
   }
 }
 
@@ -133,7 +144,8 @@
     touch-action: pan-y;
   }
 
-  .CC__announcement-bar__track {
+  .CC__announcement-bar__track--ready {
+    -webkit-animation: CC__announcement-marquee 28s linear infinite;
     animation: CC__announcement-marquee 28s linear infinite;
     will-change: transform;
   }
@@ -146,7 +158,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .CC__announcement-bar__track {
+  .CC__announcement-bar__track,
+  .CC__announcement-bar__track--ready {
+    -webkit-animation: none;
     animation: none;
     width: 100%;
     max-width: 100%;
