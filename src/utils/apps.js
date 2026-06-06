@@ -153,13 +153,18 @@ export function getJourneyStartDateLabel() {
   })
 }
 
-export function appActiveUsers(app) {
-  if (!isAppLive(app) || !app.analytics) return null
-  const series = app.analytics.weeklyUsers
-  if (series?.length) {
+export function analyticsActiveUsers(analytics) {
+  if (!analytics) return 0
+  const series = getWeeklyUsersSeries(analytics)
+  if (series.length) {
     return series[series.length - 1].total ?? 0
   }
-  return app.analytics.enabledVsDisabled?.enabled ?? 0
+  return analytics.enabledVsDisabled?.enabled ?? 0
+}
+
+export function appActiveUsers(app) {
+  if (!isAppLive(app) || !app.analytics) return null
+  return analyticsActiveUsers(app.analytics)
 }
 
 export function getHomeStats() {
@@ -313,6 +318,75 @@ function seriesPointValue(row) {
   return row?.total ?? row?.count ?? 0
 }
 
+function isoFromLocalDate(d) {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+function addDaysToIso(iso, days) {
+  const d = new Date(`${iso}T12:00:00`)
+  d.setDate(d.getDate() + days)
+  return isoFromLocalDate(d)
+}
+
+function seriesTotalsByIso(series) {
+  const byIso = new Map()
+  for (const row of series ?? []) {
+    if (!row?.date) continue
+    byIso.set(installDateToIso(row.date), seriesPointValue(row))
+  }
+  return byIso
+}
+
+function sumSeriesForDaysEnding(byIso, endIso, dayCount) {
+  let sum = 0
+  for (let i = 0; i < dayCount; i++) {
+    sum += byIso.get(addDaysToIso(endIso, -i)) ?? 0
+  }
+  return sum
+}
+
+/** Compare a 7-day total ending on the latest day vs the prior 7-day window. */
+export function analyticsSeriesWeekDelta(series, windowDays = 7) {
+  const byIso = seriesTotalsByIso(series)
+  if (!byIso.size) return null
+
+  const lastIso = [...byIso.keys()].sort().pop()
+  const last = sumSeriesForDaysEnding(byIso, lastIso, windowDays)
+  const prevEndIso = addDaysToIso(lastIso, -windowDays)
+  const prev = sumSeriesForDaysEnding(byIso, prevEndIso, windowDays)
+
+  if (!prev) return null
+  const pct = Math.round(((last - prev) / prev) * 100)
+  return { pct, last, prev }
+}
+
+/** Compare snapshot value at the latest day vs ~7 days earlier (for cumulative series). */
+export function analyticsSnapshotWeekDelta(series, lookbackDays = 7) {
+  const byIso = seriesTotalsByIso(series)
+  if (!byIso.size) return null
+
+  const lastIso = [...byIso.keys()].sort().pop()
+  const last = byIso.get(lastIso)
+  const targetPrevIso = addDaysToIso(lastIso, -lookbackDays)
+
+  let prev = byIso.get(targetPrevIso)
+  if (prev == null) {
+    for (const iso of [...byIso.keys()].sort().reverse()) {
+      if (iso <= targetPrevIso) {
+        prev = byIso.get(iso)
+        break
+      }
+    }
+  }
+
+  if (prev == null || !prev) return null
+  const pct = Math.round(((last - prev) / prev) * 100)
+  return { pct, last, prev }
+}
+
 export function analyticsSeriesDelta(series) {
   if (!series?.length || series.length < 2) return null
   const prev = seriesPointValue(series[series.length - 2])
@@ -327,12 +401,7 @@ export function installationsTotal(series) {
 }
 
 export function installationsDelta(series) {
-  if (!series?.length || series.length < 2) return null
-  const prev = seriesPointValue(series[series.length - 2])
-  const last = seriesPointValue(series[series.length - 1])
-  if (!prev) return null
-  const pct = Math.round(((last - prev) / prev) * 100)
-  return { pct, last, prev }
+  return analyticsSeriesWeekDelta(series)
 }
 
 export function formatNumber(n) {
@@ -360,6 +429,18 @@ export function titleCaseAudience(value) {
 
 export function weeklyUsersDelta(weeklyUsers) {
   return analyticsSeriesDelta(weeklyUsers)
+}
+
+export function totalUsersDelta(analytics) {
+  return analyticsSnapshotWeekDelta(getWeeklyUsersSeries(analytics))
+}
+
+export function pageViewsDelta(analytics) {
+  return analyticsSeriesWeekDelta(getPageViewsSeries(analytics))
+}
+
+export function impressionsDelta(analytics) {
+  return analyticsSeriesWeekDelta(getImpressionsSeries(analytics))
 }
 
 export function youtubeEmbedId(url) {

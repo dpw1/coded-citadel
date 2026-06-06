@@ -139,7 +139,7 @@ export default function ExtensionCharts({ analytics, chartIds }) {
 
     const charts = []
 
-    buildLineChart(chartIds.sparkline, installations, 'installs', 100, true)
+    buildLineChart(chartIds.sparkline, weeklyUsers, 'users', 100, true)
 
     const weeklyCanvas = document.getElementById(chartIds.weekly)
     if (weeklyCanvas) {

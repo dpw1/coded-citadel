@@ -1,13 +1,17 @@
 import CyberCorners from '../CyberCorners'
 import ExtensionCharts, { DonutLegend, regionDotColor } from './ExtensionCharts'
 import {
+  analyticsActiveUsers,
   formatAppDate,
   formatLabel,
   formatNumber,
   getInstallationsSeries,
   installationsDelta,
-  installationsTotal,
+  impressionsDelta,
+  pageViewsDelta,
+  totalUsersDelta,
 } from '../../utils/apps'
+import WeekPercentDelta from './WeekPercentDelta'
 
 export default function ExtensionAnalyticsBlock({
   analytics,
@@ -22,7 +26,10 @@ export default function ExtensionAnalyticsBlock({
 
   const installations = getInstallationsSeries(analytics)
   const installDelta = installationsDelta(installations)
-  const installsLast30 = installationsTotal(installations)
+  const totalUsers = analyticsActiveUsers(analytics)
+  const usersDelta = totalUsersDelta(analytics)
+  const viewsDelta = pageViewsDelta(analytics)
+  const imprDelta = impressionsDelta(analytics)
   const enabledVsDisabled = analytics.enabledVsDisabled ?? { enabled: 0, disabled: 0 }
   const pageViewsBySource = analytics.pageViewsBySource ?? {}
   const uninstallsByRegion = analytics.uninstallsByRegion ?? {}
@@ -62,21 +69,31 @@ export default function ExtensionAnalyticsBlock({
             <CyberCorners />
             <div className="ext-kpi__label">Total Installs</div>
             <div className="ext-kpi__value">{formatNumber(analytics.totalInstalls)}</div>
-            <div className="ext-kpi__delta">↑ Live</div>
+            {installDelta ? (
+              <WeekPercentDelta
+                delta={installDelta}
+                as="div"
+                className="ext-kpi__delta"
+                negativeClassName=" ext-kpi__delta--negative"
+              />
+            ) : (
+              <div className="ext-kpi__delta">↑ Live</div>
+            )}
           </div>
           <div className="ext-kpi CC__cyber-accent">
             <CyberCorners />
-            <div className="ext-kpi__label">Installs (Last 30 Days)</div>
-            <div className="ext-kpi__value">{formatNumber(installsLast30)}</div>
-            {installDelta ? (
-              <div
-                className={`ext-kpi__delta${
-                  installDelta.pct < 0 ? ' ext-kpi__delta--negative' : ''
-                }`}
-              >
-                {installDelta.pct < 0 ? '↓' : '↑'} {Math.abs(installDelta.pct)}% vs previous day
-              </div>
-            ) : null}
+            <div className="ext-kpi__label">Active Users</div>
+            <div className="ext-kpi__value">{formatNumber(totalUsers)}</div>
+            {usersDelta ? (
+              <WeekPercentDelta
+                delta={usersDelta}
+                as="div"
+                className="ext-kpi__delta"
+                negativeClassName=" ext-kpi__delta--negative"
+              />
+            ) : (
+              <div className="ext-kpi__delta">↑ Live</div>
+            )}
             <div className="ext-kpi__chart">
               <canvas id={chartIds.sparkline} />
             </div>
@@ -85,13 +102,31 @@ export default function ExtensionAnalyticsBlock({
             <CyberCorners />
             <div className="ext-kpi__label">Page Views</div>
             <div className="ext-kpi__value ext-kpi__value--white">{formatNumber(analytics.pageViews)}</div>
-            <div className="ext-kpi__delta">↑ Live</div>
+            {viewsDelta ? (
+              <WeekPercentDelta
+                delta={viewsDelta}
+                as="div"
+                className="ext-kpi__delta"
+                negativeClassName=" ext-kpi__delta--negative"
+              />
+            ) : (
+              <div className="ext-kpi__delta">↑ Live</div>
+            )}
           </div>
           <div className="ext-kpi CC__cyber-accent">
             <CyberCorners />
             <div className="ext-kpi__label">Impressions</div>
             <div className="ext-kpi__value ext-kpi__value--white">{formatNumber(analytics.impressions)}</div>
-            <div className="ext-kpi__delta ext-kpi__delta--muted">Chrome Web Store</div>
+            {imprDelta ? (
+              <WeekPercentDelta
+                delta={imprDelta}
+                as="div"
+                className="ext-kpi__delta"
+                negativeClassName=" ext-kpi__delta--negative"
+              />
+            ) : (
+              <div className="ext-kpi__delta">↑ Live</div>
+            )}
           </div>
         </div>
 
@@ -172,10 +207,16 @@ export default function ExtensionAnalyticsBlock({
             <CyberCorners />
             <div className="ext-sec-card__label">Impressions</div>
             <div className="ext-sec-card__value">{formatNumber(analytics.impressions)}</div>
-            <div className="ext-sec-card__live">
-              <span className="ext-sec-card__live-dot" />
-              Live
-            </div>
+            {imprDelta ? (
+              <WeekPercentDelta
+                delta={imprDelta}
+                as="div"
+                className="ext-kpi__delta"
+                negativeClassName=" ext-kpi__delta--negative"
+              />
+            ) : (
+              <div className="ext-kpi__delta">↑ Live</div>
+            )}
           </div>
           <div className="ext-sec-card CC__cyber-accent">
             <CyberCorners />

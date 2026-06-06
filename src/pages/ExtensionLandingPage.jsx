@@ -25,7 +25,6 @@ import {
   getAppBySlug,
   isAppLive,
   splitAppTitle,
-  weeklyUsersDelta,
   youtubeEmbedId,
 } from '../utils/apps'
 import '../App.css'
@@ -116,7 +115,6 @@ export default function ExtensionLandingPage() {
   const { main: titleMain, accent: titleAccent } = splitAppTitle(ext.name)
   const an = ext.analytics
   const activeUsers = appActiveUsers(ext) ?? 0
-  const activeUsersDelta = weeklyUsersDelta(an.weeklyUsers)
   const heroYoutube = appHeroYoutubeUrl(ext)
   const heroEmbedId = heroYoutube ? youtubeEmbedId(heroYoutube) : null
   const buildYoutube = appBuildYoutubeUrl(ext)
@@ -314,7 +312,6 @@ export default function ExtensionLandingPage() {
         <ExtensionLiveStatsBar
           analytics={an}
           activeUsers={activeUsers}
-          activeUsersDelta={activeUsersDelta}
         />
 
         <ExtensionAnalyticsBlock

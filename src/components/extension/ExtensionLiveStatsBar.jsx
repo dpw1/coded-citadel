@@ -1,24 +1,26 @@
 import CyberCorners from '../CyberCorners'
-import { formatNumber } from '../../utils/apps'
+import WeekPercentDelta from './WeekPercentDelta'
+import {
+  formatNumber,
+  getInstallationsSeries,
+  installationsDelta,
+  impressionsDelta,
+  pageViewsDelta,
+  totalUsersDelta,
+} from '../../utils/apps'
 
-export function StatsBarPercentDelta({ delta, suffix }) {
-  if (!delta) return null
-  const negative = delta.pct < 0
-  return (
-    <span
-      className={`CC__stats-bar__delta${negative ? ' CC__stats-bar__delta--negative' : ''}`}
-    >
-      {negative ? '↓' : '↑'} {Math.abs(delta.pct)}% {suffix}
-    </span>
-  )
-}
+export { default as WeekPercentDelta } from './WeekPercentDelta'
 
 export default function ExtensionLiveStatsBar({
   analytics,
   activeUsers,
-  activeUsersDelta,
 }) {
   if (!analytics) return null
+
+  const installDelta = installationsDelta(getInstallationsSeries(analytics))
+  const usersDelta = totalUsersDelta(analytics)
+  const viewsDelta = pageViewsDelta(analytics)
+  const imprDelta = impressionsDelta(analytics)
 
   return (
     <section className="CC__stats-section">
@@ -38,15 +40,19 @@ export default function ExtensionLiveStatsBar({
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Total Installs</span>
               <span className="CC__stats-bar__value">{formatNumber(analytics.totalInstalls)}</span>
-              <span className="CC__stats-bar__delta">↑ Live</span>
+              {installDelta ? (
+                <WeekPercentDelta delta={installDelta} />
+              ) : (
+                <span className="CC__stats-bar__delta">↑ Live</span>
+              )}
             </div>
           </li>
           <li className="CC__stats-bar__item">
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Active Users</span>
               <span className="CC__stats-bar__value">{formatNumber(activeUsers)}</span>
-              {activeUsersDelta ? (
-                <StatsBarPercentDelta delta={activeUsersDelta} suffix="vs previous day" />
+              {usersDelta ? (
+                <WeekPercentDelta delta={usersDelta} />
               ) : (
                 <span className="CC__stats-bar__delta">↑ Live</span>
               )}
@@ -58,7 +64,11 @@ export default function ExtensionLiveStatsBar({
               <span className="CC__stats-bar__value CC__stats-bar__value--white">
                 {formatNumber(analytics.pageViews)}
               </span>
-              <span className="CC__stats-bar__delta">↑ Live</span>
+              {viewsDelta ? (
+                <WeekPercentDelta delta={viewsDelta} />
+              ) : (
+                <span className="CC__stats-bar__delta">↑ Live</span>
+              )}
             </div>
           </li>
           <li className="CC__stats-bar__item">
@@ -67,7 +77,11 @@ export default function ExtensionLiveStatsBar({
               <span className="CC__stats-bar__value CC__stats-bar__value--white">
                 {formatNumber(analytics.impressions)}
               </span>
-              <span className="CC__stats-bar__delta CC__stats-bar__delta--muted">Store listing</span>
+              {imprDelta ? (
+                <WeekPercentDelta delta={imprDelta} />
+              ) : (
+                <span className="CC__stats-bar__delta">↑ Live</span>
+              )}
             </div>
           </li>
         </ul>
