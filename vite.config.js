@@ -10,6 +10,7 @@ import portfolioAnalyticsDevPlugin from './back-end/vite-plugin-portfolio-analyt
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const PRIVACY_POLICY_SLUGS = [
+  'ai-bookmark',
   'claude-deep-search',
   'claude-limit-monitor',
   'instagram-dm-exporter',

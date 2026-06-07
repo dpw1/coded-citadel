@@ -1,9 +1,16 @@
+import AiBookmarkPrivacyContent from '../content/privacy/ai-bookmark'
 import ClaudeDeepSearchPrivacyContent from '../content/privacy/claude-deep-search'
 import ClaudeLimitMonitorPrivacyContent from '../content/privacy/claude-limit-monitor'
 import InstagramDmExporterPrivacyContent from '../content/privacy/instagram-dm-exporter'
 import SaveToDrivePrivacyContent from '../content/privacy/save-to-drive-chrome-extension'
 
 const PRIVACY_POLICIES = {
+  'ai-bookmark': {
+    appName: 'AI Bookmark',
+    lastUpdated: 'June 6, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: AiBookmarkPrivacyContent,
+  },
   'claude-deep-search': {
     appName: 'Claude Deep Search',
     lastUpdated: 'May 21, 2026',
