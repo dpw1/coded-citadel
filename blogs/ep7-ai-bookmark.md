@@ -25,8 +25,6 @@ That is exactly what started this. I was using Claude and wanted to save a speci
 
 I came across something called "AI Toolbox for Claude" - but it had quite a few negative reviews, mostly because it was a paid service. That got me thinking: how complex would it actually be to build something like this myself?
 
-![](/blog-images/ep7-ai-bookmark/SCREENSHOT_09-06-2026-20h31.jpg)
-
 That thought turned into AI Bookmark - a Chrome extension that lets you star and save specific replies from Claude, ChatGPT and Grok, with cloud sync via Supabase. This is the full story of how it was built, including every bug, every dead end and every moment where the AI surprised me.
 
 ---
