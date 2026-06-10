@@ -188,7 +188,7 @@ export function BlogPostSEO({ post }) {
         url: BLOG_SITE_URL,
         sameAs: [
           'https://www.youtube.com/@CodedCitadel',
-          'https://www.instagram.com/CodedCitadel',
+          'https://www.instagram.com/codedcitadel',
           'https://x.com/codedCitadel',
         ],
       },

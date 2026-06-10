@@ -297,6 +297,25 @@
   padding: 1rem 1.15rem;
   background: var(--CC__color-bg-card);
   border: 1px solid var(--CC__color-border);
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--CC__color-border) 85%, transparent) transparent;
+}
+
+.CC__blog-post__toc::-webkit-scrollbar {
+  width: 3px;
+}
+
+.CC__blog-post__toc::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.CC__blog-post__toc::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--CC__color-border) 90%, var(--CC__color-text-sub));
+  border-radius: 999px;
+}
+
+.CC__blog-post__toc::-webkit-scrollbar-thumb:hover {
+  background: var(--CC__color-text-sub);
 }
 
 .CC__blog-post__toc-title {
@@ -310,9 +329,16 @@
 }
 
 .CC__blog-post__toc-list {
-  list-style: none;
+  list-style: decimal;
+  list-style-position: outside;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 1.15rem;
+}
+
+.CC__blog-post__toc-list ::marker {
+  color: var(--CC__color-text-sub);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .CC__blog-post__toc-item + .CC__blog-post__toc-item {
@@ -333,6 +359,7 @@
 }
 
 .CC__blog-post__toc-item--nested {
+  list-style-type: lower-alpha;
   padding-left: 0.85rem;
   border-left: 1px solid var(--CC__color-border);
   margin-left: 0.35rem;
@@ -487,6 +514,8 @@
     top: 7rem;
     max-height: calc(100vh - 8.5rem);
     overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding-right: 0.65rem;
   }
 
   .CC__blog-post__main {

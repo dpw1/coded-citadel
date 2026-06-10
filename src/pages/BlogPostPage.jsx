@@ -28,7 +28,7 @@ function BlogTableOfContents({ items, onNavigate }) {
   return (
     <nav className="CC__blog-post__toc" aria-label="Table of contents">
       <p className="CC__blog-post__toc-title">On this page</p>
-      <ul className="CC__blog-post__toc-list">
+      <ol className="CC__blog-post__toc-list">
         {items.map((item) => (
           <li
             key={item.id}
@@ -47,7 +47,7 @@ function BlogTableOfContents({ items, onNavigate }) {
             </a>
           </li>
         ))}
-      </ul>
+      </ol>
     </nav>
   )
 }

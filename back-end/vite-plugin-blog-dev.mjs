@@ -8,16 +8,22 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '..')
+const IMPORT_SCRIPT = resolve(__dirname, 'import-blog-screenshots.mjs')
 const MANIFEST_SCRIPT = resolve(__dirname, 'generate-blog-manifest.mjs')
 const BLOGS_DIR = resolve(ROOT, 'blogs')
 const REDIRECTS_FILE = resolve(ROOT, 'blog-redirects.json')
 
-function regenerateBlogManifest() {
-  const result = spawnSync(process.execPath, [MANIFEST_SCRIPT], {
+function runScript(scriptPath) {
+  const result = spawnSync(process.execPath, [scriptPath], {
     cwd: ROOT,
     stdio: 'inherit',
   })
   return result.status === 0
+}
+
+function regenerateBlogManifest() {
+  if (!runScript(IMPORT_SCRIPT)) return false
+  return runScript(MANIFEST_SCRIPT)
 }
 
 function isBlogSourceFile(file) {

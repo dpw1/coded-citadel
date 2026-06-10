@@ -132,7 +132,7 @@ export default function ExtensionPageSEO({ extension }) {
         url: SITE_URL,
         sameAs: [
           'https://www.youtube.com/@CodedCitadel',
-          'https://www.instagram.com/CodedCitadel',
+          'https://www.instagram.com/codedcitadel',
         ],
       },
     }

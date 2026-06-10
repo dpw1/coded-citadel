@@ -76,7 +76,7 @@ export default function HomePage() {
             </h1>
 
             <p className="CC__hero__sub">
-            This is not marketing. Not a "making X in Y days" type of video to sell you some course. This my true, transparent journey.
+            This is not marketing. Not a "making X in Y days" type of video to sell you some course. This my true, transparent journey: a senior dev going from $0 to $100k.
             </p>
 
             <div className="CC__hero__actions">
