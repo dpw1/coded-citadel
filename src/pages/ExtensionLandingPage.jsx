@@ -72,6 +72,7 @@ export default function ExtensionLandingPage() {
       impressions: `impr-${uid}`,
       installRegion: `install-${uid}`,
       weeklyRegion: `wregion-${uid}`,
+      enabledVsDisabled: `evd-${uid}`,
     }),
     [uid],
   )
@@ -85,7 +86,7 @@ export default function ExtensionLandingPage() {
 
   if (!ext) return <AppNotFound />
 
-  if (!isAppLive(ext) || !ext.analytics) {
+  if (!isAppLive(ext)) {
     return (
       <AppPageShell>
       <ExtensionPageSEO extension={ext} />
@@ -113,7 +114,7 @@ export default function ExtensionLandingPage() {
   }
 
   const { main: titleMain, accent: titleAccent } = splitAppTitle(ext.name)
-  const an = ext.analytics
+  const an = ext.analytics ?? null
   const activeUsers = appActiveUsers(ext) ?? 0
   const heroYoutube = appHeroYoutubeUrl(ext)
   const heroEmbedId = heroYoutube ? youtubeEmbedId(heroYoutube) : null
@@ -226,7 +227,7 @@ export default function ExtensionLandingPage() {
                     <polyline points="7 10 12 15 17 10" />
                     <line x1="12" y1="15" x2="12" y2="3" />
                   </svg>
-                  {formatNumber(an.totalInstalls)} installs
+                  {formatNumber(an?.totalInstalls ?? 0)} installs
                 </span>
               </div>
             </div>

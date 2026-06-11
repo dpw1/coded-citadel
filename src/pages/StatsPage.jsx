@@ -13,6 +13,7 @@ import {
   getPortfolioApps,
   portfolioAnalyticsTitle,
 } from '../utils/portfolioAnalytics'
+import { getSiteStatsHeadlines } from '../utils/siteStats'
 import '../App.css'
 import './ExtensionLandingPage.css'
 import './StatsPage.css'
@@ -48,12 +49,15 @@ export default function StatsPage() {
       impressions: `stats-impr-${uid}`,
       installRegion: `stats-install-${uid}`,
       weeklyRegion: `stats-wregion-${uid}`,
+      enabledVsDisabled: `stats-evd-${uid}`,
     }),
     [uid],
   )
 
   const sectionTitle = portfolioAnalyticsTitle(selectedKeys)
   const analyticsDateRangeLabel = formatAnalyticsDateRangeLabel(dateFrom || null, dateTo || null)
+  const siteStatsHeadlines = useMemo(() => getSiteStatsHeadlines(), [])
+  const allAppsSelected = selectedKeys.size === portfolioApps.length
 
   useEffect(() => {
     document.title = 'Portfolio Stats — Coded Citadel'
@@ -86,6 +90,7 @@ export default function StatsPage() {
               updatedLabel={analyticsDateRangeLabel}
               eyebrow="Portfolio Analytics"
               title={sectionTitle}
+              siteStatsHeadlines={allAppsSelected ? siteStatsHeadlines : null}
               appFilter={
                 <PortfolioStatsFilter
                   apps={portfolioApps}

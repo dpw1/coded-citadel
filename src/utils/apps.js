@@ -93,37 +93,17 @@ export function appBuildYoutubeUrl(app) {
   return null
 }
 
-function parseRevenueValue(revenue) {
-  if (revenue == null) return 0
-  const m = String(revenue).match(/\$?([\d,.]+)/)
-  return m ? Number(m[1].replace(/,/g, '')) : 0
-}
-
 export function formatRevenue(total) {
   return `$${Math.round(total).toLocaleString('en-US')}`
 }
 
-/** Live portfolio totals for the site announcement bar. */
-export function getAnnouncementBarStats() {
-  const live = getAllApps().filter(isAppLive)
-  let totalInstalls = 0
-  let totalActiveUsers = 0
-  let totalProfit = 0
-
-  for (const app of live) {
-    const installs = app.analytics?.totalInstalls
-    if (installs != null) totalInstalls += installs
-    totalActiveUsers += appActiveUsers(app) ?? 0
-    totalProfit += parseRevenueValue(app.revenue)
-  }
-
-  return {
-    liveApps: live.length,
-    totalActiveUsers,
-    totalInstalls,
-    totalProfit,
-  }
-}
+export {
+  getAnnouncementBarStats,
+  getHomeStats,
+  getSiteStats,
+  getSiteStatsHeadlines,
+  initSiteStats,
+} from './siteStats'
 
 /** Day 1 of the public journey — May 12, 2026 at local midnight. */
 const JOURNEY_DAY_ONE = new Date(2026, 4, 12)
@@ -167,36 +147,6 @@ export function appActiveUsers(app) {
   return analyticsActiveUsers(app.analytics)
 }
 
-export function getHomeStats() {
-  const apps = getAllApps()
-  const live = apps.filter(isAppLive)
-  let totalInstalls = 0
-  let totalActiveUsers = 0
-
-  for (const app of live) {
-    const installs = app.analytics?.totalInstalls
-    if (installs != null) totalInstalls += installs
-    totalActiveUsers += appActiveUsers(app) ?? 0
-  }
-
-  const installsDelta7d =
-    appsData.portfolioStats?.installsDelta7d ??
-    computeInstallsDelta7dFromApps(apps).installsDelta7d
-
-  const built = apps.length
-  const inProgress = apps.filter((a) => a.status !== 'live').length
-
-  return {
-    totalActiveUsers,
-    totalInstalls,
-    installDelta: installsDelta7d,
-    activeUsersDelta7d: appsData.portfolioStats?.activeUsersDelta7d ?? null,
-    built,
-    inProgress,
-    daysIntoJourney: getDaysIntoJourney(),
-  }
-}
-
 export function appCardInstalls(app) {
   if (!isAppLive(app)) return null
   const installs = app.analytics?.totalInstalls
@@ -220,6 +170,16 @@ export function formatAppDate(iso) {
   if (!iso) return '—'
   const d = new Date(`${iso}T12:00:00`)
   return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
+}
+
+/** Display label for enabled/disabled snapshot date (`dd-mm-yyyy` or ISO). */
+export function formatEnabledVsDisabledDate(enabledVsDisabled) {
+  const raw = enabledVsDisabled?.date
+  if (!raw) return null
+  if (/^\d{2}-\d{2}-\d{4}$/.test(raw)) {
+    return formatAppDate(installDateToIso(raw))
+  }
+  return formatAppDate(raw)
 }
 
 export function formatWeekLabel(week) {

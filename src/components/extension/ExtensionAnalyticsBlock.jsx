@@ -1,8 +1,13 @@
 import CyberCorners from '../CyberCorners'
-import ExtensionCharts, { DonutLegend, regionDotColor } from './ExtensionCharts'
+import ExtensionCharts, {
+  DonutLegend,
+  EnabledVsDisabledLegend,
+  regionDotColor,
+} from './ExtensionCharts'
 import {
   analyticsActiveUsers,
   formatAppDate,
+  formatEnabledVsDisabledDate,
   formatLabel,
   formatNumber,
   getInstallationsSeries,
@@ -11,6 +16,7 @@ import {
   pageViewsDelta,
   totalUsersDelta,
 } from '../../utils/apps'
+import { siteStatsWeekDeltaPct } from '../../utils/siteStats'
 import WeekPercentDelta from './WeekPercentDelta'
 
 export default function ExtensionAnalyticsBlock({
@@ -21,20 +27,32 @@ export default function ExtensionAnalyticsBlock({
   eyebrow = 'Analytics Overview',
   title = 'Live Performance',
   appFilter = null,
+  siteStatsHeadlines = null,
 }) {
   if (!analytics || !chartIds) return null
 
   const installations = getInstallationsSeries(analytics)
-  const installDelta = installationsDelta(installations)
-  const totalUsers = analyticsActiveUsers(analytics)
-  const usersDelta = totalUsersDelta(analytics)
+  const installDelta = siteStatsHeadlines
+    ? siteStatsWeekDeltaPct(
+        siteStatsHeadlines.installsDelta7d,
+        siteStatsHeadlines.baselineTotalInstalls,
+      ) ?? installationsDelta(installations)
+    : installationsDelta(installations)
+  const totalInstalls = siteStatsHeadlines?.totalInstalls ?? analytics.totalInstalls
+  const totalUsers = siteStatsHeadlines?.activeUsers ?? analyticsActiveUsers(analytics)
+  const usersDelta = siteStatsHeadlines
+    ? siteStatsWeekDeltaPct(
+        siteStatsHeadlines.activeUsersDelta7d,
+        siteStatsHeadlines.baselineTotalActiveUsers,
+      ) ?? totalUsersDelta(analytics)
+    : totalUsersDelta(analytics)
   const viewsDelta = pageViewsDelta(analytics)
   const imprDelta = impressionsDelta(analytics)
   const enabledVsDisabled = analytics.enabledVsDisabled ?? { enabled: 0, disabled: 0 }
   const pageViewsBySource = analytics.pageViewsBySource ?? {}
   const uninstallsByRegion = analytics.uninstallsByRegion ?? {}
-  const evd = enabledVsDisabled
-  const evdTotal = evd.enabled + evd.disabled
+  const evdDateLabel = formatEnabledVsDisabledDate(enabledVsDisabled)
+  const showEnabledDonut = (enabledVsDisabled.enabled ?? 0) + (enabledVsDisabled.disabled ?? 0) > 0
   const weeklyRegionTotal = Object.values(analytics.weeklyUsersByRegion ?? {}).reduce(
     (a, b) => a + b,
     0,
@@ -68,7 +86,7 @@ export default function ExtensionAnalyticsBlock({
           <div className="ext-kpi CC__cyber-accent">
             <CyberCorners />
             <div className="ext-kpi__label">Total Installs</div>
-            <div className="ext-kpi__value">{formatNumber(analytics.totalInstalls)}</div>
+            <div className="ext-kpi__value">{formatNumber(totalInstalls)}</div>
             {installDelta ? (
               <WeekPercentDelta
                 delta={installDelta}
@@ -218,34 +236,22 @@ export default function ExtensionAnalyticsBlock({
               <div className="ext-kpi__delta">↑ Live</div>
             )}
           </div>
-          <div className="ext-sec-card CC__cyber-accent">
+          <div className="ext-sec-card ext-sec-card--evd CC__cyber-accent">
             <CyberCorners />
-            <div className="ext-sec-card__label">Enabled vs Disabled</div>
-            <div className="ext-enabled-row">
-              {[
-                { name: 'Enabled', count: evd.enabled, cls: 'ext-enabled-item__fill--orange' },
-                { name: 'Disabled', count: evd.disabled, cls: 'ext-enabled-item__fill--muted' },
-              ].map((item) => {
-                const pct = evdTotal ? ((item.count / evdTotal) * 100).toFixed(1) : '0.0'
-                return (
-                  <div key={item.name} className="ext-enabled-item">
-                    <div className="ext-enabled-item__top">
-                      <span className="ext-enabled-item__name">{item.name}</span>
-                      <span>
-                        <span className="ext-enabled-item__count">{formatNumber(item.count)}</span>
-                        <span className="ext-enabled-item__pct"> ({pct}%)</span>
-                      </span>
-                    </div>
-                    <div className="ext-enabled-item__bar">
-                      <div
-                        className={`ext-enabled-item__fill ${item.cls}`}
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
+            <div className="ext-sec-card__label">Extension enabled vs disabled</div>
+            {evdDateLabel ? (
+              <p className="ext-evd-donut__date">As of {evdDateLabel}</p>
+            ) : null}
+            {showEnabledDonut && chartIds.enabledVsDisabled ? (
+              <>
+                <div className="ext-evd-donut__canvas-wrap">
+                  <canvas id={chartIds.enabledVsDisabled} />
+                </div>
+                <EnabledVsDisabledLegend enabledVsDisabled={enabledVsDisabled} />
+              </>
+            ) : (
+              <p className="ext-evd-donut__empty">No enabled/disabled data yet.</p>
+            )}
           </div>
           <div className="ext-sec-card CC__cyber-accent">
             <CyberCorners />

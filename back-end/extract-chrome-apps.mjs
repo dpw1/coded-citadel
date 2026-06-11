@@ -176,8 +176,28 @@ function emptyAnalytics() {
     pageViewsBySource: {},
     impressions: 0,
     impressionsAcrossChromeWebStore: [],
-    enabledVsDisabled: { enabled: 0, disabled: 0 },
+    enabledVsDisabled: {
+      enabled: 0,
+      disabled: 0,
+      enabledPct: 0,
+      disabledPct: 0,
+      total: 0,
+      date: null,
+      slices: [],
+    },
+    enabledVsDisabledOverTime: [],
   }
+}
+
+function hasMeaningfulAnalytics(analytics) {
+  if (!analytics) return false
+  return (
+    (analytics.totalInstalls ?? 0) > 0 ||
+    (analytics.weeklyUsers?.length ?? 0) > 0 ||
+    (analytics.enabledVsDisabled?.enabled ?? 0) > 0 ||
+    (analytics.pageViews ?? 0) > 0 ||
+    (analytics.impressions ?? 0) > 0
+  )
 }
 
 const CATEGORY_MAP = {
@@ -403,16 +423,276 @@ function mergeSeriesByIso(...seriesList) {
   return byDateToSeries(byIso)
 }
 
-const ENABLED_LABELS = /ativado|enabled/i
-const DISABLED_LABELS = /desativado|disabled/i
+/** Chrome labels: "Item desativado" must be checked before "Item ativado" (substring trap). */
+export function classifyEnabledLabel(label) {
+  const text = fixEncoding(String(label ?? '')).toLowerCase()
+  if (/desativado|disabled/i.test(text)) return 'disabled'
+  if (/ativado|enabled/i.test(text)) return 'enabled'
+  return null
+}
 
-function parseEnabledVsDisabled(totals) {
+export function parseEnabledVsDisabled(totals) {
   const out = { enabled: 0, disabled: 0 }
   for (const [label, count] of Object.entries(totals ?? {})) {
-    if (ENABLED_LABELS.test(label)) out.enabled += count
-    else if (DISABLED_LABELS.test(label)) out.disabled += count
+    const key = classifyEnabledLabel(label)
+    if (key) out[key] += count
   }
   return out
+}
+
+function sumDimensionSeriesForDay(dayNode, dimensionKey) {
+  const totals = {}
+  if (!Array.isArray(dayNode) || dayNode.length < 2) return totals
+
+  const walk = (node) => {
+    if (!Array.isArray(node)) return
+    if (node.length >= 3 && node[0] === dimensionKey && typeof node[1] === 'number') {
+      const label = String(node[2])
+      totals[label] = (totals[label] || 0) + node[1]
+    }
+    for (const child of node) walk(child)
+  }
+  walk(dayNode[1])
+  return totals
+}
+
+export function extractEnabledVsDisabledDailyFromAf(usersAf) {
+  const data = usersAf?.['ds:3']
+  const series = []
+
+  for (const day of dailySeriesEntries(data)) {
+    const totals = sumDimensionSeriesForDay(day, 'ENABLED_AND_DISABLED')
+    const counts = parseEnabledVsDisabled(totals)
+    if (!counts.enabled && !counts.disabled) continue
+
+    const total = counts.enabled + counts.disabled
+    series.push({
+      date: isoToDdMmYyyy(day[0]),
+      enabled: counts.enabled,
+      disabled: counts.disabled,
+      enabledPct: total ? +((counts.enabled / total) * 100).toFixed(1) : 0,
+      disabledPct: total ? +((counts.disabled / total) * 100).toFixed(1) : 0,
+      total,
+    })
+  }
+
+  return series
+}
+
+/**
+ * Parse enabled/disabled donut slices from a Chrome users-page SVG (regex; Node-safe).
+ * Percentages come from tick-line rotate() angles vs 360°.
+ */
+export function extractDonutSlicesFromSvgString(svgHtml) {
+  const paths = []
+  const pathRe = /<path\b[^>]*>/gi
+  let pathMatch
+
+  while ((pathMatch = pathRe.exec(svgHtml)) !== null) {
+    const tag = pathMatch[0]
+    const dataId = tag.match(/data-id="([^"]*)"/)?.[1]
+    if (!dataId) continue
+    const key = classifyEnabledLabel(dataId)
+    if (!key) continue
+    paths.push({
+      dataId: fixEncoding(dataId),
+      key,
+      fill: tag.match(/fill="([^"]*)"/)?.[1] ?? null,
+    })
+  }
+
+  if (!paths.length) return null
+
+  const angles = []
+  const lineRe = /<line\b[^>]*class="[^"]*Zrvljf-VtOx3e[^"]*"[^>]*>/gi
+  let lineMatch
+  while ((lineMatch = lineRe.exec(svgHtml)) !== null) {
+    const tag = lineMatch[0]
+    const transform = tag.match(/transform="([^"]*)"/)?.[1] ?? 'rotate(0)'
+    const angle = Number.parseFloat(transform.match(/rotate\(([\d.]+)/)?.[1] ?? 0)
+    angles.push(angle)
+  }
+  angles.sort((a, b) => a - b)
+  const boundaries = angles.filter((angle, index, arr) => index === 0 || angle !== arr[index - 1])
+  if (!boundaries.length || boundaries[0] !== 0) boundaries.unshift(0)
+  while (boundaries.length < paths.length + 1) {
+    boundaries.push(360)
+  }
+
+  const slices = []
+  for (let i = 0; i < paths.length; i += 1) {
+    const start = boundaries[i] ?? 0
+    const end = boundaries[i + 1] ?? 360
+    const sweep = end - start
+    slices.push({
+      ...paths[i],
+      percentage: +((sweep / 360) * 100).toFixed(1),
+    })
+  }
+
+  return slices
+}
+
+function parseHumanDateToDdMmYyyy(text) {
+  const fixed = fixEncoding(text).trim()
+  const m = fixed.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/)
+  if (m) {
+    return `${m[1].padStart(2, '0')}-${m[2].padStart(2, '0')}-${m[3]}`
+  }
+
+  const months = {
+    january: 1,
+    february: 2,
+    march: 3,
+    april: 4,
+    may: 5,
+    june: 6,
+    july: 7,
+    august: 8,
+    september: 9,
+    october: 10,
+    november: 11,
+    december: 12,
+    janeiro: 1,
+    fevereiro: 2,
+    março: 3,
+    abril: 4,
+    maio: 5,
+    junho: 6,
+    julho: 7,
+    agosto: 8,
+    setembro: 9,
+    outubro: 10,
+    novembro: 11,
+    dezembro: 12,
+  }
+
+  const named = fixed.match(/(\d{1,2})\s+de\s+(\p{L}+)\s+de\s+(\d{4})/iu)
+  if (named) {
+    const month = months[named[2].toLowerCase()]
+    if (month) {
+      return `${named[1].padStart(2, '0')}-${String(month).padStart(2, '0')}-${named[3]}`
+    }
+  }
+
+  const en = fixed.match(/([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})/)
+  if (en) {
+    const month = months[en[1].toLowerCase()]
+    if (month) {
+      return `${en[2].padStart(2, '0')}-${String(month).padStart(2, '0')}-${en[3]}`
+    }
+  }
+
+  return null
+}
+
+function extractDateNearIndex(html, index) {
+  const before = html.slice(Math.max(0, index - 2500), index)
+  const deh = [...before.matchAll(/class="DehJj">([^<]+)</g)]
+  if (deh.length) {
+    const parsed = parseHumanDateToDdMmYyyy(deh[deh.length - 1][1])
+    if (parsed) return parsed
+  }
+  return null
+}
+
+function exportDateToDdMmYyyy(exportDate) {
+  if (!exportDate) return null
+  const iso = String(exportDate).slice(0, 10)
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return null
+  return isoToDdMmYyyy(iso)
+}
+
+function buildEnabledVsDisabledSnapshot({ counts, slices, date }) {
+  const enabledSlice = slices?.find((s) => s.key === 'enabled')
+  const disabledSlice = slices?.find((s) => s.key === 'disabled')
+  let enabledPct = enabledSlice?.percentage ?? null
+  let disabledPct = disabledSlice?.percentage ?? null
+
+  let enabled = counts.enabled
+  let disabled = counts.disabled
+  let total = enabled + disabled
+
+  if (slices?.length && total > 0 && (enabledPct != null || disabledPct != null)) {
+    enabledPct ??= disabledPct != null ? +(100 - disabledPct).toFixed(1) : 0
+    disabledPct ??= +(100 - enabledPct).toFixed(1)
+    enabled = Math.round((total * enabledPct) / 100)
+    disabled = Math.max(0, total - enabled)
+  } else if (total > 0) {
+    enabledPct = +((enabled / total) * 100).toFixed(1)
+    disabledPct = +((disabled / total) * 100).toFixed(1)
+  } else {
+    enabledPct ??= 0
+    disabledPct ??= 0
+  }
+
+  return {
+    enabled,
+    disabled,
+    enabledPct,
+    disabledPct,
+    total,
+    date: date ?? null,
+    slices:
+      slices?.map((slice) => ({
+        key: slice.key,
+        label: slice.dataId,
+        percentage: slice.percentage,
+        fill: slice.fill,
+      })) ?? [],
+  }
+}
+
+export function extractEnabledVsDisabledFromUsersHtml(usersHtml, exportDate) {
+  if (!usersHtml) return null
+
+  const svgRe = /<svg\b[\s\S]*?<\/svg>/gi
+  let match
+  let best = null
+
+  while ((match = svgRe.exec(usersHtml)) !== null) {
+    const svg = match[0]
+    const slices = extractDonutSlicesFromSvgString(svg)
+    if (!slices?.length) continue
+    if (!slices.some((s) => s.key === 'enabled' || s.key === 'disabled')) continue
+
+    const date =
+      extractDateNearIndex(usersHtml, match.index) ?? exportDateToDdMmYyyy(exportDate)
+    best = { slices, date }
+    break
+  }
+
+  return best
+}
+
+export function resolveEnabledVsDisabled(usersHtml, usersAf, exportDate) {
+  const fromAfTotals = parseEnabledVsDisabled(
+    sumDimensionSeries(usersAf?.['ds:3'], 'ENABLED_AND_DISABLED'),
+  )
+  const overTime = extractEnabledVsDisabledDailyFromAf(usersAf)
+  const fromSvg = extractEnabledVsDisabledFromUsersHtml(usersHtml, exportDate)
+
+  const latestDaily = overTime.length ? overTime[overTime.length - 1] : null
+  const counts = {
+    enabled: fromAfTotals.enabled || latestDaily?.enabled || 0,
+    disabled: fromAfTotals.disabled || latestDaily?.disabled || 0,
+  }
+
+  if (!counts.enabled && !counts.disabled && latestDaily) {
+    counts.enabled = latestDaily.enabled
+    counts.disabled = latestDaily.disabled
+  }
+
+  const enabledVsDisabled = buildEnabledVsDisabledSnapshot({
+    counts,
+    slices: fromSvg?.slices ?? null,
+    date: fromSvg?.date ?? latestDaily?.date ?? exportDateToDdMmYyyy(exportDate),
+  })
+
+  return {
+    enabledVsDisabled,
+    enabledVsDisabledOverTime: overTime,
+  }
 }
 
 function sskMatchesSeries(sskLower, patterns) {
@@ -864,8 +1144,10 @@ function extractAnalyticsFromPages(installsHtml, usersHtml, impressionsHtml, exp
   const pageViewsOverTime = extractPageViewsSeries(impressionsHtml, impAf)
   const impressionsAcrossChromeWebStore = extractImpressionsSeries(impressionsHtml, impAf)
   const pageViewsBySource = extractPageViewsBySource(impAf)
-  const enabledVsDisabled = parseEnabledVsDisabled(
-    sumDimensionSeries(usersAf['ds:3'], 'ENABLED_AND_DISABLED'),
+  const { enabledVsDisabled, enabledVsDisabledOverTime } = resolveEnabledVsDisabled(
+    usersHtml,
+    usersAf,
+    exportDate,
   )
 
   const totalFromSeries = installations.reduce((s, row) => s + row.total, 0)
@@ -886,6 +1168,7 @@ function extractAnalyticsFromPages(installsHtml, usersHtml, impressionsHtml, exp
     impressions: impressionsTotal,
     impressionsAcrossChromeWebStore,
     enabledVsDisabled,
+    enabledVsDisabledOverTime,
   })
 }
 
@@ -983,16 +1266,25 @@ function buildApp(id, pages, exportDate, slug) {
           : [],
   }
 
-  if (isLive) {
+  // Parse analytics even when the listing is under store review — Chrome still
+  // exports install/user charts in the downloaded HTML.
+  if (hasMeaningfulAnalytics(analyticsRaw)) {
     app.analytics = analyticsRaw
   }
 
   return app
 }
 
+function ensureLiveAppAnalytics(app) {
+  if (app.status !== 'live') return app
+  if (hasMeaningfulAnalytics(app.analytics)) return app
+  app.analytics = emptyAnalytics()
+  return app
+}
+
 function finalizeApp(app, id, customMap) {
   applyCustomDataToApp(app, customMap.get(id))
-  return app
+  return ensureLiveAppAnalytics(app)
 }
 
 function chromeExtensionIdFromApp(app) {
@@ -1044,6 +1336,7 @@ export function syncAppsJsonCustomData() {
 
     const before = JSON.stringify(app)
     applyCustomDataToApp(app, custom)
+    ensureLiveAppAnalytics(app)
     if (JSON.stringify(app) !== before) {
       changed = true
     }
@@ -1198,7 +1491,7 @@ export async function main() {
     if (app.analytics) {
       const a = app.analytics
       console.log(
-        `  installs: ${a.totalInstalls}, pageViews: ${a.pageViews}, impressions: ${a.impressions}, weeklyUser days: ${a.weeklyUsers?.length ?? 0}, enabled: ${a.enabledVsDisabled?.enabled ?? 0}`,
+        `  installs: ${a.totalInstalls}, pageViews: ${a.pageViews}, impressions: ${a.impressions}, weeklyUser days: ${a.weeklyUsers?.length ?? 0}, enabled: ${a.enabledVsDisabled?.enabled ?? 0}, disabled: ${a.enabledVsDisabled?.disabled ?? 0}`,
       )
     } else {
       console.log(`  status: ${app.status} (no analytics block)`)

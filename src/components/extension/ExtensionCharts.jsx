@@ -29,6 +29,11 @@ Chart.register(
 
 const PALETTE = ['#ff9900', '#3b82f6', '#22c55e', '#a855f7', '#94a3b8']
 
+const ENABLED_VS_DISABLED_COLORS = {
+  enabled: '#ff9900',
+  disabled: '#5c6b82',
+}
+
 const REGION_COLORS = { US: '#ff9900', BR: '#3b82f6', IN: '#22c55e', GB: '#a855f7', other: '#94a3b8' }
 
 const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
@@ -190,12 +195,15 @@ export default function ExtensionCharts({ analytics, chartIds }) {
       )
     }
 
-    function buildDonut(canvasId, dataObj, total) {
+    function buildDonut(canvasId, dataObj, total, colorMap = null) {
       const canvas = document.getElementById(canvasId)
       if (!canvas || !dataObj) return
       const entries = sortEntriesByValueDesc(dataObj)
       const labels = entries.map(([key]) => formatLabel(key))
       const values = entries.map(([, value]) => value)
+      const colors = colorMap
+        ? entries.map(([key]) => colorMap[key] ?? PALETTE[0])
+        : PALETTE
       charts.push(
         new Chart(canvas, {
           type: 'doughnut',
@@ -204,7 +212,7 @@ export default function ExtensionCharts({ analytics, chartIds }) {
             datasets: [
               {
                 data: values,
-                backgroundColor: PALETTE,
+                backgroundColor: colors,
                 borderColor: '#131824',
                 borderWidth: 3,
                 hoverBorderWidth: 3,
@@ -238,6 +246,16 @@ export default function ExtensionCharts({ analytics, chartIds }) {
     const weeklyRegionTotal = Object.values(analytics.weeklyUsersByRegion).reduce((a, b) => a + b, 0)
     buildDonut(chartIds.weeklyRegion, analytics.weeklyUsersByRegion, weeklyRegionTotal)
 
+    const evd = analytics.enabledVsDisabled
+    if (chartIds.enabledVsDisabled && evd && (evd.enabled || evd.disabled)) {
+      buildDonut(
+        chartIds.enabledVsDisabled,
+        { enabled: evd.enabled, disabled: evd.disabled },
+        evd.total ?? evd.enabled + evd.disabled,
+        ENABLED_VS_DISABLED_COLORS,
+      )
+    }
+
     const resize = () => charts.forEach((c) => c.resize())
     window.addEventListener('resize', resize)
     requestAnimationFrame(resize)
@@ -249,6 +267,53 @@ export default function ExtensionCharts({ analytics, chartIds }) {
   }, [analytics, chartIds])
 
   return null
+}
+
+export function EnabledVsDisabledLegend({ enabledVsDisabled }) {
+  if (!enabledVsDisabled) return null
+
+  const total = enabledVsDisabled.total ?? enabledVsDisabled.enabled + enabledVsDisabled.disabled
+  const items = [
+    {
+      key: 'enabled',
+      label: 'Enabled',
+      value: enabledVsDisabled.enabled,
+      pct: enabledVsDisabled.enabledPct,
+      color: ENABLED_VS_DISABLED_COLORS.enabled,
+    },
+    {
+      key: 'disabled',
+      label: 'Disabled',
+      value: enabledVsDisabled.disabled,
+      pct: enabledVsDisabled.disabledPct,
+      color: ENABLED_VS_DISABLED_COLORS.disabled,
+    },
+  ]
+
+  return (
+    <ul className="ext-chart-legend ext-evd-legend">
+      {items.map((item) => {
+        const pct =
+          item.pct != null
+            ? Number(item.pct).toFixed(1)
+            : total
+              ? ((item.value / total) * 100).toFixed(1)
+              : '0.0'
+        return (
+          <li key={item.key} className="ext-chart-legend__item">
+            <span className="ext-chart-legend__left">
+              <span className="ext-chart-legend__dot" style={{ background: item.color }} />
+              {item.label}
+            </span>
+            <span>
+              <span className="ext-chart-legend__val">{item.value.toLocaleString()}</span>
+              <span className="ext-chart-legend__pct"> ({pct}%)</span>
+            </span>
+          </li>
+        )
+      })}
+    </ul>
+  )
 }
 
 export function DonutLegend({ dataObj, total }) {
