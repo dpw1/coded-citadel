@@ -170,6 +170,7 @@ function emptyAnalytics() {
     weeklyUsersByRegion: {},
     installsByRegion: {},
     uninstalls: 0,
+    uninstallsOverTime: [],
     uninstallsByRegion: {},
     pageViews: 0,
     pageViewsOverTime: [],
@@ -250,7 +251,7 @@ function extensionIdFromEntry(entry) {
   return null
 }
 
-function parseAfCallbacks(html) {
+export function parseAfCallbacks(html) {
   const out = {}
   for (const m of html.matchAll(
     /AF_initDataCallback\(\{key:\s*'([^']+)'[\s\S]*?data:(\[[\s\S]*?\])\s*,\s*sideChannel/g,
@@ -1123,13 +1124,228 @@ function extractEditPage(html, extensionId) {
   return out
 }
 
+const UNINSTALL_SERIES_RE = /series-id="(?:Desinstalações|Uninstalls?)"/i
+
+/** Largest installs-page SVG that contains the uninstall time-series chart. */
+export function findUninstallChartSvg(html) {
+  if (!html) return null
+
+  const svgRe = /<svg\b[\s\S]*?<\/svg>/gi
+  let best = null
+  let match
+
+  while ((match = svgRe.exec(html)) !== null) {
+    const svg = match[0]
+    if (!UNINSTALL_SERIES_RE.test(svg)) continue
+    const width = Number.parseFloat(svg.match(/\bwidth="([\d.]+)"/)?.[1] ?? 0)
+    if (!best || width > best.width) {
+      best = { svg, width }
+    }
+  }
+
+  return best?.svg ?? null
+}
+
+function parseUninstallChartDate(label, referenceYear) {
+  if (!label) return null
+
+  let cleaned = fixEncoding(label).trim()
+  cleaned = cleaned.replace(/'(\d{2})\b/, '20$1')
+  if (!/\d{4}/.test(cleaned)) {
+    cleaned = `${cleaned} ${referenceYear}`
+  }
+
+  const d = new Date(cleaned)
+  return Number.isNaN(d.getTime()) ? null : d
+}
+
+function extractUninstallPathD(svgHtml) {
+  const seriesIdx = svgHtml.search(UNINSTALL_SERIES_RE)
+  if (seriesIdx < 0) return null
+
+  const window = svgHtml.slice(seriesIdx, seriesIdx + 12000)
+  const paths = []
+  const pathRe = /<path\b[^>]*>/gi
+  let pathMatch
+
+  while ((pathMatch = pathRe.exec(window)) !== null) {
+    const tag = pathMatch[0]
+    if (tag.includes('stroke="transparent"') || tag.includes("stroke='transparent'")) continue
+    const d = tag.match(/\bd="([^"]+)"/)?.[1]
+    if (!d || d.length < 8) continue
+    if (tag.includes('RWgCYc-bdKbFb') || /[ML][\d.]+,[\d.]+/.test(d)) {
+      paths.push(d)
+    }
+  }
+
+  if (!paths.length) return null
+  return paths.reduce((longest, d) => (d.length > longest.length ? d : longest), '')
+}
+
+function extractUninstallXAxisTicks(svgHtml) {
+  const ticks = []
+  const tickRe =
+    /<g[^>]*class="[^"]*K2kob[^"]*"[^>]*transform="translate\(([\d.]+),\s*0\)"[^>]*>[\s\S]*?<tspan[^>]*>([^<]+)<\/tspan>/gi
+  let match
+
+  while ((match = tickRe.exec(svgHtml)) !== null) {
+    const label = fixEncoding(match[2]).trim()
+    if (/^\d+(\.\d+)?$/.test(label)) continue
+    ticks.push({ xPx: Number.parseFloat(match[1]), label })
+  }
+
+  return ticks
+}
+
+function extractUninstallYAxisTicks(svgHtml) {
+  const ticks = []
+  const tickRe =
+    /<g[^>]*class="[^"]*K2kob[^"]*"[^>]*transform="translate\(0,\s*([\d.]+)\)"[^>]*>[\s\S]*?<tspan[^>]*>([\d.]+)<\/tspan>/gi
+  let match
+
+  while ((match = tickRe.exec(svgHtml)) !== null) {
+    ticks.push({
+      value: Number.parseFloat(match[2]),
+      yPx: Number.parseFloat(match[1]),
+    })
+  }
+
+  return ticks
+}
+
+function parseUninstallPathPoints(pathD) {
+  const points = []
+  const pointRe = /[ML]([\d.]+),([\d.]+)/g
+  let match
+
+  while ((match = pointRe.exec(pathD)) !== null) {
+    points.push({ x: Number.parseFloat(match[1]), y: Number.parseFloat(match[2]) })
+  }
+
+  return points
+}
+
+/** Daily uninstall series from the installs-page SVG line chart. */
+export function extractUninstallSeriesFromSvg(svgHtml, referenceYear) {
+  const pathD = extractUninstallPathD(svgHtml)
+  if (!pathD) return []
+
+  const xTicks = extractUninstallXAxisTicks(svgHtml)
+  const yTicks = extractUninstallYAxisTicks(svgHtml)
+  const points = parseUninstallPathPoints(pathD)
+  if (!points.length) return []
+
+  const zeroEntry = yTicks.find((row) => row.value === 0)
+  const oneEntry = yTicks.find((row) => row.value === 1)
+  const pxPerUnit =
+    zeroEntry && oneEntry ? zeroEntry.yPx - oneEntry.yPx : 41.25
+  const baselineY = zeroEntry ? zeroEntry.yPx : 165
+  const xStep = points.length > 1 ? points[1].x - points[0].x : 41.25
+
+  const tickMap = {}
+  for (const { xPx, label } of xTicks) {
+    const date = parseUninstallChartDate(label, referenceYear)
+    if (date) tickMap[xPx] = date
+  }
+
+  const sortedTicks = Object.entries(tickMap)
+    .map(([px, date]) => ({ px: Number.parseFloat(px), date }))
+    .sort((a, b) => a.px - b.px)
+
+  if (!sortedTicks.length) return []
+
+  function getDateForX(xPx) {
+    const nearest = sortedTicks.reduce((prev, curr) =>
+      Math.abs(curr.px - xPx) < Math.abs(prev.px - xPx) ? curr : prev,
+    )
+    const dayOffset = Math.round((xPx - nearest.px) / xStep)
+    const d = new Date(nearest.date)
+    d.setDate(d.getDate() + dayOffset)
+    return d
+  }
+
+  return points.map(({ x, y }) => {
+    const date = getDateForX(x)
+    const value = Math.round((baselineY - y) / pxPerUnit)
+    const iso = date.toISOString().slice(0, 10)
+    return { date: isoToDdMmYyyy(iso), total: Math.max(0, value) }
+  })
+}
+
+export function extractUninstallHeadlineTotal(installsHtml) {
+  if (!installsHtml) return null
+
+  const patterns = [
+    /Desinstalações[\s\S]{0,5000}?<div class="FhBhHd">(\d+)/i,
+    /Uninstalls?[\s\S]{0,5000}?<div class="FhBhHd">(\d+)/i,
+  ]
+
+  for (const re of patterns) {
+    const match = installsHtml.match(re)
+    if (match) return Number.parseInt(match[1], 10)
+  }
+
+  return null
+}
+
+export function extractUninstallsFromInstallsHtml(installsHtml, exportDate) {
+  const svg = findUninstallChartSvg(installsHtml)
+  if (!svg) return null
+
+  const referenceYear = Number.parseInt(String(exportDate).slice(0, 4), 10) || new Date().getFullYear()
+  const overTime = extractUninstallSeriesFromSvg(svg, referenceYear)
+  const headline = extractUninstallHeadlineTotal(installsHtml)
+  const seriesTotal = overTime.reduce((sum, row) => sum + row.total, 0)
+
+  return {
+    total: headline ?? seriesTotal,
+    overTime,
+  }
+}
+
+/** Installs-page AF keys that may carry UNINSTALLS daily series (ds:6 on current DevConsole). */
+const UNINSTALLS_AF_KEYS = ['ds:6', 'ds:5']
+
+/** Daily uninstall series from AF_initData (same source as DevConsole Export CSV). */
+export function extractUninstallsFromAf(instAf) {
+  if (!instAf) return null
+
+  for (const key of UNINSTALLS_AF_KEYS) {
+    const data = instAf[key]
+    if (!data) continue
+
+    const { total, byDate } = sumMetricSeries(data, 'UNINSTALLS')
+    const overTime = byDateToSeries(byDate)
+    if (!overTime.length) continue
+
+    return { total, overTime, source: key }
+  }
+
+  return null
+}
+
+export function resolveUninstalls(installsHtml, instAf, exportDate) {
+  const fromAf = extractUninstallsFromAf(instAf)
+  const fromSvg = extractUninstallsFromInstallsHtml(installsHtml, exportDate)
+  const headline = extractUninstallHeadlineTotal(installsHtml)
+
+  const uninstallsOverTime = fromAf?.overTime?.length
+    ? fromAf.overTime
+    : (fromSvg?.overTime ?? [])
+
+  const seriesTotal = uninstallsOverTime.reduce((sum, row) => sum + row.total, 0)
+  const uninstalls = headline ?? fromAf?.total ?? fromSvg?.total ?? seriesTotal
+
+  return { uninstalls, uninstallsOverTime }
+}
+
 function extractAnalyticsFromPages(installsHtml, usersHtml, impressionsHtml, exportDate) {
   const instAf = parseAfCallbacks(installsHtml)
   const usersAf = parseAfCallbacks(usersHtml)
   const impAf = parseAfCallbacks(impressionsHtml)
 
   const installs = sumMetricSeries(instAf['ds:5'], 'INSTALLS')
-  const uninstalls = sumMetricSeries(instAf['ds:5'], 'UNINSTALLS')
+  const { uninstalls, uninstallsOverTime } = resolveUninstalls(installsHtml, instAf, exportDate)
 
   const installsByRegion = sumCountrySeries(instAf['ds:4'])
   const weeklyUsersByRegion = sumCountrySeries(usersAf['ds:4'])
@@ -1160,7 +1376,8 @@ function extractAnalyticsFromPages(installsHtml, usersHtml, impressionsHtml, exp
     weeklyUsers,
     weeklyUsersByRegion: topRegions(weeklyUsersByRegion),
     installsByRegion: topRegions(installsByRegion),
-    uninstalls: uninstalls.total,
+    uninstalls,
+    uninstallsOverTime,
     uninstallsByRegion: {},
     pageViews: pageViewsTotal,
     pageViewsOverTime,
@@ -1491,7 +1708,7 @@ export async function main() {
     if (app.analytics) {
       const a = app.analytics
       console.log(
-        `  installs: ${a.totalInstalls}, pageViews: ${a.pageViews}, impressions: ${a.impressions}, weeklyUser days: ${a.weeklyUsers?.length ?? 0}, enabled: ${a.enabledVsDisabled?.enabled ?? 0}, disabled: ${a.enabledVsDisabled?.disabled ?? 0}`,
+        `  installs: ${a.totalInstalls}, uninstalls: ${a.uninstalls ?? 0}, pageViews: ${a.pageViews}, impressions: ${a.impressions}, weeklyUser days: ${a.weeklyUsers?.length ?? 0}, enabled: ${a.enabledVsDisabled?.enabled ?? 0}, disabled: ${a.enabledVsDisabled?.disabled ?? 0}`,
       )
     } else {
       console.log(`  status: ${app.status} (no analytics block)`)

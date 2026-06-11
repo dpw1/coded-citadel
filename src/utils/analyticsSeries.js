@@ -36,6 +36,7 @@ export function dedupeAnalyticsSeriesByDate(series) {
 const SERIES_KEYS = [
   'installations',
   'weeklyUsers',
+  'uninstallsOverTime',
   'pageViewsOverTime',
   'impressionsAcrossChromeWebStore',
 ]

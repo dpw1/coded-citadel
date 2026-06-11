@@ -107,6 +107,11 @@ function buildAppAnalytics(app, snapshots) {
     weeklyUsersByRegion: an.weeklyUsersByRegion ?? {},
     installsByRegion: an.installsByRegion ?? {},
     uninstalls: an.uninstalls ?? 0,
+    uninstallsOverTime: mergeAppSeriesFromSnapshots(
+      snapshots,
+      key,
+      (a) => a.analytics?.uninstallsOverTime,
+    ),
     uninstallsByRegion: an.uninstallsByRegion ?? {},
     pageViews: an.pageViews ?? 0,
     pageViewsOverTime: mergeAppSeriesFromSnapshots(
@@ -141,6 +146,7 @@ function aggregateFromAppEntries(appEntries) {
 
   const installationsByApp = []
   const weeklyUsersByApp = []
+  const uninstallsByApp = []
   const pageViewsByApp = []
   const impressionsByApp = []
   const installsByRegionMaps = []
@@ -157,6 +163,7 @@ function aggregateFromAppEntries(appEntries) {
     disabled += an.enabledVsDisabled?.disabled ?? 0
     installationsByApp.push(an.installations)
     weeklyUsersByApp.push(an.weeklyUsers)
+    uninstallsByApp.push(an.uninstallsOverTime)
     pageViewsByApp.push(an.pageViewsOverTime)
     impressionsByApp.push(an.impressionsAcrossChromeWebStore)
     installsByRegionMaps.push(an.installsByRegion)
@@ -169,6 +176,7 @@ function aggregateFromAppEntries(appEntries) {
     totalInstalls,
     installations: sumSeriesAcrossApps(installationsByApp),
     weeklyUsers: sumSeriesAcrossApps(weeklyUsersByApp),
+    uninstallsOverTime: sumSeriesAcrossApps(uninstallsByApp),
     weeklyUsersByRegion: sumRegionMaps(weeklyUsersByRegionMaps),
     installsByRegion: sumRegionMaps(installsByRegionMaps),
     uninstalls,
