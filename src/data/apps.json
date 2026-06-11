@@ -1495,13 +1495,13 @@
       "youtube": "https://youtu.be/m4iuYN7vsRo"
     },
     {
-      "slug": "custom-data",
+      "slug": "ai-bookmark",
       "chromeExtensionId": "golankbkfnepjbpcekbcglcfgmbpgnmb",
       "name": "AI Bookmark: Save & Revisit AI Replies - Claude, ChatGPT, Grok",
       "icon": "⚡",
       "chromeExtensionIcon": "https://lh3.googleusercontent.com/XMwkwwJ3XFVxDcTcJgcU8Jd7Ms5cmGmevUTOFeuDk39KlInW8Ve-XG28EnJMdJFDVjtP9QFdWmdSl4_mJW3PqOEScyA",
       "tagline": "Bookmark specific AI replies from Claude, ChatGPT and Grok and manage them in one place.",
-      "status": "live",
+      "status": "coming-soon",
       "price": "Free",
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/golankbkfnepjbpcekbcglcfgmbpgnmb",
@@ -1527,31 +1527,10 @@
         "https://lh3.googleusercontent.com/Dsyhl6GZkf-oNmXMuahuEIjZvgZQgQXMJGjXFSYQaaZ80Cwd96Oflgq2FqslJTAV_Lxx-WjUao3f6OXx-uu0zObzqw",
         "https://lh3.googleusercontent.com/kc-0y6wbYDjhIfPed-ByVqpY_IVUwFSk0DlEkyIxN4nTzP0FZFAXhEuEmmUacqvq4Llvt6KZzc_yDtbgHBzBaNweOMU"
       ],
-      "analytics": {
-        "totalInstalls": 0,
-        "installations": [],
-        "weeklyUsers": [],
-        "weeklyUsersByRegion": {},
-        "installsByRegion": {},
-        "uninstalls": 0,
-        "uninstallsOverTime": [],
-        "uninstallsByRegion": {},
-        "pageViews": 0,
-        "pageViewsOverTime": [],
-        "pageViewsBySource": {},
-        "impressions": 0,
-        "impressionsAcrossChromeWebStore": [],
-        "enabledVsDisabled": {
-          "enabled": 0,
-          "disabled": 0,
-          "enabledPct": 0,
-          "disabledPct": 0,
-          "total": 0,
-          "date": null,
-          "slices": []
-        },
-        "enabledVsDisabledOverTime": []
-      }
+      "estimatedTime": "24 hours",
+      "created": "June 7, 2026",
+      "youtube": "https://www.youtube.com/watch?v=WA5xLTMyykE",
+      "prompts": 250
     },
     {
       "slug": "instagram-dm-exporter",
@@ -2095,6 +2074,7 @@
           }
         ]
       },
+      "created": "May 29, 2026",
       "estimatedTime": "9 hours",
       "prompts": 65
     },
@@ -2399,13 +2379,6 @@
       {
         "slug": "youtube-comments-exporter",
         "chromeExtensionId": "epokpidfnienjjfncmhnallghfhaijbj",
-        "now": 0,
-        "baseline": 0,
-        "delta": 0
-      },
-      {
-        "slug": "custom-data",
-        "chromeExtensionId": "golankbkfnepjbpcekbcglcfgmbpgnmb",
         "now": 0,
         "baseline": 0,
         "delta": 0
