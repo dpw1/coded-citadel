@@ -1501,7 +1501,7 @@
       "icon": "⚡",
       "chromeExtensionIcon": "https://lh3.googleusercontent.com/XMwkwwJ3XFVxDcTcJgcU8Jd7Ms5cmGmevUTOFeuDk39KlInW8Ve-XG28EnJMdJFDVjtP9QFdWmdSl4_mJW3PqOEScyA",
       "tagline": "Bookmark specific AI replies from Claude, ChatGPT and Grok and manage them in one place.",
-      "status": "coming-soon",
+      "status": "live",
       "price": "Free",
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/golankbkfnepjbpcekbcglcfgmbpgnmb",
@@ -1530,7 +1530,32 @@
       "estimatedTime": "24 hours",
       "created": "June 7, 2026",
       "youtube": "https://www.youtube.com/watch?v=WA5xLTMyykE",
-      "prompts": 250
+      "prompts": 250,
+      "analytics": {
+        "totalInstalls": 0,
+        "installations": [],
+        "weeklyUsers": [],
+        "weeklyUsersByRegion": {},
+        "installsByRegion": {},
+        "uninstalls": 0,
+        "uninstallsOverTime": [],
+        "uninstallsByRegion": {},
+        "pageViews": 0,
+        "pageViewsOverTime": [],
+        "pageViewsBySource": {},
+        "impressions": 0,
+        "impressionsAcrossChromeWebStore": [],
+        "enabledVsDisabled": {
+          "enabled": 0,
+          "disabled": 0,
+          "enabledPct": 0,
+          "disabledPct": 0,
+          "total": 0,
+          "date": null,
+          "slices": []
+        },
+        "enabledVsDisabledOverTime": []
+      }
     },
     {
       "slug": "instagram-dm-exporter",
@@ -2384,6 +2409,13 @@
         "delta": 0
       },
       {
+        "slug": "ai-bookmark",
+        "chromeExtensionId": "golankbkfnepjbpcekbcglcfgmbpgnmb",
+        "now": 0,
+        "baseline": 0,
+        "delta": 0
+      },
+      {
         "slug": "instagram-dm-exporter",
         "chromeExtensionId": "hgojieiehkjgjhdnbglfhbcojeeggigi",
         "now": 27,
@@ -2408,6 +2440,6 @@
     "totalInstalls": 292,
     "installsDelta7d": 93,
     "baselineTotalInstalls": 199,
-    "computedAt": "2026-06-11"
+    "computedAt": "2026-06-12"
   }
 }

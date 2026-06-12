@@ -1088,9 +1088,12 @@ function extractEditPage(html, extensionId) {
   const out = {
     ...fromDs1,
     chromeStoreUrl: `https://chromewebstore.google.com/detail/${extensionId}`,
-    status: /Status:\s*[^<]*(?:Publicad|Published|público|public)/i.test(fixed)
-      ? 'live'
-      : 'draft',
+    status:
+      /Status:\s*[^<]*(?:Publicad|Published|público|public|Pronto para publicar|Ready to publish)/i.test(
+        fixed,
+      )
+        ? 'live'
+        : 'draft',
     price: /Gratuito|Free/i.test(fixed) ? 'Free' : 'Paid',
   }
 
@@ -1437,7 +1440,7 @@ function buildApp(id, pages, exportDate, slug) {
     exportDate,
   )
 
-  const isLive = edit.status === 'live'
+  const isLive = edit.status === 'live' || hasMeaningfulAnalytics(analyticsRaw)
 
   const app = {
     slug,
@@ -1500,7 +1503,13 @@ function ensureLiveAppAnalytics(app) {
 }
 
 function finalizeApp(app, id, customMap) {
-  applyCustomDataToApp(app, customMap.get(id))
+  const custom = customMap.get(id)
+  applyCustomDataToApp(app, custom)
+  if (custom?.status === 'live') {
+    app.status = 'live'
+  } else if (app.status === 'coming-soon' && hasMeaningfulAnalytics(app.analytics)) {
+    app.status = 'live'
+  }
   return ensureLiveAppAnalytics(app)
 }
 
