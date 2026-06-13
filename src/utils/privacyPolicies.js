@@ -3,6 +3,7 @@ import ClaudeDeepSearchPrivacyContent from '../content/privacy/claude-deep-searc
 import ClaudeLimitMonitorPrivacyContent from '../content/privacy/claude-limit-monitor'
 import InstagramDmExporterPrivacyContent from '../content/privacy/instagram-dm-exporter'
 import SaveToDrivePrivacyContent from '../content/privacy/save-to-drive-chrome-extension'
+import GmailToPdfPrivacyContent from '../content/privacy/gmail-to-pdf-extension'
 
 const PRIVACY_POLICIES = {
   'ai-bookmark': {
@@ -34,6 +35,12 @@ const PRIVACY_POLICIES = {
     lastUpdated: 'May 29, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: SaveToDrivePrivacyContent,
+  },
+  'gmail-to-pdf-extension': {
+    appName: 'Gmail to PDF: Save Emails as PDF, HTML, TXT',
+    lastUpdated: 'June 13, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: GmailToPdfPrivacyContent,
   },
 }
 

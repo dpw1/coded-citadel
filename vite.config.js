@@ -13,6 +13,7 @@ const PRIVACY_POLICY_SLUGS = [
   'ai-bookmark',
   'claude-deep-search',
   'claude-limit-monitor',
+  'gmail-to-pdf-extension',
   'instagram-dm-exporter',
   'save-to-drive-chrome-extension',
 ]
