@@ -2,6 +2,7 @@
  * Scans blogs/*.md for local images that need importing:
  *
  * 1. Chrome download placeholders: D:/GoogleChromeDownloads/SCREENSHOT…
+ *    Accepts plain paths, `backticks`, "quotes", 'quotes', or ![](path).
  * 2. Pasted markdown images: ![alt](image/{post}/file.png)
  *
  * Copies into public/blog-images/ and rewrites lines as ![]({webPath}).
@@ -27,10 +28,41 @@ const BLOGS_DIR = resolve(ROOT, 'blogs')
 const PUBLIC_IMAGES_DIR = resolve(ROOT, 'public', 'blog-images')
 
 const SOURCE_DIR = 'D:/GoogleChromeDownloads'
-const PLACEHOLDER_RE =
-  /^D:[/\\]GoogleChromeDownloads[/\\](SCREENSHOT[^\s]*\.(?:jpg|jpeg|png|webp))$/i
+const DOWNLOAD_PATH_RE =
+  /^D:[/\\]GoogleChromeDownloads[/\\](SCREENSHOT[^\s"'`]*\.(?:jpg|jpeg|png|webp))$/i
+const DOWNLOAD_IN_MD_IMAGE_RE =
+  /^!\[[^\]]*\]\(D:[/\\]GoogleChromeDownloads[/\\](SCREENSHOT[^)\s]*\.(?:jpg|jpeg|png|webp))\)\s*$/i
 const IMPORTED_IMAGE_RE = /^!\[[^\]]*\]\((\/blog-images\/[^)]+)\)\s*$/
 const PASTED_IMAGE_RE = /^!\[[^\]]*\]\((image\/[^)]+)\)\s*$/
+
+function stripOuterWrappers(line) {
+  const trimmed = line.trim()
+  if (trimmed.length < 2) return trimmed
+
+  const first = trimmed[0]
+  const last = trimmed[trimmed.length - 1]
+  if (
+    (first === '`' && last === '`') ||
+    (first === '"' && last === '"') ||
+    (first === "'" && last === "'")
+  ) {
+    return trimmed.slice(1, -1).trim()
+  }
+
+  return trimmed
+}
+
+/** @returns {string | null} screenshot filename, e.g. SCREENSHOT_12-06-2026-00h50.jpg */
+function parseDownloadPlaceholder(trimmed) {
+  const mdMatch = trimmed.match(DOWNLOAD_IN_MD_IMAGE_RE)
+  if (mdMatch) return mdMatch[1]
+
+  const unwrapped = stripOuterWrappers(trimmed)
+  const plainMatch = unwrapped.match(DOWNLOAD_PATH_RE)
+  if (plainMatch) return plainMatch[1]
+
+  return null
+}
 
 function postKeyFromFilename(filename) {
   return basename(filename, extname(filename))
@@ -131,9 +163,8 @@ function processLine(trimmed, postKey, existingWebPaths, stats) {
     return result
   }
 
-  const downloadMatch = trimmed.match(PLACEHOLDER_RE)
-  if (downloadMatch) {
-    const imageFilename = downloadMatch[1]
+  const imageFilename = parseDownloadPlaceholder(trimmed)
+  if (imageFilename) {
     const sourcePath = join(SOURCE_DIR, imageFilename)
     const webPath = webPathFor(postKey, imageFilename)
     const destPath = destPathFor(postKey, imageFilename)
