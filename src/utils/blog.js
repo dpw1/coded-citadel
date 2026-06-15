@@ -97,7 +97,11 @@ export function parseYoutubeVideoId(input) {
 }
 
 export function getPostCoverUrl(post) {
-  return post?.coverImageUrl ?? resolveBlogImageUrl(post?.coverImage)
+  const custom = post?.coverImageUrl ?? resolveBlogImageUrl(post?.thumbnail ?? post?.coverImage)
+  if (custom) return custom
+
+  const ytId = parseYoutubeVideoId(post?.youtubeId)
+  return ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : null
 }
 
 export function getPostYoutubeEmbedId(post) {

@@ -62,6 +62,7 @@ function normalizeFrontmatter(raw, filenameSlug) {
     : []
 
   const youtubeId = raw.youtubeId ? parseYoutubeVideoId(String(raw.youtubeId)) : null
+  const thumbnail = raw.thumbnail || raw.coverImage
 
   return {
     slug,
@@ -71,7 +72,7 @@ function normalizeFrontmatter(raw, filenameSlug) {
     tags,
     canonicalUrl: raw.canonicalUrl ? String(raw.canonicalUrl) : null,
     youtubeId,
-    coverImage: raw.coverImage ? String(raw.coverImage) : null,
+    thumbnail: thumbnail ? String(thumbnail) : null,
     extensionSlug: raw.extensionSlug ? String(raw.extensionSlug).trim() : null,
     downloadUrl: raw.downloadUrl ? String(raw.downloadUrl).trim() : null,
     downloadLabel: raw.downloadLabel ? String(raw.downloadLabel).trim() : null,
@@ -96,10 +97,10 @@ function resolveCoverImageUrl(coverImage) {
 }
 
 async function resolvePostCover(meta) {
-  if (meta.coverImage) {
+  if (meta.thumbnail) {
     return {
-      coverImage: meta.coverImage,
-      coverImageUrl: resolveCoverImageUrl(meta.coverImage),
+      coverImage: meta.thumbnail,
+      coverImageUrl: resolveCoverImageUrl(meta.thumbnail),
     }
   }
 
@@ -244,7 +245,7 @@ async function main() {
       contentHtml: bodyHtml,
     })
 
-    const coverNote = coverImageUrl && !meta.coverImage ? ' (cover from YouTube)' : ''
+    const coverNote = coverImageUrl && meta.thumbnail ? ' (custom thumbnail)' : coverImageUrl && !meta.thumbnail ? ' (cover from YouTube)' : ''
     const downloadNote = download.downloadUrl ? ' + download link' : ''
     console.log(`  ${meta.slug} (${readingTime} min read)${coverNote}${downloadNote}`)
   }
