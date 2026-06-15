@@ -9,6 +9,8 @@ keyTakeaways:
   - "Existing Gmail PDF extensions broke, asked for logins, and cluttered the UI - so I built my own with minimal permissions."
   - "Reverse-engineering Gmail's network calls in the browser console came first; the Chrome extension and html2pdf pipeline came after."
   - "PDF export was the hardest part - an offscreen HTML page was the fix for large emails that html2pdf silently failed on."
+  - "If the user is going to spend more than 50% of the time interacting with the app looking at a UI, then do put good effort in it."
+ 
 ---
 
 # Bulk Export Gmail Emails to PDF in Seconds (How I Built This Chrome Extension From Scratch Under 15 hours)"
