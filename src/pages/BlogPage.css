@@ -503,6 +503,32 @@
   border: 1px solid var(--CC__color-border);
 }
 
+.CC__blog-post__footer-links {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--CC__color-border);
+}
+
+.CC__blog-post__footer-links p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--CC__color-text-muted);
+}
+
+.CC__blog-post__footer-links p + p {
+  margin-top: 0.35rem;
+}
+
+.CC__blog-post__footer-links a {
+  color: var(--CC__color-primary);
+  text-decoration: none;
+}
+
+.CC__blog-post__footer-links a:hover {
+  text-decoration: underline;
+}
+
 @media (min-width: 1024px) {
   .CC__blog-post__body {
     grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);

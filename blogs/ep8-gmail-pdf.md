@@ -3,6 +3,8 @@ title: "Bulk Export Gmail Emails to PDF in Seconds (How I Built This Chrome Exte
 slug: "ep-8-gmail-to-pdf"
 date: "2026-06-13"
 description: "Save Gmail emails as PDF, HTML, TXT, or JSON without login or invasive permissions. A dev diary on reverse-engineering Gmail, fixing html2pdf, and shipping an MVP to the Chrome Web Store in less of a day of work."
+download: "https://chromewebstore.google.com/detail/bhagkmlelgbjbklgafgdjeebkdhlibjf"
+stats: "/apps/gmail-to-pdf"
 tags: ["gmail-to-pdf", "chrome-extensions", "building-in-public"]
 thumbnail: "/blog-images/ep8-gmail-pdf/ep8.png"
 draft: false

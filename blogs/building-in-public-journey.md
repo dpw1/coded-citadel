@@ -3,6 +3,7 @@ title: "Why I'm Building in Public Toward $100K"
 slug: "building-in-public-journey"
 date: "2026-05-12"
 description: "The honest start of my indie dev journey - no course funnels, no fake timelines. Just shipping Chrome extensions and documenting every step on YouTube."
+stats: "/live-stats"
 tags: ["chrome-extensions", "building-in-public"]
 draft: false
 keyTakeaways:

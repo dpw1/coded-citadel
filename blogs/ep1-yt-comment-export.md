@@ -3,6 +3,8 @@ title: "I'm VibeCoding My Way to $100K — This Is How It Starts"
 slug: "vibecoding-to-100k-youtube-comments-scraper"
 date: "2026-05-12"
 description: "Episode 1 of VibeCoding Until I Make $100K. I built a free YouTube comments scraper Chrome extension from scratch — design, API, logo, review prompt, and publish. Here's the full process."
+download: "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj"
+stats: "/apps/youtube-comments-exporter"
 tags: ["chrome-extensions", "youtube-api", "indie-hacker", "building-in-public", "vibe-coding", "supabase"]
 draft: false
 youtubeId: "https://youtu.be/m4iuYN7vsRo"

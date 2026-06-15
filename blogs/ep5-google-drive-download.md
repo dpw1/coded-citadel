@@ -3,6 +3,8 @@ title: "I Built a Chrome Extension That Saves Any File to Google Drive in One Cl
 slug: "chrome-extension-save-to-google-drive-under-8-hours"
 date: "2026-05-31"
 description: "How I built and shipped a save-to-Google-Drive Chrome extension in under 8 hours - OAuth setup, context menu bugs, MV3 limitations, and the full AI-assisted design workflow. Episode 5 of VibeCoding Until I Make $100K."
+download: "https://chromewebstore.google.com/detail/jadjgiiaompdjacagaomgogdihbpgcpg"
+stats: "/apps/save-directly-to-drive"
 tags: ["chrome-extensions", "google-drive", "indie-hacker", "building-in-public", "manifest-v3", "oauth", "vibe-coding"]
 draft: false
 youtubeId: "https://youtu.be/D4-1VtvkdIw"

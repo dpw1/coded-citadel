@@ -52,6 +52,43 @@ function BlogTableOfContents({ items, onNavigate }) {
   )
 }
 
+function BlogPostActionLink({ href, className, children }) {
+  if (href.startsWith('/')) {
+    return (
+      <Link to={href} className={className}>
+        {children}
+      </Link>
+    )
+  }
+
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {children}
+    </a>
+  )
+}
+
+function BlogPostFooterLinks({ download, stats }) {
+  if (!download && !stats) return null
+
+  return (
+    <div className="CC__blog-post__footer-links">
+      {download ? (
+        <p>
+          <a href={download} target="_blank" rel="noopener noreferrer">
+            Download it here
+          </a>
+        </p>
+      ) : null}
+      {stats ? (
+        <p>
+          <BlogPostActionLink href={stats}>View live stats here</BlogPostActionLink>
+        </p>
+      ) : null}
+    </div>
+  )
+}
+
 function BlogNotFound() {
   return (
     <>
@@ -180,20 +217,25 @@ export default function BlogPostPage() {
                 </a>
               </p>
             ) : null}
-            {post.downloadUrl ? (
+            {post.download || post.stats ? (
               <div className="CC__blog-post__actions">
-                <a
-                  href={post.downloadUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="CC__btn CC__btn--primary CC__blog-post__download"
-                >
-                  {post.downloadLabel || 'Install on Chrome'}
-                </a>
-                {post.extensionSlug ? (
-                  <Link to={`/apps/${post.extensionSlug}`} className="CC__btn CC__btn--outline">
-                    View app details
-                  </Link>
+                {post.download ? (
+                  <a
+                    href={post.download}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="CC__btn CC__btn--primary CC__blog-post__download"
+                  >
+                    Download
+                  </a>
+                ) : null}
+                {post.stats ? (
+                  <BlogPostActionLink
+                    href={post.stats}
+                    className="CC__btn CC__btn--outline CC__blog-post__stats"
+                  >
+                    Stats
+                  </BlogPostActionLink>
                 ) : null}
               </div>
             ) : null}
@@ -228,10 +270,13 @@ export default function BlogPostPage() {
               ) : contentError ? (
                 <p className="CC__blog-post__loading">Could not load article content.</p>
               ) : (
-                <div
-                  className="CC__blog-post__content"
-                  dangerouslySetInnerHTML={{ __html: processedHtml }}
-                />
+                <>
+                  <div
+                    className="CC__blog-post__content"
+                    dangerouslySetInnerHTML={{ __html: processedHtml }}
+                  />
+                  <BlogPostFooterLinks download={post.download} stats={post.stats} />
+                </>
               )}
 
             </div>

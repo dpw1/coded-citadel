@@ -73,9 +73,13 @@ function normalizeFrontmatter(raw, filenameSlug) {
     canonicalUrl: raw.canonicalUrl ? String(raw.canonicalUrl) : null,
     youtubeId,
     thumbnail: thumbnail ? String(thumbnail) : null,
+    download: raw.download
+      ? String(raw.download).trim()
+      : raw.downloadUrl
+        ? String(raw.downloadUrl).trim()
+        : null,
+    stats: raw.stats ? String(raw.stats).trim() : null,
     extensionSlug: raw.extensionSlug ? String(raw.extensionSlug).trim() : null,
-    downloadUrl: raw.downloadUrl ? String(raw.downloadUrl).trim() : null,
-    downloadLabel: raw.downloadLabel ? String(raw.downloadLabel).trim() : null,
     keyTakeaways,
     draft: Boolean(raw.draft),
   }
@@ -124,37 +128,28 @@ function loadApps() {
   }
 }
 
-function resolvePostDownload(meta, apps) {
-  const defaultLabel = 'Install on Chrome'
+function resolvePostLinks(meta, apps) {
+  let download = meta.download && meta.download !== '#' ? meta.download : null
+  let stats = meta.stats || null
+  let extensionSlug = meta.extensionSlug || null
 
-  if (meta.downloadUrl && meta.downloadUrl !== '#') {
-    return {
-      downloadUrl: meta.downloadUrl,
-      downloadLabel: meta.downloadLabel || defaultLabel,
-      extensionSlug: meta.extensionSlug || null,
+  if (extensionSlug) {
+    const app = apps.find((entry) => entry.slug === extensionSlug)
+    if (!download && app?.chromeStoreUrl && app.chromeStoreUrl !== '#') {
+      download = app.chromeStoreUrl
     }
+    if (!stats) stats = `/apps/${extensionSlug}`
   }
 
-  if (meta.extensionSlug) {
-    const app = apps.find((entry) => entry.slug === meta.extensionSlug)
-    const storeUrl = app?.chromeStoreUrl
-    if (storeUrl && storeUrl !== '#') {
-      return {
-        downloadUrl: storeUrl,
-        downloadLabel: meta.downloadLabel || `Install ${app.name}`,
-        extensionSlug: app.slug,
-      }
-    }
-    console.warn(
-      `  ${meta.slug}: extensionSlug "${meta.extensionSlug}" not found or has no Chrome store URL`,
-    )
+  if (!extensionSlug && stats?.startsWith('/apps/')) {
+    extensionSlug = stats.slice('/apps/'.length).split(/[?#]/)[0] || null
   }
 
-  return {
-    downloadUrl: null,
-    downloadLabel: null,
-    extensionSlug: null,
+  if (!download && !stats) {
+    return { download: null, stats: null, extensionSlug: null }
   }
+
+  return { download, stats, extensionSlug }
 }
 
 function processMarkdownFile(filePath, filenameSlug) {
@@ -223,7 +218,7 @@ async function main() {
 
     const readingTime = estimateReadingTime(bodyHtml)
     const { coverImage, coverImageUrl } = await resolvePostCover(meta)
-    const download = resolvePostDownload(meta, apps)
+    const links = resolvePostLinks(meta, apps)
 
     writeFileSync(resolve(CONTENT_DIR, `${meta.slug}.html`), bodyHtml, 'utf8')
 
@@ -237,17 +232,17 @@ async function main() {
       youtubeId: meta.youtubeId,
       coverImage,
       coverImageUrl,
-      extensionSlug: download.extensionSlug,
-      downloadUrl: download.downloadUrl,
-      downloadLabel: download.downloadLabel,
+      extensionSlug: links.extensionSlug,
+      download: links.download,
+      stats: links.stats,
       keyTakeaways: meta.keyTakeaways,
       readingTime,
       contentHtml: bodyHtml,
     })
 
     const coverNote = coverImageUrl && meta.thumbnail ? ' (custom thumbnail)' : coverImageUrl && !meta.thumbnail ? ' (cover from YouTube)' : ''
-    const downloadNote = download.downloadUrl ? ' + download link' : ''
-    console.log(`  ${meta.slug} (${readingTime} min read)${coverNote}${downloadNote}`)
+    const linksNote = links.download || links.stats ? ' + links' : ''
+    console.log(`  ${meta.slug} (${readingTime} min read)${coverNote}${linksNote}`)
   }
 
   posts.sort((a, b) => b.date.localeCompare(a.date))

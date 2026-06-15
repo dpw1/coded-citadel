@@ -3,6 +3,8 @@ title: "I Hacked Claude to Track My Usage Limit"
 slug: "vibecoding-to-100k-claude-limit-monitor"
 date: "2026-06-04"
 description: "Episode 6 of VibeCoding Until I Make $100K. I reverse engineered Claude's website to find a hidden API endpoint, then built a free Chrome extension that shows your usage limit in real time."
+download: "https://chromewebstore.google.com/detail/mljfhcfnjbfibedpiaheeihpbjajfcal"
+stats: "/apps/claude-limit-monitor"
 tags: ["chrome-extensions", "claude", "indie-hacker", "building-in-public", "vibe-coding", "reverse-engineering"]
 draft: false
 youtubeId: "https://youtu.be/iyXIi6pNq-M"

@@ -3,6 +3,8 @@ title: "How I Reverse Engineered Instagram to Export DMs - No API Key Needed"
 slug: "instagram-dm-exporter-chrome-extension"
 date: "2026-05-28"
 description: "I built a free Chrome extension that exports any Instagram DM conversation in one click - by reverse engineering Instagram's own network requests. Here's the full process, from idea to publish."
+download: "https://chromewebstore.google.com/detail/hgojieiehkjgjhdnbglfhbcojeeggigi"
+stats: "/apps/instagram-dm-exporter"
 tags: ["chrome-extensions", "instagram", "reverse-engineering", "indie-hacker", "building-in-public", "vibe-coding", "content-js"]
 draft: false
 youtubeId: "https://youtu.be/tBSZ1oD5OM8"

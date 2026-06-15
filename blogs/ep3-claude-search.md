@@ -3,6 +3,8 @@ title: "Claude Has No Way to Search Your Conversations. So I Built One (Free)"
 slug: "claude-conversation-search-chrome-extension"
 date: "2026-05-23"
 description: "Claude's native search only finds conversation titles, not content. I built a free Chrome extension to fix that in 3 hours - full text search, word highlighting, and scrollbar markers. Here's how."
+download: "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm"
+stats: "/apps/claude-deep-search"
 tags: ["chrome-extensions", "claude-ai", "indie-hacker", "building-in-public", "content-js", "vibe-coding", "productivity"]
 draft: false
 youtubeId: "https://youtu.be/BGhB0gFwv1M"

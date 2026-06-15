@@ -3,6 +3,8 @@ title: "I Built a Chrome Extension That Bookmarks AI Replies on Claude, ChatGPT 
 slug: "ai-bookmark-chrome-extension-claude-chatgpt-grok"
 date: "2026-06-09"
 description: "I wanted to save a specific Claude reply and couldn't. So I built a free Chrome extension to do it - star any AI reply, sync it to the cloud, and scroll back to it instantly. Here's exactly how it went."
+download: "https://chromewebstore.google.com/detail/golankbkfnepjbpcekbcglcfgmbpgnmb"
+stats: "/apps/ai-bookmark"
 tags: ["chrome-extensions", "claude-ai", "chatgpt", "grok", "indie-hacker", "building-in-public", "vibe-coding", "productivity", "supabase"]
 draft: false
 youtubeId: "https://www.youtube.com/watch?v=WA5xLTMyykE"
