@@ -6,8 +6,8 @@ description: "Save Gmail emails as PDF, HTML, TXT, or JSON without login or inva
 download: "https://chromewebstore.google.com/detail/bhagkmlelgbjbklgafgdjeebkdhlibjf"
 stats: "/apps/gmail-to-pdf"
 tags: ["gmail-to-pdf", "chrome-extensions", "building-in-public"]
-thumbnail: "/blog-images/ep8-gmail-pdf/ep8.png"
 draft: false
+youtubeId: "https://www.youtube.com/watch?v=Y9ZYwJ9g9Cw"
 keyTakeaways:
   - "Existing Gmail PDF extensions broke, asked for logins, and cluttered the UI - so I built my own with minimal permissions."
   - "Reverse-engineering Gmail's network calls in the browser console came first; the Chrome extension and html2pdf pipeline came after."

@@ -1,13 +1,24 @@
 {
-  "fetchedAt": "2026-06-16T05:05:04.511Z",
+  "fetchedAt": "2026-06-16T15:56:42.618Z",
   "channel": {
     "id": "UC4Ts3s6hRQXY1L-Awh4PzPg",
     "title": "Coded Citadel",
     "handle": "CodedCitadel",
     "url": "https://www.youtube.com/@CodedCitadel"
   },
-  "videoCount": 7,
+  "videoCount": 8,
   "videos": [
+    {
+      "id": "Y9ZYwJ9g9Cw",
+      "title": "Bulk Export Gmail to PDF (With Attachments) | VibeCoding Until I Make $100K USD | Ep. 8",
+      "description": "Gmail has no native way to export emails as PDF. The Chrome extensions I was using for years stopped working, the ones with good reviews require a login I don't want to give, and most of them inject permanent buttons into the Gmail UI that I find disruptive. So I built my own.\n\nIn this episode I walk you through how I built a Chrome extension to bulk export Gmail emails as PDF, HTML, TXT and JSON - including images and attachments downloaded as a .zip - in ~15 hours and with minimal permissions.\n\nNo login required. No third-party account. No unnecessary permissions.\n\n---\n\n🔖 Blog (thorough technical details): https://codedcitadel.com/blog/ep-8-gmail-to-pdf\n📧 Install Gmail to PDF:https://codedcitadel.com/apps/gmail-to-pdf\n\n---\n\n⏱ TIMESTAMPS\n\n0:00 - What this extension does\n0:49 - Why I stopped trusting Gmail PDF extensions\n1:24 - Starting in the browser console (not Cursor)\n1:44 - Finding email data in Gmail's network tab\n2:03 - Reverse-engineering Gmail's fetch API with Claude\n2:13 - HTML export working, attachments broken\n2:27 - Base64 explained + fixing image quality\n2:45 - Moving to Cursor and writing the prompt\n2:55 - Chrome extension permissions (what to avoid)\n3:09 - Injecting a native-looking button into Gmail's toolbar\n3:36 - The ironic part: PDF was the hardest export format\n3:46 - html2pdf working on small emails, failing on large ones\n4:03 - The fix: waiting for the document to fully load\n4:07 - Logo design with ChatGPT\n4:17 - Final result + wrap up\n\n---\n\n🔍 WHAT THIS VIDEO COVERS\n\nHow to export Gmail emails to PDF | Bulk Gmail PDF export Chrome extension | Save Gmail emails as PDF without login | Gmail to PDF with attachments | Export Gmail to HTML, TXT and JSON | Reverse-engineering Gmail's internal API | How to use html2pdf in a Chrome extension | Chrome extension minimal permissions | How to inject buttons into Gmail UI | base64 image inlining for PDF export | VibeCoding Until I Make $100k episode 8\n\n---\n\n📌 ABOUT THIS SERIES\n\nVibeCoding Until I Make $100k is a build-in-public series where I document every Chrome extension I ship - the idea, the code, the bugs and the publishing process - until I hit $100k in revenue. No fluff, just the real process.\n\nNew episodes every week.\n\n---\n\n🔗 LINKS\n\nWebsite: https://codedcitadel.com/\nLive stats: https://codedcitadel.com/live-stats\nInstagram: http://instagram.com/CodedCitadel",
+      "link": "https://www.youtube.com/watch?v=Y9ZYwJ9g9Cw",
+      "thumbnail": "https://i.ytimg.com/vi/Y9ZYwJ9g9Cw/maxresdefault.jpg",
+      "publishedAt": "2026-06-16T15:48:36Z",
+      "duration": "4:30",
+      "durationIso": "PT4M30S",
+      "viewCount": 1
+    },
     {
       "id": "WA5xLTMyykE",
       "title": "Save Your Favorite AI Replies in One Place (100% FREE) | VibeCoding Until I Make $100k | Ep. 7",
@@ -17,7 +28,7 @@
       "publishedAt": "2026-06-09T12:13:29Z",
       "duration": "5:04",
       "durationIso": "PT5M4S",
-      "viewCount": 29
+      "viewCount": 31
     },
     {
       "id": "iyXIi6pNq-M",
@@ -28,7 +39,7 @@
       "publishedAt": "2026-06-04T19:00:00Z",
       "duration": "3:13",
       "durationIso": "PT3M13S",
-      "viewCount": 42
+      "viewCount": 45
     },
     {
       "id": "D4-1VtvkdIw",
@@ -39,7 +50,7 @@
       "publishedAt": "2026-06-01T00:19:50Z",
       "duration": "4:54",
       "durationIso": "PT4M54S",
-      "viewCount": 19
+      "viewCount": 21
     },
     {
       "id": "tBSZ1oD5OM8",
@@ -72,7 +83,7 @@
       "publishedAt": "2026-05-17T09:21:51Z",
       "duration": "8:09",
       "durationIso": "PT8M9S",
-      "viewCount": 36
+      "viewCount": 37
     },
     {
       "id": "m4iuYN7vsRo",
@@ -83,7 +94,7 @@
       "publishedAt": "2026-05-12T20:41:55Z",
       "duration": "11:47",
       "durationIso": "PT11M47S",
-      "viewCount": 108
+      "viewCount": 110
     }
   ]
 }
