@@ -58,6 +58,13 @@
   margin-bottom: 0.75rem;
 }
 
+.CC__privacy__body h3 {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--CC__color-text-main);
+  margin: 1.25rem 0 0.65rem;
+}
+
 .CC__privacy__body p,
 .CC__privacy__body li {
   font-size: 0.95rem;

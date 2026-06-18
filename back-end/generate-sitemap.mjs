@@ -20,6 +20,7 @@ const PRIVACY_POLICY_SLUGS = [
   'claude-deep-search',
   'claude-limit-monitor',
   'gmail-to-pdf-extension',
+  'instagram-comment-exporter',
   'instagram-dm-exporter',
   'save-to-drive-chrome-extension',
 ]

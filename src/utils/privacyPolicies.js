@@ -1,6 +1,7 @@
 import AiBookmarkPrivacyContent from '../content/privacy/ai-bookmark'
 import ClaudeDeepSearchPrivacyContent from '../content/privacy/claude-deep-search'
 import ClaudeLimitMonitorPrivacyContent from '../content/privacy/claude-limit-monitor'
+import InstagramCommentExporterPrivacyContent from '../content/privacy/instagram-comment-exporter'
 import InstagramDmExporterPrivacyContent from '../content/privacy/instagram-dm-exporter'
 import SaveToDrivePrivacyContent from '../content/privacy/save-to-drive-chrome-extension'
 import GmailToPdfPrivacyContent from '../content/privacy/gmail-to-pdf-extension'
@@ -23,6 +24,12 @@ const PRIVACY_POLICIES = {
     lastUpdated: 'June 2, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: ClaudeLimitMonitorPrivacyContent,
+  },
+  'instagram-comment-exporter': {
+    appName: 'Instagram Comments Exporter',
+    lastUpdated: 'June 18, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: InstagramCommentExporterPrivacyContent,
   },
   'instagram-dm-exporter': {
     appName: 'Instagram DM Exporter',
