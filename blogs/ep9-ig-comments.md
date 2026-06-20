@@ -4,6 +4,7 @@ slug: "ep-9-instagram-comments-exporter"
 date: "2026-06-18"
 description: "Export Instagram post comments to CSV with pause/resume, Giphy support, and Instagram-native UI. A build diary on GraphQL pagination, Chrome extension design, and why social tools always break."
 tags: ["instagram-comments-exporter", "chrome-extensions", "building-in-public"]
+youtubeId: "https://www.youtube.com/watch?v=XAoQX6iUgK0"
 draft: false
 keyTakeaways:
   - "Mock the UI in ChatGPT, ask Claude to code it pixel perfect. I always stress attention to detail and UX and it makes a real difference."
