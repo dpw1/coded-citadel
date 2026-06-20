@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-19",
-  "extractedAt": "2026-06-19T15:44:58.771Z",
+  "updatedAt": "2026-06-20",
+  "extractedAt": "2026-06-20T12:34:44.754Z",
   "appCount": 9,
   "apps": [
     {
@@ -135,7 +135,7 @@
       "slug": "youtube-filter-pro",
       "name": "Youtube Filter Pro: filter by views, duration, date, and more",
       "analytics": {
-        "totalInstalls": 137,
+        "totalInstalls": 128,
         "installations": [
           {
             "date": "18-05-2026",
@@ -390,9 +390,9 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 67,
-          "GB": 4,
+          "US": 59,
           "BR": 4,
+          "GB": 4,
           "IN": 3,
           "DE": 2,
           "other": 1
@@ -485,7 +485,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 208,
+        "pageViews": 202,
         "pageViewsOverTime": [
           {
             "date": "18-05-2026",
@@ -617,15 +617,15 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_sidebar": 14,
-          "chatgpt_com": 7,
           "ext_app_menu": 3,
-          "copilot_com": 1,
-          "item-share-cp": 1,
+          "chrome-ntp-icon": 2,
+          "ext_sidebar": 14,
           "app-launcher": 2,
-          "chrome-ntp-icon": 2
+          "chatgpt_com": 6,
+          "copilot_com": 1,
+          "item-share-cp": 1
         },
-        "impressions": 388,
+        "impressions": 366,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "19-05-2026",
@@ -753,7 +753,7 @@
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 463,
+          "enabled": 462,
           "disabled": 209
         }
       }
@@ -1156,7 +1156,7 @@
     },
     {
       "key": "dpfdehgiffggecppcbkdacbifbljeiii",
-      "slug": "custom-data",
+      "slug": "instagram-comments-exporter",
       "name": "Instagram Comments Exporter: Export comments to CSV, JSON, XLSX, or TXT",
       "analytics": {
         "totalInstalls": 0,
@@ -1183,7 +1183,7 @@
       "slug": "youtube-comments-exporter",
       "name": "YouTube Comments Exporter",
       "analytics": {
-        "totalInstalls": 48,
+        "totalInstalls": 45,
         "installations": [
           {
             "date": "14-05-2026",
@@ -1333,7 +1333,7 @@
         "weeklyUsers": [],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 41,
+          "US": 38,
           "IN": 1
         },
         "uninstalls": 2,
@@ -1348,7 +1348,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 14,
+        "pageViews": 13,
         "pageViewsOverTime": [
           {
             "date": "14-05-2026",
@@ -1410,7 +1410,7 @@
         "pageViewsBySource": {
           "ext_sidebar": 1
         },
-        "impressions": 40,
+        "impressions": 39,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "15-05-2026",
@@ -2105,8 +2105,8 @@
         "installsByRegion": {
           "US": 12,
           "IN": 2,
-          "BR": 1,
-          "CA": 1
+          "CA": 1,
+          "BR": 1
         },
         "uninstalls": 5,
         "uninstallsOverTime": [
@@ -2345,8 +2345,8 @@
         "installsByRegion": {
           "US": 26,
           "IN": 25,
-          "BR": 3,
-          "AU": 3
+          "AU": 3,
+          "BR": 3
         },
         "uninstalls": 9,
         "uninstallsOverTime": [
@@ -2523,7 +2523,7 @@
     }
   ],
   "analytics": {
-    "totalInstalls": 418,
+    "totalInstalls": 406,
     "installations": [
       {
         "date": "14-05-2026",
@@ -2896,7 +2896,7 @@
     ],
     "weeklyUsersByRegion": {},
     "installsByRegion": {
-      "US": 250,
+      "US": 239,
       "BR": 14,
       "GB": 6,
       "IN": 37,
@@ -2907,7 +2907,7 @@
     },
     "uninstalls": 69,
     "uninstallsByRegion": {},
-    "pageViews": 527,
+    "pageViews": 520,
     "pageViewsOverTime": [
       {
         "date": "14-05-2026",
@@ -3057,15 +3057,15 @@
     "pageViewsBySource": {
       "bgads1": 1,
       "ext_sidebar": 39,
-      "chatgpt_com": 7,
       "ext_app_menu": 11,
+      "chrome-ntp-icon": 2,
+      "app-launcher": 2,
+      "chatgpt_com": 6,
       "copilot_com": 1,
       "item-share-cp": 1,
-      "app-launcher": 2,
-      "chrome-ntp-icon": 2,
       "sh/x/srp/wr/m1/0": 2
     },
-    "impressions": 1575,
+    "impressions": 1552,
     "impressionsAcrossChromeWebStore": [
       {
         "date": "15-05-2026",
@@ -3209,7 +3209,7 @@
       }
     ],
     "enabledVsDisabled": {
-      "enabled": 1026,
+      "enabled": 1025,
       "disabled": 247
     }
   }

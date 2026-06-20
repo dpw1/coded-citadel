@@ -1,13 +1,24 @@
 {
-  "fetchedAt": "2026-06-19T15:45:31.127Z",
+  "fetchedAt": "2026-06-20T12:34:57.510Z",
   "channel": {
     "id": "UC4Ts3s6hRQXY1L-Awh4PzPg",
     "title": "Coded Citadel",
     "handle": "CodedCitadel",
     "url": "https://www.youtube.com/@CodedCitadel"
   },
-  "videoCount": 9,
+  "videoCount": 10,
   "videos": [
+    {
+      "id": "XAoQX6iUgK0",
+      "title": "Instagram Can BAN This Extension... | VibeCoding Until I Make $100k | Ep. 9",
+      "description": "I found an Instagram comments exporter on the Chrome Web Store that was almost good, but broke on long extraction sessions, mangled the dates, and skipped GIFs entirely. So I rebuilt it from scratch with AI doing most of the heavy lifting.\n\nIn this episode: reverse-engineering Instagram's private API from the network tab, pulling the richer GraphQL endpoint instead of the basic one, cloning Instagram's own UI pixel-for-pixel so the extension feels native, and shipping export to CSV,  XLSX, JSON, and TXT, GIFs included.\n\nBuilt in about 8 hours and 35 Cursor prompts (not counting the Claude conversations).\n\nGet the extension: https://codedcitadel.com/apps/instagram-comments-exporter\nFull technical breakdown: [link]\nLive install stats for all my extensions: https://codedcitadel.com/live-stats\n\nThis is episode 9 of Vibecoding Until I Make $100K, where I build and ship stuff on camera until the series hits six figures in revenue.\n\nStack: Cursor, Claude, Supabase, Chrome Extension APIs (Manifest V3)\n\nTIMESTAMPS\n00:00 Intro - what the extension does\n01:10 Episode 9: Vibecoding Until I Make $100K\n01:18 Why I rebuilt a broken extension\n02:01 Reverse-engineering Instagram's API\n02:56 Finding the GraphQL endpoint\n03:31 Architecture & design brainstorm with Claude\n04:01 Cloning Instagram's UI + first build\n04:36 Redesigning the UI with ChatGPT\n05:01 Pixel-perfect HTML/CSS with Claude\n05:23 Integrating the final UI\n05:34 Polish: local storage, pause/resume, real-time updates\n06:13 Logo + Chrome Web Store launch\n\nFollow the build:\nInstagram: @CodedCitadel\nBlog: https://codedcitadel.com\n\n\n#chromeextension #vibecoding #buildinpublic #instagram #ai #indiehacker",
+      "link": "https://www.youtube.com/watch?v=XAoQX6iUgK0",
+      "thumbnail": "https://i.ytimg.com/vi/XAoQX6iUgK0/maxresdefault.jpg",
+      "publishedAt": "2026-06-20T03:22:49Z",
+      "duration": "6:35",
+      "durationIso": "PT6M35S",
+      "viewCount": 2
+    },
     {
       "id": "shjTKM6vskI",
       "title": "Filter youtube videos by channel's subscriber count",
@@ -17,7 +28,7 @@
       "publishedAt": "2026-06-18T02:26:55Z",
       "duration": "0:32",
       "durationIso": "PT32S",
-      "viewCount": 13
+      "viewCount": 15
     },
     {
       "id": "Y9ZYwJ9g9Cw",
@@ -28,7 +39,7 @@
       "publishedAt": "2026-06-16T15:48:36Z",
       "duration": "4:30",
       "durationIso": "PT4M30S",
-      "viewCount": 3
+      "viewCount": 6
     },
     {
       "id": "WA5xLTMyykE",
@@ -50,7 +61,7 @@
       "publishedAt": "2026-06-04T19:00:00Z",
       "duration": "3:13",
       "durationIso": "PT3M13S",
-      "viewCount": 55
+      "viewCount": 57
     },
     {
       "id": "D4-1VtvkdIw",
@@ -61,7 +72,7 @@
       "publishedAt": "2026-06-01T00:19:50Z",
       "duration": "4:54",
       "durationIso": "PT4M54S",
-      "viewCount": 23
+      "viewCount": 27
     },
     {
       "id": "tBSZ1oD5OM8",
@@ -72,7 +83,7 @@
       "publishedAt": "2026-05-28T11:12:11Z",
       "duration": "4:52",
       "durationIso": "PT4M52S",
-      "viewCount": 23
+      "viewCount": 24
     },
     {
       "id": "BGhB0gFwv1M",
@@ -83,18 +94,18 @@
       "publishedAt": "2026-05-23T16:20:26Z",
       "duration": "4:47",
       "durationIso": "PT4M47S",
-      "viewCount": 36
+      "viewCount": 37
     },
     {
       "id": "-saFrB1W9ug",
-      "title": "I Reverse Engineered Youtube's API to Code This... | VibeCoding Until I Make $100k | Ep. 2",
+      "title": "How I Unlocked YouTube's \"Hidden\" Filters | VibeCoding Until I Make $100k | Ep. 2",
       "description": "The only way through is forward!\n\nIn Episode 2 of my VibeCoding Until I Make $100k series, I'm building my second Chrome extension - a YouTube video filter that lets you sort search results by view count, video length, and more. But before writing a single line of code, I walk through my data-driven product research process: why I scraped Etsy sellers on Reddit, what I found (and didn't find), and how a frustrating YouTube search session gave me the idea.\n\nI break down the full build process - reverse engineering YouTube's internal JSON API using the browser network tab, generating a native-looking YouTube UI with ChatGPT and YouTube's own CSS variables, and using Claude to build clean HTML/CSS. I also document the debugging rabbit hole that cost me hours: YouTube's pagination token system and why I was silently fetching invisible videos the whole time.\n\nThis is a no-cuts, honest look at how a solo developer ships a working Chrome extension MVP from idea to live product - bugs, dead ends, and all.\n\nIf you're interested in Chrome extension development, vibe coding, building in public, or making money with side projects in 2025, this series is for you.\n\nSubscribe for weekly build logs.\n\nDownload: https://chromewebstore.google.com/detail/youtube-filter-pro-filter/dbkkcbfafkckhmefkpgnelikibobcabb\nBlog with more details: https://medium.com/@codedcitadel/how-to-filter-youtube-videos-by-views-i-reverse-engineered-youtubes-api-to-build-this-977d9200eeff\n--\n\nTIMESTAMPS\n0:00 - Welcome back + what we built in Episode 1 (YouTube Comments Scraper)\n0:49 - Why I use data instead of creativity alone for product ideas\n1:01 - Scraping Etsy sellers on Reddit looking for pain points\n1:26 - Why Etsy sellers are a great monetization target\n1:44 - Dead end: Etsy ideas didn't pan out\n1:58 - Pivoting to YouTube search - finding the real idea\n2:16 - Deciding to build a YouTube video filter Chrome extension\n2:22 - Reverse engineering YouTube's network tab to find the JSON API\n2:52 - Building a fetch function to pull YouTube video data on demand\n3:14 - First working prototype - fetching views, duration, and metadata\n3:47 - Using ChatGPT to design the UI using YouTube's own CSS variables\n4:30 - Logo design and making it transparent\n5:09 - Building the final HTML/CSS with Claude\n5:36 - Setting up the project structure and AI reference folder\n6:08 - Testing time - and realizing it's broken\n6:36 - Deep dive into how YouTube's pagination token system works\n7:11 - Bug fixed - live demo: filtering by length and minimum view count\n7:51 - Known limitation: \"People also watched\" section not yet supported\n8:02 - MVP is done - what's next",
       "link": "https://www.youtube.com/watch?v=-saFrB1W9ug",
       "thumbnail": "https://i.ytimg.com/vi/-saFrB1W9ug/maxresdefault.jpg",
       "publishedAt": "2026-05-17T09:21:51Z",
       "duration": "8:09",
       "durationIso": "PT8M9S",
-      "viewCount": 37
+      "viewCount": 41
     },
     {
       "id": "m4iuYN7vsRo",
@@ -105,7 +116,7 @@
       "publishedAt": "2026-05-12T20:41:55Z",
       "duration": "11:47",
       "durationIso": "PT11M47S",
-      "viewCount": 111
+      "viewCount": 113
     }
   ]
 }
