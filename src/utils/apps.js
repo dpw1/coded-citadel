@@ -27,6 +27,19 @@ export function getAppBySlug(slug) {
   return appsData.apps.find((app) => app.slug === resolved) ?? null
 }
 
+/** Resolve an app from a `source` query value (extension slug or Chrome Web Store ID). */
+export function getAppBySource(source) {
+  const trimmed = String(source ?? '').trim()
+  if (!trimmed) return null
+
+  const bySlug = getAppBySlug(trimmed)
+  if (bySlug) return bySlug
+
+  return (
+    appsData.apps.find((app) => app.chromeExtensionId === trimmed) ?? null
+  )
+}
+
 export function isAppLive(app) {
   return app?.status === 'live'
 }

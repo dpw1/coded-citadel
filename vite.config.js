@@ -41,6 +41,8 @@ function getPrerenderRoutes() {
     '/blog',
     '/live-stats',
     '/save-directly-to-drive',
+    '/thank-you',
+    '/uninstall',
     ...(apps || []).map((app) => `/apps/${app.slug}`),
     ...PRIVACY_POLICY_SLUGS.map((slug) => `/privacy-policy/${slug}`),
     ...TERMS_OF_SERVICE_SLUGS.map((slug) => `/terms-of-service/${slug}`),
