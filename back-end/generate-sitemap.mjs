@@ -23,6 +23,7 @@ const PRIVACY_POLICY_SLUGS = [
   'instagram-comment-exporter',
   'instagram-dm-exporter',
   'save-to-drive-chrome-extension',
+  'youtube-keyword',
 ]
 
 /** Keep in sync with src/utils/termsOfService.js */

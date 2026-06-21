@@ -5,6 +5,7 @@ import InstagramCommentExporterPrivacyContent from '../content/privacy/instagram
 import InstagramDmExporterPrivacyContent from '../content/privacy/instagram-dm-exporter'
 import SaveToDrivePrivacyContent from '../content/privacy/save-to-drive-chrome-extension'
 import GmailToPdfPrivacyContent from '../content/privacy/gmail-to-pdf-extension'
+import YoutubeKeywordPrivacyContent from '../content/privacy/youtube-keyword'
 
 const PRIVACY_POLICIES = {
   'ai-bookmark': {
@@ -48,6 +49,12 @@ const PRIVACY_POLICIES = {
     lastUpdated: 'June 13, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: GmailToPdfPrivacyContent,
+  },
+  'youtube-keyword': {
+    appName: 'YouTube Keyword Alert',
+    lastUpdated: 'March 21, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: YoutubeKeywordPrivacyContent,
   },
 }
 
