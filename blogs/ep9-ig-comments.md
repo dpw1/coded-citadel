@@ -1,5 +1,5 @@
 ---
-title: "I Got Many Instagram Accounts Blocked to be Able to Code This Instagram Comment Exporter..."
+title: "Instagram Could BAN This Chrome Extension That I coded"
 slug: "ep-9-instagram-comments-exporter"
 date: "2026-06-18"
 description: "Export Instagram post comments to CSV with pause/resume, Giphy support, and Instagram-native UI. A build diary on GraphQL pagination, Chrome extension design, and why social tools always break."
@@ -12,17 +12,23 @@ keyTakeaways:
   - "When reverse engineering, open the Network tab and actually use the site. Scrolling through comments is what exposed the on-demand API calls."
 ---
 
-# How I Built an Instagram Comments Exporter Chrome Extension (After My 2022 Scraper Got Blacklisted)
+# How I Built an Instagram Comments Exporter Chrome Extension (And How Getting an Instagram Scraper Blacklisted in 2022 Helped Me)
 
-**Instagram comments exporter** tools sound straightforward until Instagram changes something. Long story short, I learned that the hard way back in 2022, when I spent six months on a private scraper that eventually got every burner account and proxy I owned blacklisted. This post is about the sequel: a proper **Chrome extension** that exports post comments to CSV, with pause/resume, Giphy replies, and a UI that actually looks like Instagram.
+**Social media** tools may sound straightforward. And they are, until the DOM changes something. And these changes happen frequently. 
 
-If you haven't read it yet, this follows the same reverse-engineering playbook I used for the [Instagram DM Exporter](https://codedcitadel.com/blog/instagram-dm-exporter-chrome-extension/) — open the Network tab, find the API, prove it in the console, then wrap it in an extension.
+I learned that the hard way back in 2022, when I spent six months on a private scraper that eventually got every burner account and proxy I owned blacklisted. 
+
+The project that I'm gonna share in today's post is almost a sequel to that era: a proper **Chrome extension** that exports post comments to CSV, with pause/resume, Giphy replies, and a UI that actually looks like Instagram, and that won't get users blacklisted - even though the extension itself is in considerable risk, since Mark is not really a fan of scrapers.
+
+This extension follows the same reverse-engineering playbook I used for the [Instagram DM Exporter](https://codedcitadel.com/blog/instagram-dm-exporter-chrome-extension/) — open the Network tab, find the API, prove it in the console, then wrap it in an extension. 
+
+Let's get into the details of it!
 
 ---
 
 ## Why Instagram tools are fun until they aren't
 
-Back in 2022, I built a fairly complex Instagram scraper: it would automatically like, follow, unfollow, DM... I'm not proud to admit that I got many burner accounts and proxies blacklisted in the process, but it was a great learning experience.
+So, yeah, back in 2022, I built a fairly complex Instagram scraper: it would automatically like, follow, unfollow, DM... I'm not proud to admit that I got many burner accounts and proxies blocked in the process, but it was a great learning experience.
 
 ![](/blog-images/ep9-ig-comments/SCREENSHOT_15-06-2026-13h36.jpg)
 

@@ -16,7 +16,8 @@
     "fetch-youtube": "npm install --prefix back-end && node back-end/fetch-youtube-videos.mjs",
     "extract-chrome-apps": "node back-end/extract-chrome-apps.mjs",
     "generate-sitemap": "node back-end/generate-sitemap.mjs",
-    "resize-favicon": "node back-end/resize-favicon.mjs"
+    "resize-favicon": "node back-end/resize-favicon.mjs",
+    "sync:devto": "node back-end/sync-devto.mjs"
   },
   "dependencies": {
     "chart.js": "^4.5.1",
