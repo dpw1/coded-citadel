@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-23T07:41:08.358Z",
+  "updatedAt": "2026-06-23T16:11:15.976Z",
   "daily": [
     {
       "date": "2026-06-03",
@@ -170,30 +170,30 @@
       "activeUsers": 3,
       "sessions": 3,
       "blogViews": 1,
-      "avgSessionDurationSeconds": 5.749405333333333,
-      "bounceRate": 1
+      "avgSessionDurationSeconds": 8.835621999999999,
+      "bounceRate": 0.6666666666666666
     },
     {
       "date": "2026-06-23",
-      "pageViews": 2,
-      "activeUsers": 0,
-      "sessions": 2,
+      "pageViews": 12,
+      "activeUsers": 1,
+      "sessions": 4,
       "blogViews": 0,
-      "avgSessionDurationSeconds": 0,
+      "avgSessionDurationSeconds": 709.8911335,
       "bounceRate": 1
     }
   ],
   "snapshots": [
     {
-      "extractedAt": "2026-06-23T07:41:08.358Z",
+      "extractedAt": "2026-06-23T16:11:15.976Z",
       "analytics": {
         "available": true,
-        "updatedAt": "2026-06-23T07:41:08.358Z",
+        "updatedAt": "2026-06-23T16:11:15.976Z",
         "message": null,
-        "totalViews": 323,
+        "totalViews": 333,
         "blogViews": 13,
-        "averageTimeOnSiteSeconds": 118.80433193750001,
-        "bounceRate": 0.6339285714285714,
+        "averageTimeOnSiteSeconds": 141.7097224649123,
+        "bounceRate": 0.631578947368421,
         "newVsReturning": {
           "new": 87,
           "returning": 8
@@ -201,15 +201,15 @@
         "mostViewedPages": [
           {
             "path": "/",
-            "views": 253
+            "views": 259
           },
           {
             "path": "/apps",
-            "views": 12
+            "views": 13
           },
           {
             "path": "/live-stats",
-            "views": 12
+            "views": 13
           },
           {
             "path": "/privacy-policy/ai-bookmark/",
@@ -376,7 +376,7 @@
           },
           {
             "source": "Unassigned",
-            "sessions": 3
+            "sessions": 4
           },
           {
             "source": "Organic Social",
@@ -402,7 +402,7 @@
           },
           {
             "referrer": "(not set)",
-            "sessions": 3
+            "sessions": 4
           },
           {
             "referrer": "google-admin.corp.google.com",
