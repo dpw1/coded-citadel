@@ -199,6 +199,29 @@ button {
   z-index: 10;
 }
 
+.CC__stats-bar-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: calc(var(--CC__radius) * 1.5);
+  transition: transform 0.22s ease;
+}
+
+.CC__stats-bar-link:hover {
+  transform: translateY(-2px);
+}
+
+.CC__stats-bar-link:hover .CC__stats-bar.CC__cyber-accent,
+.CC__stats-bar-link:focus-visible .CC__stats-bar.CC__cyber-accent {
+  border-color: var(--CC__color-border-glow);
+  background-color: #111827;
+}
+
+.CC__stats-bar-link:focus-visible {
+  outline: 2px solid var(--CC__color-primary);
+  outline-offset: 3px;
+}
+
 .CC__stats-bar {
   display: flex;
   align-items: stretch;

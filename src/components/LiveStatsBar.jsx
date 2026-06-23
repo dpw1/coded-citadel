@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import CyberCorners from './CyberCorners'
 import { formatNumber, getHomeStats, getJourneyStartDateLabel } from '../utils/apps'
 
@@ -24,7 +25,8 @@ export default function LiveStatsBar() {
 
   return (
     <div className="CC__stats-section CC__container">
-      <div className="CC__stats-bar CC__cyber-accent" role="region" aria-label="Live Stats">
+      <Link to="/live-stats" className="CC__stats-bar-link" aria-label="View live portfolio stats">
+        <div className="CC__stats-bar CC__cyber-accent">
         <div className="CC__stats-bar__corners" aria-hidden="true">
           <CyberCorners />
         </div>
@@ -117,7 +119,8 @@ export default function LiveStatsBar() {
             </div>
           </li>
         </ul>
-      </div>
+        </div>
+      </Link>
     </div>
   )
 }
