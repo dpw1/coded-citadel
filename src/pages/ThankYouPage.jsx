@@ -1,16 +1,27 @@
 import { useEffect, useMemo } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import AppsGridSection from '../components/AppsGridSection'
-import { appFilterLabel, getAppBySource } from '../utils/apps'
+import CyberCorners from '../components/CyberCorners'
+import { getAppBySource } from '../utils/apps'
 import '../App.css'
-import './PrivacyPolicyPage.css'
+import './ThankYouPage.css'
+
+const YOUTUBE_URL = 'https://www.youtube.com/@CodedCitadel'
+const CONTACT_EMAIL = 'codedCitadel@gmail.com'
+
+const YOUTUBE_ICON = (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.25 3.5-6.25 3.5z" />
+  </svg>
+)
 
 export default function ThankYouPage() {
   const [searchParams] = useSearchParams()
   const source = searchParams.get('source')
   const installedApp = useMemo(() => getAppBySource(source), [source])
+  const installedName = installedApp?.name?.trim() || 'my extension'
 
   useEffect(() => {
     document.title = 'Thank You — Coded Citadel'
@@ -19,34 +30,46 @@ export default function ThankYouPage() {
     }
   }, [])
 
-  const headline = installedApp
-    ? `Thank you for installing ${appFilterLabel(installedApp)}!`
-    : 'Thank you for installing our Chrome extension!'
-
-  const subheadline = installedApp
-    ? 'Here are a few other Chrome extensions you might also like:'
-    : 'Here are a few other extensions you might also like:'
-
   return (
     <>
       <SiteHeader />
-      <main className="CC__privacy-page">
-        <div className="CC__container CC__privacy-page__inner" style={{ maxWidth: 'var(--CC__max-width)' }}>
-          <header style={{ marginBottom: '2rem' }}>
-            <p className="CC__section-eyebrow">Installation complete</p>
-            <h1 className="CC__privacy-page__title">{headline}</h1>
-            <p className="CC__privacy-page__meta" style={{ marginBottom: 0 }}>
-              {subheadline}
+      <main className="CC__thank-you-page">
+        <div className="CC__container CC__thank-you-welcome-wrap">
+          <div className="CC__thank-you-welcome CC__cyber-accent">
+            <div className="CC__thank-you-welcome__corners" aria-hidden="true">
+              <CyberCorners />
+            </div>
+            <h2 className="CC__thank-you__title">
+              Thank You for Installing {installedName}!
+            </h2>
+
+            <p className="CC__thank-you__text">
+              This extension is 100% free, and part of my{' '}
+              <strong>Coding Until I Make $100k USD challenge</strong>.
             </p>
-          </header>
+
+            <p className="CC__thank-you__text">
+              All built in public. Documented on{' '}
+              <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
+                YouTube
+              </a>{' '}
+              and <Link to="/blog">blog</Link>.
+            </p>
+
+
+            <p className="CC__thank-you__text">
+              Questions, feedback, bugs?{' '}
+              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            </p>
+          </div>
         </div>
+
         <AppsGridSection
-          sectionId="thank-you-extensions"
+          sectionId="apps"
           excludeSlug={installedApp?.slug ?? null}
-          eyebrow="More from Coded Citadel"
-          title="You Might Also Like"
           showViewAllLink
           maxItems={6}
+          randomize
         />
       </main>
       <SiteFooter />

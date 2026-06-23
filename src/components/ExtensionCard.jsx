@@ -45,13 +45,6 @@ const USERS_ICON = (
   </svg>
 )
 
-const PLAY_ICON = (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="12" cy="12" r="10" fill="rgba(9, 11, 16, 0.72)" stroke="#ffffff" strokeWidth="1.5" />
-    <polygon points="10,7.5 16.5,12 10,16.5" fill="#ffffff" />
-  </svg>
-)
-
 const YOUTUBE_ICON = (
   <svg viewBox="0 0 28.57 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path
@@ -122,11 +115,6 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
           ) : (
             app.icon ?? '⚡'
           )}
-          {hasVideo ? (
-            <span className="CC__ext-icon__play" aria-hidden="true">
-              {PLAY_ICON}
-            </span>
-          ) : null}
         </div>
 
         <div className="CC__ext-meta">

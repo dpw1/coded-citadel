@@ -669,31 +669,6 @@
   display: block;
 }
 
-.CC__ext-icon__play {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  opacity: 0;
-  transition: opacity 0.22s ease;
-  border-radius: inherit;
-  pointer-events: none;
-}
-
-.CC__extension-card:hover .CC__ext-icon--video .CC__ext-icon__play,
-.CC__extension-card:focus-within .CC__ext-icon--video .CC__ext-icon__play,
-.CC__ext-icon--video:focus-visible .CC__ext-icon__play {
-  opacity: 1;
-}
-
-.CC__ext-icon__play svg {
-  width: 28px;
-  height: 28px;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-}
-
 .CC__ext-top {
   display: flex;
   gap: var(--CC__space-sm);

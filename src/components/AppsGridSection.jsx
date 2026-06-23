@@ -31,6 +31,15 @@ function getCategories(apps) {
   return ['All', ...categories]
 }
 
+function shuffleApps(apps) {
+  const list = [...apps]
+  for (let i = list.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[list[i], list[j]] = [list[j], list[i]]
+  }
+  return list
+}
+
 export default function AppsGridSection({
   sectionId = 'apps',
   showViewAllLink = false,
@@ -41,6 +50,7 @@ export default function AppsGridSection({
   enablePagination = false,
   perPage = 6,
   maxItems = null,
+  randomize = false,
   showChromeStoreLink = false,
   chromeStoreLink = CHROME_STORE_SEARCH_URL,
 }) {
@@ -63,11 +73,12 @@ export default function AppsGridSection({
   }, [activeTab, apps, enableTabs])
 
   const visibleApps = useMemo(() => {
-    if (maxItems != null) return filteredApps.slice(0, maxItems)
-    if (!enablePagination) return filteredApps
+    const pool = randomize ? shuffleApps(filteredApps) : filteredApps
+    if (maxItems != null) return pool.slice(0, maxItems)
+    if (!enablePagination) return pool
     const start = (currentPage - 1) * perPage
-    return filteredApps.slice(start, start + perPage)
-  }, [currentPage, enablePagination, filteredApps, maxItems, perPage])
+    return pool.slice(start, start + perPage)
+  }, [currentPage, enablePagination, filteredApps, maxItems, perPage, randomize])
 
   const totalPages = enablePagination ? Math.ceil(filteredApps.length / perPage) : 1
   const showPagination = enablePagination && totalPages > 1
