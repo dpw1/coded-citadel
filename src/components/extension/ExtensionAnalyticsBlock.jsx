@@ -28,6 +28,7 @@ export default function ExtensionAnalyticsBlock({
   title = 'Live Performance',
   appFilter = null,
   siteStatsHeadlines = null,
+  hideHeader = false,
 }) {
   if (!analytics || !chartIds) return null
 
@@ -53,16 +54,10 @@ export default function ExtensionAnalyticsBlock({
   const uninstallsByRegion = analytics.uninstallsByRegion ?? {}
   const evdDateLabel = formatEnabledVsDisabledDate(enabledVsDisabled)
   const showEnabledDonut = (enabledVsDisabled.enabled ?? 0) + (enabledVsDisabled.disabled ?? 0) > 0
-  const weeklyRegionTotal = Object.values(analytics.weeklyUsersByRegion ?? {}).reduce(
-    (a, b) => a + b,
-    0,
-  )
 
-  return (
+  const analyticsContent = (
     <>
-      <ExtensionCharts analytics={analytics} chartIds={chartIds} />
-
-      <section className="ext-analytics">
+      {!hideHeader ? (
         <div className="ext-analytics__header-layout">
           <div className="ext-analytics__header">
             <div className="ext-analytics__header-main">
@@ -81,9 +76,10 @@ export default function ExtensionAnalyticsBlock({
             <div className="ext-analytics__header-actions">{appFilter}</div>
           ) : null}
         </div>
+      ) : null}
 
-        <div className="ext-analytics__kpis">
-          <div className="ext-kpi CC__cyber-accent">
+      <div className="ext-analytics__kpis">
+      <div className="ext-kpi CC__cyber-accent">
             <CyberCorners />
             <div className="ext-kpi__label">Total Installs</div>
             <div className="ext-kpi__value">{formatNumber(totalInstalls)}</div>
@@ -185,16 +181,19 @@ export default function ExtensionAnalyticsBlock({
             </div>
             <DonutLegend dataObj={analytics.installsByRegion} total={analytics.totalInstalls} />
           </div>
-          <div className="ext-chart-card CC__cyber-accent">
-            <CyberCorners />
-            <div className="ext-chart-card__title">Weekly Users by Region</div>
-            <div className="ext-chart-card__canvas-wrap" style={{ height: 160 }}>
-              <canvas id={chartIds.weeklyRegion} />
-            </div>
-            <DonutLegend dataObj={analytics.weeklyUsersByRegion ?? {}} total={weeklyRegionTotal} />
-          </div>
         </div>
-      </section>
+    </>
+  )
+
+  return (
+    <>
+      <ExtensionCharts analytics={analytics} chartIds={chartIds} />
+
+      {hideHeader ? (
+        <div className="ext-analytics__body">{analyticsContent}</div>
+      ) : (
+        <section className="ext-analytics">{analyticsContent}</section>
+      )}
 
       <section className="ext-secondary-stats">
         <div className="ext-secondary-stats__grid">
@@ -260,20 +259,20 @@ export default function ExtensionAnalyticsBlock({
               {[...Object.entries(pageViewsBySource)]
                 .sort(([, a], [, b]) => b - a)
                 .map(([source, count]) => {
-                const pct = analytics.pageViews
-                  ? ((count / analytics.pageViews) * 100).toFixed(1)
-                  : '0.0'
-                return (
-                  <div key={source} className="ext-source-row">
-                    <span className="ext-source-row__name">{formatLabel(source)}</span>
-                    <div className="ext-source-row__bar-wrap">
-                      <div className="ext-source-row__fill" style={{ width: `${pct}%` }} />
+                  const pct = analytics.pageViews
+                    ? ((count / analytics.pageViews) * 100).toFixed(1)
+                    : '0.0'
+                  return (
+                    <div key={source} className="ext-source-row">
+                      <span className="ext-source-row__name">{formatLabel(source)}</span>
+                      <div className="ext-source-row__bar-wrap">
+                        <div className="ext-source-row__fill" style={{ width: `${pct}%` }} />
+                      </div>
+                      <span className="ext-source-row__val">{formatNumber(count)}</span>
+                      <span className="ext-source-row__pct">({pct}%)</span>
                     </div>
-                    <span className="ext-source-row__val">{formatNumber(count)}</span>
-                    <span className="ext-source-row__pct">({pct}%)</span>
-                  </div>
-                )
-              })}
+                  )
+                })}
             </div>
           </div>
         </div>

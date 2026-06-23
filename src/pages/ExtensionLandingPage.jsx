@@ -71,7 +71,6 @@ export default function ExtensionLandingPage() {
       pageViews: `pviews-${uid}`,
       impressions: `impr-${uid}`,
       installRegion: `install-${uid}`,
-      weeklyRegion: `wregion-${uid}`,
       enabledVsDisabled: `evd-${uid}`,
     }),
     [uid],

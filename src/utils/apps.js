@@ -181,8 +181,34 @@ export function splitAppTitle(name) {
 
 export function formatAppDate(iso) {
   if (!iso) return '—'
-  const d = new Date(`${iso}T12:00:00`)
+  const raw = String(iso).trim()
+  const d = raw.includes('T') ? new Date(raw) : new Date(`${raw}T12:00:00`)
+  if (Number.isNaN(d.getTime())) return '—'
   return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
+}
+
+/** e.g. Jun 22, 2026, 12h31pm — includes time when the value is a full ISO timestamp. */
+export function formatAnalyticsTimestamp(iso) {
+  if (!iso) return '—'
+  const raw = String(iso).trim()
+  const hasTime = raw.includes('T')
+  const d = hasTime ? new Date(raw) : new Date(`${raw}T12:00:00`)
+  if (Number.isNaN(d.getTime())) return '—'
+
+  const datePart = d.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
+
+  if (!hasTime) return datePart
+
+  let hours = d.getHours()
+  const minutes = d.getMinutes()
+  const ampm = hours >= 12 ? 'pm' : 'am'
+  hours = hours % 12 || 12
+  const minStr = minutes < 10 ? `0${minutes}` : String(minutes)
+  return `${datePart}, ${hours}h${minStr}${ampm}`
 }
 
 /** Display label for enabled/disabled snapshot date (`dd-mm-yyyy` or ISO). */

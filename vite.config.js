@@ -6,6 +6,7 @@ import react from '@vitejs/plugin-react'
 import prerender from '@prerenderer/rollup-plugin'
 import blogDevPlugin from './back-end/vite-plugin-blog-dev.mjs'
 import portfolioAnalyticsDevPlugin from './back-end/vite-plugin-portfolio-analytics-dev.mjs'
+import liveStatsApiPlugin from './back-end/vite-plugin-live-stats-api.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -56,6 +57,7 @@ export default defineConfig({
     react(),
     blogDevPlugin(),
     portfolioAnalyticsDevPlugin(),
+    liveStatsApiPlugin(),
     prerender({
       routes: getPrerenderRoutes(),
       renderer: '@prerenderer/renderer-puppeteer',

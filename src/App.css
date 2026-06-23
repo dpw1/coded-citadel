@@ -445,8 +445,6 @@
 
   .CC__hero__inner {
     justify-content: flex-end;
-    min-height: 100svh;
-    min-height: 100dvh;
     padding: 0 1.25rem max(2rem, env(safe-area-inset-bottom)) 44px;
     width: 100%;
   }

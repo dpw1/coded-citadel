@@ -38,20 +38,43 @@ const REGION_COLORS = { US: '#ff9900', BR: '#3b82f6', IN: '#22c55e', GB: '#a855f
 
 const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
 
-function getFlagHTML(code) {
+export function isRegionCode(key) {
+  return /^[A-Z]{2}$/.test(String(key || '').toUpperCase())
+}
+
+export function getCountryName(code) {
+  if (!code) return 'Unknown'
+  const upper = String(code).toUpperCase()
+  if (/^[A-Z]{2}$/.test(upper)) {
+    return regionNames.of(upper) ?? upper
+  }
+  return String(code)
+}
+
+export function CountryFlag({ code, className = '' }) {
+  const upper = String(code || '').toUpperCase()
+  if (!isRegionCode(upper)) return null
+
+  return (
+    <img
+      src={`https://flagcdn.com/w20/${upper.toLowerCase()}.png`}
+      alt={getCountryName(upper)}
+      className={`ext-country-flag${className ? ` ${className}` : ''}`}
+      width={20}
+      height={15}
+      loading="lazy"
+      decoding="async"
+    />
+  )
+}
+
+export function getFlagHTML(code) {
+  const upper = String(code || '').toUpperCase()
   return `<img 
-    src="https://flagcdn.com/w20/${code.toLowerCase()}.png"
-    alt="${regionNames.of(code) ?? code}"
+    src="https://flagcdn.com/w20/${upper.toLowerCase()}.png"
+    alt="${getCountryName(upper)}"
     style="width:1.2em;height:0.9em;object-fit:cover;margin-right:6px;vertical-align:middle"
   />`
-}
-
-function getCountryName(code) {
-  return regionNames.of(code) ?? code
-}
-
-function isRegionCode(key) {
-  return /^[A-Z]{2}$/.test(key)
 }
 
 function sortEntriesByValueDesc(dataObj) {
@@ -62,6 +85,50 @@ function chartDefaults() {
   Chart.defaults.color = '#7a8599'
   Chart.defaults.font.family = "'Inter', sans-serif"
   Chart.defaults.font.size = 11
+}
+
+export function mountRegionDonutChart(canvas, dataObj) {
+  if (!canvas || !dataObj) return { destroy() {}, resize() {} }
+
+  chartDefaults()
+  const entries = sortEntriesByValueDesc(dataObj)
+  if (!entries.length) return { destroy() {}, resize() {} }
+
+  const chart = new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels: entries.map(([key]) => formatLabel(key)),
+      datasets: [
+        {
+          data: entries.map(([, value]) => value),
+          backgroundColor: PALETTE,
+          borderColor: '#131824',
+          borderWidth: 3,
+          hoverBorderWidth: 3,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '72%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#131824',
+          borderColor: '#1f2636',
+          borderWidth: 1,
+          titleColor: '#7a8599',
+          bodyColor: '#ffffff',
+        },
+      },
+    },
+  })
+
+  return {
+    destroy: () => chart.destroy(),
+    resize: () => chart.resize(),
+  }
 }
 
 function gradientFill(chart, height, topAlpha = 0.3) {
@@ -243,8 +310,6 @@ export default function ExtensionCharts({ analytics, chartIds }) {
     buildLineChart(chartIds.impressions, impressions, 'impressions')
 
     buildDonut(chartIds.installRegion, analytics.installsByRegion, analytics.totalInstalls)
-    const weeklyRegionTotal = Object.values(analytics.weeklyUsersByRegion).reduce((a, b) => a + b, 0)
-    buildDonut(chartIds.weeklyRegion, analytics.weeklyUsersByRegion, weeklyRegionTotal)
 
     const evd = analytics.enabledVsDisabled
     if (chartIds.enabledVsDisabled && evd && (evd.enabled || evd.disabled)) {
