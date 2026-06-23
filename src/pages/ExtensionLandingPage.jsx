@@ -326,6 +326,7 @@ export default function ExtensionLandingPage() {
           eyebrow="Explore"
           title="More Apps"
           showViewAllLink
+          maxItems={6}
         />
         <YoutubeSection />
       </div>

@@ -1,15 +1,35 @@
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import CyberCorners from './CyberCorners'
-import {
-  appActiveUsers,
-  appCardInstalls,
-  appCardSummary,
-  appIconUrl,
-  appStoreUrl,
-  formatNumber,
-  getAllApps,
-  isAppLive,
-} from '../utils/apps'
+import ExtensionCard from './ExtensionCard'
+import ExtensionVideoModal from './ExtensionVideoModal'
+import { getAllApps } from '../utils/apps'
+
+const CHROME_STORE_SEARCH_URL =
+  'https://chromewebstore.google.com/search/Coded%20Citadel%20extension'
+
+const PREV_ICON = (
+  <svg viewBox="0 0 24 24">
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+)
+
+const NEXT_ICON = (
+  <svg viewBox="0 0 24 24">
+    <path d="M9 18l6-6-6-6" />
+  </svg>
+)
+
+function buildPageList(current, total) {
+  if (total <= 7) return Array.from({ length: total }, (_, index) => index + 1)
+  if (current <= 4) return [1, 2, 3, 4, 5, '…', total]
+  if (current >= total - 3) return [1, '…', total - 4, total - 3, total - 2, total - 1, total]
+  return [1, '…', current - 1, current, current + 1, '…', total]
+}
+
+function getCategories(apps) {
+  const categories = [...new Set(apps.map((app) => app.category ?? 'Productivity'))].sort()
+  return ['All', ...categories]
+}
 
 export default function AppsGridSection({
   sectionId = 'apps',
@@ -17,11 +37,50 @@ export default function AppsGridSection({
   excludeSlug = null,
   eyebrow = 'My Apps',
   title = 'Built To Solve Real Problems',
+  enableTabs = false,
+  enablePagination = false,
+  perPage = 6,
+  maxItems = null,
+  showChromeStoreLink = false,
+  chromeStoreLink = CHROME_STORE_SEARCH_URL,
 }) {
-  const apps = getAllApps().filter((app) => app.slug !== excludeSlug)
+  const [activeTab, setActiveTab] = useState('All')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [videoModal, setVideoModal] = useState({ open: false, videoId: null, title: '' })
+
+  const apps = useMemo(
+    () => getAllApps().filter((app) => app.slug !== excludeSlug),
+    [excludeSlug],
+  )
+
+  const categories = useMemo(() => getCategories(apps), [apps])
+
+  const filteredApps = useMemo(() => {
+    if (!enableTabs || activeTab === 'All') return apps
+    return apps.filter((app) => (app.category ?? 'Productivity') === activeTab)
+  }, [activeTab, apps, enableTabs])
+
+  const visibleApps = useMemo(() => {
+    if (maxItems != null) return filteredApps.slice(0, maxItems)
+    if (!enablePagination) return filteredApps
+    const start = (currentPage - 1) * perPage
+    return filteredApps.slice(start, start + perPage)
+  }, [currentPage, enablePagination, filteredApps, maxItems, perPage])
+
+  const totalPages = enablePagination ? Math.ceil(filteredApps.length / perPage) : 1
+  const showPagination = enablePagination && totalPages > 1
+  const paginationStart = enablePagination ? (currentPage - 1) * perPage + 1 : 1
+  const paginationEnd = enablePagination
+    ? Math.min(currentPage * perPage, filteredApps.length)
+    : visibleApps.length
+
+  const handleTabChange = (category) => {
+    setActiveTab(category)
+    setCurrentPage(1)
+  }
 
   return (
-    <section id={sectionId} className="CC__extensions CC__container">
+    <section id={sectionId} className="CC__extensions CC__container" aria-label="Extensions">
       <div className="CC__section-header-row">
         <div>
           <p className="CC__section-eyebrow">{eyebrow}</p>
@@ -31,92 +90,120 @@ export default function AppsGridSection({
           <Link to="/apps" className="CC__view-all-link">
             View all apps →
           </Link>
+        ) : showChromeStoreLink ? (
+          <a
+            href={chromeStoreLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="CC__view-all-link"
+          >
+            View on Chrome Web Store →
+          </a>
         ) : null}
       </div>
 
-      <div className="CC__extensions-grid">
-        {apps.map((app) => {
-          const live = isAppLive(app)
-          const storeUrl = appStoreUrl(app)
-          const installs = appCardInstalls(app)
-          const activeUsers = appActiveUsers(app)
-          const summary = appCardSummary(app)
-          const iconUrl = appIconUrl(app)
+      {enableTabs && categories.length > 1 ? (
+        <nav className="CC__tabs" role="tablist" aria-label="Filter by category">
+          {categories.map((category) => {
+            const count =
+              category === 'All'
+                ? apps.length
+                : apps.filter((app) => (app.category ?? 'Productivity') === category).length
 
-          return (
-            <div
-              key={app.slug}
-              className={`CC__extension-card CC__cyber-accent${live ? '' : ' CC__extension-card--disabled'}`}
-            >
-              <CyberCorners />
-              <div className="CC__extension-inner">
-                <div className="CC__extension-top">
-                  <div className="CC__extension-icon-box">
-                    {iconUrl ? (
-                      <img
-                        src={iconUrl}
-                        alt=""
-                        className="CC__extension-icon-img"
-                        width={40}
-                        height={40}
-                      />
-                    ) : (
-                      app.icon ?? '⚡'
-                    )}
-                  </div>
-                  <div className="CC__extension-meta">
-                    <h3>
-                      {app.name}{' '}
-                      <span className="CC__extension-version">v{app.version}</span>
-                    </h3>
-                    <p className="CC__extension-summary">{summary}</p>
-                  </div>
-                </div>
-                <div className="CC__extension-metrics">
-                  <div>
-                    <span className="CC__metric-item-label">INSTALLS</span>
-                    <div className="CC__metric-item-value">
-                      {installs != null ? formatNumber(installs) : '—'}
-                    </div>
-                  </div>
-                  <div>
-                    <span className="CC__metric-item-label">ACTIVE USERS</span>
-                    <div className="CC__metric-item-value">
-                      {activeUsers != null ? formatNumber(activeUsers) : '—'}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            return (
+              <button
+                key={category}
+                type="button"
+                role="tab"
+                aria-selected={category === activeTab}
+                className={`CC__tabs__btn${category === activeTab ? ' CC__tabs__btn--active' : ''}`}
+                onClick={() => handleTabChange(category)}
+              >
+                {category}
+                <span className="CC__tabs__count">{count}</span>
+              </button>
+            )
+          })}
+        </nav>
+      ) : null}
 
-              {live ? (
-                <>
-                  <Link
-                    to={`/apps/${app.slug}`}
-                    className="CC__btn CC__btn--outline CC__btn--full"
-                    style={{ marginBottom: '0.5rem' }}
-                  >
-                    View details →
-                  </Link>
-                  {storeUrl ? (
-                    <a
-                      href={storeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="CC__btn CC__btn--primary CC__btn--full"
-                    >
-                      Install on Chrome
-                    </a>
-                  ) : null}
-                </>
-              ) : (
-                <button type="button" disabled className="CC__btn CC__btn--outline CC__btn--full">
-                  Coming Soon
-                </button>
-              )}
+      <div className="CC__extensions-grid" role="list">
+        {visibleApps.length === 0 ? (
+          <div className="CC__extensions-empty">
+            <div className="CC__extensions-empty__icon" aria-hidden="true">
+              🔍
             </div>
-          )
-        })}
+            <p>No extensions in this category yet.</p>
+          </div>
+        ) : (
+          visibleApps.map((app, index) => (
+            <ExtensionCard
+              key={app.slug}
+              app={app}
+              index={index}
+              onPlayVideo={({ videoId, title: videoTitle }) =>
+                setVideoModal({ open: true, videoId, title: videoTitle })
+              }
+            />
+          ))
+        )}
       </div>
+
+      {showPagination ? (
+        <nav className="CC__pagination" aria-label="Pages">
+          <button
+            type="button"
+            className="CC__pagination__btn"
+            aria-label="Previous"
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+          >
+            {PREV_ICON}
+          </button>
+
+          {buildPageList(currentPage, totalPages).map((page, index) =>
+            page === '…' ? (
+              <span key={`ellipsis-${index}`} className="CC__pagination__ellipsis" aria-hidden="true">
+                …
+              </span>
+            ) : (
+              <button
+                key={page}
+                type="button"
+                className={`CC__pagination__btn${page === currentPage ? ' CC__pagination__btn--active' : ''}`}
+                aria-label={`Page ${page}`}
+                aria-current={page === currentPage ? 'page' : undefined}
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </button>
+            ),
+          )}
+
+          <button
+            type="button"
+            className="CC__pagination__btn"
+            aria-label="Next"
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+          >
+            {NEXT_ICON}
+          </button>
+        </nav>
+      ) : null}
+
+      {enablePagination && filteredApps.length > 0 ? (
+        <p className="CC__pagination__info">
+          Showing {paginationStart}–{paginationEnd} of {filteredApps.length} extensions
+        </p>
+      ) : null}
+
+      <ExtensionVideoModal
+        open={videoModal.open}
+        videoId={videoModal.videoId}
+        title={videoModal.title}
+        onClose={() => setVideoModal({ open: false, videoId: null, title: '' })}
+      />
     </section>
   )
 }

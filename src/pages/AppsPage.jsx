@@ -16,7 +16,18 @@ export default function AppsPage() {
     <>
       <SiteHeader />
       <main className="CC__apps-page">
-        <AppsGridSection sectionId="apps-list" showViewAllLink={false} />
+        <AppsGridSection
+          sectionId="apps-list"
+          eyebrow="Chrome Extensions"
+          title={
+            <>
+              All <span className="CC__section-title-accent">Tools</span>
+            </>
+          }
+          enableTabs
+          enablePagination
+          showChromeStoreLink
+        />
       </main>
       <SiteFooter />
     </>

@@ -124,7 +124,7 @@ export default function HomePage() {
 
       <LiveStatsBar />
 
-      <AppsGridSection sectionId="apps" showViewAllLink />
+      <AppsGridSection sectionId="apps" showViewAllLink maxItems={6} />
 
       <YoutubeSection />
 

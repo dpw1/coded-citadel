@@ -46,6 +46,7 @@ export default function ThankYouPage() {
           eyebrow="More from Coded Citadel"
           title="You Might Also Like"
           showViewAllLink
+          maxItems={6}
         />
       </main>
       <SiteFooter />
