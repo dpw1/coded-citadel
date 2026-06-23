@@ -515,6 +515,12 @@
   opacity: 0.75;
 }
 
+.CC__view-all-link-wrap--footer {
+  display: none;
+  margin-top: var(--CC__space-md);
+  text-align: center;
+}
+
 /* Tabs */
 .CC__tabs {
   display: flex;
@@ -1127,6 +1133,10 @@
 
   .CC__extensions-grid {
     grid-template-columns: 1fr;
+  }
+
+  .CC__view-all-link-wrap--footer {
+    display: block;
   }
 }
 

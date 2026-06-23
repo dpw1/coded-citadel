@@ -36,7 +36,7 @@ export default function AppsGridSection({
   showViewAllLink = false,
   excludeSlug = null,
   eyebrow = 'My Apps',
-  title = 'Built To Solve Real Problems',
+  title,
   enableTabs = false,
   enablePagination = false,
   perPage = 6,
@@ -52,6 +52,8 @@ export default function AppsGridSection({
     () => getAllApps().filter((app) => app.slug !== excludeSlug),
     [excludeSlug],
   )
+
+  const sectionTitle = title ?? `${getAllApps().length} apps published so far`
 
   const categories = useMemo(() => getCategories(apps), [apps])
 
@@ -79,17 +81,21 @@ export default function AppsGridSection({
     setCurrentPage(1)
   }
 
+  const viewAllAppsLink = showViewAllLink ? (
+    <Link to="/apps" className="CC__view-all-link">
+      View all apps →
+    </Link>
+  ) : null
+
   return (
     <section id={sectionId} className="CC__extensions CC__container" aria-label="Extensions">
       <div className="CC__section-header-row">
         <div>
           <p className="CC__section-eyebrow">{eyebrow}</p>
-          <h2 className="CC__section-title">{title}</h2>
+          <h2 className="CC__section-title">{sectionTitle}</h2>
         </div>
-        {showViewAllLink ? (
-          <Link to="/apps" className="CC__view-all-link">
-            View all apps →
-          </Link>
+        {viewAllAppsLink ? (
+          <span className="CC__view-all-link-wrap CC__view-all-link-wrap--header">{viewAllAppsLink}</span>
         ) : showChromeStoreLink ? (
           <a
             href={chromeStoreLink}
@@ -196,6 +202,10 @@ export default function AppsGridSection({
         <p className="CC__pagination__info">
           Showing {paginationStart}–{paginationEnd} of {filteredApps.length} extensions
         </p>
+      ) : null}
+
+      {viewAllAppsLink ? (
+        <div className="CC__view-all-link-wrap CC__view-all-link-wrap--footer">{viewAllAppsLink}</div>
       ) : null}
 
       <ExtensionVideoModal
