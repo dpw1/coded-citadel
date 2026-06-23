@@ -34,11 +34,6 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build
-        env:
-          GOOGLE_ANALYTICS_PRIVATE_KEY: ${{ secrets.GOOGLE_ANALYTICS_PRIVATE_KEY }}
-          GOOGLE_ANALYTICS_EMAIL: ${{ secrets.GOOGLE_ANALYTICS_EMAIL }}
-          GOOGLE_ANALYTICS_PROJECT_ID: ${{ secrets.GOOGLE_ANALYTICS_PROJECT_ID }}
-          GOOGLE_ANALYTICS_PROPERTY_ID: ${{ secrets.GOOGLE_ANALYTICS_PROPERTY_ID }}
         run: npm run build
 
       - name: Verify production bundle
@@ -46,6 +41,10 @@ jobs:
           test -f dist/index.html
           test -f dist/favicon-32x32.png
           test -f dist/favicon.ico
+          grep -q '"available": true' src/data/website-analytics.json || {
+            echo "src/data/website-analytics.json is not populated — run npm run fetch-website-analytics locally, commit, and push"
+            exit 1
+          }
           if grep -qE '\.jsx|/src/main' dist/index.html; then
             echo "dist/index.html still references source JSX — build misconfigured"
             exit 1

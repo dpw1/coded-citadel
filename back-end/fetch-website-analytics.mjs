@@ -6,7 +6,7 @@
  * Run: npm run fetch-website-analytics
  */
 
-import { writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { fetchWebsiteAnalyticsBundle } from './lib/fetch-website-analytics.mjs'
@@ -41,7 +41,24 @@ async function main() {
   try {
     const result = await fetchWebsiteAnalyticsBundle()
     snapshot = result.snapshot
+    if (!snapshot.available) {
+      throw new Error(snapshot.message || 'Website analytics fetch returned no data')
+    }
   } catch (err) {
+    if (existsSync(OUT_FILE)) {
+      try {
+        const existing = JSON.parse(readFileSync(OUT_FILE, 'utf8'))
+        if (existing?.available) {
+          console.warn(
+            `Website analytics fetch failed (${err.message}) — keeping existing ${OUT_FILE}`,
+          )
+          return
+        }
+      } catch {
+        // fall through to placeholder write
+      }
+    }
+
     snapshot = {
       ...PLACEHOLDER,
       message: err.message || 'Website analytics fetch failed',
