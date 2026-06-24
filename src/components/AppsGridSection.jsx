@@ -44,7 +44,7 @@ export default function AppsGridSection({
   sectionId = 'apps',
   showViewAllLink = false,
   excludeSlug = null,
-  eyebrow = 'My Apps',
+  eyebrow = 'Chrome Extensions',
   title,
   enableTabs = false,
   enablePagination = false,
