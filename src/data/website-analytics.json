@@ -1,23 +1,27 @@
 {
   "available": true,
-  "updatedAt": "2026-06-24T04:29:45.498Z",
+  "updatedAt": "2026-06-24T15:52:47.914Z",
   "message": null,
-  "totalViews": 455,
+  "totalViews": 484,
   "blogViews": 17,
-  "averageTimeOnSiteSeconds": 1095.2032934677418,
-  "bounceRate": 0.6612903225806451,
+  "averageTimeOnSiteSeconds": 153.7327314657534,
+  "bounceRate": 0.6643835616438356,
   "newVsReturning": {
-    "new": 95,
-    "returning": 8
+    "new": 112,
+    "returning": 9
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 358
+      "views": 360
+    },
+    {
+      "path": "/thank-you/",
+      "views": 22
     },
     {
       "path": "/live-stats",
-      "views": 21
+      "views": 19
     },
     {
       "path": "/apps",
@@ -29,7 +33,7 @@
     },
     {
       "path": "/privacy-policy/ai-bookmark/",
-      "views": 8
+      "views": 10
     },
     {
       "path": "/apps/youtube-filter-pro",
@@ -40,15 +44,11 @@
       "views": 4
     },
     {
-      "path": "/thank-you/",
+      "path": "/uninstall/",
       "views": 4
     },
     {
-      "path": "/apps/youtube-filter-pro/",
-      "views": 3
-    },
-    {
-      "path": "/privacy-policy/save-to-drive-chrome-extension/",
+      "path": "/apps/claude-deep-search",
       "views": 3
     }
   ],
@@ -58,14 +58,14 @@
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 34
+      "users": 41
     },
     {
       "code": "IN",
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 16
+      "users": 22
     },
     {
       "code": "PL",
@@ -86,7 +86,7 @@
       "name": "Brazil",
       "gaCountry": "Brazil",
       "gaCountryId": "BR",
-      "users": 6
+      "users": 7
     },
     {
       "code": "CN",
@@ -96,6 +96,20 @@
       "users": 4
     },
     {
+      "code": "AR",
+      "name": "Argentina",
+      "gaCountry": "Argentina",
+      "gaCountryId": "AR",
+      "users": 2
+    },
+    {
+      "code": "ID",
+      "name": "Indonesia",
+      "gaCountry": "Indonesia",
+      "gaCountryId": "ID",
+      "users": 2
+    },
+    {
       "code": "IL",
       "name": "Israel",
       "gaCountry": "Israel",
@@ -103,10 +117,17 @@
       "users": 2
     },
     {
-      "code": "AR",
-      "name": "Argentina",
-      "gaCountry": "Argentina",
-      "gaCountryId": "AR",
+      "code": "NG",
+      "name": "Nigeria",
+      "gaCountry": "Nigeria",
+      "gaCountryId": "NG",
+      "users": 2
+    },
+    {
+      "code": "BD",
+      "name": "Bangladesh",
+      "gaCountry": "Bangladesh",
+      "gaCountryId": "BD",
       "users": 1
     },
     {
@@ -138,17 +159,17 @@
       "users": 1
     },
     {
-      "code": "ID",
-      "name": "Indonesia",
-      "gaCountry": "Indonesia",
-      "gaCountryId": "ID",
-      "users": 1
-    },
-    {
       "code": "IE",
       "name": "Ireland",
       "gaCountry": "Ireland",
       "gaCountryId": "IE",
+      "users": 1
+    },
+    {
+      "code": "MA",
+      "name": "Morocco",
+      "gaCountry": "Morocco",
+      "gaCountryId": "MA",
       "users": 1
     },
     {
@@ -197,19 +218,19 @@
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 90
+      "sessions": 109
     },
     {
       "source": "Organic Search",
-      "sessions": 16
+      "sessions": 17
+    },
+    {
+      "source": "Unassigned",
+      "sessions": 12
     },
     {
       "source": "Referral",
       "sessions": 10
-    },
-    {
-      "source": "Unassigned",
-      "sessions": 8
     },
     {
       "source": "Organic Social",
@@ -223,15 +244,15 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 90
+      "sessions": 109
     },
     {
       "referrer": "google",
-      "sessions": 16
+      "sessions": 17
     },
     {
       "referrer": "(not set)",
-      "sessions": 8
+      "sessions": 12
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -334,7 +355,11 @@
       },
       {
         "date": "23-06-2026",
-        "total": 134
+        "total": 130
+      },
+      {
+        "date": "24-06-2026",
+        "total": 33
       }
     ],
     "activeUsers": [
@@ -416,7 +441,11 @@
       },
       {
         "date": "23-06-2026",
-        "total": 10
+        "total": 11
+      },
+      {
+        "date": "24-06-2026",
+        "total": 20
       }
     ],
     "blogViews": [
@@ -499,6 +528,10 @@
       {
         "date": "23-06-2026",
         "total": 4
+      },
+      {
+        "date": "24-06-2026",
+        "total": 0
       }
     ],
     "sessions": [
@@ -580,7 +613,11 @@
       },
       {
         "date": "23-06-2026",
-        "total": 14
+        "total": 15
+      },
+      {
+        "date": "24-06-2026",
+        "total": 21
       }
     ]
   }
