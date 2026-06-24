@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { scrollToSection } from '../utils/scroll'
 import AnnouncementBar from './AnnouncementBar'
 
+const YOUTUBE_URL = 'https://www.youtube.com/@CodedCitadel'
+
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname, hash } = useLocation()
@@ -13,16 +15,6 @@ export default function SiteHeader() {
   const liveStatsNavActive = pathname === '/live-stats'
 
   const closeMenu = () => setMenuOpen(false)
-
-  const handleYoutubeNav = (e) => {
-    e.preventDefault()
-    closeMenu()
-    if (isHome) {
-      scrollToSection('youtube', { updateHash: true })
-    } else {
-      navigate('/', { state: { scrollTo: 'youtube' } })
-    }
-  }
 
   const handleAboutNav = (e) => {
     e.preventDefault()
@@ -112,9 +104,11 @@ export default function SiteHeader() {
               </span>
             </Link>
             <a
-              href={isHome ? '#youtube' : '/'}
+              href={YOUTUBE_URL}
               className="CC__nav-link"
-              onClick={handleYoutubeNav}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
             >
               YouTube
             </a>

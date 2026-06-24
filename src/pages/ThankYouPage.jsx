@@ -9,7 +9,7 @@ import '../App.css'
 import './ThankYouPage.css'
 
 const YOUTUBE_URL = 'https://www.youtube.com/@CodedCitadel'
-const CONTACT_EMAIL = 'codedCitadel@gmail.com'
+const CONTACT_EMAIL = 'CodedCitadel@gmail.com'
 
 const YOUTUBE_ICON = (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -45,20 +45,23 @@ export default function ThankYouPage() {
 
             <p className="CC__thank-you__text">
               This extension is 100% free, and part of my{' '}
-              <strong>Coding Until I Make $100k USD challenge</strong>.
+              <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
+                <strong>Coding Until I Make $100k USD challenge</strong>
+              </a>
+              .
             </p>
 
             <p className="CC__thank-you__text">
-              All built in public. Documented on{' '}
+              I coded it in public and documented step-by-step on{' '}
               <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
                 YouTube
               </a>{' '}
-              and <Link to="/blog">blog</Link>.
+              and <Link to="/blog">Blog</Link>.
             </p>
 
 
             <p className="CC__thank-you__text">
-              Questions, feedback, bugs?{' '}
+              Requests, feedback, bugs?{' '}
               <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
             </p>
           </div>

@@ -166,13 +166,9 @@ export default function ExtensionAnalyticsBlock({
               <canvas id={chartIds.pageViews} />
             </div>
           </div>
-          <div className="ext-chart-card CC__cyber-accent">
-            <CyberCorners />
-            <div className="ext-chart-card__title">Impressions Across Chrome Web Store</div>
-            <div className="ext-chart-card__canvas-wrap" style={{ height: 200 }}>
-              <canvas id={chartIds.impressions} />
-            </div>
-          </div>
+        </div>
+
+        <div className="ext-analytics__charts ext-analytics__charts--quad">
           <div className="ext-chart-card CC__cyber-accent">
             <CyberCorners />
             <div className="ext-chart-card__title">Installed Users by Region</div>
@@ -181,23 +177,7 @@ export default function ExtensionAnalyticsBlock({
             </div>
             <DonutLegend dataObj={analytics.installsByRegion} total={analytics.totalInstalls} />
           </div>
-        </div>
-    </>
-  )
-
-  return (
-    <>
-      <ExtensionCharts analytics={analytics} chartIds={chartIds} />
-
-      {hideHeader ? (
-        <div className="ext-analytics__body">{analyticsContent}</div>
-      ) : (
-        <section className="ext-analytics">{analyticsContent}</section>
-      )}
-
-      <section className="ext-secondary-stats">
-        <div className="ext-secondary-stats__grid">
-          <div className="ext-sec-card CC__cyber-accent">
+          <div className="ext-sec-card ext-sec-card--in-chart CC__cyber-accent">
             <CyberCorners />
             <div className="ext-sec-card__label">Uninstalls</div>
             <div className="ext-sec-card__value">{formatNumber(analytics.uninstalls)}</div>
@@ -220,7 +200,7 @@ export default function ExtensionAnalyticsBlock({
               })}
             </ul>
           </div>
-          <div className="ext-sec-card CC__cyber-accent">
+          <div className="ext-sec-card ext-sec-card--in-chart CC__cyber-accent">
             <CyberCorners />
             <div className="ext-sec-card__label">Impressions</div>
             <div className="ext-sec-card__value">{formatNumber(analytics.impressions)}</div>
@@ -235,6 +215,29 @@ export default function ExtensionAnalyticsBlock({
               <div className="ext-kpi__delta">↑ Live</div>
             )}
           </div>
+          <div className="ext-chart-card CC__cyber-accent">
+            <CyberCorners />
+            <div className="ext-chart-card__title">Impressions Across Chrome Web Store</div>
+            <div className="ext-chart-card__canvas-wrap" style={{ height: 200 }}>
+              <canvas id={chartIds.impressions} />
+            </div>
+          </div>
+        </div>
+    </>
+  )
+
+  return (
+    <>
+      <ExtensionCharts analytics={analytics} chartIds={chartIds} />
+
+      {hideHeader ? (
+        <div className="ext-analytics__body">{analyticsContent}</div>
+      ) : (
+        <section className="ext-analytics">{analyticsContent}</section>
+      )}
+
+      <section className="ext-secondary-stats">
+        <div className="ext-secondary-stats__grid ext-secondary-stats__grid--cols-2">
           <div className="ext-sec-card ext-sec-card--evd CC__cyber-accent">
             <CyberCorners />
             <div className="ext-sec-card__label">Extension enabled vs disabled</div>

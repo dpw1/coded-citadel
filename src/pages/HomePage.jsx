@@ -5,10 +5,13 @@ import SiteFooter from '../components/SiteFooter'
 import AppsGridSection from '../components/AppsGridSection'
 import YoutubeSection from '../components/YoutubeSection'
 import LiveStatsBar from '../components/LiveStatsBar'
+import PortfolioAnalyticsSection from '../components/PortfolioAnalyticsSection'
 import CyberCorners from '../components/CyberCorners'
 import HomePageSEO from '../components/HomePageSEO'
 import { scrollToSection } from '../utils/scroll'
 import '../App.css'
+import './ExtensionLandingPage.css'
+import './StatsPage.css'
 
 export default function HomePage() {
   const [avatarError, setAvatarError] = useState(false)
@@ -126,7 +129,14 @@ export default function HomePage() {
 
       <AppsGridSection sectionId="apps" showViewAllLink maxItems={6} />
 
-      <YoutubeSection />
+      <div className="CC__home-youtube">
+        <YoutubeSection />
+      </div>
+
+      <div className="CC__container CC__home-portfolio-analytics">
+  
+        <PortfolioAnalyticsSection idPrefix="home" />
+      </div>
 
       <section id="about" className="CC__about CC__container">
         <div className="CC__about-grid">

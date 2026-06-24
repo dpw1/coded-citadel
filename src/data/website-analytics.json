@@ -1,13 +1,13 @@
 {
   "available": true,
-  "updatedAt": "2026-06-24T15:52:47.914Z",
+  "updatedAt": "2026-06-24T16:42:54.136Z",
   "message": null,
-  "totalViews": 484,
+  "totalViews": 486,
   "blogViews": 17,
   "averageTimeOnSiteSeconds": 153.7327314657534,
-  "bounceRate": 0.6643835616438356,
+  "uniqueVisitors": 115,
   "newVsReturning": {
-    "new": 112,
+    "new": 114,
     "returning": 9
   },
   "mostViewedPages": [
@@ -17,7 +17,7 @@
     },
     {
       "path": "/thank-you/",
-      "views": 22
+      "views": 24
     },
     {
       "path": "/live-stats",
@@ -218,19 +218,19 @@
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 109
+      "sessions": 91
     },
     {
       "source": "Organic Search",
       "sessions": 17
     },
     {
-      "source": "Unassigned",
-      "sessions": 12
-    },
-    {
       "source": "Referral",
       "sessions": 10
+    },
+    {
+      "source": "Unassigned",
+      "sessions": 4
     },
     {
       "source": "Organic Social",
@@ -244,7 +244,7 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 109
+      "sessions": 111
     },
     {
       "referrer": "google",
@@ -359,7 +359,7 @@
       },
       {
         "date": "24-06-2026",
-        "total": 33
+        "total": 35
       }
     ],
     "activeUsers": [

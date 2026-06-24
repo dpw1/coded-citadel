@@ -216,3 +216,9 @@ export function websiteBlogViewsDelta(data) {
   if (!series?.length) return null
   return analyticsSeriesWeekDelta(series)
 }
+
+export function websiteUniqueVisitorsDelta(data) {
+  const series = data?.timeSeries?.activeUsers
+  if (!series?.length) return null
+  return analyticsSeriesWeekDelta(series)
+}

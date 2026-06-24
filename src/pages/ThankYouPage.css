@@ -67,6 +67,11 @@
   font-weight: 500;
 }
 
+.CC__thank-you__text a strong {
+  color: inherit;
+  font-weight: 600;
+}
+
 .CC__thank-you__text a:hover {
   text-decoration: underline;
 }

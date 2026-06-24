@@ -36,6 +36,49 @@
   padding-bottom: 0;
 }
 
+.CC__home-youtube {
+  margin-bottom: var(--CC__space-xl);
+}
+
+.CC__home-portfolio-analytics {
+  padding-top: var(--CC__space-xl);
+  padding-bottom: var(--CC__space-xl);
+}
+
+.CC__home-portfolio-analytics__header {
+  margin-bottom: 2.5rem;
+}
+
+.CC__home-portfolio-analytics__note {
+  margin-top: 0.85rem;
+  padding: 1.15rem 1.35rem;
+  max-width: 40rem;
+}
+
+.CC__home-portfolio-analytics__intro {
+  margin: 0;
+  padding-left: 0.85rem;
+  border-left: 2px solid var(--CC__color-primary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--CC__color-text-muted);
+}
+
+@media (max-width: 767px) {
+  .CC__home-portfolio-analytics__header {
+    margin-bottom: 1.75rem;
+  }
+
+  .CC__home-portfolio-analytics__note {
+    padding: 1rem 1.1rem;
+  }
+
+  .CC__home-portfolio-analytics__intro {
+    font-size: 0.88rem;
+    padding-left: 0.75rem;
+  }
+}
+
 .ext-analytics__body .ext-analytics__charts {
   margin-bottom: 1rem;
 }

@@ -21,7 +21,7 @@ const PLACEHOLDER = {
   totalViews: null,
   blogViews: null,
   averageTimeOnSiteSeconds: null,
-  bounceRate: null,
+  uniqueVisitors: null,
   newVsReturning: { new: null, returning: null },
   mostViewedPages: [],
   countries: [],

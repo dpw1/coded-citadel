@@ -63,7 +63,7 @@ export default function AppsGridSection({
     [excludeSlug],
   )
 
-  const sectionTitle = title ?? `${getAllApps().length} apps published so far`
+  const sectionTitle = title ?? `Built in public, documented step-by-step`
 
   const categories = useMemo(() => getCategories(apps), [apps])
 

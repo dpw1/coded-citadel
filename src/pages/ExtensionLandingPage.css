@@ -999,6 +999,32 @@
   }
 }
 
+.ext-analytics__charts--quad {
+  margin-top: 1rem;
+}
+
+/* Override main chart row rules — quad row is always equal-width columns */
+.ext-analytics__charts.ext-analytics__charts--quad > * {
+  grid-column: auto;
+  min-width: 0;
+}
+
+@media (min-width: 480px) {
+  .ext-analytics__charts.ext-analytics__charts--quad {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .ext-analytics__charts.ext-analytics__charts--quad {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .ext-analytics__charts.ext-analytics__charts--quad > * {
+    grid-column: span 1;
+  }
+}
+
 .ext-chart-card {
   padding: 1.5rem;
   max-width: 100%;
@@ -1142,6 +1168,7 @@
 /* ===== SECONDARY STATS (uninstalls / impressions / enabled / page views) ===== */
 .ext-secondary-stats {
   padding-bottom: 2rem;
+  margin-top: 1rem;
 }
 
 .ext-secondary-stats__grid {

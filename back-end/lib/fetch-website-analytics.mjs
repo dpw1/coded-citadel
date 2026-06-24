@@ -34,7 +34,7 @@ function emptyWebsiteAnalytics(message = 'Website analytics not configured') {
     totalViews: null,
     blogViews: null,
     averageTimeOnSiteSeconds: null,
-    bounceRate: null,
+    uniqueVisitors: null,
     newVsReturning: { new: null, returning: null },
     mostViewedPages: [],
     countries: [],
@@ -177,7 +177,7 @@ async function fetchWebsiteAnalyticsSnapshot(accessToken, propertyId, options = 
     totalViews,
     blogViews,
     averageTimeOnSiteSeconds,
-    bounceRate,
+    uniqueVisitors,
     newVsReturningRows,
     mostViewedPagesRows,
     countriesRows,
@@ -204,7 +204,7 @@ async function fetchWebsiteAnalyticsSnapshot(accessToken, propertyId, options = 
     }),
     runScalarReport(accessToken, propertyId, {
       dateRanges: [dateRange],
-      metrics: [{ name: 'bounceRate' }],
+      metrics: [{ name: 'activeUsers' }],
     }),
     runDimensionReport(accessToken, propertyId, {
       dateRanges: [dateRange],
@@ -255,7 +255,7 @@ async function fetchWebsiteAnalyticsSnapshot(accessToken, propertyId, options = 
     totalViews,
     blogViews,
     averageTimeOnSiteSeconds,
-    bounceRate,
+    uniqueVisitors,
     newVsReturning,
     mostViewedPages: mostViewedPagesRows.map((row) => ({
       path: row.pagePath || '/',

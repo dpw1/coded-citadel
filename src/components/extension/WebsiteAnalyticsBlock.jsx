@@ -7,10 +7,10 @@ import WeekPercentDelta from './WeekPercentDelta'
 import { formatLabel, formatNumber } from '../../utils/apps'
 import {
   formatDurationSeconds,
-  formatRate,
   pagePathToHref,
   websiteBlogViewsDelta,
   websitePageViewsDelta,
+  websiteUniqueVisitorsDelta,
 } from '../../utils/liveStatsAnalytics'
 
 function BreakdownList({ items, total, valueKey, labelKey, formatItemLabel = formatLabel }) {
@@ -176,6 +176,10 @@ export default function WebsiteAnalyticsBlock({ data, loading = false, chartIds 
     ['pageViews', 'activeUsers', 'blogViews', 'sessions'].some((key) => timeSeries[key]?.length > 0)
   const pageViewsDelta = websitePageViewsDelta(data)
   const blogViewsDelta = websiteBlogViewsDelta(data)
+  const uniqueVisitorsDelta = websiteUniqueVisitorsDelta(data)
+  const uniqueVisitors =
+    data.uniqueVisitors ??
+    (data.newVsReturning?.new ?? 0) + (data.newVsReturning?.returning ?? 0)
 
   return (
     <>
@@ -219,10 +223,16 @@ export default function WebsiteAnalyticsBlock({ data, loading = false, chartIds 
         </div>
         <div className="ext-kpi CC__cyber-accent">
           <CyberCorners />
-          <div className="ext-kpi__label">Bounce Rate</div>
-          <div className="ext-kpi__value ext-kpi__value--white">
-            {formatRate(data.bounceRate)}
-          </div>
+          <div className="ext-kpi__label">Unique Visitors</div>
+          <div className="ext-kpi__value ext-kpi__value--white">{formatNumber(uniqueVisitors)}</div>
+          {uniqueVisitorsDelta ? (
+            <WeekPercentDelta
+              delta={uniqueVisitorsDelta}
+              as="div"
+              className="ext-kpi__delta"
+              negativeClassName=" ext-kpi__delta--negative"
+            />
+          ) : null}
         </div>
       </div>
 
