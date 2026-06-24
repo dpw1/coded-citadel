@@ -1,35 +1,35 @@
 {
   "available": true,
-  "updatedAt": "2026-06-23T16:11:15.976Z",
+  "updatedAt": "2026-06-24T03:58:17.479Z",
   "message": null,
-  "totalViews": 333,
-  "blogViews": 13,
-  "averageTimeOnSiteSeconds": 141.7097224649123,
-  "bounceRate": 0.631578947368421,
+  "totalViews": 455,
+  "blogViews": 17,
+  "averageTimeOnSiteSeconds": 1095.2032934677418,
+  "bounceRate": 0.6612903225806451,
   "newVsReturning": {
-    "new": 87,
+    "new": 95,
     "returning": 8
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 259
-    },
-    {
-      "path": "/apps",
-      "views": 13
+      "views": 358
     },
     {
       "path": "/live-stats",
-      "views": 13
+      "views": 21
+    },
+    {
+      "path": "/apps",
+      "views": 17
+    },
+    {
+      "path": "/blog",
+      "views": 11
     },
     {
       "path": "/privacy-policy/ai-bookmark/",
       "views": 8
-    },
-    {
-      "path": "/blog",
-      "views": 7
     },
     {
       "path": "/apps/youtube-filter-pro",
@@ -40,16 +40,16 @@
       "views": 4
     },
     {
-      "path": "/privacy-policy/save-to-drive-chrome-extension/",
+      "path": "/thank-you/",
+      "views": 4
+    },
+    {
+      "path": "/apps/youtube-filter-pro/",
       "views": 3
     },
     {
-      "path": "/apps/ai-bookmark/",
-      "views": 2
-    },
-    {
-      "path": "/apps/claude-limit-monitor/",
-      "views": 2
+      "path": "/privacy-policy/save-to-drive-chrome-extension/",
+      "views": 3
     }
   ],
   "countries": [
@@ -58,14 +58,14 @@
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 31
+      "users": 34
     },
     {
       "code": "IN",
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 15
+      "users": 16
     },
     {
       "code": "PL",
@@ -86,7 +86,7 @@
       "name": "Brazil",
       "gaCountry": "Brazil",
       "gaCountryId": "BR",
-      "users": 5
+      "users": 6
     },
     {
       "code": "CN",
@@ -101,6 +101,20 @@
       "gaCountry": "Israel",
       "gaCountryId": "IL",
       "users": 2
+    },
+    {
+      "code": "AR",
+      "name": "Argentina",
+      "gaCountry": "Argentina",
+      "gaCountryId": "AR",
+      "users": 1
+    },
+    {
+      "code": "CI",
+      "name": "Côte d’Ivoire",
+      "gaCountry": "Côte d’Ivoire",
+      "gaCountryId": "CI",
+      "users": 1
     },
     {
       "code": "DE",
@@ -171,16 +185,23 @@
       "gaCountry": "Singapore",
       "gaCountryId": "SG",
       "users": 1
+    },
+    {
+      "code": "VN",
+      "name": "Vietnam",
+      "gaCountry": "Vietnam",
+      "gaCountryId": "VN",
+      "users": 1
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 82
+      "sessions": 90
     },
     {
       "source": "Organic Search",
-      "sessions": 15
+      "sessions": 16
     },
     {
       "source": "Referral",
@@ -188,7 +209,7 @@
     },
     {
       "source": "Unassigned",
-      "sessions": 4
+      "sessions": 8
     },
     {
       "source": "Organic Social",
@@ -202,19 +223,19 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 82
+      "sessions": 90
     },
     {
       "referrer": "google",
-      "sessions": 15
+      "sessions": 16
+    },
+    {
+      "referrer": "(not set)",
+      "sessions": 8
     },
     {
       "referrer": "chromewebstore.google.com",
       "sessions": 6
-    },
-    {
-      "referrer": "(not set)",
-      "sessions": 4
     },
     {
       "referrer": "google-admin.corp.google.com",
@@ -313,7 +334,7 @@
       },
       {
         "date": "23-06-2026",
-        "total": 12
+        "total": 134
       }
     ],
     "activeUsers": [
@@ -395,7 +416,7 @@
       },
       {
         "date": "23-06-2026",
-        "total": 1
+        "total": 10
       }
     ],
     "blogViews": [
@@ -477,7 +498,7 @@
       },
       {
         "date": "23-06-2026",
-        "total": 0
+        "total": 4
       }
     ],
     "sessions": [
@@ -559,7 +580,7 @@
       },
       {
         "date": "23-06-2026",
-        "total": 4
+        "total": 14
       }
     ]
   }

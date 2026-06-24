@@ -29,7 +29,7 @@ export default function UninstallPage() {
         <div className="CC__container CC__privacy-page__inner">
           <header>
             <p className="CC__section-eyebrow">Before you go</p>
-            <h1 className="CC__privacy-page__title">Sorry to see you go!</h1>
+            <h1 className="CC__privacy-page__title">Sorry to see you go 😞</h1>
             <p className="CC__privacy-page__meta">
               {appLabel
                 ? `If you have a moment, let us know why you uninstalled ${appLabel}. Every message is read.`

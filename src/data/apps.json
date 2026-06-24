@@ -3542,7 +3542,8 @@
       },
       "created": "May 29, 2026",
       "estimatedTime": "8 hours",
-      "prompts": 65
+      "prompts": 65,
+      "youtube": "https://www.youtube.com/watch?v=D4-1VtvkdIw"
     },
     {
       "slug": "claude-limit-monitor",
@@ -4176,9 +4177,9 @@
   ],
   "portfolioStats": {
     "totalActiveUsers": 157,
-    "activeUsersDelta7d": 30,
-    "baselineDate": "2026-06-16",
-    "baselineTotalActiveUsers": 127,
+    "activeUsersDelta7d": 27,
+    "baselineDate": "2026-06-17",
+    "baselineTotalActiveUsers": 130,
     "byApp": [
       {
         "slug": "gmail-to-pdf",
@@ -4191,8 +4192,8 @@
         "slug": "youtube-filter-pro",
         "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
         "now": 58,
-        "baseline": 52,
-        "delta": 6
+        "baseline": 54,
+        "delta": 4
       },
       {
         "slug": "claude-deep-search",
@@ -4233,15 +4234,15 @@
         "slug": "save-directly-to-drive",
         "chromeExtensionId": "jadjgiiaompdjacagaomgogdihbpgcpg",
         "now": 3,
-        "baseline": 3,
-        "delta": 0
+        "baseline": 2,
+        "delta": 1
       },
       {
         "slug": "claude-limit-monitor",
         "chromeExtensionId": "mljfhcfnjbfibedpiaheeihpbjajfcal",
         "now": 53,
-        "baseline": 33,
-        "delta": 20
+        "baseline": 35,
+        "delta": 18
       },
       {
         "slug": "youtube-keyword-alert",
@@ -4252,8 +4253,8 @@
       }
     ],
     "totalInstalls": 447,
-    "installsDelta7d": 42,
-    "baselineTotalInstalls": 405,
-    "computedAt": "2026-06-23"
+    "installsDelta7d": 23,
+    "baselineTotalInstalls": 424,
+    "computedAt": "2026-06-24"
   }
 }

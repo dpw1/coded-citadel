@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-23T16:11:15.976Z",
+  "updatedAt": "2026-06-24T03:58:17.479Z",
   "daily": [
     {
       "date": "2026-06-03",
@@ -175,11 +175,11 @@
     },
     {
       "date": "2026-06-23",
-      "pageViews": 12,
-      "activeUsers": 1,
-      "sessions": 4,
-      "blogViews": 0,
-      "avgSessionDurationSeconds": 709.8911335,
+      "pageViews": 134,
+      "activeUsers": 10,
+      "sessions": 14,
+      "blogViews": 4,
+      "avgSessionDurationSeconds": 8749.276040214285,
       "bounceRate": 1
     }
   ],
@@ -403,6 +403,266 @@
           {
             "referrer": "(not set)",
             "sessions": 4
+          },
+          {
+            "referrer": "google-admin.corp.google.com",
+            "sessions": 3
+          },
+          {
+            "referrer": "facebook.com",
+            "sessions": 2
+          },
+          {
+            "referrer": "aisearchindex.space",
+            "sessions": 1
+          },
+          {
+            "referrer": "youtube.com",
+            "sessions": 1
+          }
+        ]
+      }
+    },
+    {
+      "extractedAt": "2026-06-24T03:58:17.479Z",
+      "analytics": {
+        "available": true,
+        "updatedAt": "2026-06-24T03:58:17.479Z",
+        "message": null,
+        "totalViews": 455,
+        "blogViews": 17,
+        "averageTimeOnSiteSeconds": 1095.2032934677418,
+        "bounceRate": 0.6612903225806451,
+        "newVsReturning": {
+          "new": 95,
+          "returning": 8
+        },
+        "mostViewedPages": [
+          {
+            "path": "/",
+            "views": 358
+          },
+          {
+            "path": "/live-stats",
+            "views": 21
+          },
+          {
+            "path": "/apps",
+            "views": 17
+          },
+          {
+            "path": "/blog",
+            "views": 11
+          },
+          {
+            "path": "/privacy-policy/ai-bookmark/",
+            "views": 8
+          },
+          {
+            "path": "/apps/youtube-filter-pro",
+            "views": 4
+          },
+          {
+            "path": "/blog/chrome-extension-save-to-google-drive-under-8-hours/",
+            "views": 4
+          },
+          {
+            "path": "/thank-you/",
+            "views": 4
+          },
+          {
+            "path": "/apps/youtube-filter-pro/",
+            "views": 3
+          },
+          {
+            "path": "/privacy-policy/save-to-drive-chrome-extension/",
+            "views": 3
+          }
+        ],
+        "countries": [
+          {
+            "code": "US",
+            "name": "United States",
+            "gaCountry": "United States",
+            "gaCountryId": "US",
+            "users": 34
+          },
+          {
+            "code": "IN",
+            "name": "India",
+            "gaCountry": "India",
+            "gaCountryId": "IN",
+            "users": 16
+          },
+          {
+            "code": "PL",
+            "name": "Poland",
+            "gaCountry": "Poland",
+            "gaCountryId": "PL",
+            "users": 11
+          },
+          {
+            "code": null,
+            "name": "(not set)",
+            "gaCountry": "(not set)",
+            "gaCountryId": "(not set)",
+            "users": 9
+          },
+          {
+            "code": "BR",
+            "name": "Brazil",
+            "gaCountry": "Brazil",
+            "gaCountryId": "BR",
+            "users": 6
+          },
+          {
+            "code": "CN",
+            "name": "China",
+            "gaCountry": "China",
+            "gaCountryId": "CN",
+            "users": 4
+          },
+          {
+            "code": "IL",
+            "name": "Israel",
+            "gaCountry": "Israel",
+            "gaCountryId": "IL",
+            "users": 2
+          },
+          {
+            "code": "AR",
+            "name": "Argentina",
+            "gaCountry": "Argentina",
+            "gaCountryId": "AR",
+            "users": 1
+          },
+          {
+            "code": "CI",
+            "name": "Côte d’Ivoire",
+            "gaCountry": "Côte d’Ivoire",
+            "gaCountryId": "CI",
+            "users": 1
+          },
+          {
+            "code": "DE",
+            "name": "Germany",
+            "gaCountry": "Germany",
+            "gaCountryId": "DE",
+            "users": 1
+          },
+          {
+            "code": "GB",
+            "name": "United Kingdom",
+            "gaCountry": "United Kingdom",
+            "gaCountryId": "GB",
+            "users": 1
+          },
+          {
+            "code": "GR",
+            "name": "Greece",
+            "gaCountry": "Greece",
+            "gaCountryId": "GR",
+            "users": 1
+          },
+          {
+            "code": "ID",
+            "name": "Indonesia",
+            "gaCountry": "Indonesia",
+            "gaCountryId": "ID",
+            "users": 1
+          },
+          {
+            "code": "IE",
+            "name": "Ireland",
+            "gaCountry": "Ireland",
+            "gaCountryId": "IE",
+            "users": 1
+          },
+          {
+            "code": "MY",
+            "name": "Malaysia",
+            "gaCountry": "Malaysia",
+            "gaCountryId": "MY",
+            "users": 1
+          },
+          {
+            "code": "PK",
+            "name": "Pakistan",
+            "gaCountry": "Pakistan",
+            "gaCountryId": "PK",
+            "users": 1
+          },
+          {
+            "code": "RO",
+            "name": "Romania",
+            "gaCountry": "Romania",
+            "gaCountryId": "RO",
+            "users": 1
+          },
+          {
+            "code": "RU",
+            "name": "Russia",
+            "gaCountry": "Russia",
+            "gaCountryId": "RU",
+            "users": 1
+          },
+          {
+            "code": "SG",
+            "name": "Singapore",
+            "gaCountry": "Singapore",
+            "gaCountryId": "SG",
+            "users": 1
+          },
+          {
+            "code": "VN",
+            "name": "Vietnam",
+            "gaCountry": "Vietnam",
+            "gaCountryId": "VN",
+            "users": 1
+          }
+        ],
+        "trafficSources": [
+          {
+            "source": "Direct",
+            "sessions": 90
+          },
+          {
+            "source": "Organic Search",
+            "sessions": 16
+          },
+          {
+            "source": "Referral",
+            "sessions": 10
+          },
+          {
+            "source": "Unassigned",
+            "sessions": 8
+          },
+          {
+            "source": "Organic Social",
+            "sessions": 2
+          },
+          {
+            "source": "Organic Video",
+            "sessions": 1
+          }
+        ],
+        "topReferrers": [
+          {
+            "referrer": "(direct)",
+            "sessions": 90
+          },
+          {
+            "referrer": "google",
+            "sessions": 16
+          },
+          {
+            "referrer": "(not set)",
+            "sessions": 8
+          },
+          {
+            "referrer": "chromewebstore.google.com",
+            "sessions": 6
           },
           {
             "referrer": "google-admin.corp.google.com",
