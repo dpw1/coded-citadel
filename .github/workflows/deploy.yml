@@ -10,9 +10,10 @@ permissions:
   pages: write
   id-token: write
 
+# Do not cancel in-progress Pages deploys — cancellation leaves deployments wedged in deployment_queued.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -31,7 +32,7 @@ jobs:
         run: npm ci
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Build
         run: npm run build
@@ -58,6 +59,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
