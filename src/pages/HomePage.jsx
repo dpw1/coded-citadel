@@ -155,12 +155,12 @@ export default function HomePage() {
             <CyberCorners />
             {!avatarError ? (
               <img
-                src={`${import.meta.env.BASE_URL}avatar-citadel.png`}
-                alt="Coded Citadel Dev Portrait"
+                src={`${import.meta.env.BASE_URL}avatar-citadel.jpg`}
+                alt="Diego — Coded Citadel"
                 onError={() => setAvatarError(true)}
               />
             ) : (
-              <span>Add portrait as public/avatar-citadel.png</span>
+              <span>Add portrait as public/avatar-citadel.jpg</span>
             )}
           </div>
         </div>
