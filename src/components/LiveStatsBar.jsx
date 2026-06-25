@@ -24,7 +24,7 @@ export default function LiveStatsBar() {
           : 'From Chrome Web Store'
 
   return (
-    <div className="CC__stats-section CC__container">
+    <div className="CC__stats-section CC__container" data-nosnippet>
       <Link to="/live-stats" className="CC__stats-bar-link" aria-label="View live portfolio stats">
         <div className="CC__stats-bar CC__cyber-accent">
         <div className="CC__stats-bar__corners" aria-hidden="true">

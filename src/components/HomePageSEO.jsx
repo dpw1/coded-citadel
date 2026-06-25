@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
+import { buildHomeMetaDescription } from '../utils/homeMetaDescription'
+import { getSiteStats } from '../utils/siteStats'
 
 const SITE_URL = 'https://codedcitadel.com'
 const HOME_TITLE = 'Coded Citadel — Building in Public from $0 to $100K'
-const HOME_DESCRIPTION =
-  'Follow the journey of a solo developer building Chrome extensions in public — from $0 to $100K, one app at a time.'
 const HOME_IMAGE = `${SITE_URL}/cc-logo.png`
 
 function upsertMeta({ name, property, content }) {
@@ -54,26 +54,31 @@ function restoreEntry({ el, created, previousValue, attribute = 'content' }) {
 }
 
 export default function HomePageSEO() {
+  const homeDescription = useMemo(
+    () => buildHomeMetaDescription(getSiteStats()),
+    [],
+  )
+
   useEffect(() => {
     const previousTitle = document.title
     document.title = HOME_TITLE
 
     const managed = []
 
-    managed.push(upsertMeta({ name: 'description', content: HOME_DESCRIPTION }))
+    managed.push(upsertMeta({ name: 'description', content: homeDescription }))
     managed.push(upsertMeta({ name: 'robots', content: 'index, follow' }))
     managed.push(upsertLink('canonical', `${SITE_URL}/`))
 
     managed.push(upsertMeta({ property: 'og:type', content: 'website' }))
     managed.push(upsertMeta({ property: 'og:site_name', content: 'Coded Citadel' }))
     managed.push(upsertMeta({ property: 'og:title', content: HOME_TITLE }))
-    managed.push(upsertMeta({ property: 'og:description', content: HOME_DESCRIPTION }))
+    managed.push(upsertMeta({ property: 'og:description', content: homeDescription }))
     managed.push(upsertMeta({ property: 'og:url', content: `${SITE_URL}/` }))
     managed.push(upsertMeta({ property: 'og:image', content: HOME_IMAGE }))
 
     managed.push(upsertMeta({ name: 'twitter:card', content: 'summary_large_image' }))
     managed.push(upsertMeta({ name: 'twitter:title', content: HOME_TITLE }))
-    managed.push(upsertMeta({ name: 'twitter:description', content: HOME_DESCRIPTION }))
+    managed.push(upsertMeta({ name: 'twitter:description', content: homeDescription }))
     managed.push(upsertMeta({ name: 'twitter:image', content: HOME_IMAGE }))
 
     return () => {
@@ -86,7 +91,7 @@ export default function HomePageSEO() {
         })
       }
     }
-  }, [])
+  }, [homeDescription])
 
   return null
 }

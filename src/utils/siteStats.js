@@ -1,5 +1,8 @@
 import appsData from '../data/apps.json'
 import { dedupeAnalyticsSeriesByDate } from './analyticsSeries'
+import { buildHomeMetaDescription } from './homeMetaDescription.js'
+
+export { buildHomeMetaDescription } from './homeMetaDescription.js'
 
 /** Day 1 of the public journey — May 12, 2026 at local midnight. */
 const JOURNEY_DAY_ONE = new Date(2026, 4, 12)
