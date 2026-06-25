@@ -1,11 +1,11 @@
 {
   "available": true,
-  "updatedAt": "2026-06-25T17:37:43.493Z",
+  "updatedAt": "2026-06-25T17:51:01.753Z",
   "message": null,
-  "totalViews": 533,
+  "totalViews": 534,
   "blogViews": 17,
-  "averageTimeOnSiteSeconds": 172.1078743898305,
-  "uniqueVisitors": 138,
+  "averageTimeOnSiteSeconds": 170.18488137988825,
+  "uniqueVisitors": 139,
   "newVsReturning": {
     "new": 136,
     "returning": 10
@@ -13,7 +13,7 @@
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 368
+      "views": 369
     },
     {
       "path": "/thank-you/",
@@ -96,6 +96,13 @@
       "users": 4
     },
     {
+      "code": "DE",
+      "name": "Germany",
+      "gaCountry": "Germany",
+      "gaCountryId": "DE",
+      "users": 3
+    },
+    {
       "code": "GR",
       "name": "Greece",
       "gaCountry": "Greece",
@@ -114,13 +121,6 @@
       "name": "Argentina",
       "gaCountry": "Argentina",
       "gaCountryId": "AR",
-      "users": 2
-    },
-    {
-      "code": "DE",
-      "name": "Germany",
-      "gaCountry": "Germany",
-      "gaCountryId": "DE",
       "users": 2
     },
     {
@@ -236,11 +236,11 @@
     },
     {
       "source": "Organic Search",
-      "sessions": 18
+      "sessions": 19
     },
     {
       "source": "Unassigned",
-      "sessions": 13
+      "sessions": 14
     },
     {
       "source": "Referral",
@@ -262,11 +262,11 @@
     },
     {
       "referrer": "google",
-      "sessions": 18
+      "sessions": 19
     },
     {
       "referrer": "(not set)",
-      "sessions": 13
+      "sessions": 14
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -377,7 +377,7 @@
       },
       {
         "date": "25-06-2026",
-        "total": 17
+        "total": 18
       }
     ],
     "activeUsers": [
@@ -467,7 +467,7 @@
       },
       {
         "date": "25-06-2026",
-        "total": 13
+        "total": 14
       }
     ],
     "blogViews": [
@@ -647,7 +647,7 @@
       },
       {
         "date": "25-06-2026",
-        "total": 16
+        "total": 18
       }
     ]
   }
