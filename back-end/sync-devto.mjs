@@ -6,15 +6,16 @@
  */
 
 import { createHash } from 'node:crypto'
-import { config } from 'dotenv'
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { basename, dirname, extname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
+import { computeBlogsFingerprint } from './lib/blogs-fingerprint.mjs'
+import { getRootDir, loadEnv } from './lib/load-env.mjs'
 import { parseYoutubeVideoId, resolveYoutubeThumbnail } from './youtube-utils.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const ROOT = resolve(__dirname, '..')
+const ROOT = getRootDir()
 const BLOGS_DIR = resolve(ROOT, 'blogs')
 const COVERS_DIR = resolve(ROOT, 'public', 'devto-covers')
 const SYNC_FILE = resolve(ROOT, '.devto-sync.json')
@@ -23,8 +24,7 @@ const DEVTO_API = 'https://dev.to/api'
 const UPLOAD_DELAY_MS = Number(process.env.DEVTO_UPLOAD_DELAY_MS || 2_000)
 const RATE_LIMIT_RETRY_MS = Number(process.env.DEVTO_RATE_LIMIT_RETRY_MS || 10_000)
 
-config({ path: resolve(ROOT, '.env') })
-config({ path: resolve(ROOT, '.ENV') })
+loadEnv()
 
 const API_KEY = process.env.DEV_TO_API_KEY
 
@@ -210,10 +210,9 @@ function collectMarkdownPosts() {
     })
 }
 
-async function main() {
+export async function runSyncDevto() {
   if (!API_KEY) {
-    console.error('Missing DEV_TO_API_KEY in .env at project root.')
-    process.exit(1)
+    throw new Error('Missing DEV_TO_API_KEY in .env at project root.')
   }
 
   const manifest = loadSyncManifest()
@@ -296,10 +295,21 @@ async function main() {
   console.log(`  skipped: ${summary.skipped}`)
   console.log(`  failed:  ${summary.failed}`)
 
-  if (summary.failed > 0) process.exit(1)
+  if (summary.failed > 0) {
+    throw new Error(`dev.to sync failed for ${summary.failed} post(s)`)
+  }
+
+  manifest._blogsFingerprint = computeBlogsFingerprint()
+  saveSyncManifest(manifest)
 }
 
-main().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})
+const isMain =
+  process.argv[1] &&
+  resolve(process.argv[1]) === fileURLToPath(import.meta.url)
+
+if (isMain) {
+  runSyncDevto().catch((err) => {
+    console.error(err)
+    process.exit(1)
+  })
+}
