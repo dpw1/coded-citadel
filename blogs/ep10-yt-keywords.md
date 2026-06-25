@@ -16,7 +16,7 @@ Imagine if you could be notified every time a video with certain keywords is upl
 
 Let's say you're waiting for GTA 6 leaks. You already know the channels that post fake content, so you can exclude them. And you know that a decent leak video would have at least 2 minutes of content, so you add that to the filter as well. Now, every time a video with these settings is uploaded to YouTube, you get notified.
 
-This is what you can achieve with YouTube Keyword Alert.
+This is what you can achieve with [YouTube Keyword Alert](https://chromewebstore.google.com/detail/youtube-keyword-alert-get/pniolepdakiocafjiibgiabkcdhgkfep)
 
 You add keywords to include and exclude, and every time you go on YouTube it will silently search for you, without impacting performance or slowing anything down. You can just leave it working quietly in the background. And whenever something is found, it will notify you.
 
@@ -26,134 +26,157 @@ You can watch the full build here: [https://youtu.be/CdIXEKUTewE]
 
 ## The initial idea
 
-[INCLUDE IN VIDEO]
+My idea for this actually came from my personal needs and this channel. I was curious to see if there were other people doing a "coding until I make X" challenge. Searching for channels doing this on YouTube daily was not practical, so I decided to code a solution.
 
-My starting point was personal frustration. I was curious whether other people were doing "coding until I make X" challenges on YouTube, similar to what I'm doing on this channel. Searching for it manually every day was not practical.
+What if there was a way to have a bot searching on YouTube every few hours, checking if a specific type of video had been released? That was the premise.
 
-So the premise was: what if a bot could search YouTube every few hours and flag new videos that match specific keywords?
+I had coded two extensions related to YouTube in this channel before, so I already had some knowledge of how things work and a lot of code I could reuse. The plan was to start with something simple running in the browser that I could test quickly.
 
-I had worked with YouTube's DOM and API before in previous episodes (the YouTube Comments Exporter and YouTube Filter Pro), so I already had reference code to pull from. That gave me a head start.
+It had to:
 
-The first version was a simple browser script. No extension, no UI. Just enough to confirm the idea worked.
+1. Search for videos with certain keywords in the background
+2. Console log everything it found
 
-The two requirements I set for myself:
-
-Search for videos matching a keyword in the background
-Console log everything it finds
-
-Once that was running, I could move on to the real thing.
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-11h18.jpg)
 
 ---
 
 ## The first problem: channel data enrichment is slow
 
-[INCLUDE IN VIDEO]
-
 The first version of the script fetched videos fine, but enriching the channel data (pulling subscriber counts, etc) was taking a long time. Some subscribers weren't being fetched at all.
 
-The bug turned out to be a path issue. The script was looking for a top-level `subscriberCountText` field in the JSON response, but the actual value was nested deeper in the object. Once I fixed the path, everything came back correctly.
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-11h22.jpg)
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-11h23.jpg)
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-11h28.jpg)
 
-But there was a bigger problem underneath this one: the enrichment process was slow enough that I couldn't run it in the background service worker. It would trigger CORS issues. I needed a different architecture.
+The bug turned out to be a path issue. The script was only looking for a top-level `subscriberCountText` field anywhere in the JSON, but the actual subscriber count was nested deeper in the object. Once I fixed the path, everything came back correctly.
+
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-11h35.jpg)
+
+But there was a bigger problem underneath: the enrichment process was slow enough that I couldn't run it in the background service worker. It would trigger CORS issues. I needed a different architecture.
 
 ---
 
 ## Planning the Chrome extension
 
-[INCLUDE IN VIDEO]
+There were a few things I had in mind for this extension:
 
-Before writing any code, I mapped out what I actually wanted to build:
+1. Use Vite, as always
+2. Add an uninstall redirect and an install redirect URL — something I hadn't been adding to previous extensions, but it's important that all Chrome extensions have some sort of ecosystem and help each other grow. Leading users to the website is a good start.
+3. No content JS besides doing the search. All the management would happen in a separate HTML tab.
+4. Multiple filters. The user would be able to see and update multiple of those independently.
 
-Vite-based architecture (same as my previous extensions)
-An install redirect and an uninstall redirect URL (something I hadn't been adding but should have from the start, since it helps build the broader ecosystem around the tool)
-A content script only for search, with all the management happening in a separate HTML tab
-Multiple filters, each one with its own set of include/exclude keywords
+For example:
 
-The "multiple filters" part was important. I wanted something like:
-
-GTA 6 news => "gta 6", "leak"
+```
+GTA 6 news     => "gta 6", "leak"
 Anthropic news => "claude", "updated", "new"
+```
 
-Each filter independent, each one with its own result set.
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-15h35.jpg)
 
 I brainstormed the architecture with Claude, got a detailed prompt, dropped it into Cursor Composer 2.5 and within 4 minutes had a working "thank you" page and the skeleton of the extension.
+
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-15h43.jpg)
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-15h45.jpg)
 
 ---
 
 ## The CORS wall (and how I got around it)
 
-[INCLUDE IN VIDEO]
-
 The original plan was to use YouTube's InnerTube API from the background service worker. That failed immediately because of CORS, which I expected.
 
 My second approach: build the search query from the filter keywords and make a plain GET request to `youtube.com/results`. YouTube returns an HTML page with `ytInitialData` embedded in it as a JSON object. I've worked with that object in previous episodes. The downside is you only get the first page of results, but for keyword alerting that's fine.
 
-The problem was that even plain GET requests to YouTube were getting blocked in the background worker.
 
-I came across a blog post at [https://www.codestudy.net/blog/access-to-fetch-has-been-blocked-by-cors-policy-chrome-extension-error/] that explained exactly how to bypass CORS from a background script in a Chrome extension. I sent it to Cursor and asked it to implement it in the project.
+The problem was that even plain GET requests to YouTube were getting blocked in the background worker. So the new plan was to run a fetch call directly in the background service using the user's cookies and token. The user only needs to open the YouTube page once, and then searches can run indefinitely in the background. Much better UX.
+
+Unfortunately, as expected, CORS was not going to let me.
+
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-16h22.jpg)
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-16h27_1.jpg)
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-16h27_2.jpg)
+
+I came across a blog post at [https://www.codestudy.net/blog/access-to-fetch-has-been-blocked-by-cors-policy-chrome-extension-error/] that explained exactly how to bypass CORS from a background script in a Chrome extension. I forwarded the post to Cursor and asked it to implement it in the current project.
+
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-17h27.jpg)
 
 It worked. First try.
 
-[INCLUDE IN VIDEO]
 
-This was a meaningful architectural win. The user visits YouTube once, the extension picks up the session context, and from that point on the background service can run searches indefinitely without any tab open. Much better UX than anything tab-based.
+This was a meaningful architectural win. The user visits YouTube once, the extension picks up the session context, and from that point on the background service can run searches indefinitely without any tab open. I also asked Cursor to save the channel data in local storage so we don't constantly need to re-fetch it.
 
-I also added local caching for channel data so we don't re-fetch it constantly.
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-17h40.jpg)
 
 ---
 
 ## Building the filter system
 
-[INCLUDE IN VIDEO]
+With the basics in place, it was time to enhance the filters. Each filter has:
 
-With the core search working, I added the full filter management UI. Each filter has:
+- Keywords to include
+- Keywords to exclude
+- Minimum video duration
+- A checks tab showing recent search history
+- Results shown on the filter itself
+- An "unsaved changes" warning so you can't close the modal accidentally after making changes
 
-Keywords to include
-Keywords to exclude
-Minimum video duration
-A checks tab showing recent search history
-An "unsaved changes" warning so you don't accidentally close and lose your work
 
-One thing that bothered me early on was how unreadable the filters looked. A filter called "basic" tells you nothing. I took the same approach I used in YouTube Filter Pro and added a human-readable summary line below each filter name. Instead of "basic", you'd see something like "Videos matching 'gta 6' or 'leak', at least 2 minutes long, excluding 'reaction'." Much better.
+One thing that was bothering me was how unreadable the filters looked. When I looked at a filter called "basic" I had no idea what it was actually doing. I took the same approach as YouTube Filter Pro and added a human-readable summary line below each filter name. Much better.
+
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-22h41.jpg)
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-22h43.jpg)
 
 I also set up a strict z-index system for the layered UI elements (modal at 2, confirmation dialog at 3, toasts at 4). When you have multiple overlapping elements, this stuff matters.
+
 
 ---
 
 ## Fixing the design
 
-[INCLUDE IN VIDEO]
+The functional version worked but looked rough. I described what I wanted to ChatGPT first, but the excessive amount of detail was not very helpful here.
 
-The functional version worked but looked rough. I described what I wanted to ChatGPT first, but the level of detail I gave it made the output crowded and hard to implement. I switched to Claude with a cleaner, less prescriptive brief and got HTML/CSS/JS that was much closer to what I had in mind.
 
-I dropped the Claude output into a "samples" folder for Cursor to reference and asked it to replace the existing UI. The result:
+I ended up creating a less crowded design reference and brought it to Claude instead.
 
-[INCLUDE IN VIDEO - SCREENSHOT_20-06-2026-22h05.jpg]
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-18h03.jpg)
 
-I also created two custom icons (I sent Claude a PNG reference and asked it to convert to SVG) for the results tab. Pagination was added in the format I always use:
+Claude's HTML/CSS/JS output looked pretty good. I copied it into the samples folder for Cursor to reference and asked it to replace the existing UI.
+
+
+This is looking much better.
+
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-22h05.jpg)
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-22h05_1.jpg)
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-22h05_2.jpg)
+
+I also created two custom icons for the results tab (sent Claude a PNG reference and asked it to convert to SVG), and added pagination in the format I always use:
 
 `< 1 2 3 ... 99 >`
 
-Export and import for filters was added using Chrome storage. I didn't want to set up Supabase before validating the extension with real users first.
+
+Export and import for filters was added using Chrome storage. I didn't want to set up Supabase before validating the extension with real users first. This way users can still keep their data by exporting it manually.
+
+![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-22h40.jpg)
+
+After a few more UX improvements (don't allow the min duration to be greater than max, better error handling, etc), I was pretty happy with how it was looking.
+
 
 ---
 
 ## Does the background search actually work?
 
-[INCLUDE IN VIDEO]
+The final test was to see whether it performs searches when the tab is closed and we're on other websites. I added a "search in 1 minute" button so I could press it, close the tab, and go to a different website to see whether the search results triggered any notifications.
 
-This was the real test. I added a "search in 1 minute" button, pressed it, closed the YouTube tab, opened a different website and waited.
+And... nothing happened.
 
-First attempt, nothing happened. I spent a while debugging.
 
-Then I realized the filter I was testing with was too strict and nothing matched. The background search had been working the whole time.
+I spent a while debugging. Turned out the filter I was testing with was too strict and nothing matched. The background search had been working from the beginning.
 
-[INCLUDE IN VIDEO]
 
 ---
 
 ## Live stats
-
-[INCLUDE IN VIDEO]
 
 All stats below were manually pulled from the Chrome Web Store developer console. Nothing is automated. I'm sharing them publicly as part of building in public.
 
@@ -163,15 +186,11 @@ All stats below were manually pulled from the Chrome Web Store developer console
 
 ## Submitting to the Chrome Web Store
 
-[INCLUDE IN VIDEO]
-
 Something I always do before submitting is ask Cursor to write the Chrome Web Store description in my own voice. A while back I fed a big sample of my writing (Reddit posts, comments, blog copy) to Claude and asked it to create a writing style guide. I now drop that guide into the prompt whenever I need Cursor to write copy that actually sounds like me instead of generic extension marketing.
 
-[INCLUDE IN VIDEO]
 
 The extension was submitted and approved. This is number 10.
 
-[INCLUDE IN VIDEO - chrome_BCofr6v8lb.mp4]
 
 ---
 

@@ -1,9 +1,9 @@
 /**
- * Scans blogs/*.md for local media that needs importing:
+ * Scans blogs/*.md for local image paths that need importing:
  *
- * 1. Local absolute paths on D:/ (images or videos)
+ * 1. Local absolute paths on D:/ (images only)
  *    Accepts plain paths, `backticks`, "quotes", 'quotes', or ![](path).
- *    Videos are captured as a JPG screenshot at the midpoint of the clip.
+ *    Video paths are removed from the markdown (not imported).
  * 2. Pasted markdown images: ![alt](image/{post}/file.png)
  *
  * Copies into public/blog-images/ and rewrites lines as ![]({webPath}).
@@ -12,7 +12,6 @@
  * Idempotent — safe to run on every build.
  */
 
-import { execSync } from 'node:child_process'
 import {
   copyFileSync,
   existsSync,
@@ -32,8 +31,10 @@ const PUBLIC_IMAGES_DIR = resolve(ROOT, 'public', 'blog-images')
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif'])
 const VIDEO_EXTENSIONS = new Set(['.mp4', '.webm', '.mov', '.mkv'])
 const LOCAL_PATH_IN_MD_RE = /^!\[[^\]]*\]\((D:[/\\][^)\s]+)\)\s*$/i
-const LOCAL_PATH_RE =
-  /^D:[/\\].+[/\\][^/\\]+\.(jpg|jpeg|png|webp|gif|mp4|webm|mov|mkv)$/i
+const LOCAL_IMAGE_PATH_RE =
+  /^D:[/\\].+[/\\][^/\\]+\.(jpg|jpeg|png|webp|gif)$/i
+const LOCAL_VIDEO_PATH_RE =
+  /^D:[/\\].+[/\\][^/\\]+\.(mp4|webm|mov|mkv)$/i
 const IMPORTED_IMAGE_RE = /^!\[[^\]]*\]\((\/blog-images\/[^)]+)\)\s*$/
 const PASTED_IMAGE_RE = /^!\[[^\]]*\]\((image\/[^)]+)\)\s*$/
 
@@ -54,51 +55,33 @@ function stripOuterWrappers(line) {
   return trimmed
 }
 
-function isVideoExtension(ext) {
-  return VIDEO_EXTENSIONS.has(ext.toLowerCase())
-}
-
 function isImageExtension(ext) {
   return IMAGE_EXTENSIONS.has(ext.toLowerCase())
 }
 
-/** @returns {{ sourcePath: string, destFilename: string, isVideo: boolean, label: string } | null} */
-function parseLocalMediaPath(trimmed) {
+function isVideoPath(trimmed) {
   const mdMatch = trimmed.match(LOCAL_PATH_IN_MD_RE)
   const unwrapped = stripOuterWrappers(trimmed)
-  const sourcePath = mdMatch?.[1] ?? (LOCAL_PATH_RE.test(unwrapped) ? unwrapped : null)
+  const sourcePath = mdMatch?.[1] ?? unwrapped
+  const ext = extname(sourcePath).toLowerCase()
+  return (
+    VIDEO_EXTENSIONS.has(ext) &&
+    (LOCAL_VIDEO_PATH_RE.test(unwrapped) || LOCAL_VIDEO_PATH_RE.test(sourcePath))
+  )
+}
+
+/** @returns {{ sourcePath: string, destFilename: string, label: string } | null} */
+function parseLocalImagePath(trimmed) {
+  const mdMatch = trimmed.match(LOCAL_PATH_IN_MD_RE)
+  const unwrapped = stripOuterWrappers(trimmed)
+  const sourcePath = mdMatch?.[1] ?? (LOCAL_IMAGE_PATH_RE.test(unwrapped) ? unwrapped : null)
   if (!sourcePath) return null
 
   const ext = extname(sourcePath).toLowerCase()
-  const isVideo = isVideoExtension(ext)
-  const isImage = isImageExtension(ext)
-  if (!isVideo && !isImage) return null
+  if (!isImageExtension(ext)) return null
 
   const label = basename(sourcePath)
-  const destFilename = isVideo ? `${basename(label, ext)}.jpg` : label
-
-  return { sourcePath, destFilename, isVideo, label }
-}
-
-function getVideoDurationSeconds(sourcePath) {
-  const quoted = `"${sourcePath.replace(/"/g, '\\"')}"`
-  const out = execSync(
-    `ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 ${quoted}`,
-    { encoding: 'utf8' },
-  ).trim()
-  const duration = Number.parseFloat(out)
-  return Number.isFinite(duration) ? duration : 0
-}
-
-function screenshotVideoAtMiddle(sourcePath, destPath) {
-  const duration = getVideoDurationSeconds(sourcePath)
-  const seek = Math.max(0, duration / 2)
-  const sourceQuoted = `"${sourcePath.replace(/"/g, '\\"')}"`
-  const destQuoted = `"${destPath.replace(/"/g, '\\"')}"`
-  execSync(
-    `ffmpeg -y -ss ${seek} -i ${sourceQuoted} -frames:v 1 -q:v 2 ${destQuoted}`,
-    { stdio: 'pipe' },
-  )
+  return { sourcePath, destFilename: label, label }
 }
 
 function postKeyFromFilename(filename) {
@@ -160,9 +143,8 @@ function finalizeImport({
   existingWebPaths,
   stats,
   label,
-  isVideo = false,
 }) {
-  if (existingWebPaths.has(webPath) || existsSync(destPath)) {
+  if (existsSync(destPath)) {
     if (!IMPORTED_IMAGE_RE.test(trimmed)) {
       stats.rewrittenExisting += 1
       existingWebPaths.add(webPath)
@@ -179,22 +161,40 @@ function finalizeImport({
   }
 
   mkdirSync(dirname(destPath), { recursive: true })
-  if (isVideo) {
-    screenshotVideoAtMiddle(sourcePath, destPath)
-    stats.videoScreenshots += 1
-    console.log(`  video screenshot: ${label} → ${webPath}`)
-  } else {
-    copyFileSync(sourcePath, destPath)
-    stats.copied += 1
-    console.log(`  copied: ${label} → ${webPath}`)
-  }
+  copyFileSync(sourcePath, destPath)
+  stats.copied += 1
+  console.log(`  copied: ${label} → ${webPath}`)
   existingWebPaths.add(webPath)
   return { line: `![](${webPath})`, changed: true }
 }
 
 function processLine(trimmed, postKey, existingWebPaths, stats) {
-  if (IMPORTED_IMAGE_RE.test(trimmed)) {
-    return { line: null, changed: false }
+  const importedMatch = trimmed.match(IMPORTED_IMAGE_RE)
+  if (importedMatch) {
+    const webPath = importedMatch[1]
+    const destPath = join(
+      PUBLIC_IMAGES_DIR,
+      ...webPath.replace(/^\/blog-images\//, '').split('/'),
+    )
+    if (existsSync(destPath)) {
+      return { line: null, changed: false, removeLine: false }
+    }
+    const destFilename = basename(destPath)
+    const sourcePath = join('D:/GoogleChromeDownloads', destFilename)
+    return finalizeImport({
+      trimmed,
+      webPath,
+      destPath,
+      sourcePath,
+      existingWebPaths,
+      stats,
+      label: destFilename,
+    })
+  }
+
+  if (isVideoPath(trimmed)) {
+    stats.videosRemoved += 1
+    return { line: null, changed: true, removeLine: true }
   }
 
   const pastedMatch = trimmed.match(PASTED_IMAGE_RE)
@@ -215,9 +215,9 @@ function processLine(trimmed, postKey, existingWebPaths, stats) {
     return result
   }
 
-  const localMedia = parseLocalMediaPath(trimmed)
-  if (localMedia) {
-    const { sourcePath, destFilename, isVideo, label } = localMedia
+  const localImage = parseLocalImagePath(trimmed)
+  if (localImage) {
+    const { sourcePath, destFilename, label } = localImage
     const webPath = webPathFor(postKey, destFilename)
     const destPath = destPathFor(postKey, destFilename)
     return finalizeImport({
@@ -228,11 +228,10 @@ function processLine(trimmed, postKey, existingWebPaths, stats) {
       existingWebPaths,
       stats,
       label,
-      isVideo,
     })
   }
 
-  return { line: null, changed: false }
+  return { line: null, changed: false, removeLine: false }
 }
 
 function processMarkdownFile(filePath, existingWebPaths, stats) {
@@ -241,20 +240,26 @@ function processMarkdownFile(filePath, existingWebPaths, stats) {
   const lines = original.split(/\r?\n/)
   let changed = false
 
-  const nextLines = lines.map((line) => {
-    const trimmed = line.trim()
-    const { line: replacement, changed: lineChanged } = processLine(
-      trimmed,
-      postKey,
-      existingWebPaths,
-      stats,
-    )
-    if (lineChanged && replacement != null) {
-      changed = true
-      return replacement
-    }
-    return line
-  })
+  const nextLines = lines
+    .map((line) => {
+      const trimmed = line.trim()
+      const { line: replacement, changed: lineChanged, removeLine } = processLine(
+        trimmed,
+        postKey,
+        existingWebPaths,
+        stats,
+      )
+      if (removeLine) {
+        changed = true
+        return null
+      }
+      if (lineChanged && replacement != null) {
+        changed = true
+        return replacement
+      }
+      return line
+    })
+    .filter((line) => line != null)
 
   if (changed) {
     writeFileSync(filePath, `${nextLines.join('\n')}\n`, 'utf8')
@@ -275,10 +280,10 @@ function main() {
 
   const stats = {
     copied: 0,
-    videoScreenshots: 0,
     skipped: 0,
     missing: 0,
     rewrittenExisting: 0,
+    videosRemoved: 0,
     filesUpdated: 0,
   }
 
@@ -290,7 +295,7 @@ function main() {
 
   const parts = []
   if (stats.copied) parts.push(`${stats.copied} copied`)
-  if (stats.videoScreenshots) parts.push(`${stats.videoScreenshots} video screenshot(s)`)
+  if (stats.videosRemoved) parts.push(`${stats.videosRemoved} video line(s) removed`)
   if (stats.rewrittenExisting) parts.push(`${stats.rewrittenExisting} markdown line(s) fixed`)
   if (stats.skipped) parts.push(`${stats.skipped} already imported`)
   if (stats.missing) parts.push(`${stats.missing} missing source file(s)`)

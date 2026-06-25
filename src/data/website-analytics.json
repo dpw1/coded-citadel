@@ -1,23 +1,23 @@
 {
   "available": true,
-  "updatedAt": "2026-06-25T17:51:01.753Z",
+  "updatedAt": "2026-06-25T20:24:52.176Z",
   "message": null,
-  "totalViews": 534,
+  "totalViews": 540,
   "blogViews": 17,
-  "averageTimeOnSiteSeconds": 170.18488137988825,
-  "uniqueVisitors": 139,
+  "averageTimeOnSiteSeconds": 165.56029221195652,
+  "uniqueVisitors": 142,
   "newVsReturning": {
-    "new": 136,
+    "new": 139,
     "returning": 10
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 369
+      "views": 370
     },
     {
       "path": "/thank-you/",
-      "views": 41
+      "views": 43
     },
     {
       "path": "/live-stats",
@@ -32,12 +32,16 @@
       "views": 16
     },
     {
+      "path": "/privacy-policy/ai-bookmark/",
+      "views": 12
+    },
+    {
       "path": "/blog",
       "views": 11
     },
     {
-      "path": "/privacy-policy/ai-bookmark/",
-      "views": 10
+      "path": "/live-stats/",
+      "views": 5
     },
     {
       "path": "/apps/youtube-filter-pro",
@@ -45,10 +49,6 @@
     },
     {
       "path": "/blog/chrome-extension-save-to-google-drive-under-8-hours/",
-      "views": 4
-    },
-    {
-      "path": "/live-stats/",
       "views": 4
     }
   ],
@@ -65,7 +65,14 @@
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 29
+      "users": 30
+    },
+    {
+      "code": "BR",
+      "name": "Brazil",
+      "gaCountry": "Brazil",
+      "gaCountryId": "BR",
+      "users": 11
     },
     {
       "code": "PL",
@@ -79,13 +86,6 @@
       "name": "(not set)",
       "gaCountry": "(not set)",
       "gaCountryId": "(not set)",
-      "users": 9
-    },
-    {
-      "code": "BR",
-      "name": "Brazil",
-      "gaCountry": "Brazil",
-      "gaCountryId": "BR",
       "users": 9
     },
     {
@@ -232,15 +232,15 @@
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 140
+      "sessions": 144
     },
     {
       "source": "Organic Search",
-      "sessions": 19
+      "sessions": 20
     },
     {
       "source": "Unassigned",
-      "sessions": 14
+      "sessions": 16
     },
     {
       "source": "Referral",
@@ -258,15 +258,15 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 140
+      "sessions": 144
     },
     {
       "referrer": "google",
-      "sessions": 19
+      "sessions": 20
     },
     {
       "referrer": "(not set)",
-      "sessions": 14
+      "sessions": 16
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -377,7 +377,7 @@
       },
       {
         "date": "25-06-2026",
-        "total": 18
+        "total": 24
       }
     ],
     "activeUsers": [
@@ -467,7 +467,7 @@
       },
       {
         "date": "25-06-2026",
-        "total": 14
+        "total": 17
       }
     ],
     "blogViews": [
@@ -647,7 +647,7 @@
       },
       {
         "date": "25-06-2026",
-        "total": 18
+        "total": 23
       }
     ]
   }
