@@ -1,39 +1,39 @@
 {
   "available": true,
-  "updatedAt": "2026-06-25T20:37:52.328Z",
+  "updatedAt": "2026-06-26T20:53:59.566Z",
   "message": null,
-  "totalViews": 540,
+  "totalViews": 578,
   "blogViews": 17,
-  "averageTimeOnSiteSeconds": 165.56029221195652,
-  "uniqueVisitors": 142,
+  "averageTimeOnSiteSeconds": 166.85667220192306,
+  "uniqueVisitors": 161,
   "newVsReturning": {
-    "new": 139,
-    "returning": 10
+    "new": 161,
+    "returning": 12
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 370
+      "views": 378
     },
     {
       "path": "/thank-you/",
-      "views": 43
+      "views": 62
     },
     {
       "path": "/live-stats",
-      "views": 22
-    },
-    {
-      "path": "/apps",
-      "views": 18
+      "views": 25
     },
     {
       "path": "/uninstall/",
-      "views": 16
+      "views": 20
+    },
+    {
+      "path": "/apps",
+      "views": 19
     },
     {
       "path": "/privacy-policy/ai-bookmark/",
-      "views": 12
+      "views": 13
     },
     {
       "path": "/blog",
@@ -44,11 +44,11 @@
       "views": 5
     },
     {
-      "path": "/apps/youtube-filter-pro",
+      "path": "/apps/claude-deep-search",
       "views": 4
     },
     {
-      "path": "/blog/chrome-extension-save-to-google-drive-under-8-hours/",
+      "path": "/apps/youtube-filter-pro",
       "views": 4
     }
   ],
@@ -58,20 +58,27 @@
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 43
+      "users": 46
     },
     {
       "code": "IN",
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 30
+      "users": 37
     },
     {
       "code": "BR",
       "name": "Brazil",
       "gaCountry": "Brazil",
       "gaCountryId": "BR",
+      "users": 12
+    },
+    {
+      "code": null,
+      "name": "(not set)",
+      "gaCountry": "(not set)",
+      "gaCountryId": "(not set)",
       "users": 11
     },
     {
@@ -82,24 +89,24 @@
       "users": 11
     },
     {
-      "code": null,
-      "name": "(not set)",
-      "gaCountry": "(not set)",
-      "gaCountryId": "(not set)",
-      "users": 9
-    },
-    {
       "code": "CN",
       "name": "China",
       "gaCountry": "China",
       "gaCountryId": "CN",
-      "users": 4
+      "users": 5
     },
     {
       "code": "DE",
       "name": "Germany",
       "gaCountry": "Germany",
       "gaCountryId": "DE",
+      "users": 3
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "gaCountry": "United Kingdom",
+      "gaCountryId": "GB",
       "users": 3
     },
     {
@@ -110,17 +117,17 @@
       "users": 3
     },
     {
-      "code": null,
-      "name": "(not set)",
-      "gaCountry": null,
-      "gaCountryId": null,
-      "users": 2
-    },
-    {
       "code": "AR",
       "name": "Argentina",
       "gaCountry": "Argentina",
       "gaCountryId": "AR",
+      "users": 2
+    },
+    {
+      "code": "BD",
+      "name": "Bangladesh",
+      "gaCountry": "Bangladesh",
+      "gaCountryId": "BD",
       "users": 2
     },
     {
@@ -152,6 +159,13 @@
       "users": 2
     },
     {
+      "code": "MA",
+      "name": "Morocco",
+      "gaCountry": "Morocco",
+      "gaCountryId": "MA",
+      "users": 2
+    },
+    {
       "code": "NG",
       "name": "Nigeria",
       "gaCountry": "Nigeria",
@@ -159,24 +173,24 @@
       "users": 2
     },
     {
-      "code": "BD",
-      "name": "Bangladesh",
-      "gaCountry": "Bangladesh",
-      "gaCountryId": "BD",
-      "users": 1
+      "code": "NP",
+      "name": "Nepal",
+      "gaCountry": "Nepal",
+      "gaCountryId": "NP",
+      "users": 2
+    },
+    {
+      "code": "PK",
+      "name": "Pakistan",
+      "gaCountry": "Pakistan",
+      "gaCountryId": "PK",
+      "users": 2
     },
     {
       "code": "CI",
       "name": "Côte d’Ivoire",
       "gaCountry": "Côte d’Ivoire",
       "gaCountryId": "CI",
-      "users": 1
-    },
-    {
-      "code": "GB",
-      "name": "United Kingdom",
-      "gaCountry": "United Kingdom",
-      "gaCountryId": "GB",
       "users": 1
     },
     {
@@ -201,13 +215,6 @@
       "users": 1
     },
     {
-      "code": "MA",
-      "name": "Morocco",
-      "gaCountry": "Morocco",
-      "gaCountryId": "MA",
-      "users": 1
-    },
-    {
       "code": "MY",
       "name": "Malaysia",
       "gaCountry": "Malaysia",
@@ -220,31 +227,24 @@
       "gaCountry": "Oman",
       "gaCountryId": "OM",
       "users": 1
-    },
-    {
-      "code": "PK",
-      "name": "Pakistan",
-      "gaCountry": "Pakistan",
-      "gaCountryId": "PK",
-      "users": 1
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 144
+      "sessions": 170
     },
     {
       "source": "Organic Search",
-      "sessions": 20
-    },
-    {
-      "source": "Unassigned",
-      "sessions": 16
+      "sessions": 21
     },
     {
       "source": "Referral",
       "sessions": 10
+    },
+    {
+      "source": "Unassigned",
+      "sessions": 9
     },
     {
       "source": "Organic Social",
@@ -258,15 +258,15 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 144
+      "sessions": 170
     },
     {
       "referrer": "google",
-      "sessions": 20
+      "sessions": 21
     },
     {
       "referrer": "(not set)",
-      "sessions": 16
+      "sessions": 9
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -377,7 +377,11 @@
       },
       {
         "date": "25-06-2026",
-        "total": 24
+        "total": 40
+      },
+      {
+        "date": "26-06-2026",
+        "total": 22
       }
     ],
     "activeUsers": [
@@ -467,7 +471,11 @@
       },
       {
         "date": "25-06-2026",
-        "total": 17
+        "total": 25
+      },
+      {
+        "date": "26-06-2026",
+        "total": 14
       }
     ],
     "blogViews": [
@@ -558,6 +566,10 @@
       {
         "date": "25-06-2026",
         "total": 0
+      },
+      {
+        "date": "26-06-2026",
+        "total": 0
       }
     ],
     "sessions": [
@@ -647,7 +659,11 @@
       },
       {
         "date": "25-06-2026",
-        "total": 23
+        "total": 30
+      },
+      {
+        "date": "26-06-2026",
+        "total": 17
       }
     ]
   }
