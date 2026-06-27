@@ -6,6 +6,7 @@ import InstagramDmExporterPrivacyContent from '../content/privacy/instagram-dm-e
 import SaveToDrivePrivacyContent from '../content/privacy/save-to-drive-chrome-extension'
 import GmailToPdfPrivacyContent from '../content/privacy/gmail-to-pdf-extension'
 import YoutubeKeywordPrivacyContent from '../content/privacy/youtube-keyword'
+import DexPrivacyContent from '../content/privacy/dex'
 
 const PRIVACY_POLICIES = {
   'ai-bookmark': {
@@ -55,6 +56,12 @@ const PRIVACY_POLICIES = {
     lastUpdated: 'March 21, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: YoutubeKeywordPrivacyContent,
+  },
+  dex: {
+    appName: 'DEX: Discord Export Extension',
+    lastUpdated: 'June 27, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: DexPrivacyContent,
   },
 }
 

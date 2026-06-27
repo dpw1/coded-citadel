@@ -24,6 +24,7 @@ const PRIVACY_POLICY_SLUGS = [
   'instagram-dm-exporter',
   'save-to-drive-chrome-extension',
   'youtube-keyword',
+  'dex',
 ]
 
 /** Keep in sync with src/utils/termsOfService.js */
