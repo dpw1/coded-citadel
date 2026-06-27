@@ -1,23 +1,23 @@
 {
   "available": true,
-  "updatedAt": "2026-06-26T20:53:59.566Z",
+  "updatedAt": "2026-06-27T16:35:59.882Z",
   "message": null,
-  "totalViews": 578,
+  "totalViews": 591,
   "blogViews": 17,
-  "averageTimeOnSiteSeconds": 166.85667220192306,
-  "uniqueVisitors": 161,
+  "averageTimeOnSiteSeconds": 167.14091084862383,
+  "uniqueVisitors": 170,
   "newVsReturning": {
-    "new": 161,
+    "new": 170,
     "returning": 12
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 378
+      "views": 379
     },
     {
       "path": "/thank-you/",
-      "views": 62
+      "views": 72
     },
     {
       "path": "/live-stats",
@@ -25,11 +25,11 @@
     },
     {
       "path": "/uninstall/",
-      "views": 20
+      "views": 21
     },
     {
       "path": "/apps",
-      "views": 19
+      "views": 20
     },
     {
       "path": "/privacy-policy/ai-bookmark/",
@@ -65,27 +65,27 @@
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 37
+      "users": 40
     },
     {
       "code": "BR",
       "name": "Brazil",
       "gaCountry": "Brazil",
       "gaCountryId": "BR",
-      "users": 12
-    },
-    {
-      "code": null,
-      "name": "(not set)",
-      "gaCountry": "(not set)",
-      "gaCountryId": "(not set)",
-      "users": 11
+      "users": 14
     },
     {
       "code": "PL",
       "name": "Poland",
       "gaCountry": "Poland",
       "gaCountryId": "PL",
+      "users": 13
+    },
+    {
+      "code": null,
+      "name": "(not set)",
+      "gaCountry": "(not set)",
+      "gaCountryId": "(not set)",
       "users": 11
     },
     {
@@ -114,6 +114,13 @@
       "name": "Greece",
       "gaCountry": "Greece",
       "gaCountryId": "GR",
+      "users": 3
+    },
+    {
+      "code": "PK",
+      "name": "Pakistan",
+      "gaCountry": "Pakistan",
+      "gaCountryId": "PK",
       "users": 3
     },
     {
@@ -180,11 +187,11 @@
       "users": 2
     },
     {
-      "code": "PK",
-      "name": "Pakistan",
-      "gaCountry": "Pakistan",
-      "gaCountryId": "PK",
-      "users": 2
+      "code": "AU",
+      "name": "Australia",
+      "gaCountry": "Australia",
+      "gaCountryId": "AU",
+      "users": 1
     },
     {
       "code": "CI",
@@ -220,31 +227,24 @@
       "gaCountry": "Malaysia",
       "gaCountryId": "MY",
       "users": 1
-    },
-    {
-      "code": "OM",
-      "name": "Oman",
-      "gaCountry": "Oman",
-      "gaCountryId": "OM",
-      "users": 1
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 170
+      "sessions": 179
     },
     {
       "source": "Organic Search",
       "sessions": 21
     },
     {
-      "source": "Referral",
-      "sessions": 10
+      "source": "Unassigned",
+      "sessions": 13
     },
     {
-      "source": "Unassigned",
-      "sessions": 9
+      "source": "Referral",
+      "sessions": 10
     },
     {
       "source": "Organic Social",
@@ -258,7 +258,7 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 170
+      "sessions": 179
     },
     {
       "referrer": "google",
@@ -266,7 +266,7 @@
     },
     {
       "referrer": "(not set)",
-      "sessions": 9
+      "sessions": 13
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -381,7 +381,11 @@
       },
       {
         "date": "26-06-2026",
-        "total": 22
+        "total": 24
+      },
+      {
+        "date": "27-06-2026",
+        "total": 11
       }
     ],
     "activeUsers": [
@@ -475,7 +479,11 @@
       },
       {
         "date": "26-06-2026",
-        "total": 14
+        "total": 16
+      },
+      {
+        "date": "27-06-2026",
+        "total": 8
       }
     ],
     "blogViews": [
@@ -570,6 +578,10 @@
       {
         "date": "26-06-2026",
         "total": 0
+      },
+      {
+        "date": "27-06-2026",
+        "total": 0
       }
     ],
     "sessions": [
@@ -663,7 +675,11 @@
       },
       {
         "date": "26-06-2026",
-        "total": 17
+        "total": 19
+      },
+      {
+        "date": "27-06-2026",
+        "total": 8
       }
     ]
   }
