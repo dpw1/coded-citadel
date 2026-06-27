@@ -10,9 +10,10 @@ import './PrivacyPolicyPage.css'
 export default function UninstallPage() {
   const [searchParams] = useSearchParams()
   const source = searchParams.get('source')
+  const trimmedSource = source?.trim() || ''
   const app = useMemo(() => getAppBySource(source), [source])
 
-  const appName = app?.name ?? 'Coded Citadel Extension'
+  const appName = trimmedSource || app?.name || 'Coded Citadel Extension'
   const appLabel = app ? appFilterLabel(app) : null
 
   useEffect(() => {
