@@ -47,12 +47,27 @@ function stripOuterWrappers(line) {
   if (
     (first === '`' && last === '`') ||
     (first === '"' && last === '"') ||
-    (first === "'" && last === "'")
+    (first === "'" && last === "'") ||
+    (first === '[' && last === ']')
   ) {
     return trimmed.slice(1, -1).trim()
   }
 
   return trimmed
+}
+
+function extractLocalMediaPath(unwrapped) {
+  const imageMatch = unwrapped.match(
+    /^(D:[/\\].+?\.(?:jpg|jpeg|png|webp|gif))/i,
+  )
+  if (imageMatch) return imageMatch[1]
+
+  const videoMatch = unwrapped.match(
+    /^(D:[/\\].+?\.(?:mp4|webm|mov|mkv))/i,
+  )
+  if (videoMatch) return videoMatch[1]
+
+  return unwrapped
 }
 
 function isImageExtension(ext) {
@@ -61,7 +76,7 @@ function isImageExtension(ext) {
 
 function isVideoPath(trimmed) {
   const mdMatch = trimmed.match(LOCAL_PATH_IN_MD_RE)
-  const unwrapped = stripOuterWrappers(trimmed)
+  const unwrapped = extractLocalMediaPath(stripOuterWrappers(trimmed))
   const sourcePath = mdMatch?.[1] ?? unwrapped
   const ext = extname(sourcePath).toLowerCase()
   return (
@@ -73,8 +88,9 @@ function isVideoPath(trimmed) {
 /** @returns {{ sourcePath: string, destFilename: string, label: string } | null} */
 function parseLocalImagePath(trimmed) {
   const mdMatch = trimmed.match(LOCAL_PATH_IN_MD_RE)
-  const unwrapped = stripOuterWrappers(trimmed)
-  const sourcePath = mdMatch?.[1] ?? (LOCAL_IMAGE_PATH_RE.test(unwrapped) ? unwrapped : null)
+  const unwrapped = extractLocalMediaPath(stripOuterWrappers(trimmed))
+  const sourcePath =
+    mdMatch?.[1] ?? (LOCAL_IMAGE_PATH_RE.test(unwrapped) ? unwrapped : null)
   if (!sourcePath) return null
 
   const ext = extname(sourcePath).toLowerCase()

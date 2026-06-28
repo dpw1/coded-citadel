@@ -4,6 +4,8 @@ slug: "ep-10-youtube-keyword-alert"
 date: "2026-06-21"
 description: "How I built YouTube Keyword Alert, a Chrome extension that runs background searches on YouTube and notifies you when new videos matching your filters go live. No tab required. Full build diary with CORS workarounds, background search architecture, and UX decisions."
 tags: ["youtube-creator", "chrome-extensions", "building-in-public", "youtube-automation", "vite-chrome-extension"]
+download: "https://chromewebstore.google.com/detail/pniolepdakiocafjiibgiabkcdhgkfep"
+stats: "/apps/youtube-keyword-alert"
 youtubeId: "https://youtu.be/CdIXEKUTewE"
 draft: false
 keyTakeaways:
@@ -20,7 +22,7 @@ This is what you can achieve with [YouTube Keyword Alert](https://chromewebstore
 
 You add keywords to include and exclude, and every time you go on YouTube it will silently search for you, without impacting performance or slowing anything down. You can just leave it working quietly in the background. And whenever something is found, it will notify you.
 
-You can watch the full build here: [https://youtu.be/CdIXEKUTewE]
+You can watch the full build on [YouTube](https://youtu.be/CdIXEKUTewE).
 
 ---
 
@@ -97,7 +99,7 @@ Unfortunately, as expected, CORS was not going to let me.
 ![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-16h27_1.jpg)
 ![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-16h27_2.jpg)
 
-I came across a blog post at [https://www.codestudy.net/blog/access-to-fetch-has-been-blocked-by-cors-policy-chrome-extension-error/] that explained exactly how to bypass CORS from a background script in a Chrome extension. I forwarded the post to Cursor and asked it to implement it in the current project.
+I came across a [blog post on bypassing CORS from a Chrome extension background script](https://www.codestudy.net/blog/access-to-fetch-has-been-blocked-by-cors-policy-chrome-extension-error/) that explained exactly the approach I needed. I forwarded the post to Cursor and asked it to implement it in the current project.
 
 ![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-17h27.jpg)
 
@@ -178,9 +180,7 @@ I spent a while debugging. Turned out the filter I was testing with was too stri
 
 ## Live stats
 
-All stats below were manually pulled from the Chrome Web Store developer console. Nothing is automated. I'm sharing them publicly as part of building in public.
-
-[INCLUDE LIVE STATS HERE]
+Install and active-user counts for YouTube Keyword Alert are on the [extension app page](/apps/youtube-keyword-alert). Site-wide numbers are on [live stats](/live-stats).
 
 ---
 
@@ -204,6 +204,4 @@ Export/import using Chrome storage is good enough for validation. Once there's u
 
 ---
 
-If you're building something similar or have run into the same CORS wall, feel free to drop a comment on the video. And if you find the extension useful, a review goes a long way.
-
-[https://youtu.be/CdIXEKUTewE]
+If you're building something similar or have run into the same CORS wall, feel free to drop a comment on the [video](https://youtu.be/CdIXEKUTewE). And if you find the extension useful, a review goes a long way.

@@ -18,8 +18,6 @@ keyTakeaways:
 
 # Claude Has No Way to Search Your Conversations. So I Built One (Free)
 
-https://youtu.be/D4-1VtvkdIw
-
 Claude does have a search function. It just only searches conversation titles, not what's actually inside them. I found this out the hard way, coded a fix in 3 hours, published it for free, and it got accepted to the Chrome Web Store in 12 hours. This is how it happened.
 
 This is episode 3 of VibeCoding Until I Make $100k.

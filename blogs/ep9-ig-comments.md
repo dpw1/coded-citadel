@@ -3,6 +3,8 @@ title: "Instagram Could BAN This Chrome Extension That I coded"
 slug: "ep-9-instagram-comments-exporter"
 date: "2026-06-18"
 description: "Export Instagram post comments to CSV with pause/resume, Giphy support, and Instagram-native UI. A build diary on GraphQL pagination, Chrome extension design, and why social tools always break."
+download: "https://chromewebstore.google.com/detail/dpfdehgiffggecppcbkdacbifbljeiii"
+stats: "/apps/instagram-comments-exporter"
 tags: ["instagram-comments-exporter", "chrome-extensions", "building-in-public"]
 youtubeId: "https://www.youtube.com/watch?v=XAoQX6iUgK0"
 draft: false
@@ -11,8 +13,6 @@ keyTakeaways:
   - "Social media DOM breaks constantly. I'd stick to tags and roles over class names or IDs."
   - "When reverse engineering, open the Network tab and actually use the site. Scrolling through comments is what exposed the on-demand API calls."
 ---
-
-# How I Built an Instagram Comments Exporter Chrome Extension (And How Getting an Instagram Scraper Blacklisted in 2022 Helped Me)
 
 **Social media** tools may sound straightforward. And they are, until the DOM changes something. And these changes happen frequently. 
 

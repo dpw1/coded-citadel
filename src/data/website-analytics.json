@@ -1,23 +1,23 @@
 {
   "available": true,
-  "updatedAt": "2026-06-27T16:35:59.882Z",
+  "updatedAt": "2026-06-28T01:47:56.411Z",
   "message": null,
-  "totalViews": 591,
+  "totalViews": 599,
   "blogViews": 17,
-  "averageTimeOnSiteSeconds": 167.14091084862383,
-  "uniqueVisitors": 170,
+  "averageTimeOnSiteSeconds": 189.6394787318182,
+  "uniqueVisitors": 171,
   "newVsReturning": {
-    "new": 170,
-    "returning": 12
+    "new": 171,
+    "returning": 14
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 379
+      "views": 380
     },
     {
       "path": "/thank-you/",
-      "views": 72
+      "views": 75
     },
     {
       "path": "/live-stats",
@@ -25,7 +25,7 @@
     },
     {
       "path": "/uninstall/",
-      "views": 21
+      "views": 24
     },
     {
       "path": "/apps",
@@ -117,6 +117,13 @@
       "users": 3
     },
     {
+      "code": "ID",
+      "name": "Indonesia",
+      "gaCountry": "Indonesia",
+      "gaCountryId": "ID",
+      "users": 3
+    },
+    {
       "code": "PK",
       "name": "Pakistan",
       "gaCountry": "Pakistan",
@@ -142,13 +149,6 @@
       "name": "France",
       "gaCountry": "France",
       "gaCountryId": "FR",
-      "users": 2
-    },
-    {
-      "code": "ID",
-      "name": "Indonesia",
-      "gaCountry": "Indonesia",
-      "gaCountryId": "ID",
       "users": 2
     },
     {
@@ -236,15 +236,15 @@
     },
     {
       "source": "Organic Search",
-      "sessions": 21
-    },
-    {
-      "source": "Unassigned",
-      "sessions": 13
+      "sessions": 23
     },
     {
       "source": "Referral",
       "sessions": 10
+    },
+    {
+      "source": "Unassigned",
+      "sessions": 9
     },
     {
       "source": "Organic Social",
@@ -262,11 +262,11 @@
     },
     {
       "referrer": "google",
-      "sessions": 21
+      "sessions": 23
     },
     {
       "referrer": "(not set)",
-      "sessions": 13
+      "sessions": 9
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -385,7 +385,7 @@
       },
       {
         "date": "27-06-2026",
-        "total": 11
+        "total": 19
       }
     ],
     "activeUsers": [
@@ -483,7 +483,7 @@
       },
       {
         "date": "27-06-2026",
-        "total": 8
+        "total": 10
       }
     ],
     "blogViews": [
@@ -679,7 +679,7 @@
       },
       {
         "date": "27-06-2026",
-        "total": 8
+        "total": 10
       }
     ]
   }
