@@ -1,4 +1,4 @@
-import { dedupeAnalyticsObject, dedupeAnalyticsSeriesByDate } from './analyticsSeries'
+import { dedupeAnalyticsObject, dedupeAnalyticsSeriesByDate, resolveEnabledVsDisabledSnapshot } from './analyticsSeries'
 
 function installDateToIso(ddMmYyyy) {
   if (!ddMmYyyy) return ''
@@ -60,8 +60,9 @@ export function aggregateAnalyticsList(analyticsList) {
     pageViews += an.pageViews ?? 0
     impressions += an.impressions ?? 0
     uninstalls += an.uninstalls ?? 0
-    enabled += an.enabledVsDisabled?.enabled ?? 0
-    disabled += an.enabledVsDisabled?.disabled ?? 0
+    const evd = resolveEnabledVsDisabledSnapshot(an)
+    enabled += evd.enabled ?? 0
+    disabled += evd.disabled ?? 0
     installationsByApp.push(an.installations)
     weeklyUsersByApp.push(an.weeklyUsers)
     pageViewsByApp.push(an.pageViewsOverTime)

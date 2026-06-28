@@ -16,6 +16,7 @@ import {
   pageViewsDelta,
   totalUsersDelta,
 } from '../../utils/apps'
+import { resolveEnabledVsDisabledSnapshot } from '../../utils/analyticsSeries'
 import { siteStatsWeekDeltaPct } from '../../utils/siteStats'
 import WeekPercentDelta from './WeekPercentDelta'
 
@@ -49,7 +50,7 @@ export default function ExtensionAnalyticsBlock({
     : totalUsersDelta(analytics)
   const viewsDelta = pageViewsDelta(analytics)
   const imprDelta = impressionsDelta(analytics)
-  const enabledVsDisabled = analytics.enabledVsDisabled ?? { enabled: 0, disabled: 0 }
+  const enabledVsDisabled = resolveEnabledVsDisabledSnapshot(analytics)
   const pageViewsBySource = analytics.pageViewsBySource ?? {}
   const uninstallsByRegion = analytics.uninstallsByRegion ?? {}
   const evdDateLabel = formatEnabledVsDisabledDate(enabledVsDisabled)

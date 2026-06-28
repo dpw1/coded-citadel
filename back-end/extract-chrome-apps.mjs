@@ -457,6 +457,14 @@ function sumDimensionSeriesForDay(dayNode, dimensionKey) {
   return totals
 }
 
+export function pickLatestEnabledVsDisabledDaily(series) {
+  if (!series?.length) return null
+  return series.reduce((best, row) => {
+    if (!best) return row
+    return ddMmYyyyToIso(row.date).localeCompare(ddMmYyyyToIso(best.date)) > 0 ? row : best
+  })
+}
+
 export function extractEnabledVsDisabledDailyFromAf(usersAf) {
   const data = usersAf?.['ds:3']
   const series = []
@@ -477,6 +485,7 @@ export function extractEnabledVsDisabledDailyFromAf(usersAf) {
     })
   }
 
+  series.sort((a, b) => ddMmYyyyToIso(a.date).localeCompare(ddMmYyyyToIso(b.date)))
   return series
 }
 
@@ -667,27 +676,30 @@ export function extractEnabledVsDisabledFromUsersHtml(usersHtml, exportDate) {
 }
 
 export function resolveEnabledVsDisabled(usersHtml, usersAf, exportDate) {
-  const fromAfTotals = parseEnabledVsDisabled(
-    sumDimensionSeries(usersAf?.['ds:3'], 'ENABLED_AND_DISABLED'),
-  )
   const overTime = extractEnabledVsDisabledDailyFromAf(usersAf)
   const fromSvg = extractEnabledVsDisabledFromUsersHtml(usersHtml, exportDate)
+  const latestDaily = pickLatestEnabledVsDisabledDaily(overTime)
 
-  const latestDaily = overTime.length ? overTime[overTime.length - 1] : null
-  const counts = {
-    enabled: fromAfTotals.enabled || latestDaily?.enabled || 0,
-    disabled: fromAfTotals.disabled || latestDaily?.disabled || 0,
+  let counts = {
+    enabled: latestDaily?.enabled ?? 0,
+    disabled: latestDaily?.disabled ?? 0,
   }
 
-  if (!counts.enabled && !counts.disabled && latestDaily) {
-    counts.enabled = latestDaily.enabled
-    counts.disabled = latestDaily.disabled
+  // Fallback: single-day AF parse (never sum across all days — that inflates totals).
+  if (!counts.enabled && !counts.disabled) {
+    const days = dailySeriesEntries(usersAf?.['ds:3'])
+    const lastDay = days.length ? days[days.length - 1] : null
+    if (lastDay) {
+      counts = parseEnabledVsDisabled(
+        sumDimensionSeriesForDay(lastDay, 'ENABLED_AND_DISABLED'),
+      )
+    }
   }
 
   const enabledVsDisabled = buildEnabledVsDisabledSnapshot({
     counts,
     slices: fromSvg?.slices ?? null,
-    date: fromSvg?.date ?? latestDaily?.date ?? exportDateToDdMmYyyy(exportDate),
+    date: latestDaily?.date ?? fromSvg?.date ?? exportDateToDdMmYyyy(exportDate),
   })
 
   return {

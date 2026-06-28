@@ -41,6 +41,40 @@ const SERIES_KEYS = [
   'impressionsAcrossChromeWebStore',
 ]
 
+/** Latest enabled/disabled daily row by calendar date. */
+export function pickLatestEnabledVsDisabledDaily(series) {
+  if (!series?.length) return null
+  return series.reduce((best, row) => {
+    if (!best) return row
+    return installDateToIso(row.date).localeCompare(installDateToIso(best.date)) > 0 ? row : best
+  })
+}
+
+/** Point-in-time enabled/disabled counts (latest daily row, not cumulative). */
+export function resolveEnabledVsDisabledSnapshot(analytics) {
+  const latest = pickLatestEnabledVsDisabledDaily(analytics?.enabledVsDisabledOverTime)
+  if (latest) {
+    return {
+      enabled: latest.enabled ?? 0,
+      disabled: latest.disabled ?? 0,
+      enabledPct: latest.enabledPct,
+      disabledPct: latest.disabledPct,
+      total: latest.total,
+      date: latest.date,
+    }
+  }
+
+  const snap = analytics?.enabledVsDisabled ?? {}
+  return {
+    enabled: snap.enabled ?? 0,
+    disabled: snap.disabled ?? 0,
+    enabledPct: snap.enabledPct,
+    disabledPct: snap.disabledPct,
+    total: snap.total,
+    date: snap.date,
+  }
+}
+
 /** Dedupe all time-series fields on an analytics object (in place + return). */
 export function dedupeAnalyticsObject(analytics) {
   if (!analytics || typeof analytics !== 'object') return analytics

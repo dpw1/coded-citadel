@@ -19,6 +19,7 @@ import {
 import {
   dedupeAnalyticsObject,
   dedupeAnalyticsSeriesByDate,
+  resolveEnabledVsDisabledSnapshot,
 } from './analytics-series-utils.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -126,10 +127,7 @@ function buildAppAnalytics(app, snapshots) {
       key,
       (a) => a.analytics?.impressionsAcrossChromeWebStore,
     ),
-    enabledVsDisabled: {
-      enabled: an.enabledVsDisabled?.enabled ?? 0,
-      disabled: an.enabledVsDisabled?.disabled ?? 0,
-    },
+    enabledVsDisabled: resolveEnabledVsDisabledSnapshot(an),
   })
 }
 
