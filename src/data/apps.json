@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-28",
+  "updatedAt": "2026-06-29",
   "apps": [
     {
       "slug": "gmail-to-pdf",
@@ -13,7 +13,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/bhagkmlelgbjbklgafgdjeebkdhlibjf",
       "version": "1.0.72",
-      "lastUpdated": "2026-06-28",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -147,8 +147,8 @@
         "weeklyUsersByRegion": {},
         "installsByRegion": {
           "US": 30,
-          "BR": 1,
-          "IN": 1
+          "IN": 1,
+          "BR": 1
         },
         "uninstalls": 3,
         "uninstallsOverTime": [
@@ -397,7 +397,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/cdagimhkcpohhjipcnpaaebppnmgegjo",
       "version": "1.0.04",
-      "lastUpdated": "2026-06-28",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -430,13 +430,13 @@
       "price": "Free",
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
-      "version": "1.0.44",
-      "lastUpdated": "2026-06-28",
+      "version": "1.0.46",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
         "short": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos of channels with anywhere between 1000 to 5000 subscribers? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?",
-        "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos of channels with anywhere between 1000 to 5000 subscribers? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n👥 Subscribers — Filter by channel subscriber count (min/max). Great for finding smaller creators or established channels.\n\n📹 Channel videos — Filter by how many videos a channel has uploaded (min/max). Useful for spotting new channels vs. long-running ones.\n\n🏷 Channel tags — Show videos from channels whose tags include certain keywords (e.g. topic, niche, or genre).\n\n🚫 Exclude channels — Hide videos from channels whose names contain specific keywords.\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nSEE CHANNEL INFO AT A GLANCE\n\n📊 \n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Lightweight: only needs storage permission; no account required\n• Subscribers & video count — Each channel’s subscriber count and total videos appear next to their name on search results and Explore. Enable/Disable at any time in the settings.\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
+        "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos of channels with anywhere between 1000 to 5000 subscribers? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📈 Views per day — Filter by minimum views per day (computed from total views and publish date). Great for spotting fast-growing or consistently performing uploads.\n\n👍 Likes — Set a minimum like count. Useful for finding videos with strong engagement.\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n📄 Description — Require keywords in the video description, or exclude unwanted terms.\n\n👥 Subscribers — Filter by channel subscriber count (min/max). Great for finding smaller creators or established channels.\n\n📹 Channel videos — Filter by how many videos a channel has uploaded (min/max). Useful for spotting new channels vs. long-running ones.\n\n🏷 Channel tags — Show videos from channels whose tags include certain keywords (e.g. topic, niche, or genre).\n\n🚫 Exclude channels — Hide videos from channels whose names contain specific keywords.\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nSEE CHANNEL INFO AT A GLANCE\n\n📊 Subscribers & video count — Each channel’s subscriber count and total videos appear next to their name on search results and Explore. Enable/Disable at any time in the settings.\n\n👍 Likes — See like counts on search results when enabled in settings.\n\n📈 Views per day — When the Views per Day filter is active, each result shows its computed views/day (e.g. “12K views/day”) so you can compare momentum at a glance.\n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• Video Filters and Channel Filters tabs — organize filters by what they apply to, with active-filter count badges\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Filter toasts — Get an on-page notification as soon as filtering starts, with live counts as videos are hidden (enable/disable in settings)\n• Tabbed settings — Filtering options and Display options in separate tabs; support panel on the side\n• Lightweight: only needs storage permission; no account required\n• Subscribers & video count — Each channel’s subscriber count and total videos appear next to their name on search results and Explore. Enable/Disable at any time in the settings.\n• Display likes on search — Optionally show like counts on each search result without opening the video\n• Available in English, German, Spanish, French, Japanese, Korean, and Simplified Chinese\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
       },
       "audience": [],
       "features": [],
@@ -453,12 +453,8 @@
         "https://lh3.googleusercontent.com/_U6Y86Wae1sM2e2HhtpeVwgKyy50ftN25r5jWp7CKjgzw3XzFe2TL3WSuGhxROU317Pf5bhAAZGoAznpOYVarSBn"
       ],
       "analytics": {
-        "totalInstalls": 147,
+        "totalInstalls": 142,
         "installations": [
-          {
-            "date": "29-05-2026",
-            "total": 5
-          },
           {
             "date": "30-05-2026",
             "total": 2
@@ -578,10 +574,6 @@
         ],
         "weeklyUsers": [
           {
-            "date": "29-05-2026",
-            "total": 16
-          },
-          {
             "date": "30-05-2026",
             "total": 16
           },
@@ -700,18 +692,14 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 63,
+          "US": 60,
           "BR": 7,
           "IN": 6,
           "GB": 5,
-          "DE": 2
+          "DE": 1
         },
-        "uninstalls": 52,
+        "uninstalls": 51,
         "uninstallsOverTime": [
-          {
-            "date": "29-05-2026",
-            "total": 1
-          },
           {
             "date": "30-05-2026",
             "total": 1
@@ -802,12 +790,8 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 253,
+        "pageViews": 243,
         "pageViewsOverTime": [
-          {
-            "date": "29-05-2026",
-            "total": 10
-          },
           {
             "date": "30-05-2026",
             "total": 4
@@ -927,19 +911,14 @@
         ],
         "pageViewsBySource": {
           "ext_app_menu": 4,
-          "ext_sidebar": 18,
+          "ext_sidebar": 17,
           "app-launcher": 2,
           "chatgpt_com": 12,
           "chrome-ntp-icon": 2,
-          "item-share-cp": 1,
           "copilot_com": 1
         },
-        "impressions": 418,
+        "impressions": 410,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "29-05-2026",
-            "total": 8
-          },
           {
             "date": "30-05-2026",
             "total": 7
@@ -1067,14 +1046,6 @@
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "29-05-2026",
-            "enabled": 12,
-            "disabled": 4,
-            "enabledPct": 75,
-            "disabledPct": 25,
-            "total": 16
-          },
           {
             "date": "30-05-2026",
             "enabled": 11,
@@ -1326,7 +1297,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
       "version": "1.0.08",
-      "lastUpdated": "2026-06-28",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -1349,12 +1320,8 @@
         "https://lh3.googleusercontent.com/cpNwIBaKNxEhvOJC8Tnk7In0kGzDLyUarbXCbqdKaH090L-O-e1x0MheXVw7ssP9PVq0u57dHT6rUlw3j8M3koBKDS8"
       ],
       "analytics": {
-        "totalInstalls": 48,
+        "totalInstalls": 46,
         "installations": [
-          {
-            "date": "29-05-2026",
-            "total": 2
-          },
           {
             "date": "30-05-2026",
             "total": 1
@@ -1474,10 +1441,6 @@
         ],
         "weeklyUsers": [
           {
-            "date": "29-05-2026",
-            "total": 2
-          },
-          {
             "date": "30-05-2026",
             "total": 1
           },
@@ -1596,7 +1559,7 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 40,
+          "US": 38,
           "IN": 2,
           "BR": 1
         },
@@ -1608,12 +1571,8 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 26,
+        "pageViews": 25,
         "pageViewsOverTime": [
-          {
-            "date": "29-05-2026",
-            "total": 1
-          },
           {
             "date": "04-06-2026",
             "total": 5
@@ -1672,12 +1631,8 @@
           }
         ],
         "pageViewsBySource": {},
-        "impressions": 51,
+        "impressions": 45,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "29-05-2026",
-            "total": 6
-          },
           {
             "date": "30-05-2026",
             "total": 2
@@ -1765,14 +1720,6 @@
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "29-05-2026",
-            "enabled": 1,
-            "disabled": 0,
-            "enabledPct": 100,
-            "disabledPct": 0,
-            "total": 1
-          },
           {
             "date": "30-05-2026",
             "enabled": 1,
@@ -2024,7 +1971,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/dpfdehgiffggecppcbkdacbifbljeiii",
       "version": "1.0.14",
-      "lastUpdated": "2026-06-28",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -2187,7 +2134,7 @@
           "enabledPct": 0,
           "disabledPct": 0,
           "total": 0,
-          "date": "28-06-2026",
+          "date": "29-06-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": []
@@ -2209,7 +2156,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
       "version": "1.0.32",
-      "lastUpdated": "2026-06-28",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -2231,12 +2178,8 @@
         "https://lh3.googleusercontent.com/Ib_af_tpeZ--7F6BH4zwl5cVt8GvjS6eAyy7I4dhgb9TJGu0DtXYI_8A0I4rfFToHfY3AJv-IweZ4OCdP65S8tUEvg"
       ],
       "analytics": {
-        "totalInstalls": 41,
+        "totalInstalls": 40,
         "installations": [
-          {
-            "date": "29-05-2026",
-            "total": 1
-          },
           {
             "date": "30-05-2026",
             "total": 3
@@ -2357,7 +2300,7 @@
         "weeklyUsers": [],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 36,
+          "US": 35,
           "IN": 1
         },
         "uninstalls": 3,
@@ -2418,12 +2361,8 @@
         "pageViewsBySource": {
           "ext_sidebar": 1
         },
-        "impressions": 36,
+        "impressions": 34,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "29-05-2026",
-            "total": 2
-          },
           {
             "date": "30-05-2026",
             "total": 1
@@ -2487,7 +2426,7 @@
           "enabledPct": 0,
           "disabledPct": 0,
           "total": 0,
-          "date": "28-06-2026",
+          "date": "29-06-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": []
@@ -2509,7 +2448,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/golankbkfnepjbpcekbcglcfgmbpgnmb",
       "version": "1.0.37",
-      "lastUpdated": "2026-06-28",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -2781,7 +2720,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/hgojieiehkjgjhdnbglfhbcojeeggigi",
       "version": "1.0.03",
-      "lastUpdated": "2026-06-28",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -2803,12 +2742,8 @@
         "https://lh3.googleusercontent.com/8nUi-UqhiqO4lv675yIH9Yt1SNmWKxUelj9IItLgjo_QU64tgJsKWoKVLszaZ5K0CjjalYJ4otjJgaSNwi4hdbzl"
       ],
       "analytics": {
-        "totalInstalls": 102,
+        "totalInstalls": 100,
         "installations": [
-          {
-            "date": "29-05-2026",
-            "total": 2
-          },
           {
             "date": "30-05-2026",
             "total": 1
@@ -2928,10 +2863,6 @@
         ],
         "weeklyUsers": [
           {
-            "date": "29-05-2026",
-            "total": 1
-          },
-          {
             "date": "30-05-2026",
             "total": 1
           },
@@ -3050,11 +2981,11 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 44,
+          "US": 42,
           "BR": 8,
           "IN": 8,
           "GB": 3,
-          "AU": 1,
+          "CA": 1,
           "other": 2
         },
         "uninstalls": 18,
@@ -3113,12 +3044,8 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 160,
+        "pageViews": 157,
         "pageViewsOverTime": [
-          {
-            "date": "29-05-2026",
-            "total": 3
-          },
           {
             "date": "30-05-2026",
             "total": 4
@@ -3236,12 +3163,8 @@
           "ext_sidebar": 7,
           "ext_app_menu": 2
         },
-        "impressions": 178,
+        "impressions": 171,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "29-05-2026",
-            "total": 7
-          },
           {
             "date": "30-05-2026",
             "total": 2
@@ -3361,14 +3284,6 @@
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "29-05-2026",
-            "enabled": 1,
-            "disabled": 0,
-            "enabledPct": 100,
-            "disabledPct": 0,
-            "total": 1
-          },
           {
             "date": "30-05-2026",
             "enabled": 2,
@@ -3619,8 +3534,8 @@
       "price": "Free",
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/jadjgiiaompdjacagaomgogdihbpgcpg",
-      "version": "1.0.36",
-      "lastUpdated": "2026-06-28",
+      "version": "1.0.37",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -3796,8 +3711,8 @@
           "US": 32,
           "IN": 7,
           "BR": 4,
+          "CA": 1,
           "AU": 1,
-          "GB": 1,
           "other": 1
         },
         "uninstalls": 24,
@@ -3917,8 +3832,8 @@
         ],
         "pageViewsBySource": {
           "ext_sidebar": 14,
-          "ext_app_menu": 8,
-          "app-launcher": 1
+          "app-launcher": 1,
+          "ext_app_menu": 8
         },
         "impressions": 1529,
         "impressionsAcrossChromeWebStore": [
@@ -4160,7 +4075,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/mljfhcfnjbfibedpiaheeihpbjajfcal",
       "version": "1.0.03",
-      "lastUpdated": "2026-06-28",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -4391,8 +4306,8 @@
         "installsByRegion": {
           "IN": 47,
           "US": 41,
-          "AU": 3,
-          "BR": 3
+          "BR": 3,
+          "AU": 3
         },
         "uninstalls": 21,
         "uninstallsOverTime": [
@@ -4886,7 +4801,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/pniolepdakiocafjiibgiabkcdhgkfep",
       "version": "1.0.04",
-      "lastUpdated": "2026-06-28",
+      "lastUpdated": "2026-06-29",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -5023,7 +4938,7 @@
           "enabledPct": 0,
           "disabledPct": 0,
           "total": 0,
-          "date": "28-06-2026",
+          "date": "29-06-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": []
@@ -5036,9 +4951,9 @@
   ],
   "portfolioStats": {
     "totalActiveUsers": 219,
-    "activeUsersDelta7d": 61,
-    "baselineDate": "2026-06-21",
-    "baselineTotalActiveUsers": 158,
+    "activeUsersDelta7d": 53,
+    "baselineDate": "2026-06-22",
+    "baselineTotalActiveUsers": 166,
     "byApp": [
       {
         "slug": "gmail-to-pdf",
@@ -5051,15 +4966,15 @@
         "slug": "youtube-filter-pro",
         "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
         "now": 62,
-        "baseline": 58,
-        "delta": 4
+        "baseline": 56,
+        "delta": 6
       },
       {
         "slug": "claude-deep-search",
         "chromeExtensionId": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
         "now": 3,
-        "baseline": 1,
-        "delta": 2
+        "baseline": 2,
+        "delta": 1
       },
       {
         "slug": "instagram-comments-exporter",
@@ -5086,22 +5001,22 @@
         "slug": "instagram-dm-exporter",
         "chromeExtensionId": "hgojieiehkjgjhdnbglfhbcojeeggigi",
         "now": 58,
-        "baseline": 39,
-        "delta": 19
+        "baseline": 42,
+        "delta": 16
       },
       {
         "slug": "save-directly-to-drive",
         "chromeExtensionId": "jadjgiiaompdjacagaomgogdihbpgcpg",
         "now": 18,
-        "baseline": 3,
-        "delta": 15
+        "baseline": 7,
+        "delta": 11
       },
       {
         "slug": "claude-limit-monitor",
         "chromeExtensionId": "mljfhcfnjbfibedpiaheeihpbjajfcal",
         "now": 72,
-        "baseline": 53,
-        "delta": 19
+        "baseline": 55,
+        "delta": 17
       },
       {
         "slug": "youtube-keyword-alert",
@@ -5111,9 +5026,9 @@
         "delta": 0
       }
     ],
-    "totalInstalls": 611,
-    "installsDelta7d": 100,
-    "baselineTotalInstalls": 511,
-    "computedAt": "2026-06-28"
+    "totalInstalls": 601,
+    "installsDelta7d": 58,
+    "baselineTotalInstalls": 543,
+    "computedAt": "2026-06-29"
   }
 }

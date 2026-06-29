@@ -1,27 +1,27 @@
 {
   "available": true,
-  "updatedAt": "2026-06-28T19:23:26.120Z",
+  "updatedAt": "2026-06-29T21:26:38.451Z",
   "message": null,
-  "totalViews": 615,
+  "totalViews": 659,
   "blogViews": 17,
-  "averageTimeOnSiteSeconds": 175.2901426680851,
-  "uniqueVisitors": 184,
+  "averageTimeOnSiteSeconds": 157.55228639483397,
+  "uniqueVisitors": 212,
   "newVsReturning": {
-    "new": 183,
-    "returning": 16
+    "new": 210,
+    "returning": 18
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 382
+      "views": 384
     },
     {
       "path": "/thank-you/",
-      "views": 85
+      "views": 112
     },
     {
       "path": "/uninstall/",
-      "views": 26
+      "views": 36
     },
     {
       "path": "/live-stats",
@@ -29,7 +29,7 @@
     },
     {
       "path": "/apps",
-      "views": 20
+      "views": 22
     },
     {
       "path": "/privacy-policy/ai-bookmark/",
@@ -58,14 +58,14 @@
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 48
+      "users": 51
     },
     {
       "code": "IN",
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 43
+      "users": 48
     },
     {
       "code": "BR",
@@ -79,7 +79,7 @@
       "name": "Poland",
       "gaCountry": "Poland",
       "gaCountryId": "PL",
-      "users": 13
+      "users": 14
     },
     {
       "code": null,
@@ -93,7 +93,7 @@
       "name": "China",
       "gaCountry": "China",
       "gaCountryId": "CN",
-      "users": 6
+      "users": 7
     },
     {
       "code": "PK",
@@ -101,6 +101,20 @@
       "gaCountry": "Pakistan",
       "gaCountryId": "PK",
       "users": 5
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "gaCountry": "United Kingdom",
+      "gaCountryId": "GB",
+      "users": 4
+    },
+    {
+      "code": "ID",
+      "name": "Indonesia",
+      "gaCountry": "Indonesia",
+      "gaCountryId": "ID",
+      "users": 4
     },
     {
       "code": "BD",
@@ -117,10 +131,10 @@
       "users": 3
     },
     {
-      "code": "GB",
-      "name": "United Kingdom",
-      "gaCountry": "United Kingdom",
-      "gaCountryId": "GB",
+      "code": "FR",
+      "name": "France",
+      "gaCountry": "France",
+      "gaCountryId": "FR",
       "users": 3
     },
     {
@@ -131,10 +145,24 @@
       "users": 3
     },
     {
-      "code": "ID",
-      "name": "Indonesia",
-      "gaCountry": "Indonesia",
-      "gaCountryId": "ID",
+      "code": "JP",
+      "name": "Japan",
+      "gaCountry": "Japan",
+      "gaCountryId": "JP",
+      "users": 3
+    },
+    {
+      "code": "KR",
+      "name": "South Korea",
+      "gaCountry": "South Korea",
+      "gaCountryId": "KR",
+      "users": 3
+    },
+    {
+      "code": "TR",
+      "name": "Türkiye",
+      "gaCountry": "Türkiye",
+      "gaCountryId": "TR",
       "users": 3
     },
     {
@@ -145,10 +173,10 @@
       "users": 2
     },
     {
-      "code": "FR",
-      "name": "France",
-      "gaCountry": "France",
-      "gaCountryId": "FR",
+      "code": "CA",
+      "name": "Canada",
+      "gaCountry": "Canada",
+      "gaCountryId": "CA",
       "users": 2
     },
     {
@@ -156,13 +184,6 @@
       "name": "Israel",
       "gaCountry": "Israel",
       "gaCountryId": "IL",
-      "users": 2
-    },
-    {
-      "code": "KR",
-      "name": "South Korea",
-      "gaCountry": "South Korea",
-      "gaCountryId": "KR",
       "users": 2
     },
     {
@@ -187,52 +208,31 @@
       "users": 2
     },
     {
+      "code": "TH",
+      "name": "Thailand",
+      "gaCountry": "Thailand",
+      "gaCountryId": "TH",
+      "users": 2
+    },
+    {
+      "code": "UA",
+      "name": "Ukraine",
+      "gaCountry": "Ukraine",
+      "gaCountryId": "UA",
+      "users": 2
+    },
+    {
       "code": "AU",
       "name": "Australia",
       "gaCountry": "Australia",
       "gaCountryId": "AU",
-      "users": 1
-    },
-    {
-      "code": "CA",
-      "name": "Canada",
-      "gaCountry": "Canada",
-      "gaCountryId": "CA",
-      "users": 1
-    },
-    {
-      "code": "CI",
-      "name": "Côte d’Ivoire",
-      "gaCountry": "Côte d’Ivoire",
-      "gaCountryId": "CI",
-      "users": 1
-    },
-    {
-      "code": "DO",
-      "name": "Dominican Republic",
-      "gaCountry": "Dominican Republic",
-      "gaCountryId": "DO",
-      "users": 1
-    },
-    {
-      "code": "IE",
-      "name": "Ireland",
-      "gaCountry": "Ireland",
-      "gaCountryId": "IE",
-      "users": 1
-    },
-    {
-      "code": "IR",
-      "name": "Iran",
-      "gaCountry": "Iran",
-      "gaCountryId": "IR",
       "users": 1
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 191
+      "sessions": 227
     },
     {
       "source": "Organic Search",
@@ -240,7 +240,7 @@
     },
     {
       "source": "Unassigned",
-      "sessions": 12
+      "sessions": 16
     },
     {
       "source": "Referral",
@@ -258,7 +258,7 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 191
+      "sessions": 227
     },
     {
       "referrer": "google",
@@ -266,7 +266,7 @@
     },
     {
       "referrer": "(not set)",
-      "sessions": 12
+      "sessions": 16
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -393,7 +393,11 @@
       },
       {
         "date": "28-06-2026",
-        "total": 13
+        "total": 29
+      },
+      {
+        "date": "29-06-2026",
+        "total": 28
       }
     ],
     "activeUsers": [
@@ -495,7 +499,11 @@
       },
       {
         "date": "28-06-2026",
-        "total": 12
+        "total": 22
+      },
+      {
+        "date": "29-06-2026",
+        "total": 18
       }
     ],
     "blogViews": [
@@ -598,6 +606,10 @@
       {
         "date": "28-06-2026",
         "total": 0
+      },
+      {
+        "date": "29-06-2026",
+        "total": 0
       }
     ],
     "sessions": [
@@ -699,7 +711,11 @@
       },
       {
         "date": "28-06-2026",
-        "total": 13
+        "total": 24
+      },
+      {
+        "date": "29-06-2026",
+        "total": 25
       }
     ]
   }
