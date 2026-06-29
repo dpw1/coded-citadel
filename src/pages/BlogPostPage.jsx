@@ -246,6 +246,7 @@ export default function BlogPostPage() {
               key={post.slug}
               coverUrl={cover}
               youtubeId={youtubeEmbedId}
+              youtubeIsShort={Boolean(post.youtubeIsShort)}
               title={post.title}
             />
           ) : null}

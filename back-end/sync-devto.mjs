@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
 import { computeBlogsFingerprint } from './lib/blogs-fingerprint.mjs'
 import { getRootDir, loadEnv } from './lib/load-env.mjs'
-import { parseYoutubeVideoId, resolveYoutubeThumbnail } from './youtube-utils.mjs'
+import { parseYoutubeVideoId, resolveYoutubeThumbnail, isYoutubeShortsUrl } from './youtube-utils.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = getRootDir()
@@ -105,9 +105,10 @@ async function downloadToFile(url, destPath) {
 async function prepareCover(post) {
   const { fileBasename, frontmatter } = post
   const youtubeId = parseYoutubeVideoId(frontmatter.youtubeId)
+  const youtubeIsShort = isYoutubeShortsUrl(frontmatter.youtubeId)
   let devtoUrl = null
 
-  if (youtubeId) {
+  if (youtubeId && !youtubeIsShort) {
     devtoUrl = await resolveYoutubeThumbnail(youtubeId)
   } else {
     const custom = frontmatter.thumbnail || frontmatter.coverImage

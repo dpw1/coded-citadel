@@ -35,6 +35,12 @@ function isValidYoutubeId(id) {
   return Boolean(id && /^[\w-]{11}$/.test(id) && !/^1234567890/i.test(id))
 }
 
+/** True when the input URL is a YouTube Shorts link (skip auto thumbnail). */
+export function isYoutubeShortsUrl(input) {
+  if (!input) return false
+  return /short/i.test(String(input))
+}
+
 export function youtubeThumbnailCandidates(videoId) {
   return [
     `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,

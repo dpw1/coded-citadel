@@ -4,7 +4,8 @@ slug: "discord-message-exporter-chrome-extension"
 date: "2026-06-27"
 description: "How I built a Chrome extension to export Discord messages by channel, reverse-engineering Discord's internal API, intercepting auth tokens from network requests, and shipping a full UI with HTML, PDF, CSV and JSON export. Full build diary from a $0 to $100K Chrome extension journey."
 tags: ["discord", "chrome-extensions", "building-in-public", "javascript", "vite-chrome-extension", "discord-api", "web-scraping"]
-youtubeId: ""
+youtubeId: "https://www.youtube.com/shorts/eDzr_Y4f9fU"
+thumbnail: "/blog-images/ep11-discord-export/thumbnail.png"
 draft: false
 keyTakeaways:
   - "When Claude is struggling to copy a design from an image, the problem is usually too much noise in the prompt. Isolate the component you want (on the image), remove the background and extra elements, and give it a much smaller prompt. One image, one component at a time."
@@ -17,6 +18,8 @@ keyTakeaways:
 This is episode 11 of VibeCoding Until I Make $100K, where I'm building apps in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](https://codedcitadel.com).
 
 This one was a bit of a detour. I wasn't planning to build a Discord exporter. I was actually researching a completely different platform, stumbled onto a genuine gap, and ended up shipping a full extension in a few days. Here's the whole story.
+
+You can watch the build on [YouTube](https://www.youtube.com/shorts/eDzr_Y4f9fU).
 
 ---
 

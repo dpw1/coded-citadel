@@ -10,7 +10,7 @@ import { basename, dirname, extname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
 import { marked } from 'marked'
-import { parseYoutubeVideoId, resolveYoutubeThumbnail } from './youtube-utils.mjs'
+import { parseYoutubeVideoId, resolveYoutubeThumbnail, isYoutubeShortsUrl } from './youtube-utils.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '..')
@@ -61,7 +61,9 @@ function normalizeFrontmatter(raw, filenameSlug) {
     ? raw.keyTakeaways.map(String)
     : []
 
-  const youtubeId = raw.youtubeId ? parseYoutubeVideoId(String(raw.youtubeId)) : null
+  const rawYoutube = raw.youtubeId ? String(raw.youtubeId).trim() : null
+  const youtubeIsShort = rawYoutube ? isYoutubeShortsUrl(rawYoutube) : false
+  const youtubeId = rawYoutube ? parseYoutubeVideoId(rawYoutube) : null
   const thumbnail = raw.thumbnail || raw.coverImage
 
   return {
@@ -72,6 +74,7 @@ function normalizeFrontmatter(raw, filenameSlug) {
     tags,
     canonicalUrl: raw.canonicalUrl ? String(raw.canonicalUrl) : null,
     youtubeId,
+    youtubeIsShort,
     thumbnail: thumbnail ? String(thumbnail) : null,
     download: raw.download
       ? String(raw.download).trim()
@@ -108,7 +111,7 @@ async function resolvePostCover(meta) {
     }
   }
 
-  if (meta.youtubeId) {
+  if (meta.youtubeId && !meta.youtubeIsShort) {
     const thumbnail = await resolveYoutubeThumbnail(meta.youtubeId)
     return {
       coverImage: thumbnail,
@@ -230,6 +233,7 @@ async function main() {
       tags: meta.tags,
       canonicalUrl: meta.canonicalUrl,
       youtubeId: meta.youtubeId,
+      youtubeIsShort: meta.youtubeIsShort,
       coverImage,
       coverImageUrl,
       extensionSlug: links.extensionSlug,

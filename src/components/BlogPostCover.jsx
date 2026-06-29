@@ -4,9 +4,10 @@ function youtubeThumbnailUrl(videoId) {
   return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
 }
 
-export default function BlogPostCover({ coverUrl, youtubeId, title }) {
+export default function BlogPostCover({ coverUrl, youtubeId, youtubeIsShort = false, title }) {
   const [playing, setPlaying] = useState(false)
-  const thumbnail = coverUrl || (youtubeId ? youtubeThumbnailUrl(youtubeId) : null)
+  const thumbnail =
+    coverUrl || (youtubeId && !youtubeIsShort ? youtubeThumbnailUrl(youtubeId) : null)
 
   if (!thumbnail && !youtubeId) return null
 

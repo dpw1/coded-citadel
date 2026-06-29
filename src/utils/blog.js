@@ -96,9 +96,17 @@ export function parseYoutubeVideoId(input) {
   return null
 }
 
+/** True when the input URL is a YouTube Shorts link (skip auto thumbnail). */
+export function isYoutubeShortsUrl(input) {
+  if (!input) return false
+  return /short/i.test(String(input))
+}
+
 export function getPostCoverUrl(post) {
   const custom = post?.coverImageUrl ?? resolveBlogImageUrl(post?.thumbnail ?? post?.coverImage)
   if (custom) return custom
+
+  if (post?.youtubeIsShort) return null
 
   const ytId = parseYoutubeVideoId(post?.youtubeId)
   return ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : null
