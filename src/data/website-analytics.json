@@ -1,27 +1,27 @@
 {
   "available": true,
-  "updatedAt": "2026-06-29T21:26:38.451Z",
+  "updatedAt": "2026-06-30T22:13:17.864Z",
   "message": null,
-  "totalViews": 659,
+  "totalViews": 706,
   "blogViews": 17,
-  "averageTimeOnSiteSeconds": 157.55228639483397,
-  "uniqueVisitors": 212,
+  "averageTimeOnSiteSeconds": 156.65431757419356,
+  "uniqueVisitors": 247,
   "newVsReturning": {
-    "new": 210,
-    "returning": 18
+    "new": 243,
+    "returning": 23
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 384
+      "views": 387
     },
     {
       "path": "/thank-you/",
-      "views": 112
+      "views": 143
     },
     {
       "path": "/uninstall/",
-      "views": 36
+      "views": 45
     },
     {
       "path": "/live-stats",
@@ -40,12 +40,12 @@
       "views": 11
     },
     {
-      "path": "/live-stats/",
+      "path": "/apps/claude-deep-search",
       "views": 5
     },
     {
-      "path": "/apps/claude-deep-search",
-      "views": 4
+      "path": "/live-stats/",
+      "views": 5
     },
     {
       "path": "/apps/youtube-filter-pro",
@@ -58,21 +58,21 @@
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 51
+      "users": 60
     },
     {
       "code": "IN",
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 48
+      "users": 56
     },
     {
       "code": "BR",
       "name": "Brazil",
       "gaCountry": "Brazil",
       "gaCountryId": "BR",
-      "users": 14
+      "users": 15
     },
     {
       "code": "PL",
@@ -86,7 +86,7 @@
       "name": "(not set)",
       "gaCountry": "(not set)",
       "gaCountryId": "(not set)",
-      "users": 11
+      "users": 12
     },
     {
       "code": "CN",
@@ -96,11 +96,25 @@
       "users": 7
     },
     {
+      "code": "JP",
+      "name": "Japan",
+      "gaCountry": "Japan",
+      "gaCountryId": "JP",
+      "users": 6
+    },
+    {
       "code": "PK",
       "name": "Pakistan",
       "gaCountry": "Pakistan",
       "gaCountryId": "PK",
-      "users": 5
+      "users": 6
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "gaCountry": "Germany",
+      "gaCountryId": "DE",
+      "users": 4
     },
     {
       "code": "GB",
@@ -117,6 +131,13 @@
       "users": 4
     },
     {
+      "code": "KR",
+      "name": "South Korea",
+      "gaCountry": "South Korea",
+      "gaCountryId": "KR",
+      "users": 4
+    },
+    {
       "code": "BD",
       "name": "Bangladesh",
       "gaCountry": "Bangladesh",
@@ -124,10 +145,10 @@
       "users": 3
     },
     {
-      "code": "DE",
-      "name": "Germany",
-      "gaCountry": "Germany",
-      "gaCountryId": "DE",
+      "code": "CA",
+      "name": "Canada",
+      "gaCountry": "Canada",
+      "gaCountryId": "CA",
       "users": 3
     },
     {
@@ -145,17 +166,10 @@
       "users": 3
     },
     {
-      "code": "JP",
-      "name": "Japan",
-      "gaCountry": "Japan",
-      "gaCountryId": "JP",
-      "users": 3
-    },
-    {
-      "code": "KR",
-      "name": "South Korea",
-      "gaCountry": "South Korea",
-      "gaCountryId": "KR",
+      "code": "IR",
+      "name": "Iran",
+      "gaCountry": "Iran",
+      "gaCountryId": "IR",
       "users": 3
     },
     {
@@ -166,6 +180,13 @@
       "users": 3
     },
     {
+      "code": null,
+      "name": "(not set)",
+      "gaCountry": null,
+      "gaCountryId": null,
+      "users": 2
+    },
+    {
       "code": "AR",
       "name": "Argentina",
       "gaCountry": "Argentina",
@@ -173,10 +194,24 @@
       "users": 2
     },
     {
-      "code": "CA",
-      "name": "Canada",
-      "gaCountry": "Canada",
-      "gaCountryId": "CA",
+      "code": "DZ",
+      "name": "Algeria",
+      "gaCountry": "Algeria",
+      "gaCountryId": "DZ",
+      "users": 2
+    },
+    {
+      "code": "EC",
+      "name": "Ecuador",
+      "gaCountry": "Ecuador",
+      "gaCountryId": "EC",
+      "users": 2
+    },
+    {
+      "code": "EG",
+      "name": "Egypt",
+      "gaCountry": "Egypt",
+      "gaCountryId": "EG",
       "users": 2
     },
     {
@@ -192,55 +227,20 @@
       "gaCountry": "Morocco",
       "gaCountryId": "MA",
       "users": 2
-    },
-    {
-      "code": "NG",
-      "name": "Nigeria",
-      "gaCountry": "Nigeria",
-      "gaCountryId": "NG",
-      "users": 2
-    },
-    {
-      "code": "NP",
-      "name": "Nepal",
-      "gaCountry": "Nepal",
-      "gaCountryId": "NP",
-      "users": 2
-    },
-    {
-      "code": "TH",
-      "name": "Thailand",
-      "gaCountry": "Thailand",
-      "gaCountryId": "TH",
-      "users": 2
-    },
-    {
-      "code": "UA",
-      "name": "Ukraine",
-      "gaCountry": "Ukraine",
-      "gaCountryId": "UA",
-      "users": 2
-    },
-    {
-      "code": "AU",
-      "name": "Australia",
-      "gaCountry": "Australia",
-      "gaCountryId": "AU",
-      "users": 1
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 227
+      "sessions": 259
     },
     {
       "source": "Organic Search",
-      "sessions": 23
+      "sessions": 26
     },
     {
       "source": "Unassigned",
-      "sessions": 16
+      "sessions": 19
     },
     {
       "source": "Referral",
@@ -251,6 +251,10 @@
       "sessions": 2
     },
     {
+      "source": "Cross-network",
+      "sessions": 1
+    },
+    {
       "source": "Organic Video",
       "sessions": 1
     }
@@ -258,15 +262,15 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 227
+      "sessions": 259
     },
     {
       "referrer": "google",
-      "sessions": 23
+      "sessions": 25
     },
     {
       "referrer": "(not set)",
-      "sessions": 16
+      "sessions": 19
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -281,15 +285,19 @@
       "sessions": 2
     },
     {
+      "referrer": "(data not available)",
+      "sessions": 1
+    },
+    {
       "referrer": "aisearchindex.space",
       "sessions": 1
     },
     {
-      "referrer": "webstore-prod.corp.google.com",
+      "referrer": "bing",
       "sessions": 1
     },
     {
-      "referrer": "youtube.com",
+      "referrer": "webstore-prod.corp.google.com",
       "sessions": 1
     }
   ],
@@ -397,7 +405,11 @@
       },
       {
         "date": "29-06-2026",
-        "total": 28
+        "total": 41
+      },
+      {
+        "date": "30-06-2026",
+        "total": 34
       }
     ],
     "activeUsers": [
@@ -503,7 +515,11 @@
       },
       {
         "date": "29-06-2026",
-        "total": 18
+        "total": 27
+      },
+      {
+        "date": "30-06-2026",
+        "total": 28
       }
     ],
     "blogViews": [
@@ -610,6 +626,10 @@
       {
         "date": "29-06-2026",
         "total": 0
+      },
+      {
+        "date": "30-06-2026",
+        "total": 0
       }
     ],
     "sessions": [
@@ -715,7 +735,11 @@
       },
       {
         "date": "29-06-2026",
-        "total": 25
+        "total": 34
+      },
+      {
+        "date": "30-06-2026",
+        "total": 30
       }
     ]
   }
