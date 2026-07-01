@@ -244,7 +244,7 @@ export default function ExtensionChangelogBlock({
                 >
                   <span className="ext-changelog__repo-btn-main">
                     <span className="ext-changelog__repo-btn-icon">
-                      <ExtensionAppIcon src={app.iconUrl} size={18} />
+                      <ExtensionAppIcon src={app.iconUrl} size={18} alt={`${app.label} icon`} />
                     </span>
                     <span className="ext-changelog__repo-btn-name" title={app.label}>
                       {app.label}
@@ -378,7 +378,11 @@ export default function ExtensionChangelogBlock({
                           {...cardProps}
                         >
                           <div className="ext-changelog__card-icon-wrap">
-                            <ExtensionAppIcon src={commit.appIconUrl} size={40} />
+                            <ExtensionAppIcon
+                              src={commit.appIconUrl}
+                              size={40}
+                              alt={`${commit.appLabel} icon`}
+                            />
                           </div>
 
                           <div className="ext-changelog__card-body">

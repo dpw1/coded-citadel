@@ -125,6 +125,25 @@ function findCustomAppEntry(app) {
   )
 }
 
+const CATEGORY_LABELS = {
+  'social media': 'Social Media',
+  productivity: 'Productivity',
+  'ai assistant': 'AI Assistant',
+}
+
+/** Normalize category labels from apps.json or apps-custom-data.json. */
+export function normalizeAppCategory(value) {
+  if (!value || typeof value !== 'string') return 'Productivity'
+  const trimmed = value.trim()
+  return CATEGORY_LABELS[trimmed.toLowerCase()] ?? trimmed
+}
+
+/** Category from apps-custom-data.json, falling back to apps.json. */
+export function appCategory(app) {
+  const custom = findCustomAppEntry(app)
+  return normalizeAppCategory(custom?.category ?? app?.category)
+}
+
 /** Build-story YouTube URL from apps.json or apps-custom-data.json. */
 export function appBuildYoutubeUrl(app) {
   if (app?.youtube && youtubeEmbedId(app.youtube)) return app.youtube
@@ -496,14 +515,33 @@ export function youtubeEmbedId(url) {
   }
 }
 
-/** Valid promotional YouTube URL from the edit page, or null. */
+/** Valid promotional YouTube URL for the hero (Chrome listing video, then custom/build URLs). */
 export function appHeroYoutubeUrl(app) {
-  const url = app?.buildStory?.youtubeUrl
-  return youtubeEmbedId(url) ? url : null
+  const listingUrl = app?.buildStory?.youtubeUrl
+  if (youtubeEmbedId(listingUrl)) return listingUrl
+  return appBuildYoutubeUrl(app)
 }
 
-/** Store screenshot used when there is no YouTube promo video. */
+/** Store screenshot used when there is no YouTube promo video in the hero. */
 export function appHeroPreviewUrl(app) {
   const shot = app?.screenshots?.[0]
   return typeof shot === 'string' && shot.startsWith('http') ? shot : null
+}
+
+/** Screenshots for the gallery — deduped and excluding the hero preview when it is already shown. */
+export function appGalleryScreenshots(app) {
+  const seen = new Set()
+  const deduped = (app?.screenshots ?? []).filter((url) => {
+    if (!url || typeof url !== 'string' || !url.startsWith('http')) return false
+    if (seen.has(url)) return false
+    seen.add(url)
+    return true
+  })
+
+  if (appHeroYoutubeUrl(app)) return deduped
+
+  const preview = appHeroPreviewUrl(app)
+  if (!preview) return deduped
+
+  return deduped.filter((url) => url !== preview)
 }

@@ -52,7 +52,7 @@ export default function SiteFooter() {
               </a>
             </li>
             <li>
-              <a href="https://x.com/codedCitadel" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/codedCitadel2" target="_blank" rel="noopener noreferrer">
                 X
               </a>
             </li>

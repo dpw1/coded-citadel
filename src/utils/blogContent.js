@@ -11,7 +11,7 @@ function slugifyHeading(text) {
 /**
  * Inject stable ids into h2 headings and build a table of contents (## only).
  */
-export function prepareBlogContentHtml(html) {
+export function prepareBlogContentHtml(html, { postTitle } = {}) {
   if (!html) return { html: '', toc: [] }
 
   const doc = new DOMParser().parseFromString(`<div id="blog-root">${html}</div>`, 'text/html')
@@ -20,6 +20,12 @@ export function prepareBlogContentHtml(html) {
 
   const toc = []
   const usedIds = new Set()
+
+  for (const img of root.querySelectorAll('img')) {
+    if (img.getAttribute('alt')?.trim()) continue
+    const fallback = postTitle ? `Illustration for ${postTitle}` : 'Blog post illustration'
+    img.setAttribute('alt', fallback)
+  }
 
   for (const heading of root.querySelectorAll('h2')) {
     const text = heading.textContent?.trim()

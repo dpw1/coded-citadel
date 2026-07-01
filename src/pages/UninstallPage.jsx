@@ -1,8 +1,9 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import ExtensionFeedbackForm from '../components/ExtensionFeedbackForm'
+import PageSEO from '../components/PageSEO'
 import { appFilterLabel, getAppBySource } from '../utils/apps'
 import '../App.css'
 import './PrivacyPolicyPage.css'
@@ -16,15 +17,14 @@ export default function UninstallPage() {
   const appName = trimmedSource || app?.name || 'Coded Citadel Extension'
   const appLabel = app ? appFilterLabel(app) : null
 
-  useEffect(() => {
-    document.title = 'Uninstall — Coded Citadel'
-    return () => {
-      document.title = 'Coded Citadel'
-    }
-  }, [])
-
   return (
     <>
+      <PageSEO
+        title="Uninstall — Coded Citadel"
+        description="Share feedback after uninstalling a Coded Citadel Chrome extension."
+        canonicalPath="/uninstall"
+        robots="noindex, follow"
+      />
       <SiteHeader />
       <main className="CC__privacy-page">
         <div className="CC__container CC__privacy-page__inner">

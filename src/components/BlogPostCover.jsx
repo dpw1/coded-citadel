@@ -33,7 +33,7 @@ export default function BlogPostCover({ coverUrl, youtubeId, youtubeIsShort = fa
           onClick={() => setPlaying(true)}
           aria-label={`Play video: ${title}`}
         >
-          <img src={thumbnail} alt="" />
+          <img src={thumbnail} alt={`Video thumbnail for ${title}`} />
           <span className="CC__blog-post__cover-play-icon" aria-hidden="true">
             <svg viewBox="0 0 68 48" width="68" height="48">
               <path
@@ -51,7 +51,7 @@ export default function BlogPostCover({ coverUrl, youtubeId, youtubeIsShort = fa
 
   return (
     <div className="CC__blog-post__cover">
-      <img src={thumbnail} alt="" />
+      <img src={thumbnail} alt={`Cover image for ${title}`} />
     </div>
   )
 }

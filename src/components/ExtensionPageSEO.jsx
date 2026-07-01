@@ -71,16 +71,13 @@ function buildAggregateRating(analytics) {
   }
 }
 
-export default function ExtensionPageSEO({ extension }) {
+export default function ExtensionPageSEO({ extension, canonicalUrl }) {
   useEffect(() => {
     if (!extension) return undefined
 
-    const pageUrl = `${SITE_URL}/apps/${extension.slug}`
+    const pageUrl = canonicalUrl ?? `${SITE_URL}/apps/${extension.slug}`
     const title = `${extension.name} — ${extension.tagline} | Coded Citadel`
     const description = extension.description?.short ?? ''
-    const keywords = Array.isArray(extension.primaryKeywords)
-      ? extension.primaryKeywords.join(', ')
-      : ''
     const image =
       extension.chromeExtensionIcon ||
       extension.screenshots?.[0] ||
@@ -92,9 +89,6 @@ export default function ExtensionPageSEO({ extension }) {
     const managed = []
 
     managed.push(upsertMeta({ name: 'description', content: description }))
-    if (keywords) {
-      managed.push(upsertMeta({ name: 'keywords', content: keywords }))
-    }
     managed.push(upsertMeta({ name: 'robots', content: 'index, follow' }))
     managed.push(upsertLink('canonical', pageUrl))
 
@@ -190,7 +184,7 @@ export default function ExtensionPageSEO({ extension }) {
 
       script.remove()
     }
-  }, [extension])
+  }, [extension, canonicalUrl])
 
   return null
 }

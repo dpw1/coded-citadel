@@ -1,13 +1,13 @@
 {
   "available": true,
-  "updatedAt": "2026-07-01T03:07:52.134Z",
+  "updatedAt": "2026-07-01T09:27:23.431Z",
   "message": null,
-  "totalViews": 717,
+  "totalViews": 720,
   "blogViews": 17,
-  "averageTimeOnSiteSeconds": 160.78347633650793,
-  "uniqueVisitors": 251,
+  "averageTimeOnSiteSeconds": 160.11030531230284,
+  "uniqueVisitors": 252,
   "newVsReturning": {
-    "new": 247,
+    "new": 248,
     "returning": 23
   },
   "mostViewedPages": [
@@ -17,11 +17,11 @@
     },
     {
       "path": "/thank-you/",
-      "views": 147
+      "views": 148
     },
     {
       "path": "/uninstall/",
-      "views": 46
+      "views": 48
     },
     {
       "path": "/live-stats",
@@ -117,6 +117,13 @@
       "users": 5
     },
     {
+      "code": "FR",
+      "name": "France",
+      "gaCountry": "France",
+      "gaCountryId": "FR",
+      "users": 4
+    },
+    {
       "code": "GB",
       "name": "United Kingdom",
       "gaCountry": "United Kingdom",
@@ -149,13 +156,6 @@
       "name": "Canada",
       "gaCountry": "Canada",
       "gaCountryId": "CA",
-      "users": 3
-    },
-    {
-      "code": "FR",
-      "name": "France",
-      "gaCountry": "France",
-      "gaCountryId": "FR",
       "users": 3
     },
     {
@@ -232,7 +232,7 @@
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 263
+      "sessions": 265
     },
     {
       "source": "Organic Search",
@@ -240,7 +240,7 @@
     },
     {
       "source": "Unassigned",
-      "sessions": 23
+      "sessions": 25
     },
     {
       "source": "Referral",
@@ -262,15 +262,15 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 263
+      "sessions": 265
+    },
+    {
+      "referrer": "(not set)",
+      "sessions": 25
     },
     {
       "referrer": "google",
       "sessions": 25
-    },
-    {
-      "referrer": "(not set)",
-      "sessions": 23
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -410,6 +410,10 @@
       {
         "date": "30-06-2026",
         "total": 45
+      },
+      {
+        "date": "01-07-2026",
+        "total": 3
       }
     ],
     "activeUsers": [
@@ -520,6 +524,10 @@
       {
         "date": "30-06-2026",
         "total": 33
+      },
+      {
+        "date": "01-07-2026",
+        "total": 2
       }
     ],
     "blogViews": [
@@ -629,6 +637,10 @@
       },
       {
         "date": "30-06-2026",
+        "total": 0
+      },
+      {
+        "date": "01-07-2026",
         "total": 0
       }
     ],
@@ -740,6 +752,10 @@
       {
         "date": "30-06-2026",
         "total": 35
+      },
+      {
+        "date": "01-07-2026",
+        "total": 2
       }
     ]
   }

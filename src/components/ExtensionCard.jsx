@@ -5,6 +5,7 @@ import {
   appBuildYoutubeUrl,
   appCardInstalls,
   appCardSummary,
+  appCategory,
   appFilterLabel,
   appIconUrl,
   isAppLive,
@@ -77,7 +78,7 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
   const summary = appCardSummary(app)
   const iconUrl = appIconUrl(app)
   const displayName = appFilterLabel(app)
-  const category = app.category ?? 'Productivity'
+  const category = appCategory(app)
 
   const handleVideoClick = (event) => {
     event.stopPropagation()
@@ -111,7 +112,7 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
           onKeyDown={hasVideo ? handleVideoKeyDown : undefined}
         >
           {iconUrl ? (
-            <img src={iconUrl} alt="" width={54} height={54} />
+            <img src={iconUrl} alt={`${displayName} icon`} width={54} height={54} />
           ) : (
             app.icon ?? '⚡'
           )}

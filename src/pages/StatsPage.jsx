@@ -1,22 +1,20 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import PortfolioAnalyticsSection from '../components/PortfolioAnalyticsSection'
+import PageSEO from '../components/PageSEO'
 import '../App.css'
 import './ExtensionLandingPage.css'
 import './StatsPage.css'
 
 export default function StatsPage() {
-  useEffect(() => {
-    document.title = 'Portfolio Stats — Coded Citadel'
-    return () => {
-      document.title = 'Coded Citadel'
-    }
-  }, [])
-
   return (
     <>
+      <PageSEO
+        title="Portfolio Stats — Live Extension Analytics | Coded Citadel"
+        description="Live install counts, active users, and portfolio metrics for every Coded Citadel Chrome extension — from Chrome Web Store and Google Analytics."
+        canonicalPath="/live-stats"
+      />
       <SiteHeader />
       <main className="ext-page CC__stats-page">
         <div className="CC__container">

@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import CyberCorners from '../components/CyberCorners'
+import PageSEO from '../components/PageSEO'
 import product from '../data/save-directly-to-drive.json'
 import '../App.css'
 import './ExtensionLandingPage.css'
@@ -123,6 +123,40 @@ const FAQ = [
   },
 ]
 
+const STDLP_PAGE_TITLE = `${product.name} — Save files from the web to Google Drive | Coded Citadel`
+const STDLP_PAGE_DESCRIPTION =
+  'Save PDFs, images, and documents from any webpage directly into the Google Drive folder you choose. Free Chrome extension — right-click, save, done.'
+
+const STDLP_JSON_LD = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: product.name,
+    applicationCategory: 'BrowserApplication',
+    operatingSystem: 'Google Chrome',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    description: STDLP_PAGE_DESCRIPTION,
+    url: 'https://codedcitadel.com/save-directly-to-drive',
+    ...(product.chromeStoreUrl ? { downloadUrl: product.chromeStoreUrl } : {}),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  },
+]
+
 function InstallButton({ className = 'CC__btn CC__btn--primary' }) {
   const storeUrl = product.chromeStoreUrl
 
@@ -147,28 +181,14 @@ function InstallButton({ className = 'CC__btn CC__btn--primary' }) {
 }
 
 export default function SaveDirectlyToDrivePage() {
-  useEffect(() => {
-    const title = `${product.name} — Save files from the web to Google Drive | Coded Citadel`
-    const description =
-      'Save PDFs, images, and documents from any webpage directly into the Google Drive folder you choose. Free Chrome extension — right-click, save, done.'
-
-    const previousTitle = document.title
-    document.title = title
-
-    const meta = document.querySelector('meta[name="description"]')
-    const previousDescription = meta?.getAttribute('content') ?? null
-    if (meta) meta.setAttribute('content', description)
-
-    return () => {
-      document.title = previousTitle
-      if (meta && previousDescription != null) {
-        meta.setAttribute('content', previousDescription)
-      }
-    }
-  }, [])
-
   return (
     <>
+      <PageSEO
+        title={STDLP_PAGE_TITLE}
+        description={STDLP_PAGE_DESCRIPTION}
+        canonicalPath="/save-directly-to-drive"
+        jsonLd={STDLP_JSON_LD}
+      />
       <SiteHeader />
       <main className="CC__stdlp">
         <section className="CC__stdlp-hero CC__container">

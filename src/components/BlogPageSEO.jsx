@@ -189,7 +189,7 @@ export function BlogPostSEO({ post }) {
         sameAs: [
           'https://www.youtube.com/@CodedCitadel',
           'https://www.instagram.com/codedcitadel',
-          'https://x.com/codedCitadel',
+          'https://x.com/codedCitadel2',
         ],
       },
       publisher: {

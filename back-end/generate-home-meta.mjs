@@ -1,14 +1,15 @@
 /**
- * Injects a human-readable homepage meta description into index.html
- * using the latest portfolio stats from apps.json.
- *
+ * Injects homepage meta descriptions into index.html using portfolio stats.
  * Run after compute-portfolio-stats during builds.
  */
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { buildHomeMetaDescription } from '../src/utils/homeMetaDescription.js'
+import {
+  buildHomeMetaDescriptionSearch,
+  buildHomeMetaDescriptionSocial,
+} from '../src/utils/homeMetaDescription.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const INDEX_FILE = resolve(__dirname, '../index.html')
@@ -54,12 +55,15 @@ function escapeHtmlAttr(value) {
 
 function replaceMetaDescription(html, description) {
   const escaped = escapeHtmlAttr(description)
+  return html.replace(
+    /<meta name="description" content="[^"]*"\s*\/?>/,
+    `<meta name="description" content="${escaped}" />`,
+  )
+}
 
+function replaceSocialDescriptions(html, description) {
+  const escaped = escapeHtmlAttr(description)
   return html
-    .replace(
-      /<meta name="description" content="[^"]*"\s*\/?>/,
-      `<meta name="description" content="${escaped}" />`,
-    )
     .replace(
       /<meta property="og:description" content="[^"]*">/,
       `<meta property="og:description" content="${escaped}">`,
@@ -68,23 +72,33 @@ function replaceMetaDescription(html, description) {
       /<meta name="twitter:description" content="[^"]*">/,
       `<meta name="twitter:description" content="${escaped}">`,
     )
-    .replace(
-      /"description": "A solo developer building Chrome extensions and web apps in public on YouTube\. From \$0 to \$100K, one product at a time\."/,
-      `"description": ${JSON.stringify(description)}`,
-    )
+}
+
+function replaceWebSiteJsonLdDescription(html, description) {
+  const jsonEscaped = JSON.stringify(description).slice(1, -1)
+  return html.replace(
+    /("@type": "WebSite"[\s\S]*?"description": )"[^"]*"/,
+    `$1"${jsonEscaped}"`,
+  )
 }
 
 function main() {
-  const description = buildHomeMetaDescription(loadHomeStats())
+  const stats = loadHomeStats()
+  const searchDescription = buildHomeMetaDescriptionSearch(stats)
+  const socialDescription = buildHomeMetaDescriptionSocial(stats)
   const html = readFileSync(INDEX_FILE, 'utf8')
-  const next = replaceMetaDescription(html, description)
+
+  let next = replaceMetaDescription(html, searchDescription)
+  next = replaceSocialDescriptions(next, socialDescription)
+  next = replaceWebSiteJsonLdDescription(next, socialDescription)
 
   if (next === html) {
-    throw new Error('Failed to update homepage meta description in index.html')
+    throw new Error('Failed to update homepage meta descriptions in index.html')
   }
 
   writeFileSync(INDEX_FILE, next, 'utf8')
-  console.log(`Homepage meta description → ${description}`)
+  console.log(`Homepage search description → ${searchDescription}`)
+  console.log(`Homepage social description → ${socialDescription}`)
 }
 
 main()

@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
+import PageSEO from '../components/PageSEO'
 import { getPrivacyPolicyBySlug } from '../utils/privacyPolicies'
 import '../App.css'
 import './PrivacyPolicyPage.css'
@@ -9,6 +9,12 @@ import './PrivacyPolicyPage.css'
 function PrivacyNotFound() {
   return (
     <>
+      <PageSEO
+        title="Privacy Policy — Coded Citadel"
+        description="Privacy policy not found."
+        canonicalPath="/privacy-policy"
+        robots="noindex, follow"
+      />
       <SiteHeader />
       <main className="CC__privacy-page">
         <div className="CC__container CC__privacy-page__inner">
@@ -28,34 +34,36 @@ export default function PrivacyPolicyPage() {
   const { slug } = useParams()
   const policy = getPrivacyPolicyBySlug(slug)
 
-  useEffect(() => {
-    if (!policy) {
-      document.title = 'Privacy Policy — Coded Citadel'
-      return () => {
-        document.title = 'Coded Citadel'
-      }
-    }
-
-    document.title = `Privacy Policy — ${policy.appName} — Coded Citadel`
-    const description = document.querySelector('meta[name="description"]')
-    const previousDescription = description?.getAttribute('content') ?? null
-    const summary = `Privacy policy for ${policy.appName}. Last updated ${policy.lastUpdated}.`
-    if (description) description.setAttribute('content', summary)
-
-    return () => {
-      document.title = 'Coded Citadel'
-      if (description && previousDescription != null) {
-        description.setAttribute('content', previousDescription)
-      }
-    }
-  }, [policy])
-
   if (!policy) return <PrivacyNotFound />
 
   const { appName, lastUpdated, contact, Content } = policy
+  const summary = `Privacy policy for ${appName}. Last updated ${lastUpdated}.`
 
   return (
     <>
+      <PageSEO
+        title={`Privacy Policy — ${appName} — Coded Citadel`}
+        description={summary}
+        canonicalPath={`/privacy-policy/${slug}`}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://codedcitadel.com',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Privacy Policy',
+              item: `https://codedcitadel.com/privacy-policy/${slug}`,
+            },
+          ],
+        }}
+      />
       <SiteHeader />
       <main className="CC__privacy-page">
         <article className="CC__container CC__privacy-page__inner">

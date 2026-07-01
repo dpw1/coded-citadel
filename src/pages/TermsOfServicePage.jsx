@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
+import PageSEO from '../components/PageSEO'
 import { getTermsOfServiceBySlug } from '../utils/termsOfService'
 import '../App.css'
 import './PrivacyPolicyPage.css'
@@ -9,6 +9,12 @@ import './PrivacyPolicyPage.css'
 function TermsNotFound() {
   return (
     <>
+      <PageSEO
+        title="Terms of Service — Coded Citadel"
+        description="Terms of service not found."
+        canonicalPath="/terms-of-service"
+        robots="noindex, follow"
+      />
       <SiteHeader />
       <main className="CC__privacy-page">
         <div className="CC__container CC__privacy-page__inner">
@@ -28,34 +34,36 @@ export default function TermsOfServicePage() {
   const { slug } = useParams()
   const terms = getTermsOfServiceBySlug(slug)
 
-  useEffect(() => {
-    if (!terms) {
-      document.title = 'Terms of Service — Coded Citadel'
-      return () => {
-        document.title = 'Coded Citadel'
-      }
-    }
-
-    document.title = `Terms of Service — ${terms.appName} — Coded Citadel`
-    const description = document.querySelector('meta[name="description"]')
-    const previousDescription = description?.getAttribute('content') ?? null
-    const summary = `Terms of service for ${terms.appName}. Last updated ${terms.lastUpdated}.`
-    if (description) description.setAttribute('content', summary)
-
-    return () => {
-      document.title = 'Coded Citadel'
-      if (description && previousDescription != null) {
-        description.setAttribute('content', previousDescription)
-      }
-    }
-  }, [terms])
-
   if (!terms) return <TermsNotFound />
 
   const { appName, lastUpdated, contact, Content } = terms
+  const summary = `Terms of service for ${appName}. Last updated ${lastUpdated}.`
 
   return (
     <>
+      <PageSEO
+        title={`Terms of Service — ${appName} — Coded Citadel`}
+        description={summary}
+        canonicalPath={`/terms-of-service/${slug}`}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://codedcitadel.com',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Terms of Service',
+              item: `https://codedcitadel.com/terms-of-service/${slug}`,
+            },
+          ],
+        }}
+      />
       <SiteHeader />
       <main className="CC__privacy-page">
         <article className="CC__container CC__privacy-page__inner">

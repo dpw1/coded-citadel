@@ -161,9 +161,9 @@ export default function BlogPostPage() {
   }, [post, redirectTo])
 
   const { processedHtml, tocItems } = useMemo(() => {
-    const { html, toc } = prepareBlogContentHtml(contentHtml)
+    const { html, toc } = prepareBlogContentHtml(contentHtml, { postTitle: post?.title })
     return { processedHtml: html, tocItems: toc }
-  }, [contentHtml])
+  }, [contentHtml, post?.title])
 
   useEffect(() => {
     if (!window.location.hash) return undefined

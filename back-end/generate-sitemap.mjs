@@ -86,7 +86,9 @@ function main() {
       priority: '0.9',
       lastmod: defaultLastmod,
     }),
-    ...(apps || []).map((app) =>
+    ...(apps || [])
+      .filter((app) => app.slug !== 'save-directly-to-drive')
+      .map((app) =>
       urlEntry(`${SITE_URL}/apps/${app.slug}`, {
         lastmod: app.lastUpdated || defaultLastmod,
         changefreq: 'monthly',

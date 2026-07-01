@@ -1,10 +1,10 @@
-export default function ExtensionAppIcon({ src, size = 20, className = '' }) {
+export default function ExtensionAppIcon({ src, alt = '', size = 20, className = '' }) {
   if (!src) return null
 
   return (
     <img
       src={src}
-      alt=""
+      alt={alt}
       width={size}
       height={size}
       className={`ext-app-icon${className ? ` ${className}` : ''}`}

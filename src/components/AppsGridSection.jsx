@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
-import { getAllApps } from '../utils/apps'
+import { getAllApps, appCategory } from '../utils/apps'
 
 const CHROME_STORE_SEARCH_URL =
   'https://chromewebstore.google.com/search/Coded%20Citadel%20extension'
@@ -27,7 +27,7 @@ function buildPageList(current, total) {
 }
 
 function getCategories(apps) {
-  const categories = [...new Set(apps.map((app) => app.category ?? 'Productivity'))].sort()
+  const categories = [...new Set(apps.map((app) => appCategory(app)))].sort()
   return ['All', ...categories]
 }
 
@@ -46,6 +46,7 @@ export default function AppsGridSection({
   excludeSlug = null,
   eyebrow = 'Chrome Extensions',
   title,
+  titleAs = 'h2',
   enableTabs = false,
   enablePagination = false,
   perPage = 6,
@@ -66,12 +67,13 @@ export default function AppsGridSection({
   )
 
   const sectionTitle = title ?? `Built in public, documented step-by-step`
+  const TitleTag = titleAs
 
   const categories = useMemo(() => getCategories(apps), [apps])
 
   const filteredApps = useMemo(() => {
     if (!enableTabs || activeTab === 'All') return apps
-    return apps.filter((app) => (app.category ?? 'Productivity') === activeTab)
+    return apps.filter((app) => appCategory(app) === activeTab)
   }, [activeTab, apps, enableTabs])
 
   const visibleApps = useMemo(() => {
@@ -129,7 +131,7 @@ export default function AppsGridSection({
       <div className="CC__section-header-row">
         <div>
           <p className="CC__section-eyebrow">{eyebrow}</p>
-          <h2 className="CC__section-title">{sectionTitle}</h2>
+          <TitleTag className="CC__section-title">{sectionTitle}</TitleTag>
         </div>
         {viewAllAppsLink ? (
           <span className="CC__view-all-link-wrap CC__view-all-link-wrap--header">{viewAllAppsLink}</span>
@@ -151,7 +153,7 @@ export default function AppsGridSection({
             const count =
               category === 'All'
                 ? apps.length
-                : apps.filter((app) => (app.category ?? 'Productivity') === category).length
+                : apps.filter((app) => appCategory(app) === category).length
 
             return (
               <button

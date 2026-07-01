@@ -3,8 +3,18 @@ function formatMetaCount(value) {
   return Number(value).toLocaleString('en-US')
 }
 
-/** Human-readable homepage meta description for search and social previews. */
-export function buildHomeMetaDescription(stats) {
+/** Short meta description for Google search snippets (~155 chars). */
+export function buildHomeMetaDescriptionSearch(stats) {
+  if (!stats) {
+    return 'Free Chrome extensions built in public toward $100K — live stats, changelogs, and step-by-step build videos on YouTube.'
+  }
+
+  const apps = formatMetaCount(stats.built)
+  return `Free Chrome extensions built in public toward $100K. Browse ${apps} tools with live install stats, changelogs, and YouTube build logs.`
+}
+
+/** Longer description for Open Graph, Twitter, and structured data. */
+export function buildHomeMetaDescriptionSocial(stats) {
   if (!stats) {
     return 'Building in public toward $100K — Chrome extensions documented step by step on YouTube.'
   }
@@ -37,4 +47,9 @@ export function buildHomeMetaDescription(stats) {
   }
 
   return description
+}
+
+/** @deprecated Use buildHomeMetaDescriptionSocial for social or buildHomeMetaDescriptionSearch for SERPs. */
+export function buildHomeMetaDescription(stats) {
+  return buildHomeMetaDescriptionSocial(stats)
 }

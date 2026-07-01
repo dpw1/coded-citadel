@@ -1,9 +1,10 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import AppsGridSection from '../components/AppsGridSection'
 import CyberCorners from '../components/CyberCorners'
+import PageSEO from '../components/PageSEO'
 import { getAppBySource } from '../utils/apps'
 import '../App.css'
 import './ThankYouPage.css'
@@ -23,15 +24,14 @@ export default function ThankYouPage() {
   const installedApp = useMemo(() => getAppBySource(source), [source])
   const installedName = installedApp?.name?.trim() || 'my extension'
 
-  useEffect(() => {
-    document.title = 'Thank You — Coded Citadel'
-    return () => {
-      document.title = 'Coded Citadel'
-    }
-  }, [])
-
   return (
     <>
+      <PageSEO
+        title="Thank You — Coded Citadel"
+        description="Thanks for installing a Coded Citadel Chrome extension."
+        canonicalPath="/thank-you"
+        robots="noindex, follow"
+      />
       <SiteHeader />
       <main className="CC__thank-you-page">
         <div className="CC__container CC__thank-you-welcome-wrap">

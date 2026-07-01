@@ -1,8 +1,9 @@
-import { useEffect, useId, useMemo } from 'react'
+import { useId, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import ExtensionPageSEO from '../components/ExtensionPageSEO'
+import PageSEO from '../components/PageSEO'
 import CyberCorners from '../components/CyberCorners'
 import ChromeIcon from '../components/ChromeIcon'
 import ExtensionAnalyticsBlock from '../components/extension/ExtensionAnalyticsBlock'
@@ -13,6 +14,7 @@ import AppsGridSection from '../components/AppsGridSection'
 import YoutubeSection from '../components/YoutubeSection'
 import {
   appActiveUsers,
+  appCategory,
   appGithubUrl,
   appHeroPreviewUrl,
   appHeroYoutubeUrl,
@@ -22,6 +24,7 @@ import {
   appPrompts,
   appStoreUrl,
   appFilterLabel,
+  appGalleryScreenshots,
   formatAppDate,
   formatAppCreatedDate,
   formatNumber,
@@ -39,6 +42,8 @@ import '../components/extension/ExtensionChangelogBlock.css'
 import '../App.css'
 import './ExtensionLandingPage.css'
 
+const SAVE_TO_DRIVE_CANONICAL_URL = 'https://codedcitadel.com/save-directly-to-drive'
+
 function AppPageShell({ children }) {
   return (
     <>
@@ -52,6 +57,12 @@ function AppPageShell({ children }) {
 function AppNotFound() {
   return (
     <AppPageShell>
+      <PageSEO
+        title="App not found — Coded Citadel"
+        description="No Chrome extension matches this URL."
+        canonicalPath="/apps"
+        robots="noindex, follow"
+      />
       <main className="ext-page">
         <div className="CC__container" style={{ padding: '4rem 0' }}>
           <h1 className="ext-analytics__title">App not found</h1>
@@ -71,6 +82,8 @@ export default function ExtensionLandingPage() {
   const { slug } = useParams()
   const ext = getAppBySlug(slug)
   const uid = useId().replace(/:/g, '')
+  const extensionCanonicalUrl =
+    ext?.slug === 'save-directly-to-drive' ? SAVE_TO_DRIVE_CANONICAL_URL : undefined
 
   const chartIds = useMemo(
     () => ({
@@ -85,19 +98,12 @@ export default function ExtensionLandingPage() {
     [uid],
   )
 
-  useEffect(() => {
-    if (ext) document.title = `${ext.name} — Coded Citadel`
-    return () => {
-      document.title = 'Coded Citadel'
-    }
-  }, [ext])
-
   if (!ext) return <AppNotFound />
 
   if (!isAppLive(ext)) {
     return (
       <AppPageShell>
-      <ExtensionPageSEO extension={ext} />
+      <ExtensionPageSEO extension={ext} canonicalUrl={extensionCanonicalUrl} />
       <main className="ext-page">
         <div className="CC__container" style={{ padding: '4rem 0' }}>
           <Link to="/apps" className="ext-page__back">
@@ -131,7 +137,7 @@ export default function ExtensionLandingPage() {
   const heroPreview = appHeroPreviewUrl(ext)
   const storeUrl = appStoreUrl(ext)
   const iconUrl = appIconUrl(ext)
-  const screenshots = ext.screenshots ?? []
+  const galleryScreenshots = appGalleryScreenshots(ext)
   const githubUrl = appGithubUrl(ext)
   const changelogApp = getExtensionChangelogBySlug(ext.slug)
   const showGithubBadge = Boolean(githubUrl && changelogApp?.githubPublic)
@@ -143,7 +149,7 @@ export default function ExtensionLandingPage() {
 
   return (
     <AppPageShell>
-    <ExtensionPageSEO extension={ext} />
+    <ExtensionPageSEO extension={ext} canonicalUrl={extensionCanonicalUrl} />
     <main className="ext-page">
       <div className="CC__container">
         <Link to="/apps" className="ext-page__back">
@@ -194,7 +200,7 @@ export default function ExtensionLandingPage() {
                 </div>
                 <div className="ext-hero__badge">
                   <span className="ext-hero__badge-label">Category</span>
-                  <span className="ext-hero__badge-value">{ext.category}</span>
+                  <span className="ext-hero__badge-value">{appCategory(ext)}</span>
                 </div>
                 <div className="ext-hero__badge">
                   <span className="ext-hero__badge-label">Created</span>
@@ -247,7 +253,13 @@ export default function ExtensionLandingPage() {
 
               <div className="ext-hero__installs-row">
                 {iconUrl ? (
-                  <img src={iconUrl} alt="" className="ext-hero__store-icon" width={48} height={48} />
+                  <img
+                    src={iconUrl}
+                    alt={`${ext.name} icon`}
+                    className="ext-hero__store-icon"
+                    width={48}
+                    height={48}
+                  />
                 ) : null}
                 <span className="ext-hero__installs">
                   <svg viewBox="0 0 24 24">
@@ -279,6 +291,7 @@ export default function ExtensionLandingPage() {
                     <img
                       src={`${import.meta.env.BASE_URL}hero-img.png`}
                       alt=""
+                      aria-hidden="true"
                     />
                   </div>
                   <div className="ext-hero__yt-wrap">
@@ -327,12 +340,18 @@ export default function ExtensionLandingPage() {
           </section>
         ) : null}
 
-        {screenshots.length > 0 ? (
+        {galleryScreenshots.length > 0 ? (
           <section className="ext-screenshots" aria-label="Store screenshots">
             <h2 className="ext-screenshots__title">Screenshots</h2>
             <div className="ext-screenshots__grid">
-              {screenshots.map((src) => (
-                <img key={src} src={src} alt="" className="ext-screenshots__img" loading="lazy" />
+              {galleryScreenshots.map((src, index) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt={`${ext.name} screenshot ${index + 1}`}
+                  className="ext-screenshots__img"
+                  loading="lazy"
+                />
               ))}
             </div>
           </section>

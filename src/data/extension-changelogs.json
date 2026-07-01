@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-01T03:05:52.397Z",
+  "updatedAt": "2026-07-01T09:27:31.649Z",
   "message": null,
   "apps": [
     {
@@ -186,6 +186,30 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "85ccc8611b7b5691e18c49f14b827a87a971a20a",
+          "shortSha": "85ccc86",
+          "message": "Update YouTube Filter Pro to version 1.0.48: Refined permissions by adding a new host permission for codedcitadel.com. Enhanced search result sorting by introducing a new function to capture YouTube row order for improved sorting accuracy. Updated existing sorting logic to better handle default and custom sort keys, ensuring a more consistent user experience.",
+          "date": "2026-07-01T09:14:53Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/85ccc8611b7b5691e18c49f14b827a87a971a20a"
+        },
+        {
+          "sha": "a8cede9cdc9620a900c5a90805fad3321f516e65",
+          "shortSha": "a8cede9",
+          "message": "Refactor search sort controls in YouTube Filter Pro: Implemented teardown of search sort controls when filtering is disabled, ensuring proper state management. Updated related functions to enhance user experience and maintain UI consistency.",
+          "date": "2026-07-01T09:00:25Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/a8cede9cdc9620a900c5a90805fad3321f516e65"
+        },
+        {
+          "sha": "b400048b72fd5c354f02c4e2f1f43a101723fd33",
+          "shortSha": "b400048",
+          "message": "Enhance YouTube Filter Pro: Implemented search result sorting functionality with new options for sorting by date, views, likes, and more. Added auto-scroll feature for filter toasts, improved toast notifications with user interaction options, and updated styles for better UI consistency. Incremented version to 1.0.47 and refined manifest permissions.",
+          "date": "2026-07-01T08:56:10Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/b400048b72fd5c354f02c4e2f1f43a101723fd33"
+        },
         {
           "sha": "a82184b6285acb6b46ce69ce880e582e44d3a974",
           "shortSha": "a82184b",

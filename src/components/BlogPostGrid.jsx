@@ -18,7 +18,7 @@ export default function BlogPostGrid({ posts, gridClassName = '' }) {
             <Link to={`/blog/${post.slug}`} className="CC__blog-card__link">
               {cover ? (
                 <div className="CC__blog-card__cover">
-                  <img src={cover} alt="" loading="lazy" />
+                  <img src={cover} alt={`Cover image for ${post.title}`} loading="lazy" />
                 </div>
               ) : null}
               <div className="CC__blog-card__body">
