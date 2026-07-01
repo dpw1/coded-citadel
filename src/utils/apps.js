@@ -64,6 +64,35 @@ export function appIconUrl(app) {
   return app.chromeExtensionIcon || null
 }
 
+/** Match a portfolio/changelog list item to a full app record. */
+export function resolveAppCatalogEntry(item) {
+  if (!item) return null
+  const id = item.chromeExtensionId ?? item.key
+  const slug = item.slug
+
+  return (
+    getAllApps().find(
+      (app) =>
+        (id && app.chromeExtensionId === id) ||
+        (slug && app.slug === slug) ||
+        (item.key && app.slug === item.key),
+    ) ?? null
+  )
+}
+
+/** Attach chrome store icon URL from apps.json when missing on a lightweight app row. */
+export function withAppIcon(item) {
+  if (!item) return item
+  if (item.iconUrl) return item
+
+  const catalog = resolveAppCatalogEntry(item)
+  return {
+    ...item,
+    name: item.name ?? catalog?.name,
+    iconUrl: catalog ? appIconUrl(catalog) : null,
+  }
+}
+
 /** Build/deploy duration from apps.json or apps-custom-data.json. */
 export function appEstimatedTime(app) {
   if (app?.estimatedTime) return app.estimatedTime
@@ -104,6 +133,14 @@ export function appBuildYoutubeUrl(app) {
   if (custom?.youtube && youtubeEmbedId(custom.youtube)) return custom.youtube
 
   return null
+}
+
+/** GitHub repo URL from apps.json or apps-custom-data.json. */
+export function appGithubUrl(app) {
+  if (app?.github) return app.github
+
+  const custom = findCustomAppEntry(app)
+  return custom?.github ?? null
 }
 
 export function formatRevenue(total) {

@@ -24,8 +24,8 @@ export default function StatsPage() {
             <p className="CC__section-eyebrow">Building in public</p>
             <h1 className="CC__section-title">Portfolio Stats</h1>
             <p className="CC__stats-page__intro">
-              I&apos;m manually scraping all my Chrome Web Store private data
-              and making it publicly accessible here. You can see installs, users, views, and
+              I&apos;m manually scraping all my private data
+              and sharing it publicly here. You can see installs, users, views, and
               other metrics from my apps.
             </p>
           </header>

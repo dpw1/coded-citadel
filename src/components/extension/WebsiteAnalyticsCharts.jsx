@@ -10,6 +10,7 @@ import {
   Tooltip,
 } from 'chart.js'
 import { formatInstallDate } from '../../utils/apps'
+import { bindChartResize, safeChartResize } from '../../utils/chartUtils'
 
 Chart.register(
   LineController,
@@ -92,7 +93,7 @@ function mountLineChart(canvas, series, tooltipLabel, height = 200) {
 
   return {
     destroy: () => chart.destroy(),
-    resize: () => chart.resize(),
+    resize: () => safeChartResize(chart),
   }
 }
 
@@ -112,12 +113,10 @@ export default function WebsiteAnalyticsCharts({ timeSeries, chartIds }) {
       return mountLineChart(canvas, timeSeries[key], label)
     })
 
-    const onResize = () => controls.forEach((c) => c.resize())
-    window.addEventListener('resize', onResize)
-    requestAnimationFrame(() => onResize())
+    const unbindResize = bindChartResize(controls)
 
     return () => {
-      window.removeEventListener('resize', onResize)
+      unbindResize()
       controls.forEach((c) => c.destroy())
     }
   }, [timeSeries, chartIds])

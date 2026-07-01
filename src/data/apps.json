@@ -427,10 +427,11 @@
       "estimatedTime": "15 hours",
       "created": "June 13, 2026",
       "youtube": "https://www.youtube.com/watch?v=Y9ZYwJ9g9Cw",
-      "prompts": 120
+      "prompts": 120,
+      "github": "https://github.com/dpw1/gmail-export"
     },
     {
-      "slug": "custom-data",
+      "slug": "dex",
       "chromeExtensionId": "cdagimhkcpohhjipcnpaaebppnmgegjo",
       "name": "DEX: Export Discord messages, channels & attachments",
       "icon": "⚡",
@@ -461,7 +462,8 @@
       "screenshots": [
         "https://lh3.googleusercontent.com/1BHEwXkFJ0GadkQDoKTz9f85JMgErJYPc3h74Z57af2rE-pXcDJOHK_z6QNglMtpBjHb1vpsnXdieGPRIZX8SAAJjQ",
         "https://lh3.googleusercontent.com/T3taDYk0NMkaj13dj-P7MSX8BSjVXV4YvYapqbDyivbDQ3dBUkCduP1wJJ6nmdr3JPRFmeB1k6cMXIf4pwqhY-68p-A"
-      ]
+      ],
+      "github": "https://github.com/dpw1/discord-export"
     },
     {
       "slug": "youtube-filter-pro",
@@ -1356,7 +1358,8 @@
       "created": "May 17, 2026",
       "prompts": 96,
       "estimatedTime": "5 hours",
-      "youtube": "https://youtu.be/-saFrB1W9ug"
+      "youtube": "https://youtu.be/-saFrB1W9ug",
+      "github": "https://github.com/dpw1/youtube-filter-pro"
     },
     {
       "slug": "claude-deep-search",
@@ -2046,7 +2049,8 @@
       "created": "May 11, 2026",
       "prompts": 41,
       "estimatedTime": "3 hours",
-      "youtube": "https://youtu.be/BGhB0gFwv1M"
+      "youtube": "https://youtu.be/BGhB0gFwv1M",
+      "github": "https://github.com/dpw1/claude-search"
     },
     {
       "slug": "instagram-comments-exporter",
@@ -2255,7 +2259,8 @@
       "created": "June 18, 2026",
       "prompts": 35,
       "estimatedTime": "8 hours",
-      "youtube": "https://www.youtube.com/watch?v=XAoQX6iUgK0"
+      "youtube": "https://www.youtube.com/watch?v=XAoQX6iUgK0",
+      "github": "https://github.com/dpw1/instagram-comment-exporter"
     },
     {
       "slug": "youtube-comments-exporter",
@@ -2551,7 +2556,8 @@
       "created": "May 21, 2026",
       "prompts": 116,
       "estimatedTime": "8 hours",
-      "youtube": "https://youtu.be/m4iuYN7vsRo"
+      "youtube": "https://youtu.be/m4iuYN7vsRo",
+      "github": "https://github.com/dpw1/youtube-comments-export"
     },
     {
       "slug": "ai-bookmark",
@@ -2859,7 +2865,8 @@
       "estimatedTime": "24 hours",
       "created": "June 7, 2026",
       "youtube": "https://www.youtube.com/watch?v=WA5xLTMyykE",
-      "prompts": 250
+      "prompts": 250,
+      "github": "https://github.com/dpw1/ai-bookmark"
     },
     {
       "slug": "instagram-dm-exporter",
@@ -3706,7 +3713,8 @@
       "created": "May 26, 2026",
       "prompts": 47,
       "estimatedTime": "4 hours",
-      "youtube": "https://youtu.be/tBSZ1oD5OM8"
+      "youtube": "https://youtu.be/tBSZ1oD5OM8",
+      "github": "https://github.com/dpw1/instagram-dm-exporter"
     },
     {
       "slug": "save-directly-to-drive",
@@ -4302,7 +4310,8 @@
       "created": "May 29, 2026",
       "estimatedTime": "8 hours",
       "youtube": "https://www.youtube.com/watch?v=D4-1VtvkdIw",
-      "prompts": 65
+      "prompts": 65,
+      "github": "https://github.com/dpw1/save-to-drive"
     },
     {
       "slug": "claude-limit-monitor",
@@ -5080,7 +5089,8 @@
       "estimatedTime": "4 hours",
       "created": "June 4, 2026",
       "youtube": "https://www.youtube.com/watch?v=iyXIi6pNq-M",
-      "prompts": 49
+      "prompts": 49,
+      "github": "https://github.com/dpw1/claude-limit-monitor"
     },
     {
       "slug": "youtube-keyword-alert",
@@ -5267,28 +5277,29 @@
       "created": "June 21, 2026",
       "prompts": 55,
       "estimatedTime": "10 hours",
-      "youtube": "https://www.youtube.com/watch?v=CdIXEKUTewE"
+      "youtube": "https://www.youtube.com/watch?v=CdIXEKUTewE",
+      "github": "https://github.com/dpw1/youtube-keyword-alert"
     }
   ],
   "portfolioStats": {
     "totalActiveUsers": 248,
-    "activeUsersDelta7d": 67,
-    "baselineDate": "2026-06-23",
-    "baselineTotalActiveUsers": 181,
+    "activeUsersDelta7d": 60,
+    "baselineDate": "2026-06-24",
+    "baselineTotalActiveUsers": 188,
     "byApp": [
       {
         "slug": "gmail-to-pdf",
         "chromeExtensionId": "bhagkmlelgbjbklgafgdjeebkdhlibjf",
         "now": 5,
-        "baseline": 3,
-        "delta": 2
+        "baseline": 4,
+        "delta": 1
       },
       {
         "slug": "youtube-filter-pro",
         "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
         "now": 74,
-        "baseline": 60,
-        "delta": 14
+        "baseline": 59,
+        "delta": 15
       },
       {
         "slug": "claude-deep-search",
@@ -5322,22 +5333,22 @@
         "slug": "instagram-dm-exporter",
         "chromeExtensionId": "hgojieiehkjgjhdnbglfhbcojeeggigi",
         "now": 62,
-        "baseline": 46,
-        "delta": 16
+        "baseline": 48,
+        "delta": 14
       },
       {
         "slug": "save-directly-to-drive",
         "chromeExtensionId": "jadjgiiaompdjacagaomgogdihbpgcpg",
         "now": 26,
-        "baseline": 9,
-        "delta": 17
+        "baseline": 10,
+        "delta": 16
       },
       {
         "slug": "claude-limit-monitor",
         "chromeExtensionId": "mljfhcfnjbfibedpiaheeihpbjajfcal",
         "now": 77,
-        "baseline": 59,
-        "delta": 18
+        "baseline": 63,
+        "delta": 14
       },
       {
         "slug": "youtube-keyword-alert",
@@ -5348,8 +5359,8 @@
       }
     ],
     "totalInstalls": 678,
-    "installsDelta7d": 78,
-    "baselineTotalInstalls": 600,
-    "computedAt": "2026-06-30"
+    "installsDelta7d": 41,
+    "baselineTotalInstalls": 637,
+    "computedAt": "2026-07-01"
   }
 }

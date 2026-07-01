@@ -1,27 +1,27 @@
 {
   "available": true,
-  "updatedAt": "2026-06-30T22:13:17.864Z",
+  "updatedAt": "2026-07-01T03:07:52.134Z",
   "message": null,
-  "totalViews": 706,
+  "totalViews": 717,
   "blogViews": 17,
-  "averageTimeOnSiteSeconds": 156.65431757419356,
-  "uniqueVisitors": 247,
+  "averageTimeOnSiteSeconds": 160.78347633650793,
+  "uniqueVisitors": 251,
   "newVsReturning": {
-    "new": 243,
+    "new": 247,
     "returning": 23
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 387
+      "views": 391
     },
     {
       "path": "/thank-you/",
-      "views": 143
+      "views": 147
     },
     {
       "path": "/uninstall/",
-      "views": 45
+      "views": 46
     },
     {
       "path": "/live-stats",
@@ -29,7 +29,7 @@
     },
     {
       "path": "/apps",
-      "views": 22
+      "views": 24
     },
     {
       "path": "/privacy-policy/ai-bookmark/",
@@ -89,18 +89,18 @@
       "users": 12
     },
     {
+      "code": "JP",
+      "name": "Japan",
+      "gaCountry": "Japan",
+      "gaCountryId": "JP",
+      "users": 8
+    },
+    {
       "code": "CN",
       "name": "China",
       "gaCountry": "China",
       "gaCountryId": "CN",
       "users": 7
-    },
-    {
-      "code": "JP",
-      "name": "Japan",
-      "gaCountry": "Japan",
-      "gaCountryId": "JP",
-      "users": 6
     },
     {
       "code": "PK",
@@ -114,7 +114,7 @@
       "name": "Germany",
       "gaCountry": "Germany",
       "gaCountryId": "DE",
-      "users": 4
+      "users": 5
     },
     {
       "code": "GB",
@@ -232,7 +232,7 @@
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 259
+      "sessions": 263
     },
     {
       "source": "Organic Search",
@@ -240,19 +240,19 @@
     },
     {
       "source": "Unassigned",
-      "sessions": 19
+      "sessions": 23
     },
     {
       "source": "Referral",
       "sessions": 11
     },
     {
-      "source": "Organic Social",
+      "source": "Cross-network",
       "sessions": 2
     },
     {
-      "source": "Cross-network",
-      "sessions": 1
+      "source": "Organic Social",
+      "sessions": 2
     },
     {
       "source": "Organic Video",
@@ -262,7 +262,7 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 259
+      "sessions": 263
     },
     {
       "referrer": "google",
@@ -270,7 +270,7 @@
     },
     {
       "referrer": "(not set)",
-      "sessions": 19
+      "sessions": 23
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -281,12 +281,12 @@
       "sessions": 3
     },
     {
-      "referrer": "facebook.com",
+      "referrer": "(data not available)",
       "sessions": 2
     },
     {
-      "referrer": "(data not available)",
-      "sessions": 1
+      "referrer": "facebook.com",
+      "sessions": 2
     },
     {
       "referrer": "aisearchindex.space",
@@ -409,7 +409,7 @@
       },
       {
         "date": "30-06-2026",
-        "total": 34
+        "total": 45
       }
     ],
     "activeUsers": [
@@ -519,7 +519,7 @@
       },
       {
         "date": "30-06-2026",
-        "total": 28
+        "total": 33
       }
     ],
     "blogViews": [
@@ -739,7 +739,7 @@
       },
       {
         "date": "30-06-2026",
-        "total": 30
+        "total": 35
       }
     ]
   }

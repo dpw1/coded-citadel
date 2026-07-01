@@ -109,9 +109,19 @@
   height: 100%;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .CC__stats-page {
     padding-top: 1.25rem;
+  }
+
+  .CC__stats-page > .CC__container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .CC__stats-page .ext-analytics {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .CC__stats-page__header {

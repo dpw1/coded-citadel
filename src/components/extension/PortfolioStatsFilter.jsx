@@ -1,5 +1,6 @@
 import { useEffect, useId, useState } from 'react'
 import ChromeIcon from '../ChromeIcon'
+import ExtensionAppIcon from '../ExtensionAppIcon'
 import { appFilterLabel } from '../../utils/apps'
 import {
   detectDatePreset,
@@ -34,6 +35,7 @@ export default function PortfolioStatsFilter({
   onDateToChange,
   minDate,
   maxDate,
+  showDateRange = true,
 }) {
   const titleId = useId()
   const [open, setOpen] = useState(false)
@@ -44,7 +46,7 @@ export default function PortfolioStatsFilter({
 
   const allKeys = apps.map((app) => app.key)
   const allSelected = selectedKeys.size === apps.length
-  const hasDateFilter = Boolean(dateFrom || dateTo)
+  const hasDateFilter = showDateRange && Boolean(dateFrom || dateTo)
   const isFiltered = hasDateFilter || !allSelected
 
   useEffect(() => {
@@ -182,6 +184,7 @@ export default function PortfolioStatsFilter({
             </header>
 
             <div className="stats-filter__body">
+              {showDateRange ? (
               <section className="stats-filter__section">
                 <h3 className="stats-filter__section-title">Date range</h3>
                 <div className="stats-filter__quick-dates" role="group" aria-label="Quick date ranges">
@@ -235,6 +238,7 @@ export default function PortfolioStatsFilter({
                   </div>
                 ) : null}
               </section>
+              ) : null}
 
               <section className="stats-filter__section">
                 <div className="stats-filter__section-head">
@@ -257,7 +261,15 @@ export default function PortfolioStatsFilter({
                             onChange={() => toggleDraftKey(app.key)}
                           />
                           <span className="stats-filter__option-text">{appFilterLabel(app)}</span>
-                          <ChromeIcon size={18} className="stats-filter__option-icon" />
+                          {app.iconUrl ? (
+                            <ExtensionAppIcon
+                              src={app.iconUrl}
+                              size={18}
+                              className="stats-filter__option-icon stats-filter__option-icon--app"
+                            />
+                          ) : (
+                            <ChromeIcon size={18} className="stats-filter__option-icon" />
+                          )}
                         </label>
                       </li>
                     )

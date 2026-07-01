@@ -6,11 +6,14 @@ import ExtensionPageSEO from '../components/ExtensionPageSEO'
 import CyberCorners from '../components/CyberCorners'
 import ChromeIcon from '../components/ChromeIcon'
 import ExtensionAnalyticsBlock from '../components/extension/ExtensionAnalyticsBlock'
+import ExtensionChangelogBlock from '../components/extension/ExtensionChangelogBlock'
 import ExtensionLiveStatsBar from '../components/extension/ExtensionLiveStatsBar'
+import GitHubIcon from '../components/GitHubIcon'
 import AppsGridSection from '../components/AppsGridSection'
 import YoutubeSection from '../components/YoutubeSection'
 import {
   appActiveUsers,
+  appGithubUrl,
   appHeroPreviewUrl,
   appHeroYoutubeUrl,
   appIconUrl,
@@ -18,6 +21,7 @@ import {
   appEstimatedTime,
   appPrompts,
   appStoreUrl,
+  appFilterLabel,
   formatAppDate,
   formatAppCreatedDate,
   formatNumber,
@@ -27,6 +31,11 @@ import {
   splitAppTitle,
   youtubeEmbedId,
 } from '../utils/apps'
+import {
+  getExtensionChangelogBySlug,
+  getStoredExtensionChangelogs,
+} from '../utils/extensionChangelogs'
+import '../components/extension/ExtensionChangelogBlock.css'
 import '../App.css'
 import './ExtensionLandingPage.css'
 
@@ -123,6 +132,10 @@ export default function ExtensionLandingPage() {
   const storeUrl = appStoreUrl(ext)
   const iconUrl = appIconUrl(ext)
   const screenshots = ext.screenshots ?? []
+  const githubUrl = appGithubUrl(ext)
+  const changelogApp = getExtensionChangelogBySlug(ext.slug)
+  const showGithubBadge = Boolean(githubUrl && changelogApp?.githubPublic)
+  const changelogKeys = changelogApp ? new Set([changelogApp.key]) : new Set()
 
   const liveLabel =
     ext.status === 'live' ? 'Live on Chrome Web Store' : `${ext.status} — ${ext.platform}`
@@ -187,6 +200,22 @@ export default function ExtensionLandingPage() {
                   <span className="ext-hero__badge-label">Created</span>
                   <span className="ext-hero__badge-value">{formatAppCreatedDate(ext)}</span>
                 </div>
+                {showGithubBadge ? (
+                  <div className="ext-hero__badge">
+                    <span className="ext-hero__badge-label">Source</span>
+                    <a
+                      href={githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ext-hero__badge-link"
+                    >
+                      <span className="ext-hero__badge-value">
+                        <GitHubIcon size={14} />
+                        GitHub
+                      </span>
+                    </a>
+                  </div>
+                ) : null}
               </div>
 
               <div className="ext-hero__cta">
@@ -319,6 +348,16 @@ export default function ExtensionLandingPage() {
           chartIds={chartIds}
           updatedAt={analyticsUpdatedAt}
         />
+
+        {changelogApp ? (
+          <ExtensionChangelogBlock
+            apps={[changelogApp]}
+            selectedKeys={changelogKeys}
+            showSidebar={false}
+            title="CHANGELOGS"
+            subtitle={`Development history for ${appFilterLabel(ext)}.`}
+          />
+        ) : null}
 
         <AppsGridSection
           sectionId="more-apps"

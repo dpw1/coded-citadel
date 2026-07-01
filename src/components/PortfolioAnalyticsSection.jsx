@@ -1,7 +1,9 @@
 import { useEffect, useId, useMemo, useState } from 'react'
 import ExtensionAnalyticsBlock from './extension/ExtensionAnalyticsBlock'
+import ExtensionChangelogBlock from './extension/ExtensionChangelogBlock'
 import PortfolioAnalyticsTabs from './extension/PortfolioAnalyticsTabs'
 import PortfolioStatsFilter from './extension/PortfolioStatsFilter'
+import ChangelogTimeFilter from './extension/ChangelogTimeFilter'
 import WebsiteAnalyticsBlock from './extension/WebsiteAnalyticsBlock'
 import {
   filterAnalyticsByDateRange,
@@ -18,12 +20,19 @@ import {
   needsWebsiteAnalyticsRefresh,
   PORTFOLIO_ANALYTICS_TABS,
 } from '../utils/liveStatsAnalytics'
+import {
+  fetchExtensionChangelogs,
+  getStoredExtensionChangelogs,
+  mergeChangelogSelectedKeys,
+  needsExtensionChangelogsRefresh,
+} from '../utils/extensionChangelogs'
 import { getSiteStatsHeadlines } from '../utils/siteStats'
 import { formatAnalyticsTimestamp } from '../utils/apps'
 
 const TAB_TITLES = {
   extensions: 'Extensions',
   website: 'Website',
+  changelog: 'Changelog',
 }
 
 export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
@@ -39,6 +48,12 @@ export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
   const [dateTo, setDateTo] = useState('')
   const [websiteAnalytics, setWebsiteAnalytics] = useState(() => getStoredWebsiteAnalytics())
   const [websiteLoading, setWebsiteLoading] = useState(false)
+  const [changelogData, setChangelogData] = useState(() => getStoredExtensionChangelogs())
+  const [changelogSelectedKeys, setChangelogSelectedKeys] = useState(() => {
+    const apps = getStoredExtensionChangelogs()?.apps ?? []
+    return mergeChangelogSelectedKeys(new Set(), apps)
+  })
+  const [changelogTimePreset, setChangelogTimePreset] = useState('all')
 
   const baseAnalytics = useMemo(() => {
     const filtered = getPortfolioAnalyticsForKeys(selectedKeys)
@@ -110,6 +125,34 @@ export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
     }
   }, [activeTab])
 
+  useEffect(() => {
+    if (activeTab !== 'changelog' || !import.meta.env.DEV) return undefined
+
+    setChangelogData(getStoredExtensionChangelogs())
+    setChangelogSelectedKeys((prev) =>
+      mergeChangelogSelectedKeys(prev, getStoredExtensionChangelogs()?.apps ?? []),
+    )
+
+    if (!needsExtensionChangelogsRefresh()) return undefined
+
+    let cancelled = false
+
+    fetchExtensionChangelogs()
+      .then((data) => {
+        if (!cancelled) {
+          setChangelogData(data)
+          setChangelogSelectedKeys((prev) => mergeChangelogSelectedKeys(prev, data?.apps ?? []))
+        }
+      })
+      .catch(() => {
+        // keep bundled / cached snapshot on failure
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [activeTab])
+
   const sectionTitle =
     activeTab === 'extensions' ? extensionsTitle : TAB_TITLES[activeTab] || 'Portfolio Analytics'
 
@@ -117,8 +160,10 @@ export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
     activeTab === 'extensions'
       ? analyticsDateRangeLabel
       : activeTab === 'website' && websiteAnalytics?.updatedAt
-        ? `Last updated: ${formatAnalyticsTimestamp(websiteAnalytics.updatedAt)}`
-        : null
+        ? `From Google Analytics. Last updated: ${formatAnalyticsTimestamp(websiteAnalytics.updatedAt)}`
+        : activeTab === 'changelog' && changelogData?.updatedAt
+          ? `Last updated: ${formatAnalyticsTimestamp(changelogData.updatedAt)}`
+          : null
 
   const showExtensions = activeTab === 'extensions' && analytics
   const showEmptyExtensions = activeTab === 'extensions' && !analytics
@@ -128,11 +173,13 @@ export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
       <div className="ext-analytics__header-layout">
         <div className="ext-analytics__header">
           <div className="ext-analytics__header-main">
-            <div className="ext-analytics__eyebrow">Portfolio Analytics</div>
-            <h2 className="ext-analytics__title">{sectionTitle}</h2>
-            {sectionUpdatedLabel ? (
-              <small className="ext-analytics__updated">{sectionUpdatedLabel}</small>
-            ) : null}
+            <>
+              <div className="ext-analytics__eyebrow">Portfolio Analytics</div>
+              <h2 className="ext-analytics__title">{sectionTitle}</h2>
+              {sectionUpdatedLabel ? (
+                <small className="ext-analytics__updated">{sectionUpdatedLabel}</small>
+              ) : null}
+            </>
             <PortfolioAnalyticsTabs
               tabs={PORTFOLIO_ANALYTICS_TABS}
               activeTab={activeTab}
@@ -153,6 +200,11 @@ export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
               minDate={portfolioDateBounds?.from ?? ''}
               maxDate={portfolioDateBounds?.to ?? ''}
             />
+          </div>
+        ) : null}
+        {activeTab === 'changelog' ? (
+          <div className="ext-analytics__header-actions">
+            <ChangelogTimeFilter value={changelogTimePreset} onChange={setChangelogTimePreset} />
           </div>
         ) : null}
       </div>
@@ -182,6 +234,18 @@ export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
             loading={websiteLoading}
             chartIds={websiteChartIds}
           />
+        ) : null}
+
+        {activeTab === 'changelog' ? (
+            <ExtensionChangelogBlock
+              apps={changelogData?.apps ?? []}
+              selectedKeys={changelogSelectedKeys}
+              onSelectedKeysChange={setChangelogSelectedKeys}
+              timePreset={changelogTimePreset}
+              showSidebar
+              hideHeader
+              usePagination={idPrefix === 'home'}
+            />
         ) : null}
       </div>
     </section>

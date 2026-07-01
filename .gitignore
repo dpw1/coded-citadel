@@ -16,6 +16,7 @@ back-end/*
 !back-end/fetch-youtube-videos.mjs
 !back-end/extract-chrome-apps.mjs
 !back-end/maybe-extract-chrome-apps.mjs
+!back-end/sync-apps-custom-data.mjs
 !back-end/generate-sitemap.mjs
 !back-end/compute-portfolio-stats.mjs
 !back-end/generate-blog-manifest.mjs
@@ -30,6 +31,8 @@ back-end/*
 !back-end/maybe-sync-devto.mjs
 !back-end/fetch-website-analytics.mjs
 !back-end/maybe-fetch-website-analytics.mjs
+!back-end/fetch-extension-changelogs.mjs
+!back-end/maybe-fetch-extension-changelogs.mjs
 !back-end/generate-home-meta.mjs
 !back-end/vite-plugin-live-stats-api.mjs
 !back-end/lib/

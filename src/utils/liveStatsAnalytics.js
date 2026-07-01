@@ -5,7 +5,8 @@ import { resolveCountryFromGa } from './countryUtils'
 
 export const PORTFOLIO_ANALYTICS_TABS = [
   { id: 'extensions', label: 'Extensions', icon: 'chrome' },
-  { id: 'website', label: 'Website' },
+  { id: 'website', label: 'Website', icon: 'google-analytics' },
+  { id: 'changelog', label: 'Changelog', icon: 'github' },
 ]
 
 const CACHE_KEY = 'cc-website-analytics-v1'

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
@@ -57,6 +57,8 @@ export default function AppsGridSection({
   const [activeTab, setActiveTab] = useState('All')
   const [currentPage, setCurrentPage] = useState(1)
   const [videoModal, setVideoModal] = useState({ open: false, videoId: null, title: '' })
+  const sectionRef = useRef(null)
+  const skipPageScrollRef = useRef(true)
 
   const apps = useMemo(
     () => getAllApps().filter((app) => app.slug !== excludeSlug),
@@ -92,6 +94,25 @@ export default function AppsGridSection({
     setCurrentPage(1)
   }
 
+  const goToPage = (page) => {
+    setCurrentPage(page)
+  }
+
+  useEffect(() => {
+    if (!enablePagination || skipPageScrollRef.current) {
+      skipPageScrollRef.current = false
+      return
+    }
+
+    const section = sectionRef.current
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      return
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentPage, enablePagination])
+
   const viewAllAppsLink = showViewAllLink ? (
     <Link to="/apps" className="CC__view-all-link">
       View all apps →
@@ -99,7 +120,12 @@ export default function AppsGridSection({
   ) : null
 
   return (
-    <section id={sectionId} className="CC__extensions CC__container" aria-label="Extensions">
+    <section
+      ref={sectionRef}
+      id={sectionId}
+      className="CC__extensions CC__container"
+      aria-label="Extensions"
+    >
       <div className="CC__section-header-row">
         <div>
           <p className="CC__section-eyebrow">{eyebrow}</p>
@@ -173,7 +199,7 @@ export default function AppsGridSection({
             className="CC__pagination__btn"
             aria-label="Previous"
             disabled={currentPage === 1}
-            onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+            onClick={() => goToPage(Math.max(1, currentPage - 1))}
           >
             {PREV_ICON}
           </button>
@@ -190,7 +216,7 @@ export default function AppsGridSection({
                 className={`CC__pagination__btn${page === currentPage ? ' CC__pagination__btn--active' : ''}`}
                 aria-label={`Page ${page}`}
                 aria-current={page === currentPage ? 'page' : undefined}
-                onClick={() => setCurrentPage(page)}
+                onClick={() => goToPage(page)}
               >
                 {page}
               </button>
@@ -202,7 +228,7 @@ export default function AppsGridSection({
             className="CC__pagination__btn"
             aria-label="Next"
             disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+            onClick={() => goToPage(Math.min(totalPages, currentPage + 1))}
           >
             {NEXT_ICON}
           </button>

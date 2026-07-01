@@ -13,6 +13,7 @@ import {
   ArcElement,
 } from 'chart.js'
 import { formatInstallDate, formatLabel, getInstallationsSeries, getWeeklyUsersSeries, getPageViewsSeries, getImpressionsSeries } from '../../utils/apps'
+import { bindChartResize, safeChartResize } from '../../utils/chartUtils'
 
 Chart.register(
   LineController,
@@ -127,7 +128,7 @@ export function mountRegionDonutChart(canvas, dataObj) {
 
   return {
     destroy: () => chart.destroy(),
-    resize: () => chart.resize(),
+    resize: () => safeChartResize(chart),
   }
 }
 
@@ -321,12 +322,10 @@ export default function ExtensionCharts({ analytics, chartIds }) {
       )
     }
 
-    const resize = () => charts.forEach((c) => c.resize())
-    window.addEventListener('resize', resize)
-    requestAnimationFrame(resize)
+    const unbindResize = bindChartResize(charts)
 
     return () => {
-      window.removeEventListener('resize', resize)
+      unbindResize()
       charts.forEach((c) => c.destroy())
     }
   }, [analytics, chartIds])
