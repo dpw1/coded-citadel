@@ -25,6 +25,7 @@ const PRIVACY_POLICY_SLUGS = [
   'save-to-drive-chrome-extension',
   'youtube-keyword',
   'dex',
+  'bluesky-hide-repost',
 ]
 
 /** Keep in sync with src/utils/termsOfService.js */

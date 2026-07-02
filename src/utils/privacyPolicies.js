@@ -7,6 +7,7 @@ import SaveToDrivePrivacyContent from '../content/privacy/save-to-drive-chrome-e
 import GmailToPdfPrivacyContent from '../content/privacy/gmail-to-pdf-extension'
 import YoutubeKeywordPrivacyContent from '../content/privacy/youtube-keyword'
 import DexPrivacyContent from '../content/privacy/dex'
+import BlueskyHideRepostPrivacyContent from '../content/privacy/bluesky-hide-repost'
 
 const PRIVACY_POLICIES = {
   'ai-bookmark': {
@@ -62,6 +63,12 @@ const PRIVACY_POLICIES = {
     lastUpdated: 'June 27, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: DexPrivacyContent,
+  },
+  'bluesky-hide-repost': {
+    appName: 'Hide Reposts for Bluesky',
+    lastUpdated: 'July 2, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: BlueskyHideRepostPrivacyContent,
   },
 }
 
