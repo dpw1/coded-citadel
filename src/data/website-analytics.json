@@ -1,35 +1,35 @@
 {
   "available": true,
-  "updatedAt": "2026-07-02T05:11:14.196Z",
+  "updatedAt": "2026-07-03T00:02:01.699Z",
   "message": null,
-  "totalViews": 756,
-  "blogViews": 17,
-  "averageTimeOnSiteSeconds": 153.03011876231884,
-  "uniqueVisitors": 276,
+  "totalViews": 807,
+  "blogViews": 18,
+  "averageTimeOnSiteSeconds": 150.94555272178476,
+  "uniqueVisitors": 305,
   "newVsReturning": {
-    "new": 274,
-    "returning": 28
+    "new": 305,
+    "returning": 32
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 396
+      "views": 404
     },
     {
       "path": "/thank-you/",
-      "views": 173
+      "views": 199
     },
     {
       "path": "/uninstall/",
-      "views": 52
+      "views": 64
+    },
+    {
+      "path": "/apps",
+      "views": 25
     },
     {
       "path": "/live-stats",
       "views": 25
-    },
-    {
-      "path": "/apps",
-      "views": 24
     },
     {
       "path": "/privacy-policy/ai-bookmark/",
@@ -58,21 +58,21 @@
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 68
+      "users": 76
     },
     {
       "code": "IN",
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 63
+      "users": 69
     },
     {
       "code": "BR",
       "name": "Brazil",
       "gaCountry": "Brazil",
       "gaCountryId": "BR",
-      "users": 16
+      "users": 17
     },
     {
       "code": "PL",
@@ -107,14 +107,21 @@
       "name": "Pakistan",
       "gaCountry": "Pakistan",
       "gaCountryId": "PK",
-      "users": 6
+      "users": 7
     },
     {
       "code": "DE",
       "name": "Germany",
       "gaCountry": "Germany",
       "gaCountryId": "DE",
-      "users": 5
+      "users": 6
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "gaCountry": "United Kingdom",
+      "gaCountryId": "GB",
+      "users": 6
     },
     {
       "code": "ID",
@@ -131,17 +138,17 @@
       "users": 5
     },
     {
+      "code": null,
+      "name": "(not set)",
+      "gaCountry": null,
+      "gaCountryId": null,
+      "users": 4
+    },
+    {
       "code": "FR",
       "name": "France",
       "gaCountry": "France",
       "gaCountryId": "FR",
-      "users": 4
-    },
-    {
-      "code": "GB",
-      "name": "United Kingdom",
-      "gaCountry": "United Kingdom",
-      "gaCountryId": "GB",
       "users": 4
     },
     {
@@ -163,6 +170,13 @@
       "name": "Canada",
       "gaCountry": "Canada",
       "gaCountryId": "CA",
+      "users": 3
+    },
+    {
+      "code": "EG",
+      "name": "Egypt",
+      "gaCountry": "Egypt",
+      "gaCountryId": "EG",
       "users": 3
     },
     {
@@ -201,13 +215,6 @@
       "users": 2
     },
     {
-      "code": "EG",
-      "name": "Egypt",
-      "gaCountry": "Egypt",
-      "gaCountryId": "EG",
-      "users": 2
-    },
-    {
       "code": "IL",
       "name": "Israel",
       "gaCountry": "Israel",
@@ -220,61 +227,54 @@
       "gaCountry": "Morocco",
       "gaCountryId": "MA",
       "users": 2
-    },
-    {
-      "code": "NG",
-      "name": "Nigeria",
-      "gaCountry": "Nigeria",
-      "gaCountryId": "NG",
-      "users": 2
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 292
+      "sessions": 322
     },
     {
       "source": "Organic Search",
-      "sessions": 29
+      "sessions": 31
     },
     {
       "source": "Unassigned",
-      "sessions": 22
+      "sessions": 19
     },
     {
       "source": "Referral",
-      "sessions": 13
+      "sessions": 17
     },
     {
       "source": "Organic Social",
       "sessions": 2
     },
     {
-      "source": "Cross-network",
-      "sessions": 1
+      "source": "Organic Video",
+      "sessions": 2
     },
     {
-      "source": "Organic Video",
+      "source": "Cross-network",
       "sessions": 1
     }
   ],
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 292
+      "sessions": 322
     },
     {
       "referrer": "google",
-      "sessions": 28
+      "sessions": 30
     },
     {
       "referrer": "(not set)",
-      "sessions": 22
+      "sessions": 19
     },
     {
       "referrer": "chromewebstore.google.com",
-      "sessions": 8
+      "sessions": 11
     },
     {
       "referrer": "google-admin.corp.google.com",
@@ -282,6 +282,10 @@
     },
     {
       "referrer": "facebook.com",
+      "sessions": 2
+    },
+    {
+      "referrer": "youtube.com",
       "sessions": 2
     },
     {
@@ -294,10 +298,6 @@
     },
     {
       "referrer": "bing",
-      "sessions": 1
-    },
-    {
-      "referrer": "webstore-prod.corp.google.com",
       "sessions": 1
     }
   ],
@@ -413,7 +413,11 @@
       },
       {
         "date": "01-07-2026",
-        "total": 31
+        "total": 36
+      },
+      {
+        "date": "02-07-2026",
+        "total": 46
       }
     ],
     "activeUsers": [
@@ -527,7 +531,11 @@
       },
       {
         "date": "01-07-2026",
-        "total": 26
+        "total": 28
+      },
+      {
+        "date": "02-07-2026",
+        "total": 29
       }
     ],
     "blogViews": [
@@ -642,6 +650,10 @@
       {
         "date": "01-07-2026",
         "total": 0
+      },
+      {
+        "date": "02-07-2026",
+        "total": 1
       }
     ],
     "sessions": [
@@ -755,7 +767,11 @@
       },
       {
         "date": "01-07-2026",
-        "total": 27
+        "total": 29
+      },
+      {
+        "date": "02-07-2026",
+        "total": 33
       }
     ]
   }

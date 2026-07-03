@@ -96989,6 +96989,5402 @@
           }
         ]
       }
+    },
+    {
+      "extractedAt": "2026-07-03T00:01:38.352Z",
+      "updatedAt": "2026-07-02",
+      "outputPath": "src/data/apps.json",
+      "appCount": 12,
+      "slugs": [
+        "custom-data",
+        "gmail-to-pdf",
+        "dex",
+        "youtube-filter-pro",
+        "claude-deep-search",
+        "instagram-comments-exporter",
+        "youtube-comments-exporter",
+        "ai-bookmark",
+        "instagram-dm-exporter",
+        "save-directly-to-drive",
+        "claude-limit-monitor",
+        "youtube-keyword-alert"
+      ],
+      "chromeExtensionIds": [
+        "amcnbfpogccggckogifbdjekbammlahl",
+        "bhagkmlelgbjbklgafgdjeebkdhlibjf",
+        "cdagimhkcpohhjipcnpaaebppnmgegjo",
+        "dbkkcbfafkckhmefkpgnelikibobcabb",
+        "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+        "dpfdehgiffggecppcbkdacbifbljeiii",
+        "epokpidfnienjjfncmhnallghfhaijbj",
+        "golankbkfnepjbpcekbcglcfgmbpgnmb",
+        "hgojieiehkjgjhdnbglfhbcojeeggigi",
+        "jadjgiiaompdjacagaomgogdihbpgcpg",
+        "mljfhcfnjbfibedpiaheeihpbjajfcal",
+        "pniolepdakiocafjiibgiabkcdhgkfep"
+      ],
+      "appsJson": {
+        "updatedAt": "2026-07-02",
+        "apps": [
+          {
+            "slug": "custom-data",
+            "chromeExtensionId": "amcnbfpogccggckogifbdjekbammlahl",
+            "name": "Hide Reposts for Bluesky",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/5Lj821vH3okcPbqZJQrDxMe8sHvVj4KUAGrNuRWCMAqrpWuXuOmFW8k2KyPZf-R4adc-qLPgFFPaz0XvgoGKTGGB",
+            "tagline": "Hide reposts from your Following timeline on Bluesky. One click, no page reload. Keep your feed original-posts only.",
+            "status": "coming-soon",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/amcnbfpogccggckogifbdjekbammlahl",
+            "version": "1.0.1",
+            "lastUpdated": "2026-07-02",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Tired of opening Bluesky and your Following feed is basically repost after repost?",
+              "full": "Tired of opening Bluesky and your Following feed is basically repost after repost?\n\nWant to keep following people you like, but only see what they actually wrote themselves?\n\nWish you could pick which accounts get filtered, turn it on with one click, and never reload the page?\n\nNow you can!\n\nHide Reposts for Bluesky adds a simple “Hide Reposts” control right inside bsky.app, so you can clean up your Following timeline without unfollowing anyone or fighting the default feed.\n\nHOW IT WORKS\n• On bsky.app, click **Hide Reposts** in the sidebar.\n• Turn hiding on or off with one toggle.\n• Choose which followed accounts to filter using checkboxes (search, paginate, or select all).\n• Close the menu and keep scrolling — reposts from selected accounts are hidden on your **Following** tab in real time.\n• Your settings are saved automatically and synced across Chrome sessions.\n\nFILTER BY ACCOUNT\n\n☑️ Per-account control — Check the people whose reposts you want hidden. Everyone else stays visible.\n\n🔍 Search — Quickly find accounts in your following list by name or handle.\n\n📄 Pagination — Browse your full following list 15 accounts at a time.\n\n✅ Select all / Unselect all — One click to check or clear everyone when you don’t feel like clicking hundreds of boxes.\n\n🔄 Fresh following list — Each time you open the menu, your following list is refreshed so new follows show up.\n\nSMART FEED BEHAVIOR\n\n👁 Reposts only — Original posts are never hidden. Only items with a “reposted by” label are affected.\n\n📍 Following tab only — Works on your **Following** timeline. Discover and the rest of the site are left alone.\n\n⚡ No page reload — Toggle on, close the menu, and the feed updates immediately.\n\n📥 Feed backfill — If hiding reposts leaves your timeline looking empty, the extension nudges Bluesky to load more posts automatically.\n\n📊 Stats — See how many reposts you’ve hidden over time, right inside the menu.\n\nFEATURES\n\n• Real-time hiding as posts load and as you scroll\n• Clean modal that fits Bluesky’s dark UI\n• Master on/off toggle without losing your account selections\n• Following list loaded from your Bluesky session (no separate login)\n• Lightweight: only needs storage permission\n• Available in English, German, Spanish, French, Japanese, Korean, Portuguese, and Simplified Chinese\n\nWHO IT’S FOR\n• Anyone whose Following feed feels noisy with reshares\n• People who want original posts only, but don’t want to unfollow half their list\n• Any BlueSky user who wants per-account control instead of an all-or-nothing block\n\nPRIVACY\nHide Reposts for Bluesky runs only on bsky.app. It uses Chrome storage to remember your settings and following list cache. It does not collect personal data or send your feed to external servers.\n\nQuestions or feedback?\nCodedCitadel@gmail.com"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/iIPSgXriGO4C3w2Ki-29Ptv7yg2aublS99k82sYfgd4-zhfhgocpNv_U9bQRoc8g1IarUba0M_SgwF6oQeH7jc2ZhQ",
+              "https://lh3.googleusercontent.com/JaX-Gay5X_C9fW2L7BrsESHKVrEnMjv72QANVcqAs4TmcBSpDSCC8Ynczydzc3HW09WrptgC1l1n-dVHUYeFisHKag"
+            ]
+          },
+          {
+            "slug": "gmail-to-pdf",
+            "chromeExtensionId": "bhagkmlelgbjbklgafgdjeebkdhlibjf",
+            "name": "Gmail to PDF: Save Emails as PDF, HTML, TXT",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/c7std8p3CbIZl2ZWfXODcYW9QlDKJTN1t3sRh-axdAm3BcWGFtMoP1SAk9P-bBEueIAN-s-tSdjWvNR93r2On4hupA",
+            "tagline": "Save Gmail emails as PDF, HTML, TXT, and JSON.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/bhagkmlelgbjbklgafgdjeebkdhlibjf",
+            "version": "1.0.75",
+            "lastUpdated": "2026-07-02",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever needed to save an important Gmail converation as a PDF, only to wrestle with print dialogs and broken formatting? Or wanted a clean copy of an email in HTML, plain text, or JSON, without copying and pasting line by line?",
+              "full": "Have you ever needed to save an important Gmail converation as a PDF, only to wrestle with print dialogs and broken formatting? Or wanted a clean copy of an email in HTML, plain text, or JSON, without copying and pasting line by line? \n\nOr maybe bulk download multiple emails you have in your Gmail account?\n\nNow you can!\n\nWHAT IT DOES\nGmail to PDF: Save Emails as PDF, HTML, TXT adds a download button right inside Gmail. Select the emails you want, pick a format, and save them to your computer in one step.\n\nYou can export as PDF, HTML, TXT, or JSON. PDF gives you a rendered copy of the message. HTML opens in any browser as a self-contained file. TXT is plain text, easy to search and paste. JSON gives you structured data with headers, body content, and attachment metadata.\n\nYou can export one email or several at once. Attachments and inline images can be bundled into ZIP files as well, if you enable that in Settings.\n\nEverything runs inside Gmail. No external uploads, no separate website to log into.\n\nIt only runs on mail.google.com, so it stays out of the way everywhere else.\n\nWHO IS THIS FOR\nAnyone who uses Gmail regularly and needs to save emails as files: for records, sharing, backup, or moving content into other tools. Especially useful if you work with clients, legal correspondence, receipts, or project threads and want a reliable export without the hassle of printing or manual copy-paste.\n\nHOW DOES IT WORK\n\n1. Install the extension and open Gmail.\n2. Check the emails you want to save (one or several - you can click on the checkboxes to export multiple).\n3. Click the download button in the Gmail toolbar, or open the extension popup and choose your format.\n4. The file saves to your computer. Optional: enable attachment or image ZIP downloads from Settings.\n5. Open the History tab to see your last 100 exports.\n\nIS IT FREE?\n100%. No trial, no paywall, no premium tier.\n\nIS IT SECURE?\nAbsolutely! Your settings and export history are stored locally in your browser. The extension only activates on mail.google.com, and only processes the emails you explicitly select and export. Nothing is sent to an external server. No ads, no selling your data, no third-party tracking.\n\nFEEDBACK, BUGS OR QUESTIONS?\nCodedCitadel@gmail.com"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=GgeOk4pjaSI",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/SkQ2g9K2wXl9tIhgmXqWcwmzw0DM_irsKc2-oRK_0KHfaaeQWAn7Tmz7iR0aw4dKW-DoG9BD3qEICiBs7zFb9p-Ty78",
+              "https://lh3.googleusercontent.com/J19bJsePXM1ZQA9CnmtlRlrbDq3orUPKAEQX6XAQ0xr8VvOMzSGD9915WGGkr2lSZseShApoZOfmO7PJCo89gbvcsw"
+            ],
+            "analytics": {
+              "totalInstalls": 43,
+              "installations": [
+                {
+                  "date": "14-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 4
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "16-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 6
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 36,
+                "BR": 2,
+                "IN": 1
+              },
+              "uninstalls": 5,
+              "uninstallsOverTime": [
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 2
+                }
+              ],
+              "uninstallsByRegion": {},
+              "pageViews": 49,
+              "pageViewsOverTime": [
+                {
+                  "date": "14-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 12
+                }
+              ],
+              "pageViewsBySource": {
+                "bgads1": 1,
+                "ext_sidebar": 3
+              },
+              "impressions": 168,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "14-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 14
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 18
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 20
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 5,
+                "disabled": 0,
+                "enabledPct": 100,
+                "disabledPct": 0,
+                "total": 5,
+                "date": "30-06-2026",
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": [
+                {
+                  "date": "16-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "enabled": 2,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 2
+                },
+                {
+                  "date": "20-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "21-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "22-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "23-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "24-06-2026",
+                  "enabled": 4,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 4
+                },
+                {
+                  "date": "25-06-2026",
+                  "enabled": 4,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 4
+                },
+                {
+                  "date": "26-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "27-06-2026",
+                  "enabled": 4,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 4
+                },
+                {
+                  "date": "28-06-2026",
+                  "enabled": 4,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 4
+                },
+                {
+                  "date": "29-06-2026",
+                  "enabled": 5,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 5
+                },
+                {
+                  "date": "30-06-2026",
+                  "enabled": 5,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 5
+                }
+              ]
+            },
+            "estimatedTime": "15 hours",
+            "created": "June 13, 2026",
+            "youtube": "https://www.youtube.com/watch?v=Y9ZYwJ9g9Cw",
+            "prompts": 120,
+            "github": "https://github.com/dpw1/gmail-export"
+          },
+          {
+            "slug": "dex",
+            "chromeExtensionId": "cdagimhkcpohhjipcnpaaebppnmgegjo",
+            "name": "DEX: Export Discord messages, channels & attachments",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/4eBSrshi4R1FAJ-b1_XMe0xVC7a9trP4REZLCwzUrPVBe8oNruPyLmiJpieX0dc3kVOQ8qYuXAvqDXFgB8nkZSUt",
+            "tagline": "Export Discord messages to HTML, PDF, TXT, JSON or Markdown. View and download all attachments.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/cdagimhkcpohhjipcnpaaebppnmgegjo",
+            "version": "1.0.05",
+            "lastUpdated": "2026-07-02",
+            "category": "Social Media",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever wished you could pull a whole Discord channel (or DM) out of the app and actually keep it? DEX allows you to export all messages from channels, DMs, and you can also choose what attachmets you'd like to download. (images, files, videos, everything).",
+              "full": "Have you ever wished you could pull a whole Discord channel (or DM) out of the app and actually keep it? DEX allows you to export all messages from channels, DMs, and you can also choose what attachmets you'd like to download. (images, files, videos, everything).\n\nWHAT IT DOES\nDEX adds a floating button on Discord while you are logged in at discord.com. Open it to export messages from server channels and DMs in one place: usernames, timestamps, replies, embeds, reactions and more, depending on the format you pick.\nChoose your channels, set a date range or grab just the recent messages, then export to HTML, PDF, TXT, JSON or Markdown. Watch progress live on the button while it fetches. Need the files people shared? Browse and download attachments in a dedicated tab inside the extension.\nIt only runs on discord.com, so it stays out of the way everywhere else.\n\nWHO IS THIS FOR\nServer admins, moderators, community managers, researchers and anyone who needs Discord message history organized and exportable. Especially useful for busy channels, long DM threads, or archives too large to copy by hand.\n\nHOW DOES IT WORK\n1. Install the extension and open discord.com while logged in.\n2. Click the floating button to open DEX. (it will automatically show up on the bottom right)\n3. In Choose, pick the channels or DMs you want to export.\n4. In Export, pick your scope (all messages, a date range, or recent messages), choose HTML, PDF, TXT, JSON or Markdown, and hit Start Export.\n5. Optional: open Attachments to preview and download files from your selected channels.\n\nIS IT FREE?\n100%. No trial, no paywall, no premium tier.\n\nIS IT SECURE?\nYour settings and export cache are stored locally in your browser, not on our servers.\nExports are built from your own Discord session on discord.com. No ads, no selling your data, no third-party tracking.\n\nFEEDBACK, BUGS OR QUESTIONS?\nCodedCitadel@gmail.com"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/1BHEwXkFJ0GadkQDoKTz9f85JMgErJYPc3h74Z57af2rE-pXcDJOHK_z6QNglMtpBjHb1vpsnXdieGPRIZX8SAAJjQ",
+              "https://lh3.googleusercontent.com/T3taDYk0NMkaj13dj-P7MSX8BSjVXV4YvYapqbDyivbDQ3dBUkCduP1wJJ6nmdr3JPRFmeB1k6cMXIf4pwqhY-68p-A"
+            ],
+            "estimatedTime": "12 hours",
+            "prompts": 83,
+            "github": "https://github.com/dpw1/discord-export",
+            "youtube": "https://www.youtube.com/shorts/eDzr_Y4f9fU",
+            "analytics": {
+              "totalInstalls": 0,
+              "installations": [],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {},
+              "uninstalls": 0,
+              "uninstallsOverTime": [],
+              "uninstallsByRegion": {},
+              "pageViews": 0,
+              "pageViewsOverTime": [],
+              "pageViewsBySource": {},
+              "impressions": 0,
+              "impressionsAcrossChromeWebStore": [],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0,
+                "enabledPct": 0,
+                "disabledPct": 0,
+                "total": 0,
+                "date": null,
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": []
+            }
+          },
+          {
+            "slug": "youtube-filter-pro",
+            "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
+            "name": "Youtube Filter Pro: filter by views, duration, date, and more",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/cT5IsRijPKr64wr862UQQHyrC1A2YsAaG4JM9fTE4OAiwLxxMfTmEqUG0HsFW9TdB2CQtotPwmSdFldxRvpG3pyOTg",
+            "tagline": "Filter YouTube search results in real time by duration, views, publish date, channel, and more.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
+            "version": "1.0.48",
+            "lastUpdated": "2026-07-02",
+            "category": "Social Media",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos of channels with anywhere between 1000 to 5000 subscribers? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?",
+              "full": "Have you ever wanted to filter youtube videos by length of time? Maybe show videos only between 2 minutes and 3 minutes? Perhaps by views? Only videos of channels with anywhere between 1000 to 5000 subscribers? Only videos between 10k-20k views? Or include exclusively videos that has a certain keyword in the title?\n\nNow you can!\n\nYoutube Filter Pro adds powerful, client-side filters to YouTube search, so you can narrow results without running a new search or clicking through YouTube’s limited built-in filters.\n\nHOW IT WORKS\n\n• On any YouTube page, click the Filters button in the top bar (next to the search controls).\n• Run a search as usual — filtering applies on the search results page.\n• Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.\n• Your filter settings are saved and restored automatically across sessions (synced via Chrome).\n\nFILTER BY\n\n📅 Publish date — Quick presets from “last hour” up to “last 10 years,” or pick a custom date range.\n\n⏱ Duration — Set minimum and maximum length (hours, minutes, seconds). Great for finding tutorials, podcasts, or short clips.\n\n👁 View count — Show only videos within a view range (e.g. smaller channels or already-popular uploads).\n\n📈 Views per day — Filter by minimum views per day (computed from total views and publish date). Great for spotting fast-growing or consistently performing uploads.\n\n👍 Likes — Set a minimum like count. Useful for finding videos with strong engagement.\n\n📝 Title — Require keywords in the title, or exclude unwanted terms (e.g. “reaction,” “short,” “live”).\n\n📄 Description — Require keywords in the video description, or exclude unwanted terms.\n\n👥 Subscribers — Filter by channel subscriber count (min/max). Great for finding smaller creators or established channels.\n\n📹 Channel videos — Filter by how many videos a channel has uploaded (min/max). Useful for spotting new channels vs. long-running ones.\n\n🏷 Channel tags — Show videos from channels whose tags include certain keywords (e.g. topic, niche, or genre).\n\n🚫 Exclude channels — Hide videos from channels whose names contain specific keywords.\n\n✓ Verified — Show only verified channels, hide verified channels, or leave unchanged.\n\nSEE CHANNEL INFO AT A GLANCE\n\n📊 Subscribers & video count — Each channel’s subscriber count and total videos appear next to their name on search results and Explore. Enable/Disable at any time in the settings.\n\n👍 Likes — See like counts on search results when enabled in settings.\n\n📈 Views per day — When the Views per Day filter is active, each result shows its computed views/day (e.g. “12K views/day”) so you can compare momentum at a glance.\n\nFEATURES\n\n• Real-time filtering as search results appear — including infinite scroll\n• Clean filter panel that doesn’t clash with YouTube’s layout\n• Video Filters and Channel Filters tabs — organize filters by what they apply to, with active-filter count badges\n• One-click enable/disable filtering without losing your settings\n• Optional active-filter summary in the panel\n• Filter toasts — Get an on-page notification as soon as filtering starts, with live counts as videos are hidden (enable/disable in settings)\n• Tabbed settings — Filtering options and Display options in separate tabs; support panel on the side\n• Lightweight: only needs storage permission; no account required\n• Subscribers & video count — Each channel’s subscriber count and total videos appear next to their name on search results and Explore. Enable/Disable at any time in the settings.\n• Display likes on search — Optionally show like counts on each search result without opening the video\n• Available in English, German, Spanish, French, Japanese, Korean, and Simplified Chinese\n\nWHO IT’S FOR\n\n• Researchers and learners who need recent or in-depth videos\n• Creators scouting topics by duration or popularity\n• Anyone tired of scrolling past irrelevant channels, reuploads, or off-topic titles\n\nPRIVACY\n\nYoutube Filter Pro runs only on youtube.com. It uses Chrome storage to remember your filter preferences. It does not collect personal data or send your searches to external servers.\n\nQuestions or feedback? Use the support link on this listing."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=U9RfbwYkqfM",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/xk7p84TyYlr_59a-a477tt6YJ0Ji4Sh35Ujb3UkUbCEkzNgdEltGDCZ3dxGuPNTzLvnRyXkkmbAT_a1tzdJns6WxEA",
+              "https://lh3.googleusercontent.com/_U6Y86Wae1sM2e2HhtpeVwgKyy50ftN25r5jWp7CKjgzw3XzFe2TL3WSuGhxROU317Pf5bhAAZGoAznpOYVarSBn"
+            ],
+            "analytics": {
+              "totalInstalls": 167,
+              "installations": [
+                {
+                  "date": "03-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 9
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 9
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 18
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "03-06-2026",
+                  "total": 26
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 29
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 28
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 31
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 33
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 33
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 35
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 40
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 41
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 44
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 48
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 49
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 51
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 52
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 54
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 55
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 53
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 54
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 58
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 56
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 60
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 59
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 57
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 58
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 62
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 69
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 74
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 85
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 65,
+                "BR": 7,
+                "IN": 7,
+                "GB": 6,
+                "DE": 2,
+                "other": 2
+              },
+              "uninstalls": 57,
+              "uninstallsOverTime": [
+                {
+                  "date": "03-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 5
+                }
+              ],
+              "uninstallsByRegion": {},
+              "pageViews": 269,
+              "pageViewsOverTime": [
+                {
+                  "date": "03-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 14
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 16
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 17
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 17
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 27
+                }
+              ],
+              "pageViewsBySource": {
+                "chatgpt_com": 17,
+                "chrome-ntp-icon": 2,
+                "ext_sidebar": 20,
+                "ext_app_menu": 4,
+                "app-launcher": 2,
+                "copilot_com": 1
+              },
+              "impressions": 435,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "03-06-2026",
+                  "total": 23
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 14
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 15
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 9
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 19
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 16
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 15
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 18
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 19
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 25
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 26
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 25
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 19
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 35
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 43
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 52,
+                "disabled": 18,
+                "enabledPct": 74.3,
+                "disabledPct": 25.7,
+                "total": 70,
+                "date": "30-06-2026",
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": [
+                {
+                  "date": "03-06-2026",
+                  "enabled": 17,
+                  "disabled": 5,
+                  "enabledPct": 77.3,
+                  "disabledPct": 22.7,
+                  "total": 22
+                },
+                {
+                  "date": "04-06-2026",
+                  "enabled": 19,
+                  "disabled": 5,
+                  "enabledPct": 79.2,
+                  "disabledPct": 20.8,
+                  "total": 24
+                },
+                {
+                  "date": "05-06-2026",
+                  "enabled": 19,
+                  "disabled": 5,
+                  "enabledPct": 79.2,
+                  "disabledPct": 20.8,
+                  "total": 24
+                },
+                {
+                  "date": "06-06-2026",
+                  "enabled": 22,
+                  "disabled": 4,
+                  "enabledPct": 84.6,
+                  "disabledPct": 15.4,
+                  "total": 26
+                },
+                {
+                  "date": "07-06-2026",
+                  "enabled": 25,
+                  "disabled": 6,
+                  "enabledPct": 80.6,
+                  "disabledPct": 19.4,
+                  "total": 31
+                },
+                {
+                  "date": "08-06-2026",
+                  "enabled": 27,
+                  "disabled": 5,
+                  "enabledPct": 84.4,
+                  "disabledPct": 15.6,
+                  "total": 32
+                },
+                {
+                  "date": "09-06-2026",
+                  "enabled": 26,
+                  "disabled": 5,
+                  "enabledPct": 83.9,
+                  "disabledPct": 16.1,
+                  "total": 31
+                },
+                {
+                  "date": "10-06-2026",
+                  "enabled": 29,
+                  "disabled": 4,
+                  "enabledPct": 87.9,
+                  "disabledPct": 12.1,
+                  "total": 33
+                },
+                {
+                  "date": "11-06-2026",
+                  "enabled": 25,
+                  "disabled": 7,
+                  "enabledPct": 78.1,
+                  "disabledPct": 21.9,
+                  "total": 32
+                },
+                {
+                  "date": "12-06-2026",
+                  "enabled": 17,
+                  "disabled": 18,
+                  "enabledPct": 48.6,
+                  "disabledPct": 51.4,
+                  "total": 35
+                },
+                {
+                  "date": "13-06-2026",
+                  "enabled": 17,
+                  "disabled": 21,
+                  "enabledPct": 44.7,
+                  "disabledPct": 55.3,
+                  "total": 38
+                },
+                {
+                  "date": "14-06-2026",
+                  "enabled": 18,
+                  "disabled": 20,
+                  "enabledPct": 47.4,
+                  "disabledPct": 52.6,
+                  "total": 38
+                },
+                {
+                  "date": "15-06-2026",
+                  "enabled": 21,
+                  "disabled": 19,
+                  "enabledPct": 52.5,
+                  "disabledPct": 47.5,
+                  "total": 40
+                },
+                {
+                  "date": "16-06-2026",
+                  "enabled": 21,
+                  "disabled": 16,
+                  "enabledPct": 56.8,
+                  "disabledPct": 43.2,
+                  "total": 37
+                },
+                {
+                  "date": "17-06-2026",
+                  "enabled": 23,
+                  "disabled": 17,
+                  "enabledPct": 57.5,
+                  "disabledPct": 42.5,
+                  "total": 40
+                },
+                {
+                  "date": "18-06-2026",
+                  "enabled": 22,
+                  "disabled": 14,
+                  "enabledPct": 61.1,
+                  "disabledPct": 38.9,
+                  "total": 36
+                },
+                {
+                  "date": "19-06-2026",
+                  "enabled": 18,
+                  "disabled": 13,
+                  "enabledPct": 58.1,
+                  "disabledPct": 41.9,
+                  "total": 31
+                },
+                {
+                  "date": "20-06-2026",
+                  "enabled": 19,
+                  "disabled": 15,
+                  "enabledPct": 55.9,
+                  "disabledPct": 44.1,
+                  "total": 34
+                },
+                {
+                  "date": "21-06-2026",
+                  "enabled": 26,
+                  "disabled": 13,
+                  "enabledPct": 66.7,
+                  "disabledPct": 33.3,
+                  "total": 39
+                },
+                {
+                  "date": "22-06-2026",
+                  "enabled": 30,
+                  "disabled": 14,
+                  "enabledPct": 68.2,
+                  "disabledPct": 31.8,
+                  "total": 44
+                },
+                {
+                  "date": "23-06-2026",
+                  "enabled": 32,
+                  "disabled": 14,
+                  "enabledPct": 69.6,
+                  "disabledPct": 30.4,
+                  "total": 46
+                },
+                {
+                  "date": "24-06-2026",
+                  "enabled": 30,
+                  "disabled": 16,
+                  "enabledPct": 65.2,
+                  "disabledPct": 34.8,
+                  "total": 46
+                },
+                {
+                  "date": "25-06-2026",
+                  "enabled": 31,
+                  "disabled": 14,
+                  "enabledPct": 68.9,
+                  "disabledPct": 31.1,
+                  "total": 45
+                },
+                {
+                  "date": "26-06-2026",
+                  "enabled": 30,
+                  "disabled": 15,
+                  "enabledPct": 66.7,
+                  "disabledPct": 33.3,
+                  "total": 45
+                },
+                {
+                  "date": "27-06-2026",
+                  "enabled": 35,
+                  "disabled": 14,
+                  "enabledPct": 71.4,
+                  "disabledPct": 28.6,
+                  "total": 49
+                },
+                {
+                  "date": "28-06-2026",
+                  "enabled": 38,
+                  "disabled": 17,
+                  "enabledPct": 69.1,
+                  "disabledPct": 30.9,
+                  "total": 55
+                },
+                {
+                  "date": "29-06-2026",
+                  "enabled": 43,
+                  "disabled": 19,
+                  "enabledPct": 69.4,
+                  "disabledPct": 30.6,
+                  "total": 62
+                },
+                {
+                  "date": "30-06-2026",
+                  "enabled": 52,
+                  "disabled": 18,
+                  "enabledPct": 74.3,
+                  "disabledPct": 25.7,
+                  "total": 70
+                }
+              ]
+            },
+            "created": "May 17, 2026",
+            "prompts": 96,
+            "estimatedTime": "5 hours",
+            "youtube": "https://youtu.be/-saFrB1W9ug",
+            "github": "https://github.com/dpw1/youtube-filter-pro"
+          },
+          {
+            "slug": "claude-deep-search",
+            "chromeExtensionId": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "name": "Claude Message Search: Search Across All Your Past Conversations",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/mcn5iQN1cvgDAg-D53kSenW9tO29dnyiDOh9Mq2HFrS08NK7lzb7jOyWYOCX7-gpWf837NNuLGBSN6JEZgfPVt6NTw",
+            "tagline": "Full-text search across all your Claude conversations. Fully local, fully private. No servers.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
+            "version": "1.0.08",
+            "lastUpdated": "2026-07-02",
+            "category": "AI Assistant",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago?",
+              "full": "Ever lost track of an old Claude conversation? Spent minutes scrolling through chat titles trying to find an answer you know you got weeks ago? \n\nClaude Deep Search adds full-text search across your entire Claude.ai history - something the built-in sidebar search does not do on its own. \n\nAnd it's all 100% private. All conversations are stored locally (via IndexedDB) and never leave your machine.\n\n---\n\nHow to use\n\n1. Install the extension\n2. Click on the button \"Deep Search\" below the \"Search\" button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac) \n3. Search away!"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=GxNi1OxwVIQ",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/h4PK7js_fXI4bZEmOlAxrf2J0OVicq6imF3fIPt0lFn3qxHmjkkjMWhv6BOTbfBrXIogMfFQuSieaA7vEY3-S_QN",
+              "https://lh3.googleusercontent.com/HaYxIKv7chzoj-gDHdxRdxAydy2hZbQZ4sQwm5gIzh17L1gl6O_vAictkZpncEKyTzb7TxzooWQT1NVCVnj4-DsGCy0",
+              "https://lh3.googleusercontent.com/cpNwIBaKNxEhvOJC8Tnk7In0kGzDLyUarbXCbqdKaH090L-O-e1x0MheXVw7ssP9PVq0u57dHT6rUlw3j8M3koBKDS8"
+            ],
+            "analytics": {
+              "totalInstalls": 43,
+              "installations": [
+                {
+                  "date": "03-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 1
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "03-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 3
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 36,
+                "IN": 2,
+                "BR": 1
+              },
+              "uninstalls": 4,
+              "uninstallsOverTime": [
+                {
+                  "date": "24-06-2026",
+                  "total": 4
+                }
+              ],
+              "uninstallsByRegion": {},
+              "pageViews": 26,
+              "pageViewsOverTime": [
+                {
+                  "date": "04-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 1
+                }
+              ],
+              "pageViewsBySource": {},
+              "impressions": 34,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "04-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 2
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 3,
+                "disabled": 0,
+                "enabledPct": 100,
+                "disabledPct": 0,
+                "total": 3,
+                "date": "30-06-2026",
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": [
+                {
+                  "date": "03-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "04-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "05-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "06-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "07-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "08-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "09-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "10-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "11-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "12-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "13-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "14-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "15-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "16-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "20-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "22-06-2026",
+                  "enabled": 2,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 2
+                },
+                {
+                  "date": "23-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "24-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "25-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "26-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "27-06-2026",
+                  "enabled": 2,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 2
+                },
+                {
+                  "date": "28-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "30-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                }
+              ]
+            },
+            "created": "May 11, 2026",
+            "prompts": 41,
+            "estimatedTime": "3 hours",
+            "youtube": "https://youtu.be/BGhB0gFwv1M",
+            "github": "https://github.com/dpw1/claude-search"
+          },
+          {
+            "slug": "instagram-comments-exporter",
+            "chromeExtensionId": "dpfdehgiffggecppcbkdacbifbljeiii",
+            "name": "Instagram Comments Exporter: Export comments to CSV, JSON, XLSX, or TXT",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/L3hjuWQUmchkwOtBzPxgOpulDvlmcZjleO-hMaGPyrVBwpNS7N3XKyhGxCkXhGxqZ6PTuYZISFpjfYK9blD9_OdjazY",
+            "tagline": "Extract Instagram post and Reel comments with nested replies, pause/resume, and export to CSV, JSON, XLSX, or TXT.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/dpfdehgiffggecppcbkdacbifbljeiii",
+            "version": "1.0.14",
+            "lastUpdated": "2026-07-02",
+            "category": "Social Media",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever needed every comment on an Instagram post or Reel - including the replies - and realized there is no built-in way to download them? Or spent way too long copying and pasting into a spreadsheet, one comment at a time?",
+              "full": "Have you ever needed every comment on an Instagram post or Reel - including the replies - and realized there is no built-in way to download them? Or spent way too long copying and pasting into a spreadsheet, one comment at a time?\n\nNot anymore!\n\nWHAT IT DOES \nInstagram Comments Exporter adds a floating button on Instagram posts and Reels. Open it to extract comments in one place: usernames, text, likes, timestamps, verified badges, profile pictures, and nested replies included.\n\nStart extraction and watch progress live. Pause anytime, resume later, or pick up a previous job from History. Browse everything in a clean table inside the extension, then export to CSV, Excel (XLSX), JSON, or TXT whenever you are ready.\n\nIt only runs on Instagram post and Reel pages, so it stays out of the way everywhere else.\n\nWHO IS THIS FOR \nCreators, social media managers, researchers, and anyone who needs Instagram comment data organized and exportable. Especially useful for posts with long threads, heavy reply chains, or comment counts too large to copy by hand.\n\nHOW DOES IT WORK\n1. Install the extension and open any Instagram post or Reel while logged in.\n2. Click the floating button to open the exporter. (it will automatically show up on the bottom right)\n3. Hit Start to collect comments and replies. You can pause whenever you need to and continue later.\n4. Review the results in the Comments tab, or revisit past extractions in History.\n5. Click Export and choose CSV, Excel, JSON, or TXT.\n\nIS IT FREE? \n100%. No trial, no paywall, no premium tier.\n\nIS IT SECURE? \nYour extracted comments are stored locally in your browser, not on our servers.\n\nNo ads, no selling your data, no third-party tracking. Optional feedback you send through the extension is submitted only if you choose to send it.\n\nFEEDBACK, BUGS OR QUESTIONS? \nUse the Bugs & Feedback tab inside the extension, or email CodedCitadel@gmail.com"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=XAoQX6iUgK0",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/MChBaQ9ty8HgJEI-GSgcrbCBk53md2BnBbXHV3Kd4ajk6CJQGXp0xBK9n537BAiA0d4TzP6nSK8nMwcgg65y7kT-vQ",
+              "https://lh3.googleusercontent.com/cH5ziTnmB2zybyB8KKAhOmq9bwt47KXlLZkNnWo7TtKBlattOFtPe4lGkiVSxPDy8yUJeel83ZMFHNWpMa8Z5d-EhWI"
+            ],
+            "analytics": {
+              "totalInstalls": 20,
+              "installations": [
+                {
+                  "date": "19-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 1
+                }
+              ],
+              "weeklyUsers": [],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 20
+              },
+              "uninstalls": 0,
+              "uninstallsOverTime": [
+                {
+                  "date": "19-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 0
+                }
+              ],
+              "uninstallsByRegion": {},
+              "pageViews": 7,
+              "pageViewsOverTime": [
+                {
+                  "date": "19-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 2
+                }
+              ],
+              "pageViewsBySource": {},
+              "impressions": 35,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "19-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 2
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 0,
+                "disabled": 0,
+                "enabledPct": 0,
+                "disabledPct": 0,
+                "total": 0,
+                "date": "02-07-2026",
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": []
+            },
+            "created": "June 18, 2026",
+            "prompts": 35,
+            "estimatedTime": "8 hours",
+            "youtube": "https://www.youtube.com/watch?v=XAoQX6iUgK0",
+            "github": "https://github.com/dpw1/instagram-comment-exporter"
+          },
+          {
+            "slug": "youtube-comments-exporter",
+            "chromeExtensionId": "epokpidfnienjjfncmhnallghfhaijbj",
+            "name": "YouTube Comments Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/4x9fxtByjyQCfo0pjqfSMxFBeccYhAm1MOrJJrAyxDkrODcz7ivgRo4QKtoCwMUIUB-rXPhVD-sGhD5-FQi6p3rE",
+            "tagline": "Export YouTube comments to CSV, JSON, TXT or analyze with Claude",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
+            "version": "1.0.32",
+            "lastUpdated": "2026-07-02",
+            "category": "Social Media",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.",
+              "full": "Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas.\n\nWhy install it:\n\n- Save time: Pull comments into CSV, JSON, or a TXT layout suited for analysis instead of copying threads by hand.\n- Flexible export: Download files, copy all to the clipboard, or open the payload in Claude or ChatGPT (your account on those sites).\n- Bulk workflow: download comments from multiple videos at once\nHistory: Recent exports help you revisit past runs.\n\nHow to use it:\n- Open a YouTube watch page\n- Click on the extension’s button\n- Click on \"Fetch Comments\" \n- Export or open in your preferred tool.\n\nNote\nClaude and ChatGPT are third-party services; this extension prepares and transfers text for you to use on those sites under your login. It is not affiliated with Google, YouTube, Anthropic, or OpenAI."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "#",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/7lwuBclIdsgaBYdnYb1hMUqD9FkNzTlduDTeKyQQnZUyUCTkjvPKavopJ_Egz9Nj6LenOuw2VGY_x7saL7tyeZPZ",
+              "https://lh3.googleusercontent.com/Ib_af_tpeZ--7F6BH4zwl5cVt8GvjS6eAyy7I4dhgb9TJGu0DtXYI_8A0I4rfFToHfY3AJv-IweZ4OCdP65S8tUEvg"
+            ],
+            "analytics": {
+              "totalInstalls": 37,
+              "installations": [
+                {
+                  "date": "03-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 1
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "30-06-2026",
+                  "total": 1
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 33,
+                "IN": 1
+              },
+              "uninstalls": 3,
+              "uninstallsOverTime": [
+                {
+                  "date": "09-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 1
+                }
+              ],
+              "uninstallsByRegion": {},
+              "pageViews": 10,
+              "pageViewsOverTime": [
+                {
+                  "date": "05-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 2
+                }
+              ],
+              "pageViewsBySource": {
+                "ext_sidebar": 1
+              },
+              "impressions": 33,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "03-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 1,
+                "disabled": 0,
+                "enabledPct": 100,
+                "disabledPct": 0,
+                "total": 1,
+                "date": "30-06-2026",
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": [
+                {
+                  "date": "30-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                }
+              ]
+            },
+            "created": "May 21, 2026",
+            "prompts": 116,
+            "estimatedTime": "8 hours",
+            "youtube": "https://youtu.be/m4iuYN7vsRo",
+            "github": "https://github.com/dpw1/youtube-comments-export"
+          },
+          {
+            "slug": "ai-bookmark",
+            "chromeExtensionId": "golankbkfnepjbpcekbcglcfgmbpgnmb",
+            "name": "AI Bookmark: Save & Revisit AI Replies - Claude, ChatGPT, Grok",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/XMwkwwJ3XFVxDcTcJgcU8Jd7Ms5cmGmevUTOFeuDk39KlInW8Ve-XG28EnJMdJFDVjtP9QFdWmdSl4_mJW3PqOEScyA",
+            "tagline": "Bookmark specific AI replies from Claude, ChatGPT and Grok and manage them in one place.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/golankbkfnepjbpcekbcglcfgmbpgnmb",
+            "version": "1.0.37",
+            "lastUpdated": "2026-07-02",
+            "category": "AI Assistant",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever gotten a perfect answer from Claude, ChatGPT, or Grok and then lost it in a sea of messages? Or spent ages scrolling through old chats trying to find that one reply you know was in there somewhere?",
+              "full": "Have you ever gotten a perfect answer from Claude, ChatGPT, or Grok and then lost it in a sea of messages? Or spent ages scrolling through old chats trying to find that one reply you know was in there somewhere?\n\nNot anymore!\n\nWHAT IT DOES\nAI Bookmark adds a small star button next to AI replies on Claude, ChatGPT, and Grok. Click it to save that exact reply - along with the prompt that produced it - to your personal library.\n\nEverything lives in one place. \n\nOpen the extension popup for your most recent saves, or use the full bookmark manager to search, filter by platform, sort, tag, and add notes. When you need the original context again, jump straight back to that reply in the conversation.\n\nIt only runs on Claude.ai, ChatGPT.com, and Grok.com, so it stays out of the way everywhere else.\n\nWHO IS THIS FOR\nAnyone who uses AI chat regularly and wants to keep the best answers organized. Especially useful if you work across Claude, ChatGPT, and Grok and need one library instead of three separate chat histories.\n\nHOW DOES IT WORK\n\n1. Install the extension and sign in with Google.\n2. Go to Claude.ai, ChatGPT.com, or Grok.com.\n3. Click the star on any AI reply you want to keep.\n4. Open the extension popup for quick access, or click View all bookmarks for search, tags, notes, and filters.\n5. Click any saved bookmark to reopen the conversation and scroll to that exact reply.\n\nIS IT FREE?\n100%. No trial, no paywall, no premium tier.\n\nIS IT SECURE?\nYour bookmarks are tied to your Google account and stored securely in your own private library. The extension only activates on Claude.ai, ChatGPT.com, and Grok.com, and only saves what you explicitly bookmark. No ads, no selling your data, no third-party tracking.\n\nFEEDBACK, BUGS OR QUESTIONS?\nCodedCitadel@gmail.com"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=WA5xLTMyykE",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/Dsyhl6GZkf-oNmXMuahuEIjZvgZQgQXMJGjXFSYQaaZ80Cwd96Oflgq2FqslJTAV_Lxx-WjUao3f6OXx-uu0zObzqw",
+              "https://lh3.googleusercontent.com/kc-0y6wbYDjhIfPed-ByVqpY_IVUwFSk0DlEkyIxN4nTzP0FZFAXhEuEmmUacqvq4Llvt6KZzc_yDtbgHBzBaNweOMU"
+            ],
+            "analytics": {
+              "totalInstalls": 31,
+              "installations": [
+                {
+                  "date": "12-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 4
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "23-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 2
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 29,
+                "BR": 1
+              },
+              "uninstalls": 6,
+              "uninstallsOverTime": [
+                {
+                  "date": "12-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 2
+                }
+              ],
+              "uninstallsByRegion": {},
+              "pageViews": 8,
+              "pageViewsOverTime": [
+                {
+                  "date": "12-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 1
+                }
+              ],
+              "pageViewsBySource": {},
+              "impressions": 36,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "12-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 2
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 2,
+                "disabled": 0,
+                "enabledPct": 100,
+                "disabledPct": 0,
+                "total": 2,
+                "date": "30-06-2026",
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": [
+                {
+                  "date": "23-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "24-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "25-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "27-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "enabled": 2,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 2
+                }
+              ]
+            },
+            "estimatedTime": "24 hours",
+            "created": "June 7, 2026",
+            "youtube": "https://www.youtube.com/watch?v=WA5xLTMyykE",
+            "prompts": 250,
+            "github": "https://github.com/dpw1/ai-bookmark"
+          },
+          {
+            "slug": "instagram-dm-exporter",
+            "chromeExtensionId": "hgojieiehkjgjhdnbglfhbcojeeggigi",
+            "name": "Instagram DM Exporter",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/KMLJjOLT-e2szDYHjS5o6AkN4htQ7gF9XcaYUyKdVQLpFiac1iZD0miiYQFazkhCRWxr4_x4Vh_iYAA98E_0UlYj",
+            "tagline": "Export Instagram direct message conversations as TXT, HTML, or JSON.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/hgojieiehkjgjhdnbglfhbcojeeggigi",
+            "version": "1.0.03",
+            "lastUpdated": "2026-07-02",
+            "category": "Social Media",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Exporting Instagram messages in the official way takes a long time.",
+              "full": "Exporting Instagram messages in the official way takes a long time. \n\nWith Instagram DM Exporter, you can export any Instagram direct message in one click! The entirety of the conversation: all single messages sent and received.\n\nYou can export as .TXT, .HTML or even .JSON.\n\nHow to use:\n\n- Go to the DM page. For example: https://www.instagram.com/direct/t/123\n- You will see a download icon on the top right\n- Click on it and you're done.\n\nPRIVACY\n\nYour conversations are not stored whatsoever. No external servers. It's 100% local and private."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=IzrBfg349Eo",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/i7LCz39sQrFFDl2T73q15Xf22pvtZmwPRMNQ309Z-JTjkPTeQSzxziPBEe9FqIjpjfODCh7rK1hRx4jgGr1jmMSM",
+              "https://lh3.googleusercontent.com/8nUi-UqhiqO4lv675yIH9Yt1SNmWKxUelj9IItLgjo_QU64tgJsKWoKVLszaZ5K0CjjalYJ4otjJgaSNwi4hdbzl"
+            ],
+            "analytics": {
+              "totalInstalls": 106,
+              "installations": [
+                {
+                  "date": "03-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 3
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "03-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 9
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 15
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 19
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 22
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 27
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 28
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 30
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 30
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 31
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 34
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 37
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 37
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 37
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 40
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 39
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 39
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 42
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 46
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 48
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 53
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 55
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 58
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 59
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 62
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 65
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 40,
+                "IN": 8,
+                "BR": 8,
+                "CA": 3,
+                "GB": 3,
+                "other": 3
+              },
+              "uninstalls": 23,
+              "uninstallsOverTime": [
+                {
+                  "date": "04-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 1
+                }
+              ],
+              "uninstallsByRegion": {},
+              "pageViews": 167,
+              "pageViewsOverTime": [
+                {
+                  "date": "03-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 22
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 17
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 9
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 14
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 4
+                }
+              ],
+              "pageViewsBySource": {
+                "ext_sidebar": 11,
+                "ext_app_menu": 3
+              },
+              "impressions": 177,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "03-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 18
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 14
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 3
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 50,
+                "disabled": 4,
+                "enabledPct": 92.6,
+                "disabledPct": 7.4,
+                "total": 54,
+                "date": "30-06-2026",
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": [
+                {
+                  "date": "03-06-2026",
+                  "enabled": 6,
+                  "disabled": 1,
+                  "enabledPct": 85.7,
+                  "disabledPct": 14.3,
+                  "total": 7
+                },
+                {
+                  "date": "04-06-2026",
+                  "enabled": 6,
+                  "disabled": 1,
+                  "enabledPct": 85.7,
+                  "disabledPct": 14.3,
+                  "total": 7
+                },
+                {
+                  "date": "05-06-2026",
+                  "enabled": 4,
+                  "disabled": 1,
+                  "enabledPct": 80,
+                  "disabledPct": 20,
+                  "total": 5
+                },
+                {
+                  "date": "06-06-2026",
+                  "enabled": 7,
+                  "disabled": 2,
+                  "enabledPct": 77.8,
+                  "disabledPct": 22.2,
+                  "total": 9
+                },
+                {
+                  "date": "07-06-2026",
+                  "enabled": 8,
+                  "disabled": 2,
+                  "enabledPct": 80,
+                  "disabledPct": 20,
+                  "total": 10
+                },
+                {
+                  "date": "08-06-2026",
+                  "enabled": 13,
+                  "disabled": 2,
+                  "enabledPct": 86.7,
+                  "disabledPct": 13.3,
+                  "total": 15
+                },
+                {
+                  "date": "09-06-2026",
+                  "enabled": 15,
+                  "disabled": 2,
+                  "enabledPct": 88.2,
+                  "disabledPct": 11.8,
+                  "total": 17
+                },
+                {
+                  "date": "10-06-2026",
+                  "enabled": 19,
+                  "disabled": 2,
+                  "enabledPct": 90.5,
+                  "disabledPct": 9.5,
+                  "total": 21
+                },
+                {
+                  "date": "11-06-2026",
+                  "enabled": 21,
+                  "disabled": 2,
+                  "enabledPct": 91.3,
+                  "disabledPct": 8.7,
+                  "total": 23
+                },
+                {
+                  "date": "12-06-2026",
+                  "enabled": 22,
+                  "disabled": 2,
+                  "enabledPct": 91.7,
+                  "disabledPct": 8.3,
+                  "total": 24
+                },
+                {
+                  "date": "13-06-2026",
+                  "enabled": 24,
+                  "disabled": 2,
+                  "enabledPct": 92.3,
+                  "disabledPct": 7.7,
+                  "total": 26
+                },
+                {
+                  "date": "14-06-2026",
+                  "enabled": 20,
+                  "disabled": 2,
+                  "enabledPct": 90.9,
+                  "disabledPct": 9.1,
+                  "total": 22
+                },
+                {
+                  "date": "15-06-2026",
+                  "enabled": 25,
+                  "disabled": 3,
+                  "enabledPct": 89.3,
+                  "disabledPct": 10.7,
+                  "total": 28
+                },
+                {
+                  "date": "16-06-2026",
+                  "enabled": 28,
+                  "disabled": 3,
+                  "enabledPct": 90.3,
+                  "disabledPct": 9.7,
+                  "total": 31
+                },
+                {
+                  "date": "17-06-2026",
+                  "enabled": 24,
+                  "disabled": 3,
+                  "enabledPct": 88.9,
+                  "disabledPct": 11.1,
+                  "total": 27
+                },
+                {
+                  "date": "18-06-2026",
+                  "enabled": 24,
+                  "disabled": 4,
+                  "enabledPct": 85.7,
+                  "disabledPct": 14.3,
+                  "total": 28
+                },
+                {
+                  "date": "19-06-2026",
+                  "enabled": 24,
+                  "disabled": 4,
+                  "enabledPct": 85.7,
+                  "disabledPct": 14.3,
+                  "total": 28
+                },
+                {
+                  "date": "20-06-2026",
+                  "enabled": 25,
+                  "disabled": 4,
+                  "enabledPct": 86.2,
+                  "disabledPct": 13.8,
+                  "total": 29
+                },
+                {
+                  "date": "21-06-2026",
+                  "enabled": 25,
+                  "disabled": 4,
+                  "enabledPct": 86.2,
+                  "disabledPct": 13.8,
+                  "total": 29
+                },
+                {
+                  "date": "22-06-2026",
+                  "enabled": 29,
+                  "disabled": 4,
+                  "enabledPct": 87.9,
+                  "disabledPct": 12.1,
+                  "total": 33
+                },
+                {
+                  "date": "23-06-2026",
+                  "enabled": 29,
+                  "disabled": 4,
+                  "enabledPct": 87.9,
+                  "disabledPct": 12.1,
+                  "total": 33
+                },
+                {
+                  "date": "24-06-2026",
+                  "enabled": 32,
+                  "disabled": 3,
+                  "enabledPct": 91.4,
+                  "disabledPct": 8.6,
+                  "total": 35
+                },
+                {
+                  "date": "25-06-2026",
+                  "enabled": 41,
+                  "disabled": 3,
+                  "enabledPct": 93.2,
+                  "disabledPct": 6.8,
+                  "total": 44
+                },
+                {
+                  "date": "26-06-2026",
+                  "enabled": 46,
+                  "disabled": 3,
+                  "enabledPct": 93.9,
+                  "disabledPct": 6.1,
+                  "total": 49
+                },
+                {
+                  "date": "27-06-2026",
+                  "enabled": 40,
+                  "disabled": 4,
+                  "enabledPct": 90.9,
+                  "disabledPct": 9.1,
+                  "total": 44
+                },
+                {
+                  "date": "28-06-2026",
+                  "enabled": 40,
+                  "disabled": 3,
+                  "enabledPct": 93,
+                  "disabledPct": 7,
+                  "total": 43
+                },
+                {
+                  "date": "29-06-2026",
+                  "enabled": 46,
+                  "disabled": 4,
+                  "enabledPct": 92,
+                  "disabledPct": 8,
+                  "total": 50
+                },
+                {
+                  "date": "30-06-2026",
+                  "enabled": 50,
+                  "disabled": 4,
+                  "enabledPct": 92.6,
+                  "disabledPct": 7.4,
+                  "total": 54
+                }
+              ]
+            },
+            "created": "May 26, 2026",
+            "prompts": 47,
+            "estimatedTime": "4 hours",
+            "youtube": "https://youtu.be/tBSZ1oD5OM8",
+            "github": "https://github.com/dpw1/instagram-dm-exporter"
+          },
+          {
+            "slug": "save-directly-to-drive",
+            "chromeExtensionId": "jadjgiiaompdjacagaomgogdihbpgcpg",
+            "name": "Save to Google Drive: Use Drive as Your Downloads Folder",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/yfpsx7AGdnzCssZEU7MTTDwee8G0VB-2PuTUj3zA2RgUh0KZNTFBpvV-Ln1tsIqvZDXI-wG1TUOLwqDGazKP0xruMvk",
+            "tagline": "Save downloads directly to Google Drive",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/jadjgiiaompdjacagaomgogdihbpgcpg",
+            "version": "1.0.39",
+            "lastUpdated": "2026-07-02",
+            "category": "Productivity",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "UPDATE JUNE 27th",
+              "full": "UPDATE JUNE 27th\nFixed all issues that some users reported about downloads not working.\n\n---\n\nSave downloaded files directly to your Google Drive.\n\nHow it works\n\n- Install the extension and click Connect Google Drive in the popup.\n- Right-click a file link or image on almost any website.\n- Choose \"Save to Google Drive\"\n- A small on-page message confirms progress; when it’s done, open the file in Drive with one click.\n\nFeatures\n\n- Right-click to save: works on file links and images across the web\n- Your folder: choose where files go in Drive (default: “Downloads”)\n- Rename before save: optional dialog to edit the filename before upload\n- Recent saves: quickly reopen your last uploads from the extension popup\n- Open Google Drive: one click from the popup to your Drive\n- Supports all major image formats\n\nFeatures coming soon (not coded yet)\n- Website to PDF and JPG => Google Drive - coming soon!\n- Gmail to PDF => Google Drive - coming soon!\n\nPrivacy & permissions\n\n- Files go only to your Google account. nothing is stored on third-party servers.\n- Saves happen only when you ask, nothing uploads in the background.\n- The extension uses Google’s drive.file scope: it can upload files you choose, but cannot browse, edit, or delete your existing Drive files.\n- Log out anytime from the extension menu.\n\nRequirements\nA Google account with Google Drive."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=RpVfrhAHSvw",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/Vl5ThSd-jXW_b9KEQ8fZsOEQTP_rS8_qKMQ1l_cMUtHSxeF4uMGqyZnxNhwXQJeb3Ezgitwx3zvrAvbdBlZo-D2T",
+              "https://lh3.googleusercontent.com/4il8Zk_U9ovRI7kVIUbN8VCMJjVl7NbqzRcZFJ2wZYPwCvRKK41ndzJJi61fl3UoVB1zew7k6qwfUgPQ5DqhqLZ1aQ"
+            ],
+            "analytics": {
+              "totalInstalls": 94,
+              "installations": [
+                {
+                  "date": "10-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 9
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 11
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "10-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 9
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 14
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 18
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 24
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 26
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 31
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 48,
+                "IN": 8,
+                "BR": 4,
+                "AU": 1,
+                "GB": 1,
+                "other": 1
+              },
+              "uninstalls": 29,
+              "uninstallsOverTime": [
+                {
+                  "date": "10-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 1
+                }
+              ],
+              "uninstallsByRegion": {},
+              "pageViews": 138,
+              "pageViewsOverTime": [
+                {
+                  "date": "10-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 9
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 16
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 15
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 20
+                }
+              ],
+              "pageViewsBySource": {
+                "ext_sidebar": 25,
+                "ext_app_menu": 13,
+                "app-launcher": 1
+              },
+              "impressions": 2245,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "10-06-2026",
+                  "total": 40
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 53
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 22
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 15
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 14
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 9
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 95
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 113
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 125
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 168
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 143
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 168
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 201
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 192
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 146
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 170
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 270
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 276
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 13,
+                "disabled": 5,
+                "enabledPct": 72.2,
+                "disabledPct": 27.8,
+                "total": 18,
+                "date": "30-06-2026",
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": [
+                {
+                  "date": "10-06-2026",
+                  "enabled": 2,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 2
+                },
+                {
+                  "date": "11-06-2026",
+                  "enabled": 2,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 2
+                },
+                {
+                  "date": "12-06-2026",
+                  "enabled": 2,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 2
+                },
+                {
+                  "date": "13-06-2026",
+                  "enabled": 2,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 2
+                },
+                {
+                  "date": "14-06-2026",
+                  "enabled": 2,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 2
+                },
+                {
+                  "date": "15-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "16-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "20-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "22-06-2026",
+                  "enabled": 7,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 7
+                },
+                {
+                  "date": "23-06-2026",
+                  "enabled": 8,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 8
+                },
+                {
+                  "date": "24-06-2026",
+                  "enabled": 10,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 10
+                },
+                {
+                  "date": "25-06-2026",
+                  "enabled": 9,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 9
+                },
+                {
+                  "date": "26-06-2026",
+                  "enabled": 11,
+                  "disabled": 1,
+                  "enabledPct": 91.7,
+                  "disabledPct": 8.3,
+                  "total": 12
+                },
+                {
+                  "date": "27-06-2026",
+                  "enabled": 11,
+                  "disabled": 1,
+                  "enabledPct": 91.7,
+                  "disabledPct": 8.3,
+                  "total": 12
+                },
+                {
+                  "date": "28-06-2026",
+                  "enabled": 20,
+                  "disabled": 1,
+                  "enabledPct": 95.2,
+                  "disabledPct": 4.8,
+                  "total": 21
+                },
+                {
+                  "date": "29-06-2026",
+                  "enabled": 8,
+                  "disabled": 6,
+                  "enabledPct": 57.1,
+                  "disabledPct": 42.9,
+                  "total": 14
+                },
+                {
+                  "date": "30-06-2026",
+                  "enabled": 13,
+                  "disabled": 5,
+                  "enabledPct": 72.2,
+                  "disabledPct": 27.8,
+                  "total": 18
+                }
+              ]
+            },
+            "created": "May 29, 2026",
+            "estimatedTime": "8 hours",
+            "youtube": "https://www.youtube.com/watch?v=D4-1VtvkdIw",
+            "prompts": 65,
+            "github": "https://github.com/dpw1/save-to-drive"
+          },
+          {
+            "slug": "claude-limit-monitor",
+            "chromeExtensionId": "mljfhcfnjbfibedpiaheeihpbjajfcal",
+            "name": "Claude Limit Monitor: Track Free Usage & When Limit Resets",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/TThizRC3TM9n_GJHluOZKAczUl3Gvq6LLDpjfzwSZoO3dCdVc1XwGucl4zcZzLWhxS2_b_IiMv06NvGlErHobPb5Xw",
+            "tagline": "Monitor your Claude.ai usage in real time. See how much free usage you have left and when your limit resets.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/mljfhcfnjbfibedpiaheeihpbjajfcal",
+            "version": "1.0.03",
+            "lastUpdated": "2026-07-02",
+            "category": "AI Assistant",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "Have you ever hit Claude's usage limit mid-conversation and had no idea it was coming? Or spent time looking for when exactly your allowance resets so you can get back to work?",
+              "full": "Have you ever hit Claude's usage limit mid-conversation and had no idea it was coming? Or spent time looking for when exactly your allowance resets so you can get back to work? \n\nNot anymore!\n\nWHAT IT DOES\nClaude Limit Monitor adds a small status bar to claude.ai showing exactly how much of your usage allowance you've used and when it resets. It's extremely lightweight and runs exclusively on the Claude.ai website, ensuring that it doesn't slow down your browsing experience.\n\nYou can see your current session limit, your weekly limit, and a countdown to the next reset, all while you chat. \n\nYou can also turn on a desktop notification so Chrome pings you the moment your limit refreshes.\n\nWHO IS THIS FOR\nAnyone who uses Claude regularly and has ever been caught off guard by a usage limit. Especially useful if you rely on Claude for work and need to plan around reset times.\n\nHOW DOES IT WORK\n1. Go to Claude.ai \n2. You should see the widget above your chat box. \n3. (optional) click on the Chrome Extension popup to change options as per your needs.\n\nIS IT FREE?\n100%. No trial, no paywall, no premium tier.\n\nIS IT SECURE?\n100% private. It only runs on claude.ai, reads usage data that's already on the page, and sends nothing anywhere. No accounts, no tracking, no data collection of any kind.\n\nFEEDBACK, BUGS OR QUESTIONS?\nCodedCitadel@gmail.com"
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=iyXIi6pNq-M",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/jsQMFy85gcSp9xjYgO5cByX33eTZxUwCnjxmUCoSGqGJTBC9PH5eVl9_ZeBcJ3EmCq6lWogJ__5aytc4nIzFLwSxHg",
+              "https://lh3.googleusercontent.com/sHA-Ktoe5FbTQS1jmsF1oH4aEEAW2SWRiskAtiVZLbQGo5jm4P2qMVRdkWapQk5ac4oSTk4vykVTD-hO86JpXYvW6g"
+            ],
+            "analytics": {
+              "totalInstalls": 128,
+              "installations": [
+                {
+                  "date": "03-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 3
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "03-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 15
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 17
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 21
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 26
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 29
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 33
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 35
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 42
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 44
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 49
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 53
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 55
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 59
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 63
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 61
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 66
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 72
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 72
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 77
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 79
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "IN": 50,
+                "US": 44,
+                "BR": 4,
+                "AU": 3
+              },
+              "uninstalls": 23,
+              "uninstallsOverTime": [
+                {
+                  "date": "07-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 1
+                }
+              ],
+              "uninstallsByRegion": {},
+              "pageViews": 268,
+              "pageViewsOverTime": [
+                {
+                  "date": "03-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 14
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 15
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 17
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 10
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 7
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 5
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 14
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 16
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 17
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 10
+                }
+              ],
+              "pageViewsBySource": {
+                "ext_app_menu": 9,
+                "ext_sidebar": 32,
+                "sh/x/srp/wr/m1/0": 2
+              },
+              "impressions": 1214,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "03-06-2026",
+                  "total": 8
+                },
+                {
+                  "date": "04-06-2026",
+                  "total": 27
+                },
+                {
+                  "date": "05-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "06-06-2026",
+                  "total": 28
+                },
+                {
+                  "date": "07-06-2026",
+                  "total": 24
+                },
+                {
+                  "date": "08-06-2026",
+                  "total": 51
+                },
+                {
+                  "date": "09-06-2026",
+                  "total": 62
+                },
+                {
+                  "date": "10-06-2026",
+                  "total": 98
+                },
+                {
+                  "date": "11-06-2026",
+                  "total": 49
+                },
+                {
+                  "date": "12-06-2026",
+                  "total": 55
+                },
+                {
+                  "date": "13-06-2026",
+                  "total": 25
+                },
+                {
+                  "date": "14-06-2026",
+                  "total": 45
+                },
+                {
+                  "date": "15-06-2026",
+                  "total": 70
+                },
+                {
+                  "date": "16-06-2026",
+                  "total": 35
+                },
+                {
+                  "date": "17-06-2026",
+                  "total": 48
+                },
+                {
+                  "date": "18-06-2026",
+                  "total": 84
+                },
+                {
+                  "date": "19-06-2026",
+                  "total": 34
+                },
+                {
+                  "date": "20-06-2026",
+                  "total": 37
+                },
+                {
+                  "date": "21-06-2026",
+                  "total": 34
+                },
+                {
+                  "date": "22-06-2026",
+                  "total": 64
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 40
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 56
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 46
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 55
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 23
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 29
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 45
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 31
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 61,
+                "disabled": 4,
+                "enabledPct": 93.8,
+                "disabledPct": 6.2,
+                "total": 65,
+                "date": "30-06-2026",
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": [
+                {
+                  "date": "03-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "04-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "05-06-2026",
+                  "enabled": 4,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 4
+                },
+                {
+                  "date": "06-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                },
+                {
+                  "date": "07-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "08-06-2026",
+                  "enabled": 3,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 3
+                },
+                {
+                  "date": "09-06-2026",
+                  "enabled": 5,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 5
+                },
+                {
+                  "date": "10-06-2026",
+                  "enabled": 12,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 12
+                },
+                {
+                  "date": "11-06-2026",
+                  "enabled": 17,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 17
+                },
+                {
+                  "date": "12-06-2026",
+                  "enabled": 18,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 18
+                },
+                {
+                  "date": "13-06-2026",
+                  "enabled": 13,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 13
+                },
+                {
+                  "date": "14-06-2026",
+                  "enabled": 24,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 24
+                },
+                {
+                  "date": "15-06-2026",
+                  "enabled": 31,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 31
+                },
+                {
+                  "date": "16-06-2026",
+                  "enabled": 30,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 30
+                },
+                {
+                  "date": "17-06-2026",
+                  "enabled": 31,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 31
+                },
+                {
+                  "date": "18-06-2026",
+                  "enabled": 38,
+                  "disabled": 1,
+                  "enabledPct": 97.4,
+                  "disabledPct": 2.6,
+                  "total": 39
+                },
+                {
+                  "date": "19-06-2026",
+                  "enabled": 34,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 34
+                },
+                {
+                  "date": "20-06-2026",
+                  "enabled": 28,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 28
+                },
+                {
+                  "date": "21-06-2026",
+                  "enabled": 35,
+                  "disabled": 1,
+                  "enabledPct": 97.2,
+                  "disabledPct": 2.8,
+                  "total": 36
+                },
+                {
+                  "date": "22-06-2026",
+                  "enabled": 38,
+                  "disabled": 1,
+                  "enabledPct": 97.4,
+                  "disabledPct": 2.6,
+                  "total": 39
+                },
+                {
+                  "date": "23-06-2026",
+                  "enabled": 40,
+                  "disabled": 3,
+                  "enabledPct": 93,
+                  "disabledPct": 7,
+                  "total": 43
+                },
+                {
+                  "date": "24-06-2026",
+                  "enabled": 46,
+                  "disabled": 2,
+                  "enabledPct": 95.8,
+                  "disabledPct": 4.2,
+                  "total": 48
+                },
+                {
+                  "date": "25-06-2026",
+                  "enabled": 49,
+                  "disabled": 2,
+                  "enabledPct": 96.1,
+                  "disabledPct": 3.9,
+                  "total": 51
+                },
+                {
+                  "date": "26-06-2026",
+                  "enabled": 53,
+                  "disabled": 1,
+                  "enabledPct": 98.1,
+                  "disabledPct": 1.9,
+                  "total": 54
+                },
+                {
+                  "date": "27-06-2026",
+                  "enabled": 49,
+                  "disabled": 2,
+                  "enabledPct": 96.1,
+                  "disabledPct": 3.9,
+                  "total": 51
+                },
+                {
+                  "date": "28-06-2026",
+                  "enabled": 67,
+                  "disabled": 2,
+                  "enabledPct": 97.1,
+                  "disabledPct": 2.9,
+                  "total": 69
+                },
+                {
+                  "date": "29-06-2026",
+                  "enabled": 63,
+                  "disabled": 2,
+                  "enabledPct": 96.9,
+                  "disabledPct": 3.1,
+                  "total": 65
+                },
+                {
+                  "date": "30-06-2026",
+                  "enabled": 61,
+                  "disabled": 4,
+                  "enabledPct": 93.8,
+                  "disabledPct": 6.2,
+                  "total": 65
+                }
+              ]
+            },
+            "estimatedTime": "4 hours",
+            "created": "June 4, 2026",
+            "youtube": "https://www.youtube.com/watch?v=iyXIi6pNq-M",
+            "prompts": 49,
+            "github": "https://github.com/dpw1/claude-limit-monitor"
+          },
+          {
+            "slug": "youtube-keyword-alert",
+            "chromeExtensionId": "pniolepdakiocafjiibgiabkcdhgkfep",
+            "name": "YouTube Keyword Alert: Get Notified When a Video Appears on YouTube",
+            "icon": "⚡",
+            "chromeExtensionIcon": "https://lh3.googleusercontent.com/6LgKo_I0EBK3q3_2m_rFZH6QMMSxvFQBKlxrFs5k3jk2NhyNQoDcI3j9Oo6jrxPK5Uw5N3VWHdhiJFuvqDMADI_fHd8",
+            "tagline": "Get notified when new YouTube videos match your keyword filters.",
+            "status": "live",
+            "price": "Free",
+            "revenue": "$0",
+            "chromeStoreUrl": "https://chromewebstore.google.com/detail/pniolepdakiocafjiibgiabkcdhgkfep",
+            "version": "1.0.07",
+            "lastUpdated": "2026-07-02",
+            "category": "Social Media",
+            "platform": "Google Chrome",
+            "description": {
+              "short": "YouTube Keyword Alert notifies you the moment a new video matching your keywords is uploaded, without ever opening YouTube.",
+              "full": "YouTube Keyword Alert notifies you the moment a new video matching your keywords is uploaded, without ever opening YouTube.\n\nLet's say you want to see all GTA 6 news across YouTube, but you don't want to research daily. \n\nYou already know channel 'FakeLeaks' always posts fake news, so you want to excludei it. Also, you do not want videos from channels with under 10k subscribers. \n\nAfter installing this extension, you can set the filters:\n\n- Add the keywords 'gta 6' and 'news';\n- Exclude the channel 'FakeLeaks';\n- set a minimum of 10,000 subscribers.\n\nAnd you'll be notified the moment a new video with these conditions is uploaded to YouTube.\n\nHOW DOES IT WORK\nYouTube Keyword Alert perform searches on YouTube matching your keywords every hour. (or every interval that you set).\n\nSet up filters with include keywords, exclude words from titles or channel names, duration limits, subscriber ranges and more. \n\nEnable the ones you want, pick how often to check (from every 30 minutes up to once a week) and let it run.\n\nWhen new videos are found, you can get Chrome notifications, toasts on YouTube tabs and a full results list inside the extension.\n\nIt checks in the background even if you close the dashboard, so you are not stuck refreshing YouTube all day.\n\nWHO IS THIS FOR\nCreators, researchers, news trackers, hobbyists and anyone who wants to stay on top of specific YouTube topics without babysitting the site.\n\n\nHOW DOES IT WORK\n1. Install the extension and open the dashboard from the toolbar popup.\n2. Create a filter with your keywords and any rules you want (duration, subscribers, exclusions, etc.).\n3. Enable the filter and choose your polling interval and notification settings in Settings.\n4. The extension checks YouTube in the background on your schedule and stores matching videos in Results.\n5. When something new is found, you get notified (based on your settings) and can open the video straight from the results page.\n\nIS IT FREE?\n100%. No trial, no paywall, no premium tier.\n\nIS IT SECURE?\nYour filters and results are stored locally in your browser, not on our servers.\n\nNo login, no ads, no selling your data, no third-party tracking. The extension only talks to YouTube to run your searches while you are logged in there.\n\nFEEDBACK, BUGS OR QUESTIONS?\nEmail: CodedCitadel@gmail.com \n\nOr leave a review on the Chrome Web Store if the extension helped you out."
+            },
+            "audience": [],
+            "features": [],
+            "buildStory": {
+              "youtubeUrl": "https://www.youtube.com/watch?v=CdIXEKUTewE",
+              "builtInDays": null,
+              "techStack": [],
+              "episode": ""
+            },
+            "primaryKeywords": [],
+            "geo": [],
+            "screenshots": [
+              "https://lh3.googleusercontent.com/NHaDB0RGVhx9Ugfx5Eqmhmg4TWgBUtbAc3XzqtmF_e28vGRHx4rhU8dOHl4Se0mIDVxMJJ823OjBpnHwKNj7Mk0_JHU",
+              "https://lh3.googleusercontent.com/oh--Cj76kNhHplIm7ubiPx_SO2eVlgCNDfFYwjgra_N8guL3NW1-7J0MhDyx6DtfnGnlPSCUwnfu0g1KZlPjip0KVg"
+            ],
+            "analytics": {
+              "totalInstalls": 19,
+              "installations": [
+                {
+                  "date": "22-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 4
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 2
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 4
+                }
+              ],
+              "weeklyUsers": [
+                {
+                  "date": "30-06-2026",
+                  "total": 1
+                }
+              ],
+              "weeklyUsersByRegion": {},
+              "installsByRegion": {
+                "US": 19
+              },
+              "uninstalls": 0,
+              "uninstallsOverTime": [
+                {
+                  "date": "22-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 0
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 0
+                }
+              ],
+              "uninstallsByRegion": {},
+              "pageViews": 13,
+              "pageViewsOverTime": [
+                {
+                  "date": "22-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 3
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 1
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 2
+                }
+              ],
+              "pageViewsBySource": {
+                "ext_sidebar": 2
+              },
+              "impressions": 151,
+              "impressionsAcrossChromeWebStore": [
+                {
+                  "date": "22-06-2026",
+                  "total": 6
+                },
+                {
+                  "date": "23-06-2026",
+                  "total": 13
+                },
+                {
+                  "date": "24-06-2026",
+                  "total": 17
+                },
+                {
+                  "date": "25-06-2026",
+                  "total": 12
+                },
+                {
+                  "date": "26-06-2026",
+                  "total": 22
+                },
+                {
+                  "date": "27-06-2026",
+                  "total": 11
+                },
+                {
+                  "date": "28-06-2026",
+                  "total": 22
+                },
+                {
+                  "date": "29-06-2026",
+                  "total": 24
+                },
+                {
+                  "date": "30-06-2026",
+                  "total": 24
+                }
+              ],
+              "enabledVsDisabled": {
+                "enabled": 1,
+                "disabled": 0,
+                "enabledPct": 100,
+                "disabledPct": 0,
+                "total": 1,
+                "date": "30-06-2026",
+                "slices": []
+              },
+              "enabledVsDisabledOverTime": [
+                {
+                  "date": "30-06-2026",
+                  "enabled": 1,
+                  "disabled": 0,
+                  "enabledPct": 100,
+                  "disabledPct": 0,
+                  "total": 1
+                }
+              ]
+            },
+            "created": "June 21, 2026",
+            "prompts": 55,
+            "estimatedTime": "10 hours",
+            "youtube": "https://www.youtube.com/watch?v=CdIXEKUTewE",
+            "github": "https://github.com/dpw1/youtube-keyword-alert"
+          }
+        ]
+      }
     }
   ]
 }

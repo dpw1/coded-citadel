@@ -2,6 +2,40 @@
   "updatedAt": "2026-07-02",
   "apps": [
     {
+      "slug": "custom-data",
+      "chromeExtensionId": "amcnbfpogccggckogifbdjekbammlahl",
+      "name": "Hide Reposts for Bluesky",
+      "icon": "⚡",
+      "chromeExtensionIcon": "https://lh3.googleusercontent.com/5Lj821vH3okcPbqZJQrDxMe8sHvVj4KUAGrNuRWCMAqrpWuXuOmFW8k2KyPZf-R4adc-qLPgFFPaz0XvgoGKTGGB",
+      "tagline": "Hide reposts from your Following timeline on Bluesky. One click, no page reload. Keep your feed original-posts only.",
+      "status": "coming-soon",
+      "price": "Free",
+      "revenue": "$0",
+      "chromeStoreUrl": "https://chromewebstore.google.com/detail/amcnbfpogccggckogifbdjekbammlahl",
+      "version": "1.0.1",
+      "lastUpdated": "2026-07-02",
+      "category": "Productivity",
+      "platform": "Google Chrome",
+      "description": {
+        "short": "Tired of opening Bluesky and your Following feed is basically repost after repost?",
+        "full": "Tired of opening Bluesky and your Following feed is basically repost after repost?\n\nWant to keep following people you like, but only see what they actually wrote themselves?\n\nWish you could pick which accounts get filtered, turn it on with one click, and never reload the page?\n\nNow you can!\n\nHide Reposts for Bluesky adds a simple “Hide Reposts” control right inside bsky.app, so you can clean up your Following timeline without unfollowing anyone or fighting the default feed.\n\nHOW IT WORKS\n• On bsky.app, click **Hide Reposts** in the sidebar.\n• Turn hiding on or off with one toggle.\n• Choose which followed accounts to filter using checkboxes (search, paginate, or select all).\n• Close the menu and keep scrolling — reposts from selected accounts are hidden on your **Following** tab in real time.\n• Your settings are saved automatically and synced across Chrome sessions.\n\nFILTER BY ACCOUNT\n\n☑️ Per-account control — Check the people whose reposts you want hidden. Everyone else stays visible.\n\n🔍 Search — Quickly find accounts in your following list by name or handle.\n\n📄 Pagination — Browse your full following list 15 accounts at a time.\n\n✅ Select all / Unselect all — One click to check or clear everyone when you don’t feel like clicking hundreds of boxes.\n\n🔄 Fresh following list — Each time you open the menu, your following list is refreshed so new follows show up.\n\nSMART FEED BEHAVIOR\n\n👁 Reposts only — Original posts are never hidden. Only items with a “reposted by” label are affected.\n\n📍 Following tab only — Works on your **Following** timeline. Discover and the rest of the site are left alone.\n\n⚡ No page reload — Toggle on, close the menu, and the feed updates immediately.\n\n📥 Feed backfill — If hiding reposts leaves your timeline looking empty, the extension nudges Bluesky to load more posts automatically.\n\n📊 Stats — See how many reposts you’ve hidden over time, right inside the menu.\n\nFEATURES\n\n• Real-time hiding as posts load and as you scroll\n• Clean modal that fits Bluesky’s dark UI\n• Master on/off toggle without losing your account selections\n• Following list loaded from your Bluesky session (no separate login)\n• Lightweight: only needs storage permission\n• Available in English, German, Spanish, French, Japanese, Korean, Portuguese, and Simplified Chinese\n\nWHO IT’S FOR\n• Anyone whose Following feed feels noisy with reshares\n• People who want original posts only, but don’t want to unfollow half their list\n• Any BlueSky user who wants per-account control instead of an all-or-nothing block\n\nPRIVACY\nHide Reposts for Bluesky runs only on bsky.app. It uses Chrome storage to remember your settings and following list cache. It does not collect personal data or send your feed to external servers.\n\nQuestions or feedback?\nCodedCitadel@gmail.com"
+      },
+      "audience": [],
+      "features": [],
+      "buildStory": {
+        "youtubeUrl": "#",
+        "builtInDays": null,
+        "techStack": [],
+        "episode": ""
+      },
+      "primaryKeywords": [],
+      "geo": [],
+      "screenshots": [
+        "https://lh3.googleusercontent.com/iIPSgXriGO4C3w2Ki-29Ptv7yg2aublS99k82sYfgd4-zhfhgocpNv_U9bQRoc8g1IarUba0M_SgwF6oQeH7jc2ZhQ",
+        "https://lh3.googleusercontent.com/JaX-Gay5X_C9fW2L7BrsESHKVrEnMjv72QANVcqAs4TmcBSpDSCC8Ynczydzc3HW09WrptgC1l1n-dVHUYeFisHKag"
+      ]
+    },
+    {
       "slug": "gmail-to-pdf",
       "chromeExtensionId": "bhagkmlelgbjbklgafgdjeebkdhlibjf",
       "name": "Gmail to PDF: Save Emails as PDF, HTML, TXT",
@@ -250,8 +284,8 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_sidebar": 3,
-          "bgads1": 1
+          "bgads1": 1,
+          "ext_sidebar": 3
         },
         "impressions": 168,
         "impressionsAcrossChromeWebStore": [
@@ -465,7 +499,7 @@
       "icon": "⚡",
       "chromeExtensionIcon": "https://lh3.googleusercontent.com/4eBSrshi4R1FAJ-b1_XMe0xVC7a9trP4REZLCwzUrPVBe8oNruPyLmiJpieX0dc3kVOQ8qYuXAvqDXFgB8nkZSUt",
       "tagline": "Export Discord messages to HTML, PDF, TXT, JSON or Markdown. View and download all attachments.",
-      "status": "coming-soon",
+      "status": "live",
       "price": "Free",
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/cdagimhkcpohhjipcnpaaebppnmgegjo",
@@ -491,7 +525,35 @@
         "https://lh3.googleusercontent.com/1BHEwXkFJ0GadkQDoKTz9f85JMgErJYPc3h74Z57af2rE-pXcDJOHK_z6QNglMtpBjHb1vpsnXdieGPRIZX8SAAJjQ",
         "https://lh3.googleusercontent.com/T3taDYk0NMkaj13dj-P7MSX8BSjVXV4YvYapqbDyivbDQ3dBUkCduP1wJJ6nmdr3JPRFmeB1k6cMXIf4pwqhY-68p-A"
       ],
-      "github": "https://github.com/dpw1/discord-export"
+      "estimatedTime": "12 hours",
+      "prompts": 83,
+      "github": "https://github.com/dpw1/discord-export",
+      "youtube": "https://www.youtube.com/shorts/eDzr_Y4f9fU",
+      "analytics": {
+        "totalInstalls": 0,
+        "installations": [],
+        "weeklyUsers": [],
+        "weeklyUsersByRegion": {},
+        "installsByRegion": {},
+        "uninstalls": 0,
+        "uninstallsOverTime": [],
+        "uninstallsByRegion": {},
+        "pageViews": 0,
+        "pageViewsOverTime": [],
+        "pageViewsBySource": {},
+        "impressions": 0,
+        "impressionsAcrossChromeWebStore": [],
+        "enabledVsDisabled": {
+          "enabled": 0,
+          "disabled": 0,
+          "enabledPct": 0,
+          "disabledPct": 0,
+          "total": 0,
+          "date": null,
+          "slices": []
+        },
+        "enabledVsDisabledOverTime": []
+      }
     },
     {
       "slug": "youtube-filter-pro",
@@ -527,12 +589,8 @@
         "https://lh3.googleusercontent.com/_U6Y86Wae1sM2e2HhtpeVwgKyy50ftN25r5jWp7CKjgzw3XzFe2TL3WSuGhxROU317Pf5bhAAZGoAznpOYVarSBn"
       ],
       "analytics": {
-        "totalInstalls": 172,
+        "totalInstalls": 167,
         "installations": [
-          {
-            "date": "02-06-2026",
-            "total": 5
-          },
           {
             "date": "03-06-2026",
             "total": 4
@@ -648,10 +706,6 @@
         ],
         "weeklyUsers": [
           {
-            "date": "02-06-2026",
-            "total": 25
-          },
-          {
             "date": "03-06-2026",
             "total": 26
           },
@@ -766,19 +820,15 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 68,
-          "BR": 8,
+          "US": 65,
+          "BR": 7,
           "IN": 7,
           "GB": 6,
           "DE": 2,
           "other": 2
         },
-        "uninstalls": 58,
+        "uninstalls": 57,
         "uninstallsOverTime": [
-          {
-            "date": "02-06-2026",
-            "total": 1
-          },
           {
             "date": "03-06-2026",
             "total": 1
@@ -869,12 +919,8 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 277,
+        "pageViews": 269,
         "pageViewsOverTime": [
-          {
-            "date": "02-06-2026",
-            "total": 8
-          },
           {
             "date": "03-06-2026",
             "total": 3
@@ -990,18 +1036,14 @@
         ],
         "pageViewsBySource": {
           "chatgpt_com": 17,
-          "ext_sidebar": 20,
           "chrome-ntp-icon": 2,
-          "app-launcher": 2,
+          "ext_sidebar": 20,
           "ext_app_menu": 4,
+          "app-launcher": 2,
           "copilot_com": 1
         },
-        "impressions": 460,
+        "impressions": 435,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "02-06-2026",
-            "total": 25
-          },
           {
             "date": "03-06-2026",
             "total": 23
@@ -1125,14 +1167,6 @@
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "02-06-2026",
-            "enabled": 16,
-            "disabled": 4,
-            "enabledPct": 80,
-            "disabledPct": 20,
-            "total": 20
-          },
           {
             "date": "03-06-2026",
             "enabled": 17,
@@ -1400,12 +1434,8 @@
         "https://lh3.googleusercontent.com/cpNwIBaKNxEhvOJC8Tnk7In0kGzDLyUarbXCbqdKaH090L-O-e1x0MheXVw7ssP9PVq0u57dHT6rUlw3j8M3koBKDS8"
       ],
       "analytics": {
-        "totalInstalls": 46,
+        "totalInstalls": 43,
         "installations": [
-          {
-            "date": "02-06-2026",
-            "total": 3
-          },
           {
             "date": "03-06-2026",
             "total": 2
@@ -1521,10 +1551,6 @@
         ],
         "weeklyUsers": [
           {
-            "date": "02-06-2026",
-            "total": 1
-          },
-          {
             "date": "03-06-2026",
             "total": 1
           },
@@ -1639,7 +1665,7 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 38,
+          "US": 36,
           "IN": 2,
           "BR": 1
         },
@@ -1715,12 +1741,8 @@
           }
         ],
         "pageViewsBySource": {},
-        "impressions": 37,
+        "impressions": 34,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "02-06-2026",
-            "total": 3
-          },
           {
             "date": "04-06-2026",
             "total": 1
@@ -1796,14 +1818,6 @@
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "02-06-2026",
-            "enabled": 1,
-            "disabled": 0,
-            "enabledPct": 100,
-            "disabledPct": 0,
-            "total": 1
-          },
           {
             "date": "03-06-2026",
             "enabled": 1,
@@ -2292,12 +2306,8 @@
         "https://lh3.googleusercontent.com/Ib_af_tpeZ--7F6BH4zwl5cVt8GvjS6eAyy7I4dhgb9TJGu0DtXYI_8A0I4rfFToHfY3AJv-IweZ4OCdP65S8tUEvg"
       ],
       "analytics": {
-        "totalInstalls": 40,
+        "totalInstalls": 37,
         "installations": [
-          {
-            "date": "02-06-2026",
-            "total": 3
-          },
           {
             "date": "03-06-2026",
             "total": 1
@@ -2419,7 +2429,7 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 35,
+          "US": 33,
           "IN": 1
         },
         "uninstalls": 3,
@@ -2438,12 +2448,8 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 12,
+        "pageViews": 10,
         "pageViewsOverTime": [
-          {
-            "date": "02-06-2026",
-            "total": 2
-          },
           {
             "date": "05-06-2026",
             "total": 1
@@ -2932,12 +2938,8 @@
         "https://lh3.googleusercontent.com/8nUi-UqhiqO4lv675yIH9Yt1SNmWKxUelj9IItLgjo_QU64tgJsKWoKVLszaZ5K0CjjalYJ4otjJgaSNwi4hdbzl"
       ],
       "analytics": {
-        "totalInstalls": 108,
+        "totalInstalls": 106,
         "installations": [
-          {
-            "date": "02-06-2026",
-            "total": 2
-          },
           {
             "date": "03-06-2026",
             "total": 2
@@ -3053,10 +3055,6 @@
         ],
         "weeklyUsers": [
           {
-            "date": "02-06-2026",
-            "total": 7
-          },
-          {
             "date": "03-06-2026",
             "total": 8
           },
@@ -3171,9 +3169,9 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 42,
-          "BR": 8,
+          "US": 40,
           "IN": 8,
+          "BR": 8,
           "CA": 3,
           "GB": 3,
           "other": 3
@@ -3362,15 +3360,11 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_app_menu": 3,
-          "ext_sidebar": 11
+          "ext_sidebar": 11,
+          "ext_app_menu": 3
         },
-        "impressions": 181,
+        "impressions": 177,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "02-06-2026",
-            "total": 4
-          },
           {
             "date": "03-06-2026",
             "total": 11
@@ -3486,14 +3480,6 @@
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "02-06-2026",
-            "enabled": 6,
-            "disabled": 1,
-            "enabledPct": 85.7,
-            "disabledPct": 14.3,
-            "total": 7
-          },
           {
             "date": "03-06-2026",
             "enabled": 6,
@@ -3938,8 +3924,8 @@
           "US": 48,
           "IN": 8,
           "BR": 4,
+          "AU": 1,
           "GB": 1,
-          "CA": 1,
           "other": 1
         },
         "uninstalls": 29,
@@ -5387,6 +5373,13 @@
         "delta": 2
       },
       {
+        "slug": "dex",
+        "chromeExtensionId": "cdagimhkcpohhjipcnpaaebppnmgegjo",
+        "now": 0,
+        "baseline": 0,
+        "delta": 0
+      },
+      {
         "slug": "youtube-filter-pro",
         "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
         "now": 85,
@@ -5450,9 +5443,9 @@
         "delta": 0
       }
     ],
-    "totalInstalls": 701,
-    "installsDelta7d": 31,
+    "totalInstalls": 688,
+    "installsDelta7d": 18,
     "baselineTotalInstalls": 670,
-    "computedAt": "2026-07-02"
+    "computedAt": "2026-07-03"
   }
 }

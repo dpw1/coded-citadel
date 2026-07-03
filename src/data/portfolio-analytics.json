@@ -1,7 +1,7 @@
 {
   "updatedAt": "2026-07-02",
-  "extractedAt": "2026-07-02T05:09:08.008Z",
-  "appCount": 10,
+  "extractedAt": "2026-07-03T00:01:38.352Z",
+  "appCount": 11,
   "apps": [
     {
       "key": "bhagkmlelgbjbklgafgdjeebkdhlibjf",
@@ -239,8 +239,8 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_sidebar": 3,
-          "bgads1": 1
+          "bgads1": 1,
+          "ext_sidebar": 3
         },
         "impressions": 168,
         "impressionsAcrossChromeWebStore": [
@@ -320,11 +320,39 @@
       }
     },
     {
+      "key": "cdagimhkcpohhjipcnpaaebppnmgegjo",
+      "slug": "dex",
+      "name": "DEX: Export Discord messages, channels & attachments",
+      "analytics": {
+        "totalInstalls": 0,
+        "installations": [],
+        "weeklyUsers": [],
+        "weeklyUsersByRegion": {},
+        "installsByRegion": {},
+        "uninstalls": 0,
+        "uninstallsOverTime": [],
+        "uninstallsByRegion": {},
+        "pageViews": 0,
+        "pageViewsOverTime": [],
+        "pageViewsBySource": {},
+        "impressions": 0,
+        "impressionsAcrossChromeWebStore": [],
+        "enabledVsDisabled": {
+          "enabled": 0,
+          "disabled": 0,
+          "enabledPct": 0,
+          "disabledPct": 0,
+          "total": 0,
+          "date": null
+        }
+      }
+    },
+    {
       "key": "dbkkcbfafkckhmefkpgnelikibobcabb",
       "slug": "youtube-filter-pro",
       "name": "Youtube Filter Pro: filter by views, duration, date, and more",
       "analytics": {
-        "totalInstalls": 172,
+        "totalInstalls": 167,
         "installations": [
           {
             "date": "18-05-2026",
@@ -675,14 +703,14 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 68,
-          "BR": 8,
+          "US": 65,
+          "BR": 7,
           "IN": 7,
           "GB": 6,
           "DE": 2,
           "other": 2
         },
-        "uninstalls": 58,
+        "uninstalls": 57,
         "uninstallsOverTime": [
           {
             "date": "19-05-2026",
@@ -810,7 +838,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 277,
+        "pageViews": 269,
         "pageViewsOverTime": [
           {
             "date": "18-05-2026",
@@ -991,13 +1019,13 @@
         ],
         "pageViewsBySource": {
           "chatgpt_com": 17,
-          "ext_sidebar": 20,
           "chrome-ntp-icon": 2,
-          "app-launcher": 2,
+          "ext_sidebar": 20,
           "ext_app_menu": 4,
+          "app-launcher": 2,
           "copilot_com": 1
         },
-        "impressions": 460,
+        "impressions": 435,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "19-05-2026",
@@ -1187,7 +1215,7 @@
       "slug": "claude-deep-search",
       "name": "Claude Message Search: Search Across All Your Past Conversations",
       "analytics": {
-        "totalInstalls": 46,
+        "totalInstalls": 43,
         "installations": [
           {
             "date": "22-05-2026",
@@ -1514,7 +1542,7 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 38,
+          "US": 36,
           "IN": 2,
           "BR": 1
         },
@@ -1730,7 +1758,7 @@
           }
         ],
         "pageViewsBySource": {},
-        "impressions": 37,
+        "impressions": 34,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "22-05-2026",
@@ -2038,7 +2066,7 @@
       "slug": "youtube-comments-exporter",
       "name": "YouTube Comments Exporter",
       "analytics": {
-        "totalInstalls": 40,
+        "totalInstalls": 37,
         "installations": [
           {
             "date": "14-05-2026",
@@ -2241,7 +2269,7 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 35,
+          "US": 33,
           "IN": 1
         },
         "uninstalls": 3,
@@ -2260,7 +2288,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 12,
+        "pageViews": 10,
         "pageViewsOverTime": [
           {
             "date": "14-05-2026",
@@ -2696,7 +2724,7 @@
       "slug": "instagram-dm-exporter",
       "name": "Instagram DM Exporter",
       "analytics": {
-        "totalInstalls": 108,
+        "totalInstalls": 106,
         "installations": [
           {
             "date": "26-05-2026",
@@ -2983,9 +3011,9 @@
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 42,
-          "BR": 8,
+          "US": 40,
           "IN": 8,
+          "BR": 8,
           "CA": 3,
           "GB": 3,
           "other": 3
@@ -3202,10 +3230,10 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_app_menu": 3,
-          "ext_sidebar": 11
+          "ext_sidebar": 11,
+          "ext_app_menu": 3
         },
-        "impressions": 181,
+        "impressions": 177,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "26-05-2026",
@@ -3537,8 +3565,8 @@
           "US": 48,
           "IN": 8,
           "BR": 4,
+          "AU": 1,
           "GB": 1,
-          "CA": 1,
           "other": 1
         },
         "uninstalls": 29,
@@ -4499,7 +4527,7 @@
     }
   ],
   "analytics": {
-    "totalInstalls": 701,
+    "totalInstalls": 688,
     "installations": [
       {
         "date": "14-05-2026",
@@ -5032,18 +5060,18 @@
     ],
     "weeklyUsersByRegion": {},
     "installsByRegion": {
-      "US": 379,
-      "BR": 28,
+      "US": 370,
+      "BR": 27,
       "IN": 77,
       "GB": 10,
       "DE": 2,
       "other": 6,
-      "CA": 4,
-      "AU": 3
+      "CA": 3,
+      "AU": 4
     },
-    "uninstalls": 151,
+    "uninstalls": 150,
     "uninstallsByRegion": {},
-    "pageViews": 965,
+    "pageViews": 955,
     "pageViewsOverTime": [
       {
         "date": "14-05-2026",
@@ -5239,16 +5267,16 @@
       }
     ],
     "pageViewsBySource": {
-      "ext_sidebar": 94,
       "bgads1": 1,
+      "ext_sidebar": 94,
       "chatgpt_com": 17,
       "chrome-ntp-icon": 2,
-      "app-launcher": 3,
       "ext_app_menu": 29,
+      "app-launcher": 3,
       "copilot_com": 1,
       "sh/x/srp/wr/m1/0": 2
     },
-    "impressions": 4560,
+    "impressions": 4528,
     "impressionsAcrossChromeWebStore": [
       {
         "date": "15-05-2026",
