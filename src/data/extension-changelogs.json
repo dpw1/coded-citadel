@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-03T00:02:10.311Z",
+  "updatedAt": "2026-07-03T13:25:13.391Z",
   "message": null,
   "apps": [
     {
@@ -405,12 +405,28 @@
     {
       "key": "epokpidfnienjjfncmhnallghfhaijbj",
       "slug": "youtube-comments-exporter",
-      "name": "YouTube Comments Exporter",
+      "name": "Youtube Comments Exporter: Bulk Export to CSV, XLSX & TXT",
       "status": "live",
       "github": "https://github.com/dpw1/youtube-comments-export",
       "githubPublic": false,
       "defaultBranch": "master",
       "commits": [
+        {
+          "sha": "602f92a885c1604d6e9e5088be334b6fcdf93874",
+          "shortSha": "602f92a",
+          "message": "Implement XLSX export feature and enhance export options in YouTube Comments Exporter",
+          "date": "2026-07-03T02:51:43Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/602f92a885c1604d6e9e5088be334b6fcdf93874"
+        },
+        {
+          "sha": "ea1f86b4a98b8d3376f021dabbac1a679404ca63",
+          "shortSha": "ea1f86b",
+          "message": "Update YouTube Comments Exporter with localization and build enhancements",
+          "date": "2026-07-03T02:22:17Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/ea1f86b4a98b8d3376f021dabbac1a679404ca63"
+        },
         {
           "sha": "8e0201ff9a17770ef637af1bd8dd32a5516dc904",
           "shortSha": "8e0201f",

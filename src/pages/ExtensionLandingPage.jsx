@@ -93,7 +93,6 @@ export default function ExtensionLandingPage() {
       pageViews: `pviews-${uid}`,
       impressions: `impr-${uid}`,
       installRegion: `install-${uid}`,
-      enabledVsDisabled: `evd-${uid}`,
     }),
     [uid],
   )
@@ -373,6 +372,7 @@ export default function ExtensionLandingPage() {
             apps={[changelogApp]}
             selectedKeys={changelogKeys}
             showSidebar={false}
+            usePagination
             title="CHANGELOGS"
             subtitle={`Development history for ${appFilterLabel(ext)}.`}
           />

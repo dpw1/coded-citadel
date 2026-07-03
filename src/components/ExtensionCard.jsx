@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import CyberCorners from './CyberCorners'
 import {
   appActiveUsers,
@@ -56,9 +56,15 @@ const YOUTUBE_ICON = (
   </svg>
 )
 
+const PLAY_ICON = (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M8 5v14l11-7z" />
+  </svg>
+)
+
 const ARROW_ICON = (
   <svg viewBox="0 0 24 24">
-    <path d="M5 12h14M13 6l6 6-6 6" />
+    <path d="M5 12h14M13 6l6 6-6-6" />
   </svg>
 )
 
@@ -69,6 +75,7 @@ function formatExtensionStat(value) {
 }
 
 export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
+  const navigate = useNavigate()
   const live = isAppLive(app)
   const youtubeUrl = appBuildYoutubeUrl(app)
   const videoId = youtubeUrl ? youtubeEmbedId(youtubeUrl) : null
@@ -80,7 +87,7 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
   const displayName = appFilterLabel(app)
   const category = appCategory(app)
 
-  const handleVideoClick = (event) => {
+  const playVideo = (event) => {
     event.stopPropagation()
     if (videoId) onPlayVideo?.({ videoId, title: displayName })
   }
@@ -88,16 +95,36 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
   const handleVideoKeyDown = (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
-      handleVideoClick(event)
+      playVideo(event)
+    }
+  }
+
+  const openAppPage = () => {
+    if (!live) return
+    navigate(`/apps/${app.slug}`)
+  }
+
+  const handleCardClick = () => {
+    openAppPage()
+  }
+
+  const handleCardKeyDown = (event) => {
+    if (!live) return
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      openAppPage()
     }
   }
 
   return (
     <article
-      className={`CC__extension-card${live ? '' : ' CC__extension-card--disabled'}`}
-      role="listitem"
+      className={`CC__extension-card${live ? ' CC__extension-card--clickable' : ' CC__extension-card--disabled'}`}
+      role={live ? 'link' : 'listitem'}
+      tabIndex={live ? 0 : undefined}
       style={{ '--delay': `${index * 55}ms` }}
-      aria-label={displayName}
+      aria-label={live ? `View ${displayName}` : displayName}
+      onClick={live ? handleCardClick : undefined}
+      onKeyDown={live ? handleCardKeyDown : undefined}
     >
       <CyberCorners />
 
@@ -106,9 +133,8 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
           className={`CC__ext-icon${hasVideo ? ' CC__ext-icon--video' : ''}`}
           role={hasVideo ? 'button' : undefined}
           tabIndex={hasVideo ? 0 : undefined}
-          aria-label={hasVideo ? `Watch video for ${displayName}` : undefined}
-          aria-hidden={hasVideo ? undefined : true}
-          onClick={hasVideo ? handleVideoClick : undefined}
+          aria-label={hasVideo ? `Play video for ${displayName}` : undefined}
+          onClick={hasVideo ? playVideo : undefined}
           onKeyDown={hasVideo ? handleVideoKeyDown : undefined}
         >
           {iconUrl ? (
@@ -116,6 +142,11 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
           ) : (
             app.icon ?? '⚡'
           )}
+          {hasVideo ? (
+            <span className="CC__ext-icon__play" aria-hidden="true">
+              {PLAY_ICON}
+            </span>
+          ) : null}
         </div>
 
         <div className="CC__ext-meta">
@@ -154,7 +185,7 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
               className="CC__ext-stat CC__ext-stat--video"
               title="Watch on YouTube"
               aria-label={`Watch on YouTube for ${displayName}`}
-              onClick={handleVideoClick}
+              onClick={playVideo}
             >
               <span className="CC__ext-stat__icon--video" aria-hidden="true">
                 {YOUTUBE_ICON}
@@ -166,15 +197,10 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
       </div>
 
       {live ? (
-        <Link
-          to={`/apps/${app.slug}`}
-          className="CC__ext-cta CC__ext-cta--visible"
-          aria-label={`View ${displayName}`}
-          onClick={(event) => event.stopPropagation()}
-        >
+        <span className="CC__ext-cta CC__ext-cta--visible" aria-hidden="true">
           View more
           {ARROW_ICON}
-        </Link>
+        </span>
       ) : (
         <span className="CC__ext-cta CC__ext-cta--visible CC__ext-cta--disabled" aria-disabled="true">
           Coming soon

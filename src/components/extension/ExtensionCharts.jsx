@@ -312,16 +312,6 @@ export default function ExtensionCharts({ analytics, chartIds }) {
 
     buildDonut(chartIds.installRegion, analytics.installsByRegion, analytics.totalInstalls)
 
-    const evd = analytics.enabledVsDisabled
-    if (chartIds.enabledVsDisabled && evd && (evd.enabled || evd.disabled)) {
-      buildDonut(
-        chartIds.enabledVsDisabled,
-        { enabled: evd.enabled, disabled: evd.disabled },
-        evd.total ?? evd.enabled + evd.disabled,
-        ENABLED_VS_DISABLED_COLORS,
-      )
-    }
-
     const unbindResize = bindChartResize(charts)
 
     return () => {

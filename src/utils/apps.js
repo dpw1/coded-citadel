@@ -144,6 +144,34 @@ export function appCategory(app) {
   return normalizeAppCategory(custom?.category ?? app?.category)
 }
 
+/** Tags from apps-custom-data.json (e.g. chromeExtension, youtube). */
+export function appTags(app) {
+  const custom = findCustomAppEntry(app)
+  const tags = custom?.tags ?? app?.tags
+  return Array.isArray(tags) ? tags : []
+}
+
+/** Related app slugs from apps-custom-data.json. */
+export function appRelatedSlugs(app) {
+  const custom = findCustomAppEntry(app)
+  const related = custom?.related ?? app?.related
+  return Array.isArray(related) ? related.filter((slug) => typeof slug === 'string' && slug) : []
+}
+
+/** Resolved related app records (live order preserved from custom data). */
+export function appRelatedApps(app) {
+  return appRelatedSlugs(app)
+    .map((slug) => getAppBySlug(slug))
+    .filter(Boolean)
+}
+
+/** How-to-use YouTube URL from apps-custom-data.json (empty until provided). */
+export function appYoutubeHowToUse(app) {
+  const custom = findCustomAppEntry(app)
+  const url = custom?.youtubeHowToUse ?? app?.youtubeHowToUse ?? ''
+  return typeof url === 'string' && url.trim() ? url.trim() : null
+}
+
 /** Build-story YouTube URL from apps.json or apps-custom-data.json. */
 export function appBuildYoutubeUrl(app) {
   if (app?.youtube && youtubeEmbedId(app.youtube)) return app.youtube

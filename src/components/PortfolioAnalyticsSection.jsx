@@ -74,7 +74,6 @@ export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
       pageViews: `${idPrefix}-pviews-${uid}`,
       impressions: `${idPrefix}-impr-${uid}`,
       installRegion: `${idPrefix}-install-${uid}`,
-      enabledVsDisabled: `${idPrefix}-evd-${uid}`,
     }),
     [idPrefix, uid],
   )

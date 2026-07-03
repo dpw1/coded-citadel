@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
-import { getAllApps, appCategory } from '../utils/apps'
+import { getAllApps, appCategory, appStoreUrl } from '../utils/apps'
 
 const CHROME_STORE_SEARCH_URL =
   'https://chromewebstore.google.com/search/Coded%20Citadel%20extension'
@@ -65,6 +65,13 @@ export default function AppsGridSection({
     () => getAllApps().filter((app) => app.slug !== excludeSlug),
     [excludeSlug],
   )
+
+  const randomStoreUrl = useMemo(() => {
+    const liveApps = apps.filter((app) => appStoreUrl(app))
+    if (!liveApps.length) return chromeStoreLink
+    const pick = liveApps[Math.floor(Math.random() * liveApps.length)]
+    return appStoreUrl(pick)
+  }, [apps, chromeStoreLink])
 
   const sectionTitle = title ?? `Built in public, documented step-by-step`
   const TitleTag = titleAs
@@ -137,12 +144,12 @@ export default function AppsGridSection({
           <span className="CC__view-all-link-wrap CC__view-all-link-wrap--header">{viewAllAppsLink}</span>
         ) : showChromeStoreLink ? (
           <a
-            href={chromeStoreLink}
+            href={randomStoreUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="CC__view-all-link"
           >
-            View on Chrome Web Store →
+            View random one →
           </a>
         ) : null}
       </div>

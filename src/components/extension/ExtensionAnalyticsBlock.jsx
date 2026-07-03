@@ -1,13 +1,11 @@
 import CyberCorners from '../CyberCorners'
 import ExtensionCharts, {
   DonutLegend,
-  EnabledVsDisabledLegend,
   regionDotColor,
 } from './ExtensionCharts'
 import {
   analyticsActiveUsers,
   formatAppDate,
-  formatEnabledVsDisabledDate,
   formatLabel,
   formatNumber,
   getInstallationsSeries,
@@ -16,7 +14,6 @@ import {
   pageViewsDelta,
   totalUsersDelta,
 } from '../../utils/apps'
-import { resolveEnabledVsDisabledSnapshot } from '../../utils/analyticsSeries'
 import { siteStatsWeekDeltaPct } from '../../utils/siteStats'
 import WeekPercentDelta from './WeekPercentDelta'
 
@@ -50,11 +47,8 @@ export default function ExtensionAnalyticsBlock({
     : totalUsersDelta(analytics)
   const viewsDelta = pageViewsDelta(analytics)
   const imprDelta = impressionsDelta(analytics)
-  const enabledVsDisabled = resolveEnabledVsDisabledSnapshot(analytics)
   const pageViewsBySource = analytics.pageViewsBySource ?? {}
   const uninstallsByRegion = analytics.uninstallsByRegion ?? {}
-  const evdDateLabel = formatEnabledVsDisabledDate(enabledVsDisabled)
-  const showEnabledDonut = (enabledVsDisabled.enabled ?? 0) + (enabledVsDisabled.disabled ?? 0) > 0
 
   const analyticsContent = (
     <>
@@ -238,24 +232,7 @@ export default function ExtensionAnalyticsBlock({
       )}
 
       <section className="ext-secondary-stats">
-        <div className="ext-secondary-stats__grid ext-secondary-stats__grid--cols-2">
-          <div className="ext-sec-card ext-sec-card--evd CC__cyber-accent">
-            <CyberCorners />
-            <div className="ext-sec-card__label">Extension enabled vs disabled</div>
-            {evdDateLabel ? (
-              <p className="ext-evd-donut__date">As of {evdDateLabel}</p>
-            ) : null}
-            {showEnabledDonut && chartIds.enabledVsDisabled ? (
-              <>
-                <div className="ext-evd-donut__canvas-wrap">
-                  <canvas id={chartIds.enabledVsDisabled} />
-                </div>
-                <EnabledVsDisabledLegend enabledVsDisabled={enabledVsDisabled} />
-              </>
-            ) : (
-              <p className="ext-evd-donut__empty">No enabled/disabled data yet.</p>
-            )}
-          </div>
+        <div className="ext-secondary-stats__grid ext-secondary-stats__grid--cols-1">
           <div className="ext-sec-card CC__cyber-accent">
             <CyberCorners />
             <div className="ext-sec-card__label">Page Views by Source</div>

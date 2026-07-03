@@ -9,7 +9,10 @@
       "category": "Social Media",
       "estimatedTime": "5 hours",
       "youtube": "https://youtu.be/-saFrB1W9ug",
-      "github": "https://github.com/dpw1/youtube-filter-pro"
+      "youtubeHowToUse": "",
+      "github": "https://github.com/dpw1/youtube-filter-pro",
+      "tags": ["chromeExtension", "youtube", "socialMedia", "searchFilter"],
+      "related": ["youtube-keyword-alert", "youtube-comments-exporter"]
     },
     {
       "id": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
@@ -19,7 +22,10 @@
       "estimatedTime": "3 hours",
       "category": "AI Assistant",
       "youtube": "https://youtu.be/BGhB0gFwv1M",
-      "github": "https://github.com/dpw1/claude-search"
+      "youtubeHowToUse": "",
+      "github": "https://github.com/dpw1/claude-search",
+      "tags": ["chromeExtension", "claude", "aiAssistant", "search"],
+      "related": ["claude-limit-monitor", "ai-bookmark"]
     },
     {
       "id": "epokpidfnienjjfncmhnallghfhaijbj",
@@ -29,7 +35,10 @@
       "estimatedTime": "8 hours",
       "category": "Social Media",
       "youtube": "https://youtu.be/m4iuYN7vsRo",
-      "github": "https://github.com/dpw1/youtube-comments-export"
+      "youtubeHowToUse": "",
+      "github": "https://github.com/dpw1/youtube-comments-export",
+      "tags": ["chromeExtension", "youtube", "socialMedia", "export", "comments"],
+      "related": ["youtube-filter-pro", "youtube-keyword-alert", "instagram-comments-exporter"]
     },
     {
       "id": "hgojieiehkjgjhdnbglfhbcojeeggigi",
@@ -39,7 +48,10 @@
       "category": "Social Media",
       "estimatedTime": "4 hours",
       "youtube": "https://youtu.be/tBSZ1oD5OM8",
-      "github": "https://github.com/dpw1/instagram-dm-exporter"
+      "youtubeHowToUse": "",
+      "github": "https://github.com/dpw1/instagram-dm-exporter",
+      "tags": ["chromeExtension", "instagram", "socialMedia", "export", "messages"],
+      "related": ["instagram-comments-exporter", "dex"]
     },
     {
       "id": "jadjgiiaompdjacagaomgogdihbpgcpg",
@@ -48,8 +60,11 @@
       "category": "Productivity",
       "estimatedTime": "8 hours",
       "youtube": "https://www.youtube.com/watch?v=D4-1VtvkdIw",
+      "youtubeHowToUse": "",
       "prompts": 65,
-      "github": "https://github.com/dpw1/save-to-drive"
+      "github": "https://github.com/dpw1/save-to-drive",
+      "tags": ["chromeExtension", "googleDrive", "productivity", "fileSave"],
+      "related": ["gmail-to-pdf"]
     },
     {
       "id": "mljfhcfnjbfibedpiaheeihpbjajfcal",
@@ -58,8 +73,11 @@
       "created": "June 4, 2026",
       "category": "AI Assistant",
       "youtube": "https://www.youtube.com/watch?v=iyXIi6pNq-M",
+      "youtubeHowToUse": "",
       "prompts": 49,
-      "github": "https://github.com/dpw1/claude-limit-monitor"
+      "github": "https://github.com/dpw1/claude-limit-monitor",
+      "tags": ["chromeExtension", "claude", "aiAssistant", "usageMonitor"],
+      "related": ["claude-deep-search", "ai-bookmark"]
     },
     {
       "id": "golankbkfnepjbpcekbcglcfgmbpgnmb",
@@ -69,8 +87,11 @@
       "estimatedTime": "24 hours",
       "created": "June 7, 2026",
       "youtube": "https://www.youtube.com/watch?v=WA5xLTMyykE",
+      "youtubeHowToUse": "",
       "prompts": 250,
-      "github": "https://github.com/dpw1/ai-bookmark"
+      "github": "https://github.com/dpw1/ai-bookmark",
+      "tags": ["chromeExtension", "aiAssistant", "claude", "chatgpt", "grok", "bookmarks"],
+      "related": ["claude-deep-search", "claude-limit-monitor"]
     },
     {
       "id": "bhagkmlelgbjbklgafgdjeebkdhlibjf",
@@ -79,8 +100,11 @@
       "created": "June 13, 2026",
       "category": "Productivity",
       "youtube": "https://www.youtube.com/watch?v=Y9ZYwJ9g9Cw",
+      "youtubeHowToUse": "",
       "prompts": 120,
-      "github": "https://github.com/dpw1/gmail-export"
+      "github": "https://github.com/dpw1/gmail-export",
+      "tags": ["chromeExtension", "gmail", "productivity", "export", "pdf"],
+      "related": ["save-directly-to-drive"]
     },
     {
       "id": "dpfdehgiffggecppcbkdacbifbljeiii",
@@ -90,7 +114,10 @@
       "prompts": 35,
       "estimatedTime": "8 hours",
       "youtube": "https://www.youtube.com/watch?v=XAoQX6iUgK0",
-      "github": "https://github.com/dpw1/instagram-comment-exporter"
+      "youtubeHowToUse": "",
+      "github": "https://github.com/dpw1/instagram-comment-exporter",
+      "tags": ["chromeExtension", "instagram", "socialMedia", "export", "comments"],
+      "related": ["instagram-dm-exporter", "youtube-comments-exporter"]
     },
     {
       "id": "pniolepdakiocafjiibgiabkcdhgkfep",
@@ -100,7 +127,10 @@
       "prompts": 55,
       "estimatedTime": "10 hours",
       "youtube": "https://www.youtube.com/watch?v=CdIXEKUTewE",
-      "github": "https://github.com/dpw1/youtube-keyword-alert"
+      "youtubeHowToUse": "",
+      "github": "https://github.com/dpw1/youtube-keyword-alert",
+      "tags": ["chromeExtension", "youtube", "socialMedia", "notifications", "keywords"],
+      "related": ["youtube-filter-pro", "youtube-comments-exporter"]
     },
     {
       "id": "cdagimhkcpohhjipcnpaaebppnmgegjo",
@@ -109,11 +139,18 @@
       "estimatedTime": "12 hours",
       "prompts": 83,
       "github": "https://github.com/dpw1/discord-export",
-      "youtube": "https://www.youtube.com/shorts/eDzr_Y4f9fU"
+      "youtube": "https://www.youtube.com/shorts/eDzr_Y4f9fU",
+      "youtubeHowToUse": "",
+      "tags": ["chromeExtension", "discord", "socialMedia", "export", "messages"],
+      "related": ["instagram-dm-exporter", "instagram-comments-exporter"]
     },
     {
       "id": "amcnbfpogccggckogifbdjekbammlahl",
-      "slug": "custom-data"
+      "slug": "custom-data",
+      "category": "Social Media",
+      "youtubeHowToUse": "",
+      "tags": ["chromeExtension", "bluesky", "socialMedia", "feedFilter"],
+      "related": ["youtube-filter-pro", "dex"]
     }
   ]
 }
