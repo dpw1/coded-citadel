@@ -2,10 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
-import { getAllApps, appCategory, appStoreUrl } from '../utils/apps'
-
-const CHROME_STORE_SEARCH_URL =
-  'https://chromewebstore.google.com/search/Coded%20Citadel%20extension'
+import { getAllApps, appCategory } from '../utils/apps'
 
 const PREV_ICON = (
   <svg viewBox="0 0 24 24">
@@ -53,7 +50,6 @@ export default function AppsGridSection({
   maxItems = null,
   randomize = false,
   showChromeStoreLink = false,
-  chromeStoreLink = CHROME_STORE_SEARCH_URL,
 }) {
   const [activeTab, setActiveTab] = useState('All')
   const [currentPage, setCurrentPage] = useState(1)
@@ -66,12 +62,11 @@ export default function AppsGridSection({
     [excludeSlug],
   )
 
-  const randomStoreUrl = useMemo(() => {
-    const liveApps = apps.filter((app) => appStoreUrl(app))
-    if (!liveApps.length) return chromeStoreLink
-    const pick = liveApps[Math.floor(Math.random() * liveApps.length)]
-    return appStoreUrl(pick)
-  }, [apps, chromeStoreLink])
+  const randomAppPath = useMemo(() => {
+    if (!apps.length) return '/apps'
+    const pick = apps[Math.floor(Math.random() * apps.length)]
+    return `/apps/${pick.slug}`
+  }, [apps])
 
   const sectionTitle = title ?? `Built in public, documented step-by-step`
   const TitleTag = titleAs
@@ -143,14 +138,9 @@ export default function AppsGridSection({
         {viewAllAppsLink ? (
           <span className="CC__view-all-link-wrap CC__view-all-link-wrap--header">{viewAllAppsLink}</span>
         ) : showChromeStoreLink ? (
-          <a
-            href={randomStoreUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="CC__view-all-link"
-          >
+          <Link to={randomAppPath} className="CC__view-all-link">
             View random one →
-          </a>
+          </Link>
         ) : null}
       </div>
 
