@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-04T08:40:27.272Z",
+  "updatedAt": "2026-07-04T10:31:46.524Z",
   "daily": [
     {
       "date": "2026-06-03",
@@ -274,12 +274,12 @@
     },
     {
       "date": "2026-07-04",
-      "pageViews": 13,
-      "activeUsers": 8,
-      "sessions": 8,
+      "pageViews": 16,
+      "activeUsers": 10,
+      "sessions": 12,
       "blogViews": 0,
-      "avgSessionDurationSeconds": 54.262787375,
-      "bounceRate": 0.875
+      "avgSessionDurationSeconds": 36.17519158333334,
+      "bounceRate": 0.9166666666666666
     }
   ],
   "snapshots": [
@@ -3511,31 +3511,31 @@
       }
     },
     {
-      "extractedAt": "2026-07-04T08:40:27.272Z",
+      "extractedAt": "2026-07-04T10:31:46.524Z",
       "analytics": {
         "available": true,
-        "updatedAt": "2026-07-04T08:40:27.272Z",
+        "updatedAt": "2026-07-04T10:31:46.524Z",
         "message": null,
-        "totalViews": 870,
+        "totalViews": 873,
         "blogViews": 18,
-        "averageTimeOnSiteSeconds": 147.81936091588784,
-        "uniqueVisitors": 346,
+        "averageTimeOnSiteSeconds": 146.45066312962965,
+        "uniqueVisitors": 348,
         "newVsReturning": {
-          "new": 345,
+          "new": 346,
           "returning": 38
         },
         "mostViewedPages": [
           {
             "path": "/",
-            "views": 410
+            "views": 411
           },
           {
             "path": "/thank-you/",
-            "views": 235
+            "views": 236
           },
           {
             "path": "/uninstall/",
-            "views": 78
+            "views": 79
           },
           {
             "path": "/apps",
@@ -3572,7 +3572,7 @@
             "name": "India",
             "gaCountry": "India",
             "gaCountryId": "IN",
-            "users": 85
+            "users": 87
           },
           {
             "code": "US",
@@ -3746,7 +3746,7 @@
         "trafficSources": [
           {
             "source": "Direct",
-            "sessions": 367
+            "sessions": 370
           },
           {
             "source": "Organic Search",
@@ -3754,7 +3754,7 @@
           },
           {
             "source": "Unassigned",
-            "sessions": 22
+            "sessions": 23
           },
           {
             "source": "Referral",
@@ -3772,7 +3772,7 @@
         "topReferrers": [
           {
             "referrer": "(direct)",
-            "sessions": 367
+            "sessions": 370
           },
           {
             "referrer": "google",
@@ -3780,7 +3780,7 @@
           },
           {
             "referrer": "(not set)",
-            "sessions": 22
+            "sessions": 23
           },
           {
             "referrer": "chromewebstore.google.com",

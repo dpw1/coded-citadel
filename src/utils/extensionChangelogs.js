@@ -77,7 +77,7 @@ export function filterChangelogCommitsByTimePreset(commits, presetId) {
   })
 }
 
-export function isRecentChangelogCommit(isoDate, withinMs = 3 * 24 * 60 * 60 * 1000) {
+export function isRecentChangelogCommit(isoDate, withinMs = 7 * 24 * 60 * 60 * 1000) {
   const time = new Date(isoDate).getTime()
   if (Number.isNaN(time)) return false
   return Date.now() - time <= withinMs

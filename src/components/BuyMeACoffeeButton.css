@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+
+.coffee-btn {
+  --bmc-bg: #ffdd00;
+  --bmc-text: #000000;
+  --bmc-icon-detail: #0d0c22;
+  --bmc-icon-main: #000000;
+  --bmc-icon-highlight: #ffffff;
+  --bmc-border: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px 12px 14px;
+  background: var(--bmc-bg);
+  color: var(--bmc-text);
+  border: 2px solid var(--bmc-border);
+  border-radius: 9999px;
+  text-decoration: none;
+  font-family: 'Cookie', cursive;
+  font-size: 26px;
+  line-height: 1;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.coffee-btn:hover {
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+}
+
+.coffee-btn:active {
+  filter: brightness(0.98);
+  transform: translateY(0);
+}
+
+.coffee-btn__icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 24px;
+  display: block;
+}
+
+.coffee-btn__label {
+  white-space: nowrap;
+}

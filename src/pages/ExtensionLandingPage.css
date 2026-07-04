@@ -1355,6 +1355,12 @@
 /* page views by source bars */
 .ext-sources { display: flex; flex-direction: column; gap: 0.75rem; }
 
+.ext-sources__empty {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--CC__color-text-muted);
+}
+
 .ext-source-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto auto;

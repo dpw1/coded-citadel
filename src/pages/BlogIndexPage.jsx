@@ -19,7 +19,7 @@ export default function BlogIndexPage() {
             <p className="CC__section-eyebrow">Blog</p>
             <h1 className="CC__section-title">Build Logs &amp; Updates</h1>
             <p className="CC__blog-page__intro">
-              Lessons from shipping Chrome extensions in public — metrics, mistakes, and what actually moved the needle.
+              Lessons from shipping Chrome extensions in public — metrics, mistakes, and more.
             </p>
           </header>
 

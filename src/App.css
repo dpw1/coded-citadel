@@ -747,11 +747,11 @@
   align-self: flex-start;
 }
 
-.CC__ext-category {
+.CC__ext-published {
   font-size: 0.6rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-transform: none;
   color: var(--CC__color-text-muted);
   margin-top: 3px;
 }

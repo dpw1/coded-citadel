@@ -2,6 +2,7 @@ import portfolioData from '../data/portfolio-analytics.json'
 import { dedupeAnalyticsObject } from './analyticsSeries'
 import { aggregateAnalyticsList } from './portfolioAggregate'
 import {
+  analyticsActiveUsers,
   analyticsSeriesTotal,
   appFilterLabel,
   formatAppDate,
@@ -179,4 +180,31 @@ export function portfolioAnalyticsTitle(selectedKeys) {
     return app ? appFilterLabel(app) : 'Extension'
   }
   return `${selectedKeys.size} Extensions Selected`
+}
+
+/** Top extensions by latest active users (optionally within a date window). */
+export function getTopExtensionsByActiveUsers(
+  apps,
+  selectedKeys,
+  fromIso = null,
+  toIso = null,
+  limit = 10,
+) {
+  if (!apps?.length || !selectedKeys?.size) return []
+
+  return apps
+    .filter((app) => selectedKeys.has(app.key))
+    .map((app) => {
+      const filtered = app.analytics
+        ? filterAnalyticsByDateRange(app.analytics, fromIso || null, toIso || null)
+        : null
+      return {
+        key: app.key,
+        slug: app.slug,
+        name: appFilterLabel({ name: app.name, slug: app.slug }),
+        activeUsers: filtered ? analyticsActiveUsers(filtered) ?? 0 : 0,
+      }
+    })
+    .sort((a, b) => b.activeUsers - a.activeUsers)
+    .slice(0, limit)
 }

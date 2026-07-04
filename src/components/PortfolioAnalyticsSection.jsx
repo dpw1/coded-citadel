@@ -12,6 +12,7 @@ import {
   getPortfolioAnalyticsDateRange,
   getPortfolioAnalyticsForKeys,
   getPortfolioApps,
+  getTopExtensionsByActiveUsers,
   portfolioAnalyticsTitle,
 } from '../utils/portfolioAnalytics'
 import {
@@ -82,6 +83,17 @@ export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
   const analyticsDateRangeLabel = formatAnalyticsDateRangeLabel(dateFrom || null, dateTo || null)
   const siteStatsHeadlines = useMemo(() => getSiteStatsHeadlines(), [])
   const allAppsSelected = selectedKeys.size === portfolioApps.length
+
+  const topExtensionsByUsers = useMemo(
+    () =>
+      getTopExtensionsByActiveUsers(
+        portfolioApps,
+        selectedKeys,
+        dateFrom || null,
+        dateTo || null,
+      ),
+    [portfolioApps, selectedKeys, dateFrom, dateTo],
+  )
 
   const websiteChartIds = useMemo(
     () => ({
@@ -223,6 +235,7 @@ export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
             chartIds={chartIds}
             updatedLabel={analyticsDateRangeLabel}
             siteStatsHeadlines={allAppsSelected ? siteStatsHeadlines : null}
+            topExtensionsByUsers={topExtensionsByUsers}
             hideHeader
           />
         ) : null}

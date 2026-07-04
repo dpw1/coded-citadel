@@ -165,11 +165,56 @@ export function appRelatedApps(app) {
     .filter(Boolean)
 }
 
+const GENERIC_APP_TAGS = new Set(['chromeExtension'])
+
+/** Live apps that share tags with the given app (best overlap first). */
+export function appSimilarByTags(app, limit = 3) {
+  if (!app) return []
+
+  const tagSet = new Set(
+    appTags(app).filter((tag) => tag && !GENERIC_APP_TAGS.has(tag)),
+  )
+  if (!tagSet.size) return []
+
+  return getAllApps()
+    .filter((candidate) => candidate.slug !== app.slug && isAppLive(candidate))
+    .map((candidate) => {
+      const overlap = appTags(candidate).filter((tag) => tagSet.has(tag)).length
+      return { candidate, overlap }
+    })
+    .filter(({ overlap }) => overlap > 0)
+    .sort((a, b) => b.overlap - a.overlap)
+    .slice(0, limit)
+    .map(({ candidate }) => candidate)
+}
+
 /** How-to-use YouTube URL from apps-custom-data.json (empty until provided). */
 export function appYoutubeHowToUse(app) {
   const custom = findCustomAppEntry(app)
   const url = custom?.youtubeHowToUse ?? app?.youtubeHowToUse ?? ''
   return typeof url === 'string' && url.trim() ? url.trim() : null
+}
+
+/** Build-generated quick start HTML (`<ul><li>…</li></ul>`). */
+export function appQuickStart(app) {
+  const html = app?.quickStart
+  return typeof html === 'string' && html.trim() ? html.trim() : null
+}
+
+/** Parse quickStart HTML into step objects for rendering. */
+export function parseQuickStartSteps(html) {
+  if (!html || typeof html !== 'string') return []
+
+  const items = []
+  const liRe = /<li\b[^>]*>([\s\S]*?)<\/li>/gi
+  let match
+
+  while ((match = liRe.exec(html)) !== null) {
+    const inner = match[1]?.trim()
+    if (inner) items.push({ html: inner })
+  }
+
+  return items
 }
 
 /** Build-story YouTube URL from apps.json or apps-custom-data.json. */
@@ -379,6 +424,42 @@ export function appCreatedDate(app) {
 export function formatAppCreatedDate(app) {
   if (app?.created) return app.created
   return formatAppDate(appCreatedDate(app))
+}
+
+/** Parse the app's Chrome Web Store publish date for relative labels. */
+export function parseAppPublishedAt(app) {
+  const raw = appCreatedDate(app)
+  if (!raw) return null
+
+  const value = String(raw).trim()
+  const parsed = value.includes('T')
+    ? new Date(value)
+    : /^\d{4}-\d{2}-\d{2}$/.test(value)
+      ? new Date(`${value}T12:00:00`)
+      : new Date(value)
+
+  if (Number.isNaN(parsed.getTime())) return null
+  return parsed
+}
+
+function startOfLocalDayMs(date) {
+  const d = new Date(date)
+  d.setHours(0, 0, 0, 0)
+  return d.getTime()
+}
+
+/** Human-readable publish age, e.g. "Published 3 days ago". */
+export function formatAppPublishedAgo(app) {
+  const published = parseAppPublishedAt(app)
+  if (!published) return null
+
+  const days = Math.floor(
+    (startOfLocalDayMs(Date.now()) - startOfLocalDayMs(published)) / MS_PER_DAY,
+  )
+
+  if (days <= 0) return 'Published today'
+  if (days === 1) return 'Published yesterday'
+  return `Published ${days} days ago`
 }
 
 export function getWeeklyUsersSeries(analytics) {

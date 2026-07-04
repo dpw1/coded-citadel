@@ -17,6 +17,42 @@ import {
 import { siteStatsWeekDeltaPct } from '../../utils/siteStats'
 import WeekPercentDelta from './WeekPercentDelta'
 
+function HorizontalBarBreakdown({
+  items,
+  barTotal,
+  pctTotal = null,
+  valueKey = 'value',
+  labelKey = 'label',
+  showPct = false,
+}) {
+  if (!items.length) {
+    return <p className="ext-sources__empty">No data yet.</p>
+  }
+
+  const barMax = barTotal > 0 ? barTotal : Math.max(...items.map((item) => item[valueKey] ?? 0), 1)
+  const pctMax = pctTotal ?? barMax
+
+  return (
+    <div className="ext-sources">
+      {items.map((item) => {
+        const value = item[valueKey] ?? 0
+        const barPct = barMax ? ((value / barMax) * 100).toFixed(1) : '0.0'
+        const labelPct = pctMax ? ((value / pctMax) * 100).toFixed(1) : '0.0'
+        return (
+          <div key={item.key ?? item[labelKey]} className="ext-source-row">
+            <span className="ext-source-row__name">{item[labelKey]}</span>
+            <div className="ext-source-row__bar-wrap">
+              <div className="ext-source-row__fill" style={{ width: `${barPct}%` }} />
+            </div>
+            <span className="ext-source-row__val">{formatNumber(value)}</span>
+            {showPct ? <span className="ext-source-row__pct">({labelPct}%)</span> : null}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 export default function ExtensionAnalyticsBlock({
   analytics,
   chartIds,
@@ -26,6 +62,7 @@ export default function ExtensionAnalyticsBlock({
   title = 'Live Performance',
   appFilter = null,
   siteStatsHeadlines = null,
+  topExtensionsByUsers = null,
   hideHeader = false,
 }) {
   if (!analytics || !chartIds) return null
@@ -49,6 +86,13 @@ export default function ExtensionAnalyticsBlock({
   const imprDelta = impressionsDelta(analytics)
   const pageViewsBySource = analytics.pageViewsBySource ?? {}
   const uninstallsByRegion = analytics.uninstallsByRegion ?? {}
+  const showTopExtensions = Array.isArray(topExtensionsByUsers)
+  const topExtensionsMaxUsers = showTopExtensions
+    ? Math.max(...topExtensionsByUsers.map((row) => row.activeUsers), 0)
+    : 0
+  const pageViewsBySourceRows = [...Object.entries(pageViewsBySource)]
+    .sort(([, a], [, b]) => b - a)
+    .map(([source, count]) => ({ key: source, label: formatLabel(source), value: count }))
 
   const analyticsContent = (
     <>
@@ -232,29 +276,36 @@ export default function ExtensionAnalyticsBlock({
       )}
 
       <section className="ext-secondary-stats">
-        <div className="ext-secondary-stats__grid ext-secondary-stats__grid--cols-1">
+        <div
+          className={`ext-secondary-stats__grid${
+            showTopExtensions ? ' ext-secondary-stats__grid--cols-2' : ''
+          }`}
+        >
+          {showTopExtensions ? (
+            <div className="ext-sec-card CC__cyber-accent">
+              <CyberCorners />
+              <div className="ext-sec-card__label">Top 10 Extensions</div>
+              <HorizontalBarBreakdown
+                items={topExtensionsByUsers.map((row) => ({
+                  key: row.key,
+                  label: row.name,
+                  value: row.activeUsers,
+                }))}
+                barTotal={topExtensionsMaxUsers}
+              />
+            </div>
+          ) : null}
+
           <div className="ext-sec-card CC__cyber-accent">
             <CyberCorners />
             <div className="ext-sec-card__label">Page Views by Source</div>
-            <div className="ext-sources">
-              {[...Object.entries(pageViewsBySource)]
-                .sort(([, a], [, b]) => b - a)
-                .map(([source, count]) => {
-                  const pct = analytics.pageViews
-                    ? ((count / analytics.pageViews) * 100).toFixed(1)
-                    : '0.0'
-                  return (
-                    <div key={source} className="ext-source-row">
-                      <span className="ext-source-row__name">{formatLabel(source)}</span>
-                      <div className="ext-source-row__bar-wrap">
-                        <div className="ext-source-row__fill" style={{ width: `${pct}%` }} />
-                      </div>
-                      <span className="ext-source-row__val">{formatNumber(count)}</span>
-                      <span className="ext-source-row__pct">({pct}%)</span>
-                    </div>
-                  )
-                })}
-            </div>
+            <HorizontalBarBreakdown
+              items={pageViewsBySourceRows}
+              barTotal={analytics.pageViews}
+              pctTotal={analytics.pageViews}
+              labelKey="label"
+              showPct
+            />
           </div>
         </div>
       </section>

@@ -8,11 +8,20 @@
       "prompts": 96,
       "category": "Social Media",
       "estimatedTime": "5 hours",
-      "youtube": "https://youtu.be/-saFrB1W9ug",
-      "youtubeHowToUse": "",
+      "youtube": "https://www.youtube.com/watch?v=U9RfbwYkqfM",
       "github": "https://github.com/dpw1/youtube-filter-pro",
-      "tags": ["chromeExtension", "youtube", "socialMedia", "searchFilter"],
-      "related": ["youtube-keyword-alert", "youtube-comments-exporter"]
+      "tags": [
+        "chromeExtension",
+        "youtube",
+        "socialMedia",
+        "searchFilter"
+      ],
+      "related": [
+        "youtube-keyword-alert",
+        "youtube-comments-exporter"
+      ],
+      "quickStart": "<ul><li>On any YouTube page, click the Filters button in the top bar (next to the search controls).</li><li>Run a search as usual — filtering applies on the search results page.</li><li>Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.</li><li>Your filter settings are saved and restored automatically across sessions (synced via Chrome).</li></ul>",
+      "quickStartHash": "4601af45c7cb7801"
     },
     {
       "id": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
@@ -22,10 +31,19 @@
       "estimatedTime": "3 hours",
       "category": "AI Assistant",
       "youtube": "https://youtu.be/BGhB0gFwv1M",
-      "youtubeHowToUse": "",
       "github": "https://github.com/dpw1/claude-search",
-      "tags": ["chromeExtension", "claude", "aiAssistant", "search"],
-      "related": ["claude-limit-monitor", "ai-bookmark"]
+      "tags": [
+        "chromeExtension",
+        "claude",
+        "aiAssistant",
+        "search"
+      ],
+      "related": [
+        "claude-limit-monitor",
+        "ai-bookmark"
+      ],
+      "quickStart": "<ul><li>Install the extension</li><li>Click on the button &quot;Deep Search&quot; below the &quot;Search&quot; button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac)</li><li>Search away!</li></ul>",
+      "quickStartHash": "e12769def1f779be"
     },
     {
       "id": "epokpidfnienjjfncmhnallghfhaijbj",
@@ -34,11 +52,22 @@
       "prompts": 116,
       "estimatedTime": "8 hours",
       "category": "Social Media",
-      "youtube": "https://youtu.be/m4iuYN7vsRo",
-      "youtubeHowToUse": "",
+      "youtube": "https://www.youtube.com/watch?v=X4jAFNkBCzc",
       "github": "https://github.com/dpw1/youtube-comments-export",
-      "tags": ["chromeExtension", "youtube", "socialMedia", "export", "comments"],
-      "related": ["youtube-filter-pro", "youtube-keyword-alert", "instagram-comments-exporter"]
+      "tags": [
+        "chromeExtension",
+        "youtube",
+        "socialMedia",
+        "export",
+        "comments"
+      ],
+      "related": [
+        "youtube-filter-pro",
+        "youtube-keyword-alert",
+        "instagram-comments-exporter"
+      ],
+      "quickStart": "<ul><li>Pin the extension icon in Chrome’s toolbar for quick access (click the puzzle piece, then pin).</li><li>Click the extension icon in your toolbar to open it. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li><li>Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas</li></ul>",
+      "quickStartHash": "18e528f6f9593b88"
     },
     {
       "id": "hgojieiehkjgjhdnbglfhbcojeeggigi",
@@ -48,10 +77,20 @@
       "category": "Social Media",
       "estimatedTime": "4 hours",
       "youtube": "https://youtu.be/tBSZ1oD5OM8",
-      "youtubeHowToUse": "",
       "github": "https://github.com/dpw1/instagram-dm-exporter",
-      "tags": ["chromeExtension", "instagram", "socialMedia", "export", "messages"],
-      "related": ["instagram-comments-exporter", "dex"]
+      "tags": [
+        "chromeExtension",
+        "instagram",
+        "socialMedia",
+        "export",
+        "messages"
+      ],
+      "related": [
+        "instagram-comments-exporter",
+        "dex"
+      ],
+      "quickStart": "<ul><li>Pin the extension icon in Chrome’s toolbar for quick access (click the puzzle piece, then pin).</li><li>Click the extension icon in your toolbar to open it. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li><li>Exporting Instagram messages in the official way takes a long time</li></ul>",
+      "quickStartHash": "0b9cd4f79cfacb4e"
     },
     {
       "id": "jadjgiiaompdjacagaomgogdihbpgcpg",
@@ -59,12 +98,20 @@
       "created": "May 29, 2026",
       "category": "Productivity",
       "estimatedTime": "8 hours",
-      "youtube": "https://www.youtube.com/watch?v=D4-1VtvkdIw",
-      "youtubeHowToUse": "",
+      "youtube": "https://www.youtube.com/watch?v=RpVfrhAHSvw",
       "prompts": 65,
       "github": "https://github.com/dpw1/save-to-drive",
-      "tags": ["chromeExtension", "googleDrive", "productivity", "fileSave"],
-      "related": ["gmail-to-pdf"]
+      "tags": [
+        "chromeExtension",
+        "googleDrive",
+        "productivity",
+        "fileSave"
+      ],
+      "related": [
+        "gmail-to-pdf"
+      ],
+      "quickStart": "<ul><li>Install the extension and click Connect Google Drive in the popup.</li><li>Right-click a file link or image on almost any website.</li><li>Choose &quot;Save to Google Drive&quot;</li><li>A small on-page message confirms progress; when it’s done, open the file in Drive with one click.</li></ul>",
+      "quickStartHash": "839fd617797e48f9"
     },
     {
       "id": "mljfhcfnjbfibedpiaheeihpbjajfcal",
@@ -73,11 +120,20 @@
       "created": "June 4, 2026",
       "category": "AI Assistant",
       "youtube": "https://www.youtube.com/watch?v=iyXIi6pNq-M",
-      "youtubeHowToUse": "",
       "prompts": 49,
       "github": "https://github.com/dpw1/claude-limit-monitor",
-      "tags": ["chromeExtension", "claude", "aiAssistant", "usageMonitor"],
-      "related": ["claude-deep-search", "ai-bookmark"]
+      "tags": [
+        "chromeExtension",
+        "claude",
+        "aiAssistant",
+        "usageMonitor"
+      ],
+      "related": [
+        "claude-deep-search",
+        "ai-bookmark"
+      ],
+      "quickStart": "<ul><li>Go to Claude.ai</li><li>You should see the widget above your chat box.</li><li>(optional) click on the Chrome Extension popup to change options as per your needs. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li></ul>",
+      "quickStartHash": "e63857ce84d603be"
     },
     {
       "id": "golankbkfnepjbpcekbcglcfgmbpgnmb",
@@ -87,11 +143,22 @@
       "estimatedTime": "24 hours",
       "created": "June 7, 2026",
       "youtube": "https://www.youtube.com/watch?v=WA5xLTMyykE",
-      "youtubeHowToUse": "",
       "prompts": 250,
       "github": "https://github.com/dpw1/ai-bookmark",
-      "tags": ["chromeExtension", "aiAssistant", "claude", "chatgpt", "grok", "bookmarks"],
-      "related": ["claude-deep-search", "claude-limit-monitor"]
+      "tags": [
+        "chromeExtension",
+        "aiAssistant",
+        "claude",
+        "chatgpt",
+        "grok",
+        "bookmarks"
+      ],
+      "related": [
+        "claude-deep-search",
+        "claude-limit-monitor"
+      ],
+      "quickStart": "<ul><li>Install the extension and sign in with Google.</li><li>Go to Claude.ai, ChatGPT.com, or Grok.com.</li><li>Click the star on any AI reply you want to keep.</li><li>Open the extension popup for quick access, or click View all bookmarks for search, tags, notes, and filters. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li><li>Click any saved bookmark to reopen the conversation and scroll to that exact reply.</li></ul>",
+      "quickStartHash": "ec4c48f51c669840"
     },
     {
       "id": "bhagkmlelgbjbklgafgdjeebkdhlibjf",
@@ -99,12 +166,21 @@
       "estimatedTime": "15 hours",
       "created": "June 13, 2026",
       "category": "Productivity",
-      "youtube": "https://www.youtube.com/watch?v=Y9ZYwJ9g9Cw",
-      "youtubeHowToUse": "",
+      "youtube": "https://www.youtube.com/watch?v=GgeOk4pjaSI",
       "prompts": 120,
       "github": "https://github.com/dpw1/gmail-export",
-      "tags": ["chromeExtension", "gmail", "productivity", "export", "pdf"],
-      "related": ["save-directly-to-drive"]
+      "tags": [
+        "chromeExtension",
+        "gmail",
+        "productivity",
+        "export",
+        "pdf"
+      ],
+      "related": [
+        "save-directly-to-drive"
+      ],
+      "quickStart": "<ul><li>Install the extension and open Gmail.</li><li>Check the emails you want to save (one or several - you can click on the checkboxes to export multiple).</li><li>Click the download button in the Gmail toolbar, or open the extension popup and choose your format. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li><li>The file saves to your computer. Optional: enable attachment or image ZIP downloads from Settings.</li><li>Open the History tab to see your last 100 exports.</li></ul>",
+      "quickStartHash": "406d7d7727b6ea77"
     },
     {
       "id": "dpfdehgiffggecppcbkdacbifbljeiii",
@@ -114,10 +190,20 @@
       "prompts": 35,
       "estimatedTime": "8 hours",
       "youtube": "https://www.youtube.com/watch?v=XAoQX6iUgK0",
-      "youtubeHowToUse": "",
       "github": "https://github.com/dpw1/instagram-comment-exporter",
-      "tags": ["chromeExtension", "instagram", "socialMedia", "export", "comments"],
-      "related": ["instagram-dm-exporter", "youtube-comments-exporter"]
+      "tags": [
+        "chromeExtension",
+        "instagram",
+        "socialMedia",
+        "export",
+        "comments"
+      ],
+      "related": [
+        "instagram-dm-exporter",
+        "youtube-comments-exporter"
+      ],
+      "quickStart": "<ul><li>Install the extension and open any Instagram post or Reel while logged in.</li><li>Click the floating button to open the exporter. (it will automatically show up on the bottom right)</li><li>Hit Start to collect comments and replies. You can pause whenever you need to and continue later.</li><li>Review the results in the Comments tab, or revisit past extractions in History.</li><li>Click Export and choose CSV, Excel, JSON, or TXT.</li></ul>",
+      "quickStartHash": "faaf8c988342b643"
     },
     {
       "id": "pniolepdakiocafjiibgiabkcdhgkfep",
@@ -127,10 +213,20 @@
       "prompts": 55,
       "estimatedTime": "10 hours",
       "youtube": "https://www.youtube.com/watch?v=CdIXEKUTewE",
-      "youtubeHowToUse": "",
       "github": "https://github.com/dpw1/youtube-keyword-alert",
-      "tags": ["chromeExtension", "youtube", "socialMedia", "notifications", "keywords"],
-      "related": ["youtube-filter-pro", "youtube-comments-exporter"]
+      "tags": [
+        "chromeExtension",
+        "youtube",
+        "socialMedia",
+        "notifications",
+        "keywords"
+      ],
+      "related": [
+        "youtube-filter-pro",
+        "youtube-comments-exporter"
+      ],
+      "quickStart": "<ul><li>Install the extension and open the dashboard from the toolbar popup.</li><li>Create a filter with your keywords and any rules you want (duration, subscribers, exclusions, etc.).</li><li>Enable the filter and choose your polling interval and notification settings in Settings.</li><li>The extension checks YouTube in the background on your schedule and stores matching videos in Results.</li><li>When something new is found, you get notified (based on your settings) and can open the video straight from the results page.</li></ul>",
+      "quickStartHash": "987bb2161fa9493e"
     },
     {
       "id": "cdagimhkcpohhjipcnpaaebppnmgegjo",
@@ -140,9 +236,19 @@
       "prompts": 83,
       "github": "https://github.com/dpw1/discord-export",
       "youtube": "https://www.youtube.com/watch?v=eDzr_Y4f9fU",
-      "youtubeHowToUse": "",
-      "tags": ["chromeExtension", "discord", "socialMedia", "export", "messages"],
-      "related": ["instagram-dm-exporter", "instagram-comments-exporter"]
+      "tags": [
+        "chromeExtension",
+        "discord",
+        "socialMedia",
+        "export",
+        "messages"
+      ],
+      "related": [
+        "instagram-dm-exporter",
+        "instagram-comments-exporter"
+      ],
+      "quickStart": "<ul><li>Install the extension and open discord.com while logged in.</li><li>Click the floating button to open DEX. (it will automatically show up on the bottom right)</li><li>In Choose, pick the channels or DMs you want to export.</li><li>In Export, pick your scope (all messages, a date range, or recent messages), choose HTML, PDF, TXT, JSON or Markdown, and hit Start Export.</li><li>Optional: open Attachments to preview and download files from your selected channels.</li></ul>",
+      "quickStartHash": "96333571901eb246"
     },
     {
       "id": "amcnbfpogccggckogifbdjekbammlahl",
@@ -150,9 +256,19 @@
       "category": "Social Media",
       "youtubeHowToUse": "https://www.youtube.com/watch?v=FwX8JoBLRm0",
       "created": "July 2, 2026",
-      "tags": ["chromeExtension", "bluesky", "socialMedia", "feedFilter"],
-      "related": ["youtube-filter-pro", "dex"],
-      "download": "https://chromewebstore.google.com/detail/hide-reposts-for-bluesky/amcnbfpogccggckogifbdjekbammlahl"
+      "tags": [
+        "chromeExtension",
+        "bluesky",
+        "socialMedia",
+        "feedFilter"
+      ],
+      "related": [
+        "youtube-filter-pro",
+        "dex"
+      ],
+      "download": "https://chromewebstore.google.com/detail/hide-reposts-for-bluesky/amcnbfpogccggckogifbdjekbammlahl",
+      "quickStart": "<ul><li>On bsky.app, click Hide Reposts in the sidebar.</li><li>Turn hiding on or off with one toggle.</li><li>Choose which followed accounts to filter using checkboxes (search, paginate, or select all).</li><li>Close the menu and keep scrolling — reposts from selected accounts are hidden on your Following tab in real time.</li><li>Your settings are saved automatically and synced across Chrome sessions.</li></ul>",
+      "quickStartHash": "452c919d91021178"
     }
   ]
 }

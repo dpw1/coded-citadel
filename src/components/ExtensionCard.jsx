@@ -5,9 +5,9 @@ import {
   appBuildYoutubeUrl,
   appCardInstalls,
   appCardSummary,
-  appCategory,
   appFilterLabel,
   appIconUrl,
+  formatAppPublishedAgo,
   isAppLive,
   youtubeEmbedId,
 } from '../utils/apps'
@@ -85,7 +85,7 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
   const summary = appCardSummary(app)
   const iconUrl = appIconUrl(app)
   const displayName = appFilterLabel(app)
-  const category = appCategory(app)
+  const publishedLabel = formatAppPublishedAgo(app)
 
   const playVideo = (event) => {
     event.stopPropagation()
@@ -156,7 +156,9 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
               <span className="CC__ext-version">v{app.version}</span>
             ) : null}
           </div>
-          <p className="CC__ext-category">{category}</p>
+          {publishedLabel ? (
+            <p className="CC__ext-published">{publishedLabel}</p>
+          ) : null}
           <p className="CC__ext-summary">{summary}</p>
         </div>
       </div>
