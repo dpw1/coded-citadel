@@ -1,35 +1,35 @@
 {
   "available": true,
-  "updatedAt": "2026-07-04T04:41:22.439Z",
+  "updatedAt": "2026-07-04T08:40:27.272Z",
   "message": null,
-  "totalViews": 857,
+  "totalViews": 870,
   "blogViews": 18,
-  "averageTimeOnSiteSeconds": 149.60139088809524,
-  "uniqueVisitors": 338,
+  "averageTimeOnSiteSeconds": 147.81936091588784,
+  "uniqueVisitors": 346,
   "newVsReturning": {
-    "new": 337,
+    "new": 345,
     "returning": 38
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 409
+      "views": 410
     },
     {
       "path": "/thank-you/",
-      "views": 228
+      "views": 235
     },
     {
       "path": "/uninstall/",
-      "views": 76
+      "views": 78
     },
     {
       "path": "/apps",
-      "views": 26
+      "views": 27
     },
     {
       "path": "/live-stats",
-      "views": 25
+      "views": 26
     },
     {
       "path": "/privacy-policy/ai-bookmark/",
@@ -54,18 +54,18 @@
   ],
   "countries": [
     {
-      "code": "US",
-      "name": "United States",
-      "gaCountry": "United States",
-      "gaCountryId": "US",
-      "users": 80
-    },
-    {
       "code": "IN",
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 79
+      "users": 85
+    },
+    {
+      "code": "US",
+      "name": "United States",
+      "gaCountry": "United States",
+      "gaCountryId": "US",
+      "users": 81
     },
     {
       "code": null,
@@ -100,7 +100,7 @@
       "name": "Pakistan",
       "gaCountry": "Pakistan",
       "gaCountryId": "PK",
-      "users": 9
+      "users": 10
     },
     {
       "code": "CN",
@@ -232,7 +232,7 @@
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 359
+      "sessions": 367
     },
     {
       "source": "Organic Search",
@@ -240,7 +240,7 @@
     },
     {
       "source": "Unassigned",
-      "sessions": 19
+      "sessions": 22
     },
     {
       "source": "Referral",
@@ -248,7 +248,7 @@
     },
     {
       "source": "Organic Social",
-      "sessions": 2
+      "sessions": 3
     },
     {
       "source": "Organic Video",
@@ -258,7 +258,7 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 359
+      "sessions": 367
     },
     {
       "referrer": "google",
@@ -266,11 +266,15 @@
     },
     {
       "referrer": "(not set)",
-      "sessions": 19
+      "sessions": 22
     },
     {
       "referrer": "chromewebstore.google.com",
       "sessions": 12
+    },
+    {
+      "referrer": "facebook.com",
+      "sessions": 3
     },
     {
       "referrer": "google-admin.corp.google.com",
@@ -278,10 +282,6 @@
     },
     {
       "referrer": "bing",
-      "sessions": 2
-    },
-    {
-      "referrer": "facebook.com",
       "sessions": 2
     },
     {
@@ -418,6 +418,10 @@
       {
         "date": "03-07-2026",
         "total": 45
+      },
+      {
+        "date": "04-07-2026",
+        "total": 13
       }
     ],
     "activeUsers": [
@@ -540,6 +544,10 @@
       {
         "date": "03-07-2026",
         "total": 33
+      },
+      {
+        "date": "04-07-2026",
+        "total": 8
       }
     ],
     "blogViews": [
@@ -661,6 +669,10 @@
       },
       {
         "date": "03-07-2026",
+        "total": 0
+      },
+      {
+        "date": "04-07-2026",
         "total": 0
       }
     ],
@@ -784,6 +796,10 @@
       {
         "date": "03-07-2026",
         "total": 36
+      },
+      {
+        "date": "04-07-2026",
+        "total": 8
       }
     ]
   }
