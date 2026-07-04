@@ -2,7 +2,7 @@
   "updatedAt": "2026-07-03",
   "apps": [
     {
-      "slug": "custom-data",
+      "slug": "hide-reposts-for-bluesky",
       "chromeExtensionId": "amcnbfpogccggckogifbdjekbammlahl",
       "name": "Hide Reposts for Bluesky",
       "icon": "⚡",
@@ -34,7 +34,7 @@
         "https://lh3.googleusercontent.com/iIPSgXriGO4C3w2Ki-29Ptv7yg2aublS99k82sYfgd4-zhfhgocpNv_U9bQRoc8g1IarUba0M_SgwF6oQeH7jc2ZhQ",
         "https://lh3.googleusercontent.com/JaX-Gay5X_C9fW2L7BrsESHKVrEnMjv72QANVcqAs4TmcBSpDSCC8Ynczydzc3HW09WrptgC1l1n-dVHUYeFisHKag"
       ],
-      "youtubeHowToUse": "",
+      "youtubeHowToUse": "https://www.youtube.com/watch?v=FwX8JoBLRm0",
       "tags": [
         "chromeExtension",
         "bluesky",
@@ -69,7 +69,9 @@
           "slices": []
         },
         "enabledVsDisabledOverTime": []
-      }
+      },
+      "created": "July 2, 2026",
+      "download": "https://chromewebstore.google.com/detail/hide-reposts-for-bluesky/amcnbfpogccggckogifbdjekbammlahl"
     },
     {
       "slug": "gmail-to-pdf",
@@ -599,7 +601,7 @@
       "estimatedTime": "12 hours",
       "prompts": 83,
       "github": "https://github.com/dpw1/discord-export",
-      "youtube": "https://www.youtube.com/shorts/eDzr_Y4f9fU",
+      "youtube": "https://www.youtube.com/watch?v=eDzr_Y4f9fU",
       "youtubeHowToUse": "",
       "tags": [
         "chromeExtension",
@@ -5762,12 +5764,12 @@
   ],
   "portfolioStats": {
     "totalActiveUsers": 296,
-    "activeUsersDelta7d": 93,
-    "baselineDate": "2026-06-26",
-    "baselineTotalActiveUsers": 203,
+    "activeUsersDelta7d": 75,
+    "baselineDate": "2026-06-27",
+    "baselineTotalActiveUsers": 221,
     "byApp": [
       {
-        "slug": "custom-data",
+        "slug": "hide-reposts-for-bluesky",
         "chromeExtensionId": "amcnbfpogccggckogifbdjekbammlahl",
         "now": 0,
         "baseline": 0,
@@ -5777,8 +5779,8 @@
         "slug": "gmail-to-pdf",
         "chromeExtensionId": "bhagkmlelgbjbklgafgdjeebkdhlibjf",
         "now": 6,
-        "baseline": 4,
-        "delta": 2
+        "baseline": 5,
+        "delta": 1
       },
       {
         "slug": "dex",
@@ -5791,8 +5793,8 @@
         "slug": "youtube-filter-pro",
         "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
         "now": 97,
-        "baseline": 58,
-        "delta": 39
+        "baseline": 62,
+        "delta": 35
       },
       {
         "slug": "claude-deep-search",
@@ -5826,22 +5828,22 @@
         "slug": "instagram-dm-exporter",
         "chromeExtensionId": "hgojieiehkjgjhdnbglfhbcojeeggigi",
         "now": 69,
-        "baseline": 55,
-        "delta": 14
+        "baseline": 58,
+        "delta": 11
       },
       {
         "slug": "save-directly-to-drive",
         "chromeExtensionId": "jadjgiiaompdjacagaomgogdihbpgcpg",
         "now": 34,
-        "baseline": 14,
-        "delta": 20
+        "baseline": 18,
+        "delta": 16
       },
       {
         "slug": "claude-limit-monitor",
         "chromeExtensionId": "mljfhcfnjbfibedpiaheeihpbjajfcal",
         "now": 83,
-        "baseline": 66,
-        "delta": 17
+        "baseline": 72,
+        "delta": 11
       },
       {
         "slug": "youtube-keyword-alert",
@@ -5852,8 +5854,8 @@
       }
     ],
     "totalInstalls": 732,
-    "installsDelta7d": 36,
-    "baselineTotalInstalls": 696,
-    "computedAt": "2026-07-03"
+    "installsDelta7d": 11,
+    "baselineTotalInstalls": 721,
+    "computedAt": "2026-07-04"
   }
 }

@@ -1,31 +1,31 @@
 {
   "available": true,
-  "updatedAt": "2026-07-03T13:25:04.874Z",
+  "updatedAt": "2026-07-04T04:41:22.439Z",
   "message": null,
-  "totalViews": 828,
+  "totalViews": 857,
   "blogViews": 18,
-  "averageTimeOnSiteSeconds": 148.40577422418139,
-  "uniqueVisitors": 318,
+  "averageTimeOnSiteSeconds": 149.60139088809524,
+  "uniqueVisitors": 338,
   "newVsReturning": {
-    "new": 318,
+    "new": 337,
     "returning": 38
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 407
+      "views": 409
     },
     {
       "path": "/thank-you/",
-      "views": 209
+      "views": 228
     },
     {
       "path": "/uninstall/",
-      "views": 69
+      "views": 76
     },
     {
       "path": "/apps",
-      "views": 25
+      "views": 26
     },
     {
       "path": "/live-stats",
@@ -58,14 +58,14 @@
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 78
+      "users": 80
     },
     {
       "code": "IN",
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 75
+      "users": 79
     },
     {
       "code": null,
@@ -79,7 +79,7 @@
       "name": "Brazil",
       "gaCountry": "Brazil",
       "gaCountryId": "BR",
-      "users": 17
+      "users": 18
     },
     {
       "code": "PL",
@@ -96,6 +96,13 @@
       "users": 10
     },
     {
+      "code": "PK",
+      "name": "Pakistan",
+      "gaCountry": "Pakistan",
+      "gaCountryId": "PK",
+      "users": 9
+    },
+    {
       "code": "CN",
       "name": "China",
       "gaCountry": "China",
@@ -110,13 +117,6 @@
       "users": 7
     },
     {
-      "code": "PK",
-      "name": "Pakistan",
-      "gaCountry": "Pakistan",
-      "gaCountryId": "PK",
-      "users": 7
-    },
-    {
       "code": "DE",
       "name": "Germany",
       "gaCountry": "Germany",
@@ -124,17 +124,17 @@
       "users": 6
     },
     {
-      "code": "ID",
-      "name": "Indonesia",
-      "gaCountry": "Indonesia",
-      "gaCountryId": "ID",
-      "users": 5
-    },
-    {
       "code": "KR",
       "name": "South Korea",
       "gaCountry": "South Korea",
       "gaCountryId": "KR",
+      "users": 6
+    },
+    {
+      "code": "ID",
+      "name": "Indonesia",
+      "gaCountry": "Indonesia",
+      "gaCountryId": "ID",
       "users": 5
     },
     {
@@ -201,6 +201,13 @@
       "users": 3
     },
     {
+      "code": "CL",
+      "name": "Chile",
+      "gaCountry": "Chile",
+      "gaCountryId": "CL",
+      "users": 2
+    },
+    {
       "code": "DZ",
       "name": "Algeria",
       "gaCountry": "Algeria",
@@ -215,36 +222,29 @@
       "users": 2
     },
     {
-      "code": "IL",
-      "name": "Israel",
-      "gaCountry": "Israel",
-      "gaCountryId": "IL",
-      "users": 2
-    },
-    {
-      "code": "MA",
-      "name": "Morocco",
-      "gaCountry": "Morocco",
-      "gaCountryId": "MA",
+      "code": "ES",
+      "name": "Spain",
+      "gaCountry": "Spain",
+      "gaCountryId": "ES",
       "users": 2
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 337
+      "sessions": 359
     },
     {
       "source": "Organic Search",
       "sessions": 33
     },
     {
-      "source": "Referral",
-      "sessions": 17
+      "source": "Unassigned",
+      "sessions": 19
     },
     {
-      "source": "Unassigned",
-      "sessions": 12
+      "source": "Referral",
+      "sessions": 18
     },
     {
       "source": "Organic Social",
@@ -258,7 +258,7 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 337
+      "sessions": 359
     },
     {
       "referrer": "google",
@@ -266,11 +266,11 @@
     },
     {
       "referrer": "(not set)",
-      "sessions": 12
+      "sessions": 19
     },
     {
       "referrer": "chromewebstore.google.com",
-      "sessions": 11
+      "sessions": 12
     },
     {
       "referrer": "google-admin.corp.google.com",
@@ -417,7 +417,7 @@
       },
       {
         "date": "03-07-2026",
-        "total": 16
+        "total": 45
       }
     ],
     "activeUsers": [
@@ -539,7 +539,7 @@
       },
       {
         "date": "03-07-2026",
-        "total": 12
+        "total": 33
       }
     ],
     "blogViews": [
@@ -783,7 +783,7 @@
       },
       {
         "date": "03-07-2026",
-        "total": 13
+        "total": 36
       }
     ]
   }
