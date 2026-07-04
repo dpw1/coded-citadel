@@ -245,8 +245,6 @@ One thing I discovered: Gmail already has a `data-tooltip` attribute on its tool
 
 I also replicated Gmail's bubble hover animation. It's triggered by JavaScript that adds a class on hover, so I had to attach a debugger to a setTimeout to give myself time to hover over the element and inspect it while paused. Took a few minutes but got there.
 
-![](/blog-images/ep8-gmail-pdf/SCREENSHOT_12-06-2026-08h25.jpg)
-
 ---
 
 ## JSON, TXT, history and keeping permissions tight
