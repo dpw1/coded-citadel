@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-04T11:15:24.926Z",
+  "updatedAt": "2026-07-05T07:13:45.276Z",
   "message": null,
   "apps": [
     {
@@ -12,6 +12,30 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "03427a62e8fe4e302f6e497b372ee6519a14a0e8",
+          "shortSha": "03427a6",
+          "message": "Update Gmail export extension to version 1.0.87. Revise support modal messages across multiple languages to enhance user engagement. Remove deprecated support toast functionality from the codebase for improved performance. Update manifest and localization files to reflect these changes.",
+          "date": "2026-07-04T15:07:31Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/gmail-export/commit/03427a62e8fe4e302f6e497b372ee6519a14a0e8"
+        },
+        {
+          "sha": "e0a0dca09dfd39b621fd48c0055b7aab14fa4204",
+          "shortSha": "e0a0dca",
+          "message": "Update Gmail export extension to version 1.0.85. Introduce quick download options for attachments and images, enhance support modal with user engagement prompts, and improve PDF export functionality by integrating new libraries. Update manifest and localization files to reflect these changes and streamline resource fetching. Remove deprecated offscreen rendering methods for better performance.",
+          "date": "2026-07-04T15:02:10Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/gmail-export/commit/e0a0dca09dfd39b621fd48c0055b7aab14fa4204"
+        },
+        {
+          "sha": "3911bf623a5faabbfbca28816504993f787a07cc",
+          "shortSha": "3911bf6",
+          "message": "Update Gmail export extension to version 1.0.77. Introduce new permissions for cookies, enhance resource fetching with a dedicated message type for Gmail resources, and improve image handling by ensuring only safe URLs are processed. Refactor PDF rendering logic to remove deprecated methods and streamline the export process. Update manifest and scripts for better performance and user experience.",
+          "date": "2026-07-04T13:58:41Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/gmail-export/commit/3911bf623a5faabbfbca28816504993f787a07cc"
+        },
         {
           "sha": "5ed7c4627d0684f51b508210892762cf228e385a",
           "shortSha": "5ed7c46",
