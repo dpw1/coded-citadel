@@ -20,7 +20,7 @@ keyTakeaways:
 
 Claude does have a search function. It just only searches conversation titles, not what's actually inside them. I found this out the hard way, coded a fix in 3 hours, published it for free, and it got accepted to the Chrome Web Store in 12 hours. This is how it happened.
 
-This is episode 3 of VibeCoding Until I Make $100k.
+This is episode 3 of Coding Until I Make $100k.
 
 ---
 
@@ -66,7 +66,7 @@ Then I had another idea: scrollbar markers. Little indicators on the right side 
 
 Turns out it's a visual trick. There's no way to inject actual elements into the browser scrollbar. What I did instead was create a `position: fixed` div that tracks the scroll percentage and positions colored markers to match where each result sits in the document. It looks like scrollbar markers. It's not. But it works.
 
-The catch: long conversations. When there's a lot of HTML on the page, things get messy. Even Claude's own CTRL+F has issues in very long conversations. This is one of the harder parts of vibecoding content.js stuff - Cursor can't see the full rendered page or debug it properly the way you can with a standalone app. So there are limitations.
+The catch: long conversations. When there's a lot of HTML on the page, things get messy. Even Claude's own CTRL+F has issues in very long conversations. This is one of the harder parts of coding content.js stuff - Cursor can't see the full rendered page or debug it properly the way you can with a standalone app. So there are limitations.
 
 I fixed it enough to be useful and moved on. Having something out there that works for most cases is better than chasing perfection on an edge case before anyone's even using it.
 

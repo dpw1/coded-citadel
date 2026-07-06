@@ -15,7 +15,7 @@ keyTakeaways:
 
 # I \"Hacked\" Discord's API to Download All Messages & Attachments (And Made a FREE Chrome Extension For This)
 
-This is episode 11 of VibeCoding Until I Make $100K, where I'm building apps in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](https://codedcitadel.com).
+This is episode 11 of Coding Until I Make $100K, where I'm building apps in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](https://codedcitadel.com).
 
 This one was a bit of a detour. I wasn't planning to build a Discord exporter. I was actually researching a completely different platform, stumbled onto a genuine gap, and ended up shipping a full extension in a few days. Here's the whole story.
 

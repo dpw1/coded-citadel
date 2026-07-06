@@ -1,11 +1,11 @@
 ---
 title: "I Built a YouTube Filter Chrome Extension Using 96 AI Prompts - Here's Exactly How"
-slug: "youtube-filter-chrome-extension-vibecoding"
+slug: "youtube-filter-chrome-extension-coding"
 date: "2026-05-17"
-description: "Episode 2 of VibeCoding Until I Make $100k: how I built YouTube Filter Pro - a Chrome extension that filters videos by view count and duration - using 96 AI prompts, and the ytInitialData bug that cost me hours."
+description: "Episode 2 of Coding Until I Make $100k: how I built YouTube Filter Pro - a Chrome extension that filters videos by view count and duration - using 96 AI prompts, and the ytInitialData bug that cost me hours."
 download: "https://chromewebstore.google.com/detail/youtube-filter-pro-filter/dbkkcbfafkckhmefkpgnelikibobcabb"
 stats: "/apps/youtube-filter-pro"
-tags: ["chrome-extensions", "vibecoding", "building-in-public", "youtube", "javascript"]
+tags: ["chrome-extensions", "coding", "building-in-public", "youtube", "javascript"]
 youtubeId: "https://www.youtube.com/watch?v=-saFrB1W9ug"
 draft: false
 keyTakeaways:
@@ -17,13 +17,13 @@ keyTakeaways:
 
 # I Built a YouTube Filter Chrome Extension Using 96 AI Prompts - Here's Exactly How
 
-**Published on the Coded Citadel | VibeCoding Until I Make $100k - Episode 2**
+**Published on the Coded Citadel | Coding Until I Make $100k - Episode 2**
 
 ---
 
 I spent hours debugging a bug that should have taken minutes to find. The fix was one line. This is that story.
 
-In episode 2 of *VibeCoding Until I Make $100k*, I built **YouTube Filter Pro** - a Chrome extension that lets you filter YouTube search results by view count, video length, and more. YouTube does not have this natively. I used **96 AI prompts** across the entire build. Here's the full breakdown.
+In episode 2 of *Coding Until I Make $100k*, I built **YouTube Filter Pro** - a Chrome extension that lets you filter YouTube search results by view count, video length, and more. YouTube does not have this natively. I used **96 AI prompts** across the entire build. Here's the full breakdown.
 
 ---
 

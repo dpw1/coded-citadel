@@ -1,8 +1,8 @@
 ---
-title: "I'm VibeCoding My Way to $100K — This Is How It Starts"
-slug: "vibecoding-to-100k-youtube-comments-scraper"
+title: "I'm Coding My Way to $100K — This Is How It Starts"
+slug: "coding-to-100k-youtube-comments-scraper"
 date: "2026-05-12"
-description: "Episode 1 of VibeCoding Until I Make $100K. I built a free YouTube comments scraper Chrome extension from scratch — design, API, logo, review prompt, and publish. Here's the full process."
+description: "Episode 1 of Coding Until I Make $100K. I built a free YouTube comments scraper Chrome extension from scratch — design, API, logo, review prompt, and publish. Here's the full process."
 download: "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj"
 stats: "/apps/youtube-comments-exporter"
 tags: ["chrome-extensions", "youtube-api", "indie-hacker", "building-in-public", "vibe-coding", "supabase"]
@@ -16,7 +16,7 @@ keyTakeaways:
   - "A post-install review prompt that splits negative feedback into a private form (not a public review) is worth adding early."
 ---
 
-# I'm VibeCoding My Way to $100K — This Is How It Starts
+# I'm Coding My Way to $100K — This Is How It Starts
 
 I want to build $100k in revenue by shipping software with AI. I know that sounds like every other "zero to X" challenge you've seen. The difference is I'm not trying to sell you anything, and I'm not going to pretend it's going faster than it is.
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Twitter Blocked Me, I Moved to BlueSky, But It Had One Major Issue. So I Built a Chrome Extension to Fix It"
 slug: "hide-reposts-bluesky-chrome-extension"
 date: "2026-07-02"
@@ -18,7 +18,7 @@ keyTakeaways:
 # "Twitter Blocked Me, I Moved to BlueSky, But It Had One Major Issue. So I Built a Chrome Extension to Fix It"
 
 
-This is episode 12 of VibeCoding Until I Make $100K, where I'm building apps in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](https://codedcitadel.com).
+This is episode 12 of Coding Until I Make $100K, where I'm building apps in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](https://codedcitadel.com).
 
 This one started with Twitter locking me out for no reason.
 

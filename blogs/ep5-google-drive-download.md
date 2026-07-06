@@ -2,7 +2,7 @@
 title: "I Built a Chrome Extension That Saves Any File to Google Drive in One Click - In Under 8 Hours"
 slug: "chrome-extension-save-to-google-drive-under-8-hours"
 date: "2026-05-31"
-description: "How I built and shipped a save-to-Google-Drive Chrome extension in under 8 hours - OAuth setup, context menu bugs, MV3 limitations, and the full AI-assisted design workflow. Episode 5 of VibeCoding Until I Make $100K."
+description: "How I built and shipped a save-to-Google-Drive Chrome extension in under 8 hours - OAuth setup, context menu bugs, MV3 limitations, and the full AI-assisted design workflow. Episode 5 of Coding Until I Make $100K."
 download: "https://chromewebstore.google.com/detail/jadjgiiaompdjacagaomgogdihbpgcpg"
 stats: "/apps/save-directly-to-drive"
 tags: ["chrome-extensions", "google-drive", "indie-hacker", "building-in-public", "manifest-v3", "oauth", "vibe-coding"]
@@ -22,7 +22,7 @@ https://youtu.be/D4-1VtvkdIw
 
 Most Chrome extensions take days to go from idea to deploy. This one took less than 8 hours. I'm going to walk you through exactly how I built a save-to-Google-Drive extension - the research, the auth headaches, the bugs, the design process, all of it - so you can build yours faster.
 
-This is episode 5 of VibeCoding Until I Make $100k.
+This is episode 5 of Coding Until I Make $100k.
 
 ---
 
@@ -146,4 +146,4 @@ A few things from this build that are worth internalizing:
 
 ---
 
-If you're building Chrome extensions or following along with the VibeCoding series, the full video walkthrough is up on the Coded Citadel YouTube channel. More extensions coming.
+If you're building Chrome extensions or following along with the Coding series, the full video walkthrough is up on the Coded Citadel YouTube channel. More extensions coming.

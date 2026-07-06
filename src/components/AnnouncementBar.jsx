@@ -11,7 +11,7 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, totalProfit, 
       <span
         className={`CC__announcement-bar__marquee-item CC__announcement-bar__marquee-item--tagline${dupClass}`}
       >
-        VibeCoding Until I Make $100k USD
+        Coding Until I Make $100k USD
       </span>
       <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
       <span className={`CC__announcement-bar__marquee-item${dupClass}`}>
@@ -43,7 +43,7 @@ export default function AnnouncementBar() {
   const { liveApps, totalActiveUsers, totalInstalls, totalProfit } = getAnnouncementBarStats()
 
   const ariaLabel = [
-    'VibeCoding Until I Make $100k USD',
+    'Coding Until I Make $100k USD',
     `${formatNumber(liveApps)} apps`,
     `${formatNumber(totalActiveUsers)} users`,
     `${formatNumber(totalInstalls)} installs`,
@@ -63,7 +63,7 @@ export default function AnnouncementBar() {
       />
 
       <div className="CC__announcement-bar__desktop CC__container">
-        <p className="CC__announcement-bar__tagline">VibeCoding Until I Make $100k USD</p>
+        <p className="CC__announcement-bar__tagline">Coding Until I Make $100k USD</p>
         <ul className="CC__announcement-bar__stats">
           <li>{formatNumber(liveApps)} apps</li>
           <li>{formatNumber(totalActiveUsers)} users</li>

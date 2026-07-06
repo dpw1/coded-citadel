@@ -1,8 +1,8 @@
 ---
 title: "I Hacked Claude to Track My Usage Limit"
-slug: "vibecoding-to-100k-claude-limit-monitor"
+slug: "coding-to-100k-claude-limit-monitor"
 date: "2026-06-04"
-description: "Episode 6 of VibeCoding Until I Make $100K. I reverse engineered Claude's website to find a hidden API endpoint, then built a free Chrome extension that shows your usage limit in real time."
+description: "Episode 6 of Coding Until I Make $100K. I reverse engineered Claude's website to find a hidden API endpoint, then built a free Chrome extension that shows your usage limit in real time."
 download: "https://chromewebstore.google.com/detail/mljfhcfnjbfibedpiaheeihpbjajfcal"
 stats: "/apps/claude-limit-monitor"
 tags: ["chrome-extensions", "claude", "indie-hacker", "building-in-public", "vibe-coding", "reverse-engineering"]
@@ -18,7 +18,7 @@ keyTakeaways:
 
 # I Hacked Claude to Track My Usage Limit (Episode 6)
 
-I'm on a journey of vibecoding until I make $100k, building Chrome extensions one at a time. this is my 6th one, and I'm always looking to fix painpoints I find in my own life, on the internet, wherever.
+I'm on a journey of coding until I make $100k, building Chrome extensions one at a time. this is my 6th one, and I'm always looking to fix painpoints I find in my own life, on the internet, wherever.
 
 this one started with something that has always annoyed me: being suddenly interrupted mid-conversation with Claude. no warning, no progress bar, just a wall. so I decided to check if this was something I could detect, to have a bit more control over it.
 
