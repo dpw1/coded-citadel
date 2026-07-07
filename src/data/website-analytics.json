@@ -1,31 +1,31 @@
 {
   "available": true,
-  "updatedAt": "2026-07-06T07:55:53.820Z",
+  "updatedAt": "2026-07-07T09:25:58.096Z",
   "message": null,
-  "totalViews": 990,
-  "blogViews": 22,
-  "averageTimeOnSiteSeconds": 152.17343471509432,
-  "uniqueVisitors": 428,
+  "totalViews": 1064,
+  "blogViews": 24,
+  "averageTimeOnSiteSeconds": 155.75409277908938,
+  "uniqueVisitors": 478,
   "newVsReturning": {
-    "new": 424,
-    "returning": 47
+    "new": 475,
+    "returning": 53
   },
   "mostViewedPages": [
     {
       "path": "/",
-      "views": 419
+      "views": 421
     },
     {
       "path": "/thank-you/",
-      "views": 314
+      "views": 365
     },
     {
       "path": "/uninstall/",
-      "views": 103
+      "views": 119
     },
     {
       "path": "/apps",
-      "views": 27
+      "views": 28
     },
     {
       "path": "/live-stats",
@@ -58,49 +58,56 @@
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 106
+      "users": 121
     },
     {
       "code": "US",
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 93
+      "users": 101
     },
     {
       "code": "BR",
       "name": "Brazil",
       "gaCountry": "Brazil",
       "gaCountryId": "BR",
-      "users": 20
+      "users": 21
     },
     {
       "code": null,
       "name": "(not set)",
       "gaCountry": "(not set)",
       "gaCountryId": "(not set)",
-      "users": 19
+      "users": 20
     },
     {
       "code": "PL",
       "name": "Poland",
       "gaCountry": "Poland",
       "gaCountryId": "PL",
-      "users": 18
+      "users": 20
     },
     {
       "code": "JP",
       "name": "Japan",
       "gaCountry": "Japan",
       "gaCountryId": "JP",
-      "users": 12
+      "users": 15
     },
     {
       "code": "PK",
       "name": "Pakistan",
       "gaCountry": "Pakistan",
       "gaCountryId": "PK",
-      "users": 11
+      "users": 12
+    },
+    {
+      "code": "CN",
+      "name": "China",
+      "gaCountry": "China",
+      "gaCountryId": "CN",
+      "users": 8
     },
     {
       "code": "DE",
@@ -108,13 +115,6 @@
       "gaCountry": "Germany",
       "gaCountryId": "DE",
       "users": 8
-    },
-    {
-      "code": "CN",
-      "name": "China",
-      "gaCountry": "China",
-      "gaCountryId": "CN",
-      "users": 7
     },
     {
       "code": "GB",
@@ -149,13 +149,27 @@
       "name": "France",
       "gaCountry": "France",
       "gaCountryId": "FR",
-      "users": 5
+      "users": 6
     },
     {
       "code": "MA",
       "name": "Morocco",
       "gaCountry": "Morocco",
       "gaCountryId": "MA",
+      "users": 6
+    },
+    {
+      "code": "TH",
+      "name": "Thailand",
+      "gaCountry": "Thailand",
+      "gaCountryId": "TH",
+      "users": 6
+    },
+    {
+      "code": "EG",
+      "name": "Egypt",
+      "gaCountry": "Egypt",
+      "gaCountryId": "EG",
       "users": 5
     },
     {
@@ -173,17 +187,10 @@
       "users": 4
     },
     {
-      "code": "EG",
-      "name": "Egypt",
-      "gaCountry": "Egypt",
-      "gaCountryId": "EG",
-      "users": 4
-    },
-    {
-      "code": "TH",
-      "name": "Thailand",
-      "gaCountry": "Thailand",
-      "gaCountryId": "TH",
+      "code": "ES",
+      "name": "Spain",
+      "gaCountry": "Spain",
+      "gaCountryId": "ES",
       "users": 4
     },
     {
@@ -192,6 +199,13 @@
       "gaCountry": "Taiwan",
       "gaCountryId": "TW",
       "users": 4
+    },
+    {
+      "code": null,
+      "name": "(not set)",
+      "gaCountry": null,
+      "gaCountryId": null,
+      "users": 3
     },
     {
       "code": "AR",
@@ -213,30 +227,16 @@
       "gaCountry": "Algeria",
       "gaCountryId": "DZ",
       "users": 3
-    },
-    {
-      "code": "ES",
-      "name": "Spain",
-      "gaCountry": "Spain",
-      "gaCountryId": "ES",
-      "users": 3
-    },
-    {
-      "code": "GR",
-      "name": "Greece",
-      "gaCountry": "Greece",
-      "gaCountryId": "GR",
-      "users": 3
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 456
+      "sessions": 517
     },
     {
       "source": "Organic Search",
-      "sessions": 39
+      "sessions": 41
     },
     {
       "source": "Unassigned",
@@ -258,11 +258,11 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 456
+      "sessions": 517
     },
     {
       "referrer": "google",
-      "sessions": 33
+      "sessions": 35
     },
     {
       "referrer": "(not set)",
@@ -425,11 +425,15 @@
       },
       {
         "date": "05-07-2026",
-        "total": 61
+        "total": 67
       },
       {
         "date": "06-07-2026",
-        "total": 8
+        "total": 63
+      },
+      {
+        "date": "07-07-2026",
+        "total": 13
       }
     ],
     "activeUsers": [
@@ -559,11 +563,15 @@
       },
       {
         "date": "05-07-2026",
-        "total": 46
+        "total": 47
       },
       {
         "date": "06-07-2026",
-        "total": 6
+        "total": 47
+      },
+      {
+        "date": "07-07-2026",
+        "total": 9
       }
     ],
     "blogViews": [
@@ -693,10 +701,14 @@
       },
       {
         "date": "05-07-2026",
-        "total": 1
+        "total": 2
       },
       {
         "date": "06-07-2026",
+        "total": 1
+      },
+      {
+        "date": "07-07-2026",
         "total": 0
       }
     ],
@@ -827,11 +839,15 @@
       },
       {
         "date": "05-07-2026",
-        "total": 53
+        "total": 55
       },
       {
         "date": "06-07-2026",
-        "total": 8
+        "total": 58
+      },
+      {
+        "date": "07-07-2026",
+        "total": 11
       }
     ]
   }
