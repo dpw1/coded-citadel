@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-07T09:26:07.456Z",
+  "updatedAt": "2026-07-08T08:00:04.779Z",
   "message": null,
   "apps": [
     {
@@ -210,6 +210,14 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "aa757ec3229e837d12ca124ea8d617d11fc1f0ce",
+          "shortSha": "aa757ec",
+          "message": "Update YouTube Filter Pro to version 1.0.49: Introduced new published date filtering options, enhancing the user experience with specific date range selections. Improved auto-scroll functionality for filter toasts and refined toast notifications to display total found videos. Updated localization messages for clarity and consistency. Adjusted styles for better UI presentation.",
+          "date": "2026-07-07T10:17:19Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/aa757ec3229e837d12ca124ea8d617d11fc1f0ce"
+        },
         {
           "sha": "85ccc8611b7b5691e18c49f14b827a87a971a20a",
           "shortSha": "85ccc86",
