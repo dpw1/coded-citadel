@@ -1,5 +1,5 @@
 ---
-title: "12 Chrome Extensions Deployed Within 2 Months. All Data + My First Financially Successful Extension"
+title: "12 Chrome Extensions Deployed Within 2 Months (Not AI Slop). All Data + My First Financially Successful Extension"
 slug: "12-chrome-extensions-52-days"
 date: 2026-07-09
 author: "Coded Citadel"
