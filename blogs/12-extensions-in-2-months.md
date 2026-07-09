@@ -1,5 +1,5 @@
 ---
-title: "12 Chrome Extensions Deployed in 2 Months. All Data + My First Financially Successful Extension"
+title: "12 Chrome Extensions Deployed Within 2 Months. All Data + My First Financially Successful Extension"
 slug: "12-chrome-extensions-52-days"
 date: 2026-07-09
 author: "Coded Citadel"
@@ -42,44 +42,48 @@ Back in 2020, almost one year later after my first published Chrome extension, I
 
 I coded it and published it on October 31, 2020. I didn't think much of it.
 
-![](/blog-images/12-extensions-in-2-months/SCREENSHOT_09-07-2026-06h47.jpg)
-
 For 8 months, I had less than 100 users. It didn't get real traction until April 2022, about a year and a half in, when active users jumped from ~1,400 to ~2,200 in just two weeks and kept climbing from there. 
 
-I was sharing this extension everywhere throughout the months, however, it became really popular after a few YouTubers made videos about it. Back then it was 100% free. Once it became popular, I started studying how to implement monetization and, even though some users weren't happy with it and I had to manage everyone's expectations, it was still profitable.
+![](/blog-images/12-extensions-in-2-months/SCREENSHOT_09-07-2026-12h42.jpg)
 
-Before that inflection point, growth was slow and linear: it took until January 2022 to break 1,000 active users, and November 2022 to hit 10,000 (almost 2 years).
+I was sharing this extension everywhere throughout the months, however, it became really popular after a few YouTubers made videos about it. Back then it was 100% free. 
 
-The extension crossed 38,000 active users on November 13, 2024, roughly 4 years after launch. It peaked shortly after, around 38,500 users in late November 2024, then entered a slow decline, sitting at ~22,300 as of July 2026.
-
-When it reached around 35k users I implemented a paywall with Stripe, and I was averaging $2k~ USD/monthly of profit. It was probably too late by then. Back then I had no idea back it was even an option.
-
-![](/blog-images/12-extensions-in-2-months/updated-screenshot-gmail.png)
+Once it became popular (around 10k users), I started studying how to implement monetization and, even though some users weren't happy with it and I had to manage everyone's expectations, it was still profitable: average of $2k~ USD/monthly of profit. 
 
 The payment system was "per-credit." There were no monthly subscriptions, but there was a one lifetime fee for $400 USD, sold around once per week.
 
-Mid 2026, there were a few updates in the platform that my Chrome extension was coded for, and my extension became obsolete. And this is what led me to my current path.
+![](/blog-images/12-extensions-in-2-months/updated-screenshot-gmail.png)
+
+Before that inflection point, growth was slow and linear: it took until January 2022 to break 1,000 active users, and November 2022 to hit 10,000 (almost 2 years).
+
+The extension crossed 38,000 active users on November 13, 2024, roughly 4 years after launch. It peaked shortly after, around 38,500 users in late November 2024, then entered a slow decline, sitting at ~22,300 as of July 2026. 
+
+Nowadays, after recent updates in the platform that my Chrome extension was coded for, and my extension became obsolete. It's essentially useless, unfortunately. 
+
+And this is what led me to my current path.
 
 ## Trying to replicate it in 2026
 
-Is it possible to replicate this in 2026? I do think so, but I must be honest: With the rise of AI, I believe the time is running out. 
+Is it possible to replicate this in 2026? I do think so, but I must be honest: With the rise of AI, I believe the time is running out. And I don't think that through Chrome extensions alone. 
 
-Maybe things will change for the better. But despite being fairly optimistic overall, I don't expect the "solopreneur" easiness we had in the past few years to last.
+I heard someone say that "if you have a loyal following you can monetize anything", and I'd say that this may be one of the very few ways to monetize extensions nowadays. Natural growth can still happen, but it's extremely unlikely, at least as far as I can tell. 
 
 The two main difficulties I see nowadays:
 
-1. Noise. There is a lot of vibecoded things with dubious quality and immediate paywalls.
+1. Noise. There is a lot of vibecoded things with dubious quality and immediate paywalls. This makes users become more resistant to even try extensions.
 2. Uncertainty. Back then you had to watch out for competitors copying your code, now AI has the potential to make anything obsolete with every new release.
 
-Either way, I'm willing to bite the bullet and test how difficult it really is.
+Either way, I'm willing to bite the bullet and test how difficult it really is, and that is why I coded 12 extensions.
 
 ## The extensions I coded + my strategy
 
 I view these extensions kind of like seeds: I don't expect any of them to sprout any time soon. I'm planting them, and expecting something to happen only in the months to come.
 
-With that being said, when creating each extension, I avoided as much as possible going down the "weather app" route of Chrome extensions and focused on building things that could be legitimately useful. I firmly believe that most of the extensions I coded are valuable to, at least, a small group of people. But whether they will come across these extensions is a different story.
+With that being said, when creating each extension, I avoided as much as possible going down the "weather app" route of Chrome extensions and focused on building things that could be legitimately useful. 
 
-I won't go too much in depth here about how I found and validated the ideas, but you can read the individual blog posts if you're interested, where I cover everything in details. Long story short: I relied a lot on scraping Reddit, Instagram and YouTube comments. 
+I firmly believe that most of the extensions I coded are valuable to, at least, a small group of people. But whether they will come across these extensions is a different story.
+
+I won't go too much in depth here about how I found and validated the ideas, but you can read the [individual blog posts](https://codedcitadel.com/blog/) if you're interested, where I cover everything in details. Long story short: I relied a lot on scraping Reddit, Instagram and YouTube comments.
 
 I'd scrape hundreds of comments within specific niches and send it to Claude to find frequent complaints and what could potentially be turned into an extension. 
 
@@ -111,16 +115,16 @@ I'd scrape hundreds of comments within specific niches and send it to Claude to 
 
 ## My numbers and conclusions
 
-From the beginning of this challenge, I committed to sharing every number publicly. I'm manually scraping all of my Chrome extensions data and updating it on my site. At the time of this post:
+From the beginning of this "challenge", I committed to sharing every number publicly. 
+
+I'm manually scraping all of my Chrome extensions + Google Anaytics data and updating it on my website. At the time of this post:
 
 - **982** gross installs across 12 extensions (~55 days of tracking)
 - **449** active users (46% of gross installs)
 - **254** uninstalls - **YouTube Filter Pro** has the highest churn at ~43%; **Claude Limit Monitor** retains best at ~73%
 - **Claude Limit Monitor** and **YouTube Filter Pro** each account for **47%** of all installs and **65%** of active users
 - Last 7 days: **379** new installs vs **255** the week before (+49%)
-- **$0** revenue - all extensions are free; traction is real, monetization hasn't started
-
-I update all stats weekly on my [website](https://codedcitadel.com/live-stats).
+- **$0** revenue - all extensions are free; but all extensions are free on purpose. I have only added a "buy me a coffee" link.
 
 ![](/blog-images/12-extensions-in-2-months/SCREENSHOT_09-07-2026-10h23.jpg)
 
@@ -142,3 +146,4 @@ I update all stats weekly on my [website](https://codedcitadel.com/live-stats).
 - If you decide to mass-build, bear in mind you will need to update your extensions frequently.
 - I firmly believe that AI extensions is where it's at. In my opinion, if you plan to build Chrome extensions, focus on the AI market and/or implementing features that use AI.
 - Trust is a big issue nowadays, understandably so. From what I've seen, many people think your extension is either going to have a surprise paywall at some point or have some type of malware. 
+

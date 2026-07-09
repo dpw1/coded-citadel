@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-09T15:03:08.918Z",
+  "updatedAt": "2026-07-09T15:51:55.963Z",
   "daily": [
     {
       "date": "2026-06-03",
@@ -319,11 +319,11 @@
     },
     {
       "date": "2026-07-09",
-      "pageViews": 31,
-      "activeUsers": 22,
-      "sessions": 29,
+      "pageViews": 33,
+      "activeUsers": 24,
+      "sessions": 31,
       "blogViews": 0,
-      "avgSessionDurationSeconds": 75.18685210344827,
+      "avgSessionDurationSeconds": 70.45017916129032,
       "bounceRate": 1
     }
   ],
@@ -5079,23 +5079,23 @@
       }
     },
     {
-      "extractedAt": "2026-07-09T15:03:08.918Z",
+      "extractedAt": "2026-07-09T15:51:55.963Z",
       "analytics": {
         "available": true,
-        "updatedAt": "2026-07-09T15:03:08.918Z",
+        "updatedAt": "2026-07-09T15:51:55.963Z",
         "message": null,
-        "totalViews": 1251,
+        "totalViews": 1253,
         "blogViews": 25,
-        "averageTimeOnSiteSeconds": 161.88977268841543,
-        "uniqueVisitors": 609,
+        "averageTimeOnSiteSeconds": 161.4644835750332,
+        "uniqueVisitors": 611,
         "newVsReturning": {
-          "new": 606,
+          "new": 607,
           "returning": 71
         },
         "mostViewedPages": [
           {
             "path": "/thank-you/",
-            "views": 508
+            "views": 509
           },
           {
             "path": "/",
@@ -5103,7 +5103,7 @@
           },
           {
             "path": "/uninstall/",
-            "views": 153
+            "views": 154
           },
           {
             "path": "/apps",
@@ -5196,14 +5196,14 @@
             "name": "South Korea",
             "gaCountry": "South Korea",
             "gaCountryId": "KR",
-            "users": 10
+            "users": 11
           },
           {
             "code": "CA",
             "name": "Canada",
             "gaCountry": "Canada",
             "gaCountryId": "CA",
-            "users": 9
+            "users": 10
           },
           {
             "code": "DE",
@@ -5314,7 +5314,7 @@
         "trafficSources": [
           {
             "source": "Direct",
-            "sessions": 672
+            "sessions": 673
           },
           {
             "source": "Organic Search",
@@ -5322,7 +5322,7 @@
           },
           {
             "source": "Unassigned",
-            "sessions": 35
+            "sessions": 36
           },
           {
             "source": "Referral",
@@ -5344,11 +5344,11 @@
         "topReferrers": [
           {
             "referrer": "(direct)",
-            "sessions": 672
+            "sessions": 673
           },
           {
             "referrer": "(not set)",
-            "sessions": 35
+            "sessions": 36
           },
           {
             "referrer": "google",
