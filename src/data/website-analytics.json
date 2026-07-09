@@ -1,19 +1,19 @@
 {
   "available": true,
-  "updatedAt": "2026-07-09T09:49:48.214Z",
+  "updatedAt": "2026-07-09T15:03:08.918Z",
   "message": null,
-  "totalViews": 1241,
+  "totalViews": 1251,
   "blogViews": 25,
-  "averageTimeOnSiteSeconds": 164.42646976454668,
-  "uniqueVisitors": 600,
+  "averageTimeOnSiteSeconds": 161.88977268841543,
+  "uniqueVisitors": 609,
   "newVsReturning": {
-    "new": 597,
+    "new": 606,
     "returning": 71
   },
   "mostViewedPages": [
     {
       "path": "/thank-you/",
-      "views": 500
+      "views": 508
     },
     {
       "path": "/",
@@ -21,7 +21,7 @@
     },
     {
       "path": "/uninstall/",
-      "views": 151
+      "views": 153
     },
     {
       "path": "/apps",
@@ -58,14 +58,14 @@
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 158
+      "users": 162
     },
     {
       "code": "US",
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 115
+      "users": 118
     },
     {
       "code": null,
@@ -117,6 +117,13 @@
       "users": 10
     },
     {
+      "code": "CA",
+      "name": "Canada",
+      "gaCountry": "Canada",
+      "gaCountryId": "CA",
+      "users": 9
+    },
+    {
       "code": "DE",
       "name": "Germany",
       "gaCountry": "Germany",
@@ -129,13 +136,6 @@
       "gaCountry": "United Kingdom",
       "gaCountryId": "GB",
       "users": 9
-    },
-    {
-      "code": "CA",
-      "name": "Canada",
-      "gaCountry": "Canada",
-      "gaCountryId": "CA",
-      "users": 8
     },
     {
       "code": "CN",
@@ -180,6 +180,13 @@
       "users": 7
     },
     {
+      "code": "TW",
+      "name": "Taiwan",
+      "gaCountry": "Taiwan",
+      "gaCountryId": "TW",
+      "users": 7
+    },
+    {
       "code": "BD",
       "name": "Bangladesh",
       "gaCountry": "Bangladesh",
@@ -198,13 +205,6 @@
       "name": "Thailand",
       "gaCountry": "Thailand",
       "gaCountryId": "TH",
-      "users": 6
-    },
-    {
-      "code": "TW",
-      "name": "Taiwan",
-      "gaCountry": "Taiwan",
-      "gaCountryId": "TW",
       "users": 6
     },
     {
@@ -232,7 +232,7 @@
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 660
+      "sessions": 672
     },
     {
       "source": "Organic Search",
@@ -240,7 +240,7 @@
     },
     {
       "source": "Unassigned",
-      "sessions": 33
+      "sessions": 35
     },
     {
       "source": "Referral",
@@ -262,15 +262,15 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 660
+      "sessions": 672
+    },
+    {
+      "referrer": "(not set)",
+      "sessions": 35
     },
     {
       "referrer": "google",
       "sessions": 35
-    },
-    {
-      "referrer": "(not set)",
-      "sessions": 33
     },
     {
       "referrer": "chromewebstore.google.com",
@@ -445,7 +445,7 @@
       },
       {
         "date": "09-07-2026",
-        "total": 21
+        "total": 31
       }
     ],
     "activeUsers": [
@@ -591,7 +591,7 @@
       },
       {
         "date": "09-07-2026",
-        "total": 13
+        "total": 22
       }
     ],
     "blogViews": [
@@ -883,7 +883,7 @@
       },
       {
         "date": "09-07-2026",
-        "total": 17
+        "total": 29
       }
     ]
   }
