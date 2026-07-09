@@ -18,12 +18,6 @@ I have coded and published 12 extensions in 52 days.
 
 I documented each and every one of them step by step on my blog and on YouTube, going from how I found the idea, how I validated it, the coding process, and publishing it live.
 
-## Key takeaways
-
-- My most popular extensions were shared multiple times across many mediums (Reddit, etc). I don't think organic growth is very relevant in the first few months.
-- **Never use hosted code from CDNs.** It will get your app rejected since it can count as "remote code" being injected.
-- **Plan for review time.** Most of my extensions took 24–48h to be reviewed and accepted, with the exception of the ones that required login. If your extension needs login, expect longer review times.
-
 ![](/blog-images/12-extensions-in-2-months/SCREENSHOT_09-07-2026-06h37.jpg)
 
 ## A bit of background
