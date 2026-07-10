@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import RoutePageViews from './components/RoutePageViews'
 import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
@@ -14,6 +14,12 @@ import BlogPostPage from './pages/BlogPostPage'
 import StatsPage from './pages/StatsPage'
 import ThankYouPage from './pages/ThankYouPage'
 import UninstallPage from './pages/UninstallPage'
+import { pluginPath, pluginsIndexPath } from './utils/plugins'
+
+function PluginSlugRedirect() {
+  const { slug } = useParams()
+  return <Navigate to={pluginPath(slug)} replace />
+}
 
 function AppRoutes() {
   const location = useLocation()
@@ -24,8 +30,10 @@ function AppRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/apps" element={<AppsPage />} />
         <Route path="/apps/:slug" element={<ExtensionLandingPage />} />
-        <Route path="/plugins" element={<PluginsIndexPage />} />
-        <Route path="/plugins/:slug" element={<PluginLandingPage />} />
+        <Route path="/davinci-resolve-plugins" element={<PluginsIndexPage />} />
+        <Route path="/davinci-resolve-plugins/:slug" element={<PluginLandingPage />} />
+        <Route path="/plugins" element={<Navigate to={pluginsIndexPath()} replace />} />
+        <Route path="/plugins/:slug" element={<PluginSlugRedirect />} />
         <Route path="/privacy-policy/:slug" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service/:slug" element={<TermsOfServicePage />} />
         <Route path="/save-directly-to-drive" element={<SaveDirectlyToDrivePage />} />

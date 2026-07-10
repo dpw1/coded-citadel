@@ -5,6 +5,7 @@ import {
   isPluginLive,
   pluginCardSummary,
   pluginIconUrl,
+  pluginPath,
   pluginYoutubeId,
   pluginYoutubeWatchUrl,
 } from '../utils/plugins'
@@ -88,7 +89,7 @@ export default function PluginCard({ plugin, index = 0, downloadCount, onPlayVid
 
   const openPluginPage = () => {
     if (!live) return
-    navigate(`/plugins/${plugin.slug}`)
+    navigate(pluginPath(plugin.slug))
   }
 
   const handleCardClick = () => {

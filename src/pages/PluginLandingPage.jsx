@@ -13,6 +13,8 @@ import {
   pluginCategory,
   pluginDownloadUrl,
   pluginIconUrl,
+  pluginPath,
+  pluginsIndexPath,
   pluginYoutubeEmbedUrl,
   splitPluginTitle,
 } from '../utils/plugins'
@@ -44,12 +46,12 @@ function PluginNotFound() {
       <PageSEO
         title="Plugin not found — Coded Citadel"
         description="No DaVinci Resolve plugin matches this URL."
-        canonicalPath="/plugins"
+        canonicalPath={pluginsIndexPath()}
         robots="noindex, follow"
       />
       <main className="ext-page">
         <div className="CC__container" style={{ padding: '4rem 0' }}>
-          <Link to="/plugins" className="ext-page__back">
+          <Link to={pluginsIndexPath()} className="ext-page__back">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 18 9 12 15 6" />
             </svg>
@@ -61,7 +63,7 @@ function PluginNotFound() {
           <p className="ext-hero__tagline" style={{ maxWidth: 'none' }}>
             No plugin matches this URL.
           </p>
-          <Link to="/plugins" className="CC__btn CC__btn--primary" style={{ marginTop: '1.5rem' }}>
+          <Link to={pluginsIndexPath()} className="CC__btn CC__btn--primary" style={{ marginTop: '1.5rem' }}>
             View all plugins
           </Link>
         </div>
@@ -127,12 +129,12 @@ export default function PluginLandingPage() {
         <PageSEO
           title={`${plugin.name} — Coming Soon | Coded Citadel`}
           description={plugin.tagline || plugin.description}
-          canonicalPath={`/plugins/${plugin.slug}`}
+          canonicalPath={pluginPath(plugin.slug)}
           robots="noindex, follow"
         />
         <main className="ext-page">
           <div className="CC__container" style={{ padding: '4rem 0' }}>
-            <Link to="/plugins" className="ext-page__back">
+            <Link to={pluginsIndexPath()} className="ext-page__back">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="15 18 9 12 15 6" />
               </svg>
@@ -203,11 +205,11 @@ export default function PluginLandingPage() {
       <PageSEO
         title={seoTitle}
         description={seoDescription}
-        canonicalPath={`/plugins/${plugin.slug}`}
+        canonicalPath={pluginPath(plugin.slug)}
       />
       <main className="ext-page plugin-page">
         <div className="CC__container">
-          <Link to="/plugins" className="ext-page__back">
+          <Link to={pluginsIndexPath()} className="ext-page__back">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 18 9 12 15 6" />
             </svg>
@@ -437,7 +439,7 @@ export default function PluginLandingPage() {
               {plugin.links?.blog ? (
                 <Link to={plugin.links.blog}>Read the blog post</Link>
               ) : null}
-              <Link to="/plugins">More DaVinci Resolve plugins</Link>
+              <Link to={pluginsIndexPath()}>More DaVinci Resolve plugins</Link>
               <Link to="/apps">Chrome extensions</Link>
             </div>
           </section>

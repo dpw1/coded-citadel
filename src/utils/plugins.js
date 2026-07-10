@@ -2,6 +2,26 @@
  * DaVinci Resolve (and future) plugins loaded from apps/davinci/*.json
  */
 
+export const PLUGINS_BASE_PATH = '/davinci-resolve-plugins'
+
+export function pluginsIndexPath() {
+  return PLUGINS_BASE_PATH
+}
+
+export function pluginPath(slug) {
+  if (!slug) return PLUGINS_BASE_PATH
+  return `${PLUGINS_BASE_PATH}/${slug}`
+}
+
+export function isPluginsPath(pathname = '') {
+  return (
+    pathname === PLUGINS_BASE_PATH ||
+    pathname.startsWith(`${PLUGINS_BASE_PATH}/`) ||
+    pathname === '/plugins' ||
+    pathname.startsWith('/plugins/')
+  )
+}
+
 const pluginModules = import.meta.glob('../../apps/davinci/*.json', {
   eager: true,
   import: 'default',

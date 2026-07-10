@@ -2,6 +2,7 @@ import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import PluginsGridSection from '../components/PluginsGridSection'
 import PageSEO from '../components/PageSEO'
+import { pluginsIndexPath } from '../utils/plugins'
 import '../App.css'
 
 const PLUGINS_JSON_LD = {
@@ -10,7 +11,7 @@ const PLUGINS_JSON_LD = {
   name: 'DaVinci Resolve Plugins — Coded Citadel',
   description:
     'Browse free DaVinci Resolve Fusion macros and plugins from Coded Citadel, built in public.',
-  url: 'https://codedcitadel.com/plugins',
+  url: `https://codedcitadel.com${pluginsIndexPath()}`,
   isPartOf: {
     '@type': 'WebSite',
     name: 'Coded Citadel',
@@ -24,7 +25,7 @@ export default function PluginsIndexPage() {
       <PageSEO
         title="DaVinci Resolve Plugins — Free Fusion Macros | Coded Citadel"
         description="Browse free DaVinci Resolve Fusion macros and plugins from Coded Citadel. Download tools like Wobubble and follow the build-in-public journey."
-        canonicalPath="/plugins"
+        canonicalPath={pluginsIndexPath()}
         jsonLd={PLUGINS_JSON_LD}
       />
       <SiteHeader />

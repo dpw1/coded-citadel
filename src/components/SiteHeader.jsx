@@ -1,5 +1,6 @@
 import { useEffect, useId, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { isPluginsPath, pluginsIndexPath } from '../utils/plugins'
 import { scrollToSection } from '../utils/scroll'
 import AnnouncementBar from './AnnouncementBar'
 
@@ -7,7 +8,7 @@ const YOUTUBE_URL = 'https://www.youtube.com/@CodedCitadel'
 
 const APPS_DROPDOWN_ITEMS = [
   { to: '/apps', label: 'Chrome Extensions' },
-  { to: '/plugins', label: 'DaVinci Resolve Plugins' },
+  { to: pluginsIndexPath(), label: 'DaVinci Resolve Plugins' },
 ]
 
 export default function SiteHeader() {
@@ -20,8 +21,7 @@ export default function SiteHeader() {
   const appsNavActive =
     pathname === '/apps' ||
     pathname.startsWith('/apps/') ||
-    pathname === '/plugins' ||
-    pathname.startsWith('/plugins/')
+    isPluginsPath(pathname)
   const blogNavActive = pathname === '/blog' || pathname.startsWith('/blog/')
   const liveStatsNavActive = pathname === '/live-stats'
 

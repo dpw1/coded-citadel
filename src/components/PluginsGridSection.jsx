@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import PluginCard from './PluginCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
 import { getPluginDownloadCounts } from '../lib/pluginEvents'
-import { getAllPlugins, isPluginLive, pluginCategory } from '../utils/plugins'
+import { getAllPlugins, isPluginLive, pluginCategory, pluginPath, pluginsIndexPath } from '../utils/plugins'
 
 const PREV_ICON = (
   <svg viewBox="0 0 24 24">
@@ -55,9 +55,9 @@ export default function PluginsGridSection({
   )
 
   const randomPluginPath = useMemo(() => {
-    if (!plugins.length) return '/plugins'
+    if (!plugins.length) return pluginsIndexPath()
     const pick = plugins[Math.floor(Math.random() * plugins.length)]
-    return `/plugins/${pick.slug}`
+    return pluginPath(pick.slug)
   }, [plugins])
 
   const sectionTitle = title ?? (
@@ -134,7 +134,7 @@ export default function PluginsGridSection({
   }, [currentPage, enablePagination])
 
   const viewAllPluginsLink = showViewAllLink ? (
-    <Link to="/plugins" className="CC__view-all-link">
+    <Link to={pluginsIndexPath()} className="CC__view-all-link">
       View all plugins →
     </Link>
   ) : null

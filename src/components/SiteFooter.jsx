@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { pluginsIndexPath } from '../utils/plugins'
 
 export default function SiteFooter() {
   return (
@@ -28,7 +29,7 @@ export default function SiteFooter() {
               <Link to="/apps">Apps</Link>
             </li>
             <li>
-              <Link to="/plugins">Plugins</Link>
+              <Link to={pluginsIndexPath()}>Plugins</Link>
             </li>
             <li>
               <Link to="/blog">Blog</Link>

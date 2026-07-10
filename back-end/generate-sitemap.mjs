@@ -14,6 +14,7 @@ const APPS_FILE = resolve(ROOT, 'src', 'data', 'apps.json')
 const BLOG_FILE = resolve(ROOT, 'src', 'data', 'blog.json')
 const OUT_FILE = resolve(ROOT, 'public', 'sitemap.xml')
 const SITE_URL = (process.env.SITE_URL || 'https://codedcitadel.com').replace(/\/$/, '')
+const PLUGINS_BASE_PATH = '/davinci-resolve-plugins'
 
 /** Keep in sync with src/utils/privacyPolicies.js */
 const PRIVACY_POLICY_SLUGS = [
@@ -78,7 +79,7 @@ function main() {
       priority: '0.8',
       lastmod: defaultLastmod,
     }),
-    urlEntry(`${SITE_URL}/plugins`, {
+    urlEntry(`${SITE_URL}${PLUGINS_BASE_PATH}`, {
       changefreq: 'weekly',
       priority: '0.8',
       lastmod: defaultLastmod,
@@ -105,7 +106,7 @@ function main() {
     ...loadDavinciPlugins()
       .filter((plugin) => (plugin.status || 'live') === 'live')
       .map((plugin) =>
-        urlEntry(`${SITE_URL}/plugins/${plugin.slug}`, {
+        urlEntry(`${SITE_URL}${PLUGINS_BASE_PATH}/${plugin.slug}`, {
           lastmod: plugin.lastUpdated || defaultLastmod,
           changefreq: 'monthly',
           priority: '0.9',
