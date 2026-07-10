@@ -1,20 +1,34 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { scrollToSection } from '../utils/scroll'
 import AnnouncementBar from './AnnouncementBar'
 
 const YOUTUBE_URL = 'https://www.youtube.com/@CodedCitadel'
 
+const APPS_DROPDOWN_ITEMS = [
+  { to: '/apps', label: 'Chrome Extensions' },
+  { to: '/plugins', label: 'DaVinci Resolve Plugins' },
+]
+
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [appsOpen, setAppsOpen] = useState(false)
   const { pathname, hash } = useLocation()
   const navigate = useNavigate()
+  const appsMenuId = useId().replace(/:/g, '')
   const isHome = pathname === '/'
-  const appsNavActive = pathname === '/apps' || pathname.startsWith('/apps/')
+  const appsNavActive =
+    pathname === '/apps' ||
+    pathname.startsWith('/apps/') ||
+    pathname === '/plugins' ||
+    pathname.startsWith('/plugins/')
   const blogNavActive = pathname === '/blog' || pathname.startsWith('/blog/')
   const liveStatsNavActive = pathname === '/live-stats'
 
-  const closeMenu = () => setMenuOpen(false)
+  const closeMenu = () => {
+    setMenuOpen(false)
+    setAppsOpen(false)
+  }
 
   const handleAboutNav = (e) => {
     e.preventDefault()
@@ -28,12 +42,22 @@ export default function SiteHeader() {
 
   useEffect(() => {
     setMenuOpen(false)
+    setAppsOpen(false)
   }, [pathname, hash])
 
   useEffect(() => {
-    if (!menuOpen) return undefined
+    if (!menuOpen) {
+      setAppsOpen(false)
+      return undefined
+    }
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') setMenuOpen(false)
+      if (e.key === 'Escape') {
+        if (appsOpen) {
+          setAppsOpen(false)
+        } else {
+          setMenuOpen(false)
+        }
+      }
     }
     document.body.style.overflow = 'hidden'
     window.addEventListener('keydown', onKeyDown)
@@ -41,7 +65,7 @@ export default function SiteHeader() {
       document.body.style.overflow = ''
       window.removeEventListener('keydown', onKeyDown)
     }
-  }, [menuOpen])
+  }, [menuOpen, appsOpen])
 
   return (
     <>
@@ -74,13 +98,55 @@ export default function SiteHeader() {
             <span className="CC__nav-toggle-bar" />
           </button>
           <nav id="CC__main-nav" className={`CC__nav${menuOpen ? ' CC__nav--open' : ''}`}>
-            <Link
-              to="/apps"
-              className={`CC__nav-link${appsNavActive ? ' CC__nav-link--active' : ''}`}
-              onClick={closeMenu}
+            <div
+              className={`CC__nav-dropdown${appsOpen ? ' CC__nav-dropdown--open' : ''}${
+                appsNavActive ? ' CC__nav-dropdown--active' : ''
+              }`}
             >
-              Apps
-            </Link>
+              <button
+                type="button"
+                className={`CC__nav-link CC__nav-dropdown__trigger${
+                  appsNavActive ? ' CC__nav-link--active' : ''
+                }`}
+                aria-expanded={appsOpen}
+                aria-controls={appsMenuId}
+                aria-haspopup="true"
+                onClick={() => setAppsOpen((open) => !open)}
+              >
+                Apps
+                <svg
+                  className="CC__nav-dropdown__chevron"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  aria-hidden="true"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
+              <div id={appsMenuId} className="CC__nav-dropdown__menu" role="menu">
+                {APPS_DROPDOWN_ITEMS.map((item) => {
+                  const itemActive =
+                    pathname === item.to || pathname.startsWith(`${item.to}/`)
+                  return (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      role="menuitem"
+                      className={`CC__nav-dropdown__item${
+                        itemActive ? ' CC__nav-dropdown__item--active' : ''
+                      }`}
+                      onClick={closeMenu}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
             <Link
               to="/blog"
               className={`CC__nav-link${blogNavActive ? ' CC__nav-link--active' : ''}`}

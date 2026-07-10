@@ -1,0 +1,66 @@
+{
+  "slug": "wobubble",
+  "name": "Wobubble",
+  "titleHighlight": "BUBBLE",
+  "tagline": "Simple floating/bubble-ish animation. Just drag-and-drop. No keyframing a single node by hand.",
+  "description": "Wobubble is a free DaVinci Resolve Fusion macro for placing and styling speech bubbles without hand-keyframing nodes. Drop it in, point it, size it, done.",
+  "status": "live",
+  "price": "Free",
+  "priceLabel": "Free forever",
+  "category": "Fusion Macro",
+  "platform": "DaVinci Resolve",
+  "host": "davinci-resolve",
+  "version": "1.0.002",
+  "resolveVersion": "Resolve 18+",
+  "created": "2026-07-07",
+  "lastUpdated": "2026-07-09",
+  "download": {
+    "url": "/downloads/Wobubble.drfx",
+    "filename": "Wobubble.drfx",
+    "label": "Download Now"
+  },
+  "downloadsCount": null,
+  "icon": null,
+  "coverImage": null,
+  "images": [],
+  "videos": [
+    {
+      "id": "jrlo4oGn3OI",
+      "title": "Wobubble demo",
+      "url": "https://www.youtube.com/watch?v=jrlo4oGn3OI",
+      "primary": true
+    }
+  ],
+  "features": [],
+  "installSteps": [],
+  "faq": [
+    {
+      "question": "It's not showing up in my Effects Library",
+      "answer": "Make sure you fully quit and reopened Resolve, not just closed the project. Fusion only scans templates on launch."
+    },
+    {
+      "question": "Does this work on Windows/Mac?",
+      "answer": "Yes — both Windows and Mac. The .drfx is cross-platform; install the same way on either."
+    },
+    {
+      "question": "Is this really free?",
+      "answer": "Yes. No license key, no watermark, no trial period. Made and shared as part of Coded Citadel."
+    }
+  ],
+  "links": {
+    "blog": null,
+    "github": null,
+    "youtube": "https://www.youtube.com/@CodedCitadel",
+    "instagram": "https://www.instagram.com/codedcitadel"
+  },
+  "seo": {
+    "title": "Wobubble — Free DaVinci Resolve Fusion Macro | Coded Citadel",
+    "description": "Free DaVinci Resolve Fusion macro for speech bubbles. Drag, drop, style — no hand-keyframing. Download Wobubble.drfx for Resolve 18+."
+  },
+  "modal": {
+    "title": "Your download's starting",
+    "description": "Wobubble is free, always will be. If it saves you time, the best thanks is following along - that's what keeps these coming."
+  },
+  "stickySub": "Free Fusion macro · Resolve 18+",
+  "tags": ["davinci-resolve", "fusion", "macro", "free", "speech-bubble"]
+}

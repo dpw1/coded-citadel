@@ -28,6 +28,9 @@ export default function SiteFooter() {
               <Link to="/apps">Apps</Link>
             </li>
             <li>
+              <Link to="/plugins">Plugins</Link>
+            </li>
+            <li>
               <Link to="/blog">Blog</Link>
             </li>
             <li>

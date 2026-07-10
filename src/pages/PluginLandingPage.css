@@ -1,0 +1,321 @@
+/* Plugin landing reuses ExtensionLandingPage.css for hero/back/section rhythm.
+   Keep only plugin-specific pieces here: FAQ, footer CTA, sticky ATC, modal. */
+
+.plugin-page {
+  padding-bottom: 90px;
+}
+
+.plugin-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.plugin-page button {
+  font-family: inherit;
+}
+
+.plugin-section-title {
+  font-family: var(--CC__font-display);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.plugin-hero__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  color: var(--CC__color-text-muted);
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* ============ FAQ ============ */
+.plugin-faq {
+  padding: calc(var(--CC__space-lg) + 1.5rem) 0 var(--CC__space-lg);
+  margin-top: 1.5rem;
+}
+
+.plugin-faq__list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.plugin-faq__item {
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius);
+  background: var(--CC__color-bg-card);
+  overflow: hidden;
+}
+
+.plugin-faq__question {
+  width: 100%;
+  text-align: left;
+  padding: 1.1rem 1.4rem;
+  background: none;
+  border: none;
+  color: var(--CC__color-text-main);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.plugin-faq__question .chevron {
+  transition: transform 0.2s ease;
+  color: var(--CC__color-primary);
+  flex-shrink: 0;
+}
+
+.plugin-faq__item.open .chevron {
+  transform: rotate(180deg);
+}
+
+.plugin-faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.plugin-faq__item.open .plugin-faq__answer {
+  max-height: 320px;
+}
+
+.plugin-faq__answer-inner {
+  padding: 0 1.4rem 1.1rem;
+  color: var(--CC__color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ============ FOOTER CTA ============ */
+.plugin-footer-cta {
+  padding: calc(var(--CC__space-lg) + 1.5rem) 0 var(--CC__space-md);
+  text-align: center;
+}
+
+.plugin-footer-cta__title {
+  font-family: var(--CC__font-display);
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.plugin-footer-cta__links {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 0.85rem;
+  color: var(--CC__color-text-muted);
+  flex-wrap: wrap;
+}
+
+.plugin-footer-cta__links a:hover {
+  color: var(--CC__color-primary);
+}
+
+/* ============ STICKY ATC ============ */
+.plugin-sticky-atc {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  background: rgba(14, 18, 26, 0.92);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--CC__color-border);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.plugin-sticky-atc.hidden {
+  transform: translateY(100%);
+}
+
+.plugin-sticky-atc__inner {
+  max-width: var(--CC__max-width);
+  margin: 0 auto;
+  padding: 0.9rem var(--CC__space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.plugin-sticky-atc__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.plugin-sticky-atc__name {
+  font-family: var(--CC__font-display);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.plugin-sticky-atc__sub {
+  font-size: 0.75rem;
+  color: var(--CC__color-text-muted);
+}
+
+.plugin-sticky-atc .CC__btn {
+  padding: 0.65rem 1.5rem;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* ============ MODAL ============ */
+.plugin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 5, 8, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.plugin-modal-overlay.open {
+  display: flex;
+}
+
+.plugin-modal {
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border-glow);
+  border-radius: calc(var(--CC__radius) * 1.5);
+  max-width: 420px;
+  width: 100%;
+  padding: 2.25rem 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.plugin-modal__close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  color: var(--CC__color-text-muted);
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.plugin-modal__close:hover {
+  color: var(--CC__color-text-main);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.plugin-modal__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--CC__color-icon-bg);
+  border: 1px solid var(--CC__color-icon-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.plugin-modal__icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--CC__color-primary);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.plugin-modal__title {
+  font-family: var(--CC__font-display);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.plugin-modal__desc {
+  color: var(--CC__color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.plugin-modal__socials {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.plugin-modal__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--CC__color-border-glow);
+  border-radius: var(--CC__radius);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.plugin-modal__social:hover {
+  border-color: var(--CC__color-primary);
+  background: rgba(255, 153, 0, 0.05);
+}
+
+.plugin-modal__social svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--CC__color-primary);
+  fill: none;
+  stroke-width: 2;
+}
+
+.plugin-modal__skip {
+  font-size: 0.8rem;
+  color: var(--CC__color-text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+.plugin-modal__skip:hover {
+  color: var(--CC__color-text-main);
+}
+
+@media (max-width: 640px) {
+  .plugin-sticky-atc__sub {
+    display: none;
+  }
+
+  .plugin-faq {
+    margin-top: 1rem;
+    padding-top: var(--CC__space-lg);
+  }
+}

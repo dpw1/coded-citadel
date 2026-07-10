@@ -7,6 +7,7 @@ import prerender from '@prerenderer/rollup-plugin'
 import blogDevPlugin from './back-end/vite-plugin-blog-dev.mjs'
 import portfolioAnalyticsDevPlugin from './back-end/vite-plugin-portfolio-analytics-dev.mjs'
 import liveStatsApiPlugin from './back-end/vite-plugin-live-stats-api.mjs'
+import { getLiveDavinciPluginSlugs } from './back-end/lib/davinci-plugins.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -39,15 +40,19 @@ function getPrerenderRoutes() {
     blogPosts = []
   }
 
+  const pluginSlugs = getLiveDavinciPluginSlugs()
+
   return [
     '/',
     '/apps',
+    '/plugins',
     '/blog',
     '/live-stats',
     '/save-directly-to-drive',
     '/thank-you',
     '/uninstall',
     ...(apps || []).map((app) => `/apps/${app.slug}`),
+    ...pluginSlugs.map((slug) => `/plugins/${slug}`),
     ...PRIVACY_POLICY_SLUGS.map((slug) => `/privacy-policy/${slug}`),
     ...TERMS_OF_SERVICE_SLUGS.map((slug) => `/terms-of-service/${slug}`),
     ...blogPosts.map((post) => `/blog/${post.slug}`),

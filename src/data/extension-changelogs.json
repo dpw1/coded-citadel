@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-09T15:55:43.602Z",
+  "updatedAt": "2026-07-09T23:47:34.449Z",
   "message": null,
   "apps": [
     {
@@ -636,6 +636,14 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "08b9fbac914bded855d15543e5326697459abfd9",
+          "shortSha": "08b9fba",
+          "message": "Update version to 1.0.40 and enhance folder management features. Added support for selecting and adding known folders in the popup UI, improved folder handling in background scripts, and updated localization files for new folder-related messages across multiple languages.",
+          "date": "2026-07-09T22:49:21Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/save-to-drive/commit/08b9fbac914bded855d15543e5326697459abfd9"
+        },
         {
           "sha": "7ffaf4be01a1abd6f54aeb58dc0fda4b63dc718a",
           "shortSha": "7ffaf4b",

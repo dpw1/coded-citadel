@@ -4,6 +4,8 @@ import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
 import AppsPage from './pages/AppsPage'
 import ExtensionLandingPage from './pages/ExtensionLandingPage'
+import PluginsIndexPage from './pages/PluginsIndexPage'
+import PluginLandingPage from './pages/PluginLandingPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsOfServicePage from './pages/TermsOfServicePage'
 import SaveDirectlyToDrivePage from './pages/SaveDirectlyToDrivePage'
@@ -22,6 +24,8 @@ function AppRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/apps" element={<AppsPage />} />
         <Route path="/apps/:slug" element={<ExtensionLandingPage />} />
+        <Route path="/plugins" element={<PluginsIndexPage />} />
+        <Route path="/plugins/:slug" element={<PluginLandingPage />} />
         <Route path="/privacy-policy/:slug" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service/:slug" element={<TermsOfServicePage />} />
         <Route path="/save-directly-to-drive" element={<SaveDirectlyToDrivePage />} />

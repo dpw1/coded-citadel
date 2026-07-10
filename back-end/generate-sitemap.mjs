@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { loadDavinciPlugins } from './lib/davinci-plugins.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '..')
@@ -77,6 +78,11 @@ function main() {
       priority: '0.8',
       lastmod: defaultLastmod,
     }),
+    urlEntry(`${SITE_URL}/plugins`, {
+      changefreq: 'weekly',
+      priority: '0.8',
+      lastmod: defaultLastmod,
+    }),
     urlEntry(`${SITE_URL}/live-stats`, {
       changefreq: 'daily',
       priority: '0.85',
@@ -96,6 +102,15 @@ function main() {
         priority: '0.9',
       })
     ),
+    ...loadDavinciPlugins()
+      .filter((plugin) => (plugin.status || 'live') === 'live')
+      .map((plugin) =>
+        urlEntry(`${SITE_URL}/plugins/${plugin.slug}`, {
+          lastmod: plugin.lastUpdated || defaultLastmod,
+          changefreq: 'monthly',
+          priority: '0.9',
+        }),
+      ),
     ...PRIVACY_POLICY_SLUGS.map((slug) =>
       urlEntry(`${SITE_URL}/privacy-policy/${slug}`, {
         lastmod: defaultLastmod,
