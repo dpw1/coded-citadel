@@ -45,6 +45,10 @@
     {
       "question": "Is this really free?",
       "answer": "Yes. No license key, no watermark, no trial period. Made and shared as part of Coded Citadel."
+    },
+    {
+      "question": "How do I delete the plugin?",
+      "answer": "To remove Wobubble, open the Fusion Templates folder for your OS, find Wobubble, and delete it.\n\nmacOS:\n~/Library/Application Support/Blackmagic Design/DaVinci Resolve/Fusion/Templates/\n\nWindows:\n%APPDATA%\\Blackmagic Design\\DaVinci Resolve\\Support\\Fusion\\Templates\\"
     }
   ],
   "links": {
