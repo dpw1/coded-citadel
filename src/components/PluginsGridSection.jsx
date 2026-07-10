@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PluginCard from './PluginCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
-import { getAllPlugins, pluginCategory } from '../utils/plugins'
+import { getPluginDownloadCounts } from '../lib/pluginEvents'
+import { getAllPlugins, isPluginLive, pluginCategory } from '../utils/plugins'
 
 const PREV_ICON = (
   <svg viewBox="0 0 24 24">
@@ -44,6 +45,7 @@ export default function PluginsGridSection({
   const [activeTab, setActiveTab] = useState('All')
   const [currentPage, setCurrentPage] = useState(1)
   const [videoModal, setVideoModal] = useState({ open: false, videoId: null, title: '' })
+  const [downloadCounts, setDownloadCounts] = useState({})
   const sectionRef = useRef(null)
   const skipPageScrollRef = useRef(true)
 
@@ -78,6 +80,27 @@ export default function PluginsGridSection({
     const start = (currentPage - 1) * perPage
     return filteredPlugins.slice(start, start + perPage)
   }, [currentPage, enablePagination, filteredPlugins, maxItems, perPage])
+
+  const livePluginSlugs = useMemo(
+    () => visiblePlugins.filter((plugin) => isPluginLive(plugin)).map((plugin) => plugin.slug),
+    [visiblePlugins],
+  )
+
+  useEffect(() => {
+    if (!livePluginSlugs.length) {
+      setDownloadCounts({})
+      return undefined
+    }
+
+    let cancelled = false
+    getPluginDownloadCounts(livePluginSlugs).then((counts) => {
+      if (!cancelled) setDownloadCounts(counts)
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [livePluginSlugs.join('|')])
 
   const totalPages = enablePagination ? Math.ceil(filteredPlugins.length / perPage) : 1
   const showPagination = enablePagination && totalPages > 1
@@ -176,6 +199,7 @@ export default function PluginsGridSection({
               key={plugin.slug}
               plugin={plugin}
               index={index}
+              downloadCount={downloadCounts[plugin.slug]}
               onPlayVideo={({ videoId, title: videoTitle }) =>
                 setVideoModal({ open: true, videoId, title: videoTitle })
               }

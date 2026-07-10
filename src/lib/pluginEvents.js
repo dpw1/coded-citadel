@@ -242,3 +242,18 @@ export async function getEventCount(pluginSlug, eventType = 'download_click') {
     return null
   }
 }
+
+/** Fetch download_click counts for multiple plugins in parallel. */
+export async function getPluginDownloadCounts(pluginSlugs) {
+  const slugs = [...new Set((pluginSlugs || []).filter(Boolean))]
+  if (!slugs.length) return {}
+
+  const entries = await Promise.all(
+    slugs.map(async (slug) => {
+      const count = await getEventCount(slug, 'download_click')
+      return [slug, count]
+    }),
+  )
+
+  return Object.fromEntries(entries)
+}

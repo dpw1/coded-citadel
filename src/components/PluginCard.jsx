@@ -59,13 +59,15 @@ function formatPluginStat(value) {
   return String(value)
 }
 
-export default function PluginCard({ plugin, index = 0, onPlayVideo }) {
+export default function PluginCard({ plugin, index = 0, downloadCount, onPlayVideo }) {
   const navigate = useNavigate()
   const live = isPluginLive(plugin)
   const youtubeUrl = pluginYoutubeWatchUrl(plugin)
   const videoId = pluginYoutubeId(plugin.primaryVideo) || (youtubeUrl ? pluginYoutubeId({ url: youtubeUrl }) : null)
   const hasVideo = Boolean(videoId)
-  const downloads = live ? (plugin.downloadsCount ?? 0) : null
+  const downloads = live
+    ? downloadCount ?? (plugin.downloadsCount != null ? plugin.downloadsCount : null)
+    : null
   const summary = pluginCardSummary(plugin)
   const iconUrl = pluginIconUrl(plugin)
   const displayName = plugin.name
