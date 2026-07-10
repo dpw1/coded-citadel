@@ -51,6 +51,8 @@ function getPrerenderRoutes() {
     '/save-directly-to-drive',
     '/thank-you',
     '/uninstall',
+    '/work',
+    '/contact',
     ...(apps || []).map((app) => `/apps/${app.slug}`),
     ...pluginSlugs.map((slug) => `/davinci-resolve-plugins/${slug}`),
     ...PRIVACY_POLICY_SLUGS.map((slug) => `/privacy-policy/${slug}`),

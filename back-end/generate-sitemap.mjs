@@ -126,6 +126,16 @@ function main() {
         priority: '0.5',
       })
     ),
+    urlEntry(`${SITE_URL}/work`, {
+      changefreq: 'monthly',
+      priority: '0.85',
+      lastmod: defaultLastmod,
+    }),
+    urlEntry(`${SITE_URL}/contact`, {
+      changefreq: 'monthly',
+      priority: '0.7',
+      lastmod: defaultLastmod,
+    }),
     urlEntry(`${SITE_URL}/blog`, {
       changefreq: 'weekly',
       priority: '0.8',

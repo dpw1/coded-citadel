@@ -38,6 +38,12 @@ export default function SiteFooter() {
               <Link to="/live-stats">Live Stats</Link>
             </li>
             <li>
+              <Link to="/work">Hire me</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
+            <li>
               <Link to="/#youtube">YouTube Channel</Link>
             </li>
           </ul>

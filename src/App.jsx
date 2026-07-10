@@ -14,6 +14,8 @@ import BlogPostPage from './pages/BlogPostPage'
 import StatsPage from './pages/StatsPage'
 import ThankYouPage from './pages/ThankYouPage'
 import UninstallPage from './pages/UninstallPage'
+import WorkPage from './pages/WorkPage'
+import ContactPage from './pages/ContactPage'
 import { pluginPath, pluginsIndexPath } from './utils/plugins'
 
 function PluginSlugRedirect() {
@@ -42,6 +44,8 @@ function AppRoutes() {
         <Route path="/live-stats" element={<StatsPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/uninstall" element={<UninstallPage />} />
+        <Route path="/work" element={<WorkPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/stats" element={<Navigate to="/live-stats" replace />} />
         <Route path="/extensions" element={<Navigate to="/apps" replace />} />
       </Routes>

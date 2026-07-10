@@ -104,6 +104,22 @@
   color: var(--CC__color-text-sub);
 }
 
+.CC__blog-reading-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.CC__blog-reading-meta__sep {
+  opacity: 0.65;
+}
+
+.CC__blog-reading-meta__views {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 .CC__blog-card__tags {
   display: flex;
   flex-wrap: wrap;

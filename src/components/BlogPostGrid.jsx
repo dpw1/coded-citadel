@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import CyberCorners from './CyberCorners'
+import BlogReadingMeta from './BlogReadingMeta'
 import { formatBlogDate, getPostCoverUrl } from '../utils/blog'
 
-export default function BlogPostGrid({ posts, gridClassName = '' }) {
+export default function BlogPostGrid({ posts, gridClassName = '', captionOverrides = {} }) {
   if (!posts.length) return null
 
   const gridClasses = ['CC__blog-grid', gridClassName].filter(Boolean).join(' ')
@@ -11,6 +12,7 @@ export default function BlogPostGrid({ posts, gridClassName = '' }) {
     <div className={gridClasses}>
       {posts.map((post) => {
         const cover = getPostCoverUrl(post)
+        const caption = captionOverrides[post.slug] ?? post.description
 
         return (
           <article key={post.slug} className="CC__blog-card CC__cyber-accent">
@@ -26,11 +28,11 @@ export default function BlogPostGrid({ posts, gridClassName = '' }) {
                   {formatBlogDate(post.date)}
                 </time>
                 <h2 className="CC__blog-card__title">{post.title}</h2>
-                {post.description ? (
-                  <p className="CC__blog-card__description">{post.description}</p>
+                {caption ? (
+                  <p className="CC__blog-card__description">{caption}</p>
                 ) : null}
                 <div className="CC__blog-card__meta">
-                  <span>{post.readingTime} min read</span>
+                  <BlogReadingMeta readingTime={post.readingTime} views={post.views} />
                   {post.tags?.length ? (
                     <ul className="CC__blog-card__tags">
                       {post.tags.map((tag) => (

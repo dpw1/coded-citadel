@@ -37,10 +37,12 @@ const PLACEHOLDER = {
 
 async function main() {
   let snapshot = PLACEHOLDER
+  let blogPathCount = 0
 
   try {
     const result = await fetchWebsiteAnalyticsBundle()
     snapshot = result.snapshot
+    blogPathCount = result.gaDb?.blogPostViews?.length ?? 0
     if (!snapshot.available) {
       throw new Error(snapshot.message || 'Website analytics fetch returned no data')
     }
@@ -74,7 +76,7 @@ async function main() {
   }
 
   console.log(`Wrote website analytics (${snapshot.updatedAt}) to ${OUT_FILE}`)
-  console.log(`Updated ga-db.json (${snapshot.timeSeries?.pageViews?.length ?? 0} daily rows)`)
+  console.log(`Updated ga-db.json (${snapshot.timeSeries?.pageViews?.length ?? 0} daily rows, ${blogPathCount} blog paths)`)
 }
 
 main().catch((err) => {

@@ -167,6 +167,34 @@ export async function fetchGaDailyMetrics(accessToken, propertyId, options = {})
   })
 }
 
+export async function fetchGaBlogPostViews(accessToken, propertyId, options = {}) {
+  const dateRange = {
+    startDate: options.startDate || '2020-01-01',
+    endDate: options.endDate || 'today',
+  }
+
+  const rows = await runDimensionReport(accessToken, propertyId, {
+    dateRanges: [dateRange],
+    dimensions: [{ name: 'pagePath' }],
+    metrics: [{ name: 'screenPageViews' }],
+    dimensionFilter: {
+      filter: {
+        fieldName: 'pagePath',
+        stringFilter: { matchType: 'BEGINS_WITH', value: '/blog' },
+      },
+    },
+    orderBys: [{ desc: true, metric: { metricName: 'screenPageViews' } }],
+    limit: 500,
+  })
+
+  return rows
+    .map((row) => ({
+      path: row.pagePath || '',
+      views: row.screenPageViews ?? 0,
+    }))
+    .filter((row) => row.path.replace(/\/+$/, '').match(/^\/blog\/[^/]+$/i))
+}
+
 async function fetchWebsiteAnalyticsSnapshot(accessToken, propertyId, options = {}) {
   const dateRange = {
     startDate: options.startDate || '2020-01-01',
@@ -302,15 +330,17 @@ export async function fetchWebsiteAnalyticsBundle(options = {}) {
     privateKey: env.privateKey,
   })
 
-  const [snapshot, dailyIncoming] = await Promise.all([
+  const [snapshot, dailyIncoming, blogPostViews] = await Promise.all([
     fetchWebsiteAnalyticsSnapshot(accessToken, env.propertyId, options),
     fetchGaDailyMetrics(accessToken, env.propertyId, options),
+    fetchGaBlogPostViews(accessToken, env.propertyId, options),
   ])
 
   const gaDb = readGaDb()
   gaDb.daily = mergeDailyRows(gaDb.daily, dailyIncoming)
   gaDb.updatedAt = snapshot.updatedAt
   gaDb.snapshots = appendSnapshot(gaDb, snapshot)
+  gaDb.blogPostViews = blogPostViews
 
   const timeSeries = buildTimeSeriesFromDaily(gaDb.daily)
   const snapshotWithSeries = { ...snapshot, timeSeries }

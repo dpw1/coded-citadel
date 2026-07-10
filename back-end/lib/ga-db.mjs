@@ -11,6 +11,7 @@ export function emptyGaDb() {
     updatedAt: null,
     daily: [],
     snapshots: [],
+    blogPostViews: [],
   }
 }
 
@@ -24,6 +25,7 @@ export function readGaDb() {
       ...data,
       daily: data.daily ?? [],
       snapshots: data.snapshots ?? [],
+      blogPostViews: data.blogPostViews ?? [],
     }
   } catch {
     return emptyGaDb()

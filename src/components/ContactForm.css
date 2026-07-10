@@ -1,0 +1,37 @@
+.CC__contact-form {
+  padding: 1.25rem;
+}
+
+.CC__contact-form__input {
+  display: block;
+  width: 100%;
+  margin-top: 0.35rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--CC__font-sans);
+}
+
+.CC__contact-form__textarea {
+  min-height: 6rem;
+  resize: vertical;
+  font-family: var(--CC__font-sans);
+}
+
+.CC__contact-form__required {
+  color: var(--CC__color-primary);
+}
+
+.CC__contact-form__error {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--CC__color-danger);
+}
+
+.CC__contact-form__result {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--CC__color-text-muted);
+}
+
+.CC__contact-form__result--error {
+  color: var(--CC__color-danger);
+}

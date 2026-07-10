@@ -1,0 +1,68 @@
+.CC__work-page {
+  padding: 3rem 0 5rem;
+  min-height: 50vh;
+}
+
+.CC__work-page__inner {
+  max-width: 46rem;
+}
+
+.CC__work-page__body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 3.5rem;
+}
+
+.CC__work-page__greeting {
+  font-family: var(--CC__font-display);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--CC__color-text-main);
+  margin-bottom: 1.25rem;
+}
+
+.CC__work-page__body p {
+  color: var(--CC__color-text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.CC__work-page__body p:last-child {
+  margin-bottom: 0;
+}
+
+.CC__work-page__body a {
+  color: var(--CC__color-primary);
+  word-break: break-all;
+}
+
+.CC__work-page__body a:hover {
+  text-decoration: underline;
+}
+
+.CC__work-page__list {
+  margin: 0 0 1.25rem 1.25rem;
+  padding: 0;
+  list-style: disc;
+}
+
+.CC__work-page__list li {
+  color: var(--CC__color-text-muted);
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.CC__work-page__list li:last-child {
+  margin-bottom: 0;
+}
+
+.CC__work-page__contact {
+  margin-top: 3.5rem;
+}
+
+@media (max-width: 767px) {
+  .CC__work-page {
+    padding: 2rem 0 4rem;
+  }
+}

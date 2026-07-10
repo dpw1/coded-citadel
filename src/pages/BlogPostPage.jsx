@@ -4,6 +4,7 @@ import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import BlogPostCover from '../components/BlogPostCover'
 import BlogPostGrid from '../components/BlogPostGrid'
+import BlogReadingMeta from '../components/BlogReadingMeta'
 import { BlogPostSEO } from '../components/BlogPageSEO'
 import {
   blogContentUrl,
@@ -200,7 +201,7 @@ export default function BlogPostPage() {
             </time>
             <h1 className="CC__blog-post__title">{post.title}</h1>
             <div className="CC__blog-post__meta">
-              <span>{post.readingTime} min read</span>
+              <BlogReadingMeta readingTime={post.readingTime} views={post.views} />
               {post.tags?.length ? (
                 <ul className="CC__blog-post__tags">
                   {post.tags.map((tag) => (

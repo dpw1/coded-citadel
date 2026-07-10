@@ -14,20 +14,27 @@ const APPS_DROPDOWN_ITEMS = [
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [appsOpen, setAppsOpen] = useState(false)
+  const [aboutOpen, setAboutOpen] = useState(false)
   const { pathname, hash } = useLocation()
   const navigate = useNavigate()
   const appsMenuId = useId().replace(/:/g, '')
+  const aboutMenuId = useId().replace(/:/g, '')
   const isHome = pathname === '/'
   const appsNavActive =
     pathname === '/apps' ||
     pathname.startsWith('/apps/') ||
     isPluginsPath(pathname)
   const blogNavActive = pathname === '/blog' || pathname.startsWith('/blog/')
+  const aboutSectionActive = isHome && hash === '#about'
+  const aboutNavActive = blogNavActive || aboutSectionActive
   const liveStatsNavActive = pathname === '/live-stats'
+  const workNavActive = pathname === '/work'
+  const contactNavActive = pathname === '/contact'
 
   const closeMenu = () => {
     setMenuOpen(false)
     setAppsOpen(false)
+    setAboutOpen(false)
   }
 
   const handleAboutNav = (e) => {
@@ -43,17 +50,21 @@ export default function SiteHeader() {
   useEffect(() => {
     setMenuOpen(false)
     setAppsOpen(false)
+    setAboutOpen(false)
   }, [pathname, hash])
 
   useEffect(() => {
     if (!menuOpen) {
       setAppsOpen(false)
+      setAboutOpen(false)
       return undefined
     }
     const onKeyDown = (e) => {
       if (e.key === 'Escape') {
         if (appsOpen) {
           setAppsOpen(false)
+        } else if (aboutOpen) {
+          setAboutOpen(false)
         } else {
           setMenuOpen(false)
         }
@@ -65,7 +76,7 @@ export default function SiteHeader() {
       document.body.style.overflow = ''
       window.removeEventListener('keydown', onKeyDown)
     }
-  }, [menuOpen, appsOpen])
+  }, [menuOpen, appsOpen, aboutOpen])
 
   return (
     <>
@@ -111,7 +122,10 @@ export default function SiteHeader() {
                 aria-expanded={appsOpen}
                 aria-controls={appsMenuId}
                 aria-haspopup="true"
-                onClick={() => setAppsOpen((open) => !open)}
+                onClick={() => {
+                  setAppsOpen((open) => !open)
+                  setAboutOpen(false)
+                }}
               >
                 Apps
                 <svg
@@ -147,13 +161,71 @@ export default function SiteHeader() {
                 })}
               </div>
             </div>
-            <Link
-              to="/blog"
-              className={`CC__nav-link${blogNavActive ? ' CC__nav-link--active' : ''}`}
-              onClick={closeMenu}
+            <div
+              className={`CC__nav-dropdown${aboutOpen ? ' CC__nav-dropdown--open' : ''}${
+                aboutNavActive ? ' CC__nav-dropdown--active' : ''
+              }`}
             >
-              Blog
-            </Link>
+              <button
+                type="button"
+                className={`CC__nav-link CC__nav-dropdown__trigger${
+                  aboutNavActive ? ' CC__nav-link--active' : ''
+                }`}
+                aria-expanded={aboutOpen}
+                aria-controls={aboutMenuId}
+                aria-haspopup="true"
+                onClick={() => {
+                  setAboutOpen((open) => !open)
+                  setAppsOpen(false)
+                }}
+              >
+                About
+                <svg
+                  className="CC__nav-dropdown__chevron"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  aria-hidden="true"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
+              <div id={aboutMenuId} className="CC__nav-dropdown__menu" role="menu">
+                <Link
+                  to="/blog"
+                  role="menuitem"
+                  className={`CC__nav-dropdown__item${
+                    blogNavActive ? ' CC__nav-dropdown__item--active' : ''
+                  }`}
+                  onClick={closeMenu}
+                >
+                  Blog
+                </Link>
+                <a
+                  href={YOUTUBE_URL}
+                  role="menuitem"
+                  className="CC__nav-dropdown__item"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeMenu}
+                >
+                  YouTube
+                </a>
+                <a
+                  href={isHome ? '#about' : '/'}
+                  role="menuitem"
+                  className={`CC__nav-dropdown__item${
+                    aboutSectionActive ? ' CC__nav-dropdown__item--active' : ''
+                  }`}
+                  onClick={handleAboutNav}
+                >
+                  About me
+                </a>
+              </div>
+            </div>
             <Link
               to="/live-stats"
               className={`CC__nav-link CC__nav-link--with-badge${
@@ -169,22 +241,20 @@ export default function SiteHeader() {
                 <span className="CC__nav-badge__label">hot</span>
               </span>
             </Link>
-            <a
-              href={YOUTUBE_URL}
-              className="CC__nav-link"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/work"
+              className={`CC__nav-link${workNavActive ? ' CC__nav-link--active' : ''}`}
               onClick={closeMenu}
             >
-              YouTube
-            </a>
-            <a
-              href={isHome ? '#about' : '/'}
-              className="CC__nav-link"
-              onClick={handleAboutNav}
+              Hire me
+            </Link>
+            <Link
+              to="/contact"
+              className={`CC__nav-link${contactNavActive ? ' CC__nav-link--active' : ''}`}
+              onClick={closeMenu}
             >
-              About
-            </a>
+              Contact
+            </Link>
           </nav>
         </header>
       </div>
