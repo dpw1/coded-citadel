@@ -9,16 +9,14 @@ import {
   appCardSummary,
   appFilterLabel,
   appIconUrl,
-  appQuickStart,
   appSimilarByTags,
+  appStoreUrl,
   appYoutubeHowToUse,
   getAllApps,
   getAppBySource,
   isAppLive,
-  parseQuickStartSteps,
   youtubeEmbedId,
 } from '../utils/apps'
-import { getThankYouFallback, THANK_YOU_SUBTITLE } from '../utils/thankYouContent'
 import '../App.css'
 import './ExtensionLandingPage.css'
 import './ThankYouPage.css'
@@ -94,17 +92,14 @@ export default function ThankYouPage() {
   const [avatarError, setAvatarError] = useState(false)
   const [searchParams] = useSearchParams()
   const source = searchParams.get('source') ?? searchParams.get('ext')
+  const hasSourceQuery = Boolean(source?.trim())
   const installedApp = useMemo(() => getAppBySource(source), [source])
-  const fallback = useMemo(() => getThankYouFallback(installedApp), [installedApp])
-  const steps = useMemo(() => {
-    const parsed = parseQuickStartSteps(appQuickStart(installedApp))
-    return parsed.length ? parsed : fallback.steps
-  }, [installedApp, fallback.steps])
   const moreApps = useMemo(() => getMoreApps(installedApp), [installedApp])
 
+  const storeUrl = installedApp ? appStoreUrl(installedApp) : null
   const howToUrl = installedApp ? appYoutubeHowToUse(installedApp) : null
   const howToEmbedId = howToUrl ? youtubeEmbedId(howToUrl) : null
-  const extName = installedApp ? appFilterLabel(installedApp) : fallback.name
+  const extName = installedApp ? appFilterLabel(installedApp) : 'your extension'
   const hasHowToVideo = Boolean(howToEmbedId)
 
   const pageTitle = installedApp
@@ -134,7 +129,6 @@ export default function ThankYouPage() {
                   <h1>
                     Thank you<span>!</span>
                   </h1>
-                  <p>{THANK_YOU_SUBTITLE}</p>
                 </div>
 
                 {hasHowToVideo ? (
@@ -172,27 +166,23 @@ export default function ThankYouPage() {
             </div>
           </section>
 
-          <section className="CC__thank-you-steps-section">
-            <div className="CC__container">
-              <div className="CC__thank-you-steps-head">
-                <p className="CC__section-eyebrow">Getting started</p>
-                <h2 className="CC__section-title">Quick start</h2>
+          {hasSourceQuery ? (
+            <section className="CC__thank-you-steps-section">
+              <div className="CC__container">
+                <p className="CC__thank-you-steps-message">
+                  Please check the &apos;How to use&apos; section in the{' '}
+                  {storeUrl ? (
+                    <a href={storeUrl} target="_blank" rel="noopener noreferrer">
+                      Chrome extension description
+                    </a>
+                  ) : (
+                    'Chrome extension description'
+                  )}
+                  .
+                </p>
               </div>
-              <div className="CC__thank-you-steps-grid">
-                {steps.map((step, index) => (
-                  <CyberPanel key={`step-${index}`} className="CC__thank-you-step">
-                    <div className="CC__thank-you-step-index">
-                      Step {index + 1}.
-                    </div>
-                    <div
-                      className="CC__thank-you-step-body"
-                      dangerouslySetInnerHTML={{ __html: step.html }}
-                    />
-                  </CyberPanel>
-                ))}
-              </div>
-            </div>
-          </section>
+            </section>
+          ) : null}
 
           <section className="CC__thank-you-about CC__container">
             <div className="CC__about-grid">
