@@ -6,6 +6,7 @@ description: "How I landed a $1400 Shopify project, used AI to analyze competito
 tags: ["shopify", "freelance", "building-in-public", "client-work", "shopify-theme", "prestige-theme", "metafields"]
 youtubeId: ""
 draft: false
+thumbnail: "/blog-images/first-sale/thumbnail.png"
 keyTakeaways:
   - "Before writing a single line of code, send the client a mockup. It aligns expectations early and saves you from endless revision cycles later."
   - "Always establish font family, colors and general visual direction before touching the codebase. If the client doesn't know what they're getting, you'll be stuck in a back-and-forth editing loop."
