@@ -1,27 +1,27 @@
 {
   "available": true,
-  "updatedAt": "2026-07-12T15:58:46.087Z",
+  "updatedAt": "2026-07-13T00:25:53.474Z",
   "message": null,
-  "totalViews": 1523,
+  "totalViews": 1538,
   "blogViews": 46,
-  "averageTimeOnSiteSeconds": 155.46951668135247,
-  "uniqueVisitors": 781,
+  "averageTimeOnSiteSeconds": 154.72586758375635,
+  "uniqueVisitors": 787,
   "newVsReturning": {
-    "new": 777,
+    "new": 785,
     "returning": 107
   },
   "mostViewedPages": [
     {
       "path": "/thank-you/",
-      "views": 661
+      "views": 671
     },
     {
       "path": "/",
-      "views": 450
+      "views": 451
     },
     {
       "path": "/uninstall/",
-      "views": 199
+      "views": 203
     },
     {
       "path": "/apps",
@@ -117,25 +117,25 @@
       "users": 14
     },
     {
-      "code": "GB",
-      "name": "United Kingdom",
-      "gaCountry": "United Kingdom",
-      "gaCountryId": "GB",
-      "users": 13
-    },
-    {
       "code": "TR",
       "name": "Türkiye",
       "gaCountry": "Türkiye",
       "gaCountryId": "TR",
-      "users": 13
+      "users": 14
     },
     {
       "code": "CA",
       "name": "Canada",
       "gaCountry": "Canada",
       "gaCountryId": "CA",
-      "users": 11
+      "users": 13
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "gaCountry": "United Kingdom",
+      "gaCountryId": "GB",
+      "users": 13
     },
     {
       "code": "FR",
@@ -159,6 +159,13 @@
       "users": 10
     },
     {
+      "code": "RU",
+      "name": "Russia",
+      "gaCountry": "Russia",
+      "gaCountryId": "RU",
+      "users": 10
+    },
+    {
       "code": "BD",
       "name": "Bangladesh",
       "gaCountry": "Bangladesh",
@@ -173,10 +180,10 @@
       "users": 9
     },
     {
-      "code": "RU",
-      "name": "Russia",
-      "gaCountry": "Russia",
-      "gaCountryId": "RU",
+      "code": "TW",
+      "name": "Taiwan",
+      "gaCountry": "Taiwan",
+      "gaCountryId": "TW",
       "users": 9
     },
     {
@@ -184,13 +191,6 @@
       "name": "Morocco",
       "gaCountry": "Morocco",
       "gaCountryId": "MA",
-      "users": 8
-    },
-    {
-      "code": "TW",
-      "name": "Taiwan",
-      "gaCountry": "Taiwan",
-      "gaCountryId": "TW",
       "users": 8
     },
     {
@@ -222,17 +222,17 @@
       "users": 6
     },
     {
-      "code": "VN",
-      "name": "Vietnam",
-      "gaCountry": "Vietnam",
-      "gaCountryId": "VN",
+      "code": "PH",
+      "name": "Philippines",
+      "gaCountry": "Philippines",
+      "gaCountryId": "PH",
       "users": 6
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 875
+      "sessions": 886
     },
     {
       "source": "Organic Search",
@@ -244,7 +244,7 @@
     },
     {
       "source": "Unassigned",
-      "sessions": 13
+      "sessions": 14
     },
     {
       "source": "Organic Social",
@@ -258,7 +258,7 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 875
+      "sessions": 886
     },
     {
       "referrer": "google",
@@ -270,7 +270,7 @@
     },
     {
       "referrer": "(not set)",
-      "sessions": 13
+      "sessions": 14
     },
     {
       "referrer": "bing",
@@ -453,7 +453,7 @@
       },
       {
         "date": "12-07-2026",
-        "total": 24
+        "total": 39
       }
     ],
     "activeUsers": [
@@ -611,7 +611,7 @@
       },
       {
         "date": "12-07-2026",
-        "total": 17
+        "total": 24
       }
     ],
     "blogViews": [
@@ -927,7 +927,7 @@
       },
       {
         "date": "12-07-2026",
-        "total": 21
+        "total": 30
       }
     ]
   }

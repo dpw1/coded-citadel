@@ -3,8 +3,21 @@
   min-height: 50vh;
 }
 
+.CC__work-page__portfolio {
+  max-width: 68.75rem;
+  margin-bottom: 0;
+}
+
 .CC__work-page__inner {
   max-width: 46rem;
+}
+
+.CC__work-about {
+  text-align: center;
+}
+
+.CC__work-about__header {
+  margin-bottom: 2rem;
 }
 
 .CC__work-page__body {

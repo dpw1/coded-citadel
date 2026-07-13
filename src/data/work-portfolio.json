@@ -1,0 +1,43 @@
+{
+  "projects": [
+    {
+      "id": "zudo",
+      "title": "Zudo",
+      "tag": "Shopify · Impulse Theme · CRO",
+      "description": [
+        "I, along with Zudo's owner, Ibraheem Nadeem, have collaborated closely since 2018 to elevate and refine his e-commerce platform.",
+        "Our project revolves around a customized theme built upon Archetype's Impulse theme, with a significant emphasis on Conversion Rate Optimization (CRO) and A/B testing. To facilitate this, we've developed specialized sections tailored explicitly for A/B testing purposes.",
+        "Recently, we finalized the implementation of a custom bundle page aimed at enhancing client engagement and increasing average customer spending."
+      ],
+      "video": "/data-portfolio/zudo.webm",
+      "link": "https://zudo.co",
+      "linkLabel": "zudo.co"
+    },
+    {
+      "id": "sharicca",
+      "title": "Sharicca",
+      "tag": "Shopify · Custom Theme",
+      "description": [
+        "At the request of the Sharicca owner, I coded the entire website from the ground up. The most complex feature was the mega-menu/navigation and hero section, which I rebuilt entirely from the ground up.",
+        "For the hero section, we integrated a dynamic Flickity slideshow to enhance visual engagement. The mega-menu was meticulously coded using only HTML/CSS3, without relying on additional libraries.",
+        "By leveraging hover animations, we eliminated the need for JavaScript, ensuring performance and seamless functionality across all devices, including mobile and tablets.",
+        "The mega-menu is also wired up to the customize page and navigation items, so the merchant can easily update all of its text, colors, links and icons."
+      ],
+      "video": "/data-portfolio/sharicca.webm",
+      "link": "https://www.sharicca.com/",
+      "linkLabel": "sharicca.com"
+    },
+    {
+      "id": "lightmybricks",
+      "title": "Light My Bricks",
+      "tag": "Shopify · Performance",
+      "description": [
+        "Light My Bricks is a globally recognized Australian company specializing in LED for LEGO. This theme was meticulously engineered to deliver optimal performance and a top-notch user experience. To achieve this, we abstained from using jQuery and minimized reliance on third-party libraries, except for essential ones such as Flickity for enhanced UX in sliders.",
+        "On the backend, merchants benefit from easy and accessible customization options via the Customize page and metafields."
+      ],
+      "video": "/data-portfolio/light.webm",
+      "link": "https://www.lightmybricks.com/",
+      "linkLabel": "lightmybricks.com"
+    }
+  ]
+}

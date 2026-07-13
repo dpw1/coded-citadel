@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-12T15:58:54.478Z",
+  "updatedAt": "2026-07-13T00:26:02.755Z",
   "message": null,
   "apps": [
     {
@@ -617,6 +617,30 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "e09c473a24fd5d8dbdcb6e28958f153e9ab0ab85",
+          "shortSha": "e09c473",
+          "message": "Update Instagram DM Exporter to version 1.0.33. Enhanced UI for download completion with new thank you section, improved content security policy, and updated build process to include verification of remote code. Removed deprecated review link from UI.",
+          "date": "2026-07-12T17:40:53Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/e09c473a24fd5d8dbdcb6e28958f153e9ab0ab85"
+        },
+        {
+          "sha": "99ab4861e9de4d2581124a8af337a4b31d712ccb",
+          "shortSha": "99ab486",
+          "message": "Update .gitignore to exclude backup node_modules directory",
+          "date": "2026-07-12T17:13:13Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/99ab4861e9de4d2581124a8af337a4b31d712ccb"
+        },
+        {
+          "sha": "f339fe1cd38fab5dc5c14b698f69782bd7a35c37",
+          "shortSha": "f339fe1",
+          "message": "Update Instagram DM Exporter: Added support for attachment settings, improved export options, and enhanced UI. Updated version to 1.0.31. Added new dependencies and modified build process.",
+          "date": "2026-07-12T17:12:11Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/f339fe1cd38fab5dc5c14b698f69782bd7a35c37"
+        },
         {
           "sha": "96721ee79bae5412b79898e32c4b99114abc28d3",
           "shortSha": "96721ee",

@@ -1,9 +1,10 @@
-import { formatNumber, formatRevenue, getAnnouncementBarStats } from '../utils/apps'
+import { Link } from 'react-router-dom'
+import { formatNumber, getAnnouncementBarStats } from '../utils/apps'
 import './AnnouncementBar.css'
 
-const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@CodedCitadel'
+const PROFIT_DISPLAY = '$1400'
 
-function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, totalProfit, duplicate = false }) {
+function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, duplicate = false }) {
   const dupClass = duplicate ? ' CC__announcement-bar__marquee-duplicate' : ''
 
   return (
@@ -29,7 +30,7 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, totalProfit, 
       <span
         className={`CC__announcement-bar__marquee-item CC__announcement-bar__marquee-item--profit${dupClass}`}
       >
-        profit: {formatRevenue(totalProfit)}
+        profit: {PROFIT_DISPLAY}
       </span>
       <span
         className={`CC__announcement-bar__sep CC__announcement-bar__sep--trail${dupClass}`}
@@ -40,26 +41,24 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, totalProfit, 
 }
 
 export default function AnnouncementBar() {
-  const { liveApps, totalActiveUsers, totalInstalls, totalProfit } = getAnnouncementBarStats()
+  const { liveApps, totalActiveUsers, totalInstalls } = getAnnouncementBarStats()
 
   const ariaLabel = [
     'Coding Until I Make $100k USD',
     `${formatNumber(liveApps)} apps`,
     `${formatNumber(totalActiveUsers)} users`,
     `${formatNumber(totalInstalls)} installs`,
-    `profit: ${formatRevenue(totalProfit)}`,
+    `profit: ${PROFIT_DISPLAY}`,
   ].join(' | ')
 
-  const stripProps = { liveApps, totalActiveUsers, totalInstalls, totalProfit }
+  const stripProps = { liveApps, totalActiveUsers, totalInstalls }
 
   return (
     <div className="CC__announcement-bar">
-      <a
-        href={YOUTUBE_CHANNEL_URL}
+      <Link
+        to="/live-stats"
         className="CC__announcement-bar__link"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`${ariaLabel}. Open Coded Citadel on YouTube`}
+        aria-label={`${ariaLabel}. View live stats`}
       />
 
       <div className="CC__announcement-bar__desktop CC__container">
@@ -68,7 +67,7 @@ export default function AnnouncementBar() {
           <li>{formatNumber(liveApps)} apps</li>
           <li>{formatNumber(totalActiveUsers)} users</li>
           <li>{formatNumber(totalInstalls)} installs</li>
-          <li>profit: {formatRevenue(totalProfit)}</li>
+          <li>profit: {PROFIT_DISPLAY}</li>
         </ul>
       </div>
 

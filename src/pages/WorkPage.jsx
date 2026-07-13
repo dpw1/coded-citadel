@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import PortfolioAnalyticsSection from '../components/PortfolioAnalyticsSection'
+import WorkPortfolioSection from '../components/WorkPortfolioSection'
+import WorkTestimonialsSection from '../components/WorkTestimonialsSection'
 import { ContactSection } from './ContactPage'
 import PageSEO from '../components/PageSEO'
 import '../App.css'
@@ -23,6 +25,18 @@ export default function WorkPage() {
       />
       <SiteHeader />
       <main className="CC__work-page">
+        <div className="CC__container CC__work-page__portfolio">
+          <WorkPortfolioSection />
+          <WorkTestimonialsSection />
+
+          <section className="CC__work-about" aria-label="About me">
+            <header className="CC__work-about__header">
+              <p className="CC__section-eyebrow">About</p>
+              <h2 className="CC__section-title">About Me</h2>
+            </header>
+          </section>
+        </div>
+
         <div className="CC__container CC__work-page__inner">
           <article className="CC__work-page__body">
             <p className="CC__work-page__greeting">Hello!</p>
@@ -34,11 +48,7 @@ export default function WorkPage() {
 
             <p>
               My expertise lies in e-commerce (Shopify) and fullstack web apps, however, I have coded
-              and worked with many different niches and technologies. I have reviews and recommendations
-              dating all the way back from 2018 on my Facebook page:{' '}
-              <a href={FACEBOOK_REVIEWS_URL} target="_blank" rel="noopener noreferrer">
-                {FACEBOOK_REVIEWS_URL}
-              </a>
+              and worked with many different niches and technologies. 
             </p>
 
             <p>
@@ -47,7 +57,7 @@ export default function WorkPage() {
             </p>
 
             <p>
-              My goal with Coded Citadel is to showcase my work while finding a niche to build useful
+              My goal with Coded Citadel is to transparently showcase my work while finding a niche to build useful
               apps/projects.
             </p>
 
