@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Coded Citadel</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./admin.css" />
+</head>
+<body>
+  <div class="admin">
+    <header class="admin__header">
+      <div class="admin__header-left">
+        <p class="admin__eyebrow">Private</p>
+        <h1 class="admin__title">Admin</h1>
+      </div>
+      <div class="admin__header-right">
+        <span class="admin__updated" id="admin-updated">Not loaded yet</span>
+        <button type="button" class="admin__btn" id="admin-refresh">Refresh</button>
+      </div>
+    </header>
+
+    <p class="admin__note">
+      Opens locally via <code>file://</code> (uses Supabase REST + fetch — no SDK iframe).
+      Needs anon <strong>SELECT</strong> on <code>feedback</code> and <code>yt_filter_pro_data</code>.
+      Do not deploy publicly.
+    </p>
+
+    <nav class="admin__tabs" role="tablist" aria-label="Admin sections">
+      <button
+        type="button"
+        class="admin__tab admin__tab--active"
+        role="tab"
+        aria-selected="true"
+        data-tab="feedback"
+        id="tab-feedback"
+      >
+        Feedback
+        <span class="admin__tab-badge" id="feedback-unread-badge" hidden>0</span>
+      </button>
+      <button
+        type="button"
+        class="admin__tab"
+        role="tab"
+        aria-selected="false"
+        data-tab="yt"
+        id="tab-yt"
+      >
+        YouTube Filter Pro
+      </button>
+    </nav>
+
+    <!-- FEEDBACK -->
+    <section
+      class="admin__panel"
+      id="panel-feedback"
+      role="tabpanel"
+      aria-labelledby="tab-feedback"
+    >
+      <div class="admin__status" id="feedback-status">Loading feedback…</div>
+
+      <div class="admin__kpis" id="feedback-kpis" hidden>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Total</div>
+          <div class="admin__kpi-value" id="kpi-feedback-total">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Unread</div>
+          <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-feedback-unread">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Read</div>
+          <div class="admin__kpi-value" id="kpi-feedback-read">0</div>
+        </div>
+      </div>
+
+      <div class="admin__toolbar" id="feedback-toolbar" hidden>
+        <div class="admin__chips" role="group" aria-label="Filter feedback">
+          <button type="button" class="admin__chip admin__chip--active" data-filter="all">All</button>
+          <button type="button" class="admin__chip" data-filter="unread">Unread</button>
+          <button type="button" class="admin__chip" data-filter="read">Read</button>
+        </div>
+        <button type="button" class="admin__btn admin__btn--outline" id="mark-all-read">
+          Mark all as read
+        </button>
+      </div>
+
+      <div class="admin__list" id="feedback-list"></div>
+    </section>
+
+    <!-- YT FILTER PRO -->
+    <section
+      class="admin__panel"
+      id="panel-yt"
+      role="tabpanel"
+      aria-labelledby="tab-yt"
+      hidden
+    >
+      <div class="admin__status" id="yt-status">Loading YouTube Filter Pro data…</div>
+
+      <div class="admin__kpis" id="yt-kpis" hidden>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Total clicks</div>
+          <div class="admin__kpi-value" id="kpi-yt-total">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Unique users</div>
+          <div class="admin__kpi-value" id="kpi-yt-users">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Keyword include active</div>
+          <div class="admin__kpi-value" id="kpi-yt-keywords">0%</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Any duration filter</div>
+          <div class="admin__kpi-value" id="kpi-yt-duration">0%</div>
+        </div>
+      </div>
+
+      <div class="admin__charts" id="yt-charts" hidden>
+        <div class="admin__chart-card">
+          <h3 class="admin__chart-title">Published preset</h3>
+          <div class="admin__chart-wrap">
+            <canvas id="chart-preset"></canvas>
+          </div>
+        </div>
+        <div class="admin__chart-card">
+          <h3 class="admin__chart-title">Shorts</h3>
+          <div class="admin__chart-wrap">
+            <canvas id="chart-shorts"></canvas>
+          </div>
+        </div>
+        <div class="admin__chart-card">
+          <h3 class="admin__chart-title">Verified</h3>
+          <div class="admin__chart-wrap">
+            <canvas id="chart-verified"></canvas>
+          </div>
+        </div>
+        <div class="admin__chart-card">
+          <h3 class="admin__chart-title">Active filter groups</h3>
+          <div class="admin__chart-wrap admin__chart-wrap--bar">
+            <canvas id="chart-groups"></canvas>
+          </div>
+        </div>
+        <div class="admin__chart-card admin__chart-card--wide">
+          <h3 class="admin__chart-title">Top subscriber ranges</h3>
+          <div class="admin__chart-wrap admin__chart-wrap--bar">
+            <canvas id="chart-subs"></canvas>
+          </div>
+        </div>
+        <div class="admin__chart-card admin__chart-card--wide">
+          <h3 class="admin__chart-title">Clicks over time</h3>
+          <div class="admin__chart-wrap admin__chart-wrap--line">
+            <canvas id="chart-timeline"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Chart.js + confetti — Supabase via REST fetch so file:// works (no SDK iframe). -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="./admin.js"></script>
+</body>
+</html>

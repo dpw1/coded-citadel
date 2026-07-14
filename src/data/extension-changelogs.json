@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-13T14:14:18.712Z",
+  "updatedAt": "2026-07-14T15:48:03.927Z",
   "message": null,
   "apps": [
     {
@@ -210,6 +210,14 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "3cdf23eeec3f184939aad09ed5e6c401dbe2855e",
+          "shortSha": "3cdf23e",
+          "message": "Update YouTube Filter Pro to version 1.0.50: Added privacy notice functionality to inform users about anonymous data collection for usage analytics. Introduced new settings for users to opt-in for sharing filter usage data. Updated localization messages for privacy-related features and integrated FingerprintJS for enhanced user tracking. Adjusted styles for the privacy modal and improved toast notifications for better user feedback.",
+          "date": "2026-07-13T19:08:02Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/3cdf23eeec3f184939aad09ed5e6c401dbe2855e"
+        },
         {
           "sha": "aa757ec3229e837d12ca124ea8d617d11fc1f0ce",
           "shortSha": "aa757ec",
