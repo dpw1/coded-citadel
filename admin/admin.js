@@ -30,6 +30,47 @@ const FILTER_GROUP_KEYS = [
   'channelExclude',
 ]
 
+/** Human labels from extension UI (samples/yt-filter.html). */
+const FEATURE_LABELS = {
+  publishedPreset: 'Published',
+  dateFrom: 'Published from',
+  dateTo: 'Published until',
+  durMinH: 'Min duration hours',
+  durMinM: 'Min duration minutes',
+  durMinS: 'Min duration seconds',
+  durMaxH: 'Max duration hours',
+  durMaxM: 'Max duration minutes',
+  durMaxS: 'Max duration seconds',
+  viewMin: 'Minimum views',
+  viewMax: 'Maximum views',
+  viewsPerDayMin: 'Minimum views per day',
+  viewsPerDayMax: 'Maximum views per day',
+  likesMin: 'Minimum likes',
+  likesMax: 'Maximum likes',
+  titleIncludes: 'Title includes',
+  titleExcludes: 'Exclude from title',
+  descIncludes: 'Description includes',
+  descExcludes: 'Description excludes',
+  subMin: 'Minimum subscribers',
+  subMax: 'Maximum subscribers',
+  channelVideosMin: 'Minimum channel videos',
+  channelVideosMax: 'Maximum channel videos',
+  channelIncludes: 'Channel tags',
+  channelExclude: 'Exclude channels',
+  shorts: 'Shorts',
+  verified: 'Verified',
+}
+
+function formatFeatureLabel(key) {
+  const human = FEATURE_LABELS[key]
+  if (human) return `${human} (${key})`
+  // Fallback: split camelCase
+  const spaced = String(key)
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/^./, (c) => c.toUpperCase())
+  return `${spaced} (${key})`
+}
+
 const PAGE_SIZE = 1000
 
 /* -------------------------------------------------------------------------- */
@@ -596,9 +637,15 @@ function isGroupActive(group) {
   return false
 }
 
-function countMapInc(map, key) {
+function addUserToKey(map, key, fingerprint) {
+  if (!fingerprint) return
   const k = key == null || key === '' ? '(empty)' : String(key)
-  map.set(k, (map.get(k) || 0) + 1)
+  if (!map.has(k)) map.set(k, new Set())
+  map.get(k).add(fingerprint)
+}
+
+function userSetsToCounts(map) {
+  return new Map([...map.entries()].map(([k, set]) => [k, set.size]))
 }
 
 function topEntries(map, limit = 8) {
@@ -610,80 +657,118 @@ function pct(part, total) {
   return `${Math.round((part / total) * 100)}%`
 }
 
-function aggregateYt(rows) {
-  const presets = new Map()
-  const shorts = new Map()
-  const verified = new Map()
-  const groups = Object.fromEntries(FILTER_GROUP_KEYS.map((k) => [k, 0]))
-  const subRanges = new Map()
-  const byDay = new Map()
-  const uniqueFingerprints = new Set()
+function isFeatureUsed(key, value) {
+  if (value == null) return false
 
-  let keywordIncludeActive = 0
-  let durationAny = 0
+  if (typeof value === 'object' && !Array.isArray(value)) {
+    return isGroupActive(value)
+  }
+
+  if (typeof value === 'boolean') return value === true
+
+  if (typeof value === 'number') return !Number.isNaN(value)
+
+  const str = String(value).trim()
+  if (!str) return false
+
+  // Always-present defaults shouldn't dominate "most used"
+  if (key === 'shorts' && str === 'all') return false
+  if (key === 'verified' && str === 'all') return false
+  if (key === 'publishedPreset' && str === 'any') return false
+
+  return true
+}
+
+function aggregateYt(rows) {
+  const presetUsers = new Map()
+  const verifiedUsers = new Map()
+  const groupUsers = new Map(FILTER_GROUP_KEYS.map((k) => [k, new Set()]))
+  /** @type {Map<string, Set<string>>} subscriber range → unique fingerprints */
+  const subRangeUsers = new Map()
+  const dayUsers = new Map()
+  const uniqueFingerprints = new Set()
+  /** @type {Map<string, Set<string>>} feature key → unique fingerprints that used it */
+  const featureUsers = new Map()
+  const keywordIncludeUsers = new Set()
+  const durationUsers = new Set()
+
   let normalized = 0
 
   for (const row of rows) {
-    const fp = row?.fingerprint
-    if (fp != null && String(fp).trim() !== '') {
-      uniqueFingerprints.add(String(fp))
-    }
+    const fpRaw = row?.fingerprint
+    const fingerprint =
+      fpRaw != null && String(fpRaw).trim() !== '' ? String(fpRaw) : null
+    if (fingerprint) uniqueFingerprints.add(fingerprint)
 
     const filter = pickFilterObject(row)
     if (!filter) continue
     normalized += 1
 
-    countMapInc(presets, filter.publishedPreset ?? 'any')
-    countMapInc(shorts, filter.shorts ?? 'all')
-    countMapInc(verified, filter.verified ?? 'all')
+    if (fingerprint) {
+      addUserToKey(presetUsers, filter.publishedPreset ?? 'any', fingerprint)
+      addUserToKey(verifiedUsers, filter.verified ?? 'all', fingerprint)
 
-    FILTER_GROUP_KEYS.forEach((key) => {
-      if (isGroupActive(filter[key])) groups[key] += 1
-    })
+      FILTER_GROUP_KEYS.forEach((key) => {
+        if (isGroupActive(filter[key])) groupUsers.get(key).add(fingerprint)
+      })
 
-    if (
-      isGroupActive(filter.titleIncludes) ||
-      isGroupActive(filter.descIncludes) ||
-      isGroupActive(filter.channelIncludes)
-    ) {
-      keywordIncludeActive += 1
-    }
+      Object.entries(filter).forEach(([key, value]) => {
+        if (!isFeatureUsed(key, value)) return
+        if (!featureUsers.has(key)) featureUsers.set(key, new Set())
+        featureUsers.get(key).add(fingerprint)
+      })
 
-    const durationFields = [
-      filter.durMinH,
-      filter.durMinM,
-      filter.durMinS,
-      filter.durMaxH,
-      filter.durMaxM,
-      filter.durMaxS,
-    ]
-    if (durationFields.some(isFilled)) durationAny += 1
+      if (
+        isGroupActive(filter.titleIncludes) ||
+        isGroupActive(filter.descIncludes) ||
+        isGroupActive(filter.channelIncludes)
+      ) {
+        keywordIncludeUsers.add(fingerprint)
+      }
 
-    const subLabel = `${filter.subMin || '0'}–${filter.subMax || '∞'}`
-    countMapInc(subRanges, subLabel)
+      const durationFields = [
+        filter.durMinH,
+        filter.durMinM,
+        filter.durMinS,
+        filter.durMaxH,
+        filter.durMaxM,
+        filter.durMaxS,
+      ]
+      if (durationFields.some(isFilled)) durationUsers.add(fingerprint)
 
-    const created = rowCreatedAt(row)
-    if (created) {
-      const day = new Date(created)
-      if (!Number.isNaN(day.getTime())) {
-        const key = day.toISOString().slice(0, 10)
-        countMapInc(byDay, key)
+      const subLabel = `${filter.subMin || '0'}–${filter.subMax || '∞'}`
+      addUserToKey(subRangeUsers, subLabel, fingerprint)
+
+      const created = rowCreatedAt(row)
+      if (created) {
+        const day = new Date(created)
+        if (!Number.isNaN(day.getTime())) {
+          addUserToKey(dayUsers, day.toISOString().slice(0, 10), fingerprint)
+        }
       }
     }
   }
+
+  const featureUsage = new Map(
+    [...featureUsers.entries()].map(([key, set]) => [key, set.size]),
+  )
+
+  const subRanges = userSetsToCounts(subRangeUsers)
 
   return {
     total: rows.length,
     normalized,
     uniqueUsers: uniqueFingerprints.size,
-    presets,
-    shorts,
-    verified,
-    groups,
+    presets: userSetsToCounts(presetUsers),
+    verified: userSetsToCounts(verifiedUsers),
+    groups: Object.fromEntries(
+      FILTER_GROUP_KEYS.map((k) => [k, groupUsers.get(k).size]),
+    ),
+    featureUsage,
     subRanges,
-    byDay,
-    keywordIncludeActive,
-    durationAny,
+    byDay: userSetsToCounts(dayUsers),
+    keywordIncludeActive: keywordIncludeUsers.size,
+    durationAny: durationUsers.size,
   }
 }
 
@@ -815,23 +900,28 @@ function renderYtCharts() {
     options: doughnutOpts,
   })
 
-  state.charts.shorts = new Chart(document.getElementById('chart-shorts'), {
-    type: 'doughnut',
-    data: doughnutData(topEntries(stats.shorts, 6)),
-    options: doughnutOpts,
-  })
-
   state.charts.verified = new Chart(document.getElementById('chart-verified'), {
     type: 'doughnut',
     data: doughnutData(topEntries(stats.verified, 6)),
     options: doughnutOpts,
   })
 
-  const groupLabels = FILTER_GROUP_KEYS
-  const groupValues = groupLabels.map((k) => stats.groups[k])
+  const groupLabels = FILTER_GROUP_KEYS.map(formatFeatureLabel)
+  const groupValues = FILTER_GROUP_KEYS.map((k) => stats.groups[k])
   state.charts.groups = new Chart(document.getElementById('chart-groups'), {
     type: 'bar',
     data: barData(groupLabels, groupValues, CHART_COLORS.blue),
+    options: barOpts,
+  })
+
+  const featureTop = topEntries(stats.featureUsage, 10)
+  state.charts.features = new Chart(document.getElementById('chart-features'), {
+    type: 'bar',
+    data: barData(
+      featureTop.map(([key]) => formatFeatureLabel(key)),
+      featureTop.map(([, count]) => count),
+      CHART_COLORS.primary,
+    ),
     options: barOpts,
   })
 
@@ -869,12 +959,17 @@ function renderYtCharts() {
 
 function renderYtKpis() {
   const stats = aggregateYt(state.ytRows)
-  const n = stats.normalized || stats.total
 
   document.getElementById('kpi-yt-total').textContent = String(stats.total)
   document.getElementById('kpi-yt-users').textContent = String(stats.uniqueUsers)
-  document.getElementById('kpi-yt-keywords').textContent = pct(stats.keywordIncludeActive, n)
-  document.getElementById('kpi-yt-duration').textContent = pct(stats.durationAny, n)
+  document.getElementById('kpi-yt-keywords').textContent = pct(
+    stats.keywordIncludeActive,
+    stats.uniqueUsers,
+  )
+  document.getElementById('kpi-yt-duration').textContent = pct(
+    stats.durationAny,
+    stats.uniqueUsers,
+  )
 }
 
 async function loadYt() {

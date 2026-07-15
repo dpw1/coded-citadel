@@ -366,6 +366,13 @@ code {
   gap: 1rem;
 }
 
+.admin__chart-note {
+  grid-column: 1 / -1;
+  color: var(--CC__color-text-muted);
+  font-size: 0.8rem;
+  margin: 0 0 0.25rem;
+}
+
 .admin__chart-card {
   background: var(--CC__color-bg-card);
   border: 1px solid var(--CC__color-border);
@@ -384,6 +391,12 @@ code {
   text-transform: uppercase;
   color: var(--CC__color-text-main);
   margin-bottom: 0.85rem;
+}
+
+.admin__chart-subtitle {
+  color: var(--CC__color-text-muted);
+  font-size: 0.8rem;
+  margin: -0.45rem 0 0.85rem;
 }
 
 .admin__chart-wrap {
