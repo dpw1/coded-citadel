@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-15T20:17:09.678Z",
+  "updatedAt": "2026-07-16T18:03:26.141Z",
   "message": null,
   "apps": [
     {
@@ -767,6 +767,14 @@
       "githubPublic": true,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "af9c527d390649624b5cf58305f93824a0bb754d",
+          "shortSha": "af9c527",
+          "message": "Refactor zip distribution process and update manifest version",
+          "date": "2026-07-16T17:12:51Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/claude-limit-monitor/commit/af9c527d390649624b5cf58305f93824a0bb754d"
+        },
         {
           "sha": "32f940aecda2bc4490eb36bc46064d034e789c81",
           "shortSha": "32f940a",

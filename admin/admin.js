@@ -32,7 +32,7 @@ const FILTER_GROUP_KEYS = [
 
 /** Human labels from extension UI (samples/yt-filter.html). */
 const FEATURE_LABELS = {
-  publishedPreset: 'Published',
+  publishedPreset: 'Date range',
   dateFrom: 'Published from',
   dateTo: 'Published until',
   durMinH: 'Min duration hours',
@@ -906,8 +906,11 @@ function renderYtCharts() {
     options: doughnutOpts,
   })
 
-  const groupLabels = FILTER_GROUP_KEYS.map(formatFeatureLabel)
-  const groupValues = FILTER_GROUP_KEYS.map((k) => stats.groups[k])
+  const groupSorted = [...FILTER_GROUP_KEYS].sort(
+    (a, b) => stats.groups[b] - stats.groups[a],
+  )
+  const groupLabels = groupSorted.map(formatFeatureLabel)
+  const groupValues = groupSorted.map((k) => stats.groups[k])
   state.charts.groups = new Chart(document.getElementById('chart-groups'), {
     type: 'bar',
     data: barData(groupLabels, groupValues, CHART_COLORS.blue),
