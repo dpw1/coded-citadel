@@ -22,17 +22,96 @@
   align-items: start;
 }
 
-.CC__work-testimonials__embed {
-  display: flex;
-  justify-content: center;
+.CC__work-testimonial-card {
+  text-align: left;
+  background: #fff;
+  color: #050505;
+  border-radius: calc(var(--CC__radius) * 2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  padding: 0.95rem 1rem 0.85rem;
   min-width: 0;
 }
 
-.CC__work-testimonials__embed iframe {
-  width: 100%;
-  max-width: 500px;
-  background: #fff;
-  border-radius: calc(var(--CC__radius) * 2);
+.CC__work-testimonial-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.75rem;
+}
+
+.CC__work-testimonial-card__avatar-link {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.CC__work-testimonial-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.CC__work-testimonial-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.CC__work-testimonial-card__author {
+  color: #050505;
+  font-weight: 700;
+  font-size: 0.92rem;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.CC__work-testimonial-card__author:hover {
+  text-decoration: underline;
+}
+
+.CC__work-testimonial-card__date {
+  color: #65676b;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.CC__work-testimonial-card__date:hover {
+  text-decoration: underline;
+}
+
+.CC__work-testimonial-card__body {
+  color: #050505;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.CC__work-testimonial-card__body p {
+  margin: 0 0 0.65rem;
+}
+
+.CC__work-testimonial-card__body p:last-child {
+  margin-bottom: 0;
+}
+
+.CC__work-testimonial-card__footer {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e4e6eb;
+}
+
+.CC__work-testimonial-card__fb-link {
+  color: #0866ff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.CC__work-testimonial-card__fb-link:hover {
+  text-decoration: underline;
 }
 
 .CC__work-testimonials__actions {
@@ -43,5 +122,10 @@
   .CC__work-testimonials__grid {
     grid-template-columns: 1fr;
     justify-items: center;
+  }
+
+  .CC__work-testimonial-card {
+    width: 100%;
+    max-width: 34rem;
   }
 }
