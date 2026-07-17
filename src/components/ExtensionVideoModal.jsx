@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const CLOSE_ICON = (
   <svg viewBox="0 0 24 24">
@@ -6,7 +7,7 @@ const CLOSE_ICON = (
   </svg>
 )
 
-export default function ExtensionVideoModal({ open, videoId, title, onClose }) {
+export default function ExtensionVideoModal({ open, videoId, title, titleHref, onClose }) {
   useEffect(() => {
     if (!open) return undefined
 
@@ -26,6 +27,7 @@ export default function ExtensionVideoModal({ open, videoId, title, onClose }) {
   if (!open || !videoId) return null
 
   const embedSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`
+  const isExternal = typeof titleHref === 'string' && /^https?:\/\//i.test(titleHref)
 
   return (
     <div
@@ -37,7 +39,24 @@ export default function ExtensionVideoModal({ open, videoId, title, onClose }) {
     >
       <div className="CC__modal" onClick={(event) => event.stopPropagation()}>
         <div className="CC__modal__header">
-          <span className="CC__modal__title">{title}</span>
+          {titleHref ? (
+            isExternal ? (
+              <a
+                className="CC__modal__title CC__modal__title--link"
+                href={titleHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {title}
+              </a>
+            ) : (
+              <Link className="CC__modal__title CC__modal__title--link" to={titleHref} onClick={onClose}>
+                {title}
+              </Link>
+            )
+          ) : (
+            <span className="CC__modal__title">{title}</span>
+          )}
           <button type="button" className="CC__modal__close" aria-label="Close video" onClick={onClose}>
             {CLOSE_ICON}
           </button>

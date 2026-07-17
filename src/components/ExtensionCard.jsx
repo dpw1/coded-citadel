@@ -74,7 +74,16 @@ function formatExtensionStat(value) {
   return String(value)
 }
 
-export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
+export default function ExtensionCard({
+  app,
+  index = 0,
+  onPlayVideo,
+  showInstalls = true,
+  showUsers = true,
+  showPublished = true,
+  showViewMore = true,
+  showVideoStat = true,
+}) {
   const navigate = useNavigate()
   const live = isAppLive(app)
   const youtubeUrl = appBuildYoutubeUrl(app)
@@ -85,11 +94,13 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
   const summary = appCardSummary(app)
   const iconUrl = appIconUrl(app)
   const displayName = appFilterLabel(app)
-  const publishedLabel = formatAppPublishedAgo(app)
+  const publishedLabel = showPublished ? formatAppPublishedAgo(app) : null
+  const showStatsRow =
+    showInstalls || showUsers || (showVideoStat && hasVideo)
 
   const playVideo = (event) => {
     event.stopPropagation()
-    if (videoId) onPlayVideo?.({ videoId, title: displayName })
+    if (videoId) onPlayVideo?.({ videoId, title: displayName, href: `/apps/${app.slug}` })
   }
 
   const handleVideoKeyDown = (event) => {
@@ -163,51 +174,63 @@ export default function ExtensionCard({ app, index = 0, onPlayVideo }) {
         </div>
       </div>
 
-      <div className="CC__ext-stats">
-        <div className="CC__ext-stat" title={`${installs ?? 0} installs`}>
-          <span className="CC__ext-stat__icon--dl" aria-hidden="true">
-            {DL_ICON}
-          </span>
-          <span className="CC__ext-stat__val">{formatExtensionStat(installs)}</span>
-          <span className="CC__ext-stat__label">installs</span>
-        </div>
-        <div className="CC__ext-stat-sep" aria-hidden="true" />
-        <div className="CC__ext-stat" title={`${activeUsers ?? 0} users`}>
-          <span className="CC__ext-stat__icon--users" aria-hidden="true">
-            {USERS_ICON}
-          </span>
-          <span className="CC__ext-stat__val">{formatExtensionStat(activeUsers)}</span>
-          <span className="CC__ext-stat__label">users</span>
-        </div>
-        {hasVideo ? (
-          <>
-            <div className="CC__ext-stat-sep" aria-hidden="true" />
-            <button
-              type="button"
-              className="CC__ext-stat CC__ext-stat--video"
-              title="Watch on YouTube"
-              aria-label={`Watch on YouTube for ${displayName}`}
-              onClick={playVideo}
-            >
-              <span className="CC__ext-stat__icon--video" aria-hidden="true">
-                {YOUTUBE_ICON}
+      {showStatsRow ? (
+        <div className="CC__ext-stats">
+          {showInstalls ? (
+            <div className="CC__ext-stat" title={`${installs ?? 0} installs`}>
+              <span className="CC__ext-stat__icon--dl" aria-hidden="true">
+                {DL_ICON}
               </span>
-              <span className="CC__ext-stat__label">youtube</span>
-            </button>
-          </>
-        ) : null}
-      </div>
+              <span className="CC__ext-stat__val">{formatExtensionStat(installs)}</span>
+              <span className="CC__ext-stat__label">installs</span>
+            </div>
+          ) : null}
+          {showInstalls && showUsers ? (
+            <div className="CC__ext-stat-sep" aria-hidden="true" />
+          ) : null}
+          {showUsers ? (
+            <div className="CC__ext-stat" title={`${activeUsers ?? 0} users`}>
+              <span className="CC__ext-stat__icon--users" aria-hidden="true">
+                {USERS_ICON}
+              </span>
+              <span className="CC__ext-stat__val">{formatExtensionStat(activeUsers)}</span>
+              <span className="CC__ext-stat__label">users</span>
+            </div>
+          ) : null}
+          {showVideoStat && hasVideo ? (
+            <>
+              {showInstalls || showUsers ? (
+                <div className="CC__ext-stat-sep" aria-hidden="true" />
+              ) : null}
+              <button
+                type="button"
+                className="CC__ext-stat CC__ext-stat--video"
+                title="Watch on YouTube"
+                aria-label={`Watch on YouTube for ${displayName}`}
+                onClick={playVideo}
+              >
+                <span className="CC__ext-stat__icon--video" aria-hidden="true">
+                  {YOUTUBE_ICON}
+                </span>
+                <span className="CC__ext-stat__label">youtube</span>
+              </button>
+            </>
+          ) : null}
+        </div>
+      ) : null}
 
-      {live ? (
-        <span className="CC__ext-cta CC__ext-cta--visible" aria-hidden="true">
-          View more
-          {ARROW_ICON}
-        </span>
-      ) : (
-        <span className="CC__ext-cta CC__ext-cta--visible CC__ext-cta--disabled" aria-disabled="true">
-          Coming soon
-        </span>
-      )}
+      {showViewMore ? (
+        live ? (
+          <span className="CC__ext-cta CC__ext-cta--visible" aria-hidden="true">
+            View more
+            {ARROW_ICON}
+          </span>
+        ) : (
+          <span className="CC__ext-cta CC__ext-cta--visible CC__ext-cta--disabled" aria-disabled="true">
+            Coming soon
+          </span>
+        )
+      ) : null}
     </article>
   )
 }

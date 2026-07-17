@@ -44,7 +44,12 @@ export default function PluginsGridSection({
 }) {
   const [activeTab, setActiveTab] = useState('All')
   const [currentPage, setCurrentPage] = useState(1)
-  const [videoModal, setVideoModal] = useState({ open: false, videoId: null, title: '' })
+  const [videoModal, setVideoModal] = useState({
+    open: false,
+    videoId: null,
+    title: '',
+    titleHref: null,
+  })
   const [downloadCounts, setDownloadCounts] = useState({})
   const sectionRef = useRef(null)
   const skipPageScrollRef = useRef(true)
@@ -200,8 +205,8 @@ export default function PluginsGridSection({
               plugin={plugin}
               index={index}
               downloadCount={downloadCounts[plugin.slug]}
-              onPlayVideo={({ videoId, title: videoTitle }) =>
-                setVideoModal({ open: true, videoId, title: videoTitle })
+              onPlayVideo={({ videoId, title: videoTitle, href }) =>
+                setVideoModal({ open: true, videoId, title: videoTitle, titleHref: href ?? null })
               }
             />
           ))
@@ -265,7 +270,10 @@ export default function PluginsGridSection({
         open={videoModal.open}
         videoId={videoModal.videoId}
         title={videoModal.title}
-        onClose={() => setVideoModal({ open: false, videoId: null, title: '' })}
+        titleHref={videoModal.titleHref}
+        onClose={() =>
+          setVideoModal({ open: false, videoId: null, title: '', titleHref: null })
+        }
       />
     </section>
   )

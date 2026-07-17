@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import PortfolioAnalyticsSection from '../components/PortfolioAnalyticsSection'
+import AppsGridSection from '../components/AppsGridSection'
 import WorkPortfolioSection from '../components/WorkPortfolioSection'
 import WorkTestimonialsSection from '../components/WorkTestimonialsSection'
 import { ContactSection } from './ContactPage'
@@ -27,6 +28,21 @@ export default function WorkPage() {
       <main className="CC__work-page">
         <div className="CC__container CC__work-page__portfolio">
           <WorkPortfolioSection />
+          <AppsGridSection
+            sectionId="work-extensions"
+            className="CC__work-page__extensions"
+            contained={false}
+            eyebrow={null}
+            title="Chrome Extensions"
+            subtitle="15+ extensions, 27k+ active users"
+            showInstalls={false}
+            showUsers={false}
+            showPublished={false}
+            showViewMore={false}
+            showVideoStat={false}
+            sortByInstalls
+            maxItems={9}
+          />
           <WorkTestimonialsSection />
 
           <section className="CC__work-about" aria-label="About me">

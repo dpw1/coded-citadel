@@ -77,7 +77,7 @@ export default function PluginCard({ plugin, index = 0, downloadCount, onPlayVid
 
   const playVideo = (event) => {
     event.stopPropagation()
-    if (videoId) onPlayVideo?.({ videoId, title: displayName })
+    if (videoId) onPlayVideo?.({ videoId, title: displayName, href: pluginPath(plugin.slug) })
   }
 
   const handleVideoKeyDown = (event) => {

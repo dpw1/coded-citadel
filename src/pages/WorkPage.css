@@ -8,6 +8,29 @@
   margin-bottom: 0;
 }
 
+.CC__work-page__extensions {
+  margin-bottom: 3.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+}
+
+.CC__work-page__extensions .CC__section-header-row {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.CC__work-page__extensions .CC__section-subtitle {
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.CC__work-page__extensions .CC__extensions-grid {
+  text-align: left;
+}
+
 .CC__work-page__inner {
   max-width: 46rem;
 }

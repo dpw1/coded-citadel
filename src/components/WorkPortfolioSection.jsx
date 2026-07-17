@@ -97,7 +97,14 @@ export default function WorkPortfolioSection() {
         >
           <div className="CC__modal CC__work-portfolio-modal__box" onClick={(event) => event.stopPropagation()}>
             <div className="CC__modal__header">
-              <span className="CC__modal__title">{activeProject.title}</span>
+              <a
+                className="CC__modal__title CC__modal__title--link"
+                href={activeProject.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {activeProject.title}
+              </a>
               <button
                 type="button"
                 className="CC__modal__close"

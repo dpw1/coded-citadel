@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
-import { getAllApps, appCategory } from '../utils/apps'
+import { getAllApps, appCategory, appCardInstalls } from '../utils/apps'
 
 const PREV_ICON = (
   <svg viewBox="0 0 24 24">
@@ -43,17 +43,31 @@ export default function AppsGridSection({
   excludeSlug = null,
   eyebrow = 'Chrome Extensions',
   title,
+  subtitle = null,
   titleAs = 'h2',
   enableTabs = false,
   enablePagination = false,
   perPage = 6,
   maxItems = null,
   randomize = false,
+  sortByInstalls = false,
   showChromeStoreLink = false,
+  contained = true,
+  className = '',
+  showInstalls = true,
+  showUsers = true,
+  showPublished = true,
+  showViewMore = true,
+  showVideoStat = true,
 }) {
   const [activeTab, setActiveTab] = useState('All')
   const [currentPage, setCurrentPage] = useState(1)
-  const [videoModal, setVideoModal] = useState({ open: false, videoId: null, title: '' })
+  const [videoModal, setVideoModal] = useState({
+    open: false,
+    videoId: null,
+    title: '',
+    titleHref: null,
+  })
   const sectionRef = useRef(null)
   const skipPageScrollRef = useRef(true)
 
@@ -79,12 +93,26 @@ export default function AppsGridSection({
   }, [activeTab, apps, enableTabs])
 
   const visibleApps = useMemo(() => {
-    const pool = randomize ? shuffleApps(filteredApps) : filteredApps
+    let pool = filteredApps
+    if (sortByInstalls) {
+      pool = [...pool].sort(
+        (a, b) => (appCardInstalls(b) ?? 0) - (appCardInstalls(a) ?? 0),
+      )
+    }
+    if (randomize) pool = shuffleApps(pool)
     if (maxItems != null) return pool.slice(0, maxItems)
     if (!enablePagination) return pool
     const start = (currentPage - 1) * perPage
     return pool.slice(start, start + perPage)
-  }, [currentPage, enablePagination, filteredApps, maxItems, perPage, randomize])
+  }, [
+    currentPage,
+    enablePagination,
+    filteredApps,
+    maxItems,
+    perPage,
+    randomize,
+    sortByInstalls,
+  ])
 
   const totalPages = enablePagination ? Math.ceil(filteredApps.length / perPage) : 1
   const showPagination = enablePagination && totalPages > 1
@@ -123,17 +151,26 @@ export default function AppsGridSection({
     </Link>
   ) : null
 
+  const sectionClassName = [
+    'CC__extensions',
+    contained ? 'CC__container' : null,
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <section
       ref={sectionRef}
       id={sectionId}
-      className="CC__extensions CC__container"
+      className={sectionClassName}
       aria-label="Extensions"
     >
       <div className="CC__section-header-row">
         <div>
-          <p className="CC__section-eyebrow">{eyebrow}</p>
+          {eyebrow ? <p className="CC__section-eyebrow">{eyebrow}</p> : null}
           <TitleTag className="CC__section-title">{sectionTitle}</TitleTag>
+          {subtitle ? <p className="CC__section-subtitle">{subtitle}</p> : null}
         </div>
         {viewAllAppsLink ? (
           <span className="CC__view-all-link-wrap CC__view-all-link-wrap--header">{viewAllAppsLink}</span>
@@ -183,8 +220,13 @@ export default function AppsGridSection({
               key={app.slug}
               app={app}
               index={index}
-              onPlayVideo={({ videoId, title: videoTitle }) =>
-                setVideoModal({ open: true, videoId, title: videoTitle })
+              showInstalls={showInstalls}
+              showUsers={showUsers}
+              showPublished={showPublished}
+              showViewMore={showViewMore}
+              showVideoStat={showVideoStat}
+              onPlayVideo={({ videoId, title: videoTitle, href }) =>
+                setVideoModal({ open: true, videoId, title: videoTitle, titleHref: href ?? null })
               }
             />
           ))
@@ -248,7 +290,10 @@ export default function AppsGridSection({
         open={videoModal.open}
         videoId={videoModal.videoId}
         title={videoModal.title}
-        onClose={() => setVideoModal({ open: false, videoId: null, title: '' })}
+        titleHref={videoModal.titleHref}
+        onClose={() =>
+          setVideoModal({ open: false, videoId: null, title: '', titleHref: null })
+        }
       />
     </section>
   )

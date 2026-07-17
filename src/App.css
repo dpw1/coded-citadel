@@ -591,6 +591,13 @@
   color: var(--CC__color-primary);
 }
 
+.CC__section-subtitle {
+  color: var(--CC__color-text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0.75rem 0 0;
+}
+
 .CC__view-all-link {
   color: var(--CC__color-primary);
   font-size: 0.9rem;
@@ -1159,6 +1166,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.CC__modal__title--link {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.CC__modal__title--link:hover {
+  color: var(--CC__color-primary);
 }
 
 .CC__modal__close {
