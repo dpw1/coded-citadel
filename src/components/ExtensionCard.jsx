@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import ChromeIcon from './ChromeIcon'
 import CyberCorners from './CyberCorners'
 import {
   appActiveUsers,
@@ -7,10 +8,12 @@ import {
   appCardSummary,
   appFilterLabel,
   appIconUrl,
+  appStoreUrl,
   formatAppPublishedAgo,
   isAppLive,
   youtubeEmbedId,
 } from '../utils/apps'
+import { getBlogPostForApp } from '../utils/blog'
 
 const DL_ICON = (
   <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,6 +65,17 @@ const PLAY_ICON = (
   </svg>
 )
 
+const BLOG_ICON = (
+  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path
+      d="M4.5 3.5h8.2c.9 0 1.6.7 1.6 1.6v9.8c0 .9-.7 1.6-1.6 1.6H4.5c-.9 0-1.6-.7-1.6-1.6V5.1c0-.9.7-1.6 1.6-1.6Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path d="M6.2 7h5.2M6.2 10h5.2M6.2 13h3.4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+)
+
 const ARROW_ICON = (
   <svg viewBox="0 0 24 24">
     <path d="M5 12h14M13 6l6 6-6-6" />
@@ -83,6 +97,8 @@ export default function ExtensionCard({
   showPublished = true,
   showViewMore = true,
   showVideoStat = true,
+  showBlogLink = false,
+  showStoreDownload = false,
 }) {
   const navigate = useNavigate()
   const live = isAppLive(app)
@@ -95,8 +111,12 @@ export default function ExtensionCard({
   const iconUrl = appIconUrl(app)
   const displayName = appFilterLabel(app)
   const publishedLabel = showPublished ? formatAppPublishedAgo(app) : null
+  const storeUrl = appStoreUrl(app)
+  const blogPost = showBlogLink ? getBlogPostForApp(app) : null
   const showStatsRow =
     showInstalls || showUsers || (showVideoStat && hasVideo)
+  const showQuickActions =
+    (showBlogLink && blogPost) || (showStoreDownload && storeUrl)
 
   const playVideo = (event) => {
     event.stopPropagation()
@@ -173,6 +193,40 @@ export default function ExtensionCard({
           <p className="CC__ext-summary">{summary}</p>
         </div>
       </div>
+
+      {showQuickActions ? (
+        <div className="CC__ext-stats">
+          {showBlogLink && blogPost ? (
+            <Link
+              to={`/blog/${blogPost.slug}`}
+              className="CC__ext-stat CC__ext-stat--link"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <span className="CC__ext-stat__icon--blog" aria-hidden="true">
+                {BLOG_ICON}
+              </span>
+              <span className="CC__ext-stat__label">read blog</span>
+            </Link>
+          ) : null}
+          {showBlogLink && blogPost && showStoreDownload && storeUrl ? (
+            <div className="CC__ext-stat-sep" aria-hidden="true" />
+          ) : null}
+          {showStoreDownload && storeUrl ? (
+            <a
+              href={storeUrl}
+              className="CC__ext-stat CC__ext-stat--link"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <span className="CC__ext-stat__icon--chrome" aria-hidden="true">
+                <ChromeIcon size={16} title="" />
+              </span>
+              <span className="CC__ext-stat__label">download</span>
+            </a>
+          ) : null}
+        </div>
+      ) : null}
 
       {showStatsRow ? (
         <div className="CC__ext-stats">

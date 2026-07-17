@@ -14,6 +14,38 @@ export function getBlogPostBySlug(slug) {
   return getAllBlogPosts().find((post) => post.slug === slug) ?? null
 }
 
+/** Fallback when blog frontmatter is missing extensionSlug / download. */
+const APP_BLOG_SLUG_FALLBACKS = {
+  dex: 'discord-message-exporter-chrome-extension',
+}
+
+/** Find the build diary post for a Chrome extension app. */
+export function getBlogPostForApp(app) {
+  if (!app) return null
+
+  const posts = getAllBlogPosts()
+  const appSlug = app.slug
+  const extensionId = app.chromeExtensionId
+
+  const byExtensionSlug = posts.find((post) => post.extensionSlug && post.extensionSlug === appSlug)
+  if (byExtensionSlug) return byExtensionSlug
+
+  if (extensionId) {
+    const byDownload = posts.find(
+      (post) => typeof post.download === 'string' && post.download.includes(extensionId),
+    )
+    if (byDownload) return byDownload
+  }
+
+  const fallbackSlug = APP_BLOG_SLUG_FALLBACKS[appSlug]
+  if (fallbackSlug) {
+    const byFallback = getBlogPostBySlug(fallbackSlug)
+    if (byFallback) return byFallback
+  }
+
+  return null
+}
+
 /** Other posts for “Keep reading” (newest first, excludes current). */
 export function getKeepReadingPosts(currentSlug, limit = 3) {
   return getAllBlogPosts()

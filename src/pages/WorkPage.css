@@ -22,7 +22,7 @@
 }
 
 .CC__work-page__extensions .CC__section-subtitle {
-  max-width: 34rem;
+  max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -93,6 +93,37 @@
   margin-bottom: 0;
 }
 
+.CC__work-page__skills {
+  margin: 0 0 1.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.CC__work-page__skills-row {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0.75rem 1.25rem;
+  align-items: baseline;
+}
+
+.CC__work-page__skills dt {
+  margin: 0;
+  font-family: var(--CC__font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--CC__color-text-main);
+}
+
+.CC__work-page__skills dd {
+  margin: 0;
+  color: var(--CC__color-text-muted);
+  line-height: 1.6;
+}
+
 .CC__work-page__contact {
   margin-top: 3.5rem;
 }
@@ -100,5 +131,10 @@
 @media (max-width: 767px) {
   .CC__work-page {
     padding: 2rem 0 4rem;
+  }
+
+  .CC__work-page__skills-row {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
   }
 }

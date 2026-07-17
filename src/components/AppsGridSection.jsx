@@ -59,6 +59,8 @@ export default function AppsGridSection({
   showPublished = true,
   showViewMore = true,
   showVideoStat = true,
+  showBlogLink = false,
+  showStoreDownload = false,
 }) {
   const [activeTab, setActiveTab] = useState('All')
   const [currentPage, setCurrentPage] = useState(1)
@@ -225,6 +227,8 @@ export default function AppsGridSection({
               showPublished={showPublished}
               showViewMore={showViewMore}
               showVideoStat={showVideoStat}
+              showBlogLink={showBlogLink}
+              showStoreDownload={showStoreDownload}
               onPlayVideo={({ videoId, title: videoTitle, href }) =>
                 setVideoModal({ open: true, videoId, title: videoTitle, titleHref: href ?? null })
               }

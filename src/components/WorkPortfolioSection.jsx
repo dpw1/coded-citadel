@@ -54,35 +54,48 @@ export default function WorkPortfolioSection() {
           <p className="CC__section-eyebrow">Portfolio</p>
           <h2 className="CC__section-title">Recent Work</h2>
           <p className="CC__work-portfolio__subtitle">
-            Some of my top Shopify works, with thousands of visitors on a daily basis.
+            Working with Global brands since 2018, coding websites from scratch hosting thousands of
+            visitors. Numbers verifiable via SimilarWeb.
           </p>
         </div>
 
         <div className="CC__work-portfolio__grid">
           {projects.map((project) => (
-            <button
-              key={project.id}
-              type="button"
-              className="CC__work-portfolio-card"
-              onClick={() => setActiveProject(project)}
-              aria-label={`Watch ${project.title} project video`}
-            >
-              <video
-                className="CC__work-portfolio-card__thumb"
-                src={project.video}
-                muted
-                playsInline
-                preload="metadata"
-                aria-hidden="true"
-              />
+            <article key={project.id} className="CC__work-portfolio-card">
+              <button
+                type="button"
+                className="CC__work-portfolio-card__hit"
+                onClick={() => setActiveProject(project)}
+                aria-label={`Watch ${project.title} project video`}
+              >
+                <video
+                  className="CC__work-portfolio-card__thumb"
+                  src={project.video}
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-hidden="true"
+                />
+                <span className="CC__work-portfolio-card__play" aria-hidden="true">
+                  ▶
+                </span>
+              </button>
               <div className="CC__work-portfolio-card__overlay">
                 <span className="CC__work-portfolio-card__name">{project.title}</span>
-                <span className="CC__work-portfolio-card__tag">{project.tag}</span>
+                <span className="CC__work-portfolio-card__tag">
+                  {project.platform}
+                  {' · '}
+                  <a
+                    className="CC__work-portfolio-card__visitors"
+                    href={project.similarwebUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {project.visitorsLabel}
+                  </a>
+                </span>
               </div>
-              <span className="CC__work-portfolio-card__play" aria-hidden="true">
-                ▶
-              </span>
-            </button>
+            </article>
           ))}
         </div>
       </section>

@@ -34,12 +34,14 @@ export default function WorkPage() {
             contained={false}
             eyebrow={null}
             title="Chrome Extensions"
-            subtitle="15+ extensions, 27k+ active users"
+            subtitle="Every single extension has been thoroughly documented on my blog, from how I found the idea, validated it, coded it and deployed."
             showInstalls={false}
             showUsers={false}
             showPublished={false}
             showViewMore={false}
             showVideoStat={false}
+            showBlogLink
+            showStoreDownload
             sortByInstalls
             maxItems={9}
           />
@@ -62,10 +64,31 @@ export default function WorkPage() {
               decade of experience.
             </p>
 
-            <p>
-              My expertise lies in e-commerce (Shopify) and fullstack web apps, however, I have coded
-              and worked with many different niches and technologies. 
-            </p>
+            <dl className="CC__work-page__skills">
+              <div className="CC__work-page__skills-row">
+                <dt>Frontend</dt>
+                <dd>JavaScript, TypeScript, React, Next.js, Tailwind CSS, HTML5/CSS3</dd>
+              </div>
+              <div className="CC__work-page__skills-row">
+                <dt>Backend</dt>
+                <dd>Node.js, Express, REST APIs, GraphQL</dd>
+              </div>
+              <div className="CC__work-page__skills-row">
+                <dt>Databases</dt>
+                <dd>PostgreSQL, MongoDB, Redis, Prisma</dd>
+              </div>
+              <div className="CC__work-page__skills-row">
+                <dt>DevOps &amp; Cloud</dt>
+                <dd>Docker, AWS/GCP, CI/CD (GitHub Actions), Git</dd>
+              </div>
+              <div className="CC__work-page__skills-row">
+                <dt>Other</dt>
+                <dd>
+                  System Design, OAuth/JWT Authentication, Testing (Jest, Playwright), AI/LLM
+                  Integration
+                </dd>
+              </div>
+            </dl>
 
             <p>
               My blogs go in-depth with every work that I do: I explain step-by-step everything and
