@@ -20,8 +20,8 @@ If the build fails, fix it before publishing. Do not push with a broken build.
 
 **The “description thingy.”** On every build:
 
-1. [`back-end/generate-quick-start.mjs`](back-end/generate-quick-start.mjs) reads `description.full` from [`src/data/apps.json`](src/data/apps.json).
-2. It writes `quickStart` + `quickStartHash` into [`src/data/apps-custom-data.json`](src/data/apps-custom-data.json).
+1. [`back-end/generate-quick-start.mjs`](../back-end/generate-quick-start.mjs) reads `description.full` from [`src/data/apps.json`](../src/data/apps.json).
+2. It writes `quickStart` + `quickStartHash` into [`src/data/apps-custom-data.json`](../src/data/apps-custom-data.json).
 3. A second `sync-apps-custom-data` merges those fields back into `apps.json`.
 
 **AI must verify:**
@@ -42,13 +42,13 @@ If the build fails, fix it before publishing. Do not push with a broken build.
 
 When fresh HTML exists in `chrome-extension-html/html/`:
 
-- `maybe-extract-chrome-apps` runs `extract-chrome-apps.mjs` and refreshes [`src/data/apps.json`](src/data/apps.json) (descriptions, analytics, screenshots, versions, etc.).
+- `maybe-extract-chrome-apps` runs `extract-chrome-apps.mjs` and refreshes [`src/data/apps.json`](../src/data/apps.json) (descriptions, analytics, screenshots, versions, etc.).
 - When `html/` is empty (CI), it only syncs custom data into existing `apps.json`.
 
 **AI must verify:**
 
 - [ ] New or updated extensions appear in `apps.json` with correct `slug`, `chromeExtensionId`, and `description.full`.
-- [ ] [`src/data/apps-custom-data.json`](src/data/apps-custom-data.json) has a matching entry (`id` + `slug`) for every extension. New apps without a custom entry get a placeholder slug until fixed.
+- [ ] [`src/data/apps-custom-data.json`](../src/data/apps-custom-data.json) has a matching entry (`id` + `slug`) for every extension. New apps without a custom entry get a placeholder slug until fixed.
 - [ ] Manual custom fields are still present after sync: `github`, `youtube`, `youtubeHowToUse`, `tags`, `related`, `category`, `prompts`, `estimatedTime`, `status`, `download`, etc.
 
 ---
@@ -73,11 +73,11 @@ Generated fields (`quickStart`, `quickStartHash`) are build-owned. Everything el
 
 ## 5. Blog posts
 
-**Build steps:** `import-blog-screenshots` → `generate-blog-manifest` → writes [`src/data/blog.json`](src/data/blog.json) + HTML under `public/blog-content/`.
+**Build steps:** `import-blog-screenshots` → `generate-blog-manifest` → writes [`src/data/blog.json`](../src/data/blog.json) + HTML under `public/blog-content/`.
 
 **AI must verify:**
 
-- [ ] New/changed files in [`blogs/`](blogs/) are reflected in `blog.json` after build.
+- [ ] New/changed files in [`blogs/`](../blogs/) are reflected in `blog.json` after build.
 - [ ] Frontmatter is valid: `title`, `slug`, `date`, `tags`, `download` (store URL), `thumbnail` / cover when used.
 - [ ] Screenshot imports: build log should not report missing `D:/GoogleChromeDownloads/...` sources if the post expects a cover.
 - [ ] **postbuild** `maybe-sync-devto` runs when `blogs/` changed — confirm dev.to sync succeeded if the user cares about dev.to.
@@ -88,10 +88,10 @@ Generated fields (`quickStart`, `quickStartHash`) are build-owned. Everything el
 
 Generated/updated during build:
 
-- [`src/data/portfolio-analytics.json`](src/data/portfolio-analytics.json) — prebuild
-- [`src/data/portfolio-analytics.json`](src/data/portfolio-analytics.json) + [`src/data/website-analytics.json`](src/data/website-analytics.json) + [`src/data/extension-changelogs.json`](src/data/extension-changelogs.json) — `fetch-live-stats`
-- Homepage meta in [`index.html`](index.html) via `generate-home-meta`
-- [`public/sitemap.xml`](public/sitemap.xml)
+- [`src/data/portfolio-analytics.json`](../src/data/portfolio-analytics.json) — prebuild
+- [`src/data/portfolio-analytics.json`](../src/data/portfolio-analytics.json) + [`src/data/website-analytics.json`](../src/data/website-analytics.json) + [`src/data/extension-changelogs.json`](../src/data/extension-changelogs.json) — `fetch-live-stats`
+- Homepage meta in [`index.html`](../index.html) via `generate-home-meta`
+- [`public/sitemap.xml`](../public/sitemap.xml)
 
 **AI must verify:**
 
@@ -103,7 +103,7 @@ Generated/updated during build:
 
 ## 7. YouTube channel data
 
-- `fetch-youtube` refreshes [`src/data/youtube-videos.json`](src/data/youtube-videos.json).
+- `fetch-youtube` refreshes [`src/data/youtube-videos.json`](../src/data/youtube-videos.json).
 - Blog covers and app `buildStory.youtubeUrl` may depend on this.
 
 **Verify:** no broken YouTube embeds on app pages or blog posts that reference channel videos.

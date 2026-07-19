@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import PortfolioAnalyticsSection from '../components/PortfolioAnalyticsSection'
-import AppsGridSection from '../components/AppsGridSection'
-import WorkPortfolioSection from '../components/WorkPortfolioSection'
+import WorkRecentTabsSection from '../components/WorkRecentTabsSection'
+// import AppsGridSection from '../components/AppsGridSection'
+// import WorkPortfolioSection from '../components/WorkPortfolioSection'
 import WorkTestimonialsSection from '../components/WorkTestimonialsSection'
 import { ContactSection } from './ContactPage'
 import PageSEO from '../components/PageSEO'
@@ -27,7 +28,8 @@ export default function WorkPage() {
       <SiteHeader />
       <main className="CC__work-page">
         <div className="CC__container CC__work-page__portfolio">
-          <WorkPortfolioSection />
+          <WorkRecentTabsSection />
+          {/* <WorkPortfolioSection />
           <AppsGridSection
             sectionId="work-extensions"
             className="CC__work-page__extensions"
@@ -44,7 +46,7 @@ export default function WorkPage() {
             showStoreDownload
             sortByInstalls
             maxItems={9}
-          />
+          /> */}
           <WorkTestimonialsSection />
 
           <section className="CC__work-about" aria-label="About me">

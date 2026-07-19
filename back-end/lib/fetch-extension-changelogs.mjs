@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { assignCommitVersions } from '../../src/utils/changelogCommitVersions.js'
 import { loadEnv } from './load-env.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -97,9 +98,9 @@ async function fetchRepoChangelog({ repo, github }, token) {
     github,
     githubPublic: meta.private === false,
     defaultBranch: meta.default_branch ?? 'main',
-    commits: Array.isArray(commits)
-      ? commits.map((entry) => normalizeCommit(entry, github))
-      : [],
+    commits: assignCommitVersions(
+      Array.isArray(commits) ? commits.map((entry) => normalizeCommit(entry, github)) : [],
+    ),
   }
 }
 

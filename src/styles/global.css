@@ -18,6 +18,7 @@
   --CC__font-display: 'Oswald', sans-serif;
 
   --CC__max-width: 1200px;
+  --CC__container-gutter: var(--CC__space-md);
   --CC__space-xs: 0.5rem;
   --CC__space-sm: 1rem;
   --CC__space-md: 2rem;
@@ -89,7 +90,7 @@ button {
 .CC__container {
   max-width: var(--CC__max-width);
   margin: 0 auto;
-  padding: 0 var(--CC__space-md);
+  padding: 0 var(--CC__container-gutter);
 }
 
 .CC__btn {
@@ -481,5 +482,11 @@ button {
 
   .CC__stats-bar__label {
     font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --CC__container-gutter: 0.75rem;
   }
 }

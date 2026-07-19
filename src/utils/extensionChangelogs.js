@@ -1,5 +1,6 @@
 import changelogData from '../data/extension-changelogs.json'
 import { appFilterLabel, appIconUrl, appStoreUrl, resolveAppCatalogEntry } from './apps'
+import { assignCommitVersions } from './changelogCommitVersions'
 
 export function getExtensionChangelogsPayload() {
   return changelogData
@@ -136,7 +137,8 @@ export function mergeChangelogCommits(apps, selectedKeys) {
   for (const app of apps) {
     if (!selectedKeys.has(app.key)) continue
     const enriched = enrichChangelogApp(app)
-    for (const commit of app.commits ?? []) {
+    const commits = assignCommitVersions(app.commits ?? [])
+    for (const commit of commits) {
       rows.push({
         ...commit,
         appKey: app.key,
@@ -145,7 +147,7 @@ export function mergeChangelogCommits(apps, selectedKeys) {
         appLabel: enriched.label,
         appIconUrl: enriched.iconUrl,
         appStoreUrl: enriched.storeUrl,
-        appVersion: enriched.version,
+        appVersion: commit.version ?? null,
         github: app.github,
         githubPublic: app.githubPublic,
       })

@@ -6,17 +6,17 @@ function formatMetaCount(value) {
 /** Short meta description for Google search snippets (~155 chars). */
 export function buildHomeMetaDescriptionSearch(stats) {
   if (!stats) {
-    return 'Free Chrome extensions built in public toward $100K — live stats, changelogs, and step-by-step build videos on YouTube.'
+    return 'Free Chrome extensions from Coding in Public Until I Make $100k USD — live stats, changelogs, and YouTube build logs.'
   }
 
   const apps = formatMetaCount(stats.built)
-  return `Free Chrome extensions built in public toward $100K. Browse ${apps} tools with live install stats, changelogs, and YouTube build logs.`
+  return `Free Chrome extensions from Coding in Public Until I Make $100k USD. Browse ${apps} tools with live install stats, changelogs, and YouTube build logs.`
 }
 
 /** Longer description for Open Graph, Twitter, and structured data. */
 export function buildHomeMetaDescriptionSocial(stats) {
   if (!stats) {
-    return 'Building in public toward $100K — Chrome extensions documented step by step on YouTube.'
+    return 'Coding in Public Until I Make $100k USD — Chrome extensions documented step by step on YouTube.'
   }
 
   const users = formatMetaCount(stats.totalActiveUsers)
@@ -25,7 +25,7 @@ export function buildHomeMetaDescriptionSocial(stats) {
   const days = stats.daysIntoJourney
 
   let description =
-    `Building in public toward $100K. Currently ${users} active users and ${installs} total installs ` +
+    `Coding in Public Until I Make $100k USD. Currently ${users} active users and ${installs} total installs ` +
     `across ${apps} Chrome extensions, each documented step by step on YouTube`
 
   if (days != null) {

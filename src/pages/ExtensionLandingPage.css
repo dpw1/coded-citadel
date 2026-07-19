@@ -1649,7 +1649,7 @@
 
 /* ---- Tablet: 768px – 1024px ---- */
 @media (max-width: 1024px) {
-  .CC__container { padding: 0 1.25rem; }
+  .CC__container { padding: 0 var(--CC__container-gutter, 0.75rem); }
 
   /* Hero */
   .ext-hero { padding: 2rem 0 3rem; }
@@ -1688,7 +1688,7 @@
 
 /* ---- Mobile: up to 767px ---- */
 @media (max-width: 767px) {
-  .CC__container { padding: 0 1rem; }
+  .CC__container { padding: 0 var(--CC__container-gutter, 0.75rem); }
 
   /* Hero */
   .ext-hero { padding: 1.5rem 0 2.5rem; }

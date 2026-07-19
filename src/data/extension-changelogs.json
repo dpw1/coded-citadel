@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-19T21:12:38.548Z",
+  "updatedAt": "2026-07-19T22:28:55.297Z",
   "message": null,
   "apps": [
     {
@@ -18,7 +18,8 @@
           "message": "Update Gmail export extension to version 1.0.87. Revise support modal messages across multiple languages to enhance user engagement. Remove deprecated support toast functionality from the codebase for improved performance. Update manifest and localization files to reflect these changes.",
           "date": "2026-07-04T15:07:31Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/03427a62e8fe4e302f6e497b372ee6519a14a0e8"
+          "url": "https://github.com/dpw1/gmail-export/commit/03427a62e8fe4e302f6e497b372ee6519a14a0e8",
+          "version": "1.0.87"
         },
         {
           "sha": "e0a0dca09dfd39b621fd48c0055b7aab14fa4204",
@@ -26,7 +27,8 @@
           "message": "Update Gmail export extension to version 1.0.85. Introduce quick download options for attachments and images, enhance support modal with user engagement prompts, and improve PDF export functionality by integrating new libraries. Update manifest and localization files to reflect these changes and streamline resource fetching. Remove deprecated offscreen rendering methods for better performance.",
           "date": "2026-07-04T15:02:10Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/e0a0dca09dfd39b621fd48c0055b7aab14fa4204"
+          "url": "https://github.com/dpw1/gmail-export/commit/e0a0dca09dfd39b621fd48c0055b7aab14fa4204",
+          "version": "1.0.85"
         },
         {
           "sha": "3911bf623a5faabbfbca28816504993f787a07cc",
@@ -34,7 +36,8 @@
           "message": "Update Gmail export extension to version 1.0.77. Introduce new permissions for cookies, enhance resource fetching with a dedicated message type for Gmail resources, and improve image handling by ensuring only safe URLs are processed. Refactor PDF rendering logic to remove deprecated methods and streamline the export process. Update manifest and scripts for better performance and user experience.",
           "date": "2026-07-04T13:58:41Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/3911bf623a5faabbfbca28816504993f787a07cc"
+          "url": "https://github.com/dpw1/gmail-export/commit/3911bf623a5faabbfbca28816504993f787a07cc",
+          "version": "1.0.77"
         },
         {
           "sha": "5ed7c4627d0684f51b508210892762cf228e385a",
@@ -42,7 +45,8 @@
           "message": "Add full Chrome i18n with 7 locales and wire all UI strings through chrome.i18n.",
           "date": "2026-07-01T00:26:35Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/5ed7c4627d0684f51b508210892762cf228e385a"
+          "url": "https://github.com/dpw1/gmail-export/commit/5ed7c4627d0684f51b508210892762cf228e385a",
+          "version": "1.0.75"
         },
         {
           "sha": "ee318941c59dd307bb103aa3154136e85ca8f2d8",
@@ -50,7 +54,8 @@
           "message": "Update Gmail export extension to version 1.0.75. Refactor build scripts to improve packaging process, including stripping the manifest key during zipping. Modify package scripts for development and production environments. Enhance content and background scripts with new methods for email processing and toolbar management. Remove deprecated debug options and improve settings handling for date formats. Update popup HTML and JavaScript files for better performance and user experience.",
           "date": "2026-06-30T23:54:29Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/ee318941c59dd307bb103aa3154136e85ca8f2d8"
+          "url": "https://github.com/dpw1/gmail-export/commit/ee318941c59dd307bb103aa3154136e85ca8f2d8",
+          "version": "1.0.75"
         },
         {
           "sha": "086064d23b8edccb9dc3c8b40e4f32e7e80b4385",
@@ -58,7 +63,8 @@
           "message": "Added thank you and uninstall pages",
           "date": "2026-06-23T17:50:27Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/086064d23b8edccb9dc3c8b40e4f32e7e80b4385"
+          "url": "https://github.com/dpw1/gmail-export/commit/086064d23b8edccb9dc3c8b40e4f32e7e80b4385",
+          "version": null
         },
         {
           "sha": "39b27122aa80db3eed1fb485a5478021da797c7a",
@@ -66,7 +72,8 @@
           "message": "Enhance Gmail export functionality by adding a debug option to download pre-embed HTML for inspection. Introduce methods to rewrite relative image sources in HTML and deduplicate image attachments. Update settings and UI to support new debug feature, improving overall email processing and asset handling.",
           "date": "2026-06-14T11:38:44Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/39b27122aa80db3eed1fb485a5478021da797c7a"
+          "url": "https://github.com/dpw1/gmail-export/commit/39b27122aa80db3eed1fb485a5478021da797c7a",
+          "version": null
         },
         {
           "sha": "18648e6acd3ad40d3292e89178f1ae2dfcf51572",
@@ -74,7 +81,8 @@
           "message": "Refactor Gmail export functionality by removing the background.js file and enhancing content.js and public.js with new methods for logging extracted email assets and reporting embed progress. Update constants to include new message types for scrape progress. Improve inline image classification and attachment handling in the email processing logic.",
           "date": "2026-06-14T10:52:36Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/18648e6acd3ad40d3292e89178f1ae2dfcf51572"
+          "url": "https://github.com/dpw1/gmail-export/commit/18648e6acd3ad40d3292e89178f1ae2dfcf51572",
+          "version": null
         },
         {
           "sha": "ac36d265f609af526c5c30a2dea2f87de6b805ef",
@@ -82,7 +90,8 @@
           "message": "Enhance Gmail export functionality by adding bulk export option, allowing multiple emails to be bundled into a single ZIP file. Update constants and background logic to support new export settings. Refactor popup UI to include success notifications and improve user experience during export processes.",
           "date": "2026-06-14T10:34:55Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/ac36d265f609af526c5c30a2dea2f87de6b805ef"
+          "url": "https://github.com/dpw1/gmail-export/commit/ac36d265f609af526c5c30a2dea2f87de6b805ef",
+          "version": null
         },
         {
           "sha": "78da3a2a5cd7ec36cf5bbd37114538e45f484257",
@@ -90,7 +99,8 @@
           "message": "upgrade manifest",
           "date": "2026-06-13T16:36:24Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/78da3a2a5cd7ec36cf5bbd37114538e45f484257"
+          "url": "https://github.com/dpw1/gmail-export/commit/78da3a2a5cd7ec36cf5bbd37114538e45f484257",
+          "version": null
         },
         {
           "sha": "bd5c10be386c739cdfa44cd17dc05a8807060115",
@@ -98,7 +108,8 @@
           "message": "Enhance Gmail export extension by updating the title and description in the manifest, adding new PDF export options, and improving the popup UI. Introduced SVG download icon, updated settings for PDF type, and refined export handling logic for various formats. Added .gitignore entry for zipped files.",
           "date": "2026-06-13T16:36:05Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/bd5c10be386c739cdfa44cd17dc05a8807060115"
+          "url": "https://github.com/dpw1/gmail-export/commit/bd5c10be386c739cdfa44cd17dc05a8807060115",
+          "version": null
         },
         {
           "sha": "80516b6b8e281dee4891f24364016d30917cd49c",
@@ -106,7 +117,8 @@
           "message": "Update package dependencies and enhance popup UI. Added sharp as a dependency for image processing, updated build scripts to include icon generation, and replaced SVG download icon with a PNG. Improved history management with pagination and increased maximum history items from 20 to 100.",
           "date": "2026-06-13T10:47:47Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/80516b6b8e281dee4891f24364016d30917cd49c"
+          "url": "https://github.com/dpw1/gmail-export/commit/80516b6b8e281dee4891f24364016d30917cd49c",
+          "version": null
         },
         {
           "sha": "0501042709f8ef9fbdfd6ead7419f05780f762f4",
@@ -114,7 +126,8 @@
           "message": "Stop tracking node_modules and add .gitignore.",
           "date": "2026-06-13T06:39:01Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/0501042709f8ef9fbdfd6ead7419f05780f762f4"
+          "url": "https://github.com/dpw1/gmail-export/commit/0501042709f8ef9fbdfd6ead7419f05780f762f4",
+          "version": null
         },
         {
           "sha": "36c98dc71d13284c0b8ff1cca8f64d3a3c929532",
@@ -122,7 +135,8 @@
           "message": "Refactor Gmail export settings and remove Markdown format. Update JSON export to include new settings for body content and attachments. Enhance inline image handling and improve overall email processing logic.",
           "date": "2026-06-13T06:34:07Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/36c98dc71d13284c0b8ff1cca8f64d3a3c929532"
+          "url": "https://github.com/dpw1/gmail-export/commit/36c98dc71d13284c0b8ff1cca8f64d3a3c929532",
+          "version": null
         },
         {
           "sha": "b48dd916121d4f61feb2a6e12e41b7724b48116e",
@@ -130,7 +144,8 @@
           "message": "Enhance Gmail export functionality by adding a download icon and format dropdown to the selection toolbar. Update styles for download button and ensure proper handling of email exports in various formats (HTML, PDF, TXT, Markdown, JSON). Also, make the download icon accessible in the web resources for Gmail.",
           "date": "2026-06-13T05:45:36Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/b48dd916121d4f61feb2a6e12e41b7724b48116e"
+          "url": "https://github.com/dpw1/gmail-export/commit/b48dd916121d4f61feb2a6e12e41b7724b48116e",
+          "version": null
         },
         {
           "sha": "62118b058028aabaf03465f8f0d432e25b3395c4",
@@ -138,7 +153,8 @@
           "message": "pdf export working correctly",
           "date": "2026-06-13T04:23:46Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/62118b058028aabaf03465f8f0d432e25b3395c4"
+          "url": "https://github.com/dpw1/gmail-export/commit/62118b058028aabaf03465f8f0d432e25b3395c4",
+          "version": null
         },
         {
           "sha": "ee89ed8f71ab096ac8d9ffccc7ca76bf8fb3dfef",
@@ -146,7 +162,8 @@
           "message": "Initial commit: Gmail export Chrome extension",
           "date": "2026-06-12T12:49:48Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/gmail-export/commit/ee89ed8f71ab096ac8d9ffccc7ca76bf8fb3dfef"
+          "url": "https://github.com/dpw1/gmail-export/commit/ee89ed8f71ab096ac8d9ffccc7ca76bf8fb3dfef",
+          "version": null
         }
       ]
     },
@@ -165,7 +182,8 @@
           "message": "Update .gitignore, manifest version, and localization messages for Discord channel exporter. Added new permissions, updated version number, and included additional icons. Enhanced user interface with new search functionality in channel selection and improved attachment handling. Added support for new dependencies and refined export options.",
           "date": "2026-06-27T01:49:57Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/discord-export/commit/1cb2b10219e532f077e85278e2a48fde6f90ba60"
+          "url": "https://github.com/dpw1/discord-export/commit/1cb2b10219e532f077e85278e2a48fde6f90ba60",
+          "version": null
         },
         {
           "sha": "6086e02eb7e6b6bc1fec72c3329d4804d9731408",
@@ -173,7 +191,8 @@
           "message": "Enhance localization and settings for Discord channel exporter. Added new messages for settings related to reactions, system messages, bot messages, and pinned messages across multiple languages. Updated settings tab to include checkboxes for these options, improving user control over export content. Refactored export functions to respect user preferences for including reactions in various formats.",
           "date": "2026-06-26T20:46:50Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/discord-export/commit/6086e02eb7e6b6bc1fec72c3329d4804d9731408"
+          "url": "https://github.com/dpw1/discord-export/commit/6086e02eb7e6b6bc1fec72c3329d4804d9731408",
+          "version": null
         },
         {
           "sha": "412d4e5cb96745c116bd8cb3486b512979698336",
@@ -181,7 +200,8 @@
           "message": "Update localization files for multiple languages, adding and refining messages for the Discord channel exporter extension. This includes translations for UI elements, export options, and user prompts to enhance the user experience across German, English, Spanish, French, Japanese, Korean, and Portuguese.",
           "date": "2026-06-26T05:21:32Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/discord-export/commit/412d4e5cb96745c116bd8cb3486b512979698336"
+          "url": "https://github.com/dpw1/discord-export/commit/412d4e5cb96745c116bd8cb3486b512979698336",
+          "version": null
         },
         {
           "sha": "8a804a995e053764e4d0af31642f1ca98e4872f1",
@@ -189,7 +209,8 @@
           "message": "Update UI components and localization messages for improved user experience. Refactor styles to use new design system, enhance attachment fetching functionality, and add new settings options. Introduce modal footer context for better state management in modals.",
           "date": "2026-06-26T05:13:51Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/discord-export/commit/8a804a995e053764e4d0af31642f1ca98e4872f1"
+          "url": "https://github.com/dpw1/discord-export/commit/8a804a995e053764e4d0af31642f1ca98e4872f1",
+          "version": null
         },
         {
           "sha": "74d428cc95ec655ecb1f859e03a29781c7857af6",
@@ -197,7 +218,8 @@
           "message": "Initial commit: Discord channel exporter Chrome extension.",
           "date": "2026-06-26T04:55:03Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/discord-export/commit/74d428cc95ec655ecb1f859e03a29781c7857af6"
+          "url": "https://github.com/dpw1/discord-export/commit/74d428cc95ec655ecb1f859e03a29781c7857af6",
+          "version": null
         }
       ]
     },
@@ -216,7 +238,8 @@
           "message": "Update YouTube Filter Pro to version 1.0.53: Incremented version number and added new localization messages for filtering status indicators across multiple languages. Enhanced the filtering experience with improved toast notifications for zero matches and slow results, and introduced a new setting for displaying tips when filters yield few or no results. Refactored modal and toast components for better user interaction and updated styles for improved UI consistency.",
           "date": "2026-07-19T01:19:14Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/af1748e17f0d265f335d1e894b0dedc149fcecdd"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/af1748e17f0d265f335d1e894b0dedc149fcecdd",
+          "version": "1.0.53"
         },
         {
           "sha": "bb5f550cea9f9ccd9424ca6594d8350cd830198a",
@@ -224,7 +247,8 @@
           "message": "Update YouTube Filter Pro to version 1.0.51: Incremented version number and updated localization messages to replace \"Filter options\" with \"Settings\" across multiple languages for consistency. Enhanced the installation process by seeding default options in local storage upon first run. Improved modal structure with collapsible sections for better user experience and added Instagram link for social media engagement.",
           "date": "2026-07-14T17:23:27Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/bb5f550cea9f9ccd9424ca6594d8350cd830198a"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/bb5f550cea9f9ccd9424ca6594d8350cd830198a",
+          "version": "1.0.51"
         },
         {
           "sha": "3cdf23eeec3f184939aad09ed5e6c401dbe2855e",
@@ -232,7 +256,8 @@
           "message": "Update YouTube Filter Pro to version 1.0.50: Added privacy notice functionality to inform users about anonymous data collection for usage analytics. Introduced new settings for users to opt-in for sharing filter usage data. Updated localization messages for privacy-related features and integrated FingerprintJS for enhanced user tracking. Adjusted styles for the privacy modal and improved toast notifications for better user feedback.",
           "date": "2026-07-13T19:08:02Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/3cdf23eeec3f184939aad09ed5e6c401dbe2855e"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/3cdf23eeec3f184939aad09ed5e6c401dbe2855e",
+          "version": "1.0.50"
         },
         {
           "sha": "aa757ec3229e837d12ca124ea8d617d11fc1f0ce",
@@ -240,7 +265,8 @@
           "message": "Update YouTube Filter Pro to version 1.0.49: Introduced new published date filtering options, enhancing the user experience with specific date range selections. Improved auto-scroll functionality for filter toasts and refined toast notifications to display total found videos. Updated localization messages for clarity and consistency. Adjusted styles for better UI presentation.",
           "date": "2026-07-07T10:17:19Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/aa757ec3229e837d12ca124ea8d617d11fc1f0ce"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/aa757ec3229e837d12ca124ea8d617d11fc1f0ce",
+          "version": "1.0.49"
         },
         {
           "sha": "85ccc8611b7b5691e18c49f14b827a87a971a20a",
@@ -248,7 +274,8 @@
           "message": "Update YouTube Filter Pro to version 1.0.48: Refined permissions by adding a new host permission for codedcitadel.com. Enhanced search result sorting by introducing a new function to capture YouTube row order for improved sorting accuracy. Updated existing sorting logic to better handle default and custom sort keys, ensuring a more consistent user experience.",
           "date": "2026-07-01T09:14:53Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/85ccc8611b7b5691e18c49f14b827a87a971a20a"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/85ccc8611b7b5691e18c49f14b827a87a971a20a",
+          "version": "1.0.48"
         },
         {
           "sha": "a8cede9cdc9620a900c5a90805fad3321f516e65",
@@ -256,7 +283,8 @@
           "message": "Refactor search sort controls in YouTube Filter Pro: Implemented teardown of search sort controls when filtering is disabled, ensuring proper state management. Updated related functions to enhance user experience and maintain UI consistency.",
           "date": "2026-07-01T09:00:25Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/a8cede9cdc9620a900c5a90805fad3321f516e65"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/a8cede9cdc9620a900c5a90805fad3321f516e65",
+          "version": "1.0.47"
         },
         {
           "sha": "b400048b72fd5c354f02c4e2f1f43a101723fd33",
@@ -264,7 +292,8 @@
           "message": "Enhance YouTube Filter Pro: Implemented search result sorting functionality with new options for sorting by date, views, likes, and more. Added auto-scroll feature for filter toasts, improved toast notifications with user interaction options, and updated styles for better UI consistency. Incremented version to 1.0.47 and refined manifest permissions.",
           "date": "2026-07-01T08:56:10Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/b400048b72fd5c354f02c4e2f1f43a101723fd33"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/b400048b72fd5c354f02c4e2f1f43a101723fd33",
+          "version": "1.0.47"
         },
         {
           "sha": "a82184b6285acb6b46ce69ce880e582e44d3a974",
@@ -272,7 +301,8 @@
           "message": "Add min/max views-per-day and likes filters, refresh display settings, and bump to 1.0.46.",
           "date": "2026-06-29T13:34:25Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/a82184b6285acb6b46ce69ce880e582e44d3a974"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/a82184b6285acb6b46ce69ce880e582e44d3a974",
+          "version": "1.0.45"
         },
         {
           "sha": "94b7b7b14778bdb8b74e575be501131961de11ea",
@@ -280,7 +310,8 @@
           "message": "Add video filters, i18n, and polish search-page UX for v1.0.45.",
           "date": "2026-06-29T13:14:45Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/94b7b7b14778bdb8b74e575be501131961de11ea"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/94b7b7b14778bdb8b74e575be501131961de11ea",
+          "version": "1.0.45"
         },
         {
           "sha": "bc738ab8cc4b26d1ef856e9f9a3aa74a50ea4874",
@@ -288,7 +319,8 @@
           "message": "Update YouTube Filter Pro: Incremented version to 1.0.44, improved title filtering logic to require all specified keywords, enhanced toast notifications for better user feedback, and added a settings modal for managing filter options. Updated styles for improved UI consistency and user experience.",
           "date": "2026-06-27T17:50:21Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/bc738ab8cc4b26d1ef856e9f9a3aa74a50ea4874"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/bc738ab8cc4b26d1ef856e9f9a3aa74a50ea4874",
+          "version": "1.0.44"
         },
         {
           "sha": "5de640c1ed81f83d3057f79a91f4453c41bd0682",
@@ -296,7 +328,8 @@
           "message": "Added thank you and uninstall pages",
           "date": "2026-06-23T18:02:21Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/5de640c1ed81f83d3057f79a91f4453c41bd0682"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/5de640c1ed81f83d3057f79a91f4453c41bd0682",
+          "version": "1.0.42"
         },
         {
           "sha": "500c26ea5179952a97992c462f41f4ce0a3cccc4",
@@ -304,7 +337,8 @@
           "message": "Update YouTube Filter Pro: Incremented version to 1.0.42, added new methods for parsing subscriber and video count labels, and improved channel information extraction logic. Enhanced filtering functionality with better cache management and refined DOM handling for channel links. Updated styles for toast notifications and modal elements for improved user experience.",
           "date": "2026-06-18T01:39:55Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/500c26ea5179952a97992c462f41f4ce0a3cccc4"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/500c26ea5179952a97992c462f41f4ce0a3cccc4",
+          "version": "1.0.42"
         },
         {
           "sha": "5c3986eb1cd880f84d946bddb14a36c36083682a",
@@ -312,7 +346,8 @@
           "message": "Update YouTube Filter Pro: Incremented version to 1.0.41, added host permissions for Supabase, and enhanced filtering capabilities with new subscriber and channel video count filters. Improved modal UI with clear buttons for filter inputs and refined logging for better debugging. Updated styles for channel subscriber information display.",
           "date": "2026-06-11T06:29:26Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/5c3986eb1cd880f84d946bddb14a36c36083682a"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/5c3986eb1cd880f84d946bddb14a36c36083682a",
+          "version": "1.0.41"
         },
         {
           "sha": "dab809fc79fccd93abe8f0bb6c751db6723d1e83",
@@ -320,7 +355,8 @@
           "message": "Update YouTube Filter Pro: Enhanced manifest with updated name and version, added web accessible resources. Improved filter functionality by introducing new methods for clearing YFP attributes and managing filter sessions. Added toast notifications for hidden videos and refined modal settings for better user experience. Updated styles for filter toasts and improved navigation handling.",
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
+          "version": null
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -328,7 +364,8 @@
           "message": "Enhance filter functionality in YouTube Filter Pro: expanded date range presets for improved filtering options, added enable/disable button in modal, and implemented duration clear button. Updated styles for active filter rows and modal elements for better user experience.",
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
+          "version": null
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -336,7 +373,8 @@
           "message": "Refactor filter synchronization in YouTube Filter Pro: replaced loadFilters with filterSyncState for improved state management, added duration input padding, and updated modal behavior to ensure consistent filter application. Adjusted styles for better layout responsiveness.",
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
+          "version": null
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -344,7 +382,8 @@
           "message": "Enhance YouTube Filter Pro: Added support for main world script execution, improved filter UI with duration input validation, and refined logging and filter logic. Updated styles for verified channels and adjusted filter button behavior.",
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
+          "version": null
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -352,7 +391,8 @@
           "message": "Initial commit: YouTube Filter Pro Chrome extension",
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923"
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
+          "version": null
         }
       ]
     },
@@ -371,7 +411,8 @@
           "message": "Update build script to include background.js and modify manifest for new name and version. Add background service worker configuration to enhance functionality.",
           "date": "2026-06-23T17:42:32Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-search/commit/b52208379a3e55c11262f243edb5a8f47f872017"
+          "url": "https://github.com/dpw1/claude-search/commit/b52208379a3e55c11262f243edb5a8f47f872017",
+          "version": null
         },
         {
           "sha": "4d8a4cd63fed43779a78f7c6e74ecb9c7916d806",
@@ -379,7 +420,8 @@
           "message": "Enhance logging and debugging features in content and search scripts. Introduce structured logging for various operations, improve error handling, and add a debug status display in the UI. Update database connection logic and manifest for broader host permissions. Add new entries to .gitignore for build artifacts.",
           "date": "2026-05-23T16:18:35Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-search/commit/4d8a4cd63fed43779a78f7c6e74ecb9c7916d806"
+          "url": "https://github.com/dpw1/claude-search/commit/4d8a4cd63fed43779a78f7c6e74ecb9c7916d806",
+          "version": null
         },
         {
           "sha": "916d2bf30b0b2b3ab9d1d734ff7658313fbd817c",
@@ -387,7 +429,8 @@
           "message": "Refactor indexing process and improve UI responsiveness. Introduce a new indexing promise to manage concurrent indexing tasks, enhance footer status updates with throttling, and optimize modal interactions to prevent UI freezing. Update HTML structure for better accessibility and add new CSS styles for improved layout.",
           "date": "2026-05-21T16:26:38Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-search/commit/916d2bf30b0b2b3ab9d1d734ff7658313fbd817c"
+          "url": "https://github.com/dpw1/claude-search/commit/916d2bf30b0b2b3ab9d1d734ff7658313fbd817c",
+          "version": null
         },
         {
           "sha": "df4c595a37fef6ea845bb572a5408eb5b9f5b4d5",
@@ -395,7 +438,8 @@
           "message": "Add sidebar indexing functionality and loading indicators. Implement settings for reindexing on page load and display last fetch time. Enhance conversation indexing with recent limit option.",
           "date": "2026-05-21T16:08:55Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-search/commit/df4c595a37fef6ea845bb572a5408eb5b9f5b4d5"
+          "url": "https://github.com/dpw1/claude-search/commit/df4c595a37fef6ea845bb572a5408eb5b9f5b4d5",
+          "version": null
         },
         {
           "sha": "2084ba31229dd8a07d15667959724a6a6d274c0d",
@@ -403,7 +447,8 @@
           "message": "Update deep search button styling and add new CSS class for text alignment. Modify HTML structure to enhance accessibility and maintainability.",
           "date": "2026-05-19T15:02:50Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-search/commit/2084ba31229dd8a07d15667959724a6a6d274c0d"
+          "url": "https://github.com/dpw1/claude-search/commit/2084ba31229dd8a07d15667959724a6a6d274c0d",
+          "version": null
         },
         {
           "sha": "a5a8c2e0dc802ca3ee4b9ec74a56e94b9c056b9e",
@@ -411,7 +456,8 @@
           "message": "Enhance conversation search functionality by adding inline text highlights and updating session storage to include match count. Modify styles for highlighted text and loading indicators. Refactor DOM manipulation for improved performance and user experience.",
           "date": "2026-05-19T14:57:47Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-search/commit/a5a8c2e0dc802ca3ee4b9ec74a56e94b9c056b9e"
+          "url": "https://github.com/dpw1/claude-search/commit/a5a8c2e0dc802ca3ee4b9ec74a56e94b9c056b9e",
+          "version": null
         },
         {
           "sha": "6c244a0905678d3452fe9223e27685e294dee419",
@@ -419,7 +465,8 @@
           "message": "Initial commit: Claude.ai conversation search Chrome extension.",
           "date": "2026-05-19T14:37:26Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-search/commit/6c244a0905678d3452fe9223e27685e294dee419"
+          "url": "https://github.com/dpw1/claude-search/commit/6c244a0905678d3452fe9223e27685e294dee419",
+          "version": null
         }
       ]
     },
@@ -438,7 +485,8 @@
           "message": "Added thank you and uninstall pages",
           "date": "2026-06-23T18:23:36Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/instagram-comment-exporter/commit/6f7b5016a3f766e3a3b0224c00e5112d1cd8fffd"
+          "url": "https://github.com/dpw1/instagram-comment-exporter/commit/6f7b5016a3f766e3a3b0224c00e5112d1cd8fffd",
+          "version": null
         },
         {
           "sha": "862a06af2e3ba61ea7503c108fd35183087a435d",
@@ -446,7 +494,8 @@
           "message": "Enhance Instagram Comments Exporter with new features and improvements",
           "date": "2026-06-18T20:36:32Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/instagram-comment-exporter/commit/862a06af2e3ba61ea7503c108fd35183087a435d"
+          "url": "https://github.com/dpw1/instagram-comment-exporter/commit/862a06af2e3ba61ea7503c108fd35183087a435d",
+          "version": null
         },
         {
           "sha": "9515a623a8a2a5d93e0dc19903292628e994be35",
@@ -454,7 +503,8 @@
           "message": "Initial commit: Instagram comments exporter Chrome extension.",
           "date": "2026-06-18T18:12:12Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/instagram-comment-exporter/commit/9515a623a8a2a5d93e0dc19903292628e994be35"
+          "url": "https://github.com/dpw1/instagram-comment-exporter/commit/9515a623a8a2a5d93e0dc19903292628e994be35",
+          "version": null
         }
       ]
     },
@@ -473,7 +523,8 @@
           "message": "Implement XLSX export feature and enhance export options in YouTube Comments Exporter",
           "date": "2026-07-03T02:51:43Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-comments-export/commit/602f92a885c1604d6e9e5088be334b6fcdf93874"
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/602f92a885c1604d6e9e5088be334b6fcdf93874",
+          "version": null
         },
         {
           "sha": "ea1f86b4a98b8d3376f021dabbac1a679404ca63",
@@ -481,7 +532,8 @@
           "message": "Update YouTube Comments Exporter with localization and build enhancements",
           "date": "2026-07-03T02:22:17Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-comments-export/commit/ea1f86b4a98b8d3376f021dabbac1a679404ca63"
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/ea1f86b4a98b8d3376f021dabbac1a679404ca63",
+          "version": null
         },
         {
           "sha": "8e0201ff9a17770ef637af1bd8dd32a5516dc904",
@@ -489,7 +541,8 @@
           "message": "Enhance YouTube Comments Exporter with new features and improvements",
           "date": "2026-06-23T17:29:58Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-comments-export/commit/8e0201ff9a17770ef637af1bd8dd32a5516dc904"
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/8e0201ff9a17770ef637af1bd8dd32a5516dc904",
+          "version": null
         },
         {
           "sha": "eddc34013d01e1b61c24e4f759b1cfbb4345a4eb",
@@ -497,7 +550,8 @@
           "message": "Refactor background script and sidebar components for improved stability and UI",
           "date": "2026-05-11T18:18:44Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-comments-export/commit/eddc34013d01e1b61c24e4f759b1cfbb4345a4eb"
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/eddc34013d01e1b61c24e4f759b1cfbb4345a4eb",
+          "version": null
         },
         {
           "sha": "ca5a4275ecc15b5fe1cbad890b5e5430bc205c3d",
@@ -505,7 +559,8 @@
           "message": "Add FingerprintJS dependency and enhance sidebar feedback modals",
           "date": "2026-05-10T23:31:30Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-comments-export/commit/ca5a4275ecc15b5fe1cbad890b5e5430bc205c3d"
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/ca5a4275ecc15b5fe1cbad890b5e5430bc205c3d",
+          "version": null
         },
         {
           "sha": "2da65bb228be092b5cf8472ebce1303f28f08395",
@@ -513,7 +568,8 @@
           "message": "Improve tab update handling in background and CurrentTab components",
           "date": "2026-05-10T22:26:04Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-comments-export/commit/2da65bb228be092b5cf8472ebce1303f28f08395"
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/2da65bb228be092b5cf8472ebce1303f28f08395",
+          "version": null
         },
         {
           "sha": "42d5fcf7a8592d18ca65afffcbbe01cd42c600cf",
@@ -521,7 +577,8 @@
           "message": "Refactor background script and update permissions",
           "date": "2026-05-10T21:58:36Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-comments-export/commit/42d5fcf7a8592d18ca65afffcbbe01cd42c600cf"
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/42d5fcf7a8592d18ca65afffcbbe01cd42c600cf",
+          "version": null
         },
         {
           "sha": "af2fd189ac41639c983a8c2f4472600823e4cbff",
@@ -529,7 +586,8 @@
           "message": "Enhance YouTube Comments Exporter with new features and UI improvements",
           "date": "2026-05-08T18:28:30Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-comments-export/commit/af2fd189ac41639c983a8c2f4472600823e4cbff"
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/af2fd189ac41639c983a8c2f4472600823e4cbff",
+          "version": null
         },
         {
           "sha": "a3629248f3cd72c5614dab2fa17f99b57d63c302",
@@ -537,7 +595,8 @@
           "message": "Initial implementation of YouTube comments extension",
           "date": "2026-05-08T13:02:19Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-comments-export/commit/a3629248f3cd72c5614dab2fa17f99b57d63c302"
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/a3629248f3cd72c5614dab2fa17f99b57d63c302",
+          "version": null
         }
       ]
     },
@@ -556,7 +615,8 @@
           "message": "Update AI Bookmark Chrome extension to version 1.0.37. Refactor BookmarkCard component to allow inline editing of bookmark titles with improved user experience. Introduce new styles for title editing and enhance permissions in the manifest. Update content scripts for better response handling.",
           "date": "2026-06-28T06:19:00Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/ai-bookmark/commit/60cbb353a3eb588761310e8784ac153fd701f862"
+          "url": "https://github.com/dpw1/ai-bookmark/commit/60cbb353a3eb588761310e8784ac153fd701f862",
+          "version": "1.0.37"
         },
         {
           "sha": "45252ec1f9826c165d7a2f536899061a4f2a65ca",
@@ -564,7 +624,8 @@
           "message": "Added thank you and uninstall pages",
           "date": "2026-06-23T17:53:53Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/ai-bookmark/commit/45252ec1f9826c165d7a2f536899061a4f2a65ca"
+          "url": "https://github.com/dpw1/ai-bookmark/commit/45252ec1f9826c165d7a2f536899061a4f2a65ca",
+          "version": "1.0.34"
         },
         {
           "sha": "125053c9b36289bcfc2dacd4ee6e65e0cd674d7a",
@@ -572,7 +633,8 @@
           "message": "Implement bookmark deduplication and enhance user authentication flow in AI Bookmark Chrome extension. Added functions to purge duplicate bookmarks and find bookmarks by content key in the background script. Updated content scripts to require user login for bookmarking actions and display appropriate toast notifications. Improved Quick View modal for editing bookmarks and refined styles for better user experience. Updated manifest version to 1.0.34.",
           "date": "2026-06-17T21:28:00Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/ai-bookmark/commit/125053c9b36289bcfc2dacd4ee6e65e0cd674d7a"
+          "url": "https://github.com/dpw1/ai-bookmark/commit/125053c9b36289bcfc2dacd4ee6e65e0cd674d7a",
+          "version": "1.0.34"
         },
         {
           "sha": "5e942184c0bf36a029642c099a932b60d0237db8",
@@ -580,7 +642,8 @@
           "message": "Integrate Feedback Widget into AI Bookmark Chrome extension. Updated Sidebar component to initialize FeedbackWidgetCC and added feedback section in the footer. Enhanced popup with a development note and improved styles for better layout and user experience. Adjusted sidebar width for better responsiveness.",
           "date": "2026-06-07T22:52:28Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/ai-bookmark/commit/5e942184c0bf36a029642c099a932b60d0237db8"
+          "url": "https://github.com/dpw1/ai-bookmark/commit/5e942184c0bf36a029642c099a932b60d0237db8",
+          "version": "1.0.3"
         },
         {
           "sha": "b92e4ad56d66100df572b8caa4b643af2394bf12",
@@ -588,7 +651,8 @@
           "message": "Enhance AI Bookmark Chrome extension with new features and UI improvements. Updated manifest to include icon configurations and improved action properties. Refactored App component to manage loading states and added Quick View functionality for bookmarks. Introduced BookmarkCardSkeleton for loading states and improved user experience with toast notifications. Updated styles for better visual consistency and added error handling for tag inputs in QuickViewModal.",
           "date": "2026-06-07T20:53:01Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/ai-bookmark/commit/b92e4ad56d66100df572b8caa4b643af2394bf12"
+          "url": "https://github.com/dpw1/ai-bookmark/commit/b92e4ad56d66100df572b8caa4b643af2394bf12",
+          "version": "1.0.3"
         },
         {
           "sha": "ee8134cf232a3000d1a8fe7d13f3a07e0162e695",
@@ -596,7 +660,8 @@
           "message": "Refactor build and packaging process for AI Bookmark Chrome extension. Removed key stripping from the build script and integrated it into the packaging function. Enhanced error handling for manifest validation and improved temporary directory management during zip creation. Updated manifest version to 1.0.3.",
           "date": "2026-06-07T08:39:41Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/ai-bookmark/commit/ee8134cf232a3000d1a8fe7d13f3a07e0162e695"
+          "url": "https://github.com/dpw1/ai-bookmark/commit/ee8134cf232a3000d1a8fe7d13f3a07e0162e695",
+          "version": "1.0.3"
         },
         {
           "sha": "43cb97bb9e6dc3caee46696a518b4050e32ddf0d",
@@ -604,7 +669,8 @@
           "message": "Update AI Bookmark Chrome extension with Google OAuth support and development mode features. Enhanced user authentication flow in the background script, added policies for user bookmark management in Supabase, and improved the login form to include Google sign-in options. Updated package dependencies and refined the manifest for better permissions handling. Added new environment variables for development mode and Chrome extension ID.",
           "date": "2026-06-07T08:33:55Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/ai-bookmark/commit/43cb97bb9e6dc3caee46696a518b4050e32ddf0d"
+          "url": "https://github.com/dpw1/ai-bookmark/commit/43cb97bb9e6dc3caee46696a518b4050e32ddf0d",
+          "version": null
         },
         {
           "sha": "84674ca8de149a2312a8224bab9e2d827781e939",
@@ -612,7 +678,8 @@
           "message": "Refactor and enhance AI Bookmark Chrome extension functionality. Improved conversation ID extraction logic in background script, added error handling for bookmark saving, and introduced a new manager for bookmarks. Updated content scripts to handle loading states and improved user feedback with toast notifications. Enhanced manifest for better compatibility with Grok platform.",
           "date": "2026-06-07T03:46:35Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/ai-bookmark/commit/84674ca8de149a2312a8224bab9e2d827781e939"
+          "url": "https://github.com/dpw1/ai-bookmark/commit/84674ca8de149a2312a8224bab9e2d827781e939",
+          "version": null
         },
         {
           "sha": "c89a5b6da556dd61b4b537c5bbb1608cc5e3f78d",
@@ -620,7 +687,8 @@
           "message": "Enhance AI Bookmark Chrome extension with new features and improvements. Added inline content utilities in Vite config, improved payload mapping in background script, and enhanced content scripts for better image handling and scrolling functionality. Updated BookmarkCard component to display images and added a Quick View modal. Refactored helper functions for better image management and date formatting. Improved CSS styles for better UI consistency.",
           "date": "2026-06-07T02:06:20Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/ai-bookmark/commit/c89a5b6da556dd61b4b537c5bbb1608cc5e3f78d"
+          "url": "https://github.com/dpw1/ai-bookmark/commit/c89a5b6da556dd61b4b537c5bbb1608cc5e3f78d",
+          "version": null
         },
         {
           "sha": "cdd2f560dd71d8b160db8480c27073c21fe31c42",
@@ -628,7 +696,8 @@
           "message": "Initial commit: AI Bookmark Chrome extension",
           "date": "2026-06-06T23:05:18Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/ai-bookmark/commit/cdd2f560dd71d8b160db8480c27073c21fe31c42"
+          "url": "https://github.com/dpw1/ai-bookmark/commit/cdd2f560dd71d8b160db8480c27073c21fe31c42",
+          "version": null
         }
       ]
     },
@@ -647,7 +716,8 @@
           "message": "Update Instagram DM Exporter to version 1.0.33. Enhanced UI for download completion with new thank you section, improved content security policy, and updated build process to include verification of remote code. Removed deprecated review link from UI.",
           "date": "2026-07-12T17:40:53Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/e09c473a24fd5d8dbdcb6e28958f153e9ab0ab85"
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/e09c473a24fd5d8dbdcb6e28958f153e9ab0ab85",
+          "version": "1.0.33"
         },
         {
           "sha": "99ab4861e9de4d2581124a8af337a4b31d712ccb",
@@ -655,7 +725,8 @@
           "message": "Update .gitignore to exclude backup node_modules directory",
           "date": "2026-07-12T17:13:13Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/99ab4861e9de4d2581124a8af337a4b31d712ccb"
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/99ab4861e9de4d2581124a8af337a4b31d712ccb",
+          "version": "1.0.31"
         },
         {
           "sha": "f339fe1cd38fab5dc5c14b698f69782bd7a35c37",
@@ -663,7 +734,8 @@
           "message": "Update Instagram DM Exporter: Added support for attachment settings, improved export options, and enhanced UI. Updated version to 1.0.31. Added new dependencies and modified build process.",
           "date": "2026-07-12T17:12:11Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/f339fe1cd38fab5dc5c14b698f69782bd7a35c37"
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/f339fe1cd38fab5dc5c14b698f69782bd7a35c37",
+          "version": "1.0.31"
         },
         {
           "sha": "96721ee79bae5412b79898e32c4b99114abc28d3",
@@ -671,7 +743,8 @@
           "message": "Initial commit: Instagram DM Exporter Chrome extension",
           "date": "2026-05-25T20:18:09Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/96721ee79bae5412b79898e32c4b99114abc28d3"
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/96721ee79bae5412b79898e32c4b99114abc28d3",
+          "version": null
         }
       ]
     },
@@ -690,7 +763,8 @@
           "message": "Update version to 1.0.40 and enhance folder management features. Added support for selecting and adding known folders in the popup UI, improved folder handling in background scripts, and updated localization files for new folder-related messages across multiple languages.",
           "date": "2026-07-09T22:49:21Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/08b9fbac914bded855d15543e5326697459abfd9"
+          "url": "https://github.com/dpw1/save-to-drive/commit/08b9fbac914bded855d15543e5326697459abfd9",
+          "version": "1.0.40"
         },
         {
           "sha": "7ffaf4be01a1abd6f54aeb58dc0fda4b63dc718a",
@@ -698,7 +772,8 @@
           "message": "Prevent repeated OAuth popups on Opera during auto-save downloads.",
           "date": "2026-07-01T02:55:16Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/7ffaf4be01a1abd6f54aeb58dc0fda4b63dc718a"
+          "url": "https://github.com/dpw1/save-to-drive/commit/7ffaf4be01a1abd6f54aeb58dc0fda4b63dc718a",
+          "version": "1.0.38"
         },
         {
           "sha": "76816e89ea88f35e8edeb22a790cc6580e48fb3b",
@@ -706,7 +781,8 @@
           "message": "Update version to 1.0.38 and enhance download toast handling in background and content scripts. Introduced logic to dismiss toasts on inactive tabs and improved conditions for displaying download notifications based on auto-save settings.",
           "date": "2026-06-30T23:07:48Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/76816e89ea88f35e8edeb22a790cc6580e48fb3b"
+          "url": "https://github.com/dpw1/save-to-drive/commit/76816e89ea88f35e8edeb22a790cc6580e48fb3b",
+          "version": "1.0.38"
         },
         {
           "sha": "2e8b37f6512414c382c0113992153216884d5dee",
@@ -714,7 +790,8 @@
           "message": "Update version to 1.0.37 and refactor toast handling in background and content scripts. Improved download toast delivery logic and removed deprecated code for better clarity and performance.",
           "date": "2026-06-29T11:40:58Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/2e8b37f6512414c382c0113992153216884d5dee"
+          "url": "https://github.com/dpw1/save-to-drive/commit/2e8b37f6512414c382c0113992153216884d5dee",
+          "version": "1.0.37"
         },
         {
           "sha": "fba78dc34bbad444d6a58edb91bcb64c38932305",
@@ -722,7 +799,8 @@
           "message": "Add settings toggles, save confirmation, and fix auto-save toasts.",
           "date": "2026-06-28T06:30:14Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/fba78dc34bbad444d6a58edb91bcb64c38932305"
+          "url": "https://github.com/dpw1/save-to-drive/commit/fba78dc34bbad444d6a58edb91bcb64c38932305",
+          "version": "1.0.31"
         },
         {
           "sha": "b2750decbf6b0f1a879708dbfc75737ab255a660",
@@ -730,7 +808,8 @@
           "message": "Refactor extension for internationalization support and improve build process",
           "date": "2026-06-27T19:54:33Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/b2750decbf6b0f1a879708dbfc75737ab255a660"
+          "url": "https://github.com/dpw1/save-to-drive/commit/b2750decbf6b0f1a879708dbfc75737ab255a660",
+          "version": "1.0.31"
         },
         {
           "sha": "9a20a1247387ada665822e3424a760a7b883a476",
@@ -738,7 +817,8 @@
           "message": "Update uninstall URL to include source parameter for better tracking",
           "date": "2026-06-27T19:27:16Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/9a20a1247387ada665822e3424a760a7b883a476"
+          "url": "https://github.com/dpw1/save-to-drive/commit/9a20a1247387ada665822e3424a760a7b883a476",
+          "version": "1.0.31"
         },
         {
           "sha": "3f3a3ca4dc488bdf3ab3dc34530a1baab3a7ad9f",
@@ -746,7 +826,8 @@
           "message": "Update extension to version 1.0.31, adding auto-save functionality for downloads, enhancing authentication flow, and improving error handling. Updated manifest permissions and OAuth client ID. Refined UI elements and added new styles for better user experience.",
           "date": "2026-06-27T19:08:12Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/3f3a3ca4dc488bdf3ab3dc34530a1baab3a7ad9f"
+          "url": "https://github.com/dpw1/save-to-drive/commit/3f3a3ca4dc488bdf3ab3dc34530a1baab3a7ad9f",
+          "version": "1.0.31"
         },
         {
           "sha": "501bdcba339d77a6118d3827d130d2f2ab1fb538",
@@ -754,7 +835,8 @@
           "message": "Added thank you and uninstall pages",
           "date": "2026-06-23T18:12:01Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/501bdcba339d77a6118d3827d130d2f2ab1fb538"
+          "url": "https://github.com/dpw1/save-to-drive/commit/501bdcba339d77a6118d3827d130d2f2ab1fb538",
+          "version": null
         },
         {
           "sha": "e7c564eea1df62ed3450dbc06b8db762a798eef3",
@@ -762,7 +844,8 @@
           "message": "Initial commit: Save to Drive Chrome extension.",
           "date": "2026-05-29T22:43:58Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/e7c564eea1df62ed3450dbc06b8db762a798eef3"
+          "url": "https://github.com/dpw1/save-to-drive/commit/e7c564eea1df62ed3450dbc06b8db762a798eef3",
+          "version": null
         }
       ]
     },
@@ -781,7 +864,8 @@
           "message": "Refactor zip distribution process and update manifest version",
           "date": "2026-07-16T17:12:51Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-limit-monitor/commit/af9c527d390649624b5cf58305f93824a0bb754d"
+          "url": "https://github.com/dpw1/claude-limit-monitor/commit/af9c527d390649624b5cf58305f93824a0bb754d",
+          "version": null
         },
         {
           "sha": "32f940aecda2bc4490eb36bc46064d034e789c81",
@@ -789,7 +873,8 @@
           "message": "Update README.md to include project context and installation instructions",
           "date": "2026-06-13T12:05:22Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-limit-monitor/commit/32f940aecda2bc4490eb36bc46064d034e789c81"
+          "url": "https://github.com/dpw1/claude-limit-monitor/commit/32f940aecda2bc4490eb36bc46064d034e789c81",
+          "version": null
         },
         {
           "sha": "de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
@@ -797,7 +882,8 @@
           "message": "Implement background script and notification features in Claude Limit Monitor extension",
           "date": "2026-06-13T11:34:26Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-limit-monitor/commit/de8a0d123cf4f629b409a2d2c7c3f6e78415dd44"
+          "url": "https://github.com/dpw1/claude-limit-monitor/commit/de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
+          "version": null
         },
         {
           "sha": "e68b1d247848af795b32ac5a2ac329608ba911ff",
@@ -805,7 +891,8 @@
           "message": "Initial commit: Claude Limit Monitor Chrome extension.",
           "date": "2026-06-02T20:40:15Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/claude-limit-monitor/commit/e68b1d247848af795b32ac5a2ac329608ba911ff"
+          "url": "https://github.com/dpw1/claude-limit-monitor/commit/e68b1d247848af795b32ac5a2ac329608ba911ff",
+          "version": null
         }
       ]
     },
@@ -824,7 +911,8 @@
           "message": "Fix Chrome locale placeholder validation errors.",
           "date": "2026-06-30T04:59:12Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-keyword-alert/commit/08d593b83917219709966ae1b3bd39c7069d1325"
+          "url": "https://github.com/dpw1/youtube-keyword-alert/commit/08d593b83917219709966ae1b3bd39c7069d1325",
+          "version": null
         },
         {
           "sha": "dd17d9ecb08d37bd8ac84ad3814d8b0069c3e2f1",
@@ -832,7 +920,8 @@
           "message": "Add Chrome i18n support for seven locales.",
           "date": "2026-06-30T04:41:51Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-keyword-alert/commit/dd17d9ecb08d37bd8ac84ad3814d8b0069c3e2f1"
+          "url": "https://github.com/dpw1/youtube-keyword-alert/commit/dd17d9ecb08d37bd8ac84ad3814d8b0069c3e2f1",
+          "version": null
         },
         {
           "sha": "2ec83d6107e77a84791112ba31a01e17642ab49f",
@@ -840,7 +929,8 @@
           "message": "Added thank you and uninstall pages",
           "date": "2026-06-23T18:15:30Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-keyword-alert/commit/2ec83d6107e77a84791112ba31a01e17642ab49f"
+          "url": "https://github.com/dpw1/youtube-keyword-alert/commit/2ec83d6107e77a84791112ba31a01e17642ab49f",
+          "version": null
         },
         {
           "sha": "69c5f721d954eccd5b3ac6c7f21c993ba07cb23d",
@@ -848,7 +938,8 @@
           "message": "Update project configuration and enhance functionality",
           "date": "2026-06-21T03:44:50Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-keyword-alert/commit/69c5f721d954eccd5b3ac6c7f21c993ba07cb23d"
+          "url": "https://github.com/dpw1/youtube-keyword-alert/commit/69c5f721d954eccd5b3ac6c7f21c993ba07cb23d",
+          "version": null
         },
         {
           "sha": "7ac3db7f297c46ab7b3e6de19389a765d5c50946",
@@ -856,7 +947,8 @@
           "message": "Initial commit: YouTube Keyword Alert Chrome extension",
           "date": "2026-06-20T19:54:09Z",
           "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-keyword-alert/commit/7ac3db7f297c46ab7b3e6de19389a765d5c50946"
+          "url": "https://github.com/dpw1/youtube-keyword-alert/commit/7ac3db7f297c46ab7b3e6de19389a765d5c50946",
+          "version": null
         }
       ]
     }

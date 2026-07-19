@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import ChromeIcon from './ChromeIcon'
 import CyberCorners from './CyberCorners'
@@ -99,10 +100,17 @@ export default function ExtensionCard({
   showVideoStat = true,
   showBlogLink = false,
   showStoreDownload = false,
+  showVersion = true,
+  showChromeIcon = false,
 }) {
   const navigate = useNavigate()
   const live = isAppLive(app)
-  const youtubeUrl = appBuildYoutubeUrl(app)
+  const blogPost = getBlogPostForApp(app)
+  // Prefer the Coding Until $100k episode tied to the blog post over promo/listing clips.
+  const episodeYoutubeUrl = blogPost?.youtubeId
+    ? `https://www.youtube.com/watch?v=${blogPost.youtubeId}`
+    : null
+  const youtubeUrl = episodeYoutubeUrl || appBuildYoutubeUrl(app)
   const videoId = youtubeUrl ? youtubeEmbedId(youtubeUrl) : null
   const hasVideo = Boolean(videoId)
   const installs = appCardInstalls(app)
@@ -112,11 +120,11 @@ export default function ExtensionCard({
   const displayName = appFilterLabel(app)
   const publishedLabel = showPublished ? formatAppPublishedAgo(app) : null
   const storeUrl = appStoreUrl(app)
-  const blogPost = showBlogLink ? getBlogPostForApp(app) : null
-  const showStatsRow =
-    showInstalls || showUsers || (showVideoStat && hasVideo)
+  const youtubeInQuickRow = showVideoStat && hasVideo && (showBlogLink || showStoreDownload)
   const showQuickActions =
-    (showBlogLink && blogPost) || (showStoreDownload && storeUrl)
+    (showBlogLink && blogPost) || (showStoreDownload && storeUrl) || youtubeInQuickRow
+  const showStatsRow =
+    showInstalls || showUsers || (showVideoStat && hasVideo && !youtubeInQuickRow)
 
   const playVideo = (event) => {
     event.stopPropagation()
@@ -145,6 +153,57 @@ export default function ExtensionCard({
       event.preventDefault()
       openAppPage()
     }
+  }
+
+  const quickActionNodes = []
+  if (showBlogLink && blogPost) {
+    quickActionNodes.push(
+      <Link
+        key="blog"
+        to={`/blog/${blogPost.slug}`}
+        className="CC__ext-stat CC__ext-stat--link"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <span className="CC__ext-stat__icon--blog" aria-hidden="true">
+          {BLOG_ICON}
+        </span>
+        <span className="CC__ext-stat__label">blog</span>
+      </Link>,
+    )
+  }
+  if (showStoreDownload && storeUrl) {
+    quickActionNodes.push(
+      <a
+        key="store"
+        href={storeUrl}
+        className="CC__ext-stat CC__ext-stat--link"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <span className="CC__ext-stat__icon--chrome" aria-hidden="true">
+          <ChromeIcon size={16} title="" />
+        </span>
+        <span className="CC__ext-stat__label">download</span>
+      </a>,
+    )
+  }
+  if (youtubeInQuickRow) {
+    quickActionNodes.push(
+      <button
+        key="youtube"
+        type="button"
+        className="CC__ext-stat CC__ext-stat--video"
+        title="Watch on YouTube"
+        aria-label={`Watch on YouTube for ${displayName}`}
+        onClick={playVideo}
+      >
+        <span className="CC__ext-stat__icon--video" aria-hidden="true">
+          {YOUTUBE_ICON}
+        </span>
+        <span className="CC__ext-stat__label">youtube</span>
+      </button>,
+    )
   }
 
   return (
@@ -182,8 +241,15 @@ export default function ExtensionCard({
 
         <div className="CC__ext-meta">
           <div className="CC__ext-name-row">
-            <span className="CC__ext-name">{displayName}</span>
-            {app.version ? (
+            <span className="CC__ext-name">
+              {showChromeIcon ? (
+                <span className="CC__ext-name__icon" aria-hidden="true">
+                  <ChromeIcon size={16} title="" />
+                </span>
+              ) : null}
+              {displayName}
+            </span>
+            {showVersion && app.version ? (
               <span className="CC__ext-version">v{app.version}</span>
             ) : null}
           </div>
@@ -196,35 +262,12 @@ export default function ExtensionCard({
 
       {showQuickActions ? (
         <div className="CC__ext-stats">
-          {showBlogLink && blogPost ? (
-            <Link
-              to={`/blog/${blogPost.slug}`}
-              className="CC__ext-stat CC__ext-stat--link"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <span className="CC__ext-stat__icon--blog" aria-hidden="true">
-                {BLOG_ICON}
-              </span>
-              <span className="CC__ext-stat__label">read blog</span>
-            </Link>
-          ) : null}
-          {showBlogLink && blogPost && showStoreDownload && storeUrl ? (
-            <div className="CC__ext-stat-sep" aria-hidden="true" />
-          ) : null}
-          {showStoreDownload && storeUrl ? (
-            <a
-              href={storeUrl}
-              className="CC__ext-stat CC__ext-stat--link"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <span className="CC__ext-stat__icon--chrome" aria-hidden="true">
-                <ChromeIcon size={16} title="" />
-              </span>
-              <span className="CC__ext-stat__label">download</span>
-            </a>
-          ) : null}
+          {quickActionNodes.map((node, index) => (
+            <Fragment key={node.key ?? index}>
+              {index > 0 ? <div className="CC__ext-stat-sep" aria-hidden="true" /> : null}
+              {node}
+            </Fragment>
+          ))}
         </div>
       ) : null}
 
@@ -251,7 +294,7 @@ export default function ExtensionCard({
               <span className="CC__ext-stat__label">users</span>
             </div>
           ) : null}
-          {showVideoStat && hasVideo ? (
+          {showVideoStat && hasVideo && !youtubeInQuickRow ? (
             <>
               {showInstalls || showUsers ? (
                 <div className="CC__ext-stat-sep" aria-hidden="true" />
