@@ -417,6 +417,119 @@ code {
   height: 100% !important;
 }
 
+.admin__feature-picks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+}
+
+.admin__feature-picks-note {
+  color: var(--CC__color-text-muted);
+  font-size: 0.8rem;
+  margin: 1rem 0 0.55rem;
+}
+
+.admin__accordion {
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius);
+  background: var(--CC__color-bg-surface);
+  overflow: hidden;
+}
+
+.admin__accordion[open] {
+  border-color: var(--CC__color-border-glow);
+}
+
+.admin__accordion-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  color: var(--CC__color-text-main);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.admin__accordion-summary::-webkit-details-marker {
+  display: none;
+}
+
+.admin__accordion-summary::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 2px solid var(--CC__color-text-muted);
+  border-bottom: 2px solid var(--CC__color-text-muted);
+  transform: rotate(-45deg);
+  flex-shrink: 0;
+  margin-right: 0.15rem;
+  transition: transform 0.15s ease;
+}
+
+.admin__accordion[open] > .admin__accordion-summary::before {
+  transform: rotate(45deg);
+}
+
+.admin__accordion-summary:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.admin__accordion-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin__accordion-count {
+  color: var(--CC__color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.admin__accordion-body {
+  list-style: none;
+  margin: 0;
+  padding: 0 0.9rem 0.75rem;
+  border-top: 1px solid var(--CC__color-divider);
+}
+
+.admin__accordion-pick {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--CC__color-divider);
+  font-size: 0.86rem;
+}
+
+.admin__accordion-pick:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.admin__accordion-pick-label {
+  color: var(--CC__color-text-main);
+  word-break: break-word;
+}
+
+.admin__accordion-pick-count {
+  color: var(--CC__color-text-muted);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.admin__accordion-empty {
+  color: var(--CC__color-text-muted);
+  font-size: 0.82rem;
+  padding: 0.65rem 0 0.15rem;
+}
+
 @media (max-width: 800px) {
   .admin__charts {
     grid-template-columns: 1fr;

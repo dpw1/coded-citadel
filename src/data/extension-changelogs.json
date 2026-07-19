@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-18T22:57:22.761Z",
+  "updatedAt": "2026-07-19T21:12:38.548Z",
   "message": null,
   "apps": [
     {
@@ -210,6 +210,14 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "af1748e17f0d265f335d1e894b0dedc149fcecdd",
+          "shortSha": "af1748e",
+          "message": "Update YouTube Filter Pro to version 1.0.53: Incremented version number and added new localization messages for filtering status indicators across multiple languages. Enhanced the filtering experience with improved toast notifications for zero matches and slow results, and introduced a new setting for displaying tips when filters yield few or no results. Refactored modal and toast components for better user interaction and updated styles for improved UI consistency.",
+          "date": "2026-07-19T01:19:14Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/af1748e17f0d265f335d1e894b0dedc149fcecdd"
+        },
         {
           "sha": "bb5f550cea9f9ccd9424ca6594d8350cd830198a",
           "shortSha": "bb5f550",

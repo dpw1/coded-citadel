@@ -679,6 +679,81 @@ function isFeatureUsed(key, value) {
   return true
 }
 
+const PICK_LABELS = {
+  any: 'Any time',
+  all: 'All',
+  custom: 'Custom date',
+  hour: 'Last hour',
+  today: 'Today',
+  week: 'Last week',
+  month: 'Last month',
+  year: 'Last year',
+  last_hour: 'Last hour',
+  last_day: 'Last day',
+  last_3_days: 'Last 3 days',
+  last_7_days: 'Last 7 days',
+  last_week: 'Last week',
+  last_month: 'Last month',
+  last_3_months: 'Last 3 months',
+  last_6_months: 'Last 6 months',
+  last_year: 'Last year',
+  last_2_years: 'Last 2 years',
+  last_5_years: 'Last 5 years',
+  last_10_years: 'Last 10 years',
+}
+
+function formatPickLabel(raw) {
+  const str = String(raw == null ? '' : raw).trim()
+  if (!str) return '(empty)'
+  if (PICK_LABELS[str]) return PICK_LABELS[str]
+  if (PICK_LABELS[str.toLowerCase()]) return PICK_LABELS[str.toLowerCase()]
+
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/^./, (c) => c.toUpperCase())
+}
+
+/** Extract displayable "picks" from a feature value (scalars, tags, keyword lists). */
+function extractFeaturePicks(value) {
+  if (value == null) return []
+
+  if (Array.isArray(value)) {
+    return value.map((item) => String(item).trim()).filter(Boolean)
+  }
+
+  if (typeof value === 'object') {
+    const list =
+      value.tags ||
+      value.items ||
+      value.keywords ||
+      value.values ||
+      value.list ||
+      value.words ||
+      value.channels
+    if (Array.isArray(list) && list.length) {
+      return list.map((item) => String(item).trim()).filter(Boolean)
+    }
+    if (value.count != null && Number(value.count) > 0) {
+      return [`Active (${value.count})`]
+    }
+    return ['Active']
+  }
+
+  if (typeof value === 'boolean') return value ? ['true'] : []
+
+  const str = String(value).trim()
+  return str ? [str] : []
+}
+
+function addFeaturePick(featurePickUsers, featureKey, pick, fingerprint) {
+  if (!fingerprint || !pick) return
+  if (!featurePickUsers.has(featureKey)) featurePickUsers.set(featureKey, new Map())
+  addUserToKey(featurePickUsers.get(featureKey), pick, fingerprint)
+}
+
 function aggregateYt(rows) {
   const presetUsers = new Map()
   const verifiedUsers = new Map()
@@ -689,6 +764,8 @@ function aggregateYt(rows) {
   const uniqueFingerprints = new Set()
   /** @type {Map<string, Set<string>>} feature key → unique fingerprints that used it */
   const featureUsers = new Map()
+  /** @type {Map<string, Map<string, Set<string>>>} feature → pick → fingerprints */
+  const featurePickUsers = new Map()
   const keywordIncludeUsers = new Set()
   const durationUsers = new Set()
 
@@ -716,6 +793,9 @@ function aggregateYt(rows) {
         if (!isFeatureUsed(key, value)) return
         if (!featureUsers.has(key)) featureUsers.set(key, new Set())
         featureUsers.get(key).add(fingerprint)
+        extractFeaturePicks(value).forEach((pick) => {
+          addFeaturePick(featurePickUsers, key, pick, fingerprint)
+        })
       })
 
       if (
@@ -753,6 +833,14 @@ function aggregateYt(rows) {
     [...featureUsers.entries()].map(([key, set]) => [key, set.size]),
   )
 
+  /** @type {Map<string, Map<string, number>>} */
+  const featurePicks = new Map(
+    [...featurePickUsers.entries()].map(([key, pickMap]) => [
+      key,
+      userSetsToCounts(pickMap),
+    ]),
+  )
+
   const subRanges = userSetsToCounts(subRangeUsers)
 
   return {
@@ -765,6 +853,7 @@ function aggregateYt(rows) {
       FILTER_GROUP_KEYS.map((k) => [k, groupUsers.get(k).size]),
     ),
     featureUsage,
+    featurePicks,
     subRanges,
     byDay: userSetsToCounts(dayUsers),
     keywordIncludeActive: keywordIncludeUsers.size,
@@ -781,6 +870,8 @@ function destroyCharts() {
     }
   })
   state.charts = {}
+  const picks = document.getElementById('feature-picks')
+  if (picks) picks.innerHTML = ''
 }
 
 function baseChartOptions(extra = {}) {
@@ -927,6 +1018,7 @@ function renderYtCharts() {
     ),
     options: barOpts,
   })
+  renderFeaturePicks(featureTop, stats.featurePicks)
 
   const subTop = topEntries(stats.subRanges, 10)
   state.charts.subs = new Chart(document.getElementById('chart-subs'), {
@@ -973,6 +1065,46 @@ function renderYtKpis() {
     stats.durationAny,
     stats.uniqueUsers,
   )
+}
+
+function userLabel(count) {
+  return `${count} ${count === 1 ? 'user' : 'users'}`
+}
+
+function renderFeaturePicks(featureTop, featurePicks) {
+  const root = document.getElementById('feature-picks')
+  if (!root) return
+
+  if (!featureTop.length) {
+    root.innerHTML = '<p class="admin__accordion-empty">No feature usage data yet.</p>'
+    return
+  }
+
+  root.innerHTML = featureTop
+    .map(([key, userCount]) => {
+      const picks = topEntries(featurePicks.get(key) || new Map(), 10)
+      const pickRows = picks.length
+        ? picks
+            .map(
+              ([pick, count]) => `
+            <li class="admin__accordion-pick">
+              <span class="admin__accordion-pick-label">${escapeHtml(formatPickLabel(pick))}</span>
+              <span class="admin__accordion-pick-count">${escapeHtml(userLabel(count))}</span>
+            </li>`,
+            )
+            .join('')
+        : '<li class="admin__accordion-empty">No picks recorded for this feature.</li>'
+
+      return `
+        <details class="admin__accordion">
+          <summary class="admin__accordion-summary">
+            <span class="admin__accordion-label">${escapeHtml(formatFeatureLabel(key))}</span>
+            <span class="admin__accordion-count">${escapeHtml(userLabel(userCount))}</span>
+          </summary>
+          <ul class="admin__accordion-body">${pickRows}</ul>
+        </details>`
+    })
+    .join('')
 }
 
 async function loadYt() {
