@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import portfolioData from '../data/work-portfolio.json'
+import { WorkPortfolioDescription } from './WorkPortfolioDescription'
 import './WorkPortfolioSection.css'
 
 const CLOSE_ICON = (
@@ -57,7 +58,7 @@ export default function WorkPortfolioSection() {
   }, [activeProject, closeModal])
 
   useEffect(() => {
-    if (!activeProject || !videoRef.current) return
+    if (!activeProject?.video || !videoRef.current) return
 
     videoRef.current.src = activeProject.video
     videoRef.current.load()
@@ -83,19 +84,44 @@ export default function WorkPortfolioSection() {
                 type="button"
                 className="CC__work-portfolio-card__hit"
                 onClick={() => setActiveProject(project)}
-                aria-label={`Watch ${project.title} project video`}
+                aria-label={
+                  project.video
+                    ? `Watch ${project.title} project video`
+                    : `View ${project.title} case study`
+                }
               >
-                <video
-                  className="CC__work-portfolio-card__thumb"
-                  src={project.video}
-                  muted
-                  playsInline
-                  preload="metadata"
-                  aria-hidden="true"
-                />
-                <span className="CC__work-portfolio-card__play" aria-hidden="true">
-                  ▶
-                </span>
+                {project.video ? (
+                  <video
+                    className="CC__work-portfolio-card__thumb"
+                    src={project.video}
+                    muted
+                    playsInline
+                    preload="metadata"
+                    aria-hidden="true"
+                  />
+                ) : project.image ? (
+                  <img
+                    className="CC__work-portfolio-card__thumb"
+                    src={project.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <div
+                    className="CC__work-portfolio-card__thumb CC__work-portfolio-card__thumb--placeholder"
+                    aria-hidden="true"
+                  />
+                )}
+                {project.video ? (
+                  <span className="CC__work-portfolio-card__play" aria-hidden="true">
+                    ▶
+                  </span>
+                ) : project.image ? null : (
+                  <span className="CC__work-portfolio-card__placeholder-mark" aria-hidden="true">
+                    {SHOPIFY_ICON}
+                  </span>
+                )}
               </button>
               <div className="CC__work-portfolio-card__overlay">
                 <span className="CC__work-portfolio-card__name">
@@ -127,7 +153,11 @@ export default function WorkPortfolioSection() {
           className="CC__modal-backdrop CC__modal-backdrop--open CC__work-portfolio-modal"
           role="dialog"
           aria-modal="true"
-          aria-label={`${activeProject.title} project video`}
+          aria-label={
+            activeProject.video
+              ? `${activeProject.title} project video`
+              : `${activeProject.title} case study`
+          }
           onClick={closeModal}
         >
           <div className="CC__modal CC__work-portfolio-modal__box" onClick={(event) => event.stopPropagation()}>
@@ -143,25 +173,42 @@ export default function WorkPortfolioSection() {
               <button
                 type="button"
                 className="CC__modal__close"
-                aria-label="Close video"
+                aria-label="Close"
                 onClick={closeModal}
               >
                 {CLOSE_ICON}
               </button>
             </div>
 
-            <div className="CC__work-portfolio-modal__body">
-              <video
-                ref={videoRef}
-                className="CC__work-portfolio-modal__video"
-                controls
-                playsInline
-              />
+            <div
+              className={`CC__work-portfolio-modal__body${
+                activeProject.video || activeProject.image
+                  ? ''
+                  : ' CC__work-portfolio-modal__body--text-only'
+              }`}
+            >
+              {activeProject.video ? (
+                <video
+                  ref={videoRef}
+                  className="CC__work-portfolio-modal__video"
+                  controls
+                  playsInline
+                />
+              ) : activeProject.image ? (
+                <img
+                  className="CC__work-portfolio-modal__hero-image"
+                  src={activeProject.image}
+                  alt={`${activeProject.title} project screenshot`}
+                  loading="eager"
+                  decoding="async"
+                />
+              ) : null}
 
               <div className="CC__work-portfolio-modal__info">
-                {activeProject.description.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
+                {activeProject.meta ? (
+                  <p className="CC__work-portfolio-modal__meta">{activeProject.meta}</p>
+                ) : null}
+                <WorkPortfolioDescription description={activeProject.description} />
               </div>
             </div>
 

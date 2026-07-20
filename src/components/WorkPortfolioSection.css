@@ -59,6 +59,26 @@
   pointer-events: none;
 }
 
+.CC__work-portfolio-card__thumb--placeholder {
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(149, 191, 70, 0.22), transparent 55%),
+    linear-gradient(145deg, #1a2218 0%, #0d1210 55%, #141a16 100%);
+}
+
+.CC__work-portfolio-card__placeholder-mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.CC__work-portfolio-card__placeholder-mark svg {
+  width: 3.25rem;
+  height: 3.25rem;
+  opacity: 0.55;
+}
+
 .CC__work-portfolio-card__overlay {
   position: absolute;
   left: 0;
@@ -159,9 +179,35 @@
   max-height: 60vh;
 }
 
+.CC__work-portfolio-modal__hero-image {
+  width: 100%;
+  display: block;
+  max-height: 60vh;
+  object-fit: cover;
+  background: #0d1210;
+}
+
+.CC__work-portfolio-modal__figure {
+  margin: 0.35rem 0 1.1rem;
+}
+
+.CC__work-portfolio-modal__inline-image {
+  width: 100%;
+  display: block;
+  border-radius: var(--CC__radius);
+  border: 1px solid var(--CC__color-border);
+}
+
 .CC__work-portfolio-modal__info {
   padding: 1.25rem 1.5rem 1.5rem;
   text-align: left;
+}
+
+.CC__work-portfolio-modal__meta {
+  color: var(--CC__color-text-muted);
+  font-size: 0.85rem;
+  margin: 0 0 1rem;
+  line-height: 1.45;
 }
 
 .CC__work-portfolio-modal__info p {
@@ -170,8 +216,35 @@
   line-height: 1.6;
 }
 
-.CC__work-portfolio-modal__info p:last-child {
+.CC__work-portfolio-modal__heading {
+  color: var(--CC__color-text-main);
+  font-size: 0.95rem;
+  font-weight: 650;
+  margin: 1.15rem 0 0.55rem;
+  line-height: 1.35;
+}
+
+.CC__work-portfolio-modal__list {
+  margin: 0 0 0.85rem;
+  padding-left: 1.15rem;
+  color: var(--CC__color-text-muted);
+  line-height: 1.55;
+}
+
+.CC__work-portfolio-modal__list li {
+  margin-bottom: 0.4rem;
+}
+
+.CC__work-portfolio-modal__list li:last-child {
   margin-bottom: 0;
+}
+
+.CC__work-portfolio-modal__info > :last-child {
+  margin-bottom: 0;
+}
+
+.CC__work-portfolio-modal__body--text-only .CC__work-portfolio-modal__info {
+  padding-top: 0.35rem;
 }
 
 .CC__work-portfolio-modal__actions {

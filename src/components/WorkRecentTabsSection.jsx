@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import ChromeIcon from './ChromeIcon'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
+import { WorkPortfolioDescription } from './WorkPortfolioDescription'
 import portfolioData from '../data/work-portfolio.json'
 import { appCardInstalls, getAllApps } from '../utils/apps'
 import {
@@ -53,8 +54,20 @@ const TABS = [
   {
     id: 'all',
     label: 'All',
-    subtitle:
-      'Fullstack dev, 10+ years in e-commerce and SaaS, currently building in public. Every project I ship is documented in detail on my Blog and YouTube.',
+    subtitle: (
+      <>
+        Fullstack dev, 10+ years in e-commerce and SaaS, currently building in public. Every project I
+        ship is documented in detail on my{' '}
+        <a href="/blog" target="_blank" rel="noopener noreferrer">
+          Blog
+        </a>{' '}
+        and{' '}
+        <a href="https://www.youtube.com/@CodedCitadel" target="_blank" rel="noopener noreferrer">
+          YouTube
+        </a>
+        .
+      </>
+    ),
   },
   {
     id: 'shopify',
@@ -181,12 +194,81 @@ export default function WorkRecentTabsSection() {
     const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(update) : null
     observer?.observe(track)
 
+    const DRAG_THRESHOLD = 8
+    let pointerDown = false
+    let dragging = false
+    let suppressClick = false
+    let startX = 0
+    let startScroll = 0
+    let activePointerId = null
+
+    const onPointerDown = (event) => {
+      if (event.pointerType !== 'mouse' || event.button !== 0) return
+      pointerDown = true
+      dragging = false
+      suppressClick = false
+      startX = event.clientX
+      startScroll = track.scrollLeft
+      activePointerId = event.pointerId
+    }
+
+    const onPointerMove = (event) => {
+      if (!pointerDown || event.pointerId !== activePointerId) return
+      const dx = event.clientX - startX
+
+      if (!dragging) {
+        if (Math.abs(dx) < DRAG_THRESHOLD) return
+        dragging = true
+        suppressClick = true
+        track.classList.add('CC__work-recent__tech-filters__track--dragging')
+        track.setPointerCapture(event.pointerId)
+      }
+
+      track.scrollLeft = startScroll - dx
+    }
+
+    const endDrag = (event) => {
+      if (!pointerDown) return
+      if (event && activePointerId != null && event.pointerId !== activePointerId) return
+      pointerDown = false
+      dragging = false
+      activePointerId = null
+      track.classList.remove('CC__work-recent__tech-filters__track--dragging')
+    }
+
+    const onClickCapture = (event) => {
+      if (!suppressClick) return
+      event.preventDefault()
+      event.stopPropagation()
+      suppressClick = false
+    }
+
+    const onDragStart = (event) => {
+      event.preventDefault()
+    }
+
+    track.addEventListener('pointerdown', onPointerDown)
+    track.addEventListener('pointermove', onPointerMove)
+    track.addEventListener('pointerup', endDrag)
+    track.addEventListener('pointercancel', endDrag)
+    track.addEventListener('lostpointercapture', endDrag)
+    track.addEventListener('click', onClickCapture, true)
+    track.addEventListener('dragstart', onDragStart)
+
     return () => {
       track.removeEventListener('scroll', update)
       window.removeEventListener('resize', update)
       observer?.disconnect()
+      track.removeEventListener('pointerdown', onPointerDown)
+      track.removeEventListener('pointermove', onPointerMove)
+      track.removeEventListener('pointerup', endDrag)
+      track.removeEventListener('pointercancel', endDrag)
+      track.removeEventListener('lostpointercapture', endDrag)
+      track.removeEventListener('click', onClickCapture, true)
+      track.removeEventListener('dragstart', onDragStart)
+      track.classList.remove('CC__work-recent__tech-filters__track--dragging')
     }
-  }, [showTechFilters, techFilters, readScrollEdges])
+  }, [showTechFilters, techFilters.length, readScrollEdges])
 
   const selectTab = (tabId) => {
     if (tabId === activeTab) return
@@ -195,7 +277,7 @@ export default function WorkRecentTabsSection() {
   }
 
   const selectTech = (techId) => {
-    setActiveTechId(techId)
+    setActiveTechId((current) => (techId !== 'all' && current === techId ? 'all' : techId))
   }
 
   const closeModal = useCallback(() => {
@@ -224,7 +306,7 @@ export default function WorkRecentTabsSection() {
   }, [activeProject, closeModal])
 
   useEffect(() => {
-    if (!activeProject || !videoRef.current) return
+    if (!activeProject?.video || !videoRef.current) return
 
     videoRef.current.src = activeProject.video
     videoRef.current.load()
@@ -378,19 +460,44 @@ export default function WorkRecentTabsSection() {
                     type="button"
                     className="CC__work-portfolio-card__hit"
                     onClick={() => setActiveProject(project)}
-                    aria-label={`Watch ${project.title} project video`}
+                    aria-label={
+                      project.video
+                        ? `Watch ${project.title} project video`
+                        : `View ${project.title} case study`
+                    }
                   >
-                    <video
-                      className="CC__work-portfolio-card__thumb"
-                      src={project.video}
-                      muted
-                      playsInline
-                      preload="metadata"
-                      aria-hidden="true"
-                    />
-                    <span className="CC__work-portfolio-card__play" aria-hidden="true">
-                      ▶
-                    </span>
+                    {project.video ? (
+                      <video
+                        className="CC__work-portfolio-card__thumb"
+                        src={project.video}
+                        muted
+                        playsInline
+                        preload="metadata"
+                        aria-hidden="true"
+                      />
+                    ) : project.image ? (
+                      <img
+                        className="CC__work-portfolio-card__thumb"
+                        src={project.image}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <div
+                        className="CC__work-portfolio-card__thumb CC__work-portfolio-card__thumb--placeholder"
+                        aria-hidden="true"
+                      />
+                    )}
+                    {project.video ? (
+                      <span className="CC__work-portfolio-card__play" aria-hidden="true">
+                        ▶
+                      </span>
+                    ) : project.image ? null : (
+                      <span className="CC__work-portfolio-card__placeholder-mark" aria-hidden="true">
+                        {SHOPIFY_ICON}
+                      </span>
+                    )}
                   </button>
                   <div className="CC__work-portfolio-card__overlay">
                     <span className="CC__work-portfolio-card__name">
@@ -455,7 +562,11 @@ export default function WorkRecentTabsSection() {
           className="CC__modal-backdrop CC__modal-backdrop--open CC__work-portfolio-modal"
           role="dialog"
           aria-modal="true"
-          aria-label={`${activeProject.title} project video`}
+          aria-label={
+            activeProject.video
+              ? `${activeProject.title} project video`
+              : `${activeProject.title} case study`
+          }
           onClick={closeModal}
         >
           <div className="CC__modal CC__work-portfolio-modal__box" onClick={(event) => event.stopPropagation()}>
@@ -471,25 +582,42 @@ export default function WorkRecentTabsSection() {
               <button
                 type="button"
                 className="CC__modal__close"
-                aria-label="Close video"
+                aria-label="Close"
                 onClick={closeModal}
               >
                 {CLOSE_ICON}
               </button>
             </div>
 
-            <div className="CC__work-portfolio-modal__body">
-              <video
-                ref={videoRef}
-                className="CC__work-portfolio-modal__video"
-                controls
-                playsInline
-              />
+            <div
+              className={`CC__work-portfolio-modal__body${
+                activeProject.video || activeProject.image
+                  ? ''
+                  : ' CC__work-portfolio-modal__body--text-only'
+              }`}
+            >
+              {activeProject.video ? (
+                <video
+                  ref={videoRef}
+                  className="CC__work-portfolio-modal__video"
+                  controls
+                  playsInline
+                />
+              ) : activeProject.image ? (
+                <img
+                  className="CC__work-portfolio-modal__hero-image"
+                  src={activeProject.image}
+                  alt={`${activeProject.title} project screenshot`}
+                  loading="eager"
+                  decoding="async"
+                />
+              ) : null}
 
               <div className="CC__work-portfolio-modal__info">
-                {activeProject.description.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
+                {activeProject.meta ? (
+                  <p className="CC__work-portfolio-modal__meta">{activeProject.meta}</p>
+                ) : null}
+                <WorkPortfolioDescription description={activeProject.description} />
               </div>
             </div>
 

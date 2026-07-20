@@ -1385,7 +1385,8 @@
           "html2canvas",
           "pdf-lib",
           "JSZip",
-          "chrome.i18n"
+          "chrome.i18n",
+          "UI/UX Design"
         ],
         "episode": "",
         "technicalHighlights": "A MAIN-world hook captures Discord Authorization headers from live XHR traffic once, then the isolated UI drives Discord API v9 with snowflake date bounds, newest-first pagination, and 429-aware retries. PDF export renders conversation HTML in a hidden iframe, captures it with html2canvas, and slices the result into multipage PDFs via pdf-lib. Channels and DMs export to HTML, PDF, Markdown, TXT, and JSON without leaving Discord, with JSZip for attachment bulk downloads."
@@ -1927,7 +1928,8 @@
           "FingerprintJS",
           "Supabase",
           "chrome.storage",
-          "chrome.i18n"
+          "chrome.i18n",
+          "UI/UX Design"
         ],
         "episode": "2",
         "technicalHighlights": "A document-start MAIN-world agent traps YouTube initial search payloads and patches fetch so youtubei search continuations stream structured video data into the isolated filter engine instead of brittle DOM scraping. Filters apply live with auto-scroll backfill, URL-synced state, and enrichment for subscribers, likes, and views per day. Anonymous usage telemetry posts to Supabase REST keyed by a FingerprintJS visitor id stored locally."
@@ -3645,7 +3647,8 @@
           "Chrome Extension Manifest V3",
           "SheetJS",
           "Instagram private web API",
-          "chrome.storage"
+          "chrome.storage",
+          "UI/UX Design"
         ],
         "episode": "",
         "technicalHighlights": "Extraction hits Instagram media and child-comment endpoints with session cookies and CSRF headers, walking nested reply cursors while persisting full job state including pause positions in chrome.storage.local. Rate limits and checkpoint redirects become first-class blocked states with backoff and resume-on-reopen across SPA navigations. Exports cover CSV, JSON, TXT, and Excel via SheetJS from an on-page widget plus a React popup."
@@ -4146,7 +4149,8 @@
           "Supabase Edge Functions",
           "IndexedDB",
           "YouTube Data API v3",
-          "chrome.i18n"
+          "chrome.i18n",
+          "UI/UX Design"
         ],
         "episode": "",
         "technicalHighlights": "The UX lives in Chrome Side Panel with Zustand state persisted through a chrome.storage.sync adapter, while comment history sits in IndexedDB for revisit and re-export. Fetching goes through Supabase Edge Functions that call YouTube Data API v3 server-side so the API key never ships in the extension. TanStack Table powers sortable filterable grids, and SheetJS covers CSV, JSON, TXT, and XLSX export."
@@ -4687,7 +4691,8 @@
           "Supabase",
           "Chrome Identity OAuth",
           "MutationObserver",
-          "react-tag-input"
+          "react-tag-input",
+          "UI/UX Design"
         ],
         "episode": "",
         "technicalHighlights": "Platform-specific content scripts for Claude, ChatGPT, and Grok inject bookmark stars via MutationObserver and sync reply snapshots through a Supabase-backed service worker with Google OAuth via Chrome Identity. Reopening a bookmark retries scroll-to-reply until the saved turn is in the DOM, so deep chats still land on the exact message. Shared content helpers are inlined per platform bundle so each content script stays self-contained."
@@ -5380,7 +5385,8 @@
           "Chrome Extension Manifest V3",
           "fflate",
           "Instagram GraphQL API",
-          "chrome.storage"
+          "chrome.storage",
+          "UI/UX Design"
         ],
         "episode": "",
         "technicalHighlights": "Conversation history comes from Instagram authenticated GraphQL message lists with cursor pagination, session tokens scraped from the page, and filters for date range or message count while skipping reaction noise. A deep media parser walks typed attachment nodes and downloads CDN assets with credentialed fetches. Exports ship as TXT, self-contained HTML with inlined media, or JSON, with optional attachment archives built in-browser via fflate."
@@ -7216,7 +7222,8 @@
           "Claude usage API",
           "MutationObserver",
           "Chrome Alarms",
-          "Chrome Notifications"
+          "Chrome Notifications",
+          "UI/UX Design"
         ],
         "episode": "",
         "technicalHighlights": "Usage is tracked by polling Claude organization usage endpoints while patching window fetch so completion streams can be tee’d—one branch keeps chat working, the other scans SSE payloads for message-limit events. A MutationObserver and send-button listeners refresh meters right after you message, and an injectable pill UI is driven from raw HTML and CSS samples. Chrome alarms fire optional reset notifications when the parsed reset time arrives."
@@ -8147,7 +8154,8 @@
           "YouTube InnerTube API",
           "Chrome Alarms",
           "Chrome Notifications",
-          "chrome.i18n"
+          "chrome.i18n",
+          "UI/UX Design"
         ],
         "episode": "",
         "technicalHighlights": "Background polling scrapes and caches YouTube InnerTube client config from the homepage, then hits youtubei search with session cookies—refreshing config automatically on 403—so keyword alerts work without an official API key. Filters compose search queries plus post-filters for duration, subscribers, verified channels, and include or exclude rules, with channel metadata enriched from page bootstraps. A React manager and a separately bundled content script share storage and alarms for scheduled checks and desktop notifications across locales."

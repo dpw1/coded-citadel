@@ -1,6 +1,59 @@
 {
   "projects": [
     {
+      "id": "weratedogs",
+      "title": "WeRateDogs",
+      "platform": "Shopify",
+      "visitorsLabel": "217k visitors/month",
+      "similarwebUrl": "https://www.similarweb.com/website/weratedogs.com/",
+      "techStack": ["JavaScript", "Liquid", "HTML", "CSS", "Klaviyo"],
+      "meta": "2022 – 2023 · Official merch store for @dog_rates",
+      "description": [
+        "I started working on \"We Rate Dogs\" with Brian back in 2022. This is a key example of how simplicity is not a synonym of bad strategy in ecom: with an average of 200k monthly visitors, it's clear that social media influence + good products are the heart of ecom, and the website is just the door. A beautiful door doesn't always lead to a beautiful house.",
+        {
+          "image": "/data-portfolio/weratedogs-similarweb.jpg",
+          "alt": "SimilarWeb traffic stats for weratedogs.com showing roughly 200k monthly visitors"
+        },
+        {
+          "heading": "Product Page Overhaul"
+        },
+        {
+          "list": [
+            "Full redesign of the mobile and desktop product page: custom slider, swatch-based variant selection, click-to-zoom, stacked desktop images",
+            "Alternate template system so single-variant products skip the variant dropdown automatically, with per-product layout switching for merchants",
+            "Metafield-driven related products, layered on top of Shopify's native recommendation engine",
+            "Dynamic price updates on variant change, sold-out state handling, and cross-device QA (iOS version-specific bugs, older phone rendering issues)"
+          ]
+        },
+        {
+          "heading": "Third-Party Integrations"
+        },
+        {
+          "list": [
+            "Klaviyo back-in-stock notification system: metafield toggle per product, list/flow wiring, variant-level subscriber tracking",
+            "Klaviyo signup form styling fixes (custom CSS overrides for popup and full-page forms)",
+            "Wistia and YouTube video embeds, including a fix for a hardcoded video ID bug and an iOS-specific playback truncation issue",
+            "Diagnosed and resolved a third-party app (Spurit) injecting code that delayed the Add to Cart button's render"
+          ]
+        },
+        {
+          "heading": "Ongoing Maintenance & Consulting"
+        },
+        {
+          "list": [
+            "Site speed and rendering fixes (image slider height inconsistencies, font sizing, layout bugs across launches)",
+            "Blog page cleanup and mobile embed styling (TikTok embeds)",
+            "Theme architecture consulting for a planned site redesign (Dawn vs. Impulse theme recommendation)",
+            "Extended trust to manage sister site Thoughts of Dog and referred additional client work"
+          ]
+        }
+      ],
+      "image": "/data-portfolio/weratedogs.png",
+      "video": null,
+      "link": "https://weratedogs.com/",
+      "linkLabel": "weratedogs.com"
+    },
+    {
       "id": "zudo",
       "title": "Zudo",
       "platform": "Shopify",

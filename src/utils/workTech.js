@@ -58,6 +58,11 @@ export const WORK_TECH_CATALOG = {
     label: 'Liquid',
     iconUrl: null,
   },
+  'ui-ux-design': {
+    id: 'ui-ux-design',
+    label: 'UI/UX Design',
+    iconUrl: `${import.meta.env.BASE_URL}icons/ui-ux-design.svg`,
+  },
 }
 
 /** Preferred primary techs (kept for reference / future use). */
@@ -87,6 +92,9 @@ function iconUrlForRaw(raw) {
   if (value.includes('node')) return WORK_TECH_CATALOG.nodejs.iconUrl
   if (value.includes('python')) return WORK_TECH_CATALOG.python.iconUrl
   if (value.includes('tailwind')) return WORK_TECH_CATALOG.tailwindcss.iconUrl
+  if (value === 'ui/ux design' || value === 'ui/ux' || value === 'uiux') {
+    return WORK_TECH_CATALOG['ui-ux-design'].iconUrl
+  }
 
   return null
 }
@@ -95,6 +103,7 @@ function displayLabelForRaw(raw) {
   const trimmed = raw.trim()
   if (/^chrome\./i.test(trimmed)) return trimmed.replace(/^chrome\./i, '')
   if (/^react\s+\d/i.test(trimmed)) return 'React'
+  if (/^ui\/ux(\s+design)?$/i.test(trimmed) || /^uiux$/i.test(trimmed)) return 'UI/UX Design'
   return trimmed
 }
 

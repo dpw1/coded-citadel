@@ -16,6 +16,16 @@
   animation: CC__work-recent-fade 0.35s ease both;
 }
 
+.CC__work-recent__subtitle a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.CC__work-recent__subtitle a:hover {
+  color: var(--CC__color-text);
+}
+
 .CC__work-recent__filters {
   display: flex;
   flex-direction: column;
@@ -127,10 +137,21 @@
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
   padding: 0.15rem 0.1rem;
+  cursor: grab;
 }
 
 .CC__work-recent__tech-filters__track::-webkit-scrollbar {
   display: none;
+}
+
+.CC__work-recent__tech-filters__track--dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+  user-select: none;
+}
+
+.CC__work-recent__tech-filters__track--dragging .CC__work-recent__tech-filters__tag {
+  cursor: grabbing;
 }
 
 .CC__work-recent__scroll-arrow {
