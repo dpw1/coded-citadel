@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import portfolioData from '../data/work-portfolio.json'
 import { WorkPortfolioDescription } from './WorkPortfolioDescription'
+import { getWorkPortfolioProjects } from '../utils/workPortfolio'
 import './WorkPortfolioSection.css'
 
 const CLOSE_ICON = (
@@ -26,7 +26,7 @@ const SHOPIFY_ICON = (
   </svg>
 )
 
-const projects = portfolioData.projects ?? []
+const projects = getWorkPortfolioProjects()
 
 export default function WorkPortfolioSection() {
   const [activeProject, setActiveProject] = useState(null)
@@ -206,7 +206,21 @@ export default function WorkPortfolioSection() {
 
               <div className="CC__work-portfolio-modal__info">
                 {activeProject.meta ? (
-                  <p className="CC__work-portfolio-modal__meta">{activeProject.meta}</p>
+                  <p className="CC__work-portfolio-modal__meta">
+                    {activeProject.meta}
+                    {activeProject.instagramHandle && activeProject.instagramUrl ? (
+                      <>
+                        {' '}
+                        <a
+                          href={activeProject.instagramUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {activeProject.instagramHandle}
+                        </a>
+                      </>
+                    ) : null}
+                  </p>
                 ) : null}
                 <WorkPortfolioDescription description={activeProject.description} />
               </div>

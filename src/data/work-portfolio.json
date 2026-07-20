@@ -6,8 +6,16 @@
       "platform": "Shopify",
       "visitorsLabel": "217k visitors/month",
       "similarwebUrl": "https://www.similarweb.com/website/weratedogs.com/",
-      "techStack": ["JavaScript", "Liquid", "HTML", "CSS", "Klaviyo"],
-      "meta": "2022 – 2023 · Official merch store for @dog_rates",
+      "techStack": [
+        "JavaScript",
+        "Liquid",
+        "HTML",
+        "CSS",
+        "Klaviyo"
+      ],
+      "meta": "2022 – 2026 · Official merch store for",
+      "instagramHandle": "@weratedogs",
+      "instagramUrl": "https://www.instagram.com/weratedogs/",
       "description": [
         "I started working on \"We Rate Dogs\" with Brian back in 2022. This is a key example of how simplicity is not a synonym of bad strategy in ecom: with an average of 200k monthly visitors, it's clear that social media influence + good products are the heart of ecom, and the website is just the door. A beautiful door doesn't always lead to a beautiful house.",
         {
@@ -54,12 +62,37 @@
       "linkLabel": "weratedogs.com"
     },
     {
+      "id": "lightmybricks",
+      "title": "Light My Bricks",
+      "platform": "Shopify",
+      "visitorsLabel": "95k visitors/month",
+      "similarwebUrl": "https://www.similarweb.com/website/lightmybricks.com/",
+      "techStack": [
+        "JavaScript",
+        "Liquid",
+        "HTML",
+        "CSS"
+      ],
+      "description": [
+        "Light My Bricks is a globally recognized Australian company specializing in LED for LEGO. This theme was meticulously engineered to deliver optimal performance and a top-notch user experience. To achieve this, we abstained from using jQuery and minimized reliance on third-party libraries, except for essential ones such as Flickity for enhanced UX in sliders.",
+        "On the backend, merchants benefit from easy and accessible customization options via the Customize page and metafields."
+      ],
+      "video": "/data-portfolio/light.webm",
+      "link": "https://www.lightmybricks.com/",
+      "linkLabel": "lightmybricks.com"
+    },
+    {
       "id": "zudo",
       "title": "Zudo",
       "platform": "Shopify",
       "visitorsLabel": "24k visitors/month",
       "similarwebUrl": "https://www.similarweb.com/website/zudo.co/#traffic",
-      "techStack": ["JavaScript", "Liquid", "HTML", "CSS"],
+      "techStack": [
+        "JavaScript",
+        "Liquid",
+        "HTML",
+        "CSS"
+      ],
       "description": [
         "I, along with Zudo's owner, Ibraheem Nadeem, have collaborated closely since 2018 to elevate and refine his e-commerce platform.",
         "Our project revolves around a customized theme built upon Archetype's Impulse theme, with a significant emphasis on Conversion Rate Optimization (CRO) and A/B testing. To facilitate this, we've developed specialized sections tailored explicitly for A/B testing purposes.",
@@ -75,9 +108,14 @@
       "platform": "Shopify",
       "visitorsLabel": "2k visitors/month",
       "similarwebUrl": "https://www.similarweb.com/website/sharicca.com/",
-      "techStack": ["JavaScript", "HTML", "CSS", "Liquid"],
+      "techStack": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Liquid"
+      ],
       "description": [
-        "At the request of the Sharicca owner, I coded the entire website from the ground up. The most complex feature was the mega-menu/navigation and hero section, which I rebuilt entirely from the ground up.",
+        "At the request of the Sharicca owner, I coded the entire website from the ground up, based on the Impulse theme. The most complex feature was the mega-menu/navigation and hero section, which I rebuilt entirely from the ground up.",
         "For the hero section, we integrated a dynamic Flickity slideshow to enhance visual engagement. The mega-menu was meticulously coded using only HTML/CSS3, without relying on additional libraries.",
         "By leveraging hover animations, we eliminated the need for JavaScript, ensuring performance and seamless functionality across all devices, including mobile and tablets.",
         "The mega-menu is also wired up to the customize page and navigation items, so the merchant can easily update all of its text, colors, links and icons."
@@ -85,21 +123,6 @@
       "video": "/data-portfolio/sharicca.webm",
       "link": "https://www.sharicca.com/",
       "linkLabel": "sharicca.com"
-    },
-    {
-      "id": "lightmybricks",
-      "title": "Light My Bricks",
-      "platform": "Shopify",
-      "visitorsLabel": "95k visitors/month",
-      "similarwebUrl": "https://www.similarweb.com/website/lightmybricks.com/",
-      "techStack": ["JavaScript", "Liquid", "HTML", "CSS"],
-      "description": [
-        "Light My Bricks is a globally recognized Australian company specializing in LED for LEGO. This theme was meticulously engineered to deliver optimal performance and a top-notch user experience. To achieve this, we abstained from using jQuery and minimized reliance on third-party libraries, except for essential ones such as Flickity for enhanced UX in sliders.",
-        "On the backend, merchants benefit from easy and accessible customization options via the Customize page and metafields."
-      ],
-      "video": "/data-portfolio/light.webm",
-      "link": "https://www.lightmybricks.com/",
-      "linkLabel": "lightmybricks.com"
     }
   ]
 }

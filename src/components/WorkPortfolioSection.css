@@ -210,6 +210,16 @@
   line-height: 1.45;
 }
 
+.CC__work-portfolio-modal__meta a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.CC__work-portfolio-modal__meta a:hover {
+  color: var(--CC__color-text-main);
+}
+
 .CC__work-portfolio-modal__info p {
   color: var(--CC__color-text-muted);
   margin-bottom: 0.85rem;

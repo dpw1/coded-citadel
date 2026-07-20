@@ -3,8 +3,8 @@ import ChromeIcon from './ChromeIcon'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
 import { WorkPortfolioDescription } from './WorkPortfolioDescription'
-import portfolioData from '../data/work-portfolio.json'
 import { appCardInstalls, getAllApps } from '../utils/apps'
+import { getWorkPortfolioProjects } from '../utils/workPortfolio'
 import {
   buildTechFilterOptions,
   getAppTechStack,
@@ -48,7 +48,7 @@ const SHOPIFY_ICON = (
   </svg>
 )
 
-const projects = portfolioData.projects ?? []
+const projects = getWorkPortfolioProjects()
 
 const TABS = [
   {
@@ -448,112 +448,108 @@ export default function WorkRecentTabsSection() {
           aria-labelledby={`work-recent-tab-${activeTab}`}
           className="CC__work-recent__panel"
         >
-          {showShopify ? (
-            <div className="CC__work-portfolio__grid">
-              {visibleProjects.map((project, index) => (
-                <article
-                  key={project.id}
-                  className="CC__work-portfolio-card"
-                  style={{ '--delay': `${index * 70}ms` }}
-                >
-                  <button
-                    type="button"
-                    className="CC__work-portfolio-card__hit"
-                    onClick={() => setActiveProject(project)}
-                    aria-label={
-                      project.video
-                        ? `Watch ${project.title} project video`
-                        : `View ${project.title} case study`
-                    }
+          <div className="CC__work-recent__panel-grid" role="list">
+            {showShopify
+              ? visibleProjects.map((project, index) => (
+                  <article
+                    key={project.id}
+                    className="CC__work-portfolio-card"
+                    style={{ '--delay': `${index * 70}ms` }}
+                    role="listitem"
                   >
-                    {project.video ? (
-                      <video
-                        className="CC__work-portfolio-card__thumb"
-                        src={project.video}
-                        muted
-                        playsInline
-                        preload="metadata"
-                        aria-hidden="true"
-                      />
-                    ) : project.image ? (
-                      <img
-                        className="CC__work-portfolio-card__thumb"
-                        src={project.image}
-                        alt=""
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    ) : (
-                      <div
-                        className="CC__work-portfolio-card__thumb CC__work-portfolio-card__thumb--placeholder"
-                        aria-hidden="true"
-                      />
-                    )}
-                    {project.video ? (
-                      <span className="CC__work-portfolio-card__play" aria-hidden="true">
-                        ▶
+                    <button
+                      type="button"
+                      className="CC__work-portfolio-card__hit"
+                      onClick={() => setActiveProject(project)}
+                      aria-label={
+                        project.video
+                          ? `Watch ${project.title} project video`
+                          : `View ${project.title} case study`
+                      }
+                    >
+                      {project.video ? (
+                        <video
+                          className="CC__work-portfolio-card__thumb"
+                          src={project.video}
+                          muted
+                          playsInline
+                          preload="metadata"
+                          aria-hidden="true"
+                        />
+                      ) : project.image ? (
+                        <img
+                          className="CC__work-portfolio-card__thumb"
+                          src={project.image}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <div
+                          className="CC__work-portfolio-card__thumb CC__work-portfolio-card__thumb--placeholder"
+                          aria-hidden="true"
+                        />
+                      )}
+                      {project.video ? (
+                        <span className="CC__work-portfolio-card__play" aria-hidden="true">
+                          ▶
+                        </span>
+                      ) : project.image ? null : (
+                        <span className="CC__work-portfolio-card__placeholder-mark" aria-hidden="true">
+                          {SHOPIFY_ICON}
+                        </span>
+                      )}
+                    </button>
+                    <div className="CC__work-portfolio-card__overlay">
+                      <span className="CC__work-portfolio-card__name">
+                        <span className="CC__work-portfolio-card__name-icon" aria-hidden="true">
+                          {SHOPIFY_ICON}
+                        </span>
+                        {project.title}
                       </span>
-                    ) : project.image ? null : (
-                      <span className="CC__work-portfolio-card__placeholder-mark" aria-hidden="true">
-                        {SHOPIFY_ICON}
+                      <span className="CC__work-portfolio-card__tag">
+                        {project.platform}
+                        {' · '}
+                        <a
+                          className="CC__work-portfolio-card__visitors"
+                          href={project.similarwebUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {project.visitorsLabel}
+                        </a>
                       </span>
-                    )}
-                  </button>
-                  <div className="CC__work-portfolio-card__overlay">
-                    <span className="CC__work-portfolio-card__name">
-                      <span className="CC__work-portfolio-card__name-icon" aria-hidden="true">
-                        {SHOPIFY_ICON}
-                      </span>
-                      {project.title}
-                    </span>
-                    <span className="CC__work-portfolio-card__tag">
-                      {project.platform}
-                      {' · '}
-                      <a
-                        className="CC__work-portfolio-card__visitors"
-                        href={project.similarwebUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {project.visitorsLabel}
-                      </a>
-                    </span>
-                  </div>
-                </article>
-              ))}
-            </div>
-          ) : null}
+                    </div>
+                  </article>
+                ))
+              : null}
 
-          {showExtensions ? (
-            <div
-              className={`CC__extensions-grid${showShopify ? ' CC__work-recent__extensions--after-shopify' : ''}`}
-              role="list"
-            >
-              {visibleExtensions.map((app, index) => (
-                <ExtensionCard
-                  key={app.slug}
-                  app={app}
-                  index={index}
-                  showInstalls={false}
-                  showUsers={false}
-                  showPublished={false}
-                  showViewMore={false}
-                  showVersion={false}
-                  showVideoStat
-                  showBlogLink
-                  showStoreDownload
-                  onPlayVideo={({ videoId, title: videoTitle, href }) =>
-                    setVideoModal({
-                      open: true,
-                      videoId,
-                      title: videoTitle,
-                      titleHref: href ?? null,
-                    })
-                  }
-                />
-              ))}
-            </div>
-          ) : null}
+            {showExtensions
+              ? visibleExtensions.map((app, index) => (
+                  <ExtensionCard
+                    key={app.slug}
+                    app={app}
+                    index={showShopify ? visibleProjects.length + index : index}
+                    showInstalls={false}
+                    showUsers={false}
+                    showPublished={false}
+                    showViewMore={false}
+                    showVersion={false}
+                    showVideoStat
+                    showBlogLink
+                    showStoreDownload
+                    onPlayVideo={({ videoId, title: videoTitle, href }) =>
+                      setVideoModal({
+                        open: true,
+                        videoId,
+                        title: videoTitle,
+                        titleHref: href ?? null,
+                      })
+                    }
+                  />
+                ))
+              : null}
+          </div>
         </div>
       </section>
 
@@ -615,7 +611,21 @@ export default function WorkRecentTabsSection() {
 
               <div className="CC__work-portfolio-modal__info">
                 {activeProject.meta ? (
-                  <p className="CC__work-portfolio-modal__meta">{activeProject.meta}</p>
+                  <p className="CC__work-portfolio-modal__meta">
+                    {activeProject.meta}
+                    {activeProject.instagramHandle && activeProject.instagramUrl ? (
+                      <>
+                        {' '}
+                        <a
+                          href={activeProject.instagramUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {activeProject.instagramHandle}
+                        </a>
+                      </>
+                    ) : null}
+                  </p>
                 ) : null}
                 <WorkPortfolioDescription description={activeProject.description} />
               </div>
