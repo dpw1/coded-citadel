@@ -648,8 +648,86 @@ function userSetsToCounts(map) {
   return new Map([...map.entries()].map(([k, set]) => [k, set.size]))
 }
 
+function formatChartDate(isoDay) {
+  if (!isoDay) return ''
+  const d = new Date(`${isoDay}T12:00:00`)
+  if (Number.isNaN(d.getTime())) return isoDay
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+}
+
+/** Cumulative unique users by first-seen day (fingerprint). */
+function buildUserGrowthSeries(rows) {
+  const firstSeen = new Map()
+
+  for (const row of rows) {
+    const fpRaw = row?.fingerprint
+    const fingerprint =
+      fpRaw != null && String(fpRaw).trim() !== '' ? String(fpRaw) : null
+    if (!fingerprint) continue
+
+    const created = rowCreatedAt(row)
+    if (!created) continue
+
+    const day = new Date(created)
+    if (Number.isNaN(day.getTime())) continue
+
+    const dayKey = day.toISOString().slice(0, 10)
+    const existing = firstSeen.get(fingerprint)
+    if (!existing || dayKey < existing) firstSeen.set(fingerprint, dayKey)
+  }
+
+  const newUsersByDay = new Map()
+  for (const day of firstSeen.values()) {
+    newUsersByDay.set(day, (newUsersByDay.get(day) || 0) + 1)
+  }
+
+  const sortedDays = [...newUsersByDay.keys()].sort()
+  let cumulative = 0
+
+  return sortedDays.map((day) => {
+    cumulative += newUsersByDay.get(day)
+    return { day, total: cumulative, newUsers: newUsersByDay.get(day) }
+  })
+}
+
+function chartGradientFill(chart, height = 220) {
+  const { ctx } = chart
+  const grad = ctx.createLinearGradient(0, 0, 0, height)
+  grad.addColorStop(0, 'rgba(255,153,0,0.2)')
+  grad.addColorStop(1, 'rgba(255,153,0,0)')
+  return grad
+}
+
 function topEntries(map, limit = 8) {
   return [...map.entries()].sort((a, b) => b[1] - a[1]).slice(0, limit)
+}
+
+/** Collapse date presets into Any vs Specific (everything except "any"). */
+function dateRangeBucket(publishedPreset) {
+  const value = String(publishedPreset ?? 'any').trim().toLowerCase()
+  return value === 'any' ? 'any' : 'specific'
+}
+
+function formatDateRangeLabel(bucket) {
+  if (bucket === 'any') return 'Any'
+  return 'Specific'
+}
+
+function isDefaultSubRange(label) {
+  const normalized = String(label).replace(/\s+/g, '').toLowerCase()
+  return (
+    normalized === '0–∞' ||
+    normalized === '0-∞' ||
+    normalized === '0–infinity' ||
+    normalized === '0-infinity'
+  )
+}
+
+function topSubRanges(map, limit = 10) {
+  return [...map.entries()]
+    .filter(([label]) => !isDefaultSubRange(label))
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
 }
 
 function pct(part, total) {
@@ -756,7 +834,6 @@ function addFeaturePick(featurePickUsers, featureKey, pick, fingerprint) {
 
 function aggregateYt(rows) {
   const presetUsers = new Map()
-  const verifiedUsers = new Map()
   const groupUsers = new Map(FILTER_GROUP_KEYS.map((k) => [k, new Set()]))
   /** @type {Map<string, Set<string>>} subscriber range → unique fingerprints */
   const subRangeUsers = new Map()
@@ -782,8 +859,7 @@ function aggregateYt(rows) {
     normalized += 1
 
     if (fingerprint) {
-      addUserToKey(presetUsers, filter.publishedPreset ?? 'any', fingerprint)
-      addUserToKey(verifiedUsers, filter.verified ?? 'all', fingerprint)
+      addUserToKey(presetUsers, dateRangeBucket(filter.publishedPreset), fingerprint)
 
       FILTER_GROUP_KEYS.forEach((key) => {
         if (isGroupActive(filter[key])) groupUsers.get(key).add(fingerprint)
@@ -848,7 +924,6 @@ function aggregateYt(rows) {
     normalized,
     uniqueUsers: uniqueFingerprints.size,
     presets: userSetsToCounts(presetUsers),
-    verified: userSetsToCounts(verifiedUsers),
     groups: Object.fromEntries(
       FILTER_GROUP_KEYS.map((k) => [k, groupUsers.get(k).size]),
     ),
@@ -970,30 +1045,14 @@ function renderYtCharts() {
     },
   })
 
-  const lineOpts = baseChartOptions({
-    plugins: { legend: { display: false }, tooltip: baseChartOptions().plugins.tooltip },
-    scales: {
-      x: {
-        ticks: { color: CHART_COLORS.tick, font: { family: 'Inter', size: 10 }, maxRotation: 0 },
-        grid: { color: CHART_COLORS.divider },
-      },
-      y: {
-        beginAtZero: true,
-        ticks: { color: CHART_COLORS.tick, font: { family: 'Inter', size: 10 }, precision: 0 },
-        grid: { color: CHART_COLORS.divider },
-      },
-    },
-  })
-
   state.charts.preset = new Chart(document.getElementById('chart-preset'), {
     type: 'doughnut',
-    data: doughnutData(topEntries(stats.presets, 8)),
-    options: doughnutOpts,
-  })
-
-  state.charts.verified = new Chart(document.getElementById('chart-verified'), {
-    type: 'doughnut',
-    data: doughnutData(topEntries(stats.verified, 6)),
+    data: doughnutData(
+      topEntries(stats.presets, 8).map(([bucket, count]) => [
+        formatDateRangeLabel(bucket),
+        count,
+      ]),
+    ),
     options: doughnutOpts,
   })
 
@@ -1020,7 +1079,7 @@ function renderYtCharts() {
   })
   renderFeaturePicks(featureTop, stats.featurePicks)
 
-  const subTop = topEntries(stats.subRanges, 10)
+  const subTop = topSubRanges(stats.subRanges, 10)
   state.charts.subs = new Chart(document.getElementById('chart-subs'), {
     type: 'bar',
     data: barData(
@@ -1031,25 +1090,71 @@ function renderYtCharts() {
     options: barOpts,
   })
 
-  const days = [...stats.byDay.entries()].sort((a, b) => a[0].localeCompare(b[0]))
-  state.charts.timeline = new Chart(document.getElementById('chart-timeline'), {
-    type: 'line',
-    data: {
-      labels: days.map(([day]) => day),
-      datasets: [
-        {
-          data: days.map(([, count]) => count),
-          borderColor: CHART_COLORS.primary,
-          backgroundColor: 'rgba(255, 153, 0, 0.15)',
-          fill: true,
-          tension: 0.3,
-          pointRadius: days.length > 40 ? 0 : 3,
-          pointHoverRadius: 4,
+  const growthSeries = buildUserGrowthSeries(state.ytRows)
+  const growthCanvas = document.getElementById('chart-user-growth')
+  if (growthCanvas && growthSeries.length) {
+    const growthChart = new Chart(growthCanvas, {
+      type: 'line',
+      data: {
+        labels: growthSeries.map((row) => formatChartDate(row.day)),
+        datasets: [
+          {
+            data: growthSeries.map((row) => row.total),
+            borderColor: CHART_COLORS.primary,
+            borderWidth: 2.5,
+            fill: true,
+            backgroundColor: (ctx) => chartGradientFill(ctx.chart, 220),
+            tension: 0.4,
+            pointRadius: growthSeries.length > 40 ? 0 : 4,
+            pointBackgroundColor: CHART_COLORS.primary,
+            pointBorderColor: CHART_COLORS.bg,
+            pointBorderWidth: 2,
+            pointHoverRadius: 6,
+          },
+        ],
+      },
+      options: baseChartOptions({
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            ...baseChartOptions().plugins.tooltip,
+            callbacks: {
+              label: (ctx) => {
+                const row = growthSeries[ctx.dataIndex]
+                const lines = [` ${ctx.parsed.y.toLocaleString()} total users`]
+                if (row?.newUsers != null) {
+                  lines.push(` +${row.newUsers.toLocaleString()} new`)
+                }
+                return lines
+              },
+            },
+          },
         },
-      ],
-    },
-    options: lineOpts,
-  })
+        scales: {
+          x: {
+            ticks: {
+              color: CHART_COLORS.tick,
+              font: { family: 'Inter', size: 10 },
+              maxTicksLimit: 8,
+              maxRotation: 0,
+            },
+            grid: { color: 'rgba(31,38,54,0.5)' },
+          },
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: CHART_COLORS.tick,
+              font: { family: 'Inter', size: 10 },
+              precision: 0,
+            },
+            grid: { color: 'rgba(31,38,54,0.5)' },
+          },
+        },
+      }),
+    })
+    state.charts.userGrowth = growthChart
+  }
 }
 
 function renderYtKpis() {
@@ -1110,10 +1215,12 @@ function renderFeaturePicks(featureTop, featurePicks) {
 async function loadYt() {
   const status = document.getElementById('yt-status')
   const kpis = document.getElementById('yt-kpis')
+  const growth = document.getElementById('yt-user-growth')
   const charts = document.getElementById('yt-charts')
 
   setStatus(status, 'Loading YouTube Filter Pro data…')
   kpis.hidden = true
+  if (growth) growth.hidden = true
   charts.hidden = true
   destroyCharts()
 
@@ -1149,6 +1256,7 @@ async function loadYt() {
 
     setStatus(status, '')
     kpis.hidden = false
+    if (growth) growth.hidden = false
     charts.hidden = false
     renderYtKpis()
     if (!document.getElementById('panel-yt').hidden) {

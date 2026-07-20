@@ -137,7 +137,9 @@ export function mergeChangelogCommits(apps, selectedKeys) {
   for (const app of apps) {
     if (!selectedKeys.has(app.key)) continue
     const enriched = enrichChangelogApp(app)
-    const commits = assignCommitVersions(app.commits ?? [])
+    const commits = assignCommitVersions(app.commits ?? [], {
+      fallbackVersion: enriched.version,
+    })
     for (const commit of commits) {
       rows.push({
         ...commit,
@@ -147,7 +149,7 @@ export function mergeChangelogCommits(apps, selectedKeys) {
         appLabel: enriched.label,
         appIconUrl: enriched.iconUrl,
         appStoreUrl: enriched.storeUrl,
-        appVersion: commit.version ?? null,
+        appVersion: commit.version ?? enriched.version ?? null,
         github: app.github,
         githubPublic: app.githubPublic,
       })

@@ -50,6 +50,19 @@ const SHOPIFY_ICON = (
 
 const projects = getWorkPortfolioProjects()
 
+const PIN_LAST_EXTENSION_SLUG = 'save-directly-to-drive'
+
+function sortExtensionsWithPinnedLast(apps) {
+  const sorted = [...apps].sort(
+    (a, b) => (appCardInstalls(b) ?? 0) - (appCardInstalls(a) ?? 0),
+  )
+  const pinIndex = sorted.findIndex((app) => app.slug === PIN_LAST_EXTENSION_SLUG)
+  if (pinIndex === -1) return sorted
+  const [pinned] = sorted.splice(pinIndex, 1)
+  sorted.push(pinned)
+  return sorted
+}
+
 const TABS = [
   {
     id: 'all',
@@ -103,10 +116,7 @@ export default function WorkRecentTabsSection() {
   const showExtensions = activeTab === 'all' || activeTab === 'extensions'
   const showTechFilters = showExtensions
 
-  const extensions = useMemo(
-    () => [...getAllApps()].sort((a, b) => (appCardInstalls(b) ?? 0) - (appCardInstalls(a) ?? 0)),
-    [],
-  )
+  const extensions = useMemo(() => sortExtensionsWithPinnedLast(getAllApps()), [])
 
   const extensionStacks = useMemo(
     () => extensions.map((app) => getAppTechStack(app)),
@@ -538,6 +548,7 @@ export default function WorkRecentTabsSection() {
                     showVideoStat
                     showBlogLink
                     showStoreDownload
+                    openStoreOnClick
                     onPlayVideo={({ videoId, title: videoTitle, href }) =>
                       setVideoModal({
                         open: true,

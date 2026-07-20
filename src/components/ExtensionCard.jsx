@@ -102,6 +102,7 @@ export default function ExtensionCard({
   showStoreDownload = false,
   showVersion = true,
   showChromeIcon = false,
+  openStoreOnClick = false,
 }) {
   const navigate = useNavigate()
   const live = isAppLive(app)
@@ -143,15 +144,24 @@ export default function ExtensionCard({
     navigate(`/apps/${app.slug}`)
   }
 
-  const handleCardClick = () => {
+  const openCardTarget = () => {
+    if (!live) return
+    if (openStoreOnClick && storeUrl) {
+      window.open(storeUrl, '_blank', 'noopener,noreferrer')
+      return
+    }
     openAppPage()
+  }
+
+  const handleCardClick = () => {
+    openCardTarget()
   }
 
   const handleCardKeyDown = (event) => {
     if (!live) return
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
-      openAppPage()
+      openCardTarget()
     }
   }
 
@@ -212,7 +222,13 @@ export default function ExtensionCard({
       role={live ? 'link' : 'listitem'}
       tabIndex={live ? 0 : undefined}
       style={{ '--delay': `${index * 55}ms` }}
-      aria-label={live ? `View ${displayName}` : displayName}
+      aria-label={
+        live
+          ? openStoreOnClick && storeUrl
+            ? `Open ${displayName} on Chrome Web Store`
+            : `View ${displayName}`
+          : displayName
+      }
       onClick={live ? handleCardClick : undefined}
       onKeyDown={live ? handleCardKeyDown : undefined}
     >

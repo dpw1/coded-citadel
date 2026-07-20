@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-19T22:28:55.297Z",
+  "updatedAt": "2026-07-20T07:39:38.280Z",
   "message": null,
   "apps": [
     {
@@ -12,6 +12,24 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "6f762302c934cdad5c3f2a838e94e4138dd95d26",
+          "shortSha": "6f76230",
+          "message": "Add coffee support pitch to export completion messages in multiple languages. Update localization files for German, English, Spanish, French, Japanese, Korean, and Chinese. Adjust toast dismissal timing in content scripts for improved user experience.",
+          "date": "2026-07-19T23:29:10Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/gmail-export/commit/6f762302c934cdad5c3f2a838e94e4138dd95d26",
+          "version": "1.0.89"
+        },
+        {
+          "sha": "ff7e1e8c1813e93cd79fd617e56cbb0d9095c4d3",
+          "shortSha": "ff7e1e8",
+          "message": "Update Gmail export extension to version 1.0.89. Enhance bulk export functionality by introducing new options for downloading multiple emails as a single ZIP file, along with improved localization for various languages. Update build scripts to streamline the static build process and ensure consistency across environments. Revise manifest and localization files to reflect these changes.",
+          "date": "2026-07-19T23:24:04Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/gmail-export/commit/ff7e1e8c1813e93cd79fd617e56cbb0d9095c4d3",
+          "version": "1.0.89"
+        },
         {
           "sha": "03427a62e8fe4e302f6e497b372ee6519a14a0e8",
           "shortSha": "03427a6",

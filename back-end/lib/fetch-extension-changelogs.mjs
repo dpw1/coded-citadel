@@ -63,6 +63,7 @@ function loadAppsById() {
       slug: app.slug,
       name: app.name ?? app.slug,
       status: app.status,
+      version: app.version ?? null,
       github,
       repo: parseGithubRepoUrl(github),
     }
@@ -89,7 +90,7 @@ function normalizeCommit(entry, repoUrl) {
   }
 }
 
-async function fetchRepoChangelog({ repo, github }, token) {
+async function fetchRepoChangelog({ repo, github, version }, token) {
   const repoPath = `/repos/${repo.owner}/${repo.repo}`
   const meta = await githubGet(repoPath, token)
   const commits = await githubGet(`${repoPath}/commits?per_page=${COMMITS_PER_REPO}`, token)
@@ -100,6 +101,7 @@ async function fetchRepoChangelog({ repo, github }, token) {
     defaultBranch: meta.default_branch ?? 'main',
     commits: assignCommitVersions(
       Array.isArray(commits) ? commits.map((entry) => normalizeCommit(entry, github)) : [],
+      { fallbackVersion: version },
     ),
   }
 }

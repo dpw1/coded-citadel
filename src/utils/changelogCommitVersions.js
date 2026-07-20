@@ -12,10 +12,10 @@ export function parseVersionFromChangelogMessage(message) {
 /**
  * Attach a `version` to each commit using message bumps, walking oldest → newest
  * so non-bump commits inherit the last known version.
- * Preserves any existing `version` on a commit (e.g. from a prior fetch).
+ * Commits with no parseable history fall back to `fallbackVersion` (current catalog).
  * Input order is preserved (typically newest-first from GitHub).
  */
-export function assignCommitVersions(commits) {
+export function assignCommitVersions(commits, { fallbackVersion = null } = {}) {
   if (!Array.isArray(commits) || !commits.length) return []
 
   const indexed = commits.map((commit, index) => ({ commit, index }))
@@ -33,11 +33,17 @@ export function assignCommitVersions(commits) {
   for (const { commit, index } of oldestFirst) {
     const parsed = parseVersionFromChangelogMessage(commit.message)
     if (parsed) version = parsed
-    versionByIndex.set(index, commit.version ?? version)
+    const assigned = commit.version ?? version
+    versionByIndex.set(index, assigned ?? null)
   }
+
+  const catalogFallback =
+    fallbackVersion != null && String(fallbackVersion).trim() !== ''
+      ? String(fallbackVersion).trim()
+      : null
 
   return commits.map((commit, index) => ({
     ...commit,
-    version: versionByIndex.get(index) ?? null,
+    version: versionByIndex.get(index) ?? catalogFallback,
   }))
 }

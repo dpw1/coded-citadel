@@ -73,9 +73,8 @@ function ChevronDownIcon() {
 }
 
 function versionLabel(commit) {
-  if (commit.appVersion) return `v${commit.appVersion}`
-  if (commit.shortSha) return `#${commit.shortSha}`
-  return null
+  if (!commit.appVersion) return null
+  return `v${commit.appVersion}`
 }
 
 export default function ExtensionChangelogBlock({

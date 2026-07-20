@@ -245,6 +245,84 @@ code {
   word-break: break-word;
 }
 
+.CC__cyber-accent {
+  position: relative;
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: calc(var(--CC__radius) * 1.5);
+}
+
+.CC__cyber-accent__corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.CC__cyber-accent__corner svg {
+  width: 100%;
+  height: 100%;
+}
+
+.CC__cyber-accent__corner--tl {
+  top: -2px;
+  left: -2px;
+}
+
+.CC__cyber-accent__corner--tr {
+  top: -2px;
+  right: -2px;
+  transform: scaleX(-1);
+}
+
+.CC__cyber-accent__corner--bl {
+  bottom: -2px;
+  left: -2px;
+  transform: scaleY(-1);
+}
+
+.CC__cyber-accent__corner--br {
+  bottom: -2px;
+  right: -2px;
+  transform: scale(-1);
+}
+
+.admin__growth-chart {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.admin__growth-chart__title {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--CC__color-text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.admin__growth-chart__subtitle {
+  color: var(--CC__color-text-muted);
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.admin__growth-chart__canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.admin__growth-chart__canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .admin__toolbar {
   display: flex;
   align-items: center;

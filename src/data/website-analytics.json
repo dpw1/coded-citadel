@@ -1,27 +1,27 @@
 {
   "available": true,
-  "updatedAt": "2026-07-19T22:28:46.992Z",
+  "updatedAt": "2026-07-20T07:39:27.875Z",
   "message": null,
-  "totalViews": 2228,
+  "totalViews": 2269,
   "blogViews": 54,
-  "averageTimeOnSiteSeconds": 152.54498535870968,
-  "uniqueVisitors": 1247,
+  "averageTimeOnSiteSeconds": 154.93257376708863,
+  "uniqueVisitors": 1273,
   "newVsReturning": {
-    "new": 1239,
-    "returning": 170
+    "new": 1267,
+    "returning": 171
   },
   "mostViewedPages": [
     {
       "path": "/thank-you/",
-      "views": 1146
+      "views": 1178
     },
     {
       "path": "/",
-      "views": 491
+      "views": 492
     },
     {
       "path": "/uninstall/",
-      "views": 325
+      "views": 331
     },
     {
       "path": "/apps",
@@ -29,7 +29,7 @@
     },
     {
       "path": "/live-stats",
-      "views": 43
+      "views": 45
     },
     {
       "path": "/blog/",
@@ -58,14 +58,14 @@
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 330
+      "users": 333
     },
     {
       "code": "US",
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 233
+      "users": 239
     },
     {
       "code": "PK",
@@ -79,7 +79,7 @@
       "name": "Japan",
       "gaCountry": "Japan",
       "gaCountryId": "JP",
-      "users": 44
+      "users": 48
     },
     {
       "code": "BR",
@@ -121,7 +121,7 @@
       "name": "Indonesia",
       "gaCountry": "Indonesia",
       "gaCountryId": "ID",
-      "users": 23
+      "users": 25
     },
     {
       "code": "GB",
@@ -135,13 +135,20 @@
       "name": "Russia",
       "gaCountry": "Russia",
       "gaCountryId": "RU",
-      "users": 21
+      "users": 22
     },
     {
       "code": "DE",
       "name": "Germany",
       "gaCountry": "Germany",
       "gaCountryId": "DE",
+      "users": 20
+    },
+    {
+      "code": "TR",
+      "name": "Türkiye",
+      "gaCountry": "Türkiye",
+      "gaCountryId": "TR",
       "users": 20
     },
     {
@@ -159,13 +166,6 @@
       "users": 19
     },
     {
-      "code": "TR",
-      "name": "Türkiye",
-      "gaCountry": "Türkiye",
-      "gaCountryId": "TR",
-      "users": 19
-    },
-    {
       "code": "FR",
       "name": "France",
       "gaCountry": "France",
@@ -180,6 +180,13 @@
       "users": 15
     },
     {
+      "code": "TH",
+      "name": "Thailand",
+      "gaCountry": "Thailand",
+      "gaCountryId": "TH",
+      "users": 15
+    },
+    {
       "code": "CN",
       "name": "China",
       "gaCountry": "China",
@@ -187,18 +194,11 @@
       "users": 12
     },
     {
-      "code": "TH",
-      "name": "Thailand",
-      "gaCountry": "Thailand",
-      "gaCountryId": "TH",
-      "users": 12
-    },
-    {
       "code": "VN",
       "name": "Vietnam",
       "gaCountry": "Vietnam",
       "gaCountryId": "VN",
-      "users": 11
+      "users": 12
     },
     {
       "code": "CL",
@@ -208,31 +208,31 @@
       "users": 10
     },
     {
-      "code": "ES",
-      "name": "Spain",
-      "gaCountry": "Spain",
-      "gaCountryId": "ES",
-      "users": 9
-    },
-    {
       "code": "MA",
       "name": "Morocco",
       "gaCountry": "Morocco",
       "gaCountryId": "MA",
-      "users": 9
+      "users": 10
     },
     {
-      "code": "PH",
-      "name": "Philippines",
-      "gaCountry": "Philippines",
-      "gaCountryId": "PH",
+      "code": "TW",
+      "name": "Taiwan",
+      "gaCountry": "Taiwan",
+      "gaCountryId": "TW",
+      "users": 10
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "gaCountry": "Spain",
+      "gaCountryId": "ES",
       "users": 9
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 1420
+      "sessions": 1451
     },
     {
       "source": "Organic Search",
@@ -244,7 +244,7 @@
     },
     {
       "source": "Unassigned",
-      "sessions": 21
+      "sessions": 32
     },
     {
       "source": "Organic Social",
@@ -262,7 +262,7 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 1420
+      "sessions": 1451
     },
     {
       "referrer": "google",
@@ -274,7 +274,7 @@
     },
     {
       "referrer": "(not set)",
-      "sessions": 21
+      "sessions": 32
     },
     {
       "referrer": "bing",
@@ -485,7 +485,11 @@
       },
       {
         "date": "19-07-2026",
-        "total": 70
+        "total": 91
+      },
+      {
+        "date": "20-07-2026",
+        "total": 20
       }
     ],
     "activeUsers": [
@@ -671,7 +675,11 @@
       },
       {
         "date": "19-07-2026",
-        "total": 53
+        "total": 65
+      },
+      {
+        "date": "20-07-2026",
+        "total": 15
       }
     ],
     "blogViews": [
@@ -858,6 +866,10 @@
       {
         "date": "19-07-2026",
         "total": 0
+      },
+      {
+        "date": "20-07-2026",
+        "total": 0
       }
     ],
     "sessions": [
@@ -1043,7 +1055,11 @@
       },
       {
         "date": "19-07-2026",
-        "total": 60
+        "total": 73
+      },
+      {
+        "date": "20-07-2026",
+        "total": 17
       }
     ]
   }
