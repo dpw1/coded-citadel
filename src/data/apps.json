@@ -1,9 +1,8 @@
 {
-  "updatedAt": "2026-07-19",
+  "updatedAt": "2026-07-20",
   "apps": [
     {
       "slug": "hide-reposts-for-bluesky",
-      "folder": "D:\\Web Dev\\ChromeExtension\\bluesky-hide-repost",
       "chromeExtensionId": "amcnbfpogccggckogifbdjekbammlahl",
       "name": "Hide Reposts for Bluesky",
       "icon": "⚡",
@@ -14,7 +13,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/amcnbfpogccggckogifbdjekbammlahl",
       "version": "1.0.2",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "Social Media",
       "platform": "Google Chrome",
       "description": {
@@ -24,21 +23,10 @@
       "audience": [],
       "features": [],
       "buildStory": {
-        "youtubeUrl": "https://www.youtube.com/watch?v=njZZ3n7bpTI",
+        "youtubeUrl": "https://www.youtube.com/watch?v=FwX8JoBLRm0",
         "builtInDays": null,
-        "techStack": [
-          "JavaScript",
-          "React 19",
-          "Vite",
-          "CRXJS",
-          "Chrome Extension Manifest V3",
-          "chrome.storage",
-          "chrome.i18n",
-          "Bluesky AT Protocol",
-          "MutationObserver"
-        ],
-        "episode": "",
-        "technicalHighlights": "I reverse-engineered Bluesky session storage to pull the signed-in DID and JWT, then used that to paginate the official following graph API and drive per-account hide controls. The hard part was Bluesky virtualized feed: MutationObserver plus scroll hooks hide only Following-tab reposts, while a composite reposter-plus-permalink key keeps counts honest when the same posts reappear in the DOM. When filtering empties the timeline, the extension backfills more feed content automatically so the UX does not collapse into a blank page."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -47,7 +35,7 @@
         "https://lh3.googleusercontent.com/JaX-Gay5X_C9fW2L7BrsESHKVrEnMjv72QANVcqAs4TmcBSpDSCC8Ynczydzc3HW09WrptgC1l1n-dVHUYeFisHKag"
       ],
       "analytics": {
-        "totalInstalls": 28,
+        "totalInstalls": 30,
         "installations": [
           {
             "date": "03-07-2026",
@@ -111,6 +99,10 @@
           },
           {
             "date": "18-07-2026",
+            "total": 2
+          },
+          {
+            "date": "19-07-2026",
             "total": 2
           }
         ],
@@ -178,11 +170,15 @@
           {
             "date": "18-07-2026",
             "total": 3
+          },
+          {
+            "date": "19-07-2026",
+            "total": 3
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 25,
+          "US": 27,
           "BR": 2
         },
         "uninstalls": 0,
@@ -250,10 +246,14 @@
           {
             "date": "18-07-2026",
             "total": 0
+          },
+          {
+            "date": "19-07-2026",
+            "total": 0
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 19,
+        "pageViews": 20,
         "pageViewsOverTime": [
           {
             "date": "03-07-2026",
@@ -286,10 +286,14 @@
           {
             "date": "18-07-2026",
             "total": 1
+          },
+          {
+            "date": "19-07-2026",
+            "total": 1
           }
         ],
         "pageViewsBySource": {},
-        "impressions": 44,
+        "impressions": 45,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "03-07-2026",
@@ -346,6 +350,10 @@
           {
             "date": "17-07-2026",
             "total": 5
+          },
+          {
+            "date": "19-07-2026",
+            "total": 1
           }
         ],
         "enabledVsDisabled": {
@@ -354,7 +362,7 @@
           "enabledPct": 100,
           "disabledPct": 0,
           "total": 3,
-          "date": "18-07-2026",
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
@@ -485,10 +493,19 @@
             "enabledPct": 100,
             "disabledPct": 0,
             "total": 3
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 3,
+            "disabled": 0,
+            "enabledPct": 100,
+            "disabledPct": 0,
+            "total": 3
           }
         ]
       },
       "youtubeHowToUse": "https://www.youtube.com/watch?v=njZZ3n7bpTI",
+      "youtube": "https://www.youtube.com/watch?v=njZZ3n7bpTI",
       "created": "July 2, 2026",
       "tags": [
         "chromeExtension",
@@ -500,14 +517,12 @@
         "youtube-filter-pro",
         "dex"
       ],
-      "youtube": "https://www.youtube.com/watch?v=njZZ3n7bpTI",
       "download": "https://chromewebstore.google.com/detail/hide-reposts-for-bluesky/amcnbfpogccggckogifbdjekbammlahl",
       "quickStart": "<ul><li>On bsky.app, click Hide Reposts in the sidebar.</li><li>Turn hiding on or off with one toggle.</li><li>Choose which followed accounts to filter using checkboxes (search, paginate, or select all).</li><li>Close the menu and keep scrolling — reposts from selected accounts are hidden on your Following tab in real time.</li><li>Your settings are saved automatically and synced across Chrome sessions.</li></ul>",
       "quickStartHash": "452c919d91021178"
     },
     {
       "slug": "gmail-to-pdf",
-      "folder": "D:\\Web Dev\\ChromeExtension\\gmail-exporter",
       "chromeExtensionId": "bhagkmlelgbjbklgafgdjeebkdhlibjf",
       "name": "Gmail to PDF: Save Emails as PDF, HTML, TXT",
       "icon": "⚡",
@@ -517,8 +532,8 @@
       "price": "Free",
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/bhagkmlelgbjbklgafgdjeebkdhlibjf",
-      "version": "1.0.88",
-      "lastUpdated": "2026-07-19",
+      "version": "1.0.89",
+      "lastUpdated": "2026-07-20",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -530,20 +545,8 @@
       "buildStory": {
         "youtubeUrl": "https://www.youtube.com/watch?v=GgeOk4pjaSI",
         "builtInDays": null,
-        "techStack": [
-          "JavaScript",
-          "React",
-          "Vite",
-          "Chrome Extension Manifest V3",
-          "html2canvas",
-          "jsPDF",
-          "JSZip",
-          "Domino",
-          "IndexedDB",
-          "chrome.i18n"
-        ],
-        "episode": "",
-        "technicalHighlights": "I pull Gmail print-view HTML in-page, then either rasterize it to PDF with html2canvas and jsPDF or hand large HTML through IndexedDB into a dedicated print tab because service workers cannot ferry blobs the normal way. Domino lets the background rewrite email DOM without a real document window, while JSZip packs attachments under a same-origin URL allowlist. The React popup drives multi-format export with full chrome.i18n localization."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -554,10 +557,6 @@
       "analytics": {
         "totalInstalls": 70,
         "installations": [
-          {
-            "date": "19-06-2026",
-            "total": 4
-          },
           {
             "date": "20-06-2026",
             "total": 3
@@ -669,13 +668,13 @@
           {
             "date": "18-07-2026",
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "total": 4
           }
         ],
         "weeklyUsers": [
-          {
-            "date": "19-06-2026",
-            "total": 2
-          },
           {
             "date": "20-06-2026",
             "total": 3
@@ -791,11 +790,15 @@
           {
             "date": "18-07-2026",
             "total": 15
+          },
+          {
+            "date": "19-07-2026",
+            "total": 17
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 52,
+          "US": 50,
           "BR": 3,
           "IN": 2,
           "GB": 1,
@@ -804,10 +807,6 @@
         },
         "uninstalls": 14,
         "uninstallsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 1
-          },
           {
             "date": "23-06-2026",
             "total": 1
@@ -847,15 +846,15 @@
           {
             "date": "15-07-2026",
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "total": 1
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 104,
+        "pageViews": 106,
         "pageViewsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 7
-          },
           {
             "date": "20-06-2026",
             "total": 1
@@ -955,6 +954,10 @@
           {
             "date": "18-07-2026",
             "total": 4
+          },
+          {
+            "date": "19-07-2026",
+            "total": 9
           }
         ],
         "pageViewsBySource": {
@@ -962,12 +965,8 @@
           "ext_app_menu": 2,
           "chatgpt_com": 2
         },
-        "impressions": 322,
+        "impressions": 342,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "19-06-2026",
-            "total": 2
-          },
           {
             "date": "21-06-2026",
             "total": 4
@@ -1079,26 +1078,22 @@
           {
             "date": "18-07-2026",
             "total": 11
+          },
+          {
+            "date": "19-07-2026",
+            "total": 22
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 5,
-          "disabled": 3,
-          "enabledPct": 62.5,
-          "disabledPct": 37.5,
-          "total": 8,
-          "date": "18-07-2026",
+          "enabled": 9,
+          "disabled": 5,
+          "enabledPct": 64.3,
+          "disabledPct": 35.7,
+          "total": 14,
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "19-06-2026",
-            "enabled": 2,
-            "disabled": 0,
-            "enabledPct": 100,
-            "disabledPct": 0,
-            "total": 2
-          },
           {
             "date": "20-06-2026",
             "enabled": 3,
@@ -1330,6 +1325,14 @@
             "enabledPct": 62.5,
             "disabledPct": 37.5,
             "total": 8
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 9,
+            "disabled": 5,
+            "enabledPct": 64.3,
+            "disabledPct": 35.7,
+            "total": 14
           }
         ]
       },
@@ -1353,7 +1356,6 @@
     },
     {
       "slug": "dex",
-      "folder": "D:\\Web Dev\\ChromeExtension\\discord-export",
       "chromeExtensionId": "cdagimhkcpohhjipcnpaaebppnmgegjo",
       "name": "DEX: Export Discord messages, channels & attachments",
       "icon": "⚡",
@@ -1364,7 +1366,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/cdagimhkcpohhjipcnpaaebppnmgegjo",
       "version": "1.0.05",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "Social Media",
       "platform": "Google Chrome",
       "description": {
@@ -1376,20 +1378,8 @@
       "buildStory": {
         "youtubeUrl": "#",
         "builtInDays": null,
-        "techStack": [
-          "TypeScript",
-          "React 19",
-          "Vite",
-          "Chrome Extension Manifest V3",
-          "Discord API v9",
-          "html2canvas",
-          "pdf-lib",
-          "JSZip",
-          "chrome.i18n",
-          "UI/UX Design"
-        ],
-        "episode": "",
-        "technicalHighlights": "A MAIN-world hook captures Discord Authorization headers from live XHR traffic once, then the isolated UI drives Discord API v9 with snowflake date bounds, newest-first pagination, and 429-aware retries. PDF export renders conversation HTML in a hidden iframe, captures it with html2canvas, and slices the result into multipage PDFs via pdf-lib. Channels and DMs export to HTML, PDF, Markdown, TXT, and JSON without leaving Discord, with JSZip for attachment bulk downloads."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -1398,7 +1388,7 @@
         "https://lh3.googleusercontent.com/T3taDYk0NMkaj13dj-P7MSX8BSjVXV4YvYapqbDyivbDQ3dBUkCduP1wJJ6nmdr3JPRFmeB1k6cMXIf4pwqhY-68p-A"
       ],
       "analytics": {
-        "totalInstalls": 27,
+        "totalInstalls": 29,
         "installations": [
           {
             "date": "02-07-2026",
@@ -1467,6 +1457,10 @@
           {
             "date": "18-07-2026",
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "total": 2
           }
         ],
         "weeklyUsers": [
@@ -1533,11 +1527,15 @@
           {
             "date": "18-07-2026",
             "total": 4
+          },
+          {
+            "date": "19-07-2026",
+            "total": 4
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 22,
+          "US": 24,
           "IN": 1
         },
         "uninstalls": 0,
@@ -1609,6 +1607,10 @@
           {
             "date": "18-07-2026",
             "total": 0
+          },
+          {
+            "date": "19-07-2026",
+            "total": 0
           }
         ],
         "uninstallsByRegion": {},
@@ -1666,7 +1668,7 @@
         "pageViewsBySource": {
           "ext_sidebar": 1
         },
-        "impressions": 147,
+        "impressions": 156,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "02-07-2026",
@@ -1735,15 +1737,19 @@
           {
             "date": "18-07-2026",
             "total": 13
+          },
+          {
+            "date": "19-07-2026",
+            "total": 9
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 2,
+          "enabled": 3,
           "disabled": 0,
           "enabledPct": 100,
           "disabledPct": 0,
-          "total": 2,
-          "date": "18-07-2026",
+          "total": 3,
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
@@ -1874,6 +1880,14 @@
             "enabledPct": 100,
             "disabledPct": 0,
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 3,
+            "disabled": 0,
+            "enabledPct": 100,
+            "disabledPct": 0,
+            "total": 3
           }
         ]
       },
@@ -1897,7 +1911,6 @@
     },
     {
       "slug": "youtube-filter-pro",
-      "folder": "D:\\Web Dev\\ChromeExtension\\youtube-search-filters",
       "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
       "name": "Youtube Filter Pro: filter by views, duration, date, and more",
       "icon": "⚡",
@@ -1908,7 +1921,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/dbkkcbfafkckhmefkpgnelikibobcabb",
       "version": "1.0.53",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "Social Media",
       "platform": "Google Chrome",
       "description": {
@@ -1918,21 +1931,10 @@
       "audience": [],
       "features": [],
       "buildStory": {
-        "youtubeUrl": "https://www.youtube.com/watch?v=-saFrB1W9ug",
+        "youtubeUrl": "https://www.youtube.com/watch?v=U9RfbwYkqfM",
         "builtInDays": null,
-        "techStack": [
-          "TypeScript",
-          "Vite",
-          "CRXJS",
-          "Chrome Extension Manifest V3",
-          "FingerprintJS",
-          "Supabase",
-          "chrome.storage",
-          "chrome.i18n",
-          "UI/UX Design"
-        ],
-        "episode": "2",
-        "technicalHighlights": "A document-start MAIN-world agent traps YouTube initial search payloads and patches fetch so youtubei search continuations stream structured video data into the isolated filter engine instead of brittle DOM scraping. Filters apply live with auto-scroll backfill, URL-synced state, and enrichment for subscribers, likes, and views per day. Anonymous usage telemetry posts to Supabase REST keyed by a FingerprintJS visitor id stored locally."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -1941,12 +1943,8 @@
         "https://lh3.googleusercontent.com/_U6Y86Wae1sM2e2HhtpeVwgKyy50ftN25r5jWp7CKjgzw3XzFe2TL3WSuGhxROU317Pf5bhAAZGoAznpOYVarSBn"
       ],
       "analytics": {
-        "totalInstalls": 428,
+        "totalInstalls": 455,
         "installations": [
-          {
-            "date": "19-06-2026",
-            "total": 4
-          },
           {
             "date": "20-06-2026",
             "total": 2
@@ -2062,13 +2060,13 @@
           {
             "date": "18-07-2026",
             "total": 26
+          },
+          {
+            "date": "19-07-2026",
+            "total": 31
           }
         ],
         "weeklyUsers": [
-          {
-            "date": "19-06-2026",
-            "total": 53
-          },
           {
             "date": "20-06-2026",
             "total": 54
@@ -2184,23 +2182,23 @@
           {
             "date": "18-07-2026",
             "total": 337
+          },
+          {
+            "date": "19-07-2026",
+            "total": 355
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 115,
-          "IN": 36,
-          "BR": 21,
+          "US": 117,
+          "IN": 41,
+          "BR": 22,
           "CA": 9,
-          "GB": 8,
+          "DE": 8,
           "other": 12
         },
-        "uninstalls": 181,
+        "uninstalls": 193,
         "uninstallsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 4
-          },
           {
             "date": "21-06-2026",
             "total": 2
@@ -2308,15 +2306,15 @@
           {
             "date": "18-07-2026",
             "total": 3
+          },
+          {
+            "date": "19-07-2026",
+            "total": 16
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 919,
+        "pageViews": 985,
         "pageViewsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 6
-          },
           {
             "date": "20-06-2026",
             "total": 7
@@ -2432,24 +2430,25 @@
           {
             "date": "18-07-2026",
             "total": 51
+          },
+          {
+            "date": "19-07-2026",
+            "total": 72
           }
         ],
         "pageViewsBySource": {
-          "ext_app_menu": 25,
-          "ext_sidebar": 63,
-          "chatgpt_com": 45,
+          "ext_app_menu": 26,
+          "ext_sidebar": 62,
+          "chatgpt_com": 50,
           "app-launcher": 8,
           "chrome-remove-extension-dialog": 2,
           "google": 1,
           "bgads1": 4,
-          "perplexity": 2
+          "perplexity": 2,
+          "chrome-app-launcher": 2
         },
-        "impressions": 2534,
+        "impressions": 2855,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "19-06-2026",
-            "total": 16
-          },
           {
             "date": "20-06-2026",
             "total": 15
@@ -2565,26 +2564,22 @@
           {
             "date": "18-07-2026",
             "total": 272
+          },
+          {
+            "date": "19-07-2026",
+            "total": 337
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 179,
-          "disabled": 35,
-          "enabledPct": 83.6,
-          "disabledPct": 16.4,
-          "total": 214,
-          "date": "18-07-2026",
+          "enabled": 187,
+          "disabled": 37,
+          "enabledPct": 83.5,
+          "disabledPct": 16.5,
+          "total": 224,
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "19-06-2026",
-            "enabled": 18,
-            "disabled": 13,
-            "enabledPct": 58.1,
-            "disabledPct": 41.9,
-            "total": 31
-          },
           {
             "date": "20-06-2026",
             "enabled": 19,
@@ -2816,6 +2811,14 @@
             "enabledPct": 83.6,
             "disabledPct": 16.4,
             "total": 214
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 187,
+            "disabled": 37,
+            "enabledPct": 83.5,
+            "disabledPct": 16.5,
+            "total": 224
           }
         ]
       },
@@ -2839,7 +2842,6 @@
     },
     {
       "slug": "claude-deep-search",
-      "folder": "D:\\Web Dev\\ChromeExtension\\claude-search",
       "chromeExtensionId": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
       "name": "Claude Message Search: Search Across All Your Past Conversations",
       "icon": "⚡",
@@ -2850,7 +2852,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
       "version": "1.0.08",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "AI Assistant",
       "platform": "Google Chrome",
       "description": {
@@ -2862,16 +2864,8 @@
       "buildStory": {
         "youtubeUrl": "https://www.youtube.com/watch?v=GxNi1OxwVIQ",
         "builtInDays": null,
-        "techStack": [
-          "JavaScript",
-          "Chrome Extension Manifest V3",
-          "IndexedDB",
-          "Claude web API",
-          "MutationObserver",
-          "chrome.storage"
-        ],
-        "episode": "",
-        "technicalHighlights": "I pull conversations from Claude organization chat APIs in batched fetches with retry and backoff, then store everything locally in IndexedDB with a precomputed lowercase search field for private full-text phrase matching. MutationObservers keep the search UI alive across Claude SPA navigations and drive in-conversation highlight handoff via deep-link hashes. The index auto-repairs corrupt schemas and keeps a single long-lived database connection to avoid Chromium open and close races. No bundler in this one—plain MV3 scripts shipped as-is."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -2881,12 +2875,8 @@
         "https://lh3.googleusercontent.com/cpNwIBaKNxEhvOJC8Tnk7In0kGzDLyUarbXCbqdKaH090L-O-e1x0MheXVw7ssP9PVq0u57dHT6rUlw3j8M3koBKDS8"
       ],
       "analytics": {
-        "totalInstalls": 59,
+        "totalInstalls": 62,
         "installations": [
-          {
-            "date": "19-06-2026",
-            "total": 1
-          },
           {
             "date": "20-06-2026",
             "total": 1
@@ -2998,13 +2988,13 @@
           {
             "date": "18-07-2026",
             "total": 4
+          },
+          {
+            "date": "19-07-2026",
+            "total": 4
           }
         ],
         "weeklyUsers": [
-          {
-            "date": "19-06-2026",
-            "total": 1
-          },
           {
             "date": "20-06-2026",
             "total": 1
@@ -3120,17 +3110,21 @@
           {
             "date": "18-07-2026",
             "total": 14
+          },
+          {
+            "date": "19-07-2026",
+            "total": 15
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 44,
+          "US": 46,
           "IN": 2,
-          "CA": 1,
+          "GB": 2,
           "BR": 1,
-          "GB": 1
+          "CA": 1
         },
-        "uninstalls": 11,
+        "uninstalls": 12,
         "uninstallsOverTime": [
           {
             "date": "24-06-2026",
@@ -3159,10 +3153,14 @@
           {
             "date": "18-07-2026",
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "total": 1
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 86,
+        "pageViews": 91,
         "pageViewsOverTime": [
           {
             "date": "20-06-2026",
@@ -3251,10 +3249,14 @@
           {
             "date": "18-07-2026",
             "total": 5
+          },
+          {
+            "date": "19-07-2026",
+            "total": 5
           }
         ],
         "pageViewsBySource": {},
-        "impressions": 121,
+        "impressions": 127,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "20-06-2026",
@@ -3343,26 +3345,22 @@
           {
             "date": "18-07-2026",
             "total": 6
+          },
+          {
+            "date": "19-07-2026",
+            "total": 6
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 10,
+          "enabled": 12,
           "disabled": 1,
-          "enabledPct": 90.9,
-          "disabledPct": 9.1,
-          "total": 11,
-          "date": "18-07-2026",
+          "enabledPct": 92.3,
+          "disabledPct": 7.7,
+          "total": 13,
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "19-06-2026",
-            "enabled": 1,
-            "disabled": 0,
-            "enabledPct": 100,
-            "disabledPct": 0,
-            "total": 1
-          },
           {
             "date": "20-06-2026",
             "enabled": 1,
@@ -3594,6 +3592,14 @@
             "enabledPct": 90.9,
             "disabledPct": 9.1,
             "total": 11
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 12,
+            "disabled": 1,
+            "enabledPct": 92.3,
+            "disabledPct": 7.7,
+            "total": 13
           }
         ]
       },
@@ -3617,7 +3623,6 @@
     },
     {
       "slug": "instagram-comments-exporter",
-      "folder": "D:\\Web Dev\\ChromeExtension\\instagram-comments-exporter",
       "chromeExtensionId": "dpfdehgiffggecppcbkdacbifbljeiii",
       "name": "Instagram Comments Exporter: Export comments to CSV, JSON, XLSX, or TXT",
       "icon": "⚡",
@@ -3628,7 +3633,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/dpfdehgiffggecppcbkdacbifbljeiii",
       "version": "1.0.14",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "Social Media",
       "platform": "Google Chrome",
       "description": {
@@ -3640,18 +3645,8 @@
       "buildStory": {
         "youtubeUrl": "https://www.youtube.com/watch?v=XAoQX6iUgK0",
         "builtInDays": null,
-        "techStack": [
-          "JavaScript",
-          "React 19",
-          "Vite",
-          "Chrome Extension Manifest V3",
-          "SheetJS",
-          "Instagram private web API",
-          "chrome.storage",
-          "UI/UX Design"
-        ],
-        "episode": "",
-        "technicalHighlights": "Extraction hits Instagram media and child-comment endpoints with session cookies and CSRF headers, walking nested reply cursors while persisting full job state including pause positions in chrome.storage.local. Rate limits and checkpoint redirects become first-class blocked states with backoff and resume-on-reopen across SPA navigations. Exports cover CSV, JSON, TXT, and Excel via SheetJS from an on-page widget plus a React popup."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -3660,12 +3655,8 @@
         "https://lh3.googleusercontent.com/cH5ziTnmB2zybyB8KKAhOmq9bwt47KXlLZkNnWo7TtKBlattOFtPe4lGkiVSxPDy8yUJeel83ZMFHNWpMa8Z5d-EhWI"
       ],
       "analytics": {
-        "totalInstalls": 45,
+        "totalInstalls": 43,
         "installations": [
-          {
-            "date": "19-06-2026",
-            "total": 3
-          },
           {
             "date": "20-06-2026",
             "total": 1
@@ -3777,6 +3768,10 @@
           {
             "date": "18-07-2026",
             "total": 1
+          },
+          {
+            "date": "19-07-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -3823,11 +3818,15 @@
           {
             "date": "18-07-2026",
             "total": 7
+          },
+          {
+            "date": "19-07-2026",
+            "total": 7
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 39,
+          "US": 37,
           "IN": 3
         },
         "uninstalls": 2,
@@ -3842,12 +3841,8 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 23,
+        "pageViews": 20,
         "pageViewsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 3
-          },
           {
             "date": "21-06-2026",
             "total": 2
@@ -3895,15 +3890,11 @@
         ],
         "pageViewsBySource": {
           "copilot_com": 2,
-          "ext_sidebar": 1,
-          "ext_app_menu": 1
+          "ext_app_menu": 1,
+          "ext_sidebar": 1
         },
-        "impressions": 62,
+        "impressions": 61,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "19-06-2026",
-            "total": 2
-          },
           {
             "date": "20-06-2026",
             "total": 3
@@ -3991,15 +3982,19 @@
           {
             "date": "17-07-2026",
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "total": 1
           }
         ],
         "enabledVsDisabled": {
           "enabled": 3,
-          "disabled": 1,
-          "enabledPct": 75,
-          "disabledPct": 25,
-          "total": 4,
-          "date": "18-07-2026",
+          "disabled": 0,
+          "enabledPct": 100,
+          "disabledPct": 0,
+          "total": 3,
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
@@ -4090,6 +4085,14 @@
             "enabledPct": 75,
             "disabledPct": 25,
             "total": 4
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 3,
+            "disabled": 0,
+            "enabledPct": 100,
+            "disabledPct": 0,
+            "total": 3
           }
         ]
       },
@@ -4114,7 +4117,6 @@
     },
     {
       "slug": "youtube-comments-exporter",
-      "folder": "D:\\Web Dev\\ChromeExtension\\youtube-comments-export",
       "chromeExtensionId": "epokpidfnienjjfncmhnallghfhaijbj",
       "name": "Youtube Comments Exporter: Bulk Export to CSV, XLSX & TXT",
       "icon": "⚡",
@@ -4125,7 +4127,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/epokpidfnienjjfncmhnallghfhaijbj",
       "version": "1.0.35",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "Social Media",
       "platform": "Google Chrome",
       "description": {
@@ -4137,23 +4139,8 @@
       "buildStory": {
         "youtubeUrl": "https://www.youtube.com/watch?v=X4jAFNkBCzc",
         "builtInDays": null,
-        "techStack": [
-          "TypeScript",
-          "React 18",
-          "Vite",
-          "CRXJS",
-          "Chrome Side Panel",
-          "Zustand",
-          "TanStack Table",
-          "SheetJS",
-          "Supabase Edge Functions",
-          "IndexedDB",
-          "YouTube Data API v3",
-          "chrome.i18n",
-          "UI/UX Design"
-        ],
-        "episode": "",
-        "technicalHighlights": "The UX lives in Chrome Side Panel with Zustand state persisted through a chrome.storage.sync adapter, while comment history sits in IndexedDB for revisit and re-export. Fetching goes through Supabase Edge Functions that call YouTube Data API v3 server-side so the API key never ships in the extension. TanStack Table powers sortable filterable grids, and SheetJS covers CSV, JSON, TXT, and XLSX export."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -4164,10 +4151,6 @@
       "analytics": {
         "totalInstalls": 40,
         "installations": [
-          {
-            "date": "19-06-2026",
-            "total": 1
-          },
           {
             "date": "20-06-2026",
             "total": 1
@@ -4279,6 +4262,10 @@
           {
             "date": "18-07-2026",
             "total": 1
+          },
+          {
+            "date": "19-07-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -4357,6 +4344,10 @@
           {
             "date": "18-07-2026",
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "total": 2
           }
         ],
         "weeklyUsersByRegion": {},
@@ -4380,12 +4371,8 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 26,
+        "pageViews": 25,
         "pageViewsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 1
-          },
           {
             "date": "22-06-2026",
             "total": 1
@@ -4503,7 +4490,7 @@
           "enabledPct": 100,
           "disabledPct": 0,
           "total": 1,
-          "date": "18-07-2026",
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
@@ -4634,6 +4621,14 @@
             "enabledPct": 100,
             "disabledPct": 0,
             "total": 1
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 1,
+            "disabled": 0,
+            "enabledPct": 100,
+            "disabledPct": 0,
+            "total": 1
           }
         ]
       },
@@ -4659,7 +4654,6 @@
     },
     {
       "slug": "ai-bookmark",
-      "folder": "D:\\Web Dev\\ChromeExtension\\ai-bookmark",
       "chromeExtensionId": "golankbkfnepjbpcekbcglcfgmbpgnmb",
       "name": "AI Bookmark: Save & Revisit AI Replies - Claude, ChatGPT, Grok",
       "icon": "⚡",
@@ -4670,7 +4664,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/golankbkfnepjbpcekbcglcfgmbpgnmb",
       "version": "1.0.37",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "AI Assistant",
       "platform": "Google Chrome",
       "description": {
@@ -4682,20 +4676,8 @@
       "buildStory": {
         "youtubeUrl": "https://www.youtube.com/watch?v=WA5xLTMyykE",
         "builtInDays": null,
-        "techStack": [
-          "JavaScript",
-          "React 18",
-          "Vite",
-          "CRXJS",
-          "Chrome Extension Manifest V3",
-          "Supabase",
-          "Chrome Identity OAuth",
-          "MutationObserver",
-          "react-tag-input",
-          "UI/UX Design"
-        ],
-        "episode": "",
-        "technicalHighlights": "Platform-specific content scripts for Claude, ChatGPT, and Grok inject bookmark stars via MutationObserver and sync reply snapshots through a Supabase-backed service worker with Google OAuth via Chrome Identity. Reopening a bookmark retries scroll-to-reply until the saved turn is in the DOM, so deep chats still land on the exact message. Shared content helpers are inlined per platform bundle so each content script stays self-contained."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -4704,12 +4686,8 @@
         "https://lh3.googleusercontent.com/kc-0y6wbYDjhIfPed-ByVqpY_IVUwFSk0DlEkyIxN4nTzP0FZFAXhEuEmmUacqvq4Llvt6KZzc_yDtbgHBzBaNweOMU"
       ],
       "analytics": {
-        "totalInstalls": 43,
+        "totalInstalls": 41,
         "installations": [
-          {
-            "date": "19-06-2026",
-            "total": 4
-          },
           {
             "date": "20-06-2026",
             "total": 1
@@ -4821,6 +4799,10 @@
           {
             "date": "18-07-2026",
             "total": 1
+          },
+          {
+            "date": "19-07-2026",
+            "total": 2
           }
         ],
         "weeklyUsers": [
@@ -4927,20 +4909,21 @@
           {
             "date": "18-07-2026",
             "total": 3
+          },
+          {
+            "date": "19-07-2026",
+            "total": 4
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 38,
+          "US": 35,
           "BR": 2,
-          "IN": 1
+          "IN": 1,
+          "CA": 1
         },
-        "uninstalls": 5,
+        "uninstalls": 4,
         "uninstallsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 1
-          },
           {
             "date": "24-06-2026",
             "total": 1
@@ -4955,7 +4938,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 26,
+        "pageViews": 28,
         "pageViewsOverTime": [
           {
             "date": "21-06-2026",
@@ -5024,15 +5007,15 @@
           {
             "date": "18-07-2026",
             "total": 3
+          },
+          {
+            "date": "19-07-2026",
+            "total": 2
           }
         ],
         "pageViewsBySource": {},
-        "impressions": 88,
+        "impressions": 84,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "19-06-2026",
-            "total": 4
-          },
           {
             "date": "20-06-2026",
             "total": 1
@@ -5139,12 +5122,12 @@
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 2,
+          "enabled": 3,
           "disabled": 0,
           "enabledPct": 100,
           "disabledPct": 0,
-          "total": 2,
-          "date": "18-07-2026",
+          "total": 3,
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
@@ -5331,6 +5314,14 @@
             "enabledPct": 100,
             "disabledPct": 0,
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 3,
+            "disabled": 0,
+            "enabledPct": 100,
+            "disabledPct": 0,
+            "total": 3
           }
         ]
       },
@@ -5356,7 +5347,6 @@
     },
     {
       "slug": "instagram-dm-exporter",
-      "folder": "D:\\Web Dev\\ChromeExtension\\instagram-dm-export",
       "chromeExtensionId": "hgojieiehkjgjhdnbglfhbcojeeggigi",
       "name": "Instagram DM Exporter",
       "icon": "⚡",
@@ -5367,7 +5357,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/hgojieiehkjgjhdnbglfhbcojeeggigi",
       "version": "1.0.33",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "Social Media",
       "platform": "Google Chrome",
       "description": {
@@ -5379,17 +5369,8 @@
       "buildStory": {
         "youtubeUrl": "https://www.youtube.com/watch?v=IzrBfg349Eo",
         "builtInDays": null,
-        "techStack": [
-          "JavaScript",
-          "Vite",
-          "Chrome Extension Manifest V3",
-          "fflate",
-          "Instagram GraphQL API",
-          "chrome.storage",
-          "UI/UX Design"
-        ],
-        "episode": "",
-        "technicalHighlights": "Conversation history comes from Instagram authenticated GraphQL message lists with cursor pagination, session tokens scraped from the page, and filters for date range or message count while skipping reaction noise. A deep media parser walks typed attachment nodes and downloads CDN assets with credentialed fetches. Exports ship as TXT, self-contained HTML with inlined media, or JSON, with optional attachment archives built in-browser via fflate."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -5398,12 +5379,8 @@
         "https://lh3.googleusercontent.com/8nUi-UqhiqO4lv675yIH9Yt1SNmWKxUelj9IItLgjo_QU64tgJsKWoKVLszaZ5K0CjjalYJ4otjJgaSNwi4hdbzl"
       ],
       "analytics": {
-        "totalInstalls": 194,
+        "totalInstalls": 204,
         "installations": [
-          {
-            "date": "19-06-2026",
-            "total": 3
-          },
           {
             "date": "20-06-2026",
             "total": 2
@@ -5519,13 +5496,13 @@
           {
             "date": "18-07-2026",
             "total": 9
+          },
+          {
+            "date": "19-07-2026",
+            "total": 13
           }
         ],
         "weeklyUsers": [
-          {
-            "date": "19-06-2026",
-            "total": 40
-          },
           {
             "date": "20-06-2026",
             "total": 39
@@ -5641,6 +5618,10 @@
           {
             "date": "18-07-2026",
             "total": 165
+          },
+          {
+            "date": "19-07-2026",
+            "total": 169
           }
         ],
         "weeklyUsersByRegion": {},
@@ -5654,10 +5635,6 @@
         },
         "uninstalls": 75,
         "uninstallsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 1
-          },
           {
             "date": "21-06-2026",
             "total": 2
@@ -5753,15 +5730,15 @@
           {
             "date": "18-07-2026",
             "total": 6
+          },
+          {
+            "date": "19-07-2026",
+            "total": 1
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 311,
+        "pageViews": 323,
         "pageViewsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 8
-          },
           {
             "date": "20-06-2026",
             "total": 2
@@ -5877,21 +5854,21 @@
           {
             "date": "18-07-2026",
             "total": 20
+          },
+          {
+            "date": "19-07-2026",
+            "total": 20
           }
         ],
         "pageViewsBySource": {
-          "app-launcher": 1,
           "quora-answer": 3,
+          "app-launcher": 1,
           "ext_sidebar": 17,
-          "item-share-cb": 1,
-          "ext_app_menu": 2
+          "ext_app_menu": 2,
+          "item-share-cb": 1
         },
-        "impressions": 380,
+        "impressions": 393,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "19-06-2026",
-            "total": 4
-          },
           {
             "date": "21-06-2026",
             "total": 7
@@ -6003,26 +5980,22 @@
           {
             "date": "18-07-2026",
             "total": 31
+          },
+          {
+            "date": "19-07-2026",
+            "total": 17
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 64,
-          "disabled": 35,
-          "enabledPct": 64.6,
-          "disabledPct": 35.4,
-          "total": 99,
-          "date": "18-07-2026",
+          "enabled": 70,
+          "disabled": 38,
+          "enabledPct": 64.8,
+          "disabledPct": 35.2,
+          "total": 108,
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "19-06-2026",
-            "enabled": 24,
-            "disabled": 4,
-            "enabledPct": 85.7,
-            "disabledPct": 14.3,
-            "total": 28
-          },
           {
             "date": "20-06-2026",
             "enabled": 25,
@@ -6254,6 +6227,14 @@
             "enabledPct": 64.6,
             "disabledPct": 35.4,
             "total": 99
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 70,
+            "disabled": 38,
+            "enabledPct": 64.8,
+            "disabledPct": 35.2,
+            "total": 108
           }
         ]
       },
@@ -6278,7 +6259,6 @@
     },
     {
       "slug": "save-directly-to-drive",
-      "folder": "D:\\Web Dev\\ChromeExtension\\save-to-drive",
       "chromeExtensionId": "jadjgiiaompdjacagaomgogdihbpgcpg",
       "name": "Save to Google Drive: Use Drive as Your Downloads Folder",
       "icon": "⚡",
@@ -6289,7 +6269,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/jadjgiiaompdjacagaomgogdihbpgcpg",
       "version": "1.0.40",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "Productivity",
       "platform": "Google Chrome",
       "description": {
@@ -6301,18 +6281,8 @@
       "buildStory": {
         "youtubeUrl": "https://www.youtube.com/watch?v=RpVfrhAHSvw",
         "builtInDays": null,
-        "techStack": [
-          "JavaScript",
-          "Vite",
-          "Chrome Extension Manifest V3",
-          "Google OAuth 2.0",
-          "Google Drive API v3",
-          "Chrome Downloads API",
-          "Chrome Context Menus",
-          "chrome.i18n"
-        ],
-        "episode": "",
-        "technicalHighlights": "I can treat Drive as a downloads folder by intercepting Chrome download events, optionally prompting before save, and mirroring files with Drive file-scope OAuth through Chrome Identity including silent token refresh. Uploads use Drive create-then-media-upload with folder lookup caching and quota checks before wasting a transfer. Blob-URL downloads are recovered through a page-context fetch in the content script, with context-menu save-link and multi-locale chrome.i18n covering the rest."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -6321,12 +6291,8 @@
         "https://lh3.googleusercontent.com/4il8Zk_U9ovRI7kVIUbN8VCMJjVl7NbqzRcZFJ2wZYPwCvRKK41ndzJJi61fl3UoVB1zew7k6qwfUgPQ5DqhqLZ1aQ"
       ],
       "analytics": {
-        "totalInstalls": 205,
+        "totalInstalls": 207,
         "installations": [
-          {
-            "date": "19-06-2026",
-            "total": 4
-          },
           {
             "date": "20-06-2026",
             "total": 3
@@ -6442,13 +6408,13 @@
           {
             "date": "18-07-2026",
             "total": 7
+          },
+          {
+            "date": "19-07-2026",
+            "total": 6
           }
         ],
         "weeklyUsers": [
-          {
-            "date": "19-06-2026",
-            "total": 2
-          },
           {
             "date": "20-06-2026",
             "total": 3
@@ -6564,18 +6530,22 @@
           {
             "date": "18-07-2026",
             "total": 90
+          },
+          {
+            "date": "19-07-2026",
+            "total": 101
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 74,
+          "US": 71,
           "IN": 21,
           "BR": 8,
-          "GB": 4,
+          "GB": 5,
           "CA": 2,
           "other": 4
         },
-        "uninstalls": 67,
+        "uninstalls": 71,
         "uninstallsOverTime": [
           {
             "date": "20-06-2026",
@@ -6672,15 +6642,15 @@
           {
             "date": "18-07-2026",
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "total": 4
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 439,
+        "pageViews": 456,
         "pageViewsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 3
-          },
           {
             "date": "20-06-2026",
             "total": 7
@@ -6796,20 +6766,21 @@
           {
             "date": "18-07-2026",
             "total": 23
+          },
+          {
+            "date": "19-07-2026",
+            "total": 20
           }
         ],
         "pageViewsBySource": {
-          "ext_app_menu": 42,
-          "ext_sidebar": 87,
-          "app-launcher": 4,
-          "openai": 1
+          "ext_app_menu": 47,
+          "ext_sidebar": 88,
+          "app-launcher": 5,
+          "openai": 1,
+          "chrome-app-launcher": 1
         },
-        "impressions": 6863,
+        "impressions": 7051,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "19-06-2026",
-            "total": 95
-          },
           {
             "date": "20-06-2026",
             "total": 113
@@ -6925,15 +6896,19 @@
           {
             "date": "18-07-2026",
             "total": 272
+          },
+          {
+            "date": "19-07-2026",
+            "total": 283
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 39,
-          "disabled": 10,
-          "enabledPct": 79.6,
-          "disabledPct": 20.4,
-          "total": 49,
-          "date": "18-07-2026",
+          "enabled": 52,
+          "disabled": 14,
+          "enabledPct": 78.8,
+          "disabledPct": 21.2,
+          "total": 66,
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
@@ -7168,6 +7143,14 @@
             "enabledPct": 79.6,
             "disabledPct": 20.4,
             "total": 49
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 52,
+            "disabled": 14,
+            "enabledPct": 78.8,
+            "disabledPct": 21.2,
+            "total": 66
           }
         ]
       },
@@ -7190,7 +7173,6 @@
     },
     {
       "slug": "claude-limit-monitor",
-      "folder": "D:\\Web Dev\\ChromeExtension\\claude-usage",
       "chromeExtensionId": "mljfhcfnjbfibedpiaheeihpbjajfcal",
       "name": "Claude Limit Monitor: Track Free Usage & When Limit Resets",
       "icon": "⚡",
@@ -7201,7 +7183,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/mljfhcfnjbfibedpiaheeihpbjajfcal",
       "version": "1.0.04",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "AI Assistant",
       "platform": "Google Chrome",
       "description": {
@@ -7213,20 +7195,8 @@
       "buildStory": {
         "youtubeUrl": "https://www.youtube.com/watch?v=iyXIi6pNq-M",
         "builtInDays": null,
-        "techStack": [
-          "JavaScript",
-          "Vite",
-          "Chrome Extension Manifest V3",
-          "Fetch API patching",
-          "Server-Sent Events",
-          "Claude usage API",
-          "MutationObserver",
-          "Chrome Alarms",
-          "Chrome Notifications",
-          "UI/UX Design"
-        ],
-        "episode": "",
-        "technicalHighlights": "Usage is tracked by polling Claude organization usage endpoints while patching window fetch so completion streams can be tee’d—one branch keeps chat working, the other scans SSE payloads for message-limit events. A MutationObserver and send-button listeners refresh meters right after you message, and an injectable pill UI is driven from raw HTML and CSS samples. Chrome alarms fire optional reset notifications when the parsed reset time arrives."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -7235,12 +7205,8 @@
         "https://lh3.googleusercontent.com/sHA-Ktoe5FbTQS1jmsF1oH4aEEAW2SWRiskAtiVZLbQGo5jm4P2qMVRdkWapQk5ac4oSTk4vykVTD-hO86JpXYvW6g"
       ],
       "analytics": {
-        "totalInstalls": 427,
+        "totalInstalls": 453,
         "installations": [
-          {
-            "date": "19-06-2026",
-            "total": 5
-          },
           {
             "date": "20-06-2026",
             "total": 4
@@ -7356,13 +7322,13 @@
           {
             "date": "18-07-2026",
             "total": 26
+          },
+          {
+            "date": "19-07-2026",
+            "total": 31
           }
         ],
         "weeklyUsers": [
-          {
-            "date": "19-06-2026",
-            "total": 44
-          },
           {
             "date": "20-06-2026",
             "total": 49
@@ -7478,23 +7444,23 @@
           {
             "date": "18-07-2026",
             "total": 374
+          },
+          {
+            "date": "19-07-2026",
+            "total": 392
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "IN": 170,
-          "US": 67,
+          "IN": 178,
+          "US": 70,
           "GB": 5,
+          "CA": 5,
           "AU": 4,
-          "CA": 3,
-          "other": 5
+          "other": 7
         },
-        "uninstalls": 111,
+        "uninstalls": 117,
         "uninstallsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 1
-          },
           {
             "date": "21-06-2026",
             "total": 1
@@ -7594,15 +7560,15 @@
           {
             "date": "18-07-2026",
             "total": 4
+          },
+          {
+            "date": "19-07-2026",
+            "total": 7
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 936,
+        "pageViews": 998,
         "pageViewsOverTime": [
-          {
-            "date": "19-06-2026",
-            "total": 10
-          },
           {
             "date": "20-06-2026",
             "total": 7
@@ -7718,22 +7684,22 @@
           {
             "date": "18-07-2026",
             "total": 59
+          },
+          {
+            "date": "19-07-2026",
+            "total": 72
           }
         ],
         "pageViewsBySource": {
-          "ext_app_menu": 34,
-          "ext_sidebar": 130,
-          "app-launcher": 5,
+          "ext_sidebar": 136,
           "chatgpt_com": 7,
+          "ext_app_menu": 32,
+          "app-launcher": 5,
           "chrome-remove-extension-dialog": 1,
           "bgads": 1
         },
-        "impressions": 6546,
+        "impressions": 6945,
         "impressionsAcrossChromeWebStore": [
-          {
-            "date": "19-06-2026",
-            "total": 34
-          },
           {
             "date": "20-06-2026",
             "total": 37
@@ -7849,26 +7815,22 @@
           {
             "date": "18-07-2026",
             "total": 300
+          },
+          {
+            "date": "19-07-2026",
+            "total": 433
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 262,
+          "enabled": 290,
           "disabled": 5,
-          "enabledPct": 98.1,
-          "disabledPct": 1.9,
-          "total": 267,
-          "date": "18-07-2026",
+          "enabledPct": 98.3,
+          "disabledPct": 1.7,
+          "total": 295,
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
-          {
-            "date": "19-06-2026",
-            "enabled": 34,
-            "disabled": 0,
-            "enabledPct": 100,
-            "disabledPct": 0,
-            "total": 34
-          },
           {
             "date": "20-06-2026",
             "enabled": 28,
@@ -8100,6 +8062,14 @@
             "enabledPct": 98.1,
             "disabledPct": 1.9,
             "total": 267
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 290,
+            "disabled": 5,
+            "enabledPct": 98.3,
+            "disabledPct": 1.7,
+            "total": 295
           }
         ]
       },
@@ -8123,7 +8093,6 @@
     },
     {
       "slug": "youtube-keyword-alert",
-      "folder": "D:\\Web Dev\\ChromeExtension\\youtube-keyword-alert",
       "chromeExtensionId": "pniolepdakiocafjiibgiabkcdhgkfep",
       "name": "YouTube Keyword Alert: Get Notified When a Video Appears on YouTube",
       "icon": "⚡",
@@ -8134,7 +8103,7 @@
       "revenue": "$0",
       "chromeStoreUrl": "https://chromewebstore.google.com/detail/pniolepdakiocafjiibgiabkcdhgkfep",
       "version": "1.0.07",
-      "lastUpdated": "2026-07-19",
+      "lastUpdated": "2026-07-20",
       "category": "Social Media",
       "platform": "Google Chrome",
       "description": {
@@ -8146,19 +8115,8 @@
       "buildStory": {
         "youtubeUrl": "https://www.youtube.com/watch?v=CdIXEKUTewE",
         "builtInDays": null,
-        "techStack": [
-          "JavaScript",
-          "React 18",
-          "Vite",
-          "Chrome Extension Manifest V3",
-          "YouTube InnerTube API",
-          "Chrome Alarms",
-          "Chrome Notifications",
-          "chrome.i18n",
-          "UI/UX Design"
-        ],
-        "episode": "",
-        "technicalHighlights": "Background polling scrapes and caches YouTube InnerTube client config from the homepage, then hits youtubei search with session cookies—refreshing config automatically on 403—so keyword alerts work without an official API key. Filters compose search queries plus post-filters for duration, subscribers, verified channels, and include or exclude rules, with channel metadata enriched from page bootstraps. A React manager and a separately bundled content script share storage and alarms for scheduled checks and desktop notifications across locales."
+        "techStack": [],
+        "episode": ""
       },
       "primaryKeywords": [],
       "geo": [],
@@ -8167,7 +8125,7 @@
         "https://lh3.googleusercontent.com/oh--Cj76kNhHplIm7ubiPx_SO2eVlgCNDfFYwjgra_N8guL3NW1-7J0MhDyx6DtfnGnlPSCUwnfu0g1KZlPjip0KVg"
       ],
       "analytics": {
-        "totalInstalls": 40,
+        "totalInstalls": 41,
         "installations": [
           {
             "date": "22-06-2026",
@@ -8272,6 +8230,10 @@
           {
             "date": "18-07-2026",
             "total": 1
+          },
+          {
+            "date": "19-07-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -8350,11 +8312,15 @@
           {
             "date": "18-07-2026",
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "total": 2
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 37
+          "US": 38
         },
         "uninstalls": 3,
         "uninstallsOverTime": [
@@ -8372,7 +8338,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 40,
+        "pageViews": 42,
         "pageViewsOverTime": [
           {
             "date": "22-06-2026",
@@ -8437,15 +8403,19 @@
           {
             "date": "18-07-2026",
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "total": 2
           }
         ],
         "pageViewsBySource": {
-          "app-launcher": 2,
           "ext_app_menu": 1,
-          "bgads1": 1,
-          "ext_sidebar": 2
+          "app-launcher": 2,
+          "ext_sidebar": 2,
+          "bgads1": 1
         },
-        "impressions": 381,
+        "impressions": 389,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "22-06-2026",
@@ -8554,6 +8524,10 @@
           {
             "date": "18-07-2026",
             "total": 12
+          },
+          {
+            "date": "19-07-2026",
+            "total": 8
           }
         ],
         "enabledVsDisabled": {
@@ -8562,7 +8536,7 @@
           "enabledPct": 100,
           "disabledPct": 0,
           "total": 2,
-          "date": "18-07-2026",
+          "date": "19-07-2026",
           "slices": []
         },
         "enabledVsDisabledOverTime": [
@@ -8693,6 +8667,14 @@
             "enabledPct": 100,
             "disabledPct": 0,
             "total": 2
+          },
+          {
+            "date": "19-07-2026",
+            "enabled": 2,
+            "disabled": 0,
+            "enabledPct": 100,
+            "disabledPct": 0,
+            "total": 2
           }
         ]
       },
@@ -8717,8 +8699,8 @@
     }
   ],
   "portfolioStats": {
-    "totalActiveUsers": 1016,
-    "activeUsersDelta7d": 302,
+    "totalActiveUsers": 1071,
+    "activeUsersDelta7d": 357,
     "baselineDate": "2026-07-13",
     "baselineTotalActiveUsers": 714,
     "byApp": [
@@ -8732,9 +8714,9 @@
       {
         "slug": "gmail-to-pdf",
         "chromeExtensionId": "bhagkmlelgbjbklgafgdjeebkdhlibjf",
-        "now": 15,
+        "now": 17,
         "baseline": 13,
-        "delta": 2
+        "delta": 4
       },
       {
         "slug": "dex",
@@ -8746,16 +8728,16 @@
       {
         "slug": "youtube-filter-pro",
         "chromeExtensionId": "dbkkcbfafkckhmefkpgnelikibobcabb",
-        "now": 337,
+        "now": 355,
         "baseline": 207,
-        "delta": 130
+        "delta": 148
       },
       {
         "slug": "claude-deep-search",
         "chromeExtensionId": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
-        "now": 14,
+        "now": 15,
         "baseline": 8,
-        "delta": 6
+        "delta": 7
       },
       {
         "slug": "instagram-comments-exporter",
@@ -8774,30 +8756,30 @@
       {
         "slug": "ai-bookmark",
         "chromeExtensionId": "golankbkfnepjbpcekbcglcfgmbpgnmb",
-        "now": 3,
+        "now": 4,
         "baseline": 3,
-        "delta": 0
+        "delta": 1
       },
       {
         "slug": "instagram-dm-exporter",
         "chromeExtensionId": "hgojieiehkjgjhdnbglfhbcojeeggigi",
-        "now": 165,
+        "now": 169,
         "baseline": 125,
-        "delta": 40
+        "delta": 44
       },
       {
         "slug": "save-directly-to-drive",
         "chromeExtensionId": "jadjgiiaompdjacagaomgogdihbpgcpg",
-        "now": 90,
+        "now": 101,
         "baseline": 65,
-        "delta": 25
+        "delta": 36
       },
       {
         "slug": "claude-limit-monitor",
         "chromeExtensionId": "mljfhcfnjbfibedpiaheeihpbjajfcal",
-        "now": 374,
+        "now": 392,
         "baseline": 282,
-        "delta": 92
+        "delta": 110
       },
       {
         "slug": "youtube-keyword-alert",
@@ -8807,8 +8789,8 @@
         "delta": 0
       }
     ],
-    "totalInstalls": 1606,
-    "installsDelta7d": -26,
+    "totalInstalls": 1675,
+    "installsDelta7d": 43,
     "baselineTotalInstalls": 1632,
     "computedAt": "2026-07-20"
   }
