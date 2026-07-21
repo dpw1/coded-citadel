@@ -16,6 +16,7 @@ import ThankYouPage from './pages/ThankYouPage'
 import UninstallPage from './pages/UninstallPage'
 import WorkPage from './pages/WorkPage'
 import ContactPage from './pages/ContactPage'
+import NotFoundPage from './pages/NotFoundPage'
 import { pluginPath, pluginsIndexPath } from './utils/plugins'
 
 function PluginSlugRedirect() {
@@ -48,6 +49,7 @@ function AppRoutes() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/stats" element={<Navigate to="/live-stats" replace />} />
         <Route path="/extensions" element={<Navigate to="/apps" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   )
