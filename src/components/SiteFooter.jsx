@@ -15,11 +15,7 @@ export default function SiteFooter() {
             <span className="CC__logo-text">CODED CITADEL</span>
           </Link>
           <p>
-            Coding in public
-            <br />
-            until I make $100k USD.
-            <br />
-            One app at a time.
+            Senior dev coding in public.
           </p>
         </div>
         <div>

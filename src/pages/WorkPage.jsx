@@ -102,20 +102,6 @@ export default function WorkPage() {
               apps/projects.
             </p>
 
-            <p>So far, I was able to:</p>
-
-            <ul className="CC__work-page__list">
-              <li>
-                Build &amp; deploy 12 chrome extensions within 52 days (documented everything
-                step-by-step on my <Link to="/blog">blog</Link> and on{' '}
-                <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
-                  youtube
-                </a>
-                )
-              </li>
-              <li>Close a Shopify project for $1400 USD (through Coded Citadel)</li>
-            </ul>
-
             <p>
               If you&apos;re looking to hire a reliable developer, whether you want your project to be
               featured on my page or remain anonymous, feel free to reach out.
