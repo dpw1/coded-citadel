@@ -157,6 +157,10 @@ function applyCustomDataToApp(app, custom) {
   if (!custom) return app
   for (const [key, value] of Object.entries(custom)) {
     if (key === 'id' || value === undefined) continue
+    if (key === 'buildStory' && value && typeof value === 'object' && !Array.isArray(value)) {
+      app.buildStory = { ...(app.buildStory ?? {}), ...value }
+      continue
+    }
     app[key] = value
   }
   return app

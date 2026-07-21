@@ -21,7 +21,21 @@
         "youtube-comments-exporter"
       ],
       "quickStart": "<ul><li>On any YouTube page, click the Filters button in the top bar (next to the search controls).</li><li>Run a search as usual — filtering applies on the search results page.</li><li>Videos that don’t match your criteria are hidden or faded in place, in real time, as results load and as you scroll.</li><li>Your filter settings are saved and restored automatically across sessions (synced via Chrome).</li></ul>",
-      "quickStartHash": "4601af45c7cb7801"
+      "quickStartHash": "4601af45c7cb7801",
+      "buildStory": {
+        "techStack": [
+          "TypeScript",
+          "Vite",
+          "CRXJS",
+          "Chrome Extension Manifest V3",
+          "FingerprintJS",
+          "Supabase",
+          "chrome.storage",
+          "chrome.i18n",
+          "UI/UX Design"
+        ],
+        "technicalHighlights": "A document-start MAIN-world agent traps YouTube initial search payloads and patches fetch so youtubei search continuations stream structured video data into the isolated filter engine instead of brittle DOM scraping. Filters apply live with auto-scroll backfill, URL-synced state, and enrichment for subscribers, likes, and views per day. Anonymous usage telemetry posts to Supabase REST keyed by a FingerprintJS visitor id stored locally."
+      }
     },
     {
       "id": "dfkkbbcdbjaecgnaocgfonoodmfmkmmm",
@@ -43,7 +57,18 @@
         "ai-bookmark"
       ],
       "quickStart": "<ul><li>Install the extension</li><li>Click on the button &quot;Deep Search&quot; below the &quot;Search&quot; button (or press Ctrl+Shift+F on Windows/Linux, ⌘⇧F on Mac)</li><li>Search away!</li></ul>",
-      "quickStartHash": "e12769def1f779be"
+      "quickStartHash": "e12769def1f779be",
+      "buildStory": {
+        "techStack": [
+          "JavaScript",
+          "Chrome Extension Manifest V3",
+          "IndexedDB",
+          "Claude web API",
+          "MutationObserver",
+          "chrome.storage"
+        ],
+        "technicalHighlights": "I pull conversations from Claude organization chat APIs in batched fetches with retry and backoff, then store everything locally in IndexedDB with a precomputed lowercase search field for private full-text phrase matching. MutationObservers keep the search UI alive across Claude SPA navigations and drive in-conversation highlight handoff via deep-link hashes. The index auto-repairs corrupt schemas and keeps a single long-lived database connection to avoid Chromium open and close races."
+      }
     },
     {
       "id": "epokpidfnienjjfncmhnallghfhaijbj",
@@ -67,7 +92,25 @@
         "instagram-comments-exporter"
       ],
       "quickStart": "<ul><li>Pin the extension icon in Chrome’s toolbar for quick access (click the puzzle piece, then pin).</li><li>Click the extension icon in your toolbar to open it. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li><li>Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas</li></ul>",
-      "quickStartHash": "18e528f6f9593b88"
+      "quickStartHash": "18e528f6f9593b88",
+      "buildStory": {
+        "techStack": [
+          "TypeScript",
+          "React 18",
+          "Vite",
+          "CRXJS",
+          "Chrome Side Panel",
+          "Zustand",
+          "TanStack Table",
+          "SheetJS",
+          "Supabase Edge Functions",
+          "IndexedDB",
+          "YouTube Data API v3",
+          "chrome.i18n",
+          "UI/UX Design"
+        ],
+        "technicalHighlights": "The UX lives in Chrome Side Panel with Zustand state persisted through a chrome.storage.sync adapter, while comment history sits in IndexedDB for revisit and re-export. Fetching goes through Supabase Edge Functions that call YouTube Data API v3 server-side so the API key never ships in the extension. TanStack Table powers sortable filterable grids, and SheetJS covers CSV, JSON, TXT, and XLSX export."
+      }
     },
     {
       "id": "hgojieiehkjgjhdnbglfhbcojeeggigi",
@@ -90,7 +133,19 @@
         "dex"
       ],
       "quickStart": "<ul><li>Pin the extension icon in Chrome’s toolbar for quick access (click the puzzle piece, then pin).</li><li>Click the extension icon in your toolbar to open it. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li><li>Exporting Instagram messages in the official way takes a long time</li></ul>",
-      "quickStartHash": "0b9cd4f79cfacb4e"
+      "quickStartHash": "0b9cd4f79cfacb4e",
+      "buildStory": {
+        "techStack": [
+          "JavaScript",
+          "Vite",
+          "Chrome Extension Manifest V3",
+          "fflate",
+          "Instagram GraphQL API",
+          "chrome.storage",
+          "UI/UX Design"
+        ],
+        "technicalHighlights": "Conversation history comes from Instagram authenticated GraphQL message lists with cursor pagination, session tokens scraped from the page, and filters for date range or message count while skipping reaction noise. A deep media parser walks typed attachment nodes and downloads CDN assets with credentialed fetches. Exports ship as TXT, self-contained HTML with inlined media, or JSON, with optional attachment archives built in-browser via fflate."
+      }
     },
     {
       "id": "jadjgiiaompdjacagaomgogdihbpgcpg",
@@ -111,7 +166,20 @@
         "gmail-to-pdf"
       ],
       "quickStart": "<ul><li>Install the extension and click Connect Google Drive in the popup.</li><li>Right-click a file link or image on almost any website.</li><li>Choose &quot;Save to Google Drive&quot;</li><li>A small on-page message confirms progress; when it’s done, open the file in Drive with one click.</li></ul>",
-      "quickStartHash": "839fd617797e48f9"
+      "quickStartHash": "839fd617797e48f9",
+      "buildStory": {
+        "techStack": [
+          "JavaScript",
+          "Vite",
+          "Chrome Extension Manifest V3",
+          "Google OAuth 2.0",
+          "Google Drive API v3",
+          "Chrome Downloads API",
+          "Chrome Context Menus",
+          "chrome.i18n"
+        ],
+        "technicalHighlights": "I can treat Drive as a downloads folder by intercepting Chrome download events, optionally prompting before save, and mirroring files with Drive file-scope OAuth through Chrome Identity including silent token refresh. Uploads use Drive create-then-media-upload with folder lookup caching and quota checks before wasting a transfer. Blob-URL downloads are recovered through a page-context fetch in the content script, with context-menu save-link and multi-locale chrome.i18n covering the rest."
+      }
     },
     {
       "id": "mljfhcfnjbfibedpiaheeihpbjajfcal",
@@ -133,7 +201,22 @@
         "ai-bookmark"
       ],
       "quickStart": "<ul><li>Go to Claude.ai</li><li>You should see the widget above your chat box.</li><li>(optional) click on the Chrome Extension popup to change options as per your needs. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li></ul>",
-      "quickStartHash": "e63857ce84d603be"
+      "quickStartHash": "e63857ce84d603be",
+      "buildStory": {
+        "techStack": [
+          "JavaScript",
+          "Vite",
+          "Chrome Extension Manifest V3",
+          "Fetch API patching",
+          "Server-Sent Events",
+          "Claude usage API",
+          "MutationObserver",
+          "Chrome Alarms",
+          "Chrome Notifications",
+          "UI/UX Design"
+        ],
+        "technicalHighlights": "Usage is tracked by polling Claude organization usage endpoints while patching window fetch so completion streams can be tee’d—one branch keeps chat working, the other scans SSE payloads for message-limit events. A MutationObserver and send-button listeners refresh meters right after you message, and an injectable pill UI is driven from raw HTML and CSS samples. Chrome alarms fire optional reset notifications when the parsed reset time arrives."
+      }
     },
     {
       "id": "golankbkfnepjbpcekbcglcfgmbpgnmb",
@@ -158,7 +241,22 @@
         "claude-limit-monitor"
       ],
       "quickStart": "<ul><li>Install the extension and sign in with Google.</li><li>Go to Claude.ai, ChatGPT.com, or Grok.com.</li><li>Click the star on any AI reply you want to keep.</li><li>Open the extension popup for quick access, or click View all bookmarks for search, tags, notes, and filters. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li><li>Click any saved bookmark to reopen the conversation and scroll to that exact reply.</li></ul>",
-      "quickStartHash": "ec4c48f51c669840"
+      "quickStartHash": "ec4c48f51c669840",
+      "buildStory": {
+        "techStack": [
+          "JavaScript",
+          "React 18",
+          "Vite",
+          "CRXJS",
+          "Chrome Extension Manifest V3",
+          "Supabase",
+          "Chrome Identity OAuth",
+          "MutationObserver",
+          "react-tag-input",
+          "UI/UX Design"
+        ],
+        "technicalHighlights": "Platform-specific content scripts for Claude, ChatGPT, and Grok inject bookmark stars via MutationObserver and sync reply snapshots through a Supabase-backed service worker with Google OAuth via Chrome Identity. Reopening a bookmark retries scroll-to-reply until the saved turn is in the DOM, so deep chats still land on the exact message. Shared content helpers are inlined per platform bundle so each content script stays self-contained."
+      }
     },
     {
       "id": "bhagkmlelgbjbklgafgdjeebkdhlibjf",
@@ -180,7 +278,22 @@
         "save-directly-to-drive"
       ],
       "quickStart": "<ul><li>Install the extension and open Gmail.</li><li>Check the emails you want to save (one or several - you can click on the checkboxes to export multiple).</li><li>Click the download button in the Gmail toolbar, or open the extension popup and choose your format. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li><li>The file saves to your computer. Optional: enable attachment or image ZIP downloads from Settings.</li><li>Open the History tab to see your last 100 exports.</li></ul>",
-      "quickStartHash": "406d7d7727b6ea77"
+      "quickStartHash": "406d7d7727b6ea77",
+      "buildStory": {
+        "techStack": [
+          "JavaScript",
+          "React",
+          "Vite",
+          "Chrome Extension Manifest V3",
+          "html2canvas",
+          "jsPDF",
+          "JSZip",
+          "Domino",
+          "IndexedDB",
+          "chrome.i18n"
+        ],
+        "technicalHighlights": "I pull Gmail print-view HTML in-page, then either rasterize it to PDF with html2canvas and jsPDF or hand large HTML through IndexedDB into a dedicated print tab because service workers cannot ferry blobs the normal way. Domino lets the background rewrite email DOM without a real document window, while JSZip packs attachments under a same-origin URL allowlist. The React popup drives multi-format export with full chrome.i18n localization."
+      }
     },
     {
       "id": "dpfdehgiffggecppcbkdacbifbljeiii",
@@ -203,7 +316,20 @@
         "youtube-comments-exporter"
       ],
       "quickStart": "<ul><li>Install the extension and open any Instagram post or Reel while logged in.</li><li>Click the floating button to open the exporter. (it will automatically show up on the bottom right)</li><li>Hit Start to collect comments and replies. You can pause whenever you need to and continue later.</li><li>Review the results in the Comments tab, or revisit past extractions in History.</li><li>Click Export and choose CSV, Excel, JSON, or TXT.</li></ul>",
-      "quickStartHash": "faaf8c988342b643"
+      "quickStartHash": "faaf8c988342b643",
+      "buildStory": {
+        "techStack": [
+          "JavaScript",
+          "React 19",
+          "Vite",
+          "Chrome Extension Manifest V3",
+          "SheetJS",
+          "Instagram private web API",
+          "chrome.storage",
+          "UI/UX Design"
+        ],
+        "technicalHighlights": "Extraction hits Instagram media and child-comment endpoints with session cookies and CSRF headers, walking nested reply cursors while persisting full job state including pause positions in chrome.storage.local. Rate limits and checkpoint redirects become first-class blocked states with backoff and resume-on-reopen across SPA navigations. Exports cover CSV, JSON, TXT, and Excel via SheetJS from an on-page widget plus a React popup."
+      }
     },
     {
       "id": "pniolepdakiocafjiibgiabkcdhgkfep",
@@ -226,7 +352,21 @@
         "youtube-comments-exporter"
       ],
       "quickStart": "<ul><li>Install the extension and open the dashboard from the toolbar popup.</li><li>Create a filter with your keywords and any rules you want (duration, subscribers, exclusions, etc.).</li><li>Enable the filter and choose your polling interval and notification settings in Settings.</li><li>The extension checks YouTube in the background on your schedule and stores matching videos in Results.</li><li>When something new is found, you get notified (based on your settings) and can open the video straight from the results page.</li></ul>",
-      "quickStartHash": "987bb2161fa9493e"
+      "quickStartHash": "987bb2161fa9493e",
+      "buildStory": {
+        "techStack": [
+          "JavaScript",
+          "React 18",
+          "Vite",
+          "Chrome Extension Manifest V3",
+          "YouTube InnerTube API",
+          "Chrome Alarms",
+          "Chrome Notifications",
+          "chrome.i18n",
+          "UI/UX Design"
+        ],
+        "technicalHighlights": "Background polling scrapes and caches YouTube InnerTube client config from the homepage, then hits youtubei search with session cookies—refreshing config automatically on 403—so keyword alerts work without an official API key. Filters compose search queries plus post-filters for duration, subscribers, verified channels, and include or exclude rules, with channel metadata enriched from page bootstraps. A React manager and a separately bundled content script share storage and alarms for scheduled checks and desktop notifications across locales."
+      }
     },
     {
       "id": "cdagimhkcpohhjipcnpaaebppnmgegjo",
@@ -248,7 +388,22 @@
         "instagram-comments-exporter"
       ],
       "quickStart": "<ul><li>Install the extension and open discord.com while logged in.</li><li>Click the floating button to open DEX. (it will automatically show up on the bottom right)</li><li>In Choose, pick the channels or DMs you want to export.</li><li>In Export, pick your scope (all messages, a date range, or recent messages), choose HTML, PDF, TXT, JSON or Markdown, and hit Start Export.</li><li>Optional: open Attachments to preview and download files from your selected channels.</li></ul>",
-      "quickStartHash": "96333571901eb246"
+      "quickStartHash": "96333571901eb246",
+      "buildStory": {
+        "techStack": [
+          "TypeScript",
+          "React 19",
+          "Vite",
+          "Chrome Extension Manifest V3",
+          "Discord API v9",
+          "html2canvas",
+          "pdf-lib",
+          "JSZip",
+          "chrome.i18n",
+          "UI/UX Design"
+        ],
+        "technicalHighlights": "A MAIN-world hook captures Discord Authorization headers from live XHR traffic once, then the isolated UI drives Discord API v9 with snowflake date bounds, newest-first pagination, and 429-aware retries. PDF export renders conversation HTML in a hidden iframe, captures it with html2canvas, and slices the result into multipage PDFs via pdf-lib. Channels and DMs export to HTML, PDF, Markdown, TXT, and JSON without leaving Discord, with JSZip for attachment bulk downloads."
+      }
     },
     {
       "id": "amcnbfpogccggckogifbdjekbammlahl",
@@ -269,7 +424,21 @@
       ],
       "download": "https://chromewebstore.google.com/detail/hide-reposts-for-bluesky/amcnbfpogccggckogifbdjekbammlahl",
       "quickStart": "<ul><li>On bsky.app, click Hide Reposts in the sidebar.</li><li>Turn hiding on or off with one toggle.</li><li>Choose which followed accounts to filter using checkboxes (search, paginate, or select all).</li><li>Close the menu and keep scrolling — reposts from selected accounts are hidden on your Following tab in real time.</li><li>Your settings are saved automatically and synced across Chrome sessions.</li></ul>",
-      "quickStartHash": "452c919d91021178"
+      "quickStartHash": "452c919d91021178",
+      "buildStory": {
+        "techStack": [
+          "JavaScript",
+          "React 19",
+          "Vite",
+          "CRXJS",
+          "Chrome Extension Manifest V3",
+          "chrome.storage",
+          "chrome.i18n",
+          "Bluesky AT Protocol",
+          "MutationObserver"
+        ],
+        "technicalHighlights": "I reverse-engineered Bluesky session storage to pull the signed-in DID and JWT, then used that to paginate the official following graph API and drive per-account hide controls. The hard part was Bluesky virtualized feed: MutationObserver plus scroll hooks hide only Following-tab reposts in real time without breaking backfill."
+      }
     }
   ]
 }

@@ -348,37 +348,38 @@ export default function WorkRecentTabsSection() {
               {CHEVRON_LEFT}
             </button>
 
-            <nav
-              ref={tabsTrackRef}
-              className="CC__work-recent__tabs__track"
-              role="tablist"
-              aria-label="Work categories"
-            >
-              {TABS.map((tab) => {
-                const selected = activeTab === tab.id
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    role="tab"
-                    id={`work-recent-tab-${tab.id}`}
-                    aria-selected={selected}
-                    aria-controls={`work-recent-panel-${tab.id}`}
-                    className={`CC__work-recent__tab${selected ? ' CC__work-recent__tab--active' : ''}`}
-                    onClick={() => selectTab(tab.id)}
-                  >
-                    <span className="CC__work-recent__tab-icon" aria-hidden="true">
-                      {tab.id === 'shopify' ? (
-                        SHOPIFY_ICON
-                      ) : tab.id === 'extensions' ? (
-                        <ChromeIcon size={18} title="" />
-                      ) : null}
-                    </span>
-                    {tab.label}
-                  </button>
-                )
-              })}
-            </nav>
+            <div ref={tabsTrackRef} className="CC__work-recent__tabs__viewport">
+              <nav
+                className="CC__work-recent__tabs__track"
+                role="tablist"
+                aria-label="Work categories"
+              >
+                {TABS.map((tab) => {
+                  const selected = activeTab === tab.id
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      role="tab"
+                      id={`work-recent-tab-${tab.id}`}
+                      aria-selected={selected}
+                      aria-controls={`work-recent-panel-${tab.id}`}
+                      className={`CC__work-recent__tab${selected ? ' CC__work-recent__tab--active' : ''}`}
+                      onClick={() => selectTab(tab.id)}
+                    >
+                      <span className="CC__work-recent__tab-icon" aria-hidden="true">
+                        {tab.id === 'shopify' ? (
+                          SHOPIFY_ICON
+                        ) : tab.id === 'extensions' ? (
+                          <ChromeIcon size={18} title="" />
+                        ) : null}
+                      </span>
+                      {tab.label}
+                    </button>
+                  )
+                })}
+              </nav>
+            </div>
 
             <button
               type="button"
