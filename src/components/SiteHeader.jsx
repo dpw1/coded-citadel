@@ -28,7 +28,7 @@ export default function SiteHeader() {
   const aboutSectionActive = isHome && hash === '#about'
   const aboutNavActive = blogNavActive || aboutSectionActive
   const liveStatsNavActive = pathname === '/live-stats'
-  const workNavActive = pathname === '/work'
+  const workNavActive = pathname === '/work' || pathname.startsWith('/work/')
   const contactNavActive = pathname === '/contact'
 
   const closeMenu = () => {
