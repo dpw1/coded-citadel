@@ -101,6 +101,13 @@
     >
       <div class="admin__status" id="yt-status">Loading YouTube Filter Pro data…</div>
 
+      <div class="admin__yt-toolbar" id="yt-toolbar" hidden>
+        <button type="button" class="admin__btn admin__btn--outline" id="yt-copy-metrics">
+          Copy metrics for AI
+        </button>
+        <span class="admin__copy-hint" id="yt-copy-hint" hidden>Copied</span>
+      </div>
+
       <div class="admin__kpis" id="yt-kpis" hidden>
         <div class="admin__kpi">
           <div class="admin__kpi-label">Total searches</div>
@@ -170,7 +177,7 @@
           </svg>
         </div>
         <div class="admin__growth-chart__title">User growth</div>
-        <p class="admin__growth-chart__subtitle">Cumulative unique users by first seen date (fingerprint)</p>
+        <p class="admin__growth-chart__subtitle">Cumulative unique users vs daily active users (fingerprint)</p>
         <div class="admin__growth-chart__canvas-wrap">
           <canvas id="chart-user-growth"></canvas>
         </div>
@@ -178,18 +185,6 @@
 
       <div class="admin__charts" id="yt-charts" hidden>
         <p class="admin__chart-note">All charts count unique users (fingerprint), not total searches.</p>
-        <div class="admin__chart-card">
-          <h3 class="admin__chart-title">Date range</h3>
-          <div class="admin__chart-wrap">
-            <canvas id="chart-preset"></canvas>
-          </div>
-        </div>
-        <div class="admin__chart-card">
-          <h3 class="admin__chart-title">Active filter groups</h3>
-          <div class="admin__chart-wrap admin__chart-wrap--bar">
-            <canvas id="chart-groups"></canvas>
-          </div>
-        </div>
         <div class="admin__chart-card admin__chart-card--wide">
           <h3 class="admin__chart-title">Top 10 most used features</h3>
           <div class="admin__chart-wrap admin__chart-wrap--bar">

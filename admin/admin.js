@@ -21,14 +21,23 @@ const CHART_COLORS = {
   bg: '#090b10',
 }
 
-const FILTER_GROUP_KEYS = [
-  'titleIncludes',
-  'titleExcludes',
-  'descIncludes',
-  'descExcludes',
-  'channelIncludes',
-  'channelExclude',
-]
+/** Chrome Web Store IDs → display names (from apps.json). */
+const CHROME_EXTENSION_NAMES = {
+  amcnbfpogccggckogifbdjekbammlahl: 'Hide Reposts for Bluesky',
+  bhagkmlelgbjbklgafgdjeebkdhlibjf: 'Gmail to PDF',
+  cdagimhkcpohhjipcnpaaebppnmgegjo: 'DEX',
+  dbkkcbfafkckhmefkpgnelikibobcabb: 'Youtube Filter Pro',
+  dfkkbbcdbjaecgnaocgfonoodmfmkmmm: 'Claude Message Search',
+  dpfdehgiffggecppcbkdacbifbljeiii: 'Instagram Comments Exporter',
+  epokpidfnienjjfncmhnallghfhaijbj: 'Youtube Comments Exporter',
+  golankbkfnepjbpcekbcglcfgmbpgnmb: 'AI Bookmark',
+  hgojieiehkjgjhdnbglfhbcojeeggigi: 'Instagram DM Exporter',
+  jadjgiiaompdjacagaomgogdihbpgcpg: 'Save to Google Drive',
+  mljfhcfnjbfibedpiaheeihpbjajfcal: 'Claude Limit Monitor',
+  pniolepdakiocafjiibgiabkcdhgkfep: 'YouTube Keyword Alert',
+}
+
+const CHROME_EXTENSION_ID_RE = /^[a-p]{32}$/i
 
 /** Human labels from extension UI (samples/yt-filter.html). */
 const FEATURE_LABELS = {
@@ -459,6 +468,47 @@ function feedbackId(row) {
   return row.id ?? row.created_at ?? JSON.stringify(row)
 }
 
+function formatFeedbackAppName(raw) {
+  const value = String(raw ?? '').trim()
+  if (!value) return 'Unknown app'
+  if (CHROME_EXTENSION_NAMES[value]) return CHROME_EXTENSION_NAMES[value]
+  if (CHROME_EXTENSION_ID_RE.test(value)) {
+    return CHROME_EXTENSION_NAMES[value.toLowerCase()] || value
+  }
+  return value
+}
+
+function feedbackFingerprint(row) {
+  const raw = row?.fingerprint
+  if (raw == null) return null
+  const value = String(raw).trim()
+  return value && value !== 'anonymous' ? value : null
+}
+
+/** Fingerprints that appear exactly once across all loaded feedback. */
+function buildUniqueFeedbackFingerprints(rows) {
+  const counts = new Map()
+  for (const row of rows) {
+    const fp = feedbackFingerprint(row)
+    if (!fp) continue
+    counts.set(fp, (counts.get(fp) || 0) + 1)
+  }
+  const unique = new Set()
+  for (const [fp, count] of counts) {
+    if (count === 1) unique.add(fp)
+  }
+  return unique
+}
+
+function formatFeedbackContact(row, uniqueFingerprints) {
+  const email = String(row?.email ?? '').trim()
+  if (email) return email
+
+  const fp = feedbackFingerprint(row)
+  if (fp && uniqueFingerprints.has(fp)) return 'Unique user'
+  return 'No email'
+}
+
 function renderFeedbackKpis() {
   const readSet = getReadSet()
   const total = state.feedback.length
@@ -496,6 +546,8 @@ function renderFeedbackList() {
     return
   }
 
+  const uniqueFingerprints = buildUniqueFeedbackFingerprints(state.feedback)
+
   list.innerHTML = rows
     .map((row) => {
       const id = String(feedbackId(row))
@@ -504,13 +556,9 @@ function renderFeedbackList() {
         <article class="admin__card${read ? '' : ' admin__card--unread'}" data-id="${escapeHtml(id)}">
           <div class="admin__card-top">
             <div class="admin__card-meta">
-              <span class="admin__card-app">${escapeHtml(row.app_name || 'Unknown app')}</span>
+              <span class="admin__card-app">${escapeHtml(formatFeedbackAppName(row.app_name))}</span>
               <span>${escapeHtml(formatDateWithRelative(row.created_at))}</span>
-              ${
-                row.email
-                  ? `<span>${escapeHtml(row.email)}</span>`
-                  : '<span>No email</span>'
-              }
+              <span>${escapeHtml(formatFeedbackContact(row, uniqueFingerprints))}</span>
             </div>
             <span class="admin__card-badge ${read ? 'admin__card-badge--read' : 'admin__card-badge--unread'}">
               ${read ? 'Read' : 'Unread'}
@@ -655,9 +703,11 @@ function formatChartDate(isoDay) {
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
-/** Cumulative unique users by first-seen day (fingerprint). */
+/** Cumulative unique users + daily active users, continuous calendar days. */
 function buildUserGrowthSeries(rows) {
   const firstSeen = new Map()
+  /** @type {Map<string, Set<string>>} */
+  const dayUsers = new Map()
 
   for (const row of rows) {
     const fpRaw = row?.fingerprint
@@ -674,6 +724,9 @@ function buildUserGrowthSeries(rows) {
     const dayKey = day.toISOString().slice(0, 10)
     const existing = firstSeen.get(fingerprint)
     if (!existing || dayKey < existing) firstSeen.set(fingerprint, dayKey)
+
+    if (!dayUsers.has(dayKey)) dayUsers.set(dayKey, new Set())
+    dayUsers.get(dayKey).add(fingerprint)
   }
 
   const newUsersByDay = new Map()
@@ -681,36 +734,339 @@ function buildUserGrowthSeries(rows) {
     newUsersByDay.set(day, (newUsersByDay.get(day) || 0) + 1)
   }
 
-  const sortedDays = [...newUsersByDay.keys()].sort()
+  const allDayKeys = [
+    ...new Set([...newUsersByDay.keys(), ...dayUsers.keys()]),
+  ].sort()
+  if (!allDayKeys.length) return []
+
+  const start = new Date(`${allDayKeys[0]}T12:00:00Z`)
+  const end = new Date(`${allDayKeys[allDayKeys.length - 1]}T12:00:00Z`)
+  const series = []
   let cumulative = 0
 
-  return sortedDays.map((day) => {
-    cumulative += newUsersByDay.get(day)
-    return { day, total: cumulative, newUsers: newUsersByDay.get(day) }
-  })
+  for (let t = start.getTime(); t <= end.getTime(); t += 24 * 60 * 60 * 1000) {
+    const dayKey = new Date(t).toISOString().slice(0, 10)
+    const newUsers = newUsersByDay.get(dayKey) || 0
+    cumulative += newUsers
+    series.push({
+      day: dayKey,
+      total: cumulative,
+      newUsers,
+      dau: dayUsers.get(dayKey)?.size || 0,
+    })
+  }
+
+  return series
 }
 
-function chartGradientFill(chart, height = 220) {
-  const { ctx } = chart
-  const grad = ctx.createLinearGradient(0, 0, 0, height)
-  grad.addColorStop(0, 'rgba(255,153,0,0.2)')
-  grad.addColorStop(1, 'rgba(255,153,0,0)')
-  return grad
+function mean(values) {
+  if (!values.length) return 0
+  return values.reduce((sum, n) => sum + n, 0) / values.length
+}
+
+function median(values) {
+  if (!values.length) return 0
+  const sorted = [...values].sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  return sorted.length % 2 === 0
+    ? (sorted[mid - 1] + sorted[mid]) / 2
+    : sorted[mid]
+}
+
+function percentile(values, p) {
+  if (!values.length) return 0
+  const sorted = [...values].sort((a, b) => a - b)
+  const idx = Math.min(sorted.length - 1, Math.max(0, Math.ceil((p / 100) * sorted.length) - 1))
+  return sorted[idx]
+}
+
+function addDaysIso(isoDay, days) {
+  const d = new Date(`${isoDay}T12:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + days)
+  return d.toISOString().slice(0, 10)
+}
+
+function daysBetweenIso(a, b) {
+  const ms =
+    new Date(`${b}T12:00:00Z`).getTime() - new Date(`${a}T12:00:00Z`).getTime()
+  return Math.round(ms / (24 * 60 * 60 * 1000))
+}
+
+/** Engagement + on-screen chart metrics as plain text for pasting into AI. */
+function buildYtMetricsText(rows) {
+  const stats = aggregateYt(rows)
+  const growth = buildUserGrowthSeries(rows)
+  const generatedAt = new Date().toISOString()
+
+  /** @type {Map<string, Set<string>>} */
+  const dayUsers = new Map()
+  /** @type {Map<string, number>} */
+  const searchesByDay = new Map()
+  /** @type {Map<string, number>} */
+  const searchesByFp = new Map()
+
+  for (const row of rows) {
+    const fpRaw = row?.fingerprint
+    const fingerprint =
+      fpRaw != null && String(fpRaw).trim() !== '' ? String(fpRaw) : null
+    if (!fingerprint) continue
+
+    searchesByFp.set(fingerprint, (searchesByFp.get(fingerprint) || 0) + 1)
+
+    const created = rowCreatedAt(row)
+    if (!created) continue
+    const day = new Date(created)
+    if (Number.isNaN(day.getTime())) continue
+    const dayKey = day.toISOString().slice(0, 10)
+
+    if (!dayUsers.has(dayKey)) dayUsers.set(dayKey, new Set())
+    dayUsers.get(dayKey).add(fingerprint)
+    searchesByDay.set(dayKey, (searchesByDay.get(dayKey) || 0) + 1)
+  }
+
+  const dayKeys = [...dayUsers.keys()].sort()
+  const lastDay = dayKeys[dayKeys.length - 1] || null
+
+  const uniqueInWindow = (startDay, endDayInclusive) => {
+    const set = new Set()
+    for (const day of dayKeys) {
+      if (day < startDay || day > endDayInclusive) continue
+      dayUsers.get(day).forEach((fp) => set.add(fp))
+    }
+    return set.size
+  }
+
+  const dauLatest = lastDay ? dayUsers.get(lastDay).size : 0
+  const wau = lastDay ? uniqueInWindow(addDaysIso(lastDay, -6), lastDay) : 0
+  const mau = lastDay ? uniqueInWindow(addDaysIso(lastDay, -29), lastDay) : 0
+  const dauSeries = dayKeys.map((day) => dayUsers.get(day).size)
+  const searchesPerActive = dayKeys.map((day) => {
+    const active = dayUsers.get(day).size || 1
+    return (searchesByDay.get(day) || 0) / active
+  })
+  const searchesFpValues = [...searchesByFp.values()]
+  const oneShot = searchesFpValues.filter((n) => n === 1).length
+
+  const retentionFor = (horizon) => {
+    if (!lastDay) return null
+    const rates = []
+    for (const day of dayKeys) {
+      const target = addDaysIso(day, horizon)
+      if (target > lastDay) continue
+      const cohort = dayUsers.get(day)
+      if (!cohort?.size) continue
+      const later = dayUsers.get(target) || new Set()
+      let hits = 0
+      cohort.forEach((fp) => {
+        if (later.has(fp)) hits += 1
+      })
+      rates.push((100 * hits) / cohort.size)
+    }
+    if (!rates.length) return null
+    return {
+      mean: mean(rates),
+      median: median(rates),
+      cohorts: rates.length,
+    }
+  }
+
+  const d7 = retentionFor(7)
+  const d30 = retentionFor(30)
+  const firstDay = dayKeys[0] || null
+  const spanDays =
+    firstDay && lastDay ? daysBetweenIso(firstDay, lastDay) + 1 : 0
+
+  const lines = []
+  const push = (line = '') => lines.push(line)
+
+  push('YouTube Filter Pro — metrics dump (for AI)')
+  push(`Generated: ${generatedAt}`)
+  push(`Source: yt_filter_pro_data (each row ≈ one search; users = fingerprints)`)
+  push('')
+
+  push('=== Overview KPIs ===')
+  push(`Total searches: ${stats.total}`)
+  push(`Unique users (fingerprints): ${stats.uniqueUsers}`)
+  push(
+    `Keyword include active: ${stats.keywordIncludeActive} users (${pct(stats.keywordIncludeActive, stats.uniqueUsers)})`,
+  )
+  push(
+    `Any duration filter: ${stats.durationAny} users (${pct(stats.durationAny, stats.uniqueUsers)})`,
+  )
+  push(`Date span: ${firstDay || 'n/a'} -> ${lastDay || 'n/a'} (${spanDays} days)`)
+  push('')
+
+  push('=== Engagement (unique fingerprints) ===')
+  push(`As of: ${lastDay || 'n/a'}`)
+  push(`DAU (latest day): ${dauLatest}`)
+  push(`WAU (last 7 days): ${wau}`)
+  push(`MAU (last 30 days): ${mau}`)
+  push(`Mean DAU (all days): ${mean(dauSeries).toFixed(1)}`)
+  push(`Median DAU: ${median(dauSeries).toFixed(1)}`)
+  push(
+    `Stickiness DAU/MAU: ${mau ? ((100 * dauLatest) / mau).toFixed(1) : '0.0'}%`,
+  )
+  push(
+    `Stickiness WAU/MAU: ${mau ? ((100 * wau) / mau).toFixed(1) : '0.0'}%`,
+  )
+  push('')
+
+  push('=== Searches per active user per day ===')
+  push(`Mean: ${mean(searchesPerActive).toFixed(2)}`)
+  push(`Median: ${median(searchesPerActive).toFixed(2)}`)
+  push('')
+
+  push('=== Retention (active on day X, also active on X+N) ===')
+  if (d7) {
+    push(
+      `D7 mean: ${d7.mean.toFixed(1)}% | median: ${d7.median.toFixed(1)}% | cohorts: ${d7.cohorts}`,
+    )
+  } else {
+    push('D7: n/a (not enough history)')
+  }
+  if (d30) {
+    push(
+      `D30 mean: ${d30.mean.toFixed(1)}% | median: ${d30.median.toFixed(1)}% | cohorts: ${d30.cohorts}`,
+    )
+  } else {
+    push('D30: n/a (not enough history)')
+  }
+  push('')
+
+  push('=== Searches per fingerprint (lifetime in dataset) ===')
+  push(`Mean: ${mean(searchesFpValues).toFixed(2)}`)
+  push(`Median: ${median(searchesFpValues).toFixed(2)}`)
+  push(`P90: ${percentile(searchesFpValues, 90)}`)
+  push(`Max: ${searchesFpValues.length ? Math.max(...searchesFpValues) : 0}`)
+  push(
+    `Exactly 1 search: ${oneShot} (${searchesFpValues.length ? ((100 * oneShot) / searchesFpValues.length).toFixed(1) : '0.0'}% of users)`,
+  )
+  push('')
+
+  push('=== User growth (daily): date | total users | new | DAU ===')
+  if (!growth.length) {
+    push('(no growth data)')
+  } else {
+    growth.forEach((row) => {
+      push(
+        `${row.day} | total=${row.total} | new=${row.newUsers} | dau=${row.dau}`,
+      )
+    })
+  }
+  push('')
+
+  const featureTop = topEntries(stats.featureUsage, 10)
+  push('=== Top 10 most used features (unique users) ===')
+  if (!featureTop.length) {
+    push('(none)')
+  } else {
+    featureTop.forEach(([key, count], i) => {
+      push(`${i + 1}. ${formatFeatureLabel(key)}: ${count} users`)
+      const picks = topEntries(stats.featurePicks.get(key) || new Map(), 10)
+      picks.forEach(([pick, pickCount]) => {
+        push(`   - ${formatPickLabel(pick)}: ${pickCount} users`)
+      })
+    })
+  }
+  push('')
+
+  const subTop = topSubRanges(stats.subRanges, 10)
+  push('=== Top subscriber ranges (unique users) ===')
+  if (!subTop.length) {
+    push('(none)')
+  } else {
+    subTop.forEach(([label, count], i) => {
+      push(`${i + 1}. ${label}: ${count} users`)
+    })
+  }
+  push('')
+
+  push('=== Quick findings (engagement vs vanity) ===')
+  push(
+    `- Lifetime unique users (${stats.uniqueUsers}) only go up; DAU (${dauLatest}) / WAU (${wau}) / MAU (${mau}) measure real recent use.`,
+  )
+  push(
+    `- Searches/active/day median ${median(searchesPerActive).toFixed(2)} vs mean ${mean(searchesPerActive).toFixed(2)}: prefer median if skewed by power users.`,
+  )
+  if (d7) {
+    push(
+      `- D7 retention ~${d7.mean.toFixed(1)}%: share of day-X actives who returned on day X+7 (habit signal).`,
+    )
+  } else {
+    push('- D7 retention not measurable yet (need >= 8 days of history).')
+  }
+  if (d30) {
+    push(`- D30 retention ~${d30.mean.toFixed(1)}%.`)
+  } else {
+    push('- D30 retention not measurable yet (need >= 31 days of history).')
+  }
+  push(
+    `- ${searchesFpValues.length ? ((100 * oneShot) / searchesFpValues.length).toFixed(1) : '0'}% of users have exactly 1 search; median lifetime searches = ${median(searchesFpValues).toFixed(0)}.`,
+  )
+  if (growth.length >= 2) {
+    const first = growth[0]
+    const last = growth[growth.length - 1]
+    push(
+      `- Growth: total users ${first.total} -> ${last.total}; latest DAU ${last.dau}. If total climbs while DAU stays flat, installs are not sticking.`,
+    )
+  }
+  push(
+    `- Keyword include ${pct(stats.keywordIncludeActive, stats.uniqueUsers)} / duration filter ${pct(stats.durationAny, stats.uniqueUsers)} of users: feature adoption, not engagement depth.`,
+  )
+
+  return lines.join('\n')
+}
+
+async function copyTextToClipboard(text) {
+  try {
+    if (navigator.clipboard?.writeText && window.isSecureContext) {
+      await navigator.clipboard.writeText(text)
+      return
+    }
+  } catch {
+    /* fall through to execCommand */
+  }
+
+  const ta = document.createElement('textarea')
+  ta.value = text
+  ta.setAttribute('readonly', '')
+  ta.style.position = 'fixed'
+  ta.style.left = '-9999px'
+  document.body.appendChild(ta)
+  ta.select()
+  const ok = document.execCommand('copy')
+  document.body.removeChild(ta)
+  if (!ok) throw new Error('copy failed')
+}
+
+function flashCopyHint(ok) {
+  const hint = document.getElementById('yt-copy-hint')
+  if (!hint) return
+  hint.hidden = false
+  hint.textContent = ok ? 'Copied' : 'Copy failed'
+  hint.style.color = ok ? 'var(--CC__color-success)' : 'var(--CC__color-danger)'
+  window.clearTimeout(flashCopyHint._timer)
+  flashCopyHint._timer = window.setTimeout(() => {
+    hint.hidden = true
+  }, 2000)
+}
+
+async function copyYtMetricsForAi() {
+  if (!state.ytRows?.length) {
+    flashCopyHint(false)
+    return
+  }
+  try {
+    const text = buildYtMetricsText(state.ytRows)
+    await copyTextToClipboard(text)
+    flashCopyHint(true)
+  } catch {
+    flashCopyHint(false)
+  }
 }
 
 function topEntries(map, limit = 8) {
   return [...map.entries()].sort((a, b) => b[1] - a[1]).slice(0, limit)
-}
-
-/** Collapse date presets into Any vs Specific (everything except "any"). */
-function dateRangeBucket(publishedPreset) {
-  const value = String(publishedPreset ?? 'any').trim().toLowerCase()
-  return value === 'any' ? 'any' : 'specific'
-}
-
-function formatDateRangeLabel(bucket) {
-  if (bucket === 'any') return 'Any'
-  return 'Specific'
 }
 
 function isDefaultSubRange(label) {
@@ -833,8 +1189,6 @@ function addFeaturePick(featurePickUsers, featureKey, pick, fingerprint) {
 }
 
 function aggregateYt(rows) {
-  const presetUsers = new Map()
-  const groupUsers = new Map(FILTER_GROUP_KEYS.map((k) => [k, new Set()]))
   /** @type {Map<string, Set<string>>} subscriber range → unique fingerprints */
   const subRangeUsers = new Map()
   const dayUsers = new Map()
@@ -859,12 +1213,6 @@ function aggregateYt(rows) {
     normalized += 1
 
     if (fingerprint) {
-      addUserToKey(presetUsers, dateRangeBucket(filter.publishedPreset), fingerprint)
-
-      FILTER_GROUP_KEYS.forEach((key) => {
-        if (isGroupActive(filter[key])) groupUsers.get(key).add(fingerprint)
-      })
-
       Object.entries(filter).forEach(([key, value]) => {
         if (!isFeatureUsed(key, value)) return
         if (!featureUsers.has(key)) featureUsers.set(key, new Set())
@@ -923,10 +1271,6 @@ function aggregateYt(rows) {
     total: rows.length,
     normalized,
     uniqueUsers: uniqueFingerprints.size,
-    presets: userSetsToCounts(presetUsers),
-    groups: Object.fromEntries(
-      FILTER_GROUP_KEYS.map((k) => [k, groupUsers.get(k).size]),
-    ),
     featureUsage,
     featurePicks,
     subRanges,
@@ -972,30 +1316,6 @@ function baseChartOptions(extra = {}) {
   }
 }
 
-function doughnutData(entries) {
-  const palette = [
-    CHART_COLORS.primary,
-    CHART_COLORS.blue,
-    CHART_COLORS.green,
-    CHART_COLORS.purple,
-    CHART_COLORS.muted,
-    '#f06560',
-    '#eab308',
-    '#14b8a6',
-  ]
-  return {
-    labels: entries.map(([label]) => label),
-    datasets: [
-      {
-        data: entries.map(([, count]) => count),
-        backgroundColor: entries.map((_, i) => palette[i % palette.length]),
-        borderColor: CHART_COLORS.bg,
-        borderWidth: 2,
-      },
-    ],
-  }
-}
-
 function barData(labels, values, color = CHART_COLORS.primary) {
   return {
     labels,
@@ -1016,20 +1336,6 @@ function renderYtCharts() {
   const stats = aggregateYt(state.ytRows)
   destroyCharts()
 
-  const doughnutOpts = baseChartOptions({
-    plugins: {
-      ...baseChartOptions().plugins,
-      legend: {
-        position: 'bottom',
-        labels: {
-          color: CHART_COLORS.tick,
-          font: { family: 'Inter', size: 11 },
-          boxWidth: 10,
-        },
-      },
-    },
-  })
-
   const barOpts = baseChartOptions({
     indexAxis: 'y',
     plugins: { legend: { display: false }, tooltip: baseChartOptions().plugins.tooltip },
@@ -1043,28 +1349,6 @@ function renderYtCharts() {
         grid: { display: false },
       },
     },
-  })
-
-  state.charts.preset = new Chart(document.getElementById('chart-preset'), {
-    type: 'doughnut',
-    data: doughnutData(
-      topEntries(stats.presets, 8).map(([bucket, count]) => [
-        formatDateRangeLabel(bucket),
-        count,
-      ]),
-    ),
-    options: doughnutOpts,
-  })
-
-  const groupSorted = [...FILTER_GROUP_KEYS].sort(
-    (a, b) => stats.groups[b] - stats.groups[a],
-  )
-  const groupLabels = groupSorted.map(formatFeatureLabel)
-  const groupValues = groupSorted.map((k) => stats.groups[k])
-  state.charts.groups = new Chart(document.getElementById('chart-groups'), {
-    type: 'bar',
-    data: barData(groupLabels, groupValues, CHART_COLORS.blue),
-    options: barOpts,
   })
 
   const featureTop = topEntries(stats.featureUsage, 10)
@@ -1093,20 +1377,35 @@ function renderYtCharts() {
   const growthSeries = buildUserGrowthSeries(state.ytRows)
   const growthCanvas = document.getElementById('chart-user-growth')
   if (growthCanvas && growthSeries.length) {
+    const pointRadius = growthSeries.length > 40 ? 0 : 3
     const growthChart = new Chart(growthCanvas, {
       type: 'line',
       data: {
         labels: growthSeries.map((row) => formatChartDate(row.day)),
         datasets: [
           {
+            label: 'Total users',
             data: growthSeries.map((row) => row.total),
             borderColor: CHART_COLORS.primary,
             borderWidth: 2.5,
-            fill: true,
-            backgroundColor: (ctx) => chartGradientFill(ctx.chart, 220),
-            tension: 0.4,
-            pointRadius: growthSeries.length > 40 ? 0 : 4,
+            fill: false,
+            tension: 0.35,
+            pointRadius,
             pointBackgroundColor: CHART_COLORS.primary,
+            pointBorderColor: CHART_COLORS.bg,
+            pointBorderWidth: 2,
+            pointHoverRadius: 6,
+          },
+          {
+            label: 'Daily active users',
+            data: growthSeries.map((row) => row.dau),
+            borderColor: CHART_COLORS.blue,
+            borderWidth: 2,
+            fill: true,
+            backgroundColor: 'rgba(59, 130, 246, 0.12)',
+            tension: 0.35,
+            pointRadius,
+            pointBackgroundColor: CHART_COLORS.blue,
             pointBorderColor: CHART_COLORS.bg,
             pointBorderWidth: 2,
             pointHoverRadius: 6,
@@ -1116,17 +1415,28 @@ function renderYtCharts() {
       options: baseChartOptions({
         interaction: { mode: 'index', intersect: false },
         plugins: {
-          legend: { display: false },
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+              color: CHART_COLORS.tick,
+              font: { family: 'Inter', size: 11 },
+              boxWidth: 10,
+            },
+          },
           tooltip: {
             ...baseChartOptions().plugins.tooltip,
             callbacks: {
               label: (ctx) => {
                 const row = growthSeries[ctx.dataIndex]
-                const lines = [` ${ctx.parsed.y.toLocaleString()} total users`]
-                if (row?.newUsers != null) {
-                  lines.push(` +${row.newUsers.toLocaleString()} new`)
+                if (ctx.dataset.label === 'Total users') {
+                  const lines = [` Total users: ${ctx.parsed.y.toLocaleString()}`]
+                  if (row?.newUsers) {
+                    lines.push(` +${row.newUsers.toLocaleString()} new`)
+                  }
+                  return lines
                 }
-                return lines
+                return ` Daily active: ${ctx.parsed.y.toLocaleString()}`
               },
             },
           },
@@ -1214,11 +1524,13 @@ function renderFeaturePicks(featureTop, featurePicks) {
 
 async function loadYt() {
   const status = document.getElementById('yt-status')
+  const toolbar = document.getElementById('yt-toolbar')
   const kpis = document.getElementById('yt-kpis')
   const growth = document.getElementById('yt-user-growth')
   const charts = document.getElementById('yt-charts')
 
   setStatus(status, 'Loading YouTube Filter Pro data…')
+  if (toolbar) toolbar.hidden = true
   kpis.hidden = true
   if (growth) growth.hidden = true
   charts.hidden = true
@@ -1255,6 +1567,7 @@ async function loadYt() {
     }
 
     setStatus(status, '')
+    if (toolbar) toolbar.hidden = false
     kpis.hidden = false
     if (growth) growth.hidden = false
     charts.hidden = false
@@ -1284,6 +1597,10 @@ document.querySelectorAll('.admin__tab').forEach((btn) => {
 
 document.getElementById('admin-refresh').addEventListener('click', () => {
   refreshAll()
+})
+
+document.getElementById('yt-copy-metrics')?.addEventListener('click', () => {
+  copyYtMetricsForAi()
 })
 
 document.querySelectorAll('#feedback-toolbar .admin__chip').forEach((chip) => {

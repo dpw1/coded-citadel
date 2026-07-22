@@ -4,7 +4,7 @@ import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import ExtensionFeedbackForm from '../components/ExtensionFeedbackForm'
 import PageSEO from '../components/PageSEO'
-import { getAppBySource } from '../utils/apps'
+import { appFilterLabel, getAppBySource } from '../utils/apps'
 import '../App.css'
 import './PrivacyPolicyPage.css'
 
@@ -14,7 +14,9 @@ export default function UninstallPage() {
   const trimmedSource = source?.trim() || ''
   const app = useMemo(() => getAppBySource(source), [source])
 
-  const appName = trimmedSource || app?.name || 'Coded Citadel Extension'
+  const appName = app
+    ? appFilterLabel(app) || app.name
+    : trimmedSource || 'Coded Citadel Extension'
 
   return (
     <>

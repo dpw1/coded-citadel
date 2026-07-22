@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-21T19:45:10.399Z",
+  "updatedAt": "2026-07-22T19:50:32.635Z",
   "message": null,
   "apps": [
     {
@@ -251,6 +251,15 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "586231c361131d1a453de8df36c8f91105e98046",
+          "shortSha": "586231c",
+          "message": "Update YouTube Filter Pro to version 1.0.54: Incremented version number and added the \"driver.js\" library as a dependency. Updated localization messages across multiple languages to enhance user guidance and clarity in filtering options. Improved the user experience with new onboarding tutorial messages and refined existing helper texts for better understanding of filter functionalities.",
+          "date": "2026-07-22T07:25:41Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/586231c361131d1a453de8df36c8f91105e98046",
+          "version": "1.0.54"
+        },
+        {
           "sha": "af1748e17f0d265f335d1e894b0dedc149fcecdd",
           "shortSha": "af1748e",
           "message": "Update YouTube Filter Pro to version 1.0.53: Incremented version number and added new localization messages for filtering status indicators across multiple languages. Enhanced the filtering experience with improved toast notifications for zero matches and slow results, and introduced a new setting for displaying tips when filters yield few or no results. Refactored modal and toast components for better user interaction and updated styles for improved UI consistency.",
@@ -374,7 +383,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.53"
+          "version": "1.0.54"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -383,7 +392,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.53"
+          "version": "1.0.54"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -392,7 +401,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.53"
+          "version": "1.0.54"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -401,7 +410,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.53"
+          "version": "1.0.54"
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -410,7 +419,7 @@
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.53"
+          "version": "1.0.54"
         }
       ]
     },
