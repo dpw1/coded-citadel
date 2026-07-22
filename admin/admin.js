@@ -161,6 +161,7 @@ function migrateLegacyReadIds() {
 const settings = createPersistedStore(SETTINGS_STORAGE_KEY, {
   activeTab: 'feedback',
   feedbackFilter: 'all',
+  feedbackAppFilter: 'all',
   readFeedbackIds: migrateLegacyReadIds(),
   seenFeedbackIds: [],
 })
@@ -175,7 +176,8 @@ try {
 }
 
 const VALID_FILTERS = new Set(['all', 'unread', 'read'])
-const VALID_TABS = new Set(['feedback', 'yt'])
+const VALID_TABS = new Set(['feedback', 'yt', 'feedback-graph'])
+const YT_CHART_KEYS = ['features', 'subs', 'userGrowth']
 
 function getFeedbackFilter() {
   const value = settings.get('feedbackFilter')
@@ -185,6 +187,17 @@ function getFeedbackFilter() {
 function setFeedbackFilter(value) {
   const next = VALID_FILTERS.has(value) ? value : 'all'
   settings.set('feedbackFilter', next)
+  return next
+}
+
+function getFeedbackAppFilter() {
+  const value = settings.get('feedbackAppFilter')
+  return value == null || value === '' ? 'all' : String(value)
+}
+
+function setFeedbackAppFilter(value) {
+  const next = value == null || value === '' ? 'all' : String(value)
+  settings.set('feedbackAppFilter', next)
   return next
 }
 
@@ -442,17 +455,69 @@ function switchTab(tab, { persist = true } = {}) {
   })
   document.getElementById('panel-feedback').hidden = active !== 'feedback'
   document.getElementById('panel-yt').hidden = active !== 'yt'
+  document.getElementById('panel-feedback-graph').hidden = active !== 'feedback-graph'
 
   if (active === 'yt' && state.loaded.yt) {
     requestAnimationFrame(() => renderYtCharts())
+  }
+  if (active === 'feedback-graph' && state.loaded.feedback) {
+    requestAnimationFrame(() => renderFeedbackGraph())
   }
 }
 
 function syncFeedbackFilterChips() {
   const filter = getFeedbackFilter()
-  document.querySelectorAll('#feedback-toolbar .admin__chip').forEach((chip) => {
-    chip.classList.toggle('admin__chip--active', chip.dataset.filter === filter)
+  document
+    .querySelectorAll('#feedback-toolbar .admin__toolbar-row .admin__chip')
+    .forEach((chip) => {
+      chip.classList.toggle('admin__chip--active', chip.dataset.filter === filter)
+    })
+}
+
+function feedbackRowsForStatusFilter(filter = getFeedbackFilter()) {
+  const readSet = getReadSet()
+  return state.feedback.filter((row) => {
+    const read = readSet.has(String(feedbackId(row)))
+    if (filter === 'unread') return !read
+    if (filter === 'read') return read
+    return true
   })
+}
+
+function feedbackAppCounts(rows) {
+  const counts = new Map()
+  for (const row of rows) {
+    const name = formatFeedbackAppName(row.app_name)
+    counts.set(name, (counts.get(name) || 0) + 1)
+  }
+  return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+}
+
+function renderFeedbackAppChips() {
+  const root = document.getElementById('feedback-app-chips')
+  if (!root) return
+
+  const scopedRows = feedbackRowsForStatusFilter()
+  const counts = feedbackAppCounts(scopedRows)
+  const total = scopedRows.length
+  let active = getFeedbackAppFilter()
+  if (active !== 'all' && !counts.some(([name]) => name === active)) {
+    active = setFeedbackAppFilter('all')
+  }
+
+  const chips = [
+    `<button type="button" class="admin__chip${
+      active === 'all' ? ' admin__chip--active' : ''
+    }" data-app-filter="all">Feedback <span class="admin__chip-count">(${total})</span></button>`,
+    ...counts.map(
+      ([name, count]) =>
+        `<button type="button" class="admin__chip${
+          active === name ? ' admin__chip--active' : ''
+        }" data-app-filter="${escapeHtml(name)}">${escapeHtml(name)} <span class="admin__chip-count">(${count})</span></button>`,
+    ),
+  ]
+
+  root.innerHTML = chips.join('')
 }
 
 function updateUpdatedAt() {
@@ -509,6 +574,30 @@ function formatFeedbackContact(row, uniqueFingerprints) {
   return 'No email'
 }
 
+/** True when suggestion has detail beyond a bare "[Reason]" tag. */
+function feedbackHasComment(row) {
+  const text = String(row?.suggestion ?? '').trim()
+  if (!text || text === '(empty)') return false
+
+  const tagged = text.match(/^\[([^\]]+)\]\s*([\s\S]*)$/)
+  if (tagged) return tagged[2].trim().length > 0
+
+  return true
+}
+
+function feedbackCreatedAtMs(row) {
+  const raw = row?.created_at
+  if (!raw) return 0
+  const ms = new Date(raw).getTime()
+  return Number.isNaN(ms) ? 0 : ms
+}
+
+function compareFeedbackRows(a, b) {
+  const commentDelta = Number(feedbackHasComment(b)) - Number(feedbackHasComment(a))
+  if (commentDelta) return commentDelta
+  return feedbackCreatedAtMs(b) - feedbackCreatedAtMs(a)
+}
+
 function renderFeedbackKpis() {
   const readSet = getReadSet()
   const total = state.feedback.length
@@ -532,13 +621,20 @@ function renderFeedbackList() {
   const list = document.getElementById('feedback-list')
   const readSet = getReadSet()
   const filter = getFeedbackFilter()
+  const appFilter = getFeedbackAppFilter()
 
-  const rows = state.feedback.filter((row) => {
-    const read = readSet.has(String(feedbackId(row)))
-    if (filter === 'unread') return !read
-    if (filter === 'read') return read
-    return true
-  })
+  const rows = state.feedback
+    .filter((row) => {
+      const read = readSet.has(String(feedbackId(row)))
+      if (filter === 'unread' && read) return false
+      if (filter === 'read' && !read) return false
+      if (appFilter !== 'all' && formatFeedbackAppName(row.app_name) !== appFilter) {
+        return false
+      }
+      return true
+    })
+    .slice()
+    .sort(compareFeedbackRows)
 
   if (!rows.length) {
     list.innerHTML =
@@ -578,19 +674,201 @@ function renderFeedbackList() {
 
 function renderFeedback() {
   syncFeedbackFilterChips()
+  renderFeedbackAppChips()
   renderFeedbackKpis()
   renderFeedbackList()
+  if (!document.getElementById('panel-feedback-graph')?.hidden) {
+    renderFeedbackGraph()
+  }
+}
+
+/** Cumulative + daily uninstall feedback counts by calendar day. */
+function buildFeedbackGrowthSeries(rows) {
+  const byDay = new Map()
+
+  for (const row of rows) {
+    const created = row?.created_at
+    if (!created) continue
+    const day = new Date(created)
+    if (Number.isNaN(day.getTime())) continue
+    const dayKey = day.toISOString().slice(0, 10)
+    byDay.set(dayKey, (byDay.get(dayKey) || 0) + 1)
+  }
+
+  const dayKeys = [...byDay.keys()].sort()
+  if (!dayKeys.length) return []
+
+  const start = new Date(`${dayKeys[0]}T12:00:00Z`)
+  const end = new Date(`${dayKeys[dayKeys.length - 1]}T12:00:00Z`)
+  const series = []
+  let cumulative = 0
+
+  for (let t = start.getTime(); t <= end.getTime(); t += 24 * 60 * 60 * 1000) {
+    const dayKey = new Date(t).toISOString().slice(0, 10)
+    const daily = byDay.get(dayKey) || 0
+    cumulative += daily
+    series.push({ day: dayKey, daily, total: cumulative })
+  }
+
+  return series
+}
+
+function destroyFeedbackGrowthChart() {
+  const chart = state.charts.feedbackGrowth
+  if (!chart) return
+  try {
+    chart.destroy()
+  } catch {
+    /* ignore */
+  }
+  delete state.charts.feedbackGrowth
+}
+
+function renderFeedbackGraphKpis(series) {
+  const total = state.feedback.length
+  const withComments = state.feedback.filter(feedbackHasComment).length
+  const todayKey = new Date().toISOString().slice(0, 10)
+  const today = series.find((row) => row.day === todayKey)?.daily ?? 0
+
+  document.getElementById('kpi-fg-total').textContent = String(total)
+  document.getElementById('kpi-fg-comments').textContent = String(withComments)
+  document.getElementById('kpi-fg-today').textContent = String(today)
+}
+
+function renderFeedbackGraph() {
+  const status = document.getElementById('feedback-graph-status')
+  const kpis = document.getElementById('feedback-graph-kpis')
+  const chartWrap = document.getElementById('feedback-growth-chart')
+  const canvas = document.getElementById('chart-feedback-growth')
+
+  destroyFeedbackGrowthChart()
+
+  if (!state.loaded.feedback) {
+    setStatus(status, 'Loading feedback…')
+    kpis.hidden = true
+    chartWrap.hidden = true
+    return
+  }
+
+  if (!state.feedback.length) {
+    setStatus(status, 'No feedback yet.', 'empty')
+    kpis.hidden = true
+    chartWrap.hidden = true
+    return
+  }
+
+  const series = buildFeedbackGrowthSeries(state.feedback)
+  setStatus(status, '')
+  kpis.hidden = false
+  chartWrap.hidden = false
+  renderFeedbackGraphKpis(series)
+
+  if (!canvas || !series.length) return
+
+  const pointRadius = series.length > 40 ? 0 : 3
+  state.charts.feedbackGrowth = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: series.map((row) => formatChartDate(row.day)),
+      datasets: [
+        {
+          label: 'Total feedback',
+          data: series.map((row) => row.total),
+          borderColor: CHART_COLORS.primary,
+          borderWidth: 2.5,
+          fill: false,
+          tension: 0.35,
+          pointRadius,
+          pointBackgroundColor: CHART_COLORS.primary,
+          pointBorderColor: CHART_COLORS.bg,
+          pointBorderWidth: 2,
+          pointHoverRadius: 6,
+        },
+        {
+          label: 'Daily feedback',
+          data: series.map((row) => row.daily),
+          borderColor: CHART_COLORS.blue,
+          borderWidth: 2,
+          fill: true,
+          backgroundColor: 'rgba(59, 130, 246, 0.12)',
+          tension: 0.35,
+          pointRadius,
+          pointBackgroundColor: CHART_COLORS.blue,
+          pointBorderColor: CHART_COLORS.bg,
+          pointBorderWidth: 2,
+          pointHoverRadius: 6,
+        },
+      ],
+    },
+    options: baseChartOptions({
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            color: CHART_COLORS.tick,
+            font: { family: 'Inter', size: 11 },
+            boxWidth: 10,
+          },
+        },
+        tooltip: {
+          ...baseChartOptions().plugins.tooltip,
+          callbacks: {
+            label: (ctx) => {
+              const row = series[ctx.dataIndex]
+              if (ctx.dataset.label === 'Total feedback') {
+                const lines = [` Total feedback: ${ctx.parsed.y.toLocaleString()}`]
+                if (row?.daily) {
+                  lines.push(` +${row.daily.toLocaleString()} today`)
+                }
+                return lines
+              }
+              return ` Daily feedback: ${ctx.parsed.y.toLocaleString()}`
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: CHART_COLORS.tick,
+            font: { family: 'Inter', size: 10 },
+            maxTicksLimit: 8,
+            maxRotation: 0,
+          },
+          grid: { color: 'rgba(31,38,54,0.5)' },
+        },
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: CHART_COLORS.tick,
+            font: { family: 'Inter', size: 10 },
+            precision: 0,
+          },
+          grid: { color: 'rgba(31,38,54,0.5)' },
+        },
+      },
+    }),
+  })
 }
 
 async function loadFeedback() {
   const status = document.getElementById('feedback-status')
+  const graphStatus = document.getElementById('feedback-graph-status')
   const kpis = document.getElementById('feedback-kpis')
   const toolbar = document.getElementById('feedback-toolbar')
   const list = document.getElementById('feedback-list')
+  const graphKpis = document.getElementById('feedback-graph-kpis')
+  const graphChart = document.getElementById('feedback-growth-chart')
 
   setStatus(status, 'Loading feedback…')
+  if (graphStatus) setStatus(graphStatus, 'Loading feedback…')
   kpis.hidden = true
   toolbar.hidden = true
+  if (graphKpis) graphKpis.hidden = true
+  if (graphChart) graphChart.hidden = true
+  destroyFeedbackGrowthChart()
   list.innerHTML = ''
 
   try {
@@ -604,6 +882,7 @@ async function loadFeedback() {
         'Got 0 rows from "feedback". If you see rows in the Supabase Table Editor, anon SELECT is blocked by RLS (PostgREST returns [] instead of an error).\n\nIn Supabase → SQL Editor, run:\n\ncreate policy "anon_select_feedback"\n  on public.feedback for select to anon using (true);',
         'error',
       )
+      if (graphStatus) setStatus(graphStatus, 'No feedback yet.', 'empty')
       return
     }
 
@@ -615,6 +894,7 @@ async function loadFeedback() {
   } catch (error) {
     state.loaded.feedback = false
     setStatus(status, formatError(error, 'feedback'), 'error')
+    if (graphStatus) setStatus(graphStatus, formatError(error, 'feedback'), 'error')
   }
 }
 
@@ -1281,14 +1561,16 @@ function aggregateYt(rows) {
 }
 
 function destroyCharts() {
-  Object.values(state.charts).forEach((chart) => {
+  YT_CHART_KEYS.forEach((key) => {
+    const chart = state.charts[key]
+    if (!chart) return
     try {
       chart.destroy()
     } catch {
       /* ignore */
     }
+    delete state.charts[key]
   })
-  state.charts = {}
   const picks = document.getElementById('feature-picks')
   if (picks) picks.innerHTML = ''
 }
@@ -1603,12 +1885,21 @@ document.getElementById('yt-copy-metrics')?.addEventListener('click', () => {
   copyYtMetricsForAi()
 })
 
-document.querySelectorAll('#feedback-toolbar .admin__chip').forEach((chip) => {
+document.querySelectorAll('#feedback-toolbar .admin__toolbar-row .admin__chip').forEach((chip) => {
   chip.addEventListener('click', () => {
     setFeedbackFilter(chip.dataset.filter)
     syncFeedbackFilterChips()
+    renderFeedbackAppChips()
     renderFeedbackList()
   })
+})
+
+document.getElementById('feedback-app-chips')?.addEventListener('click', (event) => {
+  const chip = event.target.closest('[data-app-filter]')
+  if (!chip) return
+  setFeedbackAppFilter(chip.getAttribute('data-app-filter') || 'all')
+  renderFeedbackAppChips()
+  renderFeedbackList()
 })
 
 document.getElementById('mark-all-read').addEventListener('click', () => {

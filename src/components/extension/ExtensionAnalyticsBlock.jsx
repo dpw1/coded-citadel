@@ -193,7 +193,7 @@ export default function ExtensionAnalyticsBlock({
           </div>
           <div className="ext-chart-card CC__cyber-accent">
             <CyberCorners />
-            <div className="ext-chart-card__title">Weekly Users</div>
+            <div className="ext-chart-card__title">Active Users</div>
             <div className="ext-chart-card__canvas-wrap" style={{ height: 200 }}>
               <canvas id={chartIds.weeklyUsers} />
             </div>

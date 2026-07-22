@@ -1644,7 +1644,7 @@ function formatProcessedAppsSummaryLines(apps) {
       a.weeklyUsers?.length > 0
         ? a.weeklyUsers[a.weeklyUsers.length - 1]?.total ?? 0
         : 0
-    return `${i + 1}. ${app.name} (${installs} installs, ${lastWeeklyUsers} weekly users)`
+    return `${i + 1}. ${app.name} (${installs} installs, ${lastWeeklyUsers} active users)`
   })
 }
 

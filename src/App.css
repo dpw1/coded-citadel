@@ -1630,6 +1630,8 @@ html {
 
   .CC__nav-dropdown {
     width: 100%;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .CC__nav-dropdown__trigger {
