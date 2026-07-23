@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-22T19:50:32.635Z",
+  "updatedAt": "2026-07-23T23:28:56.768Z",
   "message": null,
   "apps": [
     {
@@ -251,6 +251,24 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "8544e1e70cbe18105a9627a1bf16d0dc81339a69",
+          "shortSha": "8544e1e",
+          "message": "Update YouTube Filter Pro to version 1.0.56: Incremented version number and added new localization messages for displaying extra information in search results. Enhanced user experience with additional settings for showing likes, views per day, and channel information. Improved toast notifications for filtering status, including pause and resume functionality. Refactored related components for better interaction and updated styles for improved UI consistency.",
+          "date": "2026-07-23T09:33:50Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/8544e1e70cbe18105a9627a1bf16d0dc81339a69",
+          "version": "1.0.56"
+        },
+        {
+          "sha": "7affa0d6b24ce58eb704d03a1e468ba62141843a",
+          "shortSha": "7affa0d",
+          "message": "Update YouTube Filter Pro to version 1.0.55: Incremented version number and added the \"i18n-iso-countries\" library as a dependency. Enhanced localization messages across multiple languages, including new entries for display options and improved user guidance. Updated manifest permissions to include a new host and refined the Vite configuration for better build processes and proprietary comment injection.",
+          "date": "2026-07-23T01:58:43Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/7affa0d6b24ce58eb704d03a1e468ba62141843a",
+          "version": "1.0.55"
+        },
+        {
           "sha": "586231c361131d1a453de8df36c8f91105e98046",
           "shortSha": "586231c",
           "message": "Update YouTube Filter Pro to version 1.0.54: Incremented version number and added the \"driver.js\" library as a dependency. Updated localization messages across multiple languages to enhance user guidance and clarity in filtering options. Improved the user experience with new onboarding tutorial messages and refined existing helper texts for better understanding of filter functionalities.",
@@ -383,7 +401,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.54"
+          "version": "1.0.56"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -392,7 +410,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.54"
+          "version": "1.0.56"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -401,7 +419,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.54"
+          "version": "1.0.56"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -410,7 +428,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.54"
+          "version": "1.0.56"
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -419,7 +437,7 @@
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.54"
+          "version": "1.0.56"
         }
       ]
     },

@@ -1,27 +1,27 @@
 {
   "available": true,
-  "updatedAt": "2026-07-22T19:50:22.593Z",
+  "updatedAt": "2026-07-23T23:28:47.521Z",
   "message": null,
-  "totalViews": 2600,
-  "blogViews": 67,
-  "averageTimeOnSiteSeconds": 153.1287948937768,
-  "uniqueVisitors": 1497,
+  "totalViews": 2723,
+  "blogViews": 71,
+  "averageTimeOnSiteSeconds": 149.06373286467309,
+  "uniqueVisitors": 1579,
   "newVsReturning": {
-    "new": 1490,
-    "returning": 212
+    "new": 1574,
+    "returning": 223
   },
   "mostViewedPages": [
     {
       "path": "/thank-you/",
-      "views": 1383
+      "views": 1456
     },
     {
       "path": "/",
-      "views": 507
+      "views": 512
     },
     {
       "path": "/uninstall/",
-      "views": 385
+      "views": 411
     },
     {
       "path": "/apps",
@@ -29,11 +29,15 @@
     },
     {
       "path": "/live-stats",
-      "views": 49
+      "views": 51
     },
     {
       "path": "/blog/",
       "views": 20
+    },
+    {
+      "path": "/privacy-policy/ai-bookmark/",
+      "views": 16
     },
     {
       "path": "/work",
@@ -44,12 +48,8 @@
       "views": 15
     },
     {
-      "path": "/privacy-policy/ai-bookmark/",
-      "views": 15
-    },
-    {
       "path": "/blog/instagram-dm-exporter-chrome-extension/",
-      "views": 12
+      "views": 14
     }
   ],
   "countries": [
@@ -58,28 +58,35 @@
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 379
+      "users": 394
     },
     {
       "code": "US",
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 281
+      "users": 294
     },
     {
       "code": "PK",
       "name": "Pakistan",
       "gaCountry": "Pakistan",
       "gaCountryId": "PK",
-      "users": 93
+      "users": 100
     },
     {
       "code": "JP",
       "name": "Japan",
       "gaCountry": "Japan",
       "gaCountryId": "JP",
-      "users": 60
+      "users": 64
+    },
+    {
+      "code": "BD",
+      "name": "Bangladesh",
+      "gaCountry": "Bangladesh",
+      "gaCountryId": "BD",
+      "users": 45
     },
     {
       "code": "BR",
@@ -89,17 +96,17 @@
       "users": 43
     },
     {
-      "code": "BD",
-      "name": "Bangladesh",
-      "gaCountry": "Bangladesh",
-      "gaCountryId": "BD",
-      "users": 35
-    },
-    {
       "code": "KR",
       "name": "South Korea",
       "gaCountry": "South Korea",
       "gaCountryId": "KR",
+      "users": 32
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "gaCountry": "United Kingdom",
+      "gaCountryId": "GB",
       "users": 31
     },
     {
@@ -107,13 +114,6 @@
       "name": "(not set)",
       "gaCountry": "(not set)",
       "gaCountryId": "(not set)",
-      "users": 30
-    },
-    {
-      "code": "GB",
-      "name": "United Kingdom",
-      "gaCountry": "United Kingdom",
-      "gaCountryId": "GB",
       "users": 30
     },
     {
@@ -142,49 +142,56 @@
       "name": "Italy",
       "gaCountry": "Italy",
       "gaCountryId": "IT",
-      "users": 23
+      "users": 25
     },
     {
       "code": "AU",
       "name": "Australia",
       "gaCountry": "Australia",
       "gaCountryId": "AU",
-      "users": 22
+      "users": 24
     },
     {
       "code": "CA",
       "name": "Canada",
       "gaCountry": "Canada",
       "gaCountryId": "CA",
-      "users": 22
+      "users": 23
     },
     {
       "code": "DE",
       "name": "Germany",
       "gaCountry": "Germany",
       "gaCountryId": "DE",
-      "users": 21
+      "users": 23
     },
     {
       "code": "FR",
       "name": "France",
       "gaCountry": "France",
       "gaCountryId": "FR",
-      "users": 21
+      "users": 23
     },
     {
       "code": "TH",
       "name": "Thailand",
       "gaCountry": "Thailand",
       "gaCountryId": "TH",
-      "users": 21
+      "users": 23
     },
     {
       "code": "TR",
       "name": "Türkiye",
       "gaCountry": "Türkiye",
       "gaCountryId": "TR",
-      "users": 20
+      "users": 21
+    },
+    {
+      "code": "VN",
+      "name": "Vietnam",
+      "gaCountry": "Vietnam",
+      "gaCountryId": "VN",
+      "users": 16
     },
     {
       "code": "CN",
@@ -201,18 +208,11 @@
       "users": 13
     },
     {
-      "code": "VN",
-      "name": "Vietnam",
-      "gaCountry": "Vietnam",
-      "gaCountryId": "VN",
-      "users": 13
-    },
-    {
       "code": "IL",
       "name": "Israel",
       "gaCountry": "Israel",
       "gaCountryId": "IL",
-      "users": 12
+      "users": 13
     },
     {
       "code": "MA",
@@ -222,33 +222,33 @@
       "users": 12
     },
     {
-      "code": "CL",
-      "name": "Chile",
-      "gaCountry": "Chile",
-      "gaCountryId": "CL",
-      "users": 11
+      "code": "TW",
+      "name": "Taiwan",
+      "gaCountry": "Taiwan",
+      "gaCountryId": "TW",
+      "users": 12
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 1718
+      "sessions": 1820
     },
     {
       "source": "Organic Search",
-      "sessions": 66
+      "sessions": 67
     },
     {
       "source": "Referral",
-      "sessions": 53
+      "sessions": 60
     },
     {
       "source": "Unassigned",
-      "sessions": 35
+      "sessions": 31
     },
     {
       "source": "Organic Social",
-      "sessions": 8
+      "sessions": 9
     },
     {
       "source": "AI Assistant",
@@ -262,19 +262,19 @@
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 1718
-    },
-    {
-      "referrer": "google",
-      "sessions": 48
+      "sessions": 1820
     },
     {
       "referrer": "chromewebstore.google.com",
-      "sessions": 43
+      "sessions": 50
+    },
+    {
+      "referrer": "google",
+      "sessions": 49
     },
     {
       "referrer": "(not set)",
-      "sessions": 35
+      "sessions": 31
     },
     {
       "referrer": "bing",
@@ -285,15 +285,15 @@
       "sessions": 4
     },
     {
+      "referrer": "reddit.com",
+      "sessions": 4
+    },
+    {
       "referrer": "claude.ai",
       "sessions": 3
     },
     {
       "referrer": "google-admin.corp.google.com",
-      "sessions": 3
-    },
-    {
-      "referrer": "reddit.com",
       "sessions": 3
     },
     {
@@ -497,7 +497,11 @@
       },
       {
         "date": "22-07-2026",
-        "total": 71
+        "total": 109
+      },
+      {
+        "date": "23-07-2026",
+        "total": 85
       }
     ],
     "activeUsers": [
@@ -695,7 +699,11 @@
       },
       {
         "date": "22-07-2026",
-        "total": 70
+        "total": 90
+      },
+      {
+        "date": "23-07-2026",
+        "total": 66
       }
     ],
     "blogViews": [
@@ -893,7 +901,11 @@
       },
       {
         "date": "22-07-2026",
-        "total": 2
+        "total": 3
+      },
+      {
+        "date": "23-07-2026",
+        "total": 3
       }
     ],
     "sessions": [
@@ -1091,7 +1103,11 @@
       },
       {
         "date": "22-07-2026",
-        "total": 76
+        "total": 102
+      },
+      {
+        "date": "23-07-2026",
+        "total": 81
       }
     ]
   }

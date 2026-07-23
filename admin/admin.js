@@ -1,4 +1,4 @@
-/* global Chart, confetti */
+/* global Chart */
 
 const SUPABASE_URL = 'https://pinypmgcawshibcmyxqp.supabase.co'
 const SUPABASE_ANON_KEY =
@@ -39,7 +39,7 @@ const CHROME_EXTENSION_NAMES = {
 
 const CHROME_EXTENSION_ID_RE = /^[a-p]{32}$/i
 
-/** Human labels from extension UI (samples/yt-filter.html). */
+/** Human labels from extension UI / filter_data keys. */
 const FEATURE_LABELS = {
   publishedPreset: 'Date range',
   dateFrom: 'Published from',
@@ -64,10 +64,114 @@ const FEATURE_LABELS = {
   subMax: 'Maximum subscribers',
   channelVideosMin: 'Minimum channel videos',
   channelVideosMax: 'Maximum channel videos',
+  channelViewMin: 'Minimum channel views',
+  channelViewMax: 'Maximum channel views',
+  channelCountries: 'Channel country includes',
+  channelCountriesExclude: 'Channel country excludes',
+  channelDescIncludes: 'Channel about includes',
+  channelDescExcludes: 'Channel about excludes',
+  channelSocialIncludes: 'Social links',
+  channelJoinedPreset: 'Channel joined date',
+  channelJoinedFrom: 'Joined from',
+  channelJoinedTo: 'Joined until',
   channelIncludes: 'Channel tags',
   channelExclude: 'Exclude channels',
   shorts: 'Shorts',
   verified: 'Verified',
+  // Nested filter_data.options.* (flattened as options.key)
+  // Nested filter_data.options.* (flattened as options.key) — exact extension UI labels
+  'options.enableFiltering': 'Enabled',
+  'options.filteredVideoStyle': 'Transparent mode',
+  'options.autoApply': 'Apply automatically',
+  'options.savePreferences': 'Save preferences',
+  'options.showSummary': 'Show summary',
+  'options.showFilterToasts': 'Display filter message box',
+  'options.showHardToFindTips': 'Notify when filters find few or no videos',
+  'options.autoScrollOnFilter': 'Auto scroll on filter',
+  'options.searchSortKey': 'Search sort key',
+  'options.searchSortDir': 'Search sort direction',
+  'options.autoSearchSort': 'Auto search sort',
+  'options.includeOnlyVideosInSearch': 'Include only videos in the search',
+  'options.showSubscribersNextToChannelName': 'Display subscribers count',
+  'options.showChannelVideoCount': "Display channel's videos count",
+  'options.showChannelSocialIcons': "Display channel's social media icons",
+  'options.showChannelCountry': 'Display country',
+  'options.showLikesOnSearchPage': 'Display likes',
+  'options.showExtraInfo': 'Show extra info?',
+  'options.showViewsPerDayOnSearchPage': 'Display Views per Day',
+  'options.showMatchCheckmark': 'Show checkmark on videos that match your filters',
+  'options.allowUsageAnalytics': 'Share anonymous usage data',
+  'options.batchFilterUpdates': 'Batch filter updates',
+  'options.smartChannelFetch': 'Smart channel fetch',
+}
+
+/** Exact settings UI labels (from extension `_locales/en`). */
+const OPTION_UI_LABELS = {
+  enableFiltering: 'Enabled',
+  filteredVideoStyle: 'Transparent mode',
+  savePreferences: 'Save preferences',
+  showFilterToasts: 'Display filter message box',
+  showHardToFindTips: 'Notify when filters find few or no videos',
+  includeOnlyVideosInSearch: 'Include only videos in the search',
+  showExtraInfo: 'Show extra info?',
+  showSubscribersNextToChannelName: 'Display subscribers count',
+  showChannelVideoCount: "Display channel's videos count",
+  showChannelSocialIcons: "Display channel's social media icons",
+  showChannelCountry: 'Display country',
+  showLikesOnSearchPage: 'Display likes',
+  showViewsPerDayOnSearchPage: 'Display Views per Day',
+  allowUsageAnalytics: 'Share anonymous usage data',
+}
+
+/** Defaults from extension `DEFAULT_YFP_OPTIONS` — only non-defaults count as “used”. */
+const OPTION_DEFAULTS = {
+  enableFiltering: true,
+  filteredVideoStyle: 'remove',
+  autoApply: false,
+  savePreferences: true,
+  showSummary: true,
+  showFilterToasts: true,
+  showHardToFindTips: true,
+  autoScrollOnFilter: false,
+  searchSortKey: 'default',
+  searchSortDir: 'desc',
+  autoSearchSort: false,
+  includeOnlyVideosInSearch: true,
+  showExtraInfo: true,
+  showSubscribersNextToChannelName: true,
+  showChannelVideoCount: true,
+  showChannelSocialIcons: false,
+  showChannelCountry: false,
+  showLikesOnSearchPage: true,
+  showViewsPerDayOnSearchPage: false,
+  showMatchCheckmark: true,
+  allowUsageAnalytics: true,
+  batchFilterUpdates: true,
+  smartChannelFetch: true,
+}
+
+/**
+ * Settings / display toggles shown in the adoption chart — same set + names as the
+ * extension Settings / Display UI.
+ */
+const OPTION_ADOPTION_KEYS = [
+  'showExtraInfo',
+  'showSubscribersNextToChannelName',
+  'showChannelVideoCount',
+  'showLikesOnSearchPage',
+  'showViewsPerDayOnSearchPage',
+  'showChannelSocialIcons',
+  'showChannelCountry',
+  'includeOnlyVideosInSearch',
+  'savePreferences',
+  'showFilterToasts',
+  'showHardToFindTips',
+  'enableFiltering',
+  'filteredVideoStyle',
+]
+
+function optionUiLabel(key) {
+  return OPTION_UI_LABELS[key] || FEATURE_LABELS[`options.${key}`] || key
 }
 
 function formatFeatureLabel(key) {
@@ -163,7 +267,6 @@ const settings = createPersistedStore(SETTINGS_STORAGE_KEY, {
   feedbackFilter: 'all',
   feedbackAppFilter: 'all',
   readFeedbackIds: migrateLegacyReadIds(),
-  seenFeedbackIds: [],
 })
 
 // One-time cleanup of old key after migration into settings store
@@ -177,7 +280,7 @@ try {
 
 const VALID_FILTERS = new Set(['all', 'unread', 'read'])
 const VALID_TABS = new Set(['feedback', 'yt', 'feedback-graph'])
-const YT_CHART_KEYS = ['features', 'subs', 'userGrowth']
+const YT_CHART_KEYS = ['features', 'subs', 'settings', 'userGrowth']
 
 function getFeedbackFilter() {
   const value = settings.get('feedbackFilter')
@@ -210,65 +313,6 @@ function setActiveTab(value) {
   const next = VALID_TABS.has(value) ? value : 'feedback'
   settings.set('activeTab', next)
   return next
-}
-
-function getSeenFeedbackIds() {
-  const ids = settings.get('seenFeedbackIds')
-  return new Set(Array.isArray(ids) ? ids.map(String) : [])
-}
-
-function setSeenFeedbackIds(ids) {
-  settings.set('seenFeedbackIds', [...new Set([...ids].map(String))])
-}
-
-function fireNewFeedbackConfetti(newCount) {
-  if (typeof confetti !== 'function') return
-
-  const bursts = Math.min(3, Math.max(1, newCount))
-  const colors = ['#ff9900', '#ffffff', '#3b82f6', '#22c55e', '#a855f7']
-
-  for (let i = 0; i < bursts; i += 1) {
-    window.setTimeout(() => {
-      confetti({
-        particleCount: 90 + i * 20,
-        spread: 70 + i * 15,
-        startVelocity: 38,
-        origin: { x: 0.15 + i * 0.35, y: 0.25 },
-        colors,
-        disableForReducedMotion: true,
-      })
-    }, i * 180)
-  }
-
-  window.setTimeout(() => {
-    confetti({
-      particleCount: 120,
-      spread: 100,
-      origin: { y: 0.55 },
-      colors,
-      disableForReducedMotion: true,
-    })
-  }, bursts * 180 + 80)
-}
-
-/**
- * Compare loaded feedback IDs with localStorage `seenFeedbackIds`.
- * First successful load only seeds the set (no confetti).
- * Later loads fire confetti when new IDs appear, then merge them in.
- */
-function detectAndCelebrateNewFeedback(rows) {
-  const currentIds = rows.map((row) => String(feedbackId(row)))
-  const seen = getSeenFeedbackIds()
-  const isFirstSeed = seen.size === 0
-
-  const newIds = currentIds.filter((id) => !seen.has(id))
-
-  if (!isFirstSeed && newIds.length > 0) {
-    fireNewFeedbackConfetti(newIds.length)
-  }
-
-  setSeenFeedbackIds([...seen, ...currentIds])
-  return newIds.length
 }
 
 const state = {
@@ -593,8 +637,6 @@ function feedbackCreatedAtMs(row) {
 }
 
 function compareFeedbackRows(a, b) {
-  const commentDelta = Number(feedbackHasComment(b)) - Number(feedbackHasComment(a))
-  if (commentDelta) return commentDelta
   return feedbackCreatedAtMs(b) - feedbackCreatedAtMs(a)
 }
 
@@ -889,7 +931,6 @@ async function loadFeedback() {
     setStatus(status, '')
     kpis.hidden = false
     toolbar.hidden = false
-    detectAndCelebrateNewFeedback(rows)
     renderFeedback()
   } catch (error) {
     state.loaded.feedback = false
@@ -1027,12 +1068,15 @@ function buildUserGrowthSeries(rows) {
   for (let t = start.getTime(); t <= end.getTime(); t += 24 * 60 * 60 * 1000) {
     const dayKey = new Date(t).toISOString().slice(0, 10)
     const newUsers = newUsersByDay.get(dayKey) || 0
+    const dau = dayUsers.get(dayKey)?.size || 0
     cumulative += newUsers
     series.push({
       day: dayKey,
       total: cumulative,
       newUsers,
-      dau: dayUsers.get(dayKey)?.size || 0,
+      dau,
+      // Active today, but first seen on an earlier day (repeat people inside DAU).
+      returning: Math.max(0, dau - newUsers),
     })
   }
 
@@ -1173,6 +1217,18 @@ function buildYtMetricsText(rows) {
   push(
     `Any duration filter: ${stats.durationAny} users (${pct(stats.durationAny, stats.uniqueUsers)})`,
   )
+  push(
+    `Country filter active: ${stats.countryFilterActive} users (${pct(stats.countryFilterActive, stats.uniqueUsers)})`,
+  )
+  push(
+    `Social links filter: ${stats.socialFilterActive} users (${pct(stats.socialFilterActive, stats.uniqueUsers)})`,
+  )
+  push(
+    `Transparent mode: ${stats.transparentModeActive} users (${pct(stats.transparentModeActive, stats.uniqueUsers)})`,
+  )
+  push(
+    `Rows with nested options: ${stats.usersWithOptions} users (${pct(stats.usersWithOptions, stats.uniqueUsers)})`,
+  )
   push(`Date span: ${firstDay || 'n/a'} -> ${lastDay || 'n/a'} (${spanDays} days)`)
   push('')
 
@@ -1223,13 +1279,13 @@ function buildYtMetricsText(rows) {
   )
   push('')
 
-  push('=== User growth (daily): date | total users | new | DAU ===')
+  push('=== User growth (daily): date | total users | new | DAU | returning ===')
   if (!growth.length) {
     push('(no growth data)')
   } else {
     growth.forEach((row) => {
       push(
-        `${row.day} | total=${row.total} | new=${row.newUsers} | dau=${row.dau}`,
+        `${row.day} | total=${row.total} | new=${row.newUsers} | dau=${row.dau} | returning=${row.returning}`,
       )
     })
   }
@@ -1258,6 +1314,23 @@ function buildYtMetricsText(rows) {
     subTop.forEach(([label, count], i) => {
       push(`${i + 1}. ${label}: ${count} users`)
     })
+  }
+  push('')
+
+  push('=== Settings / display toggles ON (unique users with options payload) ===')
+  const settingsDenom = stats.usersWithOptions || stats.uniqueUsers
+  if (!settingsDenom) {
+    push('(no options payloads yet — older rows only had filters)')
+  } else {
+    OPTION_ADOPTION_KEYS.forEach((key) => {
+      const count = stats.optionAdoption.get(key) || 0
+      push(
+        `${optionUiLabel(key)}: ${count} (${pct(count, settingsDenom)} of users with options)`,
+      )
+    })
+    push(
+      `${optionUiLabel('filteredVideoStyle')}: ${stats.transparentModeActive} (${pct(stats.transparentModeActive, settingsDenom)})`,
+    )
   }
   push('')
 
@@ -1374,6 +1447,18 @@ function pct(part, total) {
 function isFeatureUsed(key, value) {
   if (value == null) return false
 
+  // Nested options blob is expanded separately — never count as one feature.
+  if (key === 'options' && typeof value === 'object' && !Array.isArray(value)) {
+    return false
+  }
+
+  if (key.startsWith('options.')) {
+    const optKey = key.slice('options.'.length)
+    if (Object.prototype.hasOwnProperty.call(OPTION_DEFAULTS, optKey)) {
+      return value !== OPTION_DEFAULTS[optKey]
+    }
+  }
+
   if (typeof value === 'object' && !Array.isArray(value)) {
     return isGroupActive(value)
   }
@@ -1389,6 +1474,7 @@ function isFeatureUsed(key, value) {
   if (key === 'shorts' && str === 'all') return false
   if (key === 'verified' && str === 'all') return false
   if (key === 'publishedPreset' && str === 'any') return false
+  if (key === 'channelJoinedPreset' && str === 'any') return false
 
   return true
 }
@@ -1396,12 +1482,48 @@ function isFeatureUsed(key, value) {
 const PICK_LABELS = {
   any: 'Any time',
   all: 'All',
+  specific: 'Specific range',
   custom: 'Custom date',
+  remove: 'Remove filtered',
+  transparent: 'Transparent mode',
+  default: 'Default sort',
+  date: 'Sort by date',
+  views: 'Sort by views',
+  viewsPerDay: 'Sort by views/day',
+  likes: 'Sort by likes',
+  subscribers: 'Sort by subscribers',
+  duration: 'Sort by duration',
+  channelVideos: 'Sort by channel videos',
+  asc: 'Ascending',
+  desc: 'Descending',
   hour: 'Last hour',
   today: 'Today',
   week: 'Last week',
   month: 'Last month',
   year: 'Last year',
+  '1h': 'Last hour',
+  '3h': 'Last 3 hours',
+  '6h': 'Last 6 hours',
+  '12h': 'Last 12 hours',
+  '24h': 'Last 24 hours',
+  '2d': 'Last 2 days',
+  '3d': 'Last 3 days',
+  '5d': 'Last 5 days',
+  '1w': 'Last week',
+  '2w': 'Last 2 weeks',
+  '3w': 'Last 3 weeks',
+  '15d': 'Last 15 days',
+  '1m': 'Last month',
+  '2m': 'Last 2 months',
+  '3m': 'Last 3 months',
+  '6m': 'Last 6 months',
+  '9m': 'Last 9 months',
+  '1y': 'Last year',
+  '18m': 'Last 18 months',
+  '2y': 'Last 2 years',
+  '3y': 'Last 3 years',
+  '5y': 'Last 5 years',
+  '10y': 'Last 10 years',
   last_hour: 'Last hour',
   last_day: 'Last day',
   last_3_days: 'Last 3 days',
@@ -1414,6 +1536,25 @@ const PICK_LABELS = {
   last_2_years: 'Last 2 years',
   last_5_years: 'Last 5 years',
   last_10_years: 'Last 10 years',
+  instagram: 'Instagram',
+  tiktok: 'TikTok',
+  facebook: 'Facebook',
+  x: 'X (Twitter)',
+  linktree: 'Linktree',
+  discord: 'Discord',
+  twitch: 'Twitch',
+  snapchat: 'Snapchat',
+  pinterest: 'Pinterest',
+  reddit: 'Reddit',
+  patreon: 'Patreon',
+  spotify: 'Spotify',
+  linkedin: 'LinkedIn',
+  threads: 'Threads',
+  whatsapp: 'WhatsApp',
+  telegram: 'Telegram',
+  website: 'Website',
+  only: 'Only',
+  hide: 'Hide',
 }
 
 function formatPickLabel(raw) {
@@ -1477,8 +1618,14 @@ function aggregateYt(rows) {
   const featureUsers = new Map()
   /** @type {Map<string, Map<string, Set<string>>>} feature → pick → fingerprints */
   const featurePickUsers = new Map()
+  /** @type {Map<string, Set<string>>} option key → users with that option ON / non-default style */
+  const optionOnUsers = new Map()
   const keywordIncludeUsers = new Set()
   const durationUsers = new Set()
+  const countryFilterUsers = new Set()
+  const socialFilterUsers = new Set()
+  const transparentModeUsers = new Set()
+  const rowsWithOptions = new Set()
 
   let normalized = 0
 
@@ -1493,7 +1640,29 @@ function aggregateYt(rows) {
     normalized += 1
 
     if (fingerprint) {
-      Object.entries(filter).forEach(([key, value]) => {
+      const entries = Object.entries(filter)
+
+      // Flatten nested options into options.* feature keys
+      const opts =
+        filter.options && typeof filter.options === 'object' && !Array.isArray(filter.options)
+          ? filter.options
+          : null
+      if (opts) {
+        rowsWithOptions.add(fingerprint)
+        Object.entries(opts).forEach(([optKey, optVal]) => {
+          entries.push([`options.${optKey}`, optVal])
+
+          if (optKey === 'filteredVideoStyle' && optVal === 'transparent') {
+            transparentModeUsers.add(fingerprint)
+          }
+          if (OPTION_ADOPTION_KEYS.includes(optKey) && optVal === true) {
+            if (!optionOnUsers.has(optKey)) optionOnUsers.set(optKey, new Set())
+            optionOnUsers.get(optKey).add(fingerprint)
+          }
+        })
+      }
+
+      entries.forEach(([key, value]) => {
         if (!isFeatureUsed(key, value)) return
         if (!featureUsers.has(key)) featureUsers.set(key, new Set())
         featureUsers.get(key).add(fingerprint)
@@ -1505,9 +1674,21 @@ function aggregateYt(rows) {
       if (
         isGroupActive(filter.titleIncludes) ||
         isGroupActive(filter.descIncludes) ||
-        isGroupActive(filter.channelIncludes)
+        isGroupActive(filter.channelIncludes) ||
+        isGroupActive(filter.channelDescIncludes)
       ) {
         keywordIncludeUsers.add(fingerprint)
+      }
+
+      if (
+        isGroupActive(filter.channelCountries) ||
+        isGroupActive(filter.channelCountriesExclude)
+      ) {
+        countryFilterUsers.add(fingerprint)
+      }
+
+      if (isGroupActive(filter.channelSocialIncludes)) {
+        socialFilterUsers.add(fingerprint)
       }
 
       const durationFields = [
@@ -1546,6 +1727,7 @@ function aggregateYt(rows) {
   )
 
   const subRanges = userSetsToCounts(subRangeUsers)
+  const optionAdoption = userSetsToCounts(optionOnUsers)
 
   return {
     total: rows.length,
@@ -1554,9 +1736,14 @@ function aggregateYt(rows) {
     featureUsage,
     featurePicks,
     subRanges,
+    optionAdoption,
+    usersWithOptions: rowsWithOptions.size,
     byDay: userSetsToCounts(dayUsers),
     keywordIncludeActive: keywordIncludeUsers.size,
     durationAny: durationUsers.size,
+    countryFilterActive: countryFilterUsers.size,
+    socialFilterActive: socialFilterUsers.size,
+    transparentModeActive: transparentModeUsers.size,
   }
 }
 
@@ -1656,6 +1843,37 @@ function renderYtCharts() {
     options: barOpts,
   })
 
+  const settingsCanvas = document.getElementById('chart-settings')
+  if (settingsCanvas) {
+    const settingsDenom = stats.usersWithOptions || stats.uniqueUsers
+    const settingsRows = OPTION_ADOPTION_KEYS.map((key) => ({
+      key,
+      count: stats.optionAdoption.get(key) || 0,
+    }))
+      .filter((row) => row.count > 0 || settingsDenom > 0)
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 12)
+
+    // Always surface transparent mode as a pick-style row via feature usage if present
+    const transparentCount = stats.transparentModeActive || 0
+
+    state.charts.settings = new Chart(settingsCanvas, {
+      type: 'bar',
+      data: barData(
+        [
+          ...settingsRows.map((row) => optionUiLabel(row.key)),
+          ...(transparentCount ? [optionUiLabel('filteredVideoStyle')] : []),
+        ],
+        [
+          ...settingsRows.map((row) => row.count),
+          ...(transparentCount ? [transparentCount] : []),
+        ],
+        CHART_COLORS.purple,
+      ),
+      options: barOpts,
+    })
+  }
+
   const growthSeries = buildUserGrowthSeries(state.ytRows)
   const growthCanvas = document.getElementById('chart-user-growth')
   if (growthCanvas && growthSeries.length) {
@@ -1692,6 +1910,19 @@ function renderYtCharts() {
             pointBorderWidth: 2,
             pointHoverRadius: 6,
           },
+          {
+            label: 'Returning daily users',
+            data: growthSeries.map((row) => row.returning),
+            borderColor: CHART_COLORS.green,
+            borderWidth: 2,
+            fill: false,
+            tension: 0.35,
+            pointRadius,
+            pointBackgroundColor: CHART_COLORS.green,
+            pointBorderColor: CHART_COLORS.bg,
+            pointBorderWidth: 2,
+            pointHoverRadius: 6,
+          },
         ],
       },
       options: baseChartOptions({
@@ -1717,6 +1948,14 @@ function renderYtCharts() {
                     lines.push(` +${row.newUsers.toLocaleString()} new`)
                   }
                   return lines
+                }
+                if (ctx.dataset.label === 'Returning daily users') {
+                  const dau = row?.dau || 0
+                  const pctReturning = dau ? Math.round((100 * ctx.parsed.y) / dau) : 0
+                  return [
+                    ` Returning daily: ${ctx.parsed.y.toLocaleString()}`,
+                    ` ${pctReturning}% of DAU`,
+                  ]
                 }
                 return ` Daily active: ${ctx.parsed.y.toLocaleString()}`
               },
@@ -1761,6 +2000,27 @@ function renderYtKpis() {
   document.getElementById('kpi-yt-duration').textContent = pct(
     stats.durationAny,
     stats.uniqueUsers,
+  )
+
+  const setKpi = (id, value) => {
+    const el = document.getElementById(id)
+    if (el) el.textContent = value
+  }
+  setKpi(
+    'kpi-yt-country',
+    pct(stats.countryFilterActive, stats.uniqueUsers),
+  )
+  setKpi(
+    'kpi-yt-social',
+    pct(stats.socialFilterActive, stats.uniqueUsers),
+  )
+  setKpi(
+    'kpi-yt-transparent',
+    pct(stats.transparentModeActive, stats.uniqueUsers),
+  )
+  setKpi(
+    'kpi-yt-options',
+    pct(stats.usersWithOptions, stats.uniqueUsers),
   )
 }
 

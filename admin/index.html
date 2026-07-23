@@ -225,6 +225,22 @@
           <div class="admin__kpi-label">Any duration filter</div>
           <div class="admin__kpi-value" id="kpi-yt-duration">0%</div>
         </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Country filter</div>
+          <div class="admin__kpi-value" id="kpi-yt-country">0%</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Social links filter</div>
+          <div class="admin__kpi-value" id="kpi-yt-social">0%</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Transparent mode</div>
+          <div class="admin__kpi-value" id="kpi-yt-transparent">0%</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Has settings payload</div>
+          <div class="admin__kpi-value" id="kpi-yt-options">0%</div>
+        </div>
       </div>
 
       <div class="admin__growth-chart CC__cyber-accent" id="yt-user-growth" hidden>
@@ -277,14 +293,14 @@
           </svg>
         </div>
         <div class="admin__growth-chart__title">User growth</div>
-        <p class="admin__growth-chart__subtitle">Cumulative unique users vs daily active users (fingerprint)</p>
+        <p class="admin__growth-chart__subtitle">Cumulative unique users, daily active, and returning daily users (fingerprint)</p>
         <div class="admin__growth-chart__canvas-wrap">
           <canvas id="chart-user-growth"></canvas>
         </div>
       </div>
 
       <div class="admin__charts" id="yt-charts" hidden>
-        <p class="admin__chart-note">All charts count unique users (fingerprint), not total searches.</p>
+        <p class="admin__chart-note">All charts count unique users (fingerprint), not total searches. Settings come from nested <code>filter_data.options</code> (newer rows only).</p>
         <div class="admin__chart-card admin__chart-card--wide">
           <h3 class="admin__chart-title">Top 10 most used features</h3>
           <div class="admin__chart-wrap admin__chart-wrap--bar">
@@ -299,13 +315,19 @@
             <canvas id="chart-subs"></canvas>
           </div>
         </div>
+        <div class="admin__chart-card admin__chart-card--wide">
+          <h3 class="admin__chart-title">Settings / display toggles ON</h3>
+          <p class="admin__chart-subtitle">Share of users with an options payload who have each toggle enabled</p>
+          <div class="admin__chart-wrap admin__chart-wrap--bar">
+            <canvas id="chart-settings"></canvas>
+          </div>
+        </div>
       </div>
     </section>
   </div>
 
-  <!-- Chart.js + confetti — Supabase via REST fetch so file:// works (no SDK iframe). -->
+  <!-- Chart.js — Supabase via REST fetch so file:// works (no SDK iframe). -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script src="./admin.js"></script>
 </body>
 </html>
