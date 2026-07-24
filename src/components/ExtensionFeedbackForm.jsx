@@ -219,19 +219,9 @@ export default function ExtensionFeedbackForm({
       <div className="CC__cyber-accent CC__privacy__callout CC__uninstall-form">
         <CyberCorners />
         <h2 className="CC__section-title CC__uninstall-form__heading">Thanks for the feedback!</h2>
-        <p className="CC__privacy-page__meta" style={{ marginBottom: reviewUrl ? '1rem' : 0 }}>
+        <p className="CC__privacy-page__meta" style={{ marginBottom: 0 }}>
           We really appreciate you taking the time.
         </p>
-        {reviewUrl ? (
-          <a
-            href={reviewUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="CC__btn CC__btn--outline"
-          >
-            Leave us a review
-          </a>
-        ) : null}
       </div>
     )
   }
