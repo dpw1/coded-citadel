@@ -118,12 +118,6 @@ function resolveSubmitFingerprint(explicitFingerprint) {
   return getVisitorId()
 }
 
-function getChromeReviewsUrl(extensionId) {
-  const id = String(extensionId ?? '').trim()
-  if (!id) return null
-  return `https://chromewebstore.google.com/detail/${id}/reviews`
-}
-
 function tutorialVideoId(app) {
   const howTo = appYoutubeHowToUse(app)
   const build = appBuildYoutubeUrl(app)
@@ -133,7 +127,6 @@ function tutorialVideoId(app) {
 export default function ExtensionFeedbackForm({
   app = null,
   appName = 'Coded Citadel Extension',
-  chromeExtensionId = null,
   fingerprint: fingerprintProp = null,
   title = 'What went wrong?',
 }) {
@@ -149,7 +142,6 @@ export default function ExtensionFeedbackForm({
     [reasonId],
   )
 
-  const reviewUrl = getChromeReviewsUrl(chromeExtensionId ?? app?.chromeExtensionId)
   const storeUrl = appStoreUrl(app)
   const videoId = tutorialVideoId(app)
   const privacySubject = app ? appFilterLabel(app) : 'Our extensions'

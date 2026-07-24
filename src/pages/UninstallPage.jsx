@@ -48,7 +48,6 @@ export default function UninstallPage() {
             <ExtensionFeedbackForm
               app={app}
               appName={appName}
-              chromeExtensionId={app?.chromeExtensionId ?? null}
               fingerprint={fingerprint || null}
               title="What went wrong?"
             />
