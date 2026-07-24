@@ -6,6 +6,8 @@ const SUPABASE_ANON_KEY =
 
 const READ_STORAGE_KEY = 'cc_admin_feedback_read' // legacy; migrated into settings store
 const SETTINGS_STORAGE_KEY = 'cc_admin_settings'
+const YT_CACHE_KEY = 'cc_admin_yt_filter_pro_cache'
+const YT_CACHE_TTL_MS = 60 * 60 * 1000 // 1 hour
 
 const CHART_COLORS = {
   primary: '#ff9900',
@@ -320,6 +322,82 @@ const state = {
   ytRows: [],
   charts: {},
   loaded: { feedback: false, yt: false },
+  ytLoading: false,
+  ytCacheSavedAt: null,
+}
+
+function setYtTabStatus(status) {
+  const el = document.getElementById('yt-tab-status')
+  if (!el) return
+
+  el.classList.remove(
+    'admin__tab-status--loading',
+    'admin__tab-status--ready',
+    'admin__tab-status--error',
+  )
+
+  if (!status || status === 'idle') {
+    el.hidden = true
+    el.title = ''
+    return
+  }
+
+  el.hidden = false
+  if (status === 'loading') {
+    el.classList.add('admin__tab-status--loading')
+    el.title = 'Loading YouTube Filter Pro data…'
+    return
+  }
+  if (status === 'ready') {
+    el.classList.add('admin__tab-status--ready')
+    const savedAt = state.ytCacheSavedAt
+    el.title = savedAt
+      ? `Loaded (cached ${new Date(savedAt).toLocaleString('en-US')})`
+      : 'Loaded'
+    return
+  }
+  if (status === 'error') {
+    el.classList.add('admin__tab-status--error')
+    el.title = 'Failed to load YouTube Filter Pro data'
+  }
+}
+
+function readYtCache() {
+  try {
+    const raw = localStorage.getItem(YT_CACHE_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw)
+    if (!parsed || typeof parsed !== 'object') return null
+    if (!Array.isArray(parsed.rows)) return null
+    const savedAt = Number(parsed.savedAt)
+    if (!Number.isFinite(savedAt)) return null
+    return { rows: parsed.rows, savedAt }
+  } catch {
+    return null
+  }
+}
+
+function writeYtCache(rows) {
+  const savedAt = Date.now()
+  try {
+    localStorage.setItem(
+      YT_CACHE_KEY,
+      JSON.stringify({
+        savedAt,
+        rows,
+      }),
+    )
+    state.ytCacheSavedAt = savedAt
+    return true
+  } catch (error) {
+    console.warn('Could not cache YT Filter Pro data:', error)
+    state.ytCacheSavedAt = savedAt
+    return false
+  }
+}
+
+function isYtCacheFresh(savedAt) {
+  return Number.isFinite(savedAt) && Date.now() - savedAt < YT_CACHE_TTL_MS
 }
 
 function restHeaders() {
@@ -588,34 +666,45 @@ function formatFeedbackAppName(raw) {
 }
 
 function feedbackFingerprint(row) {
+  // Feedback table PK is `id`. The extension/user key is ONLY `fingerprint`.
   const raw = row?.fingerprint
   if (raw == null) return null
   const value = String(raw).trim()
   return value && value !== 'anonymous' ? value : null
 }
 
-/** Fingerprints that appear exactly once across all loaded feedback. */
-function buildUniqueFeedbackFingerprints(rows) {
-  const counts = new Map()
-  for (const row of rows) {
-    const fp = feedbackFingerprint(row)
-    if (!fp) continue
-    counts.set(fp, (counts.get(fp) || 0) + 1)
-  }
-  const unique = new Set()
-  for (const [fp, count] of counts) {
-    if (count === 1) unique.add(fp)
-  }
-  return unique
+function ytRowFingerprint(row) {
+  // yt_filter_pro_data PK is `id` (per search). User key is ONLY `fingerprint`.
+  const raw = row?.fingerprint
+  if (raw == null) return null
+  const value = String(raw).trim()
+  return value || null
 }
 
-function formatFeedbackContact(row, uniqueFingerprints) {
-  const email = String(row?.email ?? '').trim()
-  if (email) return email
+function shortFingerprint(fp) {
+  const value = String(fp || '')
+  if (value.length <= 16) return value
+  return `${value.slice(0, 8)}…${value.slice(-4)}`
+}
 
+function formatFeedbackContactHtml(row) {
+  const email = String(row?.email ?? '').trim()
   const fp = feedbackFingerprint(row)
-  if (fp && uniqueFingerprints.has(fp)) return 'Unique user'
-  return 'No email'
+  const parts = []
+
+  if (email) {
+    parts.push(`<span>${escapeHtml(email)}</span>`)
+  }
+
+  if (fp) {
+    parts.push(
+      `<button type="button" class="admin__fingerprint-btn" data-fingerprint="${escapeHtml(fp)}" title="fingerprint: ${escapeHtml(fp)}">${escapeHtml(shortFingerprint(fp))}</button>`,
+    )
+  } else if (!email) {
+    parts.push('<span>No fingerprint</span>')
+  }
+
+  return parts.join('')
 }
 
 /** True when suggestion has detail beyond a bare "[Reason]" tag. */
@@ -684,8 +773,6 @@ function renderFeedbackList() {
     return
   }
 
-  const uniqueFingerprints = buildUniqueFeedbackFingerprints(state.feedback)
-
   list.innerHTML = rows
     .map((row) => {
       const id = String(feedbackId(row))
@@ -696,7 +783,7 @@ function renderFeedbackList() {
             <div class="admin__card-meta">
               <span class="admin__card-app">${escapeHtml(formatFeedbackAppName(row.app_name))}</span>
               <span>${escapeHtml(formatDateWithRelative(row.created_at))}</span>
-              <span>${escapeHtml(formatFeedbackContact(row, uniqueFingerprints))}</span>
+              ${formatFeedbackContactHtml(row)}
             </div>
             <span class="admin__card-badge ${read ? 'admin__card-badge--read' : 'admin__card-badge--unread'}">
               ${read ? 'Read' : 'Unread'}
@@ -722,6 +809,219 @@ function renderFeedback() {
   if (!document.getElementById('panel-feedback-graph')?.hidden) {
     renderFeedbackGraph()
   }
+}
+
+function shortFeatureLabel(key) {
+  if (FEATURE_LABELS[key]) return FEATURE_LABELS[key]
+  if (String(key).startsWith('options.')) {
+    return optionUiLabel(String(key).slice('options.'.length))
+  }
+  return String(key)
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/^./, (c) => c.toUpperCase())
+}
+
+function collectUsedFilterEntries(filter) {
+  if (!filter || typeof filter !== 'object') return []
+
+  const entries = Object.entries(filter)
+  const opts =
+    filter.options && typeof filter.options === 'object' && !Array.isArray(filter.options)
+      ? filter.options
+      : null
+  if (opts) {
+    Object.entries(opts).forEach(([optKey, optVal]) => {
+      entries.push([`options.${optKey}`, optVal])
+    })
+  }
+
+  const used = []
+  for (const [key, value] of entries) {
+    if (key === 'options') continue
+    if (!isFeatureUsed(key, value)) continue
+    const picks = extractFeaturePicks(value).map(formatPickLabel)
+    used.push({
+      key,
+      label: shortFeatureLabel(key),
+      picks,
+    })
+  }
+  return used
+}
+
+function summarizeYtFingerprint(fingerprint) {
+  const fp = String(fingerprint || '').trim()
+  const rows = (state.ytRows || []).filter((row) => ytRowFingerprint(row) === fp)
+
+  const daySet = new Set()
+  const featureCounts = new Map()
+  const searches = []
+  let firstSeen = null
+  let lastSeen = null
+
+  for (const row of rows) {
+    const created = rowCreatedAt(row)
+    const createdMs = created ? new Date(created).getTime() : NaN
+    if (!Number.isNaN(createdMs)) {
+      if (firstSeen == null || createdMs < firstSeen) firstSeen = createdMs
+      if (lastSeen == null || createdMs > lastSeen) lastSeen = createdMs
+      daySet.add(new Date(createdMs).toISOString().slice(0, 10))
+    }
+
+    const filter = pickFilterObject(row)
+    const used = collectUsedFilterEntries(filter)
+    used.forEach((item) => {
+      featureCounts.set(item.key, (featureCounts.get(item.key) || 0) + 1)
+    })
+
+    searches.push({
+      createdAt: created,
+      createdMs: Number.isNaN(createdMs) ? 0 : createdMs,
+      used,
+    })
+  }
+
+  searches.sort((a, b) => b.createdMs - a.createdMs)
+
+  const topFilters = [...featureCounts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([key, count]) => ({
+      key,
+      label: shortFeatureLabel(key),
+      count,
+    }))
+
+  return {
+    fingerprint: fp,
+    searches: rows.length,
+    activeDays: daySet.size,
+    firstSeen,
+    lastSeen,
+    topFilters,
+    recentSearches: searches.slice(0, 25),
+  }
+}
+
+function closeFingerprintModal() {
+  const modal = document.getElementById('fingerprint-modal')
+  if (!modal) return
+  modal.hidden = true
+  document.body.style.overflow = ''
+}
+
+function openFingerprintModal(fingerprint) {
+  const modal = document.getElementById('fingerprint-modal')
+  const title = document.getElementById('fingerprint-modal-title')
+  const body = document.getElementById('fingerprint-modal-body')
+  if (!modal || !title || !body) return
+
+  const fp = String(fingerprint || '').trim()
+  title.textContent = fp || 'Unknown fingerprint'
+
+  if (!fp) {
+    body.innerHTML = '<p class="admin__modal-empty">No fingerprint on this feedback row.</p>'
+    modal.hidden = false
+    document.body.style.overflow = 'hidden'
+    return
+  }
+
+  if (!state.loaded.yt) {
+    body.innerHTML =
+      '<p class="admin__modal-empty">YT Filter Pro data is still loading. Try again in a moment.</p>'
+    modal.hidden = false
+    document.body.style.overflow = 'hidden'
+    return
+  }
+
+  const summary = summarizeYtFingerprint(fp)
+
+  if (!summary.searches) {
+    const looksLikeWebsiteVisitorId = fp.includes('-')
+    body.innerHTML = `
+      <p class="admin__modal-empty">
+        No YT Filter Pro searches found for fingerprint <code>${escapeHtml(fp)}</code>.
+        ${
+          looksLikeWebsiteVisitorId
+            ? 'This value looks like a website visitor id (UUID), not an extension fingerprint (32-char hex). The uninstall URL needs <code>?fingerprint=...</code> from the extension.'
+            : 'They may have uninstalled without ever searching, or analytics were off.'
+        }
+      </p>`
+    modal.hidden = false
+    document.body.style.overflow = 'hidden'
+    return
+  }
+
+  const topFiltersHtml = summary.topFilters.length
+    ? `<div class="admin__modal-tags">${summary.topFilters
+        .slice(0, 20)
+        .map(
+          (item) =>
+            `<span class="admin__modal-tag">${escapeHtml(item.label)} <strong>×${item.count}</strong></span>`,
+        )
+        .join('')}</div>`
+    : '<p class="admin__modal-empty">No non-default filters recorded.</p>'
+
+  const searchesHtml = summary.recentSearches
+    .map((search, index) => {
+      const filters =
+        search.used.length > 0
+          ? search.used
+              .map((item) => {
+                const picks =
+                  item.picks.length > 0 ? `: ${item.picks.slice(0, 3).join(', ')}` : ''
+                return `<span>${escapeHtml(item.label)}${escapeHtml(picks)}</span>`
+              })
+              .join('')
+          : '<span>Defaults only</span>'
+
+      return `
+        <article class="admin__modal-search">
+          <div class="admin__modal-search-top">
+            <span>Search #${summary.searches - index}</span>
+            <span>${escapeHtml(formatDateWithRelative(search.createdAt))}</span>
+          </div>
+          <div class="admin__modal-search-filters">${filters}</div>
+        </article>`
+    })
+    .join('')
+
+  body.innerHTML = `
+    <div class="admin__modal-kpis">
+      <div class="admin__modal-kpi">
+        <div class="admin__modal-kpi-label">Searches</div>
+        <div class="admin__modal-kpi-value">${summary.searches}</div>
+      </div>
+      <div class="admin__modal-kpi">
+        <div class="admin__modal-kpi-label">Active days</div>
+        <div class="admin__modal-kpi-value">${summary.activeDays}</div>
+      </div>
+      <div class="admin__modal-kpi">
+        <div class="admin__modal-kpi-label">First seen</div>
+        <div class="admin__modal-kpi-value" style="font-size:0.85rem">${escapeHtml(
+          formatDate(summary.firstSeen ? new Date(summary.firstSeen).toISOString() : null),
+        )}</div>
+      </div>
+      <div class="admin__modal-kpi">
+        <div class="admin__modal-kpi-label">Last seen</div>
+        <div class="admin__modal-kpi-value" style="font-size:0.85rem">${escapeHtml(
+          formatDate(summary.lastSeen ? new Date(summary.lastSeen).toISOString() : null),
+        )}</div>
+      </div>
+    </div>
+    <section class="admin__modal-section">
+      <h3 class="admin__modal-section-title">Filters used across searches</h3>
+      ${topFiltersHtml}
+    </section>
+    <section class="admin__modal-section">
+      <h3 class="admin__modal-section-title">Recent searches${
+        summary.searches > 25 ? ` (latest 25 of ${summary.searches})` : ''
+      }</h3>
+      <div class="admin__modal-searches">${searchesHtml}</div>
+    </section>
+  `
+
+  modal.hidden = false
+  document.body.style.overflow = 'hidden'
 }
 
 /** Cumulative + daily uninstall feedback counts by calendar day. */
@@ -2064,28 +2364,14 @@ function renderFeaturePicks(featureTop, featurePicks) {
     .join('')
 }
 
-async function loadYt() {
+async function loadYt({ force = false } = {}) {
   const status = document.getElementById('yt-status')
   const toolbar = document.getElementById('yt-toolbar')
   const kpis = document.getElementById('yt-kpis')
   const growth = document.getElementById('yt-user-growth')
   const charts = document.getElementById('yt-charts')
 
-  setStatus(status, 'Loading YouTube Filter Pro data…')
-  if (toolbar) toolbar.hidden = true
-  kpis.hidden = true
-  if (growth) growth.hidden = true
-  charts.hidden = true
-  destroyCharts()
-
-  try {
-    let rows
-    try {
-      rows = await fetchAllRows('yt_filter_pro_data', 'created_at')
-    } catch {
-      rows = await fetchAllRows('yt_filter_pro_data', null)
-    }
-
+  const applyYtRows = (rows, { fromCache = false } = {}) => {
     state.ytRows = rows
     state.loaded.yt = true
 
@@ -2095,7 +2381,12 @@ async function loadYt() {
         'Got 0 rows from "yt_filter_pro_data". If you see rows in the Supabase Table Editor, anon SELECT is blocked by RLS.\n\nIn Supabase → SQL Editor, run:\n\ncreate policy "anon_select_yt_filter_pro_data"\n  on public.yt_filter_pro_data for select to anon using (true);',
         'error',
       )
-      return
+      if (toolbar) toolbar.hidden = true
+      kpis.hidden = true
+      if (growth) growth.hidden = true
+      charts.hidden = true
+      destroyCharts()
+      return false
     }
 
     const sample = pickFilterObject(rows[0])
@@ -2105,10 +2396,19 @@ async function loadYt() {
         'Loaded rows, but could not find filter settings. Expected a JSON column (data/filters/payload/settings) or flat filter fields.',
         'error',
       )
-      return
+      if (toolbar) toolbar.hidden = true
+      kpis.hidden = true
+      if (growth) growth.hidden = true
+      charts.hidden = true
+      destroyCharts()
+      return false
     }
 
-    setStatus(status, '')
+    const cacheNote =
+      fromCache && state.ytCacheSavedAt
+        ? `Showing cached data from ${new Date(state.ytCacheSavedAt).toLocaleString('en-US')}.`
+        : ''
+    setStatus(status, cacheNote)
     if (toolbar) toolbar.hidden = false
     kpis.hidden = false
     if (growth) growth.hidden = false
@@ -2117,9 +2417,61 @@ async function loadYt() {
     if (!document.getElementById('panel-yt').hidden) {
       renderYtCharts()
     }
+    return true
+  }
+
+  const cached = readYtCache()
+  if (cached) state.ytCacheSavedAt = cached.savedAt
+
+  if (!force && cached && isYtCacheFresh(cached.savedAt)) {
+    applyYtRows(cached.rows, { fromCache: true })
+    setYtTabStatus('ready')
+    return
+  }
+
+  // Stale cache: show it immediately, then refresh in the background.
+  // Force refresh with existing data: keep UI, only show tab spinner.
+  if (!force && cached?.rows?.length) {
+    applyYtRows(cached.rows, { fromCache: true })
+    setYtTabStatus('loading')
+  } else if (force && state.ytRows.length) {
+    setYtTabStatus('loading')
+  } else {
+    setStatus(status, 'Loading YouTube Filter Pro data…')
+    if (toolbar) toolbar.hidden = true
+    kpis.hidden = true
+    if (growth) growth.hidden = true
+    charts.hidden = true
+    destroyCharts()
+    setYtTabStatus('loading')
+  }
+
+  if (state.ytLoading) return
+  state.ytLoading = true
+
+  try {
+    let rows
+    try {
+      rows = await fetchAllRows('yt_filter_pro_data', 'created_at')
+    } catch {
+      rows = await fetchAllRows('yt_filter_pro_data', null)
+    }
+
+    writeYtCache(rows)
+    applyYtRows(rows, { fromCache: false })
+    setYtTabStatus('ready')
   } catch (error) {
-    state.loaded.yt = false
-    setStatus(status, formatError(error, 'yt_filter_pro_data'), 'error')
+    if (!state.loaded.yt) {
+      state.loaded.yt = false
+      setStatus(status, formatError(error, 'yt_filter_pro_data'), 'error')
+      setYtTabStatus('error')
+    } else {
+      // Keep cached view; mark ready since usable data is on screen.
+      setYtTabStatus('ready')
+      console.warn('YT refresh failed; keeping cached data.', error)
+    }
+  } finally {
+    state.ytLoading = false
   }
 }
 
@@ -2127,10 +2479,23 @@ async function loadYt() {
 /* Boot                                                                       */
 /* -------------------------------------------------------------------------- */
 
-async function refreshAll() {
+async function refreshAll({ forceYt = true } = {}) {
   updateUpdatedAt()
-  await Promise.all([loadFeedback(), loadYt()])
+  await Promise.all([loadFeedback(), loadYt({ force: forceYt })])
   updateUpdatedAt()
+}
+
+function scheduleYtCacheRefresh() {
+  const scheduleNext = () => {
+    const cached = readYtCache()
+    const age = cached ? Date.now() - cached.savedAt : YT_CACHE_TTL_MS
+    const delay = Math.max(5_000, YT_CACHE_TTL_MS - age)
+    window.setTimeout(async () => {
+      await loadYt({ force: true })
+      scheduleNext()
+    }, delay)
+  }
+  scheduleNext()
 }
 
 document.querySelectorAll('.admin__tab').forEach((btn) => {
@@ -2168,6 +2533,13 @@ document.getElementById('mark-all-read').addEventListener('click', () => {
 })
 
 document.getElementById('feedback-list').addEventListener('click', (event) => {
+  const fpBtn = event.target.closest('[data-fingerprint]')
+  if (fpBtn) {
+    const fp = fpBtn.getAttribute('data-fingerprint') || fpBtn.dataset.fingerprint || ''
+    openFingerprintModal(fp)
+    return
+  }
+
   const btn = event.target.closest('[data-toggle-read]')
   if (!btn) return
   const id = btn.getAttribute('data-toggle-read')
@@ -2175,5 +2547,20 @@ document.getElementById('feedback-list').addEventListener('click', (event) => {
   renderFeedback()
 })
 
+document.getElementById('fingerprint-modal-close')?.addEventListener('click', () => {
+  closeFingerprintModal()
+})
+
+document.getElementById('fingerprint-modal-backdrop')?.addEventListener('click', () => {
+  closeFingerprintModal()
+})
+
+window.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return
+  const modal = document.getElementById('fingerprint-modal')
+  if (modal && !modal.hidden) closeFingerprintModal()
+})
+
 switchTab(getActiveTab(), { persist: false })
-refreshAll()
+refreshAll({ forceYt: false })
+scheduleYtCacheRefresh()

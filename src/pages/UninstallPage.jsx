@@ -13,10 +13,17 @@ export default function UninstallPage() {
   const source = searchParams.get('source')
   const trimmedSource = source?.trim() || ''
   const app = useMemo(() => getAppBySource(source), [source])
+  const version = searchParams.get('version')?.trim() || ''
+  const fingerprint =
+    searchParams.get('idfp')?.trim() ||
+    searchParams.get('fingerprint')?.trim() ||
+    searchParams.get('fp')?.trim() ||
+    ''
 
-  const appName = app
+  const baseAppName = app
     ? appFilterLabel(app) || app.name
     : trimmedSource || 'Coded Citadel Extension'
+  const appName = version ? `${baseAppName} ${version}` : baseAppName
 
   return (
     <>
@@ -42,6 +49,7 @@ export default function UninstallPage() {
               app={app}
               appName={appName}
               chromeExtensionId={app?.chromeExtensionId ?? null}
+              fingerprint={fingerprint || null}
               title="What went wrong?"
             />
           </div>

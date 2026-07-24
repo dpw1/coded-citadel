@@ -92,6 +92,32 @@ function getVisitorId() {
   }
 }
 
+function isValidOptionalEmail(raw) {
+  const s = String(raw ?? '').trim()
+  if (!s) return true
+  return /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/.test(s)
+}
+
+/** Prefer extension-provided idfp / fingerprint from the uninstall URL when present. */
+function resolveSubmitFingerprint(explicitFingerprint) {
+  const fromProp = String(explicitFingerprint ?? '').trim()
+  if (fromProp) return fromProp
+
+  try {
+    const params = new URLSearchParams(window.location.search)
+    const fromQuery =
+      params.get('idfp')?.trim() ||
+      params.get('fingerprint')?.trim() ||
+      params.get('fp')?.trim() ||
+      ''
+    if (fromQuery) return fromQuery
+  } catch {
+    /* ignore */
+  }
+
+  return getVisitorId()
+}
+
 function getChromeReviewsUrl(extensionId) {
   const id = String(extensionId ?? '').trim()
   if (!id) return null
@@ -108,10 +134,12 @@ export default function ExtensionFeedbackForm({
   app = null,
   appName = 'Coded Citadel Extension',
   chromeExtensionId = null,
+  fingerprint: fingerprintProp = null,
   title = 'What went wrong?',
 }) {
   const [reasonId, setReasonId] = useState('')
   const [details, setDetails] = useState('')
+  const [email, setEmail] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -129,11 +157,14 @@ export default function ExtensionFeedbackForm({
 
   const needsDetails = reason?.panel === 'textarea'
   const detailsTrimmed = details.trim()
+  const emailTrimmed = email.trim()
+  const showEmail = needsDetails && detailsTrimmed.length > 0
   const canSubmit = Boolean(reason) && !submitting
 
   function selectReason(id) {
     setReasonId(id)
     setDetails('')
+    setEmail('')
     setError('')
   }
 
@@ -144,6 +175,11 @@ export default function ExtensionFeedbackForm({
 
     if (!reason) {
       setError('Please select a reason.')
+      return
+    }
+
+    if (showEmail && !isValidOptionalEmail(emailTrimmed)) {
+      setError('Please enter a valid email, or leave it blank.')
       return
     }
 
@@ -163,9 +199,9 @@ export default function ExtensionFeedbackForm({
         },
         body: JSON.stringify({
           app_name: appName,
-          email: null,
+          email: showEmail && emailTrimmed ? emailTrimmed : null,
           suggestion,
-          fingerprint: getVisitorId(),
+          fingerprint: resolveSubmitFingerprint(fingerprintProp),
         }),
       })
 
@@ -316,6 +352,26 @@ export default function ExtensionFeedbackForm({
             }}
             disabled={submitting}
           />
+          {showEmail ? (
+            <div className="CC__uninstall-form__email">
+              <label className="CC__footer-newsletter-blurb" htmlFor="uninstall-email">
+                Email <span className="CC__uninstall-form__optional">(optional)</span>
+              </label>
+              <input
+                id="uninstall-email"
+                type="email"
+                className="CC__newsletter-input CC__uninstall-form__email-input"
+                placeholder="you@example.com"
+                autoComplete="email"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value)
+                  setError('')
+                }}
+                disabled={submitting}
+              />
+            </div>
+          ) : null}
         </div>
       ) : null}
 

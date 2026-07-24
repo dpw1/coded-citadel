@@ -50,6 +50,7 @@
         id="tab-yt"
       >
         YouTube Filter Pro
+        <span class="admin__tab-status" id="yt-tab-status" hidden aria-hidden="true"></span>
       </button>
       <button
         type="button"
@@ -324,6 +325,27 @@
         </div>
       </div>
     </section>
+  </div>
+
+  <div class="admin__modal" id="fingerprint-modal" hidden>
+    <button type="button" class="admin__modal-backdrop" id="fingerprint-modal-backdrop" aria-label="Close"></button>
+    <div
+      class="admin__modal-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="fingerprint-modal-title"
+    >
+      <div class="admin__modal-header">
+        <div>
+          <p class="admin__eyebrow">YT Filter Pro activity</p>
+          <h2 class="admin__modal-title" id="fingerprint-modal-title">User</h2>
+        </div>
+        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="fingerprint-modal-close">
+          Close
+        </button>
+      </div>
+      <div class="admin__modal-body" id="fingerprint-modal-body"></div>
+    </div>
   </div>
 
   <!-- Chart.js — Supabase via REST fetch so file:// works (no SDK iframe). -->

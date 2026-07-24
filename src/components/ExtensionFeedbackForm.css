@@ -149,6 +149,22 @@
   border: 0;
 }
 
+.CC__uninstall-form__email {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+.CC__uninstall-form__optional {
+  color: var(--CC__color-text-muted, #94a3b8);
+  font-weight: 400;
+}
+
+.CC__uninstall-form__email-input {
+  width: 100%;
+}
+
 .CC__uninstall-form__textarea {
   display: block;
   width: 100%;
