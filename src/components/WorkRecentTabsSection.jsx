@@ -323,17 +323,12 @@ export default function WorkRecentTabsSection() {
     videoRef.current.play().catch(() => {})
   }, [activeProject])
 
-  const activeTabMeta = TABS.find((tab) => tab.id === activeTab) ?? TABS[0]
-
   return (
     <>
       <section className="CC__work-recent" aria-label="Recent work">
         <div className="CC__work-recent__header">
           <p className="CC__section-eyebrow">Portfolio</p>
           <h2 className="CC__section-title">Recent Work</h2>
-          <p key={activeTab} className="CC__work-recent__subtitle">
-            {activeTabMeta.subtitle}
-          </p>
         </div>
 
         <div className="CC__work-recent__filters">

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import PortfolioAnalyticsSection from '../components/PortfolioAnalyticsSection'
@@ -8,14 +7,15 @@ import WorkRecentTabsSection from '../components/WorkRecentTabsSection'
 import WorkTestimonialsSection from '../components/WorkTestimonialsSection'
 import { ContactSection } from './ContactPage'
 import PageSEO from '../components/PageSEO'
+import { youtubeEmbedId } from '../utils/apps'
 import '../App.css'
 import './ExtensionLandingPage.css'
 import './PrivacyPolicyPage.css'
 import './StatsPage.css'
 import './WorkPage.css'
 
-const FACEBOOK_REVIEWS_URL = 'https://www.facebook.com/diegofortesdev/reviews'
-const YOUTUBE_URL = 'https://www.youtube.com/@CodedCitadel'
+const STORY_YOUTUBE_URL = 'https://youtu.be/J55nTKwjIt8'
+const STORY_EMBED_ID = youtubeEmbedId(STORY_YOUTUBE_URL)
 
 export default function WorkPage() {
   return (
@@ -28,6 +28,34 @@ export default function WorkPage() {
       <SiteHeader />
       <main className="CC__work-page">
         <div className="CC__container CC__work-page__portfolio">
+          <section className="CC__work-story" aria-label="My story">
+            <div className="CC__work-story__layout">
+              <div className="CC__work-story__copy">
+                <p className="CC__section-eyebrow">My Story</p>
+                <h2 className="CC__section-title">10 years of coding, now in public!</h2>
+                <p className="CC__work-story__text">
+                  From working with teams on projects for brands like <strong>McDonald&apos;s</strong> and{' '}
+                  <strong>Heineken</strong>, to a decade of freelance Shopify/SaaS work -
+                  here&apos;s how I ended up building in public, shipping 12 projects in 52 days,
+                  documenting everything along the way, and being ready for much more.
+                </p>
+              </div>
+              {STORY_EMBED_ID ? (
+                <div className="CC__work-story__media">
+                  <div className="CC__work-story__video">
+                    <iframe
+                      title="My story — introduction video"
+                      src={`https://www.youtube.com/embed/${STORY_EMBED_ID}?rel=0&modestbranding=1`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          </section>
+
           <WorkRecentTabsSection />
           {/* <WorkPortfolioSection />
           <AppsGridSection
