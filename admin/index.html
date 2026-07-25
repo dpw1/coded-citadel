@@ -219,6 +219,22 @@
           <div class="admin__kpi-value" id="kpi-yt-users">0</div>
         </div>
         <div class="admin__kpi">
+          <div class="admin__kpi-label">Avg searches / user</div>
+          <div class="admin__kpi-value" id="kpi-yt-avg-searches">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Median searches / user</div>
+          <div class="admin__kpi-value" id="kpi-yt-median-searches">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Median searches / DAU</div>
+          <div class="admin__kpi-value admin__kpi-value--blue" id="kpi-yt-median-dau-searches">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Median searches / returning</div>
+          <div class="admin__kpi-value admin__kpi-value--green" id="kpi-yt-median-returning-searches">0</div>
+        </div>
+        <div class="admin__kpi">
           <div class="admin__kpi-label">Keyword include active</div>
           <div class="admin__kpi-value" id="kpi-yt-keywords">0%</div>
         </div>
@@ -294,7 +310,7 @@
           </svg>
         </div>
         <div class="admin__growth-chart__title">User growth</div>
-        <p class="admin__growth-chart__subtitle">Cumulative unique users, daily active, and returning daily users (fingerprint)</p>
+        <p class="admin__growth-chart__subtitle">Cumulative unique users, daily active, and returning daily users (fingerprint). Hover a day for median searches / user.</p>
         <div class="admin__growth-chart__canvas-wrap">
           <canvas id="chart-user-growth"></canvas>
         </div>

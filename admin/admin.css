@@ -299,6 +299,14 @@ code {
   color: var(--CC__color-primary);
 }
 
+.admin__kpi-value--blue {
+  color: #3b82f6;
+}
+
+.admin__kpi-value--green {
+  color: var(--CC__color-success);
+}
+
 .admin__kpi-value--sm {
   font-size: 1.25rem;
   text-transform: none;

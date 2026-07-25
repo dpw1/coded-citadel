@@ -8,6 +8,8 @@ const READ_STORAGE_KEY = 'cc_admin_feedback_read' // legacy; migrated into setti
 const SETTINGS_STORAGE_KEY = 'cc_admin_settings'
 const YT_CACHE_KEY = 'cc_admin_yt_filter_pro_cache'
 const YT_CACHE_TTL_MS = 60 * 60 * 1000 // 1 hour
+const FEEDBACK_CACHE_KEY = 'cc_admin_feedback_cache'
+const FEEDBACK_CACHE_TTL_MS = 12 * 60 * 60 * 1000 // 12 hours
 
 const CHART_COLORS = {
   primary: '#ff9900',
@@ -322,6 +324,8 @@ const state = {
   ytRows: [],
   charts: {},
   loaded: { feedback: false, yt: false },
+  feedbackLoading: false,
+  feedbackCacheSavedAt: null,
   ytLoading: false,
   ytCacheSavedAt: null,
 }
@@ -398,6 +402,44 @@ function writeYtCache(rows) {
 
 function isYtCacheFresh(savedAt) {
   return Number.isFinite(savedAt) && Date.now() - savedAt < YT_CACHE_TTL_MS
+}
+
+function readFeedbackCache() {
+  try {
+    const raw = localStorage.getItem(FEEDBACK_CACHE_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw)
+    if (!parsed || typeof parsed !== 'object') return null
+    if (!Array.isArray(parsed.rows)) return null
+    const savedAt = Number(parsed.savedAt)
+    if (!Number.isFinite(savedAt)) return null
+    return { rows: parsed.rows, savedAt }
+  } catch {
+    return null
+  }
+}
+
+function writeFeedbackCache(rows) {
+  const savedAt = Date.now()
+  try {
+    localStorage.setItem(
+      FEEDBACK_CACHE_KEY,
+      JSON.stringify({
+        savedAt,
+        rows,
+      }),
+    )
+    state.feedbackCacheSavedAt = savedAt
+    return true
+  } catch (error) {
+    console.warn('Could not cache feedback data:', error)
+    state.feedbackCacheSavedAt = savedAt
+    return false
+  }
+}
+
+function isFeedbackCacheFresh(savedAt) {
+  return Number.isFinite(savedAt) && Date.now() - savedAt < FEEDBACK_CACHE_TTL_MS
 }
 
 function restHeaders() {
@@ -1195,7 +1237,7 @@ function renderFeedbackGraph() {
   })
 }
 
-async function loadFeedback() {
+async function loadFeedback({ force = false } = {}) {
   const status = document.getElementById('feedback-status')
   const graphStatus = document.getElementById('feedback-graph-status')
   const kpis = document.getElementById('feedback-kpis')
@@ -1204,17 +1246,7 @@ async function loadFeedback() {
   const graphKpis = document.getElementById('feedback-graph-kpis')
   const graphChart = document.getElementById('feedback-growth-chart')
 
-  setStatus(status, 'Loading feedback…')
-  if (graphStatus) setStatus(graphStatus, 'Loading feedback…')
-  kpis.hidden = true
-  toolbar.hidden = true
-  if (graphKpis) graphKpis.hidden = true
-  if (graphChart) graphChart.hidden = true
-  destroyFeedbackGrowthChart()
-  list.innerHTML = ''
-
-  try {
-    const rows = await fetchAllRows('feedback', 'created_at')
+  const applyFeedbackRows = (rows, { fromCache = false } = {}) => {
     state.feedback = rows
     state.loaded.feedback = true
 
@@ -1225,17 +1257,67 @@ async function loadFeedback() {
         'error',
       )
       if (graphStatus) setStatus(graphStatus, 'No feedback yet.', 'empty')
-      return
+      kpis.hidden = true
+      toolbar.hidden = true
+      if (graphKpis) graphKpis.hidden = true
+      if (graphChart) graphChart.hidden = true
+      destroyFeedbackGrowthChart()
+      list.innerHTML = ''
+      return false
     }
 
-    setStatus(status, '')
+    const cacheNote =
+      fromCache && state.feedbackCacheSavedAt
+        ? `Showing cached data from ${new Date(state.feedbackCacheSavedAt).toLocaleString('en-US')}.`
+        : ''
+    setStatus(status, cacheNote)
+    if (graphStatus) setStatus(graphStatus, '')
     kpis.hidden = false
     toolbar.hidden = false
     renderFeedback()
+    return true
+  }
+
+  const cached = readFeedbackCache()
+  if (cached) state.feedbackCacheSavedAt = cached.savedAt
+
+  if (!force && cached && isFeedbackCacheFresh(cached.savedAt)) {
+    applyFeedbackRows(cached.rows, { fromCache: true })
+    return
+  }
+
+  if (!force && cached?.rows?.length) {
+    applyFeedbackRows(cached.rows, { fromCache: true })
+  } else if (force && state.feedback.length) {
+    // keep UI while refreshing
+  } else {
+    setStatus(status, 'Loading feedback…')
+    if (graphStatus) setStatus(graphStatus, 'Loading feedback…')
+    kpis.hidden = true
+    toolbar.hidden = true
+    if (graphKpis) graphKpis.hidden = true
+    if (graphChart) graphChart.hidden = true
+    destroyFeedbackGrowthChart()
+    list.innerHTML = ''
+  }
+
+  if (state.feedbackLoading) return
+  state.feedbackLoading = true
+
+  try {
+    const rows = await fetchAllRows('feedback', 'created_at')
+    writeFeedbackCache(rows)
+    applyFeedbackRows(rows, { fromCache: false })
   } catch (error) {
-    state.loaded.feedback = false
-    setStatus(status, formatError(error, 'feedback'), 'error')
-    if (graphStatus) setStatus(graphStatus, formatError(error, 'feedback'), 'error')
+    if (!state.loaded.feedback) {
+      state.loaded.feedback = false
+      setStatus(status, formatError(error, 'feedback'), 'error')
+      if (graphStatus) setStatus(graphStatus, formatError(error, 'feedback'), 'error')
+    } else {
+      console.warn('Feedback refresh failed; keeping cached data.', error)
+    }
+  } finally {
+    state.feedbackLoading = false
   }
 }
 
@@ -1329,6 +1411,8 @@ function buildUserGrowthSeries(rows) {
   const firstSeen = new Map()
   /** @type {Map<string, Set<string>>} */
   const dayUsers = new Map()
+  /** @type {Map<string, Map<string, number>>} day → fingerprint → searches that day */
+  const dayFpSearches = new Map()
 
   for (const row of rows) {
     const fpRaw = row?.fingerprint
@@ -1348,6 +1432,10 @@ function buildUserGrowthSeries(rows) {
 
     if (!dayUsers.has(dayKey)) dayUsers.set(dayKey, new Set())
     dayUsers.get(dayKey).add(fingerprint)
+
+    if (!dayFpSearches.has(dayKey)) dayFpSearches.set(dayKey, new Map())
+    const fpMap = dayFpSearches.get(dayKey)
+    fpMap.set(fingerprint, (fpMap.get(fingerprint) || 0) + 1)
   }
 
   const newUsersByDay = new Map()
@@ -1368,7 +1456,22 @@ function buildUserGrowthSeries(rows) {
   for (let t = start.getTime(); t <= end.getTime(); t += 24 * 60 * 60 * 1000) {
     const dayKey = new Date(t).toISOString().slice(0, 10)
     const newUsers = newUsersByDay.get(dayKey) || 0
-    const dau = dayUsers.get(dayKey)?.size || 0
+    const users = dayUsers.get(dayKey)
+    const dau = users?.size || 0
+    const fpSearches = dayFpSearches.get(dayKey) || new Map()
+
+    const dauSearchCounts = []
+    const returningSearchCounts = []
+    if (users) {
+      for (const fp of users) {
+        const count = fpSearches.get(fp) || 0
+        dauSearchCounts.push(count)
+        if (firstSeen.get(fp) && firstSeen.get(fp) < dayKey) {
+          returningSearchCounts.push(count)
+        }
+      }
+    }
+
     cumulative += newUsers
     series.push({
       day: dayKey,
@@ -1377,6 +1480,8 @@ function buildUserGrowthSeries(rows) {
       dau,
       // Active today, but first seen on an earlier day (repeat people inside DAU).
       returning: Math.max(0, dau - newUsers),
+      dauMedianSearches: median(dauSearchCounts),
+      returningMedianSearches: median(returningSearchCounts),
     })
   }
 
@@ -1579,13 +1684,35 @@ function buildYtMetricsText(rows) {
   )
   push('')
 
-  push('=== User growth (daily): date | total users | new | DAU | returning ===')
+  const latestGrowth = growth.length ? growth[growth.length - 1] : null
+  push('=== Median searches / user (same-day intensity) ===')
+  if (latestGrowth) {
+    push(
+      `Latest day (${latestGrowth.day}) median searches / DAU: ${Number(latestGrowth.dauMedianSearches).toFixed(2)}`,
+    )
+    push(
+      `Latest day (${latestGrowth.day}) median searches / returning: ${Number(latestGrowth.returningMedianSearches).toFixed(2)}`,
+    )
+    const dauMedians = growth.map((row) => row.dauMedianSearches).filter((n) => n > 0)
+    const returningMedians = growth
+      .map((row) => row.returningMedianSearches)
+      .filter((n) => n > 0)
+    push(`Mean of daily DAU medians: ${mean(dauMedians).toFixed(2)}`)
+    push(`Mean of daily returning medians: ${mean(returningMedians).toFixed(2)}`)
+  } else {
+    push('(no growth data)')
+  }
+  push('')
+
+  push(
+    '=== User growth (daily): date | total | new | DAU | returning | med searches DAU | med searches returning ===',
+  )
   if (!growth.length) {
     push('(no growth data)')
   } else {
     growth.forEach((row) => {
       push(
-        `${row.day} | total=${row.total} | new=${row.newUsers} | dau=${row.dau} | returning=${row.returning}`,
+        `${row.day} | total=${row.total} | new=${row.newUsers} | dau=${row.dau} | returning=${row.returning} | medDau=${Number(row.dauMedianSearches).toFixed(1)} | medReturning=${Number(row.returningMedianSearches).toFixed(1)}`,
       )
     })
   }
@@ -1928,12 +2055,17 @@ function aggregateYt(rows) {
   const rowsWithOptions = new Set()
 
   let normalized = 0
+  /** @type {Map<string, number>} */
+  const searchesByFp = new Map()
 
   for (const row of rows) {
     const fpRaw = row?.fingerprint
     const fingerprint =
       fpRaw != null && String(fpRaw).trim() !== '' ? String(fpRaw) : null
-    if (fingerprint) uniqueFingerprints.add(fingerprint)
+    if (fingerprint) {
+      uniqueFingerprints.add(fingerprint)
+      searchesByFp.set(fingerprint, (searchesByFp.get(fingerprint) || 0) + 1)
+    }
 
     const filter = pickFilterObject(row)
     if (!filter) continue
@@ -2028,11 +2160,14 @@ function aggregateYt(rows) {
 
   const subRanges = userSetsToCounts(subRangeUsers)
   const optionAdoption = userSetsToCounts(optionOnUsers)
+  const searchesPerUser = [...searchesByFp.values()]
 
   return {
     total: rows.length,
     normalized,
     uniqueUsers: uniqueFingerprints.size,
+    searchesPerUserMean: mean(searchesPerUser),
+    searchesPerUserMedian: median(searchesPerUser),
     featureUsage,
     featurePicks,
     subRanges,
@@ -2242,6 +2377,8 @@ function renderYtCharts() {
             callbacks: {
               label: (ctx) => {
                 const row = growthSeries[ctx.dataIndex]
+                const formatMed = (n) =>
+                  Number.isFinite(n) ? (Math.round(n * 10) / 10).toLocaleString('en-US') : '0'
                 if (ctx.dataset.label === 'Total users') {
                   const lines = [` Total users: ${ctx.parsed.y.toLocaleString()}`]
                   if (row?.newUsers) {
@@ -2255,9 +2392,13 @@ function renderYtCharts() {
                   return [
                     ` Returning daily: ${ctx.parsed.y.toLocaleString()}`,
                     ` ${pctReturning}% of DAU`,
+                    ` Median searches / returning: ${formatMed(row?.returningMedianSearches)}`,
                   ]
                 }
-                return ` Daily active: ${ctx.parsed.y.toLocaleString()}`
+                return [
+                  ` Daily active: ${ctx.parsed.y.toLocaleString()}`,
+                  ` Median searches / DAU: ${formatMed(row?.dauMedianSearches)}`,
+                ]
               },
             },
           },
@@ -2290,9 +2431,24 @@ function renderYtCharts() {
 
 function renderYtKpis() {
   const stats = aggregateYt(state.ytRows)
+  const growth = buildUserGrowthSeries(state.ytRows)
+  const latest = growth.length ? growth[growth.length - 1] : null
+  const formatSearches = (n) =>
+    Number.isFinite(n) ? (Math.round(n * 10) / 10).toLocaleString('en-US') : '0'
 
   document.getElementById('kpi-yt-total').textContent = String(stats.total)
   document.getElementById('kpi-yt-users').textContent = String(stats.uniqueUsers)
+  document.getElementById('kpi-yt-avg-searches').textContent = formatSearches(
+    stats.searchesPerUserMean,
+  )
+  document.getElementById('kpi-yt-median-searches').textContent = formatSearches(
+    stats.searchesPerUserMedian,
+  )
+  document.getElementById('kpi-yt-median-dau-searches').textContent = formatSearches(
+    latest?.dauMedianSearches,
+  )
+  document.getElementById('kpi-yt-median-returning-searches').textContent =
+    formatSearches(latest?.returningMedianSearches)
   document.getElementById('kpi-yt-keywords').textContent = pct(
     stats.keywordIncludeActive,
     stats.uniqueUsers,
@@ -2479,9 +2635,12 @@ async function loadYt({ force = false } = {}) {
 /* Boot                                                                       */
 /* -------------------------------------------------------------------------- */
 
-async function refreshAll({ forceYt = true } = {}) {
+async function refreshAll({ forceYt = true, forceFeedback = true } = {}) {
   updateUpdatedAt()
-  await Promise.all([loadFeedback(), loadYt({ force: forceYt })])
+  await Promise.all([
+    loadFeedback({ force: forceFeedback }),
+    loadYt({ force: forceYt }),
+  ])
   updateUpdatedAt()
 }
 
@@ -2492,6 +2651,19 @@ function scheduleYtCacheRefresh() {
     const delay = Math.max(5_000, YT_CACHE_TTL_MS - age)
     window.setTimeout(async () => {
       await loadYt({ force: true })
+      scheduleNext()
+    }, delay)
+  }
+  scheduleNext()
+}
+
+function scheduleFeedbackCacheRefresh() {
+  const scheduleNext = () => {
+    const cached = readFeedbackCache()
+    const age = cached ? Date.now() - cached.savedAt : FEEDBACK_CACHE_TTL_MS
+    const delay = Math.max(5_000, FEEDBACK_CACHE_TTL_MS - age)
+    window.setTimeout(async () => {
+      await loadFeedback({ force: true })
       scheduleNext()
     }, delay)
   }
@@ -2562,5 +2734,6 @@ window.addEventListener('keydown', (event) => {
 })
 
 switchTab(getActiveTab(), { persist: false })
-refreshAll({ forceYt: false })
+refreshAll({ forceYt: false, forceFeedback: false })
 scheduleYtCacheRefresh()
+scheduleFeedbackCacheRefresh()

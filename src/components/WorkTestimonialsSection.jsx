@@ -8,8 +8,7 @@ const TESTIMONIALS = [
     author: 'Aprylle Stuart',
     profileUrl: 'https://www.facebook.com/apey28',
     postUrl: 'https://www.facebook.com/apey28/posts/10160445787611147',
-    avatarUrl:
-      'https://scontent.fcgh8-1.fna.fbcdn.net/v/t39.30808-1/467450148_10161753857001147_1509123132654155757_n.jpg?stp=cp0_dst-jpg_s50x50_tt6&_nc_cat=101&ccb=1-7&_nc_sid=28885b&_nc_ohc=-MBZpkiss58Q7kNvwFXlq_a&_nc_oc=AdpzlJcvaiaPspcA-HcQ1hW_yptUm_wnnl8lddHn7w-FUmxEw0kyQyP-NcVps-Cb0k1tIhdvGcIuirxNtYXk3lzD&_nc_zt=24&_nc_ht=scontent.fcgh8-1.fna&edm=AN6CN6oEAAAA&_nc_gid=B3lYCU5iaWac2fYwBTg52Q&oh=00_AQA4YDTmALbYMI3SYs04DnEF2A_VvHpOEy4Cq2Zn1n05HQ&oe=6A608348',
+    avatarUrl: `${import.meta.env.BASE_URL}testimonials/aprylle-stuart.png`,
     dateLabel: 'April 16, 2023',
     dateTitle: 'Sunday, April 16, 2023 at 11:23 AM',
     paragraphs: [
@@ -21,8 +20,7 @@ const TESTIMONIALS = [
     author: 'Koray Uygun',
     profileUrl: 'https://www.facebook.com/koray.uygun.5',
     postUrl: 'https://www.facebook.com/koray.uygun.5/posts/4110402362347553',
-    avatarUrl:
-      'https://scontent.fcgh8-1.fna.fbcdn.net/v/t39.30808-1/571228295_24745106041783883_5421738790377845182_n.jpg?stp=cp0_dst-jpg_s50x50_tt6&_nc_cat=105&ccb=1-7&_nc_sid=28885b&_nc_ohc=6xuJ7myF5FkQ7kNvwHryB_u&_nc_oc=Adq0IlGu--0wJHOc4xd1zP-koAQAYXnggJy2eLJWSKH0crbuuII5aTSKoM16UnKfSw4AnlxAEUvN5md_oKJjClr7&_nc_zt=24&_nc_ht=scontent.fcgh8-1.fna&edm=AN6CN6oEAAAA&_nc_gid=BLf_dlyFiuL6ZY0ycWokXQ&oh=00_AQANqhHiX2eTctElOn3J4fjvbAQqz0cD7kWJUqnWIel9uQ&oe=6A607473',
+    avatarUrl: `${import.meta.env.BASE_URL}testimonials/koray-uygun.png`,
     dateLabel: 'August 5, 2021',
     dateTitle: 'Thursday, August 5, 2021 at 8:29 AM',
     paragraphs: [
@@ -35,8 +33,7 @@ const TESTIMONIALS = [
     author: 'Mackenzie Dodge',
     profileUrl: 'https://www.facebook.com/themackenziedodge',
     postUrl: 'https://www.facebook.com/themackenziedodge/posts/10217898828166682',
-    avatarUrl:
-      'https://scontent.fcgh8-1.fna.fbcdn.net/v/t39.30808-1/657441660_10232249073033835_4914358809764193045_n.jpg?stp=c5.62.500.500a_cp0_dst-jpg_s50x50_tt6&_nc_cat=107&ccb=1-7&_nc_sid=fe59b0&_nc_ohc=flgbUtVIj20Q7kNvwFT5zA6&_nc_oc=AdrRqCxPK34aV7KAQM1P24mOkqJPoH2C-QyAbCeLcwX2W_ty7FIncoEGOGWsaRmJXy0wWESZoJ4sUIXr8IR57e2K&_nc_zt=24&_nc_ht=scontent.fcgh8-1.fna&edm=AN6CN6oEAAAA&_nc_gid=odL2x_fO6bJr3JE065DMNw&oh=00_AQDqqI65EzUcqtJ3Ij5vBWAd6mmaOotLXKY0b3My5H3rFg&oe=6A607F1F',
+    avatarUrl: `${import.meta.env.BASE_URL}testimonials/mackenzie-dodge.png`,
     dateLabel: 'October 26, 2020',
     dateTitle: 'Monday, October 26, 2020 at 8:01 PM',
     paragraphs: [

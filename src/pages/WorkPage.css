@@ -66,6 +66,22 @@
   color: var(--CC__color-text-muted);
 }
 
+.CC__work-story__list {
+  margin: 0;
+  padding: 0 0 0 1.15rem;
+  max-width: 34rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  list-style: disc;
+}
+
+.CC__work-story__list li {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--CC__color-text-muted);
+}
+
 .CC__work-story__media {
   width: 100%;
   max-width: 28rem;
@@ -195,7 +211,8 @@
     justify-self: stretch;
   }
 
-  .CC__work-story__text {
+  .CC__work-story__text,
+  .CC__work-story__list {
     max-width: none;
     font-size: 0.98rem;
   }

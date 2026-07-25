@@ -32,13 +32,20 @@ export default function WorkPage() {
             <div className="CC__work-story__layout">
               <div className="CC__work-story__copy">
                 <p className="CC__section-eyebrow">My Story</p>
-                <h2 className="CC__section-title">10 years of coding, now in public!</h2>
-                <p className="CC__work-story__text">
-                  From working with teams on projects for brands like <strong>McDonald&apos;s</strong> and{' '}
-                  <strong>Heineken</strong>, to a decade of freelance Shopify/SaaS work -
-                  here&apos;s how I ended up building in public, shipping 12 projects in 52 days,
-                  documenting everything along the way, and being ready for much more.
-                </p>
+                <h2 className="CC__section-title">10+ years of coding, now in public</h2>
+                <ul className="CC__work-story__list">
+                  <li>
+                    Worked with brands like <strong>McDonald&apos;s</strong> and{' '}
+                    <strong>Heineken</strong> on my first job
+                  </li>
+                  <li>
+                    Almost a decade of Shopify development, building stores with now thousands of visitors
+                  </li>
+                  <li>
+                    Currently building in public (shipped 12 Chrome extensions within 2 months)
+                  </li>
+                  <li>Looking for new opportunities!</li>
+                </ul>
               </div>
               {STORY_EMBED_ID ? (
                 <div className="CC__work-story__media">
