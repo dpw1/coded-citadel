@@ -82,6 +82,16 @@
   color: var(--CC__color-text-muted);
 }
 
+.CC__work-story__link {
+  color: var(--CC__color-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.CC__work-story__link:hover {
+  color: var(--CC__color-primary-hover, var(--CC__color-primary));
+}
+
 .CC__work-story__media {
   width: 100%;
   max-width: 28rem;

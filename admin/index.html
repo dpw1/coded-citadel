@@ -23,10 +23,10 @@
       </div>
     </header>
 
-    <p class="admin__note">
-      Opens locally via <code>file://</code> (uses Supabase REST + fetch — no SDK iframe).
-      Needs anon <strong>SELECT</strong> on <code>feedback</code> and <code>yt_filter_pro_data</code>.
-      Do not deploy publicly.
+    <p class="admin__note admin__cache-timers" id="admin-cache-timers" aria-live="polite">
+      <span class="admin__cache-timer" id="cache-timer-feedback">Feedback: —</span>
+      <span class="admin__cache-timers__sep" aria-hidden="true">·</span>
+      <span class="admin__cache-timer" id="cache-timer-yt">YouTube Filter Pro: —</span>
     </p>
 
     <nav class="admin__tabs" role="tablist" aria-label="Admin sections">
@@ -51,6 +51,16 @@
       >
         YouTube Filter Pro
         <span class="admin__tab-status" id="yt-tab-status" hidden aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="admin__tab"
+        role="tab"
+        aria-selected="false"
+        data-tab="yt-dev"
+        id="tab-yt-dev"
+      >
+        YT Filter Pro — Dev
       </button>
       <button
         type="button"
@@ -227,11 +237,11 @@
           <div class="admin__kpi-value" id="kpi-yt-median-searches">0</div>
         </div>
         <div class="admin__kpi">
-          <div class="admin__kpi-label">Median searches / DAU</div>
+          <div class="admin__kpi-label">Median daily searches / DAU</div>
           <div class="admin__kpi-value admin__kpi-value--blue" id="kpi-yt-median-dau-searches">0</div>
         </div>
         <div class="admin__kpi">
-          <div class="admin__kpi-label">Median searches / returning</div>
+          <div class="admin__kpi-label">Median daily searches / returning</div>
           <div class="admin__kpi-value admin__kpi-value--green" id="kpi-yt-median-returning-searches">0</div>
         </div>
         <div class="admin__kpi">
@@ -310,7 +320,7 @@
           </svg>
         </div>
         <div class="admin__growth-chart__title">User growth</div>
-        <p class="admin__growth-chart__subtitle">Cumulative unique users, daily active, and returning daily users (fingerprint). Hover a day for median searches / user.</p>
+        <p class="admin__growth-chart__subtitle">Cumulative unique users, daily active, and returning daily users (fingerprint)</p>
         <div class="admin__growth-chart__canvas-wrap">
           <canvas id="chart-user-growth"></canvas>
         </div>
@@ -340,6 +350,52 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- YT FILTER PRO — DEV (own fingerprint only) -->
+    <section
+      class="admin__panel"
+      id="panel-yt-dev"
+      role="tabpanel"
+      aria-labelledby="tab-yt-dev"
+      hidden
+    >
+      <div class="admin__status" id="yt-dev-status">Loading your YT Filter Pro data…</div>
+
+      <p class="admin__note" id="yt-dev-note" hidden>
+        Scoped to your extension fingerprint
+        <code id="yt-dev-fp">—</code>
+        for testing Supabase inserts (filter searches + View Results).
+      </p>
+
+      <div class="admin__kpis" id="yt-dev-kpis" hidden>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Total events</div>
+          <div class="admin__kpi-value" id="kpi-yt-dev-total">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Filter searches</div>
+          <div class="admin__kpi-value" id="kpi-yt-dev-searches">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">View Results clicks</div>
+          <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-yt-dev-views">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Total filtered results</div>
+          <div class="admin__kpi-value admin__kpi-value--green" id="kpi-yt-dev-results">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Avg results / view</div>
+          <div class="admin__kpi-value admin__kpi-value--blue" id="kpi-yt-dev-avg">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Last event</div>
+          <div class="admin__kpi-value admin__kpi-value--sm" id="kpi-yt-dev-last">—</div>
+        </div>
+      </div>
+
+      <div class="admin__list" id="yt-dev-list" hidden></div>
     </section>
   </div>
 

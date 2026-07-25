@@ -8,6 +8,7 @@ import WorkTestimonialsSection from '../components/WorkTestimonialsSection'
 import { ContactSection } from './ContactPage'
 import PageSEO from '../components/PageSEO'
 import { youtubeEmbedId } from '../utils/apps'
+import { Link } from 'react-router-dom'
 import '../App.css'
 import './ExtensionLandingPage.css'
 import './PrivacyPolicyPage.css'
@@ -36,13 +37,19 @@ export default function WorkPage() {
                 <ul className="CC__work-story__list">
                   <li>
                     Worked with brands like <strong>McDonald&apos;s</strong> and{' '}
-                    <strong>Heineken</strong> on my first job
+                    <strong>Heineken</strong> on my first job as a dev, back in 2016
                   </li>
                   <li>
-                    Almost a decade of Shopify development, building stores with now thousands of visitors
+                    Almost a decade of Shopify development, building stores with now thousands of
+                    visitors
                   </li>
                   <li>
-                    Currently building in public (shipped 12 Chrome extensions within 2 months)
+                    Currently building in public (shipped 12 Chrome extensions within 2 months &amp; 1
+                    Shopify store —{' '}
+                    <Link to="/blog/my-first-sale" className="CC__work-story__link">
+                      read the blog
+                    </Link>
+                    )
                   </li>
                   <li>Looking for new opportunities!</li>
                 </ul>

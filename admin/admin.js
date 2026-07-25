@@ -11,6 +11,19 @@ const YT_CACHE_TTL_MS = 60 * 60 * 1000 // 1 hour
 const FEEDBACK_CACHE_KEY = 'cc_admin_feedback_cache'
 const FEEDBACK_CACHE_TTL_MS = 12 * 60 * 60 * 1000 // 12 hours
 
+/** Your extension fingerprint — YT Filter Pro Dev tab only. */
+const YT_DEV_FINGERPRINT = '874b64d1a1272656edca6793be300565'
+
+/**
+ * Always excluded from the main "YT Filter Pro" analytics tab — even when the
+ * extension-side blacklist is empty / inactive — so personal / test traffic
+ * never mixes into real user metrics. These fingerprints only appear under
+ * "YT Filter Pro — Dev".
+ */
+const YT_FINGERPRINT_BLACKLIST = new Set([
+  YT_DEV_FINGERPRINT,
+])
+
 const CHART_COLORS = {
   primary: '#ff9900',
   blue: '#3b82f6',
@@ -283,7 +296,7 @@ try {
 }
 
 const VALID_FILTERS = new Set(['all', 'unread', 'read'])
-const VALID_TABS = new Set(['feedback', 'yt', 'feedback-graph'])
+const VALID_TABS = new Set(['feedback', 'yt', 'yt-dev', 'feedback-graph'])
 const YT_CHART_KEYS = ['features', 'subs', 'settings', 'userGrowth']
 
 function getFeedbackFilter() {
@@ -392,10 +405,12 @@ function writeYtCache(rows) {
       }),
     )
     state.ytCacheSavedAt = savedAt
+    updateCacheTimers()
     return true
   } catch (error) {
     console.warn('Could not cache YT Filter Pro data:', error)
     state.ytCacheSavedAt = savedAt
+    updateCacheTimers()
     return false
   }
 }
@@ -430,10 +445,12 @@ function writeFeedbackCache(rows) {
       }),
     )
     state.feedbackCacheSavedAt = savedAt
+    updateCacheTimers()
     return true
   } catch (error) {
     console.warn('Could not cache feedback data:', error)
     state.feedbackCacheSavedAt = savedAt
+    updateCacheTimers()
     return false
   }
 }
@@ -619,10 +636,14 @@ function switchTab(tab, { persist = true } = {}) {
   })
   document.getElementById('panel-feedback').hidden = active !== 'feedback'
   document.getElementById('panel-yt').hidden = active !== 'yt'
+  document.getElementById('panel-yt-dev').hidden = active !== 'yt-dev'
   document.getElementById('panel-feedback-graph').hidden = active !== 'feedback-graph'
 
   if (active === 'yt' && state.loaded.yt) {
     requestAnimationFrame(() => renderYtCharts())
+  }
+  if (active === 'yt-dev' && state.loaded.yt) {
+    requestAnimationFrame(() => renderYtDev())
   }
   if (active === 'feedback-graph' && state.loaded.feedback) {
     requestAnimationFrame(() => renderFeedbackGraph())
@@ -687,6 +708,69 @@ function renderFeedbackAppChips() {
 function updateUpdatedAt() {
   document.getElementById('admin-updated').textContent =
     `Updated ${new Date().toLocaleString('en-US')}`
+}
+
+function formatCacheRemaining(ms) {
+  if (!Number.isFinite(ms)) return '—'
+  if (ms <= 0) return 'updating…'
+  const totalSec = Math.max(0, Math.ceil(ms / 1000))
+  const h = Math.floor(totalSec / 3600)
+  const m = Math.floor((totalSec % 3600) / 60)
+  const s = totalSec % 60
+  if (h > 0) {
+    return `${h}h ${String(m).padStart(2, '0')}m ${String(s).padStart(2, '0')}s remaining`
+  }
+  return `${String(m).padStart(2, '0')}m ${String(s).padStart(2, '0')}s remaining`
+}
+
+function cacheRemainingMs(savedAt, ttlMs) {
+  if (!Number.isFinite(savedAt)) return null
+  return savedAt + ttlMs - Date.now()
+}
+
+function resolveFeedbackCacheSavedAt() {
+  if (Number.isFinite(state.feedbackCacheSavedAt)) return state.feedbackCacheSavedAt
+  const cached = readFeedbackCache()
+  if (cached) {
+    state.feedbackCacheSavedAt = cached.savedAt
+    return cached.savedAt
+  }
+  return null
+}
+
+function resolveYtCacheSavedAt() {
+  if (Number.isFinite(state.ytCacheSavedAt)) return state.ytCacheSavedAt
+  const cached = readYtCache()
+  if (cached) {
+    state.ytCacheSavedAt = cached.savedAt
+    return cached.savedAt
+  }
+  return null
+}
+
+function updateCacheTimers() {
+  const feedbackEl = document.getElementById('cache-timer-feedback')
+  const ytEl = document.getElementById('cache-timer-yt')
+  if (!feedbackEl || !ytEl) return
+
+  const feedbackRemaining = cacheRemainingMs(
+    resolveFeedbackCacheSavedAt(),
+    FEEDBACK_CACHE_TTL_MS,
+  )
+  const ytRemaining = cacheRemainingMs(resolveYtCacheSavedAt(), YT_CACHE_TTL_MS)
+
+  feedbackEl.textContent = state.feedbackLoading
+    ? 'Feedback: updating…'
+    : `Feedback: ${formatCacheRemaining(feedbackRemaining)}`
+
+  ytEl.textContent = state.ytLoading
+    ? 'YouTube Filter Pro: updating…'
+    : `YouTube Filter Pro: ${formatCacheRemaining(ytRemaining)}`
+}
+
+function startCacheTimerTicker() {
+  updateCacheTimers()
+  window.setInterval(updateCacheTimers, 1000)
 }
 
 /* -------------------------------------------------------------------------- */
@@ -879,7 +963,7 @@ function collectUsedFilterEntries(filter) {
 
   const used = []
   for (const [key, value] of entries) {
-    if (key === 'options') continue
+    if (key === 'options' || key === 'event' || key === 'result_count' || key === 'results') continue
     if (!isFeatureUsed(key, value)) continue
     const picks = extractFeaturePicks(value).map(formatPickLabel)
     used.push({
@@ -889,6 +973,165 @@ function collectUsedFilterEntries(filter) {
     })
   }
   return used
+}
+
+function ytRowEvent(row) {
+  const top = row?.event != null ? String(row.event).trim() : ''
+  if (top) return top
+  const filter = pickFilterObject(row)
+  const nested = filter?.event != null ? String(filter.event).trim() : ''
+  return nested || 'filter_search'
+}
+
+function ytRowResultCount(row) {
+  const top = row?.result_count
+  if (typeof top === 'number' && Number.isFinite(top)) return top
+  if (typeof top === 'string' && top.trim() !== '' && Number.isFinite(Number(top))) {
+    return Number(top)
+  }
+  const filter = pickFilterObject(row)
+  const nested = filter?.results ?? filter?.result_count
+  if (typeof nested === 'number' && Number.isFinite(nested)) return nested
+  if (typeof nested === 'string' && nested.trim() !== '' && Number.isFinite(Number(nested))) {
+    return Number(nested)
+  }
+  return null
+}
+
+function ytDevRows() {
+  return (state.ytRows || []).filter((row) => ytRowFingerprint(row) === YT_DEV_FINGERPRINT)
+}
+
+/** Main YT Filter Pro tab: all rows except always-blacklisted fingerprints. */
+function ytRowsPublic() {
+  return (state.ytRows || []).filter((row) => !isYtFingerprintBlacklisted(ytRowFingerprint(row)))
+}
+
+function isYtFingerprintBlacklisted(fingerprint) {
+  const fp = String(fingerprint || '').trim()
+  return Boolean(fp) && YT_FINGERPRINT_BLACKLIST.has(fp)
+}
+
+function renderYtDev() {
+  const status = document.getElementById('yt-dev-status')
+  const note = document.getElementById('yt-dev-note')
+  const kpis = document.getElementById('yt-dev-kpis')
+  const list = document.getElementById('yt-dev-list')
+  const fpEl = document.getElementById('yt-dev-fp')
+
+  if (fpEl) fpEl.textContent = YT_DEV_FINGERPRINT
+
+  if (!state.loaded.yt) {
+    setStatus(status, 'Loading your YT Filter Pro data…')
+    if (note) note.hidden = true
+    if (kpis) kpis.hidden = true
+    if (list) {
+      list.hidden = true
+      list.innerHTML = ''
+    }
+    return
+  }
+
+  const rows = ytDevRows()
+    .slice()
+    .sort((a, b) => {
+      const am = new Date(rowCreatedAt(a) || 0).getTime()
+      const bm = new Date(rowCreatedAt(b) || 0).getTime()
+      return (Number.isNaN(bm) ? 0 : bm) - (Number.isNaN(am) ? 0 : am)
+    })
+
+  if (!rows.length) {
+    setStatus(
+      status,
+      `No rows yet for fingerprint ${YT_DEV_FINGERPRINT}. Open a filtered search and click View Results, then Refresh.`,
+      'empty',
+    )
+    if (note) note.hidden = false
+    if (kpis) kpis.hidden = true
+    if (list) {
+      list.hidden = true
+      list.innerHTML = ''
+    }
+    return
+  }
+
+  let searches = 0
+  let views = 0
+  let totalResults = 0
+  let lastAt = null
+
+  for (const row of rows) {
+    const event = ytRowEvent(row)
+    if (event === 'view_results') {
+      views += 1
+      const count = ytRowResultCount(row)
+      if (count != null) totalResults += count
+    } else {
+      searches += 1
+    }
+    const created = rowCreatedAt(row)
+    if (created && (!lastAt || new Date(created) > new Date(lastAt))) lastAt = created
+  }
+
+  setStatus(status, '')
+  if (note) note.hidden = false
+  if (kpis) kpis.hidden = false
+  document.getElementById('kpi-yt-dev-total').textContent = String(rows.length)
+  document.getElementById('kpi-yt-dev-searches').textContent = String(searches)
+  document.getElementById('kpi-yt-dev-views').textContent = String(views)
+  document.getElementById('kpi-yt-dev-results').textContent = String(totalResults)
+  document.getElementById('kpi-yt-dev-avg').textContent = views
+    ? String(Math.round((totalResults / views) * 10) / 10)
+    : '0'
+  document.getElementById('kpi-yt-dev-last').textContent = formatDateWithRelative(lastAt)
+
+  if (list) {
+    list.hidden = false
+    list.innerHTML = rows
+      .map((row) => {
+        const event = ytRowEvent(row)
+        const resultCount = ytRowResultCount(row)
+        const filter = pickFilterObject(row)
+        const used = collectUsedFilterEntries(filter)
+        const filtersHtml = used.length
+          ? used
+              .map((item) => {
+                const picks =
+                  item.picks.length > 0
+                    ? `: ${escapeHtml(item.picks.slice(0, 4).join(', '))}`
+                    : ''
+                return `<span class="admin__modal-tag">${escapeHtml(item.label)}${picks}</span>`
+              })
+              .join('')
+          : '<span class="admin__modal-empty">Defaults only</span>'
+
+        const eventLabel = event === 'view_results' ? 'View Results' : 'Filter search'
+        const countHtml =
+          event === 'view_results'
+            ? `<strong>${resultCount == null ? '—' : resultCount}</strong> filtered results`
+            : 'Search started (no result count)'
+
+        return `
+          <article class="admin__card">
+            <div class="admin__card-top">
+              <div class="admin__card-meta">
+                <span class="admin__card-app">${escapeHtml(eventLabel)}</span>
+                <span>${escapeHtml(formatDateWithRelative(rowCreatedAt(row)))}</span>
+                <span>${countHtml}</span>
+              </div>
+              <span class="admin__card-badge ${
+                event === 'view_results'
+                  ? 'admin__card-badge--unread'
+                  : 'admin__card-badge--read'
+              }">${escapeHtml(event)}</span>
+            </div>
+            <div class="admin__card-body">
+              <div class="admin__modal-tags">${filtersHtml}</div>
+            </div>
+          </article>`
+      })
+      .join('')
+  }
 }
 
 function summarizeYtFingerprint(fingerprint) {
@@ -1350,6 +1593,11 @@ function pickFilterObject(row) {
     'visitor_id',
     'fingerprint',
     'session_id',
+    'event',
+    'result_count',
+    'results',
+    'extension_version',
+    'page_path',
   ])
   const flat = {}
   let hits = 0
@@ -1832,12 +2080,13 @@ function flashCopyHint(ok) {
 }
 
 async function copyYtMetricsForAi() {
-  if (!state.ytRows?.length) {
+  const rows = ytRowsPublic()
+  if (!rows.length) {
     flashCopyHint(false)
     return
   }
   try {
-    const text = buildYtMetricsText(state.ytRows)
+    const text = buildYtMetricsText(rows)
     await copyTextToClipboard(text)
     flashCopyHint(true)
   } catch {
@@ -2095,6 +2344,7 @@ function aggregateYt(rows) {
       }
 
       entries.forEach(([key, value]) => {
+        if (key === 'event' || key === 'result_count' || key === 'results') return
         if (!isFeatureUsed(key, value)) return
         if (!featureUsers.has(key)) featureUsers.set(key, new Set())
         featureUsers.get(key).add(fingerprint)
@@ -2235,9 +2485,10 @@ function barData(labels, values, color = CHART_COLORS.primary) {
 }
 
 function renderYtCharts() {
-  if (!state.loaded.yt || !state.ytRows.length) return
+  const rows = ytRowsPublic()
+  if (!state.loaded.yt || !rows.length) return
 
-  const stats = aggregateYt(state.ytRows)
+  const stats = aggregateYt(rows)
   destroyCharts()
 
   const barOpts = baseChartOptions({
@@ -2309,7 +2560,7 @@ function renderYtCharts() {
     })
   }
 
-  const growthSeries = buildUserGrowthSeries(state.ytRows)
+  const growthSeries = buildUserGrowthSeries(rows)
   const growthCanvas = document.getElementById('chart-user-growth')
   if (growthCanvas && growthSeries.length) {
     const pointRadius = growthSeries.length > 40 ? 0 : 3
@@ -2377,8 +2628,6 @@ function renderYtCharts() {
             callbacks: {
               label: (ctx) => {
                 const row = growthSeries[ctx.dataIndex]
-                const formatMed = (n) =>
-                  Number.isFinite(n) ? (Math.round(n * 10) / 10).toLocaleString('en-US') : '0'
                 if (ctx.dataset.label === 'Total users') {
                   const lines = [` Total users: ${ctx.parsed.y.toLocaleString()}`]
                   if (row?.newUsers) {
@@ -2392,13 +2641,9 @@ function renderYtCharts() {
                   return [
                     ` Returning daily: ${ctx.parsed.y.toLocaleString()}`,
                     ` ${pctReturning}% of DAU`,
-                    ` Median searches / returning: ${formatMed(row?.returningMedianSearches)}`,
                   ]
                 }
-                return [
-                  ` Daily active: ${ctx.parsed.y.toLocaleString()}`,
-                  ` Median searches / DAU: ${formatMed(row?.dauMedianSearches)}`,
-                ]
+                return ` Daily active: ${ctx.parsed.y.toLocaleString()}`
               },
             },
           },
@@ -2430,8 +2675,9 @@ function renderYtCharts() {
 }
 
 function renderYtKpis() {
-  const stats = aggregateYt(state.ytRows)
-  const growth = buildUserGrowthSeries(state.ytRows)
+  const rows = ytRowsPublic()
+  const stats = aggregateYt(rows)
+  const growth = buildUserGrowthSeries(rows)
   const latest = growth.length ? growth[growth.length - 1] : null
   const formatSearches = (n) =>
     Number.isFinite(n) ? (Math.round(n * 10) / 10).toLocaleString('en-US') : '0'
@@ -2572,6 +2818,9 @@ async function loadYt({ force = false } = {}) {
     renderYtKpis()
     if (!document.getElementById('panel-yt').hidden) {
       renderYtCharts()
+    }
+    if (!document.getElementById('panel-yt-dev')?.hidden) {
+      renderYtDev()
     }
     return true
   }
@@ -2737,3 +2986,4 @@ switchTab(getActiveTab(), { persist: false })
 refreshAll({ forceYt: false, forceFeedback: false })
 scheduleYtCacheRefresh()
 scheduleFeedbackCacheRefresh()
+startCacheTimerTicker()
