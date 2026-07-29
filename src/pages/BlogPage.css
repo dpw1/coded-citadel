@@ -65,6 +65,41 @@
   display: block;
 }
 
+.CC__blog-cover-fallback {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 153, 0, 0.16), transparent 35%),
+    linear-gradient(135deg, #111725, #080b12);
+}
+
+.CC__blog-cover-fallback::before {
+  content: "";
+  width: clamp(4.5rem, 24%, 8rem);
+  height: 65%;
+  background: url("/cc-logo-header.png") center / contain no-repeat;
+  filter: drop-shadow(0 0 18px rgba(255, 153, 0, 0.28));
+}
+
+.CC__blog-cover-fallback::after {
+  content: "CODED CITADEL";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9%;
+  color: var(--CC__color-primary);
+  font-family: var(--CC__font-display);
+  font-size: clamp(0.65rem, 2vw, 0.9rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-align: center;
+}
+
 .CC__blog-card__body {
   padding: 1.25rem 1.5rem 1.5rem;
 }
@@ -549,6 +584,11 @@
   .CC__blog-post__body {
     grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
     gap: 2.5rem 3rem;
+  }
+
+  .CC__blog-post__body--no-toc {
+    grid-template-columns: minmax(0, 46rem);
+    justify-content: center;
   }
 
   .CC__blog-post__toc {

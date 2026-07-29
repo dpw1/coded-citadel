@@ -1,7 +1,7 @@
 ---
 title: "12 Chrome Extensions Deployed Within 2 Months (Not AI Slop). All Data + My First Financially Successful Extension"
 slug: "12-chrome-extensions-52-days"
-date: 2026-07-09
+date: "2026-07-09"
 author: "Coded Citadel"
 tags: ["chrome-extensions", "build-in-public", "indie-hacking", "shipping"]
 description: "I coded and published 12 extensions in 52 days and documented every single one - all my private data, the numbers, what I learned, and the story of my first financially successful Chrome extension."

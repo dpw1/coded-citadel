@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-29T13:46:05.220Z",
+  "updatedAt": "2026-07-29T16:15:42.753Z",
   "daily": [
     {
       "date": "2026-06-03",
@@ -499,11 +499,11 @@
     },
     {
       "date": "2026-07-29",
-      "pageViews": 23,
-      "activeUsers": 20,
-      "sessions": 24,
+      "pageViews": 39,
+      "activeUsers": 33,
+      "sessions": 39,
       "blogViews": 0,
-      "avgSessionDurationSeconds": 69.133036,
+      "avgSessionDurationSeconds": 55.411562435897444,
       "bounceRate": 1
     }
   ],
@@ -10139,23 +10139,23 @@
       }
     },
     {
-      "extractedAt": "2026-07-29T13:46:05.220Z",
+      "extractedAt": "2026-07-29T16:15:42.753Z",
       "analytics": {
         "available": true,
-        "updatedAt": "2026-07-29T13:46:05.220Z",
+        "updatedAt": "2026-07-29T16:15:42.753Z",
         "message": null,
-        "totalViews": 3244,
+        "totalViews": 3260,
         "blogViews": 80,
-        "averageTimeOnSiteSeconds": 144.366359919967,
-        "uniqueVisitors": 1944,
+        "averageTimeOnSiteSeconds": 143.68426179458797,
+        "uniqueVisitors": 1956,
         "newVsReturning": {
-          "new": 1939,
-          "returning": 274
+          "new": 1948,
+          "returning": 275
         },
         "mostViewedPages": [
           {
             "path": "/thank-you/",
-            "views": 1805
+            "views": 1815
           },
           {
             "path": "/",
@@ -10163,7 +10163,7 @@
           },
           {
             "path": "/uninstall/",
-            "views": 508
+            "views": 512
           },
           {
             "path": "/apps",
@@ -10171,7 +10171,7 @@
           },
           {
             "path": "/live-stats",
-            "views": 57
+            "views": 58
           },
           {
             "path": "/blog/",
@@ -10200,7 +10200,7 @@
             "name": "India",
             "gaCountry": "India",
             "gaCountryId": "IN",
-            "users": 477
+            "users": 478
           },
           {
             "code": "US",
@@ -10214,14 +10214,14 @@
             "name": "Pakistan",
             "gaCountry": "Pakistan",
             "gaCountryId": "PK",
-            "users": 133
+            "users": 135
           },
           {
             "code": "JP",
             "name": "Japan",
             "gaCountry": "Japan",
             "gaCountryId": "JP",
-            "users": 79
+            "users": 80
           },
           {
             "code": "BD",
@@ -10235,7 +10235,7 @@
             "name": "Brazil",
             "gaCountry": "Brazil",
             "gaCountryId": "BR",
-            "users": 47
+            "users": 49
           },
           {
             "code": "KR",
@@ -10280,6 +10280,13 @@
             "users": 31
           },
           {
+            "code": "CA",
+            "name": "Canada",
+            "gaCountry": "Canada",
+            "gaCountryId": "CA",
+            "users": 31
+          },
+          {
             "code": "PL",
             "name": "Poland",
             "gaCountry": "Poland",
@@ -10292,13 +10299,6 @@
             "gaCountry": "Russia",
             "gaCountryId": "RU",
             "users": 30
-          },
-          {
-            "code": "CA",
-            "name": "Canada",
-            "gaCountry": "Canada",
-            "gaCountryId": "CA",
-            "users": 29
           },
           {
             "code": "FR",
@@ -10357,24 +10357,24 @@
             "users": 16
           },
           {
-            "code": "CL",
-            "name": "Chile",
-            "gaCountry": "Chile",
-            "gaCountryId": "CL",
-            "users": 14
-          },
-          {
             "code": "MA",
             "name": "Morocco",
             "gaCountry": "Morocco",
             "gaCountryId": "MA",
+            "users": 15
+          },
+          {
+            "code": "CL",
+            "name": "Chile",
+            "gaCountry": "Chile",
+            "gaCountryId": "CL",
             "users": 14
           }
         ],
         "trafficSources": [
           {
             "source": "Direct",
-            "sessions": 2254
+            "sessions": 2264
           },
           {
             "source": "Organic Search",
@@ -10386,7 +10386,7 @@
           },
           {
             "source": "Unassigned",
-            "sessions": 17
+            "sessions": 24
           },
           {
             "source": "Organic Social",
@@ -10404,7 +10404,7 @@
         "topReferrers": [
           {
             "referrer": "(direct)",
-            "sessions": 2254
+            "sessions": 2264
           },
           {
             "referrer": "chromewebstore.google.com",
@@ -10415,12 +10415,12 @@
             "sessions": 55
           },
           {
-            "referrer": "bing",
-            "sessions": 18
+            "referrer": "(not set)",
+            "sessions": 24
           },
           {
-            "referrer": "(not set)",
-            "sessions": 17
+            "referrer": "bing",
+            "sessions": 18
           },
           {
             "referrer": "reddit.com",

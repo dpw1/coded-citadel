@@ -242,17 +242,19 @@ export default function BlogPostPage() {
             ) : null}
           </header>
 
-          {cover || youtubeEmbedId ? (
-            <BlogPostCover
-              key={post.slug}
-              coverUrl={cover}
-              youtubeId={youtubeEmbedId}
-              youtubeIsShort={Boolean(post.youtubeIsShort)}
-              title={post.title}
-            />
-          ) : null}
+          <BlogPostCover
+            key={post.slug}
+            coverUrl={cover}
+            youtubeId={youtubeEmbedId}
+            youtubeIsShort={Boolean(post.youtubeIsShort)}
+            title={post.title}
+          />
 
-          <div className="CC__blog-post__body">
+          <div
+            className={`CC__blog-post__body${
+              tocItems.length ? '' : ' CC__blog-post__body--no-toc'
+            }`}
+          >
             <BlogTableOfContents items={tocItems} onNavigate={scrollToBlogSection} />
 
             <div className="CC__blog-post__main">

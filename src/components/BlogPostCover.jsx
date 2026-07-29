@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import BlogCoverFallback from './BlogCoverFallback'
 
 function youtubeThumbnailUrl(videoId) {
   return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
@@ -6,10 +7,9 @@ function youtubeThumbnailUrl(videoId) {
 
 export default function BlogPostCover({ coverUrl, youtubeId, youtubeIsShort = false, title }) {
   const [playing, setPlaying] = useState(false)
+  const [imageFailed, setImageFailed] = useState(false)
   const thumbnail =
     coverUrl || (youtubeId && !youtubeIsShort ? youtubeThumbnailUrl(youtubeId) : null)
-
-  if (!thumbnail && !youtubeId) return null
 
   if (youtubeId && playing) {
     return (
@@ -24,7 +24,7 @@ export default function BlogPostCover({ coverUrl, youtubeId, youtubeIsShort = fa
     )
   }
 
-  if (youtubeId && thumbnail) {
+  if (youtubeId) {
     return (
       <div className="CC__blog-post__cover CC__blog-post__cover--video">
         <button
@@ -33,7 +33,15 @@ export default function BlogPostCover({ coverUrl, youtubeId, youtubeIsShort = fa
           onClick={() => setPlaying(true)}
           aria-label={`Play video: ${title}`}
         >
-          <img src={thumbnail} alt={`Video thumbnail for ${title}`} />
+          {thumbnail && !imageFailed ? (
+            <img
+              src={thumbnail}
+              alt={`Video thumbnail for ${title}`}
+              onError={() => setImageFailed(true)}
+            />
+          ) : (
+            <BlogCoverFallback title={title} />
+          )}
           <span className="CC__blog-post__cover-play-icon" aria-hidden="true">
             <svg viewBox="0 0 68 48" width="68" height="48">
               <path
@@ -51,7 +59,15 @@ export default function BlogPostCover({ coverUrl, youtubeId, youtubeIsShort = fa
 
   return (
     <div className="CC__blog-post__cover">
-      <img src={thumbnail} alt={`Cover image for ${title}`} />
+      {thumbnail && !imageFailed ? (
+        <img
+          src={thumbnail}
+          alt={`Cover image for ${title}`}
+          onError={() => setImageFailed(true)}
+        />
+      ) : (
+        <BlogCoverFallback title={title} />
+      )}
     </div>
   )
 }

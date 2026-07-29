@@ -135,7 +135,9 @@ export function isYoutubeShortsUrl(input) {
 }
 
 export function getPostCoverUrl(post) {
-  const custom = post?.coverImageUrl ?? resolveBlogImageUrl(post?.thumbnail ?? post?.coverImage)
+  const custom =
+    resolveBlogImageUrl(post?.thumbnail ?? post?.coverImage) ??
+    post?.coverImageUrl
   if (custom) return custom
 
   if (post?.youtubeIsShort) return null
