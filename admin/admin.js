@@ -10,6 +10,9 @@ const YT_CACHE_KEY = 'cc_admin_yt_filter_pro_cache'
 const YT_CACHE_TTL_MS = 60 * 60 * 1000 // 1 hour
 const FEEDBACK_CACHE_KEY = 'cc_admin_feedback_cache'
 const FEEDBACK_CACHE_TTL_MS = 12 * 60 * 60 * 1000 // 12 hours
+const FEEDBACK_CONVERSION_PRIOR_START_DAY = '2026-07-15'
+const FEEDBACK_CONVERSION_CUTOFF_DAY = '2026-07-21'
+const FEEDBACK_CONVERSION_RECENT_START_DAY = '2026-07-22'
 
 /** Your extension fingerprint — YT Filter Pro Dev tab only. */
 const YT_DEV_FINGERPRINT = '874b64d1a1272656edca6793be300565'
@@ -338,9 +341,15 @@ const state = {
   charts: {},
   loaded: { feedback: false, yt: false },
   feedbackLoading: false,
+  feedbackLoadFailed: false,
   feedbackCacheSavedAt: null,
   ytLoading: false,
   ytCacheSavedAt: null,
+  ytLastRefreshAttemptAt: null,
+  /** @type {Map<string, number>} ISO day → daily uninstall count (all apps) */
+  uninstallsByDay: new Map(),
+  uninstallsLoaded: false,
+  uninstallsLoadFailed: false,
 }
 
 function setYtTabStatus(status) {
@@ -377,6 +386,51 @@ function setYtTabStatus(status) {
     el.classList.add('admin__tab-status--error')
     el.title = 'Failed to load YouTube Filter Pro data'
   }
+}
+
+function setFeedbackGraphTabStatus(status) {
+  const el = document.getElementById('feedback-graph-tab-status')
+  if (!el) return
+
+  el.classList.remove(
+    'admin__tab-status--loading',
+    'admin__tab-status--ready',
+    'admin__tab-status--error',
+  )
+
+  if (!status || status === 'idle') {
+    el.hidden = true
+    el.title = ''
+    return
+  }
+
+  el.hidden = false
+  if (status === 'loading') {
+    el.classList.add('admin__tab-status--loading')
+    el.title = 'Loading feedback graph data…'
+    return
+  }
+  if (status === 'ready') {
+    el.classList.add('admin__tab-status--ready')
+    el.title = 'Feedback graph loaded'
+    return
+  }
+  if (status === 'error') {
+    el.classList.add('admin__tab-status--error')
+    el.title = 'Failed to load feedback graph data'
+  }
+}
+
+function syncFeedbackGraphTabStatus() {
+  if (state.feedbackLoadFailed || state.uninstallsLoadFailed) {
+    setFeedbackGraphTabStatus('error')
+    return
+  }
+  if (state.feedbackLoading || !state.loaded.feedback || !state.uninstallsLoaded) {
+    setFeedbackGraphTabStatus('loading')
+    return
+  }
+  setFeedbackGraphTabStatus('ready')
 }
 
 function readYtCache() {
@@ -928,9 +982,10 @@ function renderFeedbackList() {
 }
 
 function renderFeedback() {
+  // Update the counters first so they cannot be blocked by a later list/chip render.
+  renderFeedbackKpis()
   syncFeedbackFilterChips()
   renderFeedbackAppChips()
-  renderFeedbackKpis()
   renderFeedbackList()
   if (!document.getElementById('panel-feedback-graph')?.hidden) {
     renderFeedbackGraph()
@@ -1309,8 +1364,8 @@ function openFingerprintModal(fingerprint) {
   document.body.style.overflow = 'hidden'
 }
 
-/** Cumulative + daily uninstall feedback counts by calendar day. */
-function buildFeedbackGrowthSeries(rows) {
+/** Cumulative + daily uninstall feedback counts by calendar day (+ optional uninstalls). */
+function buildFeedbackGrowthSeries(rows, uninstallsByDay = state.uninstallsByDay) {
   const byDay = new Map()
 
   for (const row of rows) {
@@ -1322,7 +1377,9 @@ function buildFeedbackGrowthSeries(rows) {
     byDay.set(dayKey, (byDay.get(dayKey) || 0) + 1)
   }
 
-  const dayKeys = [...byDay.keys()].sort()
+  const dayKeys = [
+    ...new Set([...byDay.keys(), ...uninstallsByDay.keys()]),
+  ].sort()
   if (!dayKeys.length) return []
 
   const start = new Date(`${dayKeys[0]}T12:00:00Z`)
@@ -1334,10 +1391,50 @@ function buildFeedbackGrowthSeries(rows) {
     const dayKey = new Date(t).toISOString().slice(0, 10)
     const daily = byDay.get(dayKey) || 0
     cumulative += daily
-    series.push({ day: dayKey, daily, total: cumulative })
+    series.push({
+      day: dayKey,
+      daily,
+      total: cumulative,
+      uninstalls: uninstallsByDay.get(dayKey) || 0,
+    })
   }
 
   return series
+}
+
+function uninstallsMapFromDailyFile(data) {
+  /** @type {Map<string, number>} */
+  const byDay = new Map()
+  for (const row of data?.daily || []) {
+    const day = String(row?.date || '').trim()
+    if (!day) continue
+    byDay.set(day, Number(row.total) || 0)
+  }
+  return byDay
+}
+
+async function loadUninstallsByDay() {
+  const data = window.CC_ADMIN_UNINSTALLS
+  state.uninstallsByDay = uninstallsMapFromDailyFile(data)
+  state.uninstallsLoaded = state.uninstallsByDay.size > 0
+  state.uninstallsLoadFailed = !state.uninstallsLoaded
+  if (!state.uninstallsLoaded) {
+    console.warn(
+      'No uninstall data loaded. Regenerate it with npm run generate-portfolio-analytics.',
+    )
+  }
+
+  const graphPanel = document.getElementById('panel-feedback-graph')
+  if (state.loaded.feedback && graphPanel && !graphPanel.hidden) {
+    // Do not wait for unrelated YT/Supabase work before applying local uninstall data.
+    requestAnimationFrame(() => {
+      renderFeedbackGraph()
+      syncFeedbackGraphTabStatus()
+    })
+  } else {
+    syncFeedbackGraphTabStatus()
+  }
+  return state.uninstallsByDay
 }
 
 function destroyFeedbackGrowthChart() {
@@ -1351,15 +1448,65 @@ function destroyFeedbackGrowthChart() {
   delete state.charts.feedbackGrowth
 }
 
+function feedbackConversionForPeriod({ startDay = null, endDay }) {
+  let feedback = 0
+  for (const row of state.feedback) {
+    const created = row?.created_at
+    if (!created) continue
+    const date = new Date(created)
+    if (Number.isNaN(date.getTime())) continue
+    const day = date.toISOString().slice(0, 10)
+    if (startDay && day < startDay) continue
+    if (day > endDay) continue
+    feedback += 1
+  }
+
+  let uninstalls = 0
+  for (const [day, count] of state.uninstallsByDay) {
+    if (startDay && day < startDay) continue
+    if (day > endDay) continue
+    uninstalls += Number(count) || 0
+  }
+
+  return {
+    feedback,
+    uninstalls,
+    rate: uninstalls > 0 ? (100 * feedback) / uninstalls : 0,
+  }
+}
+
+function renderFeedbackConversionKpi(prefix, conversion) {
+  document.getElementById(`kpi-fg-${prefix}-uninstalls`).textContent =
+    conversion.uninstalls.toLocaleString('en-US')
+  document.getElementById(`kpi-fg-${prefix}-feedback`).textContent =
+    conversion.feedback.toLocaleString('en-US')
+  document.getElementById(`kpi-fg-${prefix}-rate`).textContent =
+    `${conversion.rate.toFixed(1)}%`
+}
+
 function renderFeedbackGraphKpis(series) {
   const total = state.feedback.length
   const withComments = state.feedback.filter(feedbackHasComment).length
   const todayKey = new Date().toISOString().slice(0, 10)
   const today = series.find((row) => row.day === todayKey)?.daily ?? 0
+  const throughJuly21 = feedbackConversionForPeriod({
+    endDay: FEEDBACK_CONVERSION_CUTOFF_DAY,
+  })
+  const priorSevenDays = feedbackConversionForPeriod({
+    startDay: FEEDBACK_CONVERSION_PRIOR_START_DAY,
+    endDay: FEEDBACK_CONVERSION_CUTOFF_DAY,
+  })
+  const sinceJuly22 = feedbackConversionForPeriod({
+    startDay: FEEDBACK_CONVERSION_RECENT_START_DAY,
+    endDay: todayKey,
+  })
 
   document.getElementById('kpi-fg-total').textContent = String(total)
   document.getElementById('kpi-fg-comments').textContent = String(withComments)
   document.getElementById('kpi-fg-today').textContent = String(today)
+  renderFeedbackConversionKpi('pre', throughJuly21)
+  renderFeedbackConversionKpi('prior', priorSevenDays)
+  renderFeedbackConversionKpi('post', sinceJuly22)
 }
 
 function renderFeedbackGraph() {
@@ -1384,7 +1531,7 @@ function renderFeedbackGraph() {
     return
   }
 
-  const series = buildFeedbackGrowthSeries(state.feedback)
+  const series = buildFeedbackGrowthSeries(state.feedback, state.uninstallsByDay)
   setStatus(status, '')
   kpis.hidden = false
   chartWrap.hidden = false
@@ -1425,6 +1572,19 @@ function renderFeedbackGraph() {
           pointBorderWidth: 2,
           pointHoverRadius: 6,
         },
+        {
+          label: 'Daily uninstalls',
+          data: series.map((row) => row.uninstalls),
+          borderColor: CHART_COLORS.green,
+          borderWidth: 2,
+          fill: false,
+          tension: 0.35,
+          pointRadius,
+          pointBackgroundColor: CHART_COLORS.green,
+          pointBorderColor: CHART_COLORS.bg,
+          pointBorderWidth: 2,
+          pointHoverRadius: 6,
+        },
       ],
     },
     options: baseChartOptions({
@@ -1450,6 +1610,9 @@ function renderFeedbackGraph() {
                   lines.push(` +${row.daily.toLocaleString()} today`)
                 }
                 return lines
+              }
+              if (ctx.dataset.label === 'Daily uninstalls') {
+                return ` Daily uninstalls: ${ctx.parsed.y.toLocaleString()}`
               }
               return ` Daily feedback: ${ctx.parsed.y.toLocaleString()}`
             },
@@ -1488,6 +1651,8 @@ async function loadFeedback({ force = false } = {}) {
   const list = document.getElementById('feedback-list')
   const graphKpis = document.getElementById('feedback-graph-kpis')
   const graphChart = document.getElementById('feedback-growth-chart')
+  state.feedbackLoadFailed = false
+  setFeedbackGraphTabStatus('loading')
 
   const applyFeedbackRows = (rows, { fromCache = false } = {}) => {
     state.feedback = rows
@@ -1526,6 +1691,7 @@ async function loadFeedback({ force = false } = {}) {
 
   if (!force && cached && isFeedbackCacheFresh(cached.savedAt)) {
     applyFeedbackRows(cached.rows, { fromCache: true })
+    syncFeedbackGraphTabStatus()
     return
   }
 
@@ -1554,13 +1720,16 @@ async function loadFeedback({ force = false } = {}) {
   } catch (error) {
     if (!state.loaded.feedback) {
       state.loaded.feedback = false
+      state.feedbackLoadFailed = true
       setStatus(status, formatError(error, 'feedback'), 'error')
       if (graphStatus) setStatus(graphStatus, formatError(error, 'feedback'), 'error')
+      setFeedbackGraphTabStatus('error')
     } else {
       console.warn('Feedback refresh failed; keeping cached data.', error)
     }
   } finally {
     state.feedbackLoading = false
+    syncFeedbackGraphTabStatus()
   }
 }
 
@@ -2877,6 +3046,8 @@ async function loadYt({ force = false } = {}) {
     }
   } finally {
     state.ytLoading = false
+    state.ytLastRefreshAttemptAt = Date.now()
+    updateCacheTimers()
   }
 }
 
@@ -2885,19 +3056,29 @@ async function loadYt({ force = false } = {}) {
 /* -------------------------------------------------------------------------- */
 
 async function refreshAll({ forceYt = true, forceFeedback = true } = {}) {
+  setFeedbackGraphTabStatus('loading')
   updateUpdatedAt()
   await Promise.all([
     loadFeedback({ force: forceFeedback }),
     loadYt({ force: forceYt }),
+    loadUninstallsByDay(),
   ])
+  if (state.loaded.feedback) renderFeedbackGraph()
+  syncFeedbackGraphTabStatus()
   updateUpdatedAt()
 }
 
 function scheduleYtCacheRefresh() {
   const scheduleNext = () => {
     const cached = readYtCache()
-    const age = cached ? Date.now() - cached.savedAt : YT_CACHE_TTL_MS
-    const delay = Math.max(5_000, YT_CACHE_TTL_MS - age)
+    const latestTimestamp = Math.max(
+      Number(state.ytCacheSavedAt) || 0,
+      Number(state.ytLastRefreshAttemptAt) || 0,
+      Number(cached?.savedAt) || 0,
+    )
+    const delay = latestTimestamp
+      ? Math.max(5_000, latestTimestamp + YT_CACHE_TTL_MS - Date.now())
+      : 5_000
     window.setTimeout(async () => {
       await loadYt({ force: true })
       scheduleNext()
@@ -2950,6 +3131,7 @@ document.getElementById('feedback-app-chips')?.addEventListener('click', (event)
 
 document.getElementById('mark-all-read').addEventListener('click', () => {
   markAllRead(state.feedback.map(feedbackId))
+  renderFeedbackKpis()
   renderFeedback()
 })
 
@@ -2965,6 +3147,7 @@ document.getElementById('feedback-list').addEventListener('click', (event) => {
   if (!btn) return
   const id = btn.getAttribute('data-toggle-read')
   setRead(id, !isRead(id))
+  renderFeedbackKpis()
   renderFeedback()
 })
 

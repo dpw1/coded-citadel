@@ -298,6 +298,27 @@ code {
   padding: 1.15rem 1.25rem;
 }
 
+.admin__kpi-period-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.admin__kpi-period-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin-top: 0.65rem;
+  color: var(--CC__color-text-muted);
+  font-size: 0.78rem;
+}
+
+.admin__kpi-period-stats strong {
+  color: var(--CC__color-text-main);
+  font-weight: 700;
+}
+
 .admin__kpi-label {
   color: var(--CC__color-text-muted);
   font-size: 0.68rem;
@@ -332,6 +353,12 @@ code {
   text-transform: none;
   letter-spacing: 0;
   word-break: break-word;
+}
+
+@media (max-width: 767px) {
+  .admin__kpi-period-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .CC__cyber-accent {

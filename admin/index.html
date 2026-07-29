@@ -71,6 +71,12 @@
         id="tab-feedback-graph"
       >
         Feedback Graph
+        <span
+          class="admin__tab-status"
+          id="feedback-graph-tab-status"
+          hidden
+          aria-hidden="true"
+        ></span>
       </button>
     </nav>
 
@@ -143,6 +149,32 @@
           <div class="admin__kpi-label">Today</div>
           <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-fg-today">0</div>
         </div>
+        <div class="admin__kpi-period-row">
+          <div class="admin__kpi admin__kpi--period">
+            <div class="admin__kpi-label">All time → Jul 21</div>
+            <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-fg-pre-rate">0%</div>
+            <div class="admin__kpi-period-stats">
+              <span><strong id="kpi-fg-pre-uninstalls">0</strong> uninstalls</span>
+              <span><strong id="kpi-fg-pre-feedback">0</strong> feedback</span>
+            </div>
+          </div>
+          <div class="admin__kpi admin__kpi--period">
+            <div class="admin__kpi-label">Jul 15 → Jul 21 (7 days)</div>
+            <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-fg-prior-rate">0%</div>
+            <div class="admin__kpi-period-stats">
+              <span><strong id="kpi-fg-prior-uninstalls">0</strong> uninstalls</span>
+              <span><strong id="kpi-fg-prior-feedback">0</strong> feedback</span>
+            </div>
+          </div>
+          <div class="admin__kpi admin__kpi--period">
+            <div class="admin__kpi-label">Jul 22 → Today</div>
+            <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-fg-post-rate">0%</div>
+            <div class="admin__kpi-period-stats">
+              <span><strong id="kpi-fg-post-uninstalls">0</strong> uninstalls</span>
+              <span><strong id="kpi-fg-post-feedback">0</strong> feedback</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="admin__growth-chart CC__cyber-accent" id="feedback-growth-chart" hidden>
@@ -195,7 +227,7 @@
           </svg>
         </div>
         <div class="admin__growth-chart__title">Feedback growth</div>
-        <p class="admin__growth-chart__subtitle">Cumulative uninstall feedback vs daily submissions</p>
+        <p class="admin__growth-chart__subtitle">Cumulative uninstall feedback vs daily submissions and Chrome uninstalls</p>
         <div class="admin__growth-chart__canvas-wrap">
           <canvas id="chart-feedback-growth"></canvas>
         </div>
@@ -420,6 +452,8 @@
     </div>
   </div>
 
+  <!-- Local analytics data is a script because file:// blocks fetch() for local JSON. -->
+  <script src="./uninstalls-over-time.js"></script>
   <!-- Chart.js — Supabase via REST fetch so file:// works (no SDK iframe). -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
   <script src="./admin.js"></script>

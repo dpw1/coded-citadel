@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-26T04:53:38.793Z",
+  "updatedAt": "2026-07-29T13:46:14.549Z",
   "message": null,
   "apps": [
     {
@@ -251,6 +251,24 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "6ebdbea8ab0f9d2e0773d9cffed715284876fdfc",
+          "shortSha": "6ebdbea",
+          "message": "Update YouTube Filter Pro to version 1.0.64: Incremented version number and added new localization messages for filtering status. Enhanced user feedback with a new toast notification for filtering initiation and improved handling of existing notifications. Refactored related functions for better clarity and user experience in the filtering process.",
+          "date": "2026-07-29T12:01:29Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/6ebdbea8ab0f9d2e0773d9cffed715284876fdfc",
+          "version": "1.0.64"
+        },
+        {
+          "sha": "a9af0d27c81878b5b1f59a6cfa033ed42e581f73",
+          "shortSha": "a9af0d2",
+          "message": "Update YouTube Filter Pro to version 1.0.63: Incremented version number and added new localization messages for filtering options in German, Spanish, French, Japanese, and Korean. Enhanced user guidance with updated helper texts and improved clarity in filter functionalities. Introduced new settings for channel country filtering and refined existing messages for better user experience. Improved overall UI consistency and accessibility in filtering mechanisms.",
+          "date": "2026-07-27T14:02:10Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/a9af0d27c81878b5b1f59a6cfa033ed42e581f73",
+          "version": "1.0.63"
+        },
+        {
           "sha": "d1e5ee3f53e851d6448af5c777fd3bc64b25c4e6",
           "shortSha": "d1e5ee3",
           "message": "Enhance YFP data handling: Introduced reset function for About-tab stats, improved polling mechanism for incomplete data bars, and refined conditions for displaying channel views and joined stats. Updated auto-refetch interval and maximum attempts for better performance. Ensured proper handling of stats visibility based on data readiness.",
@@ -455,7 +473,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.62"
+          "version": "1.0.64"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -464,7 +482,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.62"
+          "version": "1.0.64"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -473,7 +491,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.62"
+          "version": "1.0.64"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -482,7 +500,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.62"
+          "version": "1.0.64"
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -491,7 +509,7 @@
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.62"
+          "version": "1.0.64"
         }
       ]
     },
@@ -935,7 +953,7 @@
           "date": "2026-06-23T18:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/save-to-drive/commit/501bdcba339d77a6118d3827d130d2f2ab1fb538",
-          "version": "1.0.40"
+          "version": "1.0.42"
         },
         {
           "sha": "e7c564eea1df62ed3450dbc06b8db762a798eef3",
@@ -944,7 +962,7 @@
           "date": "2026-05-29T22:43:58Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/save-to-drive/commit/e7c564eea1df62ed3450dbc06b8db762a798eef3",
-          "version": "1.0.40"
+          "version": "1.0.42"
         }
       ]
     },

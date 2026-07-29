@@ -26,6 +26,25 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.join(__dirname, '..')
 const DB_JSON = path.join(ROOT, 'chrome-extension-html/db.json')
 const OUT_JSON = path.join(ROOT, 'src/data/portfolio-analytics.json')
+const OUT_ADMIN_UNINSTALLS_JS = path.join(ROOT, 'admin/uninstalls-over-time.js')
+
+function writeAdminUninstallsData(payload) {
+  const daily = (payload?.analytics?.uninstallsOverTime ?? []).map((row) => ({
+    date: installDateToIso(row.date),
+    total: Number(row.total) || 0,
+  }))
+  const output = {
+    source: 'src/data/portfolio-analytics.json',
+    updatedAt: payload?.updatedAt ?? null,
+    extractedAt: payload?.extractedAt ?? null,
+    daily,
+  }
+  fs.writeFileSync(
+    OUT_ADMIN_UNINSTALLS_JS,
+    `window.CC_ADMIN_UNINSTALLS = ${JSON.stringify(output, null, 2)};\n`,
+    'utf8',
+  )
+}
 
 function isAppLive(app) {
   return app?.status === 'live'
@@ -224,16 +243,22 @@ export function aggregatePortfolioAnalytics(db) {
 function main() {
   if (!fs.existsSync(DB_JSON)) {
     console.warn(`Missing ${DB_JSON} — writing empty portfolio analytics`)
-    fs.writeFileSync(
-      OUT_JSON,
-      `${JSON.stringify({ updatedAt: null, extractedAt: null, appCount: 0, apps: [], analytics: null }, null, 2)}\n`,
-    )
+    const payload = {
+      updatedAt: null,
+      extractedAt: null,
+      appCount: 0,
+      apps: [],
+      analytics: null,
+    }
+    fs.writeFileSync(OUT_JSON, `${JSON.stringify(payload, null, 2)}\n`)
+    writeAdminUninstallsData(payload)
     return
   }
 
   const db = JSON.parse(fs.readFileSync(DB_JSON, 'utf8'))
   const payload = aggregatePortfolioAnalytics(db)
   fs.writeFileSync(OUT_JSON, `${JSON.stringify(payload, null, 2)}\n`, 'utf8')
+  writeAdminUninstallsData(payload)
 
   const an = payload.analytics
   if (!an) {
