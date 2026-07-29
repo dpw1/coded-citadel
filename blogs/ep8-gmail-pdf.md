@@ -143,7 +143,7 @@ My initial instinct was to use the popup to trigger exports, but I ended up goin
 
 ![](/blog-images/ep8-gmail-pdf/SCREENSHOT_12-06-2026-08h15.jpg)
 
-To match Gmail's visual style as closely as possible, I used a function I'd built in my AI Bookmark Manager extension that exports all CSS from the current page. I then fed that CSS to ChatGPT to design the extension UI.
+To match Gmail's visual style as closely as possible, I used a function I'd built in my [AI Bookmark Manager](/blog/ai-bookmark-chrome-extension-claude-chatgpt-grok) extension that exports all CSS from the current page. I then fed that CSS to ChatGPT to design the extension UI.
 
 ![](/blog-images/ep8-gmail-pdf/SCREENSHOT_12-06-2026-08h16.jpg)
 

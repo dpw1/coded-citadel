@@ -15,7 +15,7 @@ keyTakeaways:
 
 # I \"Hacked\" Discord's API to Download All Messages & Attachments (And Made a FREE Chrome Extension For This)
 
-This is episode 11 of Coding Until I Make $100K, where I'm building apps in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](https://codedcitadel.com).
+This is episode 11 of Coding Until I Make $100K, where I'm building apps in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](/blog/building-in-public-journey).
 
 This one was a bit of a detour. I wasn't planning to build a Discord exporter. I was actually researching a completely different platform, stumbled onto a genuine gap, and ended up shipping a full extension in a few days. Here's the whole story.
 
@@ -354,7 +354,7 @@ Published to the Web Store.
 
 This one came together faster than I expected, mostly because the "hello world" phase went smoothly and the API was pretty clean once I figured out the token interception pattern. The design iteration took the most trial and error, honestly.
 
-If you want to follow along with the full series, everything is documented at [codedcitadel.com](https://codedcitadel.com). The extension itself is live on the Chrome Web Store now. Feel free to try it out and let me know what you think.
+If you want to follow along with the full series, everything is documented at [codedcitadel.com](/blog/building-in-public-journey). The extension itself is live on the Chrome Web Store now. Feel free to try it out and let me know what you think.
 
 What are you building?
 

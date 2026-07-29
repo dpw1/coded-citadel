@@ -26,10 +26,10 @@ This site and my [YouTube channel](https://www.youtube.com/@CodedCitadel) are th
 
 Chrome extensions, at least for now. All of them started as personal frustrations.
 
-- **YouTube Filter Pro** - filter search results by duration, views, upload date, and more
-- **Claude Deep Search** - full-text search across all your Claude conversations, runs entirely locally
-- **YouTube Comments Exporter** - export comments for research, analysis, or archival
-- **Instagram DM Exporter** - export DM threads as structured files
+- **[YouTube Filter Pro](/blog/youtube-filter-chrome-extension-coding)** - filter search results by duration, views, upload date, and more
+- **[Claude Deep Search](/blog/claude-conversation-search-chrome-extension)** - full-text search across all your Claude conversations, runs entirely locally
+- **[YouTube Comments Exporter](/blog/coding-to-100k-youtube-comments-scraper)** - export comments for research, analysis, or archival
+- **[Instagram DM Exporter](/blog/instagram-dm-exporter-chrome-extension)** - export DM threads as structured files
 
 Each one is free. Monetization is a later problem. Right now the goal is to ship things people actually use and figure out what that looks like at scale.
 
@@ -53,4 +53,4 @@ If that system eventually generates $100K, great. If it takes longer than expect
 
 ---
 
-Follow along on [YouTube](https://www.youtube.com/@CodedCitadel) or bookmark the blog. New episodes drop regularly.
+Follow along on [YouTube](https://www.youtube.com/@CodedCitadel) or [bookmark the blog](/blog/). New episodes drop regularly.

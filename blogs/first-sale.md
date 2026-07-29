@@ -16,7 +16,7 @@ keyTakeaways:
 
 # I Made My First Sale in This Series (Shopify Client Work, $1400)
 
-This is part of VibeCoding Until I Make $100K, where I'm building in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](https://codedcitadel.com).
+This is part of VibeCoding Until I Make $100K, where I'm building in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](/blog/building-in-public-journey).
 
 Most of this series has been Chrome extensions. But this episode is different: it's the first time I'm making real money from a client project inside this series, and I want to document it the same way I document everything else.
 
@@ -142,7 +142,7 @@ I fed those to Claude alongside a list of available Prestige sections and asked 
 After a few rounds of fixes - font sizes, scroll animation triggering, hero images for both mobile and desktop - the homepage was taking shape.
 
 
-For the hero image I used the Gmail to PDF extension (one I built in this series) to export the client's email thread directly to Claude and pull out the relevant brief without digging through the conversation manually. Then I generated placeholder AI images in ChatGPT for both mobile and desktop.
+For the hero image I used the [Gmail to PDF](/blog/ep-8-gmail-to-pdf) extension (one I built in this series) to export the client's email thread directly to Claude and pull out the relevant brief without digging through the conversation manually. Then I generated placeholder AI images in ChatGPT for both mobile and desktop.
 
 ![](/blog-images/first-sale/SCREENSHOT_18-06-2026-09h35.jpg)
 ![](/blog-images/first-sale/SCREENSHOT_18-06-2026-09h43.jpg)
@@ -253,6 +253,6 @@ The last thing the client sent over was the copy for all products to review. The
 
 This is the first real money I've made inside this series and it came from the oldest source possible: a returning client. The project isn't fully done yet, but the homepage, coming soon page and product page are all live and signed off.
 
-If you want to follow the rest of the build, everything is at [codedcitadel.com](https://codedcitadel.com).
+If you want to follow the rest of the build, everything is at [codedcitadel.com](/blog/building-in-public-journey).
 
 What are you building?

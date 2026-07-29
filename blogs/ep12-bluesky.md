@@ -18,7 +18,7 @@ keyTakeaways:
 # "Twitter Blocked Me, I Moved to BlueSky, But It Had One Major Issue. So I Built a Chrome Extension to Fix It"
 
 
-This is episode 12 of Coding Until I Make $100K, where I'm building apps in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](https://codedcitadel.com).
+This is episode 12 of Coding Until I Make $100K, where I'm building apps in public from $0 until I hit six figures. If you're new here, the full series is at [codedcitadel.com](/blog/building-in-public-journey).
 
 This one started with Twitter locking me out for no reason.
 
@@ -169,6 +169,6 @@ Since this extension doesn't require many complex permissions, it should be appr
 
 This one started as an accident and turned into one of the cleanest builds in the series so far. The Reddit scraping approach for idea validation is something I'm going to keep using — 13,000 comments is a pretty good signal. And asking the community directly before building anything saved me from spending time on something that might not have had an audience.
 
-Full series at [codedcitadel.com](https://codedcitadel.com). [Hide Reposts for Bluesky](https://chromewebstore.google.com/detail/hide-reposts-for-bluesky/amcnbfpogccggckogifbdjekbammlahl) is live on the Chrome Web Store.
+Full series at [codedcitadel.com](/blog/building-in-public-journey). [Hide Reposts for Bluesky](https://chromewebstore.google.com/detail/hide-reposts-for-bluesky/amcnbfpogccggckogifbdjekbammlahl) is live on the Chrome Web Store.
 
 Are you on Bluesky? If so, how do you like it?

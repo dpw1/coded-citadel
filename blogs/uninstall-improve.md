@@ -16,9 +16,9 @@ keyTakeaways:
 
 # Every 3 users, 1 tells me why they uninstalled my extension. It used to be 1 every 33. Here is what I did, and you can implement it in minutes
 
-I recently wrote about how I coded 12~ chrome extensions in less than 2 months and documented every single one of them from idea to deploy on YouTube and on my blog.
+A while ago I wrote about how I coded [12 chrome extensions in less than 2 months](/blog/12-chrome-extensions-52-days) and documented every single one of them from idea to deploy on YouTube and on my blog.
 
-Even though all of my extensions had proper attention and care put into them, I'm still getting an uninstall rate. That's just normal.
+Even though all of my extensions had proper attention and care put into them, I'm still getting an uninstall rate. That's just normal. I hope.
 
 Every time an extension gets uninstalled, I used to show a page like "sorry to see you go, what went wrong?" with a textarea for feedback and, optionally, their email address so I could reach out once I fixed the issue.
 
@@ -54,14 +54,12 @@ Jul 22 to today: 34.2% feedback rate, 193 uninstalls, 66 feedback messages
 
 ![](/blog-images/uninstall-improve/SCREENSHOT_29-07-2026-12h51.jpg)
 
-
 Not only did the feedback rate jump, the uninstall count itself dropped too. Less people are uninstalling, and way more of the ones who do are telling me why.
 
-Ever since I implemented this, the messages I receive are much more frequent. And more importantly, they're from real people who are genuinely unsatisfied and providing actually useful feedback. That's what keeps me moving, honestly.
+Ever since I implemented this, the messages I receive are much more frequent. And more importantly, they're from real people who are genuinely unsatisfied and providing actually useful feedback. And I know exactly what to fix instead of guessing.
 
-Across 12 extensions, this kind of feedback loop becomes crucial. You can't fix what you don't know is broken, and a well-designed uninstall page is one of the cheapest ways to stay connected to users who are leaving.
+Across 12 extensions, this kind of feedback loop becomes crucial. And I'm able to know from which extension it's coming from based on the data sent via the query string.
+
+You can't fix what you don't know is broken, and a well-designed uninstall page is one of the cheapest ways to stay connected to users who are leaving.
 
 Are you building chrome extensions? What does your uninstall page look like?
-
-
-

@@ -32,7 +32,7 @@ My idea for this actually came from my personal needs and this channel. I was cu
 
 What if there was a way to have a bot searching on YouTube every few hours, checking if a specific type of video had been released? That was the premise.
 
-I had coded two extensions related to YouTube in this channel before, so I already had some knowledge of how things work and a lot of code I could reuse. The plan was to start with something simple running in the browser that I could test quickly.
+I had coded two extensions related to YouTube in this channel before ([YouTube Comments Exporter](/blog/coding-to-100k-youtube-comments-scraper) and [YouTube Filter Pro](/blog/youtube-filter-chrome-extension-coding)), so I already had some knowledge of how things work and a lot of code I could reuse. The plan was to start with something simple running in the browser that I could test quickly.
 
 It had to:
 
@@ -124,7 +124,7 @@ With the basics in place, it was time to enhance the filters. Each filter has:
 - An "unsaved changes" warning so you can't close the modal accidentally after making changes
 
 
-One thing that was bothering me was how unreadable the filters looked. When I looked at a filter called "basic" I had no idea what it was actually doing. I took the same approach as YouTube Filter Pro and added a human-readable summary line below each filter name. Much better.
+One thing that was bothering me was how unreadable the filters looked. When I looked at a filter called "basic" I had no idea what it was actually doing. I took the same approach as [YouTube Filter Pro](/blog/youtube-filter-chrome-extension-coding) and added a human-readable summary line below each filter name. Much better.
 
 ![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-22h41.jpg)
 ![](/blog-images/ep10-yt-keywords/SCREENSHOT_20-06-2026-22h43.jpg)

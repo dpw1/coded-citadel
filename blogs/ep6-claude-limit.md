@@ -32,7 +32,7 @@ I must be honest: after searching around, I realized this was not my best idea. 
 
 ## reverse engineering Claude's website
 
-just like I had to do in my Claude Deep Search episode, I needed to take a look at what Claude's website was doing behind the scenes. I searched for a while and couldn't find any endpoint that could tell me about usage. so, ironically enough, I asked Claude to come up with a script to surface all potential endpoints, and that's how I found it.
+just like I had to do in my [Claude Deep Search episode](/blog/claude-conversation-search-chrome-extension), I needed to take a look at what Claude's website was doing behind the scenes. I searched for a while and couldn't find any endpoint that could tell me about usage. so, ironically enough, I asked Claude to come up with a script to surface all potential endpoints, and that's how I found it.
 
 from there, things went pretty smoothly.
 

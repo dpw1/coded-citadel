@@ -95,4 +95,4 @@ This one's live now. Free to install, no trial, no paywall.
 
 ---
 
-Episode 2 is already up. More extensions coming.
+[Episode 2](/blog/youtube-filter-chrome-extension-coding) is already up. More extensions coming.
