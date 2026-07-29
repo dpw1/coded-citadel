@@ -4,24 +4,6 @@ import { formatNumber, getHomeStats, getJourneyStartDateLabel } from '../utils/a
 
 export default function LiveStatsBar() {
   const stats = getHomeStats()
-  const userDeltaNegative = stats.activeUsersDelta7d != null && stats.activeUsersDelta7d < 0
-  const userDeltaLabel =
-    stats.activeUsersDelta7d != null && stats.activeUsersDelta7d > 0
-      ? `↑ +${formatNumber(stats.activeUsersDelta7d)} past 7 days`
-      : userDeltaNegative
-        ? `↓ ${formatNumber(Math.abs(stats.activeUsersDelta7d))} past 7 days`
-        : stats.activeUsersDelta7d === 0
-          ? 'No change past 7 days'
-          : 'From live apps'
-  const installDeltaNegative = stats.installDelta != null && stats.installDelta < 0
-  const installDeltaLabel =
-    stats.installDelta != null && stats.installDelta > 0
-      ? `↑ +${formatNumber(stats.installDelta)} past 7 days`
-      : installDeltaNegative
-        ? `↓ ${formatNumber(Math.abs(stats.installDelta))} past 7 days`
-        : stats.installDelta === 0
-          ? 'No change past 7 days'
-          : 'From Chrome Web Store'
 
   return (
     <div className="CC__stats-section CC__container" data-nosnippet>
@@ -51,13 +33,15 @@ export default function LiveStatsBar() {
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Total Installs</span>
               <span className="CC__stats-bar__value">{formatNumber(stats.totalInstalls)}</span>
-              <span
-                className={`CC__stats-bar__delta${
-                  installDeltaNegative ? ' CC__stats-bar__delta--negative' : ''
-                }`}
-              >
-                {installDeltaLabel}
-              </span>
+              {stats.installDelta > 0 ? (
+                <span className="CC__stats-bar__delta">
+                  ↑ +{formatNumber(stats.installDelta)} past 7 days
+                </span>
+              ) : (
+                <span className="CC__stats-bar__delta" aria-hidden="true">
+                  &nbsp;
+                </span>
+              )}
             </div>
           </li>
 
@@ -73,13 +57,15 @@ export default function LiveStatsBar() {
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Active Users</span>
               <span className="CC__stats-bar__value">{formatNumber(stats.totalActiveUsers)}</span>
-              <span
-                className={`CC__stats-bar__delta${
-                  userDeltaNegative ? ' CC__stats-bar__delta--negative' : ''
-                }`}
-              >
-                {userDeltaLabel}
-              </span>
+              {stats.activeUsersDelta7d > 0 ? (
+                <span className="CC__stats-bar__delta">
+                  ↑ +{formatNumber(stats.activeUsersDelta7d)} past 7 days
+                </span>
+              ) : (
+                <span className="CC__stats-bar__delta" aria-hidden="true">
+                  &nbsp;
+                </span>
+              )}
             </div>
           </li>
 

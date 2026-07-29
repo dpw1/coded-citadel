@@ -381,10 +381,6 @@ button {
   color: var(--CC__color-info);
 }
 
-.CC__stats-bar__delta--negative {
-  color: var(--CC__color-danger);
-}
-
 @media (max-width: 968px) {
   .CC__stats-bar {
     flex-direction: column;

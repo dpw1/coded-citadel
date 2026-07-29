@@ -1,6 +1,7 @@
 import appsData from '../data/apps.json'
 import { dedupeAnalyticsSeriesByDate } from './analyticsSeries'
 import { buildHomeMetaDescription } from './homeMetaDescription.js'
+import { getTotalProfit } from './profit.js'
 
 export { buildHomeMetaDescription } from './homeMetaDescription.js'
 
@@ -25,25 +26,17 @@ function activeUsersFromAnalytics(analytics) {
   return analytics.enabledVsDisabled?.enabled ?? 0
 }
 
-function parseRevenueValue(revenue) {
-  if (revenue == null) return 0
-  const m = String(revenue).match(/\$?([\d,.]+)/)
-  return m ? Number(m[1].replace(/,/g, '')) : 0
-}
-
 function sumLiveTotals(apps) {
   const live = apps.filter(isAppLive)
   let totalInstalls = 0
   let totalActiveUsers = 0
-  let totalProfit = 0
 
   for (const app of live) {
     totalInstalls += app.analytics?.totalInstalls ?? 0
     totalActiveUsers += activeUsersFromAnalytics(app.analytics)
-    totalProfit += parseRevenueValue(app.revenue)
   }
 
-  return { live, totalInstalls, totalActiveUsers, totalProfit }
+  return { live, totalInstalls, totalActiveUsers }
 }
 
 function getDaysIntoJourney(now = Date.now()) {
@@ -67,7 +60,7 @@ export function buildSiteStats() {
     liveApps: summed.live.length,
     totalActiveUsers: portfolio.totalActiveUsers ?? summed.totalActiveUsers,
     totalInstalls: portfolio.totalInstalls ?? summed.totalInstalls,
-    totalProfit: summed.totalProfit,
+    totalProfit: getTotalProfit(),
     activeUsersDelta7d: portfolio.activeUsersDelta7d ?? null,
     installsDelta7d: portfolio.installsDelta7d ?? null,
     baselineDate: portfolio.baselineDate ?? null,

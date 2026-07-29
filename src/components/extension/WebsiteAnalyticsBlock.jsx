@@ -192,27 +192,21 @@ export default function WebsiteAnalyticsBlock({ data, loading = false, chartIds 
           <CyberCorners />
           <div className="ext-kpi__label">Total Views</div>
           <div className="ext-kpi__value">{formatNumber(data.totalViews ?? 0)}</div>
-          {pageViewsDelta ? (
-            <WeekPercentDelta
-              delta={pageViewsDelta}
-              as="div"
-              className="ext-kpi__delta"
-              negativeClassName=" ext-kpi__delta--negative"
-            />
-          ) : null}
+          <WeekPercentDelta
+            delta={pageViewsDelta}
+            as="div"
+            className="ext-kpi__delta"
+          />
         </div>
         <div className="ext-kpi CC__cyber-accent">
           <CyberCorners />
           <div className="ext-kpi__label">Blog Views</div>
           <div className="ext-kpi__value ext-kpi__value--white">{formatNumber(data.blogViews ?? 0)}</div>
-          {blogViewsDelta ? (
-            <WeekPercentDelta
-              delta={blogViewsDelta}
-              as="div"
-              className="ext-kpi__delta"
-              negativeClassName=" ext-kpi__delta--negative"
-            />
-          ) : null}
+          <WeekPercentDelta
+            delta={blogViewsDelta}
+            as="div"
+            className="ext-kpi__delta"
+          />
         </div>
         <div className="ext-kpi CC__cyber-accent">
           <CyberCorners />
@@ -225,14 +219,11 @@ export default function WebsiteAnalyticsBlock({ data, loading = false, chartIds 
           <CyberCorners />
           <div className="ext-kpi__label">Unique Visitors</div>
           <div className="ext-kpi__value ext-kpi__value--white">{formatNumber(uniqueVisitors)}</div>
-          {uniqueVisitorsDelta ? (
-            <WeekPercentDelta
-              delta={uniqueVisitorsDelta}
-              as="div"
-              className="ext-kpi__delta"
-              negativeClassName=" ext-kpi__delta--negative"
-            />
-          ) : null}
+          <WeekPercentDelta
+            delta={uniqueVisitorsDelta}
+            as="div"
+            className="ext-kpi__delta"
+          />
         </div>
       </div>
 

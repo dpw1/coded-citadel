@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom'
-import { formatNumber, getAnnouncementBarStats } from '../utils/apps'
+import { formatNumber, formatRevenue, getAnnouncementBarStats } from '../utils/apps'
 import './AnnouncementBar.css'
 
-const PROFIT_DISPLAY = '$1400'
-
-function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, duplicate = false }) {
+function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, profitDisplay, duplicate = false }) {
   const dupClass = duplicate ? ' CC__announcement-bar__marquee-duplicate' : ''
 
   return (
@@ -30,7 +28,7 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, duplicate = f
       <span
         className={`CC__announcement-bar__marquee-item CC__announcement-bar__marquee-item--profit${dupClass}`}
       >
-        profit: {PROFIT_DISPLAY}
+        profit: {profitDisplay}
       </span>
       <span
         className={`CC__announcement-bar__sep CC__announcement-bar__sep--trail${dupClass}`}
@@ -41,17 +39,18 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, duplicate = f
 }
 
 export default function AnnouncementBar() {
-  const { liveApps, totalActiveUsers, totalInstalls } = getAnnouncementBarStats()
+  const { liveApps, totalActiveUsers, totalInstalls, totalProfit } = getAnnouncementBarStats()
+  const profitDisplay = formatRevenue(totalProfit)
 
   const ariaLabel = [
     'Coding in Public Until I Make $100k USD',
     `${formatNumber(liveApps)} apps`,
     `${formatNumber(totalActiveUsers)} users`,
     `${formatNumber(totalInstalls)} installs`,
-    `profit: ${PROFIT_DISPLAY}`,
+    `profit: ${profitDisplay}`,
   ].join(' | ')
 
-  const stripProps = { liveApps, totalActiveUsers, totalInstalls }
+  const stripProps = { liveApps, totalActiveUsers, totalInstalls, profitDisplay }
 
   return (
     <div className="CC__announcement-bar">
@@ -67,7 +66,7 @@ export default function AnnouncementBar() {
           <li>{formatNumber(liveApps)} apps</li>
           <li>{formatNumber(totalActiveUsers)} users</li>
           <li>{formatNumber(totalInstalls)} installs</li>
-          <li>profit: {PROFIT_DISPLAY}</li>
+          <li>profit: {profitDisplay}</li>
         </ul>
       </div>
 

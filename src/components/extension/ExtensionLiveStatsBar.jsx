@@ -40,22 +40,14 @@ export default function ExtensionLiveStatsBar({
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Total Installs</span>
               <span className="CC__stats-bar__value">{formatNumber(analytics.totalInstalls)}</span>
-              {installDelta ? (
-                <WeekPercentDelta delta={installDelta} />
-              ) : (
-                <span className="CC__stats-bar__delta">↑ Live</span>
-              )}
+              <WeekPercentDelta delta={installDelta} />
             </div>
           </li>
           <li className="CC__stats-bar__item">
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Active Users</span>
               <span className="CC__stats-bar__value">{formatNumber(activeUsers)}</span>
-              {usersDelta ? (
-                <WeekPercentDelta delta={usersDelta} />
-              ) : (
-                <span className="CC__stats-bar__delta">↑ Live</span>
-              )}
+              <WeekPercentDelta delta={usersDelta} />
             </div>
           </li>
           <li className="CC__stats-bar__item">
@@ -64,11 +56,7 @@ export default function ExtensionLiveStatsBar({
               <span className="CC__stats-bar__value CC__stats-bar__value--white">
                 {formatNumber(analytics.pageViews)}
               </span>
-              {viewsDelta ? (
-                <WeekPercentDelta delta={viewsDelta} />
-              ) : (
-                <span className="CC__stats-bar__delta">↑ Live</span>
-              )}
+              <WeekPercentDelta delta={viewsDelta} />
             </div>
           </li>
           <li className="CC__stats-bar__item">
@@ -77,11 +65,7 @@ export default function ExtensionLiveStatsBar({
               <span className="CC__stats-bar__value CC__stats-bar__value--white">
                 {formatNumber(analytics.impressions)}
               </span>
-              {imprDelta ? (
-                <WeekPercentDelta delta={imprDelta} />
-              ) : (
-                <span className="CC__stats-bar__delta">↑ Live</span>
-              )}
+              <WeekPercentDelta delta={imprDelta} />
             </div>
           </li>
         </ul>
