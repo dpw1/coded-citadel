@@ -368,7 +368,7 @@ export default function ExtensionFeedbackForm({
         className="CC__btn CC__btn--primary CC__btn--full"
         disabled={!canSubmit}
       >
-        {submitting ? 'Sending…' : 'Confirm uninstall'}
+        {submitting ? 'Sending…' : 'Confirm'}
       </button>
     </form>
   )
