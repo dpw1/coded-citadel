@@ -6,6 +6,7 @@ author: "Coded Citadel"
 tags: ["chrome-extensions", "ux", "feedback", "building-in-public"]
 description: "I coded 12 Chrome extensions in under 2 months. Here's the small uninstall page tweak that took my feedback rate from 3% to 34% and dropped my uninstall count too."
 thumbnail: "/blog-images/uninstall-improve/uninstall-improvement-thumb.png"
+draft: true
 keyTakeaways:
   - "Add an uninstall landing page that opens whenever the user uninstalls the extension."
   - "Add an emotional trigger (\"I'm sad to see you go,\" etc.)."
