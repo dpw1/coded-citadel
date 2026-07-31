@@ -536,6 +536,28 @@ code {
   font-weight: 600;
 }
 
+.admin__feedback-contact {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin__email-link {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  color: var(--CC__color-success);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  word-break: break-all;
+}
+
+.admin__email-link:hover {
+  color: var(--CC__color-primary);
+}
+
 .admin__fingerprint-btn {
   display: inline-flex;
   align-items: center;
@@ -554,6 +576,22 @@ code {
 
 .admin__fingerprint-btn:hover {
   color: var(--CC__color-primary);
+}
+
+.admin__modal-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.85rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--CC__color-border);
+}
+
+.admin__modal-fp {
+  font-size: 0.78rem;
+  color: var(--CC__color-text-muted);
+  word-break: break-all;
 }
 
 .admin__modal[hidden] {

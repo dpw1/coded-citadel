@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-29T16:15:54.075Z",
+  "updatedAt": "2026-07-31T11:54:17.853Z",
   "message": null,
   "apps": [
     {
@@ -251,6 +251,42 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "9cf1e61fb7110d2562b8c87c3d0e57948de21480",
+          "shortSha": "9cf1e61",
+          "message": "Update YouTube Filter Pro to version 1.0.67: Added telemetry for results export functionality, allowing tracking of export events in JSON, CSV, and XLSX formats. Enhanced analytics capabilities by recording the number of results exported and the filter state during the export process. Updated relevant imports and function calls to integrate the new telemetry features.",
+          "date": "2026-07-30T23:21:04Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/9cf1e61fb7110d2562b8c87c3d0e57948de21480",
+          "version": "1.0.67"
+        },
+        {
+          "sha": "848700553f977014833c0f32a293d960c9b5e1fa",
+          "shortSha": "8487005",
+          "message": "Update YouTube Filter Pro to version 1.0.66: Incremented version number and added new localization messages for search functionality. Enhanced filtering mechanisms with improved handling of cardless video metadata and optimized UI elements for better user experience. Introduced new settings for debugging yfp-data loading behavior and refined conditions for managing filtering sessions.",
+          "date": "2026-07-30T23:07:42Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/848700553f977014833c0f32a293d960c9b5e1fa",
+          "version": "1.0.66"
+        },
+        {
+          "sha": "d767c7679772cd1bfbafa82f90a3b285e4eab1c5",
+          "shortSha": "d767c76",
+          "message": "Refactor filtering mechanisms and enhance auto-scroll functionality: Updated localization messages for JSON export option, improved internal pause handling during slow fetch mode, and refined conditions for managing filtering sessions. Introduced new functions for handling title exclude keywords in search queries and optimized UI elements for better user experience.",
+          "date": "2026-07-30T17:45:54Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/d767c7679772cd1bfbafa82f90a3b285e4eab1c5",
+          "version": "1.0.65"
+        },
+        {
+          "sha": "43013997dc52ec04e140e2ff16043deae0da241f",
+          "shortSha": "4301399",
+          "message": "Update YouTube Filter Pro to version 1.0.65: Incremented version number and added new localization messages for export options, including CSV, Excel, and JSON formats. Enhanced auto-scroll functionality with a new slow fetch mode to improve data loading efficiency. Refactored filtering mechanisms to support additional channel metadata handling and improved user interface elements for better accessibility and clarity.",
+          "date": "2026-07-30T16:30:22Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/43013997dc52ec04e140e2ff16043deae0da241f",
+          "version": "1.0.65"
+        },
+        {
           "sha": "6ebdbea8ab0f9d2e0773d9cffed715284876fdfc",
           "shortSha": "6ebdbea",
           "message": "Update YouTube Filter Pro to version 1.0.64: Incremented version number and added new localization messages for filtering status. Enhanced user feedback with a new toast notification for filtering initiation and improved handling of existing notifications. Refactored related functions for better clarity and user experience in the filtering process.",
@@ -473,7 +509,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.64"
+          "version": "1.0.67"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -482,7 +518,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.64"
+          "version": "1.0.67"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -491,7 +527,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.64"
+          "version": "1.0.67"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -500,7 +536,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.64"
+          "version": "1.0.67"
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -509,7 +545,7 @@
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.64"
+          "version": "1.0.67"
         }
       ]
     },
@@ -523,13 +559,22 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "8aa089e809d455cf8fa3b56a8c22e8ed8121e7e5",
+          "shortSha": "8aa089e",
+          "message": "Update uninstall URL with tracking parameters, enhance build script for zip staging, and improve conversation date formatting in search results. Refactor banner display logic and clean up unused styles in CSS.",
+          "date": "2026-07-30T12:17:38Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/claude-search/commit/8aa089e809d455cf8fa3b56a8c22e8ed8121e7e5",
+          "version": "1.0.09"
+        },
+        {
           "sha": "b52208379a3e55c11262f243edb5a8f47f872017",
           "shortSha": "b522083",
           "message": "Update build script to include background.js and modify manifest for new name and version. Add background service worker configuration to enhance functionality.",
           "date": "2026-06-23T17:42:32Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/b52208379a3e55c11262f243edb5a8f47f872017",
-          "version": "1.0.08"
+          "version": "1.0.09"
         },
         {
           "sha": "4d8a4cd63fed43779a78f7c6e74ecb9c7916d806",
@@ -538,7 +583,7 @@
           "date": "2026-05-23T16:18:35Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/4d8a4cd63fed43779a78f7c6e74ecb9c7916d806",
-          "version": "1.0.08"
+          "version": "1.0.09"
         },
         {
           "sha": "916d2bf30b0b2b3ab9d1d734ff7658313fbd817c",
@@ -547,7 +592,7 @@
           "date": "2026-05-21T16:26:38Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/916d2bf30b0b2b3ab9d1d734ff7658313fbd817c",
-          "version": "1.0.08"
+          "version": "1.0.09"
         },
         {
           "sha": "df4c595a37fef6ea845bb572a5408eb5b9f5b4d5",
@@ -556,7 +601,7 @@
           "date": "2026-05-21T16:08:55Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/df4c595a37fef6ea845bb572a5408eb5b9f5b4d5",
-          "version": "1.0.08"
+          "version": "1.0.09"
         },
         {
           "sha": "2084ba31229dd8a07d15667959724a6a6d274c0d",
@@ -565,7 +610,7 @@
           "date": "2026-05-19T15:02:50Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/2084ba31229dd8a07d15667959724a6a6d274c0d",
-          "version": "1.0.08"
+          "version": "1.0.09"
         },
         {
           "sha": "a5a8c2e0dc802ca3ee4b9ec74a56e94b9c056b9e",
@@ -574,7 +619,7 @@
           "date": "2026-05-19T14:57:47Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/a5a8c2e0dc802ca3ee4b9ec74a56e94b9c056b9e",
-          "version": "1.0.08"
+          "version": "1.0.09"
         },
         {
           "sha": "6c244a0905678d3452fe9223e27685e294dee419",
@@ -583,7 +628,7 @@
           "date": "2026-05-19T14:37:26Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/6c244a0905678d3452fe9223e27685e294dee419",
-          "version": "1.0.08"
+          "version": "1.0.09"
         }
       ]
     },

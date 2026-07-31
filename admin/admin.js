@@ -867,24 +867,30 @@ function shortFingerprint(fp) {
   return `${value.slice(0, 8)}…${value.slice(-4)}`
 }
 
-function formatFeedbackContactHtml(row) {
-  const email = String(row?.email ?? '').trim()
-  const fp = feedbackFingerprint(row)
-  const parts = []
+function feedbackEmail(row) {
+  const raw = row?.email ?? row?.user_email ?? row?.contact_email ?? ''
+  const value = String(raw).trim()
+  if (!value || value === 'null' || value === 'undefined') return null
+  return value
+}
 
-  if (email) {
-    parts.push(`<span>${escapeHtml(email)}</span>`)
-  }
+function formatFeedbackContactHtml(row) {
+  const email = feedbackEmail(row)
+  const fp = feedbackFingerprint(row)
 
   if (fp) {
-    parts.push(
-      `<button type="button" class="admin__fingerprint-btn" data-fingerprint="${escapeHtml(fp)}" title="fingerprint: ${escapeHtml(fp)}">${escapeHtml(shortFingerprint(fp))}</button>`,
-    )
-  } else if (!email) {
-    parts.push('<span>No fingerprint</span>')
+    const emailAttr = email ? ` data-email="${escapeHtml(email)}"` : ''
+    const emailHtml = email
+      ? `<a class="admin__email-link" href="mailto:${escapeHtml(email)}" title="Email: ${escapeHtml(email)}">${escapeHtml(email)}</a>`
+      : ''
+    return `<span class="admin__feedback-contact"><button type="button" class="admin__fingerprint-btn" data-fingerprint="${escapeHtml(fp)}"${emailAttr} title="fingerprint: ${escapeHtml(fp)}">${escapeHtml(shortFingerprint(fp))}</button>${emailHtml}</span>`
   }
 
-  return parts.join('')
+  if (email) {
+    return `<a class="admin__email-link" href="mailto:${escapeHtml(email)}" title="Email: ${escapeHtml(email)}">${escapeHtml(email)}</a>`
+  }
+
+  return '<span>No fingerprint</span>'
 }
 
 /** True when suggestion has detail beyond a bare "[Reason]" tag. */
@@ -1249,17 +1255,36 @@ function closeFingerprintModal() {
   document.body.style.overflow = ''
 }
 
-function openFingerprintModal(fingerprint) {
+function openFingerprintModal(fingerprint, { email = null } = {}) {
   const modal = document.getElementById('fingerprint-modal')
   const title = document.getElementById('fingerprint-modal-title')
   const body = document.getElementById('fingerprint-modal-body')
   if (!modal || !title || !body) return
 
   const fp = String(fingerprint || '').trim()
-  title.textContent = fp || 'Unknown fingerprint'
+  const emailFromFeedback =
+    String(email || '').trim() ||
+    feedbackEmail(state.feedback.find((row) => feedbackFingerprint(row) === fp) || {}) ||
+    null
+  title.textContent = emailFromFeedback || fp || 'Unknown fingerprint'
+
+  const contactHtml = `
+    <div class="admin__modal-contact">
+      ${
+        emailFromFeedback
+          ? `<a class="admin__email-link" href="mailto:${escapeHtml(emailFromFeedback)}">${escapeHtml(emailFromFeedback)}</a>`
+          : '<span class="admin__modal-empty">No email on file</span>'
+      }
+      ${
+        fp
+          ? `<code class="admin__modal-fp">${escapeHtml(fp)}</code>`
+          : ''
+      }
+    </div>
+  `
 
   if (!fp) {
-    body.innerHTML = '<p class="admin__modal-empty">No fingerprint on this feedback row.</p>'
+    body.innerHTML = `${contactHtml}<p class="admin__modal-empty">No fingerprint on this feedback row.</p>`
     modal.hidden = false
     document.body.style.overflow = 'hidden'
     return
@@ -1267,7 +1292,7 @@ function openFingerprintModal(fingerprint) {
 
   if (!state.loaded.yt) {
     body.innerHTML =
-      '<p class="admin__modal-empty">YT Filter Pro data is still loading. Try again in a moment.</p>'
+      `${contactHtml}<p class="admin__modal-empty">YT Filter Pro data is still loading. Try again in a moment.</p>`
     modal.hidden = false
     document.body.style.overflow = 'hidden'
     return
@@ -1278,6 +1303,7 @@ function openFingerprintModal(fingerprint) {
   if (!summary.searches) {
     const looksLikeWebsiteVisitorId = fp.includes('-')
     body.innerHTML = `
+      ${contactHtml}
       <p class="admin__modal-empty">
         No YT Filter Pro searches found for fingerprint <code>${escapeHtml(fp)}</code>.
         ${
@@ -1326,6 +1352,7 @@ function openFingerprintModal(fingerprint) {
     .join('')
 
   body.innerHTML = `
+    ${contactHtml}
     <div class="admin__modal-kpis">
       <div class="admin__modal-kpi">
         <div class="admin__modal-kpi-label">Searches</div>
@@ -3139,7 +3166,8 @@ document.getElementById('feedback-list').addEventListener('click', (event) => {
   const fpBtn = event.target.closest('[data-fingerprint]')
   if (fpBtn) {
     const fp = fpBtn.getAttribute('data-fingerprint') || fpBtn.dataset.fingerprint || ''
-    openFingerprintModal(fp)
+    const email = fpBtn.getAttribute('data-email') || fpBtn.dataset.email || ''
+    openFingerprintModal(fp, { email })
     return
   }
 
