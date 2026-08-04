@@ -3,7 +3,7 @@ import ChromeIcon from './ChromeIcon'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
 import { WorkPortfolioDescription } from './WorkPortfolioDescription'
-import { appCardInstalls, getAllApps } from '../utils/apps'
+import { appCardInstalls, getAllApps, pinAppLast } from '../utils/apps'
 import { getWorkPortfolioProjects } from '../utils/workPortfolio'
 import {
   buildTechFilterOptions,
@@ -49,19 +49,6 @@ const SHOPIFY_ICON = (
 )
 
 const projects = getWorkPortfolioProjects()
-
-const PIN_LAST_EXTENSION_SLUG = 'save-directly-to-drive'
-
-function sortExtensionsWithPinnedLast(apps) {
-  const sorted = [...apps].sort(
-    (a, b) => (appCardInstalls(b) ?? 0) - (appCardInstalls(a) ?? 0),
-  )
-  const pinIndex = sorted.findIndex((app) => app.slug === PIN_LAST_EXTENSION_SLUG)
-  if (pinIndex === -1) return sorted
-  const [pinned] = sorted.splice(pinIndex, 1)
-  sorted.push(pinned)
-  return sorted
-}
 
 const TABS = [
   {
@@ -116,7 +103,15 @@ export default function WorkRecentTabsSection() {
   const showExtensions = activeTab === 'all' || activeTab === 'extensions'
   const showTechFilters = showExtensions
 
-  const extensions = useMemo(() => sortExtensionsWithPinnedLast(getAllApps()), [])
+  const extensions = useMemo(
+    () =>
+      pinAppLast(
+        [...getAllApps()].sort(
+          (a, b) => (appCardInstalls(b) ?? 0) - (appCardInstalls(a) ?? 0),
+        ),
+      ),
+    [],
+  )
 
   const extensionStacks = useMemo(
     () => extensions.map((app) => getAppTechStack(app)),

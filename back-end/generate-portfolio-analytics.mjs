@@ -27,12 +27,18 @@ const ROOT = path.join(__dirname, '..')
 const DB_JSON = path.join(ROOT, 'chrome-extension-html/db.json')
 const OUT_JSON = path.join(ROOT, 'src/data/portfolio-analytics.json')
 const OUT_ADMIN_UNINSTALLS_JS = path.join(ROOT, 'admin/uninstalls-over-time.js')
+const OUT_ADMIN_YT_CHURN_JS = path.join(ROOT, 'admin/yt-filter-pro-churn.js')
+const YT_FILTER_PRO_SLUG = 'youtube-filter-pro'
 
-function writeAdminUninstallsData(payload) {
-  const daily = (payload?.analytics?.uninstallsOverTime ?? []).map((row) => ({
+function seriesToIsoDaily(series) {
+  return (series ?? []).map((row) => ({
     date: installDateToIso(row.date),
     total: Number(row.total) || 0,
   }))
+}
+
+function writeAdminUninstallsData(payload) {
+  const daily = seriesToIsoDaily(payload?.analytics?.uninstallsOverTime)
   const output = {
     source: 'src/data/portfolio-analytics.json',
     updatedAt: payload?.updatedAt ?? null,
@@ -44,6 +50,32 @@ function writeAdminUninstallsData(payload) {
     `window.CC_ADMIN_UNINSTALLS = ${JSON.stringify(output, null, 2)};\n`,
     'utf8',
   )
+}
+
+function writeAdminYtFilterChurnData(payload) {
+  const app = (payload?.apps ?? []).find((entry) => entry.slug === YT_FILTER_PRO_SLUG)
+  const analytics = app?.analytics ?? null
+  const output = {
+    source: 'src/data/portfolio-analytics.json',
+    slug: YT_FILTER_PRO_SLUG,
+    name: app?.name ?? 'YouTube Filter Pro',
+    updatedAt: payload?.updatedAt ?? null,
+    extractedAt: payload?.extractedAt ?? null,
+    totalInstalls: analytics?.totalInstalls ?? 0,
+    uninstallsTotal: analytics?.uninstalls ?? 0,
+    installs: seriesToIsoDaily(analytics?.installations),
+    uninstalls: seriesToIsoDaily(analytics?.uninstallsOverTime),
+  }
+  fs.writeFileSync(
+    OUT_ADMIN_YT_CHURN_JS,
+    `window.CC_ADMIN_YT_FILTER_CHURN = ${JSON.stringify(output, null, 2)};\n`,
+    'utf8',
+  )
+}
+
+function writeAdminAnalyticsScripts(payload) {
+  writeAdminUninstallsData(payload)
+  writeAdminYtFilterChurnData(payload)
 }
 
 function isAppLive(app) {
@@ -251,14 +283,14 @@ function main() {
       analytics: null,
     }
     fs.writeFileSync(OUT_JSON, `${JSON.stringify(payload, null, 2)}\n`)
-    writeAdminUninstallsData(payload)
+    writeAdminAnalyticsScripts(payload)
     return
   }
 
   const db = JSON.parse(fs.readFileSync(DB_JSON, 'utf8'))
   const payload = aggregatePortfolioAnalytics(db)
   fs.writeFileSync(OUT_JSON, `${JSON.stringify(payload, null, 2)}\n`, 'utf8')
-  writeAdminUninstallsData(payload)
+  writeAdminAnalyticsScripts(payload)
 
   const an = payload.analytics
   if (!an) {

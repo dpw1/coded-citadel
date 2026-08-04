@@ -23,6 +23,7 @@ import {
 } from '../utils/liveStatsAnalytics'
 import {
   fetchExtensionChangelogs,
+  getExtensionChangelogApps,
   getStoredExtensionChangelogs,
   mergeChangelogSelectedKeys,
   needsExtensionChangelogsRefresh,
@@ -250,7 +251,7 @@ export default function PortfolioAnalyticsSection({ idPrefix = 'portfolio' }) {
 
         {activeTab === 'changelog' ? (
             <ExtensionChangelogBlock
-              apps={changelogData?.apps ?? []}
+              apps={getExtensionChangelogApps()}
               selectedKeys={changelogSelectedKeys}
               onSelectedKeysChange={setChangelogSelectedKeys}
               timePreset={changelogTimePreset}

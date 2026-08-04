@@ -62,22 +62,6 @@
       >
         YT Filter Pro — Dev
       </button>
-      <button
-        type="button"
-        class="admin__tab"
-        role="tab"
-        aria-selected="false"
-        data-tab="feedback-graph"
-        id="tab-feedback-graph"
-      >
-        Feedback Graph
-        <span
-          class="admin__tab-status"
-          id="feedback-graph-tab-status"
-          hidden
-          aria-hidden="true"
-        ></span>
-      </button>
     </nav>
 
     <!-- FEEDBACK -->
@@ -106,50 +90,63 @@
 
       <div class="admin__toolbar" id="feedback-toolbar" hidden>
         <div class="admin__toolbar-row">
-          <div class="admin__chips" role="group" aria-label="Filter by read status">
-            <button type="button" class="admin__chip admin__chip--active" data-filter="all">All</button>
-            <button type="button" class="admin__chip" data-filter="unread">Unread</button>
-            <button type="button" class="admin__chip" data-filter="read">Read</button>
+          <div class="admin__toolbar-filters">
+            <div class="admin__filter-group">
+              <span class="admin__filter-label">Status</span>
+              <div class="admin__chips" role="group" aria-label="Filter by read status">
+                <button type="button" class="admin__chip admin__chip--active" data-filter="all">All</button>
+                <button type="button" class="admin__chip" data-filter="unread">Unread</button>
+                <button type="button" class="admin__chip" data-filter="read">Read</button>
+              </div>
+            </div>
+            <div class="admin__filter-group">
+              <span class="admin__filter-label">Contact</span>
+              <div class="admin__chips" role="group" aria-label="Filter by email">
+                <button type="button" class="admin__chip" id="feedback-email-filter" data-email-only="1" aria-pressed="false">
+                  Has email
+                </button>
+              </div>
+            </div>
           </div>
           <button type="button" class="admin__btn admin__btn--outline" id="mark-all-read">
             Mark all as read
           </button>
         </div>
-        <div
-          class="admin__chips admin__chips--apps"
-          id="feedback-app-chips"
-          role="group"
-          aria-label="Filter by app"
-        ></div>
+        <div class="admin__toolbar-row admin__toolbar-row--app">
+          <span class="admin__filter-label" id="feedback-app-label">App</span>
+          <select id="feedback-app-select" class="admin__select" aria-label="Filter by app"></select>
+          <div
+            class="admin__chips admin__chips--apps"
+            id="feedback-app-chips"
+            role="group"
+            aria-labelledby="feedback-app-label"
+            hidden
+          ></div>
+        </div>
       </div>
 
       <div class="admin__list" id="feedback-list"></div>
-    </section>
 
-    <!-- FEEDBACK GRAPH -->
-    <section
-      class="admin__panel"
-      id="panel-feedback-graph"
-      role="tabpanel"
-      aria-labelledby="tab-feedback-graph"
-      hidden
-    >
-      <div class="admin__status" id="feedback-graph-status">Loading feedback…</div>
+      <section class="admin__feedback-graph" id="feedback-graph-section" aria-label="Feedback graph">
+        <div class="admin__section-divider">
+          <h2 class="admin__section-title">Feedback graph</h2>
+        </div>
 
-      <div class="admin__kpis" id="feedback-graph-kpis" hidden>
-        <div class="admin__kpi">
-          <div class="admin__kpi-label">Total feedback</div>
-          <div class="admin__kpi-value" id="kpi-fg-total">0</div>
-        </div>
-        <div class="admin__kpi">
-          <div class="admin__kpi-label">With comments</div>
-          <div class="admin__kpi-value" id="kpi-fg-comments">0</div>
-        </div>
-        <div class="admin__kpi">
-          <div class="admin__kpi-label">Today</div>
-          <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-fg-today">0</div>
-        </div>
-        <div class="admin__kpi-period-row">
+        <div class="admin__status" id="feedback-graph-status" hidden>Loading feedback…</div>
+
+        <div class="admin__kpis" id="feedback-graph-kpis" hidden>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Total feedback</div>
+            <div class="admin__kpi-value" id="kpi-fg-total">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">With comments</div>
+            <div class="admin__kpi-value" id="kpi-fg-comments">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Today</div>
+            <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-fg-today">0</div>
+          </div>
           <div class="admin__kpi admin__kpi--period">
             <div class="admin__kpi-label">All time → Jul 21</div>
             <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-fg-pre-rate">0%</div>
@@ -158,80 +155,64 @@
               <span><strong id="kpi-fg-pre-feedback">0</strong> feedback</span>
             </div>
           </div>
-          <div class="admin__kpi admin__kpi--period">
-            <div class="admin__kpi-label">Jul 15 → Jul 21 (7 days)</div>
-            <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-fg-prior-rate">0%</div>
-            <div class="admin__kpi-period-stats">
-              <span><strong id="kpi-fg-prior-uninstalls">0</strong> uninstalls</span>
-              <span><strong id="kpi-fg-prior-feedback">0</strong> feedback</span>
-            </div>
-          </div>
-          <div class="admin__kpi admin__kpi--period">
-            <div class="admin__kpi-label">Jul 22 → Today</div>
-            <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-fg-post-rate">0%</div>
-            <div class="admin__kpi-period-stats">
-              <span><strong id="kpi-fg-post-uninstalls">0</strong> uninstalls</span>
-              <span><strong id="kpi-fg-post-feedback">0</strong> feedback</span>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <div class="admin__growth-chart CC__cyber-accent" id="feedback-growth-chart" hidden>
-        <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tl" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
-            <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
-            <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-            <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-          </svg>
+        <div class="admin__growth-chart CC__cyber-accent" id="feedback-growth-chart" hidden>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tl" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+              <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+              <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tr" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+              <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+              <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--bl" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+              <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+              <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--br" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+              <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+              <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+            </svg>
+          </div>
+          <div class="admin__growth-chart__title">Feedback growth</div>
+          <p class="admin__growth-chart__subtitle">Cumulative uninstall feedback vs daily submissions and Chrome uninstalls</p>
+          <div class="admin__growth-chart__canvas-wrap">
+            <canvas id="chart-feedback-growth"></canvas>
+          </div>
         </div>
-        <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tr" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
-            <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
-            <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-            <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-          </svg>
-        </div>
-        <div class="CC__cyber-accent__corner CC__cyber-accent__corner--bl" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
-            <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
-            <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-            <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-          </svg>
-        </div>
-        <div class="CC__cyber-accent__corner CC__cyber-accent__corner--br" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
-            <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
-            <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-            <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-          </svg>
-        </div>
-        <div class="admin__growth-chart__title">Feedback growth</div>
-        <p class="admin__growth-chart__subtitle">Cumulative uninstall feedback vs daily submissions and Chrome uninstalls</p>
-        <div class="admin__growth-chart__canvas-wrap">
-          <canvas id="chart-feedback-growth"></canvas>
-        </div>
-      </div>
+      </section>
     </section>
 
     <!-- YT FILTER PRO -->
@@ -255,6 +236,22 @@
         <div class="admin__kpi">
           <div class="admin__kpi-label">Total searches</div>
           <div class="admin__kpi-value" id="kpi-yt-total">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Total exports</div>
+          <div class="admin__kpi-value" id="kpi-yt-exports">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Tutorials started</div>
+          <div class="admin__kpi-value" id="kpi-yt-tutorials-started">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Tutorials completed</div>
+          <div class="admin__kpi-value" id="kpi-yt-tutorials-completed">0</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Tutorial completion rate</div>
+          <div class="admin__kpi-value" id="kpi-yt-tutorial-rate">0%</div>
         </div>
         <div class="admin__kpi">
           <div class="admin__kpi-label">Unique users</div>
@@ -293,85 +290,218 @@
           <div class="admin__kpi-value" id="kpi-yt-social">0%</div>
         </div>
         <div class="admin__kpi">
-          <div class="admin__kpi-label">Transparent mode</div>
-          <div class="admin__kpi-value" id="kpi-yt-transparent">0%</div>
-        </div>
-        <div class="admin__kpi">
           <div class="admin__kpi-label">Has settings payload</div>
           <div class="admin__kpi-value" id="kpi-yt-options">0%</div>
         </div>
       </div>
 
-      <div class="admin__growth-chart CC__cyber-accent" id="yt-user-growth" hidden>
-        <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tl" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
-            <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
-            <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-            <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-          </svg>
+      <div class="admin__growth-row" id="yt-growth-row" hidden>
+        <div class="admin__growth-chart CC__cyber-accent" id="yt-user-growth">
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tl" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+              <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+              <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tr" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+              <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+              <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--bl" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+              <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+              <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--br" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+              <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
+              <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+              <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
+            </svg>
+          </div>
+          <div class="admin__growth-chart__title">User growth</div>
+          <p class="admin__growth-chart__subtitle">Cumulative unique users, daily active, and returning daily users (anonymous id)</p>
+          <div class="admin__growth-chart__canvas-wrap">
+            <canvas id="chart-user-growth"></canvas>
+          </div>
         </div>
-        <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tr" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
-            <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
-            <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-            <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-          </svg>
-        </div>
-        <div class="CC__cyber-accent__corner CC__cyber-accent__corner--bl" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
-            <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
-            <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-            <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-          </svg>
-        </div>
-        <div class="CC__cyber-accent__corner CC__cyber-accent__corner--br" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
-            <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
-            <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
-            <path d="M8 9 L2 9" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M9 8 L9 2" stroke="var(--CC__color-primary)" stroke-width="0.75" stroke-linecap="square" opacity="0.3"></path>
-            <path d="M1 28 L1 26" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-            <path d="M28 1 L26 1" stroke="var(--CC__color-primary)" stroke-width="1" stroke-linecap="square" opacity="0.25"></path>
-          </svg>
-        </div>
-        <div class="admin__growth-chart__title">User growth</div>
-        <p class="admin__growth-chart__subtitle">Cumulative unique users, daily active, and returning daily users (fingerprint)</p>
-        <div class="admin__growth-chart__canvas-wrap">
-          <canvas id="chart-user-growth"></canvas>
+
+        <div
+          class="admin__searches-card admin__searches-card--clickable"
+          id="yt-searches-window"
+          role="button"
+          tabindex="0"
+          aria-label="Open recent searches filter preview"
+          title="Click to preview filters used in these searches"
+        >
+          <div class="admin__searches-card__header">
+            <div class="admin__searches-card__totals">
+              <div>
+                <div class="admin__searches-card__label">
+                  <span class="admin__searches-card__swatch admin__searches-card__swatch--searches" aria-hidden="true"></span>
+                  Searches
+                </div>
+                <div class="admin__searches-card__total" id="kpi-yt-searches-window">0</div>
+              </div>
+              <div>
+                <div class="admin__searches-card__label">
+                  <span class="admin__searches-card__swatch admin__searches-card__swatch--users" aria-hidden="true"></span>
+                  Users
+                </div>
+                <div class="admin__searches-card__total admin__searches-card__total--users" id="kpi-yt-users-window">0</div>
+              </div>
+            </div>
+            <label class="admin__searches-card__select-wrap">
+              <span class="visually-hidden">Time range</span>
+              <select class="admin__searches-card__select" id="yt-searches-window-select" aria-label="Searches time range">
+                <option value="30m">Past 30 mins</option>
+                <option value="60m">Past 60 mins</option>
+                <option value="24h">Past 24 hours</option>
+                <option value="7d">Past 7 days</option>
+              </select>
+            </label>
+          </div>
+          <div class="admin__searches-card__chart">
+            <canvas id="chart-searches-window"></canvas>
+          </div>
+          <div class="admin__searches-card__range">
+            <span id="yt-searches-window-start">—</span>
+            <span id="yt-searches-window-end">—</span>
+          </div>
+          <p class="admin__searches-card__hint">Click to preview filters · click a bar for that slice</p>
         </div>
       </div>
 
       <div class="admin__charts" id="yt-charts" hidden>
-        <p class="admin__chart-note">All charts count unique users (fingerprint), not total searches. Settings come from nested <code>filter_data.options</code> (newer rows only).</p>
+        <div class="admin__growth-chart admin__growth-chart--full CC__cyber-accent" id="yt-search-growth">
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tl" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tr" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--bl" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--br" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="admin__growth-chart__title">Search growth</div>
+          <p class="admin__growth-chart__subtitle">Cumulative searches, daily searches, and daily unique users (filter_search events)</p>
+          <div class="admin__growth-chart__canvas-wrap">
+            <canvas id="chart-search-growth"></canvas>
+          </div>
+        </div>
+
+        <div class="admin__growth-chart admin__growth-chart--full CC__cyber-accent" id="yt-install-churn">
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tl" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tr" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--bl" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--br" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="admin__growth-chart__title">Installs vs uninstalls</div>
+          <p class="admin__growth-chart__subtitle">Chrome Web Store daily installs and uninstalls (YouTube Filter Pro)</p>
+          <div class="admin__growth-chart__canvas-wrap">
+            <canvas id="chart-yt-install-churn"></canvas>
+          </div>
+        </div>
+
+        <p class="admin__chart-note">All charts count unique users (anonymous id in <code>fingerprint</code>), not total searches. Legacy rows use a 32-char hex id; newer rows may use a UUID. Settings come from nested <code>filter_data.options</code> (newer rows only).</p>
         <div class="admin__chart-card admin__chart-card--wide">
-          <h3 class="admin__chart-title">Top 10 most used features</h3>
-          <div class="admin__chart-wrap admin__chart-wrap--bar">
+          <h3 class="admin__chart-title">Top 20 most used features</h3>
+          <p class="admin__chart-subtitle admin__feature-legend">
+            <span class="admin__legend-item"><span class="admin__legend-swatch admin__legend-swatch--video" aria-hidden="true"></span> Video filters</span>
+            <span class="admin__legend-item"><span class="admin__legend-swatch admin__legend-swatch--channel" aria-hidden="true"></span> Channel filters</span>
+          </p>
+          <p class="admin__feature-picks-note">Click a bar to see its top picks</p>
+          <div class="admin__chart-wrap admin__chart-wrap--bar admin__chart-wrap--features">
             <canvas id="chart-features"></canvas>
           </div>
-          <p class="admin__feature-picks-note">Click a feature to see its top 10 most used picks</p>
-          <div class="admin__feature-picks" id="feature-picks"></div>
         </div>
         <div class="admin__chart-card admin__chart-card--wide">
           <h3 class="admin__chart-title">Top subscriber ranges</h3>
           <div class="admin__chart-wrap admin__chart-wrap--bar">
             <canvas id="chart-subs"></canvas>
+          </div>
+        </div>
+        <div class="admin__chart-card">
+          <h3 class="admin__chart-title">Exports by format</h3>
+          <p class="admin__chart-subtitle" id="kpi-yt-exports-chart">0 total · 0 users</p>
+          <div class="admin__chart-wrap admin__chart-wrap--bar admin__chart-wrap--exports">
+            <canvas id="chart-exports"></canvas>
           </div>
         </div>
         <div class="admin__chart-card admin__chart-card--wide">
@@ -452,8 +582,30 @@
     </div>
   </div>
 
+  <div class="admin__modal" id="searches-preview-modal" hidden>
+    <button type="button" class="admin__modal-backdrop" id="searches-preview-backdrop" aria-label="Close"></button>
+    <div
+      class="admin__modal-dialog admin__modal-dialog--yfp"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="searches-preview-title"
+    >
+      <div class="admin__modal-header">
+        <div>
+          <p class="admin__eyebrow">Filter preview</p>
+          <h2 class="admin__modal-title" id="searches-preview-title">Recent searches</h2>
+        </div>
+        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="searches-preview-close">
+          Close
+        </button>
+      </div>
+      <div class="admin__modal-body admin__modal-body--yfp" id="searches-preview-body"></div>
+    </div>
+  </div>
+
   <!-- Local analytics data is a script because file:// blocks fetch() for local JSON. -->
   <script src="./uninstalls-over-time.js"></script>
+  <script src="./yt-filter-pro-churn.js"></script>
   <!-- Chart.js — Supabase via REST fetch so file:// works (no SDK iframe). -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
   <script src="./admin.js"></script>

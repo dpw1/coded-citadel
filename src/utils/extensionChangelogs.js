@@ -1,5 +1,5 @@
 import changelogData from '../data/extension-changelogs.json'
-import { appFilterLabel, appIconUrl, appStoreUrl, resolveAppCatalogEntry } from './apps'
+import { appFilterLabel, appIconUrl, appStoreUrl, pinAppLast, resolveAppCatalogEntry } from './apps'
 import { assignCommitVersions } from './changelogCommitVersions'
 
 export function getExtensionChangelogsPayload() {
@@ -7,7 +7,7 @@ export function getExtensionChangelogsPayload() {
 }
 
 export function getExtensionChangelogApps() {
-  return changelogData?.apps ?? []
+  return pinAppLast(changelogData?.apps ?? [])
 }
 
 export function getExtensionChangelogByKey(key) {
@@ -217,7 +217,8 @@ export function mergeChangelogSelectedKeys(previousKeys, apps) {
 
 /** Bundled build-time snapshot — always used on the live site. */
 export function getExtensionChangelogsSnapshot() {
-  return changelogData
+  const apps = pinAppLast(changelogData?.apps ?? [])
+  return { ...changelogData, apps }
 }
 
 /** Dev: localStorage first, then bundled snapshot. Prod: bundled snapshot only. */
@@ -227,7 +228,8 @@ export function getStoredExtensionChangelogs() {
   }
 
   const cached = readCacheRaw()
-  return cached ?? getExtensionChangelogsSnapshot()
+  if (!cached) return getExtensionChangelogsSnapshot()
+  return { ...cached, apps: pinAppLast(cached.apps ?? []) }
 }
 
 export function isExtensionChangelogsCacheFresh() {
@@ -256,14 +258,14 @@ export async function fetchExtensionChangelogs() {
   }
 
   const cached = readCacheFresh()
-  if (cached) return cached
+  if (cached) return { ...cached, apps: pinAppLast(cached.apps ?? []) }
 
   try {
     const res = await fetch('/api/live-stats/changelogs')
     if (res.ok) {
       const data = await res.json()
       writeCache(data)
-      return data
+      return { ...data, apps: pinAppLast(data?.apps ?? []) }
     }
   } catch {
     // fall through to stored/bundled snapshot

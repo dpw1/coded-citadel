@@ -8,6 +8,7 @@ import {
   formatAppDate,
   installDateToIso,
   installationsTotal,
+  pinAppLast,
 } from './apps'
 
 export function getPortfolioAnalyticsPayload() {
@@ -15,7 +16,7 @@ export function getPortfolioAnalyticsPayload() {
 }
 
 export function getPortfolioApps() {
-  return portfolioData?.apps ?? []
+  return pinAppLast(portfolioData?.apps ?? [])
 }
 
 export function getPortfolioAnalytics() {
@@ -192,19 +193,21 @@ export function getTopExtensionsByActiveUsers(
 ) {
   if (!apps?.length || !selectedKeys?.size) return []
 
-  return apps
-    .filter((app) => selectedKeys.has(app.key))
-    .map((app) => {
-      const filtered = app.analytics
-        ? filterAnalyticsByDateRange(app.analytics, fromIso || null, toIso || null)
-        : null
-      return {
-        key: app.key,
-        slug: app.slug,
-        name: appFilterLabel({ name: app.name, slug: app.slug }),
-        activeUsers: filtered ? analyticsActiveUsers(filtered) ?? 0 : 0,
-      }
-    })
-    .sort((a, b) => b.activeUsers - a.activeUsers)
-    .slice(0, limit)
+  return pinAppLast(
+    apps
+      .filter((app) => selectedKeys.has(app.key))
+      .map((app) => {
+        const filtered = app.analytics
+          ? filterAnalyticsByDateRange(app.analytics, fromIso || null, toIso || null)
+          : null
+        return {
+          key: app.key,
+          slug: app.slug,
+          name: appFilterLabel({ name: app.name, slug: app.slug }),
+          activeUsers: filtered ? analyticsActiveUsers(filtered) ?? 0 : 0,
+        }
+      })
+      .sort((a, b) => b.activeUsers - a.activeUsers)
+      .slice(0, limit),
+  )
 }

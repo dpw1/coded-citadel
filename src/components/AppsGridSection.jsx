@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
-import { getAllApps, appCategory, appCardInstalls } from '../utils/apps'
+import { getAllApps, appCategory, appCardInstalls, pinAppLast } from '../utils/apps'
 
 const PREV_ICON = (
   <svg viewBox="0 0 24 24">
@@ -102,6 +102,7 @@ export default function AppsGridSection({
       )
     }
     if (randomize) pool = shuffleApps(pool)
+    pool = pinAppLast(pool)
     if (maxItems != null) return pool.slice(0, maxItems)
     if (!enablePagination) return pool
     const start = (currentPage - 1) * perPage

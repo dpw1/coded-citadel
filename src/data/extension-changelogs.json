@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-07-31T11:54:17.853Z",
+  "updatedAt": "2026-08-04T18:35:27.951Z",
   "message": null,
   "apps": [
     {
@@ -250,6 +250,15 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "7cf7ee7d8a97a5924e2e19561be0a0c248f3951b",
+          "shortSha": "7cf7ee7",
+          "message": "Ship 1.0.68: replace FingerprintJS with local UUID identity and tighten telemetry.",
+          "date": "2026-08-01T23:23:20Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/7cf7ee7d8a97a5924e2e19561be0a0c248f3951b",
+          "version": "1.0.67"
+        },
         {
           "sha": "9cf1e61fb7110d2562b8c87c3d0e57948de21480",
           "shortSha": "9cf1e61",
@@ -509,7 +518,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.67"
+          "version": "1.0.70"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -518,7 +527,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.67"
+          "version": "1.0.70"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -527,7 +536,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.67"
+          "version": "1.0.70"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -536,7 +545,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.67"
+          "version": "1.0.70"
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -545,7 +554,7 @@
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.67"
+          "version": "1.0.70"
         }
       ]
     },
@@ -559,13 +568,22 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "22064203164c11ff56e7a69ab9d4acc19fd5d16f",
+          "shortSha": "2206420",
+          "message": "Add daily full re-index and fix Claude find-in-conversation open.",
+          "date": "2026-08-03T00:57:04Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/claude-search/commit/22064203164c11ff56e7a69ab9d4acc19fd5d16f",
+          "version": "1.0.10"
+        },
+        {
           "sha": "8aa089e809d455cf8fa3b56a8c22e8ed8121e7e5",
           "shortSha": "8aa089e",
           "message": "Update uninstall URL with tracking parameters, enhance build script for zip staging, and improve conversation date formatting in search results. Refactor banner display logic and clean up unused styles in CSS.",
           "date": "2026-07-30T12:17:38Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/8aa089e809d455cf8fa3b56a8c22e8ed8121e7e5",
-          "version": "1.0.09"
+          "version": "1.0.10"
         },
         {
           "sha": "b52208379a3e55c11262f243edb5a8f47f872017",
@@ -574,7 +592,7 @@
           "date": "2026-06-23T17:42:32Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/b52208379a3e55c11262f243edb5a8f47f872017",
-          "version": "1.0.09"
+          "version": "1.0.10"
         },
         {
           "sha": "4d8a4cd63fed43779a78f7c6e74ecb9c7916d806",
@@ -583,7 +601,7 @@
           "date": "2026-05-23T16:18:35Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/4d8a4cd63fed43779a78f7c6e74ecb9c7916d806",
-          "version": "1.0.09"
+          "version": "1.0.10"
         },
         {
           "sha": "916d2bf30b0b2b3ab9d1d734ff7658313fbd817c",
@@ -592,7 +610,7 @@
           "date": "2026-05-21T16:26:38Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/916d2bf30b0b2b3ab9d1d734ff7658313fbd817c",
-          "version": "1.0.09"
+          "version": "1.0.10"
         },
         {
           "sha": "df4c595a37fef6ea845bb572a5408eb5b9f5b4d5",
@@ -601,7 +619,7 @@
           "date": "2026-05-21T16:08:55Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/df4c595a37fef6ea845bb572a5408eb5b9f5b4d5",
-          "version": "1.0.09"
+          "version": "1.0.10"
         },
         {
           "sha": "2084ba31229dd8a07d15667959724a6a6d274c0d",
@@ -610,7 +628,7 @@
           "date": "2026-05-19T15:02:50Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/2084ba31229dd8a07d15667959724a6a6d274c0d",
-          "version": "1.0.09"
+          "version": "1.0.10"
         },
         {
           "sha": "a5a8c2e0dc802ca3ee4b9ec74a56e94b9c056b9e",
@@ -619,7 +637,7 @@
           "date": "2026-05-19T14:57:47Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/a5a8c2e0dc802ca3ee4b9ec74a56e94b9c056b9e",
-          "version": "1.0.09"
+          "version": "1.0.10"
         },
         {
           "sha": "6c244a0905678d3452fe9223e27685e294dee419",
@@ -628,7 +646,7 @@
           "date": "2026-05-19T14:37:26Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/6c244a0905678d3452fe9223e27685e294dee419",
-          "version": "1.0.09"
+          "version": "1.0.10"
         }
       ]
     },
@@ -680,13 +698,22 @@
       "defaultBranch": "master",
       "commits": [
         {
+          "sha": "e276b26b4d3405f96652081c5d855302b6d652e3",
+          "shortSha": "e276b26",
+          "message": "Bump extension to 1.0.36 for Chrome Web Store resubmit without FingerprintJS obfuscation.",
+          "date": "2026-08-01T22:05:58Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/e276b26b4d3405f96652081c5d855302b6d652e3",
+          "version": "1.0.36"
+        },
+        {
           "sha": "602f92a885c1604d6e9e5088be334b6fcdf93874",
           "shortSha": "602f92a",
           "message": "Implement XLSX export feature and enhance export options in YouTube Comments Exporter",
           "date": "2026-07-03T02:51:43Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/602f92a885c1604d6e9e5088be334b6fcdf93874",
-          "version": "1.0.35"
+          "version": "1.0.36"
         },
         {
           "sha": "ea1f86b4a98b8d3376f021dabbac1a679404ca63",
@@ -695,7 +722,7 @@
           "date": "2026-07-03T02:22:17Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/ea1f86b4a98b8d3376f021dabbac1a679404ca63",
-          "version": "1.0.35"
+          "version": "1.0.36"
         },
         {
           "sha": "8e0201ff9a17770ef637af1bd8dd32a5516dc904",
@@ -704,7 +731,7 @@
           "date": "2026-06-23T17:29:58Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/8e0201ff9a17770ef637af1bd8dd32a5516dc904",
-          "version": "1.0.35"
+          "version": "1.0.36"
         },
         {
           "sha": "eddc34013d01e1b61c24e4f759b1cfbb4345a4eb",
@@ -713,7 +740,7 @@
           "date": "2026-05-11T18:18:44Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/eddc34013d01e1b61c24e4f759b1cfbb4345a4eb",
-          "version": "1.0.35"
+          "version": "1.0.36"
         },
         {
           "sha": "ca5a4275ecc15b5fe1cbad890b5e5430bc205c3d",
@@ -722,7 +749,7 @@
           "date": "2026-05-10T23:31:30Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/ca5a4275ecc15b5fe1cbad890b5e5430bc205c3d",
-          "version": "1.0.35"
+          "version": "1.0.36"
         },
         {
           "sha": "2da65bb228be092b5cf8472ebce1303f28f08395",
@@ -731,7 +758,7 @@
           "date": "2026-05-10T22:26:04Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/2da65bb228be092b5cf8472ebce1303f28f08395",
-          "version": "1.0.35"
+          "version": "1.0.36"
         },
         {
           "sha": "42d5fcf7a8592d18ca65afffcbbe01cd42c600cf",
@@ -740,7 +767,7 @@
           "date": "2026-05-10T21:58:36Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/42d5fcf7a8592d18ca65afffcbbe01cd42c600cf",
-          "version": "1.0.35"
+          "version": "1.0.36"
         },
         {
           "sha": "af2fd189ac41639c983a8c2f4472600823e4cbff",
@@ -749,7 +776,7 @@
           "date": "2026-05-08T18:28:30Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/af2fd189ac41639c983a8c2f4472600823e4cbff",
-          "version": "1.0.35"
+          "version": "1.0.36"
         },
         {
           "sha": "a3629248f3cd72c5614dab2fa17f99b57d63c302",
@@ -758,7 +785,7 @@
           "date": "2026-05-08T13:02:19Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/a3629248f3cd72c5614dab2fa17f99b57d63c302",
-          "version": "1.0.35"
+          "version": "1.0.36"
         }
       ]
     },

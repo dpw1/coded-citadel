@@ -10,7 +10,37 @@ const SLUG_ALIASES = {
 }
 
 export function getAllApps() {
-  return appsData.apps ?? []
+  return pinAppLast(appsData.apps ?? [])
+}
+
+/** Always show Save to Google Drive at the end of extension lists. */
+export const PIN_LAST_APP_SLUG = 'save-directly-to-drive'
+export const PIN_LAST_APP_CHROME_ID = 'jadjgiiaompdjacagaomgogdihbpgcpg'
+
+export function isPinnedLastApp(appOrItem) {
+  if (!appOrItem) return false
+  const slug = appOrItem.slug
+  const key = appOrItem.key
+  const id = appOrItem.chromeExtensionId ?? appOrItem.id
+  const name = String(appOrItem.name ?? '')
+  return (
+    slug === PIN_LAST_APP_SLUG ||
+    key === PIN_LAST_APP_SLUG ||
+    key === PIN_LAST_APP_CHROME_ID ||
+    id === PIN_LAST_APP_CHROME_ID ||
+    name.startsWith('Save to Google Drive')
+  )
+}
+
+/** Move Save to Google Drive to the end while preserving relative order of the rest. */
+export function pinAppLast(apps) {
+  if (!Array.isArray(apps) || apps.length < 2) return apps ? [...apps] : []
+  const list = [...apps]
+  const pinIndex = list.findIndex(isPinnedLastApp)
+  if (pinIndex === -1 || pinIndex === list.length - 1) return list
+  const [pinned] = list.splice(pinIndex, 1)
+  list.push(pinned)
+  return list
 }
 
 /** ISO date (YYYY-MM-DD) when apps.json was last generated from Chrome exports. */
@@ -176,16 +206,18 @@ export function appSimilarByTags(app, limit = 3) {
   )
   if (!tagSet.size) return []
 
-  return getAllApps()
-    .filter((candidate) => candidate.slug !== app.slug && isAppLive(candidate))
-    .map((candidate) => {
-      const overlap = appTags(candidate).filter((tag) => tagSet.has(tag)).length
-      return { candidate, overlap }
-    })
-    .filter(({ overlap }) => overlap > 0)
-    .sort((a, b) => b.overlap - a.overlap)
-    .slice(0, limit)
-    .map(({ candidate }) => candidate)
+  return pinAppLast(
+    getAllApps()
+      .filter((candidate) => candidate.slug !== app.slug && isAppLive(candidate))
+      .map((candidate) => {
+        const overlap = appTags(candidate).filter((tag) => tagSet.has(tag)).length
+        return { candidate, overlap }
+      })
+      .filter(({ overlap }) => overlap > 0)
+      .sort((a, b) => b.overlap - a.overlap)
+      .slice(0, limit)
+      .map(({ candidate }) => candidate),
+  )
 }
 
 /** How-to-use YouTube URL from apps-custom-data.json (empty until provided). */
