@@ -290,6 +290,14 @@
           <div class="admin__kpi-value" id="kpi-yt-social">0%</div>
         </div>
         <div class="admin__kpi">
+          <div class="admin__kpi-label">Used Shorts</div>
+          <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-yt-shorts">0%</div>
+        </div>
+        <div class="admin__kpi">
+          <div class="admin__kpi-label">Videos only</div>
+          <div class="admin__kpi-value" id="kpi-yt-videos-only">0%</div>
+        </div>
+        <div class="admin__kpi">
           <div class="admin__kpi-label">Has settings payload</div>
           <div class="admin__kpi-value" id="kpi-yt-options">0%</div>
         </div>
@@ -479,9 +487,56 @@
           </div>
         </div>
 
+        <div class="admin__growth-chart admin__growth-chart--full CC__cyber-accent" id="yt-feature-daily">
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tl" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--tr" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--bl" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="CC__cyber-accent__corner CC__cyber-accent__corner--br" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 20 L2 4 Q2 2 4 2 L20 2" stroke="var(--CC__color-primary)" stroke-width="2" stroke-linecap="square"></path>
+              <path d="M2 24 L7 24" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <path d="M24 2 L24 7" stroke="var(--CC__color-primary)" stroke-width="1.25" stroke-linecap="square" opacity="0.6"></path>
+              <rect x="4" y="4" width="4" height="4" rx="0.75" fill="var(--CC__color-primary)"></rect>
+            </svg>
+          </div>
+          <div class="admin__growth-chart__title">Filter popularity over time</div>
+          <p class="admin__growth-chart__subtitle">
+            Top filters by share of daily active users (unique fingerprint per day). Tooltip shows users / DAU.
+          </p>
+          <p class="admin__chart-subtitle admin__feature-legend" style="margin: 0 0 0.75rem">
+            <span class="admin__legend-item"><span class="admin__legend-swatch admin__legend-swatch--video" aria-hidden="true"></span> Video filters</span>
+            <span class="admin__legend-item"><span class="admin__legend-swatch admin__legend-swatch--channel" aria-hidden="true"></span> Channel filters</span>
+          </p>
+          <div class="admin__growth-chart__canvas-wrap admin__growth-chart__canvas-wrap--tall">
+            <canvas id="chart-feature-daily"></canvas>
+          </div>
+        </div>
+
         <p class="admin__chart-note">All charts count unique users (anonymous id in <code>fingerprint</code>), not total searches. Legacy rows use a 32-char hex id; newer rows may use a UUID. Settings come from nested <code>filter_data.options</code> (newer rows only).</p>
         <div class="admin__chart-card admin__chart-card--wide">
           <h3 class="admin__chart-title">Top 20 most used features</h3>
+          <p class="admin__chart-subtitle">All-time unique users (not daily)</p>
           <p class="admin__chart-subtitle admin__feature-legend">
             <span class="admin__legend-item"><span class="admin__legend-swatch admin__legend-swatch--video" aria-hidden="true"></span> Video filters</span>
             <span class="admin__legend-item"><span class="admin__legend-swatch admin__legend-swatch--channel" aria-hidden="true"></span> Channel filters</span>
@@ -502,6 +557,13 @@
           <p class="admin__chart-subtitle" id="kpi-yt-exports-chart">0 total · 0 users</p>
           <div class="admin__chart-wrap admin__chart-wrap--bar admin__chart-wrap--exports">
             <canvas id="chart-exports"></canvas>
+          </div>
+        </div>
+        <div class="admin__chart-card">
+          <h3 class="admin__chart-title">Shorts vs Videos</h3>
+          <p class="admin__chart-subtitle" id="kpi-yt-video-type-chart">0 Shorts · 0 Videos only</p>
+          <div class="admin__chart-wrap admin__chart-wrap--doughnut">
+            <canvas id="chart-video-type"></canvas>
           </div>
         </div>
         <div class="admin__chart-card admin__chart-card--wide">

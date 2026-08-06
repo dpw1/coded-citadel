@@ -1,16 +1,30 @@
 {
+  "goal": 100000,
+  "currency": "USD",
   "sources": [
     {
-      "id": "donations",
-      "label": "Donations",
-      "amount": 1,
-      "note": "Buy Me a Coffee, etc."
-    },
-    {
-      "id": "freelancing",
+      "id": "first-sale",
       "label": "Freelancing",
       "amount": 1400,
-      "note": "Shopify client work"
+      "note": "Shopify client work — first sale",
+      "date": "2026-07-03",
+      "link": "/blog/my-first-sale"
+    },
+    {
+      "id": "bmc-1",
+      "label": "Buy Me a Coffee",
+      "amount": 1,
+      "note": "First donation",
+      "date": "2026-07-28",
+      "link": "https://buymeacoffee.com/codedcitadel/"
+    },
+    {
+      "id": "bmc-30",
+      "label": "Buy Me a Coffee",
+      "amount": 30,
+      "note": "Buy Me a Coffee",
+      "date": "2026-08-06",
+      "link": "https://buymeacoffee.com/codedcitadel/"
     }
   ]
 }

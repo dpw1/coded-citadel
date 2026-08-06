@@ -619,6 +619,10 @@ code {
   overflow: hidden;
 }
 
+.admin__growth-chart__canvas-wrap--tall {
+  height: 320px;
+}
+
 .admin__growth-chart__canvas-wrap canvas {
   display: block;
   width: 100% !important;
@@ -728,6 +732,16 @@ code {
 .admin__chip:hover {
   border-color: var(--CC__color-border-glow);
   color: var(--CC__color-text-main);
+}
+
+.admin__chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.admin__chip:disabled:hover {
+  border-color: var(--CC__color-border);
+  color: var(--CC__color-text-muted);
 }
 
 .admin__chip--active {
@@ -1251,6 +1265,12 @@ code {
 
 .admin__chart-wrap--exports {
   height: 180px;
+}
+
+.admin__chart-wrap--doughnut {
+  height: 220px;
+  max-width: 280px;
+  margin: 0 auto;
 }
 
 .admin__chart-wrap--line {

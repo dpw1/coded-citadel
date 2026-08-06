@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-08-04T18:35:27.951Z",
+  "updatedAt": "2026-08-06T16:04:29.308Z",
   "message": null,
   "apps": [
     {
@@ -244,12 +244,30 @@
     {
       "key": "dbkkcbfafkckhmefkpgnelikibobcabb",
       "slug": "youtube-filter-pro",
-      "name": "Youtube Filter Pro: filter by views, duration, date, and more",
+      "name": "Youtube Filter Pro: filtrar por visualizações, duração, data e mais",
       "status": "live",
       "github": "https://github.com/dpw1/youtube-filter-pro",
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "2e4807ab5229a4e6a5e580ffb52cbf6fd2283d54",
+          "shortSha": "2e4807a",
+          "message": "Update YouTube Filter Pro to version 1.0.73: Added new localization messages for search query and video type filters across multiple languages. Enhanced error handling for Shorts duration limits and improved user feedback with new modal prompts. Refined auto-scroll functionality to better handle end-of-results detection for Shorts. Updated telemetry for improved tracking of user interactions and filtering performance.",
+          "date": "2026-08-06T04:19:21Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/2e4807ab5229a4e6a5e580ffb52cbf6fd2283d54",
+          "version": "1.0.73"
+        },
+        {
+          "sha": "cb084bfa5c8db2511d7b795f88be03c2c26d04f3",
+          "shortSha": "cb084bf",
+          "message": "Update YouTube Filter Pro to version 1.0.71: Incremented version number and added new localization messages for user support and feedback. Enhanced feedback widget with a compact star rating feature for user reviews. Improved telemetry handling during onboarding and tutorial processes, ensuring better tracking of user interactions. Refined UI elements for filter buttons and modal components to enhance user experience.",
+          "date": "2026-08-05T22:18:47Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/cb084bfa5c8db2511d7b795f88be03c2c26d04f3",
+          "version": "1.0.71"
+        },
         {
           "sha": "7cf7ee7d8a97a5924e2e19561be0a0c248f3951b",
           "shortSha": "7cf7ee7",
@@ -518,7 +536,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.70"
+          "version": "1.0.73"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -527,7 +545,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.70"
+          "version": "1.0.73"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -536,7 +554,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.70"
+          "version": "1.0.73"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -545,7 +563,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.70"
+          "version": "1.0.73"
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -554,7 +572,7 @@
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.70"
+          "version": "1.0.73"
         }
       ]
     },
@@ -1048,13 +1066,22 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "ab1999e238001ef8c1b9d75a8b1b4eaa62d3ca4b",
+          "shortSha": "ab1999e",
+          "message": "Update manifest version to 1.0.06 and refactor element selection logic in content script",
+          "date": "2026-08-05T22:05:48Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/claude-limit-monitor/commit/ab1999e238001ef8c1b9d75a8b1b4eaa62d3ca4b",
+          "version": "1.0.06"
+        },
+        {
           "sha": "af9c527d390649624b5cf58305f93824a0bb754d",
           "shortSha": "af9c527",
           "message": "Refactor zip distribution process and update manifest version",
           "date": "2026-07-16T17:12:51Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/af9c527d390649624b5cf58305f93824a0bb754d",
-          "version": "1.0.04"
+          "version": "1.0.06"
         },
         {
           "sha": "32f940aecda2bc4490eb36bc46064d034e789c81",
@@ -1063,7 +1090,7 @@
           "date": "2026-06-13T12:05:22Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/32f940aecda2bc4490eb36bc46064d034e789c81",
-          "version": "1.0.04"
+          "version": "1.0.06"
         },
         {
           "sha": "de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
@@ -1072,7 +1099,7 @@
           "date": "2026-06-13T11:34:26Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
-          "version": "1.0.04"
+          "version": "1.0.06"
         },
         {
           "sha": "e68b1d247848af795b32ac5a2ac329608ba911ff",
@@ -1081,7 +1108,7 @@
           "date": "2026-06-02T20:40:15Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/e68b1d247848af795b32ac5a2ac329608ba911ff",
-          "version": "1.0.04"
+          "version": "1.0.06"
         }
       ]
     },

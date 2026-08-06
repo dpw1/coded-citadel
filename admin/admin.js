@@ -104,6 +104,7 @@ const FEATURE_LABELS = {
   channelJoinedTo: 'Joined until',
   channelIncludes: 'Channel tags',
   channelExclude: 'Exclude channels',
+  videoType: 'Video type',
   shorts: 'Shorts',
   verified: 'Verified',
   // Nested filter_data.options.* (flattened as options.key)
@@ -184,6 +185,12 @@ const FEATURE_CHART_GROUPS = [
     label: 'Description excludes',
     category: 'video',
     keys: ['descExcludes'],
+  },
+  {
+    id: 'videoType',
+    label: 'Shorts',
+    category: 'video',
+    keys: ['videoType', 'shorts'],
   },
   {
     id: 'subscribers',
@@ -457,9 +464,11 @@ const VALID_FILTERS = new Set(['all', 'unread', 'read'])
 const VALID_TABS = new Set(['feedback', 'yt', 'yt-dev'])
 const YT_CHART_KEYS = [
   'features',
+  'featureDaily',
   'subs',
   'settings',
   'exports',
+  'videoType',
   'userGrowth',
   'searchGrowth',
   'searchesWindow',
@@ -482,6 +491,17 @@ const SEARCHES_WINDOW_BUCKET_MS = {
 }
 const SEARCHES_BAR_GREEN = '#3ecf8e'
 const SEARCHES_BAR_BLUE = '#3b82f6'
+const FEATURE_DAILY_TOP_N = 8
+const FEATURE_LINE_COLORS = [
+  '#ff9900',
+  '#3b82f6',
+  '#22c55e',
+  '#a855f7',
+  '#ef4444',
+  '#06b6d4',
+  '#eab308',
+  '#f97316',
+]
 
 function getSearchesWindow() {
   const value = settings.get('searchesWindow')
@@ -868,7 +888,10 @@ function setRead(id, read) {
 
 function markAllRead(ids) {
   const set = getReadSet()
-  ids.forEach((id) => set.add(String(id)))
+  ids.forEach((id) => {
+    if (id == null || id === '') return
+    set.add(String(id))
+  })
   saveReadSet(set)
 }
 
@@ -1043,16 +1066,21 @@ function syncFeedbackFilterChips() {
   const emailChip = document.getElementById('feedback-email-filter')
   if (emailChip) {
     const emailOnly = getFeedbackEmailOnly()
-    emailChip.classList.toggle('admin__chip--active', emailOnly)
-    emailChip.setAttribute('aria-pressed', emailOnly ? 'true' : 'false')
+    const emailAllowed = filter !== 'all'
+    emailChip.disabled = !emailAllowed
+    emailChip.classList.toggle('admin__chip--active', emailAllowed && emailOnly)
+    emailChip.setAttribute('aria-pressed', emailAllowed && emailOnly ? 'true' : 'false')
+    emailChip.title = emailAllowed
+      ? 'Only show feedback that includes an email'
+      : 'Switch to Unread or Read to filter by email'
   }
 }
 
 function feedbackRowsForStatusFilter(filter = getFeedbackFilter()) {
-  const readSet = getReadSet()
-  const emailOnly = getFeedbackEmailOnly()
+  // Status "All" = every row. Contact filter only applies to Unread / Read.
+  const emailOnly = filter !== 'all' && getFeedbackEmailOnly()
   return state.feedback.filter((row) => {
-    const read = readSet.has(String(feedbackId(row)))
+    const read = feedbackRowIsRead(row)
     if (filter === 'unread' && read) return false
     if (filter === 'read' && !read) return false
     if (emailOnly && !feedbackEmail(row)) return false
@@ -1206,7 +1234,9 @@ function startCacheTimerTicker() {
 /* -------------------------------------------------------------------------- */
 
 function feedbackId(row) {
-  return row.id ?? row.created_at ?? JSON.stringify(row)
+  if (row?.id != null && row.id !== '') return String(row.id)
+  if (row?.created_at != null && row.created_at !== '') return String(row.created_at)
+  return null
 }
 
 function formatFeedbackAppName(raw) {
@@ -1303,11 +1333,23 @@ function compareFeedbackRows(a, b) {
   return feedbackCreatedAtMs(b) - feedbackCreatedAtMs(a)
 }
 
+function feedbackRowIsRead(row, readSet = getReadSet()) {
+  const id = feedbackId(row)
+  if (id != null && readSet.has(String(id))) return true
+  // Legacy marks used created_at before rows consistently had an id.
+  const created = row?.created_at
+  if (created != null && readSet.has(String(created))) return true
+  return false
+}
+
+function countUnreadFeedback() {
+  return state.feedback.reduce((count, row) => count + (feedbackRowIsRead(row) ? 0 : 1), 0)
+}
+
 function renderFeedbackKpis() {
-  const readSet = getReadSet()
   const total = state.feedback.length
-  const read = state.feedback.filter((row) => readSet.has(String(feedbackId(row)))).length
-  const unread = total - read
+  const unread = countUnreadFeedback()
+  const read = total - unread
 
   const totalEl = document.getElementById('kpi-feedback-total')
   const unreadEl = document.getElementById('kpi-feedback-unread')
@@ -1329,16 +1371,16 @@ function renderFeedbackKpis() {
 
 function renderFeedbackList() {
   const list = document.getElementById('feedback-list')
-  const readSet = getReadSet()
   const filter = getFeedbackFilter()
   const appFilter = getFeedbackAppFilter()
+  const emailOnly = filter !== 'all' && getFeedbackEmailOnly()
 
   const rows = state.feedback
     .filter((row) => {
-      const read = readSet.has(String(feedbackId(row)))
+      const read = feedbackRowIsRead(row)
       if (filter === 'unread' && read) return false
       if (filter === 'read' && !read) return false
-      if (getFeedbackEmailOnly() && !feedbackEmail(row)) return false
+      if (emailOnly && !feedbackEmail(row)) return false
       if (appFilter !== 'all' && formatFeedbackAppName(row.app_name) !== appFilter) {
         return false
       }
@@ -1357,8 +1399,9 @@ function renderFeedbackList() {
 
   list.innerHTML = rows
     .map((row) => {
-      const id = String(feedbackId(row))
-      const read = readSet.has(id)
+      const id = feedbackId(row)
+      if (id == null) return ''
+      const read = feedbackRowIsRead(row)
       const usageLabel = feedbackUsageSummaryLabel(row, usageByFp)
       const usageHtml = usageLabel
         ? `<span class="admin__card-usage" title="Searches from Filter Pro analytics · time from first search to uninstall feedback">${escapeHtml(usageLabel)}</span>`
@@ -2202,6 +2245,7 @@ function pickFilterObject(row) {
     if (
       [
         'publishedPreset',
+        'videoType',
         'shorts',
         'verified',
         'subMin',
@@ -2228,6 +2272,14 @@ function isGroupActive(group) {
   if (!group || typeof group !== 'object') return false
   if (group.active === true) return true
   if (Number(group.count) > 0) return true
+  return false
+}
+
+/** True when this search used Shorts (`videoType` or legacy `shorts: only`). */
+function filterUsesShorts(filter) {
+  if (!filter || typeof filter !== 'object') return false
+  if (String(filter.videoType || '').trim() === 'shorts') return true
+  if (String(filter.shorts || '').trim() === 'only') return true
   return false
 }
 
@@ -2295,6 +2347,232 @@ function buildSearchGrowthSeries(rows) {
   }
 
   return series
+}
+
+/**
+ * Which curated feature groups are active on a filter payload.
+ * @returns {Set<string>}
+ */
+function activeFeatureGroupIds(filter) {
+  /** @type {Set<string>} */
+  const active = new Set()
+  if (!filter || typeof filter !== 'object') return active
+
+  /** @type {Map<string, unknown>} */
+  const usedByKey = new Map()
+  Object.entries(filter).forEach(([key, value]) => {
+    if (key === 'event' || key === 'result_count' || key === 'results' || key === 'options') {
+      return
+    }
+    if (!isFeatureUsed(key, value)) return
+    usedByKey.set(key, value)
+  })
+
+  FEATURE_CHART_GROUPS.forEach((group) => {
+    if (group.keys.some((key) => usedByKey.has(key))) active.add(group.id)
+  })
+  return active
+}
+
+/**
+ * Daily unique users per filter group + DAU (filter-search users that day).
+ * @returns {{
+ *   days: string[],
+ *   dau: number[],
+ *   lines: Array<{ id: string, label: string, category: string, users: number[], pct: number[] }>
+ * }}
+ */
+function buildFeatureDailySeries(rows, topN = FEATURE_DAILY_TOP_N) {
+  /** @type {Map<string, Set<string>>} day → DAU fingerprints */
+  const dauByDay = new Map()
+  /** @type {Map<string, Map<string, Set<string>>>} day → groupId → fingerprints */
+  const featureByDay = new Map()
+  /** @type {Map<string, Set<string>>} groupId → all-time fingerprints (for ranking) */
+  const allTimeUsers = new Map()
+
+  for (const row of rows || []) {
+    const event = ytRowEvent(row)
+    if (event === 'started_tutorial' || event === 'completed_tutorial') continue
+    if (event === 'export_results') continue
+
+    const fingerprint = normalizeDashboardFingerprint(ytRowFingerprint(row))
+    if (!fingerprint) continue
+
+    const filter = pickFilterObject(row)
+    if (!filter) continue
+
+    const created = rowCreatedAt(row)
+    if (!created) continue
+    const day = new Date(created)
+    if (Number.isNaN(day.getTime())) continue
+    const dayKey = day.toISOString().slice(0, 10)
+
+    if (!dauByDay.has(dayKey)) dauByDay.set(dayKey, new Set())
+    dauByDay.get(dayKey).add(fingerprint)
+
+    const groups = activeFeatureGroupIds(filter)
+    if (!groups.size) continue
+
+    if (!featureByDay.has(dayKey)) featureByDay.set(dayKey, new Map())
+    const dayMap = featureByDay.get(dayKey)
+    groups.forEach((groupId) => {
+      if (!dayMap.has(groupId)) dayMap.set(groupId, new Set())
+      dayMap.get(groupId).add(fingerprint)
+      if (!allTimeUsers.has(groupId)) allTimeUsers.set(groupId, new Set())
+      allTimeUsers.get(groupId).add(fingerprint)
+    })
+  }
+
+  const days = [...dauByDay.keys()].sort()
+  if (!days.length) {
+    return { days: [], dau: [], lines: [] }
+  }
+
+  // Fill calendar gaps between first and last day so lines stay continuous.
+  const start = new Date(`${days[0]}T12:00:00`)
+  const end = new Date(`${days[days.length - 1]}T12:00:00`)
+  /** @type {string[]} */
+  const calendar = []
+  for (let t = start.getTime(); t <= end.getTime(); t += 24 * 60 * 60 * 1000) {
+    calendar.push(new Date(t).toISOString().slice(0, 10))
+  }
+
+  const topIds = [...allTimeUsers.entries()]
+    .sort((a, b) => b[1].size - a[1].size || a[0].localeCompare(b[0]))
+    .slice(0, topN)
+    .map(([id]) => id)
+
+  const dau = calendar.map((day) => dauByDay.get(day)?.size || 0)
+
+  const lines = topIds.map((id) => {
+    const group = FEATURE_CHART_GROUP_BY_ID.get(id)
+    const users = calendar.map((day) => featureByDay.get(day)?.get(id)?.size || 0)
+    const pct = users.map((n, i) => {
+      const denom = dau[i]
+      return denom ? Math.round((1000 * n) / denom) / 10 : 0
+    })
+    return {
+      id,
+      label: group?.label || formatFeatureLabel(id),
+      category: group?.category || 'video',
+      users,
+      pct,
+    }
+  })
+
+  return { days: calendar, dau, lines }
+}
+
+function featureDailyLineColor(line, index) {
+  if (line.category === 'channel') {
+    const channelColors = ['#3b82f6', '#06b6d4', '#6366f1', '#0ea5e9']
+    return channelColors[index % channelColors.length]
+  }
+  return FEATURE_LINE_COLORS[index % FEATURE_LINE_COLORS.length]
+}
+
+function renderFeatureDailyChart(rows) {
+  const canvas = document.getElementById('chart-feature-daily')
+  const card = document.getElementById('yt-feature-daily')
+  if (!canvas || typeof Chart === 'undefined') return
+
+  const series = buildFeatureDailySeries(rows)
+  if (!series.days.length || !series.lines.length) {
+    if (card) card.hidden = true
+    return
+  }
+  if (card) card.hidden = false
+
+  const pointRadius = series.days.length > 40 ? 0 : 2
+  state.charts.featureDaily = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: series.days.map((day) => formatChartDate(day)),
+      datasets: series.lines.map((line, index) => {
+        const color = featureDailyLineColor(line, index)
+        return {
+          label: line.label,
+          data: line.pct,
+          borderColor: color,
+          backgroundColor: color,
+          borderWidth: 2,
+          fill: false,
+          tension: 0.35,
+          pointRadius,
+          pointHoverRadius: 5,
+          pointBackgroundColor: color,
+          pointBorderColor: CHART_COLORS.bg,
+          pointBorderWidth: 1.5,
+        }
+      }),
+    },
+    options: baseChartOptions({
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            color: CHART_COLORS.tick,
+            font: { family: 'Inter', size: 11 },
+            boxWidth: 10,
+            padding: 12,
+          },
+        },
+        tooltip: {
+          ...baseChartOptions().plugins.tooltip,
+          callbacks: {
+            title: (items) => {
+              const idx = items?.[0]?.dataIndex
+              if (idx == null) return ''
+              return formatChartDate(series.days[idx])
+            },
+            afterTitle: (items) => {
+              const idx = items?.[0]?.dataIndex
+              if (idx == null) return ''
+              const dau = series.dau[idx] || 0
+              return `Daily active users: ${dau.toLocaleString()}`
+            },
+            label: (ctx) => {
+              const line = series.lines[ctx.datasetIndex]
+              const idx = ctx.dataIndex
+              const users = line?.users[idx] || 0
+              const dau = series.dau[idx] || 0
+              const pctVal = line?.pct[idx] || 0
+              return ` ${line?.label || ctx.dataset.label}: ${users.toLocaleString()} / ${dau.toLocaleString()} users (${pctVal}%)`
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: CHART_COLORS.tick,
+            font: { family: 'Inter', size: 10 },
+            maxTicksLimit: 10,
+            maxRotation: 0,
+          },
+          grid: { color: 'rgba(31,38,54,0.5)' },
+        },
+        y: {
+          beginAtZero: true,
+          suggestedMax: 100,
+          ticks: {
+            color: CHART_COLORS.tick,
+            font: { family: 'Inter', size: 10 },
+            callback: (value) => `${value}%`,
+          },
+          grid: { color: 'rgba(31,38,54,0.5)' },
+          title: {
+            display: true,
+            text: '% of daily active users',
+            color: CHART_COLORS.tick,
+            font: { family: 'Inter', size: 10 },
+          },
+        },
+      },
+    }),
+  })
 }
 
 /** Cumulative unique users + daily active users, continuous calendar days. */
@@ -2537,6 +2815,12 @@ function buildYtMetricsText(rows) {
   )
   push(
     `Social links filter: ${stats.socialFilterActive} users (${pct(stats.socialFilterActive, stats.uniqueUsers)})`,
+  )
+  push(
+    `Used Shorts filter: ${stats.shortsUsers} users (${pct(stats.shortsUsers, stats.filterActivityUsers || stats.uniqueUsers)})`,
+  )
+  push(
+    `Videos only (never Shorts): ${stats.videosOnlyUsers} users (${pct(stats.videosOnlyUsers, stats.filterActivityUsers || stats.uniqueUsers)})`,
   )
   push(
     `Transparent mode: ${stats.transparentModeActive} users (${pct(stats.transparentModeActive, stats.uniqueUsers)})`,
@@ -2816,7 +3100,8 @@ function isFeatureUsed(key, value) {
   if (!str) return false
 
   // Always-present defaults shouldn't dominate "most used"
-  if (key === 'shorts' && str === 'all') return false
+  if (key === 'videoType' && (str === 'videos' || str === 'all')) return false
+  if (key === 'shorts' && (str === 'all' || str === 'videos')) return false
   if (key === 'verified' && str === 'all') return false
   if (key === 'publishedPreset' && str === 'any') return false
   if (key === 'channelJoinedPreset' && str === 'any') return false
@@ -2900,6 +3185,8 @@ const PICK_LABELS = {
   website: 'Website',
   only: 'Only',
   hide: 'Hide',
+  videos: 'Videos',
+  shorts: 'Shorts',
 }
 
 function formatPickLabel(raw) {
@@ -3027,6 +3314,12 @@ function extractChartGroupPicks(group, filter, usedByKey) {
         ? picks
         : extractFeaturePicks(filter.channelJoinedPreset)
     }
+    case 'videoType': {
+      if (filterUsesShorts(filter)) return ['Shorts']
+      if (usedByKey.has('videoType')) return extractFeaturePicks(filter.videoType)
+      if (usedByKey.has('shorts')) return extractFeaturePicks(filter.shorts)
+      return ['Shorts']
+    }
     default: {
       const picks = []
       group.keys.forEach((key) => {
@@ -3096,6 +3389,8 @@ function aggregateYt(rows) {
   const countryFilterUsers = new Set()
   const socialFilterUsers = new Set()
   const transparentModeUsers = new Set()
+  const shortsUsers = new Set()
+  const filterActivityUsers = new Set()
   const rowsWithOptions = new Set()
   /** @type {Map<string, number>} format → export event count */
   const exportsByFormat = new Map(EXPORT_FORMATS.map((fmt) => [fmt, 0]))
@@ -3153,6 +3448,9 @@ function aggregateYt(rows) {
     normalized += 1
 
     if (fingerprint) {
+      filterActivityUsers.add(fingerprint)
+      if (filterUsesShorts(filter)) shortsUsers.add(fingerprint)
+
       const entries = Object.entries(filter)
 
       // Flatten nested options into options.* feature keys
@@ -3258,6 +3556,10 @@ function aggregateYt(rows) {
   const subRanges = userSetsToCounts(subRangeUsers)
   const optionAdoption = userSetsToCounts(optionOnUsers)
   const searchesPerUser = [...searchesByFp.values()]
+  let videosOnlyUsers = 0
+  for (const fp of filterActivityUsers) {
+    if (!shortsUsers.has(fp)) videosOnlyUsers += 1
+  }
 
   return {
     total: activityRowCount,
@@ -3276,6 +3578,9 @@ function aggregateYt(rows) {
     countryFilterActive: countryFilterUsers.size,
     socialFilterActive: socialFilterUsers.size,
     transparentModeActive: transparentModeUsers.size,
+    shortsUsers: shortsUsers.size,
+    videosOnlyUsers,
+    filterActivityUsers: filterActivityUsers.size,
     totalExports,
     exportUsers: exportUsers.size,
     exportsByFormat,
@@ -3495,6 +3800,7 @@ function renderYtCharts() {
     featurePicks: stats.featurePicks,
     openIndex: null,
   }
+  renderFeatureDailyChart(rows)
   state.charts.features = new Chart(document.getElementById('chart-features'), {
     type: 'bar',
     data: barData(
@@ -3570,6 +3876,50 @@ function renderYtCharts() {
         [CHART_COLORS.green, CHART_COLORS.blue, CHART_COLORS.primary],
       ),
       options: barOpts,
+    })
+  }
+
+  const videoTypeCanvas = document.getElementById('chart-video-type')
+  if (videoTypeCanvas) {
+    const shortsN = stats.shortsUsers || 0
+    const videosN = stats.videosOnlyUsers || 0
+    const videoTypeTotalEl = document.getElementById('kpi-yt-video-type-chart')
+    if (videoTypeTotalEl) {
+      const denom = stats.filterActivityUsers || shortsN + videosN
+      videoTypeTotalEl.textContent = `${shortsN} Shorts · ${videosN} Videos only · ${denom} users with filters`
+    }
+    state.charts.videoType = new Chart(videoTypeCanvas, {
+      type: 'doughnut',
+      data: {
+        labels: ['Used Shorts', 'Videos only'],
+        datasets: [
+          {
+            data: [shortsN, videosN],
+            backgroundColor: [CHART_COLORS.videoFeature, CHART_COLORS.channelFeature],
+            borderColor: CHART_COLORS.bg,
+            borderWidth: 2,
+          },
+        ],
+      },
+      options: baseChartOptions({
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: { color: CHART_COLORS.tick, font: { family: 'Inter', size: 11 } },
+          },
+          tooltip: {
+            ...baseChartOptions().plugins.tooltip,
+            callbacks: {
+              label(ctx) {
+                const value = Number(ctx.raw) || 0
+                const sum = (ctx.dataset.data || []).reduce((a, b) => a + (Number(b) || 0), 0)
+                return ` ${ctx.label}: ${value} (${pct(value, sum)})`
+              },
+            },
+          },
+        },
+      }),
     })
   }
 
@@ -4244,6 +4594,9 @@ function renderYtKpis() {
     'kpi-yt-social',
     pct(stats.socialFilterActive, stats.uniqueUsers),
   )
+  const videoTypeDenom = stats.filterActivityUsers || stats.uniqueUsers
+  setKpi('kpi-yt-shorts', pct(stats.shortsUsers, videoTypeDenom))
+  setKpi('kpi-yt-videos-only', pct(stats.videosOnlyUsers, videoTypeDenom))
   setKpi(
     'kpi-yt-options',
     pct(stats.usersWithOptions, stats.uniqueUsers),
@@ -4584,8 +4937,10 @@ document.querySelectorAll('#feedback-toolbar [data-filter]').forEach((chip) => {
 })
 
 document.getElementById('feedback-email-filter')?.addEventListener('click', () => {
+  if (getFeedbackFilter() === 'all') return
   setFeedbackEmailOnly(!getFeedbackEmailOnly())
   syncFeedbackFilterChips()
+  renderFeedbackKpis()
   renderFeedbackAppSelect()
   renderFeedbackList()
 })
@@ -4606,7 +4961,23 @@ document.getElementById('feedback-app-chips')?.addEventListener('click', (event)
 })
 
 document.getElementById('mark-all-read').addEventListener('click', () => {
-  markAllRead(state.feedback.map(feedbackId))
+  // Mark whatever the list is currently showing (status + contact + app filters).
+  const filter = getFeedbackFilter()
+  const appFilter = getFeedbackAppFilter()
+  const emailOnly = filter !== 'all' && getFeedbackEmailOnly()
+  const ids = state.feedback
+    .filter((row) => {
+      const read = feedbackRowIsRead(row)
+      if (filter === 'unread' && read) return false
+      if (filter === 'read' && !read) return false
+      if (emailOnly && !feedbackEmail(row)) return false
+      if (appFilter !== 'all' && formatFeedbackAppName(row.app_name) !== appFilter) {
+        return false
+      }
+      return true
+    })
+    .map(feedbackId)
+  markAllRead(ids)
   // Paint the tab badge / KPIs before the heavier list re-render.
   renderFeedbackKpis()
   setTimeout(() => {

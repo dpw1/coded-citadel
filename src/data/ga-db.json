@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-04T18:35:18.426Z",
+  "updatedAt": "2026-08-06T16:04:19.409Z",
   "daily": [
     {
       "date": "2026-06-03",
@@ -544,21 +544,39 @@
     },
     {
       "date": "2026-08-03",
-      "pageViews": 88,
-      "activeUsers": 63,
-      "sessions": 76,
+      "pageViews": 93,
+      "activeUsers": 67,
+      "sessions": 80,
       "blogViews": 2,
-      "avgSessionDurationSeconds": 87.82346955263158,
-      "bounceRate": 0.9868421052631579
+      "avgSessionDurationSeconds": 123.96019250000002,
+      "bounceRate": 0.6625
     },
     {
       "date": "2026-08-04",
-      "pageViews": 65,
-      "activeUsers": 43,
-      "sessions": 47,
+      "pageViews": 115,
+      "activeUsers": 78,
+      "sessions": 89,
+      "blogViews": 1,
+      "avgSessionDurationSeconds": 157.07334024719103,
+      "bounceRate": 0.651685393258427
+    },
+    {
+      "date": "2026-08-05",
+      "pageViews": 80,
+      "activeUsers": 60,
+      "sessions": 76,
       "blogViews": 0,
-      "avgSessionDurationSeconds": 173.226531,
-      "bounceRate": 0.9787234042553191
+      "avgSessionDurationSeconds": 94.20565814473684,
+      "bounceRate": 1
+    },
+    {
+      "date": "2026-08-06",
+      "pageViews": 44,
+      "activeUsers": 38,
+      "sessions": 44,
+      "blogViews": 0,
+      "avgSessionDurationSeconds": 82.62918902272727,
+      "bounceRate": 1
     }
   ],
   "snapshots": [
@@ -11112,15 +11130,326 @@
           }
         ]
       }
+    },
+    {
+      "extractedAt": "2026-08-06T16:04:19.409Z",
+      "analytics": {
+        "available": true,
+        "updatedAt": "2026-08-06T16:04:19.409Z",
+        "message": null,
+        "totalViews": 3946,
+        "blogViews": 97,
+        "averageTimeOnSiteSeconds": 142.44486324839036,
+        "uniqueVisitors": 2421,
+        "newVsReturning": {
+          "new": 2415,
+          "returning": 336
+        },
+        "mostViewedPages": [
+          {
+            "path": "/thank-you/",
+            "views": 2232
+          },
+          {
+            "path": "/uninstall/",
+            "views": 663
+          },
+          {
+            "path": "/",
+            "views": 573
+          },
+          {
+            "path": "/apps",
+            "views": 83
+          },
+          {
+            "path": "/live-stats",
+            "views": 71
+          },
+          {
+            "path": "/work",
+            "views": 24
+          },
+          {
+            "path": "/blog/",
+            "views": 20
+          },
+          {
+            "path": "/blog",
+            "views": 17
+          },
+          {
+            "path": "/blog/instagram-dm-exporter-chrome-extension/",
+            "views": 16
+          },
+          {
+            "path": "/privacy-policy/ai-bookmark/",
+            "views": 16
+          }
+        ],
+        "countries": [
+          {
+            "code": "IN",
+            "name": "India",
+            "gaCountry": "India",
+            "gaCountryId": "IN",
+            "users": 628
+          },
+          {
+            "code": "US",
+            "name": "United States",
+            "gaCountry": "United States",
+            "gaCountryId": "US",
+            "users": 411
+          },
+          {
+            "code": "PK",
+            "name": "Pakistan",
+            "gaCountry": "Pakistan",
+            "gaCountryId": "PK",
+            "users": 170
+          },
+          {
+            "code": "JP",
+            "name": "Japan",
+            "gaCountry": "Japan",
+            "gaCountryId": "JP",
+            "users": 87
+          },
+          {
+            "code": "BD",
+            "name": "Bangladesh",
+            "gaCountry": "Bangladesh",
+            "gaCountryId": "BD",
+            "users": 81
+          },
+          {
+            "code": "BR",
+            "name": "Brazil",
+            "gaCountry": "Brazil",
+            "gaCountryId": "BR",
+            "users": 66
+          },
+          {
+            "code": "AU",
+            "name": "Australia",
+            "gaCountry": "Australia",
+            "gaCountryId": "AU",
+            "users": 56
+          },
+          {
+            "code": "KR",
+            "name": "South Korea",
+            "gaCountry": "South Korea",
+            "gaCountryId": "KR",
+            "users": 54
+          },
+          {
+            "code": "ID",
+            "name": "Indonesia",
+            "gaCountry": "Indonesia",
+            "gaCountryId": "ID",
+            "users": 45
+          },
+          {
+            "code": "CA",
+            "name": "Canada",
+            "gaCountry": "Canada",
+            "gaCountryId": "CA",
+            "users": 43
+          },
+          {
+            "code": "GB",
+            "name": "United Kingdom",
+            "gaCountry": "United Kingdom",
+            "gaCountryId": "GB",
+            "users": 41
+          },
+          {
+            "code": "DE",
+            "name": "Germany",
+            "gaCountry": "Germany",
+            "gaCountryId": "DE",
+            "users": 38
+          },
+          {
+            "code": null,
+            "name": "(not set)",
+            "gaCountry": "(not set)",
+            "gaCountryId": "(not set)",
+            "users": 37
+          },
+          {
+            "code": "RU",
+            "name": "Russia",
+            "gaCountry": "Russia",
+            "gaCountryId": "RU",
+            "users": 34
+          },
+          {
+            "code": "TR",
+            "name": "Türkiye",
+            "gaCountry": "Türkiye",
+            "gaCountryId": "TR",
+            "users": 34
+          },
+          {
+            "code": "PL",
+            "name": "Poland",
+            "gaCountry": "Poland",
+            "gaCountryId": "PL",
+            "users": 33
+          },
+          {
+            "code": "FR",
+            "name": "France",
+            "gaCountry": "France",
+            "gaCountryId": "FR",
+            "users": 31
+          },
+          {
+            "code": "TH",
+            "name": "Thailand",
+            "gaCountry": "Thailand",
+            "gaCountryId": "TH",
+            "users": 30
+          },
+          {
+            "code": "ES",
+            "name": "Spain",
+            "gaCountry": "Spain",
+            "gaCountryId": "ES",
+            "users": 28
+          },
+          {
+            "code": "IT",
+            "name": "Italy",
+            "gaCountry": "Italy",
+            "gaCountryId": "IT",
+            "users": 27
+          },
+          {
+            "code": "VN",
+            "name": "Vietnam",
+            "gaCountry": "Vietnam",
+            "gaCountryId": "VN",
+            "users": 21
+          },
+          {
+            "code": "CN",
+            "name": "China",
+            "gaCountry": "China",
+            "gaCountryId": "CN",
+            "users": 19
+          },
+          {
+            "code": "TW",
+            "name": "Taiwan",
+            "gaCountry": "Taiwan",
+            "gaCountryId": "TW",
+            "users": 19
+          },
+          {
+            "code": "PH",
+            "name": "Philippines",
+            "gaCountry": "Philippines",
+            "gaCountryId": "PH",
+            "users": 18
+          },
+          {
+            "code": "MA",
+            "name": "Morocco",
+            "gaCountry": "Morocco",
+            "gaCountryId": "MA",
+            "users": 17
+          }
+        ],
+        "trafficSources": [
+          {
+            "source": "Direct",
+            "sessions": 2834
+          },
+          {
+            "source": "Referral",
+            "sessions": 81
+          },
+          {
+            "source": "Organic Search",
+            "sessions": 80
+          },
+          {
+            "source": "Unassigned",
+            "sessions": 50
+          },
+          {
+            "source": "Organic Social",
+            "sessions": 11
+          },
+          {
+            "source": "AI Assistant",
+            "sessions": 4
+          },
+          {
+            "source": "Organic Video",
+            "sessions": 3
+          },
+          {
+            "source": "Cross-network",
+            "sessions": 2
+          }
+        ],
+        "topReferrers": [
+          {
+            "referrer": "(direct)",
+            "sessions": 2834
+          },
+          {
+            "referrer": "chromewebstore.google.com",
+            "sessions": 69
+          },
+          {
+            "referrer": "google",
+            "sessions": 59
+          },
+          {
+            "referrer": "(not set)",
+            "sessions": 50
+          },
+          {
+            "referrer": "bing",
+            "sessions": 20
+          },
+          {
+            "referrer": "reddit.com",
+            "sessions": 6
+          },
+          {
+            "referrer": "claude.ai",
+            "sessions": 4
+          },
+          {
+            "referrer": "facebook.com",
+            "sessions": 4
+          },
+          {
+            "referrer": "google-admin.corp.google.com",
+            "sessions": 3
+          },
+          {
+            "referrer": "youtube.com",
+            "sessions": 3
+          }
+        ]
+      }
     }
   ],
   "blogPostViews": [
     {
-      "path": "/blog/ep-8-gmail-to-pdf/",
-      "views": 15
+      "path": "/blog/instagram-dm-exporter-chrome-extension/",
+      "views": 16
     },
     {
-      "path": "/blog/instagram-dm-exporter-chrome-extension/",
+      "path": "/blog/ep-8-gmail-to-pdf/",
       "views": 15
     },
     {
