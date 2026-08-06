@@ -34,6 +34,9 @@ export default function SiteFooter() {
               <Link to="/live-stats">Live Stats</Link>
             </li>
             <li>
+              <Link to="/profit">Profit</Link>
+            </li>
+            <li>
               <Link to="/work">Hire me</Link>
             </li>
             <li>

@@ -89,6 +89,11 @@ function main() {
       priority: '0.85',
       lastmod: defaultLastmod,
     }),
+    urlEntry(`${SITE_URL}/profit`, {
+      changefreq: 'weekly',
+      priority: '0.85',
+      lastmod: defaultLastmod,
+    }),
     urlEntry(`${SITE_URL}/save-directly-to-drive`, {
       changefreq: 'monthly',
       priority: '0.9',

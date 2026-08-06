@@ -19,14 +19,18 @@ export default function SiteHeader() {
   const navigate = useNavigate()
   const appsMenuId = useId().replace(/:/g, '')
   const aboutMenuId = useId().replace(/:/g, '')
+  const billGradId = useId().replace(/:/g, '')
+  const billGrad1Id = `CC__bill-grad1-${billGradId}`
+  const billGrad2Id = `CC__bill-grad2-${billGradId}`
   const isHome = pathname === '/'
   const appsNavActive =
     pathname === '/apps' ||
     pathname.startsWith('/apps/') ||
     isPluginsPath(pathname)
   const blogNavActive = pathname === '/blog' || pathname.startsWith('/blog/')
+  const profitNavActive = pathname === '/profit'
   const aboutSectionActive = isHome && hash === '#about'
-  const aboutNavActive = blogNavActive || aboutSectionActive
+  const aboutNavActive = blogNavActive || aboutSectionActive || profitNavActive
   const liveStatsNavActive = pathname === '/live-stats'
   const workNavActive = pathname === '/work' || pathname.startsWith('/work/')
   const contactNavActive = pathname === '/contact'
@@ -224,6 +228,117 @@ export default function SiteHeader() {
                 >
                   About me
                 </a>
+                <Link
+                  to="/profit"
+                  role="menuitem"
+                  className={`CC__nav-dropdown__item CC__nav-dropdown__item--with-badge${
+                    profitNavActive ? ' CC__nav-dropdown__item--active' : ''
+                  }`}
+                  onClick={closeMenu}
+                >
+                  Profit
+                  <span className="CC__nav-badge__dollar" aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 680 620"
+                      width="100%"
+                      role="img"
+                    >
+                      <defs>
+                        <linearGradient
+                          id={billGrad1Id}
+                          x1="0%"
+                          y1="0%"
+                          x2="100%"
+                          y2="100%"
+                        >
+                          <stop offset="0%" stopColor="#8fe560" />
+                          <stop offset="100%" stopColor="#2e9e4f" />
+                        </linearGradient>
+                        <linearGradient
+                          id={billGrad2Id}
+                          x1="0%"
+                          y1="0%"
+                          x2="100%"
+                          y2="100%"
+                        >
+                          <stop offset="0%" stopColor="#7fd955" />
+                          <stop offset="100%" stopColor="#279144" />
+                        </linearGradient>
+                      </defs>
+                      <g transform="rotate(-8 340 400)">
+                        <rect
+                          x="140"
+                          y="330"
+                          width="420"
+                          height="220"
+                          rx="26"
+                          fill={`url(#${billGrad2Id})`}
+                        />
+                        <rect
+                          x="170"
+                          y="360"
+                          width="360"
+                          height="160"
+                          rx="14"
+                          fill="none"
+                          stroke="#eafce0"
+                          strokeWidth="4"
+                          opacity="0.5"
+                        />
+                        <circle cx="230" cy="440" r="26" fill="#eafce0" opacity="0.85" />
+                        <circle cx="470" cy="440" r="26" fill="#eafce0" opacity="0.85" />
+                        <circle cx="350" cy="440" r="60" fill="#3fb35e" />
+                        <text
+                          x="350"
+                          y="465"
+                          textAnchor="middle"
+                          fontSize="70"
+                          fontWeight="700"
+                          fill="#eafce0"
+                          fontFamily="Arial, sans-serif"
+                        >
+                          $
+                        </text>
+                      </g>
+                      <g transform="rotate(4 340 260)">
+                        <rect
+                          x="120"
+                          y="150"
+                          width="440"
+                          height="230"
+                          rx="26"
+                          fill={`url(#${billGrad1Id})`}
+                        />
+                        <rect
+                          x="150"
+                          y="180"
+                          width="380"
+                          height="170"
+                          rx="14"
+                          fill="none"
+                          stroke="#f2fde8"
+                          strokeWidth="4"
+                          opacity="0.5"
+                        />
+                        <circle cx="215" cy="265" r="28" fill="#f2fde8" opacity="0.9" />
+                        <circle cx="465" cy="265" r="28" fill="#f2fde8" opacity="0.9" />
+                        <circle cx="340" cy="265" r="68" fill="#4bc264" />
+                        <text
+                          x="340"
+                          y="294"
+                          textAnchor="middle"
+                          fontSize="78"
+                          fontWeight="700"
+                          fill="#f2fde8"
+                          fontFamily="Arial, sans-serif"
+                        >
+                          $
+                        </text>
+                      </g>
+                    </svg>
+                  </span>
+                </Link>
               </div>
             </div>
             <Link

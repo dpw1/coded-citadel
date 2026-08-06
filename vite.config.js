@@ -48,6 +48,7 @@ function getPrerenderRoutes() {
     '/davinci-resolve-plugins',
     '/blog',
     '/live-stats',
+    '/profit',
     '/save-directly-to-drive',
     '/thank-you',
     '/uninstall',

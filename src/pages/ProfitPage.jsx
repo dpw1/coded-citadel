@@ -69,7 +69,7 @@ export default function ProfitPage() {
   return (
     <>
       <PageSEO
-        title="Profit Journey to $100K — Coded Citadel"
+        title="Profit Journey to $100K - Coded Citadel"
         description={`Building in public from $0 to $100k. Current profit: ${formatProfitAmount(total)}. Every milestone is public with proof.`}
         canonicalPath="/profit"
       />
@@ -85,7 +85,7 @@ export default function ProfitPage() {
               <span className="CC__profit-hero__accent">{formatProfitAmount(goal)}</span>
             </h1>
             <p className="CC__profit-hero__lede">
-              Every dollar earned on this journey — donations, freelance, products —
+              Every dollar earned on this journey - donations, freelance, products -
               logged in public with proof.
             </p>
 
@@ -124,7 +124,7 @@ export default function ProfitPage() {
                 Follow the path
               </h2>
               <p className="CC__profit-journey__intro">
-                From zero toward six figures. Scroll the trail — each stop is a real
+                From zero toward six figures. Scroll the trail - each stop is a real
                 receipt.
               </p>
             </header>
@@ -160,12 +160,12 @@ export default function ProfitPage() {
                   <div className="CC__profit-milestone__rail" aria-hidden="true">
                     <span className="CC__profit-milestone__node" />
                   </div>
-                  <div className="CC__profit-milestone__card">
+                  <div className="CC__profit-milestone__card CC__cyber-accent">
                     <CyberCorners />
                     <p className="CC__profit-milestone__eyebrow">Start</p>
                     <p className="CC__profit-milestone__amount">{formatProfitAmount(0)}</p>
                     <p className="CC__profit-milestone__note">
-                      Building in public. No course. No funnel. Just shipping.
+                      The start of the journey!
                     </p>
                   </div>
                 </li>
@@ -182,7 +182,7 @@ export default function ProfitPage() {
                       <div className="CC__profit-milestone__rail" aria-hidden="true">
                         <span className="CC__profit-milestone__node" />
                       </div>
-                      <div className="CC__profit-milestone__card">
+                      <div className="CC__profit-milestone__card CC__cyber-accent">
                         <CyberCorners />
                         <div className="CC__profit-milestone__meta">
                           <span className="CC__profit-milestone__label">{entry.label}</span>
@@ -222,7 +222,7 @@ export default function ProfitPage() {
                   <div className="CC__profit-milestone__rail" aria-hidden="true">
                     <span className="CC__profit-milestone__node CC__profit-milestone__node--goal" />
                   </div>
-                  <div className="CC__profit-milestone__card CC__profit-milestone__card--goal">
+                  <div className="CC__profit-milestone__card CC__profit-milestone__card--goal CC__cyber-accent">
                     <CyberCorners />
                     <p className="CC__profit-milestone__eyebrow">Destination</p>
                     <p className="CC__profit-milestone__amount">

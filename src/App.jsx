@@ -12,6 +12,7 @@ import SaveDirectlyToDrivePage from './pages/SaveDirectlyToDrivePage'
 import BlogIndexPage from './pages/BlogIndexPage'
 import BlogPostPage from './pages/BlogPostPage'
 import StatsPage from './pages/StatsPage'
+import ProfitPage from './pages/ProfitPage'
 import ThankYouPage from './pages/ThankYouPage'
 import UninstallPage from './pages/UninstallPage'
 import WorkPage from './pages/WorkPage'
@@ -43,6 +44,7 @@ function AppRoutes() {
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/live-stats" element={<StatsPage />} />
+        <Route path="/profit" element={<ProfitPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/uninstall" element={<UninstallPage />} />
         <Route path="/work" element={<WorkPage />} />

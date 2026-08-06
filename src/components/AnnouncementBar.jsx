@@ -13,23 +13,37 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, profitDisplay
         Coding in Public Until I Make $100k USD
       </span>
       <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
-      <span className={`CC__announcement-bar__marquee-item${dupClass}`}>
+      <Link
+        to="/live-stats"
+        className={`CC__announcement-bar__marquee-item${dupClass}`}
+        tabIndex={duplicate ? -1 : undefined}
+      >
         {formatNumber(liveApps)} apps
-      </span>
+      </Link>
       <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
-      <span className={`CC__announcement-bar__marquee-item${dupClass}`}>
+      <Link
+        to="/live-stats"
+        className={`CC__announcement-bar__marquee-item${dupClass}`}
+        tabIndex={duplicate ? -1 : undefined}
+      >
         {formatNumber(totalActiveUsers)} users
-      </span>
+      </Link>
       <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
-      <span className={`CC__announcement-bar__marquee-item${dupClass}`}>
+      <Link
+        to="/live-stats"
+        className={`CC__announcement-bar__marquee-item${dupClass}`}
+        tabIndex={duplicate ? -1 : undefined}
+      >
         {formatNumber(totalInstalls)} installs
-      </span>
+      </Link>
       <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
-      <span
+      <Link
+        to="/profit"
         className={`CC__announcement-bar__marquee-item CC__announcement-bar__marquee-item--profit${dupClass}`}
+        tabIndex={duplicate ? -1 : undefined}
       >
         profit: {profitDisplay}
-      </span>
+      </Link>
       <span
         className={`CC__announcement-bar__sep CC__announcement-bar__sep--trail${dupClass}`}
         aria-hidden="true"
@@ -53,20 +67,24 @@ export default function AnnouncementBar() {
   const stripProps = { liveApps, totalActiveUsers, totalInstalls, profitDisplay }
 
   return (
-    <div className="CC__announcement-bar">
-      <Link
-        to="/live-stats"
-        className="CC__announcement-bar__link"
-        aria-label={`${ariaLabel}. View live stats`}
-      />
-
+    <div className="CC__announcement-bar" aria-label={ariaLabel}>
       <div className="CC__announcement-bar__desktop CC__container">
         <p className="CC__announcement-bar__tagline">Coding in Public Until I Make $100k USD</p>
         <ul className="CC__announcement-bar__stats">
-          <li>{formatNumber(liveApps)} apps</li>
-          <li>{formatNumber(totalActiveUsers)} users</li>
-          <li>{formatNumber(totalInstalls)} installs</li>
-          <li>profit: {profitDisplay}</li>
+          <li>
+            <Link to="/live-stats">{formatNumber(liveApps)} apps</Link>
+          </li>
+          <li>
+            <Link to="/live-stats">{formatNumber(totalActiveUsers)} users</Link>
+          </li>
+          <li>
+            <Link to="/live-stats">{formatNumber(totalInstalls)} installs</Link>
+          </li>
+          <li>
+            <Link to="/profit" className="CC__announcement-bar__profit-link">
+              profit: {profitDisplay}
+            </Link>
+          </li>
         </ul>
       </div>
 
