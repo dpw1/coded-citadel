@@ -1,31 +1,31 @@
 {
   "available": true,
-  "updatedAt": "2026-08-06T16:04:19.409Z",
+  "updatedAt": "2026-08-07T19:09:46.577Z",
   "message": null,
-  "totalViews": 3946,
+  "totalViews": 4022,
   "blogViews": 97,
-  "averageTimeOnSiteSeconds": 142.44486324839036,
-  "uniqueVisitors": 2421,
+  "averageTimeOnSiteSeconds": 141.91160212628438,
+  "uniqueVisitors": 2465,
   "newVsReturning": {
-    "new": 2415,
-    "returning": 336
+    "new": 2463,
+    "returning": 349
   },
   "mostViewedPages": [
     {
       "path": "/thank-you/",
-      "views": 2232
+      "views": 2284
     },
     {
       "path": "/uninstall/",
-      "views": 663
+      "views": 677
     },
     {
       "path": "/",
-      "views": 573
+      "views": 577
     },
     {
       "path": "/apps",
-      "views": 83
+      "views": 84
     },
     {
       "path": "/live-stats",
@@ -58,49 +58,49 @@
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 628
+      "users": 642
     },
     {
       "code": "US",
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 411
+      "users": 419
     },
     {
       "code": "PK",
       "name": "Pakistan",
       "gaCountry": "Pakistan",
       "gaCountryId": "PK",
-      "users": 170
+      "users": 171
     },
     {
       "code": "JP",
       "name": "Japan",
       "gaCountry": "Japan",
       "gaCountryId": "JP",
-      "users": 87
+      "users": 88
     },
     {
       "code": "BD",
       "name": "Bangladesh",
       "gaCountry": "Bangladesh",
       "gaCountryId": "BD",
-      "users": 81
+      "users": 83
     },
     {
       "code": "BR",
       "name": "Brazil",
       "gaCountry": "Brazil",
       "gaCountryId": "BR",
-      "users": 66
+      "users": 68
     },
     {
       "code": "AU",
       "name": "Australia",
       "gaCountry": "Australia",
       "gaCountryId": "AU",
-      "users": 56
+      "users": 58
     },
     {
       "code": "KR",
@@ -114,21 +114,21 @@
       "name": "Indonesia",
       "gaCountry": "Indonesia",
       "gaCountryId": "ID",
-      "users": 45
+      "users": 46
     },
     {
       "code": "CA",
       "name": "Canada",
       "gaCountry": "Canada",
       "gaCountryId": "CA",
-      "users": 43
+      "users": 44
     },
     {
       "code": "GB",
       "name": "United Kingdom",
       "gaCountry": "United Kingdom",
       "gaCountryId": "GB",
-      "users": 41
+      "users": 43
     },
     {
       "code": "DE",
@@ -177,14 +177,14 @@
       "name": "Thailand",
       "gaCountry": "Thailand",
       "gaCountryId": "TH",
-      "users": 30
+      "users": 31
     },
     {
       "code": "ES",
       "name": "Spain",
       "gaCountry": "Spain",
       "gaCountryId": "ES",
-      "users": 28
+      "users": 29
     },
     {
       "code": "IT",
@@ -192,6 +192,13 @@
       "gaCountry": "Italy",
       "gaCountryId": "IT",
       "users": 27
+    },
+    {
+      "code": "TW",
+      "name": "Taiwan",
+      "gaCountry": "Taiwan",
+      "gaCountryId": "TW",
+      "users": 21
     },
     {
       "code": "VN",
@@ -205,13 +212,6 @@
       "name": "China",
       "gaCountry": "China",
       "gaCountryId": "CN",
-      "users": 19
-    },
-    {
-      "code": "TW",
-      "name": "Taiwan",
-      "gaCountry": "Taiwan",
-      "gaCountryId": "TW",
       "users": 19
     },
     {
@@ -232,23 +232,23 @@
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 2834
+      "sessions": 2831
     },
     {
       "source": "Referral",
-      "sessions": 81
+      "sessions": 84
     },
     {
       "source": "Organic Search",
-      "sessions": 80
+      "sessions": 82
     },
     {
       "source": "Unassigned",
-      "sessions": 50
+      "sessions": 15
     },
     {
       "source": "Organic Social",
-      "sessions": 11
+      "sessions": 13
     },
     {
       "source": "AI Assistant",
@@ -257,51 +257,47 @@
     {
       "source": "Organic Video",
       "sessions": 3
-    },
-    {
-      "source": "Cross-network",
-      "sessions": 2
     }
   ],
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 2834
+      "sessions": 2831
     },
     {
       "referrer": "chromewebstore.google.com",
-      "sessions": 69
+      "sessions": 71
     },
     {
       "referrer": "google",
-      "sessions": 59
-    },
-    {
-      "referrer": "(not set)",
-      "sessions": 50
+      "sessions": 61
     },
     {
       "referrer": "bing",
       "sessions": 20
     },
     {
+      "referrer": "(not set)",
+      "sessions": 15
+    },
+    {
       "referrer": "reddit.com",
-      "sessions": 6
+      "sessions": 7
+    },
+    {
+      "referrer": "facebook.com",
+      "sessions": 5
     },
     {
       "referrer": "claude.ai",
       "sessions": 4
     },
     {
-      "referrer": "facebook.com",
-      "sessions": 4
-    },
-    {
-      "referrer": "google-admin.corp.google.com",
+      "referrer": "buymeacoffee.com",
       "sessions": 3
     },
     {
-      "referrer": "youtube.com",
+      "referrer": "google-admin.corp.google.com",
       "sessions": 3
     }
   ],
@@ -557,11 +553,15 @@
       },
       {
         "date": "05-08-2026",
-        "total": 80
+        "total": 85
       },
       {
         "date": "06-08-2026",
-        "total": 44
+        "total": 83
+      },
+      {
+        "date": "07-08-2026",
+        "total": 32
       }
     ],
     "activeUsers": [
@@ -815,11 +815,15 @@
       },
       {
         "date": "05-08-2026",
-        "total": 60
+        "total": 62
       },
       {
         "date": "06-08-2026",
-        "total": 38
+        "total": 61
+      },
+      {
+        "date": "07-08-2026",
+        "total": 23
       }
     ],
     "blogViews": [
@@ -1078,6 +1082,10 @@
       {
         "date": "06-08-2026",
         "total": 0
+      },
+      {
+        "date": "07-08-2026",
+        "total": 0
       }
     ],
     "sessions": [
@@ -1331,11 +1339,15 @@
       },
       {
         "date": "05-08-2026",
-        "total": 76
+        "total": 77
       },
       {
         "date": "06-08-2026",
-        "total": 44
+        "total": 73
+      },
+      {
+        "date": "07-08-2026",
+        "total": 31
       }
     ]
   }
