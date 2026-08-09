@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-09T00:07:35.023Z",
+  "updatedAt": "2026-08-09T23:04:41.630Z",
   "daily": [
     {
       "date": "2026-06-03",
@@ -589,12 +589,21 @@
     },
     {
       "date": "2026-08-08",
-      "pageViews": 70,
-      "activeUsers": 59,
-      "sessions": 67,
+      "pageViews": 82,
+      "activeUsers": 68,
+      "sessions": 75,
       "blogViews": 0,
-      "avgSessionDurationSeconds": 67.45053485074627,
-      "bounceRate": 0.9850746268656716
+      "avgSessionDurationSeconds": 74.53448604,
+      "bounceRate": 0.9866666666666667
+    },
+    {
+      "date": "2026-08-09",
+      "pageViews": 40,
+      "activeUsers": 29,
+      "sessions": 36,
+      "blogViews": 1,
+      "avgSessionDurationSeconds": 48.95913358333333,
+      "bounceRate": 1
     }
   ],
   "snapshots": [
@@ -11768,31 +11777,31 @@
       }
     },
     {
-      "extractedAt": "2026-08-09T00:07:35.023Z",
+      "extractedAt": "2026-08-09T23:04:41.630Z",
       "analytics": {
         "available": true,
-        "updatedAt": "2026-08-09T00:07:35.023Z",
+        "updatedAt": "2026-08-09T23:04:41.630Z",
         "message": null,
-        "totalViews": 4106,
-        "blogViews": 97,
-        "averageTimeOnSiteSeconds": 139.91324302583146,
-        "uniqueVisitors": 2531,
+        "totalViews": 4158,
+        "blogViews": 98,
+        "averageTimeOnSiteSeconds": 141.1471660446602,
+        "uniqueVisitors": 2567,
         "newVsReturning": {
-          "new": 2527,
-          "returning": 355
+          "new": 2562,
+          "returning": 357
         },
         "mostViewedPages": [
           {
             "path": "/thank-you/",
-            "views": 2341
+            "views": 2375
           },
           {
             "path": "/uninstall/",
-            "views": 698
+            "views": 709
           },
           {
             "path": "/",
-            "views": 581
+            "views": 584
           },
           {
             "path": "/apps",
@@ -11812,7 +11821,7 @@
           },
           {
             "path": "/blog",
-            "views": 17
+            "views": 18
           },
           {
             "path": "/blog/instagram-dm-exporter-chrome-extension/",
@@ -11829,70 +11838,70 @@
             "name": "India",
             "gaCountry": "India",
             "gaCountryId": "IN",
-            "users": 670
+            "users": 680
           },
           {
             "code": "US",
             "name": "United States",
             "gaCountry": "United States",
             "gaCountryId": "US",
-            "users": 426
+            "users": 428
           },
           {
             "code": "PK",
             "name": "Pakistan",
             "gaCountry": "Pakistan",
             "gaCountryId": "PK",
-            "users": 175
+            "users": 179
           },
           {
             "code": "JP",
             "name": "Japan",
             "gaCountry": "Japan",
             "gaCountryId": "JP",
-            "users": 88
+            "users": 89
           },
           {
             "code": "BD",
             "name": "Bangladesh",
             "gaCountry": "Bangladesh",
             "gaCountryId": "BD",
-            "users": 84
+            "users": 86
           },
           {
             "code": "BR",
             "name": "Brazil",
             "gaCountry": "Brazil",
             "gaCountryId": "BR",
-            "users": 70
+            "users": 71
           },
           {
             "code": "AU",
             "name": "Australia",
             "gaCountry": "Australia",
             "gaCountryId": "AU",
-            "users": 60
+            "users": 61
           },
           {
             "code": "KR",
             "name": "South Korea",
             "gaCountry": "South Korea",
             "gaCountryId": "KR",
-            "users": 55
+            "users": 57
           },
           {
             "code": "ID",
             "name": "Indonesia",
             "gaCountry": "Indonesia",
             "gaCountryId": "ID",
-            "users": 48
+            "users": 51
           },
           {
             "code": "CA",
             "name": "Canada",
             "gaCountry": "Canada",
             "gaCountryId": "CA",
-            "users": 44
+            "users": 46
           },
           {
             "code": "GB",
@@ -11900,6 +11909,13 @@
             "gaCountry": "United Kingdom",
             "gaCountryId": "GB",
             "users": 43
+          },
+          {
+            "code": "RU",
+            "name": "Russia",
+            "gaCountry": "Russia",
+            "gaCountryId": "RU",
+            "users": 39
           },
           {
             "code": "DE",
@@ -11913,13 +11929,6 @@
             "name": "(not set)",
             "gaCountry": "(not set)",
             "gaCountryId": "(not set)",
-            "users": 37
-          },
-          {
-            "code": "RU",
-            "name": "Russia",
-            "gaCountry": "Russia",
-            "gaCountryId": "RU",
             "users": 37
           },
           {
@@ -11969,7 +11978,7 @@
             "name": "Taiwan",
             "gaCountry": "Taiwan",
             "gaCountryId": "TW",
-            "users": 23
+            "users": 24
           },
           {
             "code": "VN",
@@ -12003,19 +12012,19 @@
         "trafficSources": [
           {
             "source": "Direct",
-            "sessions": 2896
+            "sessions": 2926
           },
           {
             "source": "Referral",
-            "sessions": 85
+            "sessions": 86
           },
           {
             "source": "Organic Search",
-            "sessions": 83
+            "sessions": 85
           },
           {
             "source": "Unassigned",
-            "sessions": 31
+            "sessions": 45
           },
           {
             "source": "Organic Social",
@@ -12033,19 +12042,19 @@
         "topReferrers": [
           {
             "referrer": "(direct)",
-            "sessions": 2896
+            "sessions": 2926
           },
           {
             "referrer": "chromewebstore.google.com",
-            "sessions": 72
+            "sessions": 73
           },
           {
             "referrer": "google",
-            "sessions": 61
+            "sessions": 63
           },
           {
             "referrer": "(not set)",
-            "sessions": 31
+            "sessions": 45
           },
           {
             "referrer": "bing",
