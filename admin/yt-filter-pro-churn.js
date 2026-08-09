@@ -2,10 +2,10 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
   "source": "src/data/portfolio-analytics.json",
   "slug": "youtube-filter-pro",
   "name": "Youtube Filter Pro: filtrar por visualizações, duração, data e mais",
-  "updatedAt": "2026-08-07",
-  "extractedAt": "2026-08-07T19:08:29.664Z",
-  "totalInstalls": 712,
-  "uninstallsTotal": 336,
+  "updatedAt": "2026-08-08",
+  "extractedAt": "2026-08-09T00:06:41.845Z",
+  "totalInstalls": 680,
+  "uninstallsTotal": 312,
   "installs": [
     {
       "date": "2026-05-18",

@@ -1,7 +1,7 @@
 window.CC_ADMIN_UNINSTALLS = {
   "source": "src/data/portfolio-analytics.json",
-  "updatedAt": "2026-08-07",
-  "extractedAt": "2026-08-07T19:08:29.664Z",
+  "updatedAt": "2026-08-08",
+  "extractedAt": "2026-08-09T00:06:41.845Z",
   "daily": [
     {
       "date": "2026-05-19",
