@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-08-09T23:04:50.902Z",
+  "updatedAt": "2026-08-11T04:01:33.251Z",
   "message": null,
   "apps": [
     {
@@ -250,6 +250,33 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "f0236ff4a9c0db68e86ad01c61904d4af11e1990",
+          "shortSha": "f0236ff",
+          "message": "Update to version 1.0.77: Added new localization message for \"Show example of videos with chapters\" across multiple languages. Enhanced the modal UI to include a help button that triggers a video tip for chapters. Updated web-accessible resources to include help media. Improved styling for filter help elements to enhance user experience.",
+          "date": "2026-08-10T03:29:59Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/f0236ff4a9c0db68e86ad01c61904d4af11e1990",
+          "version": "1.0.77"
+        },
+        {
+          "sha": "d99df158916c64b4993bd2b08f6445e87ef36e50",
+          "shortSha": "d99df15",
+          "message": "Ship 1.0.76: improve filtered-results UX, Bluesky socials, and channel exclude flow.",
+          "date": "2026-08-10T03:20:04Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/d99df158916c64b4993bd2b08f6445e87ef36e50",
+          "version": "1.0.75"
+        },
+        {
+          "sha": "d05f1718fed3c4a7f872920f5f17a8c02d146e47",
+          "shortSha": "d05f171",
+          "message": "Update YouTube Filter Pro to version 1.0.75: Added new localization messages for loading more results and sorting options across multiple languages. Enhanced auto-scroll functionality to accommodate new results fetching methods. Incremented version number and refined UI elements for better user experience in the filtering process.",
+          "date": "2026-08-09T23:57:15Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/d05f1718fed3c4a7f872920f5f17a8c02d146e47",
+          "version": "1.0.75"
+        },
         {
           "sha": "2e4807ab5229a4e6a5e580ffb52cbf6fd2283d54",
           "shortSha": "2e4807a",
@@ -536,7 +563,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.73"
+          "version": "1.0.77"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -545,7 +572,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.73"
+          "version": "1.0.77"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -554,7 +581,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.73"
+          "version": "1.0.77"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -563,7 +590,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.73"
+          "version": "1.0.77"
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -572,7 +599,7 @@
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.73"
+          "version": "1.0.77"
         }
       ]
     },
