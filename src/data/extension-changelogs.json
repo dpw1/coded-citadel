@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-08-11T04:01:33.251Z",
+  "updatedAt": "2026-08-11T22:26:10.979Z",
   "message": null,
   "apps": [
     {
@@ -945,6 +945,15 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "53e89f52c7a74718dc816a1e6b3402a4cecd4e80",
+          "shortSha": "53e89f5",
+          "message": "Update Instagram DM Exporter to version 1.0.36. Introduced audio transcription feature, enhanced attachment handling, and improved UI settings for export options. Updated manifest permissions and refined build process for better asset management.",
+          "date": "2026-08-11T04:14:40Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/53e89f52c7a74718dc816a1e6b3402a4cecd4e80",
+          "version": "1.0.36"
+        },
+        {
           "sha": "e09c473a24fd5d8dbdcb6e28958f153e9ab0ab85",
           "shortSha": "e09c473",
           "message": "Update Instagram DM Exporter to version 1.0.33. Enhanced UI for download completion with new thank you section, improved content security policy, and updated build process to include verification of remote code. Removed deprecated review link from UI.",
@@ -978,7 +987,7 @@
           "date": "2026-05-25T20:18:09Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-dm-exporter/commit/96721ee79bae5412b79898e32c4b99114abc28d3",
-          "version": "1.0.35"
+          "version": "1.0.36"
         }
       ]
     },

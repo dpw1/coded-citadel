@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-08-11",
-  "extractedAt": "2026-08-11T04:00:24.825Z",
+  "extractedAt": "2026-08-11T22:25:07.767Z",
   "appCount": 13,
   "apps": [
     {
@@ -1390,10 +1390,10 @@
           }
         ],
         "pageViewsBySource": {
-          "chatgpt_com": 9,
           "ext_sidebar": 6,
-          "ext_app_menu": 4,
-          "app-launcher": 1
+          "app-launcher": 1,
+          "chatgpt_com": 9,
+          "ext_app_menu": 4
         },
         "impressions": 524,
         "impressionsAcrossChromeWebStore": [
@@ -1942,8 +1942,8 @@
         "installsByRegion": {
           "US": 39,
           "DE": 2,
-          "CA": 1,
-          "AU": 1
+          "AU": 1,
+          "CA": 1
         },
         "uninstalls": 0,
         "uninstallsOverTime": [
@@ -2201,10 +2201,10 @@
           }
         ],
         "pageViewsBySource": {
-          "chatgpt_com": 1,
-          "ext_app_menu": 1,
+          "copilot_com": 1,
           "ext_sidebar": 1,
-          "copilot_com": 1
+          "ext_app_menu": 1,
+          "chatgpt_com": 1
         },
         "impressions": 258,
         "impressionsAcrossChromeWebStore": [
@@ -3666,15 +3666,15 @@
           }
         ],
         "pageViewsBySource": {
-          "bgads1": 2,
-          "chatgpt_com": 103,
-          "ext_app_menu": 33,
-          "ext_sidebar": 119,
           "app-launcher": 11,
-          "xads": 1,
+          "chatgpt_com": 103,
+          "ext_sidebar": 119,
+          "bgads1": 2,
+          "ext_app_menu": 33,
           "PRICECOMPAREVIDEOAD": 2,
-          "item-share-cb": 1,
-          "chrome-app-launcher": 3
+          "chrome-app-launcher": 3,
+          "xads": 1,
+          "item-share-cb": 1
         },
         "impressions": 8493,
         "impressionsAcrossChromeWebStore": [
@@ -4658,9 +4658,9 @@
         "weeklyUsersByRegion": {},
         "installsByRegion": {
           "US": 83,
-          "DE": 3,
-          "BR": 3,
           "GB": 3,
+          "BR": 3,
+          "DE": 3,
           "AU": 1
         },
         "uninstalls": 11,
@@ -7436,8 +7436,8 @@
         "weeklyUsersByRegion": {},
         "installsByRegion": {
           "US": 35,
-          "BR": 1,
-          "CA": 1
+          "CA": 1,
+          "BR": 1
         },
         "uninstalls": 0,
         "uninstallsOverTime": [
@@ -9058,13 +9058,13 @@
         ],
         "pageViewsBySource": {
           "ext_sidebar": 28,
-          "chatgpt_com": 1,
-          "item-share-cb": 6,
-          "ext_app_menu": 9,
-          "inssist": 1,
-          "item-share-cp": 3,
           "app-launcher": 2,
-          "quora-answer": 3
+          "quora-answer": 3,
+          "ext_app_menu": 9,
+          "item-share-cb": 6,
+          "chatgpt_com": 1,
+          "inssist": 1,
+          "item-share-cp": 3
         },
         "impressions": 1034,
         "impressionsAcrossChromeWebStore": [
@@ -10357,12 +10357,12 @@
           }
         ],
         "pageViewsBySource": {
-          "app-launcher": 7,
           "ext_app_menu": 57,
           "ext_sidebar": 114,
+          "app-launcher": 7,
           "chrome-app-launcher": 1,
-          "openai": 1,
-          "chrome-ntp-icon": 1
+          "chrome-ntp-icon": 1,
+          "openai": 1
         },
         "impressions": 6889,
         "impressionsAcrossChromeWebStore": [
@@ -11622,10 +11622,10 @@
         "pageViewsBySource": {
           "ext_app_menu": 61,
           "ext_sidebar": 258,
-          "app-launcher": 6,
           "chatgpt_com": 8,
-          "perplexity": 5,
-          "chrome-app-launcher": 1
+          "app-launcher": 6,
+          "chrome-app-launcher": 1,
+          "perplexity": 5
         },
         "impressions": 28079,
         "impressionsAcrossChromeWebStore": [
@@ -14082,20 +14082,20 @@
     ],
     "pageViewsBySource": {
       "ext_sidebar": 540,
+      "app-launcher": 27,
       "chatgpt_com": 125,
       "ext_app_menu": 168,
-      "app-launcher": 27,
       "copilot_com": 3,
       "bgads1": 2,
-      "xads": 1,
       "PRICECOMPAREVIDEOAD": 2,
-      "item-share-cb": 7,
       "chrome-app-launcher": 5,
+      "xads": 1,
+      "item-share-cb": 7,
+      "quora-answer": 3,
       "inssist": 1,
       "item-share-cp": 3,
-      "quora-answer": 3,
-      "openai": 1,
       "chrome-ntp-icon": 1,
+      "openai": 1,
       "perplexity": 5
     },
     "impressions": 46301,
