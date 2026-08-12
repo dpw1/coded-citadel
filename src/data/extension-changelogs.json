@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-08-11T22:26:10.979Z",
+  "updatedAt": "2026-08-12T20:30:10.489Z",
   "message": null,
   "apps": [
     {
@@ -250,6 +250,24 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "e9c70d62bd07dc71c1f93cfe866eff105465ebbf",
+          "shortSha": "e9c70d6",
+          "message": "Refactor channel data reloading and filtering mechanisms: Improved handling of soft and hard reloads for channel data, ensuring smoother user experience during data fetching. Enhanced modal filtering to support incremental updates without full DOM rebuilds, optimizing performance during search continuation. Added new telemetry checks for analytics UUIDs and refined conditions for managing filter sessions. Updated comments for clarity and maintainability.",
+          "date": "2026-08-12T06:05:35Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/e9c70d62bd07dc71c1f93cfe866eff105465ebbf",
+          "version": "1.0.78"
+        },
+        {
+          "sha": "9d68b2933d1f89af7de9264a34efa2554ab616f3",
+          "shortSha": "9d68b29",
+          "message": "Update to version 1.0.78: Incremented version number and refined permissions formatting in manifest.json for improved readability. Enhanced Vite configuration to dynamically sync the manifest version during builds. Updated localization messages across multiple languages to ensure consistency and clarity in user prompts. Improved overall user experience with better structured code and localization support.",
+          "date": "2026-08-12T05:21:11Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/9d68b2933d1f89af7de9264a34efa2554ab616f3",
+          "version": "1.0.78"
+        },
         {
           "sha": "f0236ff4a9c0db68e86ad01c61904d4af11e1990",
           "shortSha": "f0236ff",
@@ -563,7 +581,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.77"
+          "version": "1.0.78"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -572,7 +590,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.77"
+          "version": "1.0.78"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -581,7 +599,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.77"
+          "version": "1.0.78"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -590,7 +608,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.77"
+          "version": "1.0.78"
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -599,7 +617,7 @@
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.77"
+          "version": "1.0.78"
         }
       ]
     },
