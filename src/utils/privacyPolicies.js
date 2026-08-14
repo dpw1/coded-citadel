@@ -6,6 +6,7 @@ import InstagramDmExporterPrivacyContent from '../content/privacy/instagram-dm-e
 import SaveToDrivePrivacyContent from '../content/privacy/save-to-drive-chrome-extension'
 import GmailToPdfPrivacyContent from '../content/privacy/gmail-to-pdf-extension'
 import YoutubeKeywordPrivacyContent from '../content/privacy/youtube-keyword'
+import YoutubeAiSummaryPrivacyContent from '../content/privacy/youtube-ai-summary'
 import YtFilterProPrivacyContent from '../content/privacy/yt-filter-pro'
 import DexPrivacyContent from '../content/privacy/dex'
 import BlueskyHideRepostPrivacyContent from '../content/privacy/bluesky-hide-repost'
@@ -58,6 +59,12 @@ const PRIVACY_POLICIES = {
     lastUpdated: 'March 21, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: YoutubeKeywordPrivacyContent,
+  },
+  'youtube-ai-summary': {
+    appName: 'YouTube Quick AI Summary',
+    lastUpdated: 'August 14, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: YoutubeAiSummaryPrivacyContent,
   },
   'yt-filter-pro': {
     appName: 'Youtube Filter Pro',

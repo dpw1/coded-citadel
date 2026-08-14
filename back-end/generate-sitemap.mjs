@@ -26,6 +26,7 @@ const PRIVACY_POLICY_SLUGS = [
   'instagram-dm-exporter',
   'save-to-drive-chrome-extension',
   'youtube-keyword',
+  'youtube-ai-summary',
   'dex',
   'bluesky-hide-repost',
 ]
