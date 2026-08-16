@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-12T20:30:00.181Z",
+  "updatedAt": "2026-08-16T08:33:14.084Z",
   "daily": [
     {
       "date": "2026-06-03",
@@ -625,12 +625,48 @@
     },
     {
       "date": "2026-08-12",
-      "pageViews": 45,
-      "activeUsers": 32,
-      "sessions": 40,
+      "pageViews": 76,
+      "activeUsers": 56,
+      "sessions": 65,
       "blogViews": 1,
-      "avgSessionDurationSeconds": 87.7824768,
-      "bounceRate": 0.975
+      "avgSessionDurationSeconds": 103.20031855384616,
+      "bounceRate": 0.5384615384615384
+    },
+    {
+      "date": "2026-08-13",
+      "pageViews": 61,
+      "activeUsers": 50,
+      "sessions": 57,
+      "blogViews": 0,
+      "avgSessionDurationSeconds": 85.26394840350878,
+      "bounceRate": 0.631578947368421
+    },
+    {
+      "date": "2026-08-14",
+      "pageViews": 71,
+      "activeUsers": 46,
+      "sessions": 57,
+      "blogViews": 3,
+      "avgSessionDurationSeconds": 130.97133577192983,
+      "bounceRate": 0.5087719298245614
+    },
+    {
+      "date": "2026-08-15",
+      "pageViews": 60,
+      "activeUsers": 37,
+      "sessions": 45,
+      "blogViews": 6,
+      "avgSessionDurationSeconds": 169.46599186666666,
+      "bounceRate": 1
+    },
+    {
+      "date": "2026-08-16",
+      "pageViews": 5,
+      "activeUsers": 5,
+      "sessions": 5,
+      "blogViews": 0,
+      "avgSessionDurationSeconds": 0.0814378,
+      "bounceRate": 1
     }
   ],
   "snapshots": [
@@ -12727,6 +12763,313 @@
           }
         ]
       }
+    },
+    {
+      "extractedAt": "2026-08-16T08:33:14.084Z",
+      "analytics": {
+        "available": true,
+        "updatedAt": "2026-08-16T08:33:14.084Z",
+        "message": null,
+        "totalViews": 4589,
+        "blogViews": 109,
+        "averageTimeOnSiteSeconds": 138.03464068322805,
+        "uniqueVisitors": 2852,
+        "newVsReturning": {
+          "new": 2850,
+          "returning": 397
+        },
+        "mostViewedPages": [
+          {
+            "path": "/thank-you/",
+            "views": 2607
+          },
+          {
+            "path": "/uninstall/",
+            "views": 807
+          },
+          {
+            "path": "/",
+            "views": 616
+          },
+          {
+            "path": "/apps",
+            "views": 90
+          },
+          {
+            "path": "/live-stats",
+            "views": 77
+          },
+          {
+            "path": "/work",
+            "views": 27
+          },
+          {
+            "path": "/blog/",
+            "views": 21
+          },
+          {
+            "path": "/blog",
+            "views": 19
+          },
+          {
+            "path": "/save-directly-to-drive/",
+            "views": 17
+          },
+          {
+            "path": "/apps/youtube-filter-pro/",
+            "views": 16
+          }
+        ],
+        "countries": [
+          {
+            "code": "IN",
+            "name": "India",
+            "gaCountry": "India",
+            "gaCountryId": "IN",
+            "users": 755
+          },
+          {
+            "code": "US",
+            "name": "United States",
+            "gaCountry": "United States",
+            "gaCountryId": "US",
+            "users": 460
+          },
+          {
+            "code": "PK",
+            "name": "Pakistan",
+            "gaCountry": "Pakistan",
+            "gaCountryId": "PK",
+            "users": 195
+          },
+          {
+            "code": "JP",
+            "name": "Japan",
+            "gaCountry": "Japan",
+            "gaCountryId": "JP",
+            "users": 97
+          },
+          {
+            "code": "BD",
+            "name": "Bangladesh",
+            "gaCountry": "Bangladesh",
+            "gaCountryId": "BD",
+            "users": 88
+          },
+          {
+            "code": "BR",
+            "name": "Brazil",
+            "gaCountry": "Brazil",
+            "gaCountryId": "BR",
+            "users": 84
+          },
+          {
+            "code": "AU",
+            "name": "Australia",
+            "gaCountry": "Australia",
+            "gaCountryId": "AU",
+            "users": 71
+          },
+          {
+            "code": "KR",
+            "name": "South Korea",
+            "gaCountry": "South Korea",
+            "gaCountryId": "KR",
+            "users": 65
+          },
+          {
+            "code": "ID",
+            "name": "Indonesia",
+            "gaCountry": "Indonesia",
+            "gaCountryId": "ID",
+            "users": 56
+          },
+          {
+            "code": "GB",
+            "name": "United Kingdom",
+            "gaCountry": "United Kingdom",
+            "gaCountryId": "GB",
+            "users": 50
+          },
+          {
+            "code": "CA",
+            "name": "Canada",
+            "gaCountry": "Canada",
+            "gaCountryId": "CA",
+            "users": 47
+          },
+          {
+            "code": "RU",
+            "name": "Russia",
+            "gaCountry": "Russia",
+            "gaCountryId": "RU",
+            "users": 43
+          },
+          {
+            "code": "DE",
+            "name": "Germany",
+            "gaCountry": "Germany",
+            "gaCountryId": "DE",
+            "users": 42
+          },
+          {
+            "code": null,
+            "name": "(not set)",
+            "gaCountry": "(not set)",
+            "gaCountryId": "(not set)",
+            "users": 40
+          },
+          {
+            "code": "FR",
+            "name": "France",
+            "gaCountry": "France",
+            "gaCountryId": "FR",
+            "users": 37
+          },
+          {
+            "code": "ES",
+            "name": "Spain",
+            "gaCountry": "Spain",
+            "gaCountryId": "ES",
+            "users": 36
+          },
+          {
+            "code": "PL",
+            "name": "Poland",
+            "gaCountry": "Poland",
+            "gaCountryId": "PL",
+            "users": 35
+          },
+          {
+            "code": "TH",
+            "name": "Thailand",
+            "gaCountry": "Thailand",
+            "gaCountryId": "TH",
+            "users": 35
+          },
+          {
+            "code": "TR",
+            "name": "Türkiye",
+            "gaCountry": "Türkiye",
+            "gaCountryId": "TR",
+            "users": 35
+          },
+          {
+            "code": "TW",
+            "name": "Taiwan",
+            "gaCountry": "Taiwan",
+            "gaCountryId": "TW",
+            "users": 30
+          },
+          {
+            "code": "IT",
+            "name": "Italy",
+            "gaCountry": "Italy",
+            "gaCountryId": "IT",
+            "users": 28
+          },
+          {
+            "code": "VN",
+            "name": "Vietnam",
+            "gaCountry": "Vietnam",
+            "gaCountryId": "VN",
+            "users": 27
+          },
+          {
+            "code": "CN",
+            "name": "China",
+            "gaCountry": "China",
+            "gaCountryId": "CN",
+            "users": 25
+          },
+          {
+            "code": "PH",
+            "name": "Philippines",
+            "gaCountry": "Philippines",
+            "gaCountryId": "PH",
+            "users": 25
+          },
+          {
+            "code": "MA",
+            "name": "Morocco",
+            "gaCountry": "Morocco",
+            "gaCountryId": "MA",
+            "users": 21
+          }
+        ],
+        "trafficSources": [
+          {
+            "source": "Direct",
+            "sessions": 3266
+          },
+          {
+            "source": "Organic Search",
+            "sessions": 100
+          },
+          {
+            "source": "Referral",
+            "sessions": 94
+          },
+          {
+            "source": "Unassigned",
+            "sessions": 25
+          },
+          {
+            "source": "Organic Social",
+            "sessions": 15
+          },
+          {
+            "source": "AI Assistant",
+            "sessions": 8
+          },
+          {
+            "source": "Organic Video",
+            "sessions": 4
+          }
+        ],
+        "topReferrers": [
+          {
+            "referrer": "(direct)",
+            "sessions": 3266
+          },
+          {
+            "referrer": "chromewebstore.google.com",
+            "sessions": 81
+          },
+          {
+            "referrer": "google",
+            "sessions": 76
+          },
+          {
+            "referrer": "(not set)",
+            "sessions": 25
+          },
+          {
+            "referrer": "bing",
+            "sessions": 23
+          },
+          {
+            "referrer": "reddit.com",
+            "sessions": 7
+          },
+          {
+            "referrer": "facebook.com",
+            "sessions": 5
+          },
+          {
+            "referrer": "claude.ai",
+            "sessions": 4
+          },
+          {
+            "referrer": "youtube.com",
+            "sessions": 4
+          },
+          {
+            "referrer": "buymeacoffee.com",
+            "sessions": 3
+          }
+        ]
+      }
     }
   ],
   "blogPostViews": [
@@ -12747,20 +13090,24 @@
       "views": 6
     },
     {
+      "path": "/blog/discord-message-exporter-chrome-extension/",
+      "views": 5
+    },
+    {
+      "path": "/blog/12-chrome-extensions-52-days",
+      "views": 4
+    },
+    {
       "path": "/blog/chrome-extension-uninstall-page-optimization",
       "views": 4
     },
     {
-      "path": "/blog/12-chrome-extensions-52-days",
-      "views": 3
-    },
-    {
-      "path": "/blog/discord-message-exporter-chrome-extension/",
+      "path": "/blog/hide-reposts-bluesky-chrome-extension/",
       "views": 3
     },
     {
       "path": "/blog/12-chrome-extensions-52-days/",
-      "views": 1
+      "views": 2
     },
     {
       "path": "/blog/ai-bookmark-chrome-extension-claude-chatgpt-grok",
@@ -12771,15 +13118,15 @@
       "views": 1
     },
     {
+      "path": "/blog/building-in-public-journey/",
+      "views": 1
+    },
+    {
       "path": "/blog/coding-to-100k-youtube-comments-scraper/",
       "views": 1
     },
     {
       "path": "/blog/ep-8-gmail-to-pdf",
-      "views": 1
-    },
-    {
-      "path": "/blog/hide-reposts-bluesky-chrome-extension/",
       "views": 1
     }
   ]
