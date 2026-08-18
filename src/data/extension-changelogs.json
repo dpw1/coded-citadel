@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-08-17T09:08:45.879Z",
+  "updatedAt": "2026-08-18T01:57:10.483Z",
   "message": null,
   "apps": [
     {
@@ -716,12 +716,21 @@
     {
       "key": "dpfdehgiffggecppcbkdacbifbljeiii",
       "slug": "instagram-comments-exporter",
-      "name": "Instagram Comments Exporter: Export comments to CSV, JSON, XLSX, or TXT",
+      "name": "Comments Exporter for Instagram: Export comments to CSV, JSON, XLSX, or TXT",
       "status": "live",
       "github": "https://github.com/dpw1/instagram-comment-exporter",
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "c84fcf1774f8193d6d7ff42e8aece9517b6acd0a",
+          "shortSha": "c84fcf1",
+          "message": "Update extension name and version; add affiliation disclaimer and improve UI elements",
+          "date": "2026-08-17T14:44:30Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-comment-exporter/commit/c84fcf1774f8193d6d7ff42e8aece9517b6acd0a",
+          "version": "1.0.15"
+        },
         {
           "sha": "6f7b5016a3f766e3a3b0224c00e5112d1cd8fffd",
           "shortSha": "6f7b501",
@@ -729,7 +738,7 @@
           "date": "2026-06-23T18:23:36Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-comment-exporter/commit/6f7b5016a3f766e3a3b0224c00e5112d1cd8fffd",
-          "version": "1.0.14"
+          "version": "1.0.15"
         },
         {
           "sha": "862a06af2e3ba61ea7503c108fd35183087a435d",
@@ -738,7 +747,7 @@
           "date": "2026-06-18T20:36:32Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-comment-exporter/commit/862a06af2e3ba61ea7503c108fd35183087a435d",
-          "version": "1.0.14"
+          "version": "1.0.15"
         },
         {
           "sha": "9515a623a8a2a5d93e0dc19903292628e994be35",
@@ -747,7 +756,7 @@
           "date": "2026-06-18T18:12:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-comment-exporter/commit/9515a623a8a2a5d93e0dc19903292628e994be35",
-          "version": "1.0.14"
+          "version": "1.0.15"
         }
       ]
     },
