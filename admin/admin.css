@@ -597,6 +597,27 @@ code {
   border: 0;
 }
 
+.admin__growth-chart__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.25rem;
+  margin-bottom: 0;
+}
+
+.admin__growth-chart__heading {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.admin__growth-chart__select-wrap {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 11;
+  margin-top: 0.05rem;
+}
+
 .admin__growth-chart__title {
   font-size: 0.62rem;
   font-weight: 700;

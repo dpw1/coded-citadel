@@ -449,6 +449,7 @@ const settings = createPersistedStore(SETTINGS_STORAGE_KEY, {
   feedbackAppFilter: 'all',
   feedbackEmailOnly: false,
   searchesWindow: '60m',
+  featureDailyWindow: 'all',
   readFeedbackIds: migrateLegacyReadIds(),
 })
 
@@ -493,6 +494,24 @@ const SEARCHES_WINDOW_BUCKET_MS = {
 const SEARCHES_BAR_GREEN = '#3ecf8e'
 const SEARCHES_BAR_BLUE = '#3b82f6'
 const FEATURE_DAILY_TOP_N = 8
+const DAY_MS = 24 * 60 * 60 * 1000
+const VALID_FEATURE_DAILY_WINDOWS = new Set(['24h', '3d', '7d', '14d', '30d', 'all'])
+/** Rolling / calendar length per window. `all` has no fixed duration. */
+const FEATURE_DAILY_WINDOW_DAYS = {
+  '3d': 3,
+  '7d': 7,
+  '14d': 14,
+  '30d': 30,
+}
+/** Bucket size per window — denser points for shorter ranges. */
+const FEATURE_DAILY_BUCKET_MS = {
+  '24h': 60 * 60 * 1000,
+  '3d': 6 * 60 * 60 * 1000,
+  '7d': DAY_MS,
+  '14d': DAY_MS,
+  '30d': DAY_MS,
+  all: DAY_MS,
+}
 const FEATURE_LINE_COLORS = [
   '#ff9900',
   '#3b82f6',
@@ -513,6 +532,22 @@ function setSearchesWindow(value) {
   const next = VALID_SEARCHES_WINDOWS.has(value) ? value : '60m'
   settings.set('searchesWindow', next)
   return next
+}
+
+function getFeatureDailyWindow() {
+  const value = settings.get('featureDailyWindow')
+  return VALID_FEATURE_DAILY_WINDOWS.has(value) ? value : 'all'
+}
+
+function setFeatureDailyWindow(value) {
+  const next = VALID_FEATURE_DAILY_WINDOWS.has(value) ? value : 'all'
+  settings.set('featureDailyWindow', next)
+  return next
+}
+
+function syncFeatureDailyWindowSelect() {
+  const select = document.getElementById('yt-feature-daily-window-select')
+  if (select) select.value = getFeatureDailyWindow()
 }
 
 function getFeedbackFilter() {
@@ -2375,21 +2410,130 @@ function activeFeatureGroupIds(filter) {
   return active
 }
 
+function startOfUtcDay(ms) {
+  const date = new Date(ms)
+  return Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate())
+}
+
 /**
- * Daily unique users per filter group + DAU (filter-search users that day).
+ * Time bounds + bucket size for the filter-popularity chart.
+ * Calendar windows (3d+) start at UTC midnight so week-by-week days line up.
+ * @returns {{ startMs: number | null, endMs: number, bucketMs: number, windowKey: string }}
+ */
+function featureDailyWindowBounds(windowKey = getFeatureDailyWindow(), nowMs = Date.now()) {
+  const key = VALID_FEATURE_DAILY_WINDOWS.has(windowKey) ? windowKey : 'all'
+  const bucketMs = FEATURE_DAILY_BUCKET_MS[key] || DAY_MS
+  if (key === 'all') {
+    return { startMs: null, endMs: nowMs, bucketMs, windowKey: key }
+  }
+  if (key === '24h') {
+    return { startMs: nowMs - DAY_MS, endMs: nowMs, bucketMs, windowKey: key }
+  }
+  const days = FEATURE_DAILY_WINDOW_DAYS[key] || 7
+  const todayStart = startOfUtcDay(nowMs)
+  return {
+    startMs: todayStart - (days - 1) * DAY_MS,
+    endMs: nowMs,
+    bucketMs,
+    windowKey: key,
+  }
+}
+
+function featureDailyBucketKey(ms, bucketMs) {
+  if (bucketMs >= DAY_MS) return new Date(ms).toISOString().slice(0, 10)
+  return String(Math.floor(ms / bucketMs) * bucketMs)
+}
+
+function buildFeatureDailyCalendar(bounds, observedKeys) {
+  const { startMs, endMs, bucketMs, windowKey } = bounds
+  if (windowKey === 'all') {
+    const days = [...observedKeys].sort()
+    if (!days.length) return []
+    const start = new Date(`${days[0]}T12:00:00Z`)
+    const end = new Date(`${days[days.length - 1]}T12:00:00Z`)
+    /** @type {string[]} */
+    const calendar = []
+    for (let t = start.getTime(); t <= end.getTime(); t += DAY_MS) {
+      calendar.push(new Date(t).toISOString().slice(0, 10))
+    }
+    return calendar
+  }
+
+  if (bucketMs >= DAY_MS) {
+    const startKey = new Date(startMs).toISOString().slice(0, 10)
+    const endKey = new Date(endMs).toISOString().slice(0, 10)
+    const start = new Date(`${startKey}T12:00:00Z`)
+    const end = new Date(`${endKey}T12:00:00Z`)
+    /** @type {string[]} */
+    const calendar = []
+    for (let t = start.getTime(); t <= end.getTime(); t += DAY_MS) {
+      calendar.push(new Date(t).toISOString().slice(0, 10))
+    }
+    return calendar
+  }
+
+  const startAligned = Math.floor(startMs / bucketMs) * bucketMs
+  /** @type {string[]} */
+  const calendar = []
+  for (let t = startAligned; t <= endMs; t += bucketMs) {
+    calendar.push(String(t))
+  }
+  return calendar
+}
+
+function formatFeatureDailyTick(key, windowKey, { detailed = false } = {}) {
+  if (!key) return ''
+  const asMs = Number(key)
+  if (Number.isFinite(asMs) && asMs > 1e11) {
+    const date = new Date(asMs)
+    if (Number.isNaN(date.getTime())) return key
+    if (detailed) {
+      return date.toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+      })
+    }
+    return date.toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+    })
+  }
+  if (detailed) {
+    const date = new Date(`${key}T12:00:00Z`)
+    if (!Number.isNaN(date.getTime())) {
+      return date.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+      })
+    }
+  }
+  return formatChartDate(key)
+}
+
+/**
+ * Unique users per filter group + active users per bucket, for the selected window.
  * @returns {{
  *   days: string[],
  *   dau: number[],
- *   lines: Array<{ id: string, label: string, category: string, users: number[], pct: number[] }>
+ *   lines: Array<{ id: string, label: string, category: string, users: number[], pct: number[] }>,
+ *   windowKey: string,
+ *   bucketMs: number,
  * }}
  */
-function buildFeatureDailySeries(rows, topN = FEATURE_DAILY_TOP_N) {
-  /** @type {Map<string, Set<string>>} day → DAU fingerprints */
+function buildFeatureDailySeries(rows, topN = FEATURE_DAILY_TOP_N, windowKey = getFeatureDailyWindow()) {
+  const bounds = featureDailyWindowBounds(windowKey)
+  const { startMs, endMs, bucketMs } = bounds
+  /** @type {Map<string, Set<string>>} bucket → active-user fingerprints */
   const dauByDay = new Map()
-  /** @type {Map<string, Map<string, Set<string>>>} day → groupId → fingerprints */
+  /** @type {Map<string, Map<string, Set<string>>>} bucket → groupId → fingerprints */
   const featureByDay = new Map()
-  /** @type {Map<string, Set<string>>} groupId → all-time fingerprints (for ranking) */
-  const allTimeUsers = new Map()
+  /** @type {Map<string, Set<string>>} groupId → fingerprints in this window (for ranking) */
+  const usersInWindow = new Map()
 
   for (const row of rows || []) {
     const event = ytRowEvent(row)
@@ -2404,9 +2548,11 @@ function buildFeatureDailySeries(rows, topN = FEATURE_DAILY_TOP_N) {
 
     const created = rowCreatedAt(row)
     if (!created) continue
-    const day = new Date(created)
-    if (Number.isNaN(day.getTime())) continue
-    const dayKey = day.toISOString().slice(0, 10)
+    const ms = new Date(created).getTime()
+    if (Number.isNaN(ms)) continue
+    if (startMs != null && (ms < startMs || ms > endMs)) continue
+
+    const dayKey = featureDailyBucketKey(ms, bucketMs)
 
     if (!dauByDay.has(dayKey)) dauByDay.set(dayKey, new Set())
     dauByDay.get(dayKey).add(fingerprint)
@@ -2419,26 +2565,17 @@ function buildFeatureDailySeries(rows, topN = FEATURE_DAILY_TOP_N) {
     groups.forEach((groupId) => {
       if (!dayMap.has(groupId)) dayMap.set(groupId, new Set())
       dayMap.get(groupId).add(fingerprint)
-      if (!allTimeUsers.has(groupId)) allTimeUsers.set(groupId, new Set())
-      allTimeUsers.get(groupId).add(fingerprint)
+      if (!usersInWindow.has(groupId)) usersInWindow.set(groupId, new Set())
+      usersInWindow.get(groupId).add(fingerprint)
     })
   }
 
-  const days = [...dauByDay.keys()].sort()
-  if (!days.length) {
-    return { days: [], dau: [], lines: [] }
+  const calendar = buildFeatureDailyCalendar(bounds, dauByDay.keys())
+  if (!calendar.length) {
+    return { days: [], dau: [], lines: [], windowKey: bounds.windowKey, bucketMs }
   }
 
-  // Fill calendar gaps between first and last day so lines stay continuous.
-  const start = new Date(`${days[0]}T12:00:00`)
-  const end = new Date(`${days[days.length - 1]}T12:00:00`)
-  /** @type {string[]} */
-  const calendar = []
-  for (let t = start.getTime(); t <= end.getTime(); t += 24 * 60 * 60 * 1000) {
-    calendar.push(new Date(t).toISOString().slice(0, 10))
-  }
-
-  const topIds = [...allTimeUsers.entries()]
+  const topIds = [...usersInWindow.entries()]
     .sort((a, b) => b[1].size - a[1].size || a[0].localeCompare(b[0]))
     .slice(0, topN)
     .map(([id]) => id)
@@ -2461,7 +2598,7 @@ function buildFeatureDailySeries(rows, topN = FEATURE_DAILY_TOP_N) {
     }
   })
 
-  return { days: calendar, dau, lines }
+  return { days: calendar, dau, lines, windowKey: bounds.windowKey, bucketMs }
 }
 
 function featureDailyLineColor(line, index) {
@@ -2472,23 +2609,40 @@ function featureDailyLineColor(line, index) {
   return FEATURE_LINE_COLORS[index % FEATURE_LINE_COLORS.length]
 }
 
+function destroyFeatureDailyChart() {
+  const chart = state.charts.featureDaily
+  if (!chart) return
+  try {
+    chart.destroy()
+  } catch {
+    /* ignore */
+  }
+  delete state.charts.featureDaily
+}
+
 function renderFeatureDailyChart(rows) {
   const canvas = document.getElementById('chart-feature-daily')
   const card = document.getElementById('yt-feature-daily')
   if (!canvas || typeof Chart === 'undefined') return
 
-  const series = buildFeatureDailySeries(rows)
-  if (!series.days.length || !series.lines.length) {
+  syncFeatureDailyWindowSelect()
+  destroyFeatureDailyChart()
+
+  const windowKey = getFeatureDailyWindow()
+  const series = buildFeatureDailySeries(rows, FEATURE_DAILY_TOP_N, windowKey)
+  const subDaily = series.bucketMs < DAY_MS
+  if (!series.days.length || (!series.lines.length && windowKey === 'all')) {
     if (card) card.hidden = true
     return
   }
   if (card) card.hidden = false
 
   const pointRadius = series.days.length > 40 ? 0 : 2
+  const activeUsersLabel = subDaily ? 'Active users in period' : 'Daily active users'
   state.charts.featureDaily = new Chart(canvas, {
     type: 'line',
     data: {
-      labels: series.days.map((day) => formatChartDate(day)),
+      labels: series.days.map((day) => formatFeatureDailyTick(day, series.windowKey)),
       datasets: series.lines.map((line, index) => {
         const color = featureDailyLineColor(line, index)
         return {
@@ -2526,13 +2680,13 @@ function renderFeatureDailyChart(rows) {
             title: (items) => {
               const idx = items?.[0]?.dataIndex
               if (idx == null) return ''
-              return formatChartDate(series.days[idx])
+              return formatFeatureDailyTick(series.days[idx], series.windowKey, { detailed: true })
             },
             afterTitle: (items) => {
               const idx = items?.[0]?.dataIndex
               if (idx == null) return ''
               const dau = series.dau[idx] || 0
-              return `Daily active users: ${dau.toLocaleString()}`
+              return `${activeUsersLabel}: ${dau.toLocaleString()}`
             },
             label: (ctx) => {
               const line = series.lines[ctx.datasetIndex]
@@ -2550,7 +2704,7 @@ function renderFeatureDailyChart(rows) {
           ticks: {
             color: CHART_COLORS.tick,
             font: { family: 'Inter', size: 10 },
-            maxTicksLimit: 10,
+            maxTicksLimit: subDaily ? 8 : 10,
             maxRotation: 0,
           },
           grid: { color: 'rgba(31,38,54,0.5)' },
@@ -2566,7 +2720,7 @@ function renderFeatureDailyChart(rows) {
           grid: { color: 'rgba(31,38,54,0.5)' },
           title: {
             display: true,
-            text: '% of daily active users',
+            text: subDaily ? '% of active users' : '% of daily active users',
             color: CHART_COLORS.tick,
             font: { family: 'Inter', size: 10 },
           },
@@ -4892,6 +5046,15 @@ document.getElementById('yt-copy-metrics')?.addEventListener('click', () => {
 document.getElementById('yt-searches-window-select')?.addEventListener('change', (event) => {
   setSearchesWindow(event.currentTarget?.value || '60m')
   if (state.loaded.yt) renderSearchesWindowChart(ytRowsPublic())
+})
+
+document.getElementById('yt-feature-daily-window-select')?.addEventListener('change', (event) => {
+  setFeatureDailyWindow(event.currentTarget?.value || 'all')
+  if (state.loaded.yt) renderFeatureDailyChart(ytRowsPublic())
+})
+
+document.getElementById('yt-feature-daily-window-select')?.addEventListener('click', (event) => {
+  event.stopPropagation()
 })
 
 document.getElementById('yt-searches-window-select')?.addEventListener('click', (event) => {

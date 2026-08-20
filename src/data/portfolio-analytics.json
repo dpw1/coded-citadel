@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-17",
-  "extractedAt": "2026-08-18T01:56:32.378Z",
+  "updatedAt": "2026-08-20",
+  "extractedAt": "2026-08-20T07:26:49.086Z",
   "appCount": 14,
   "apps": [
     {
@@ -8,7 +8,7 @@
       "slug": "hide-reposts-for-bluesky",
       "name": "Hide Reposts for Bluesky",
       "analytics": {
-        "totalInstalls": 43,
+        "totalInstalls": 41,
         "installations": [
           {
             "date": "03-07-2026",
@@ -185,6 +185,10 @@
           {
             "date": "16-08-2026",
             "total": 3
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -363,11 +367,15 @@
           {
             "date": "16-08-2026",
             "total": 10
+          },
+          {
+            "date": "17-08-2026",
+            "total": 11
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 37,
+          "US": 35,
           "AU": 1
         },
         "uninstalls": 5,
@@ -474,7 +482,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 22,
+        "pageViews": 21,
         "pageViewsOverTime": [
           {
             "date": "03-07-2026",
@@ -572,7 +580,7 @@
         "pageViewsBySource": {
           "ext_sidebar": 2
         },
-        "impressions": 109,
+        "impressions": 105,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "03-07-2026",
@@ -737,15 +745,19 @@
           {
             "date": "16-08-2026",
             "total": 4
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 4,
+          "enabled": 6,
           "disabled": 0,
           "enabledPct": 100,
           "disabledPct": 0,
-          "total": 4,
-          "date": "16-08-2026"
+          "total": 6,
+          "date": "17-08-2026"
         }
       }
     },
@@ -754,7 +766,7 @@
       "slug": "gmail-to-pdf",
       "name": "Gmail to PDF: Save Emails as PDF, HTML, TXT",
       "analytics": {
-        "totalInstalls": 69,
+        "totalInstalls": 60,
         "installations": [
           {
             "date": "14-06-2026",
@@ -1003,6 +1015,10 @@
           {
             "date": "16-08-2026",
             "total": 3
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -1249,15 +1265,19 @@
           {
             "date": "16-08-2026",
             "total": 45
+          },
+          {
+            "date": "17-08-2026",
+            "total": 48
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 44,
+          "US": 38,
           "IN": 5,
-          "BR": 3
+          "BR": 2
         },
-        "uninstalls": 9,
+        "uninstalls": 7,
         "uninstallsOverTime": [
           {
             "date": "14-06-2026",
@@ -1353,7 +1373,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 75,
+        "pageViews": 62,
         "pageViewsOverTime": [
           {
             "date": "14-06-2026",
@@ -1574,15 +1594,19 @@
           {
             "date": "15-08-2026",
             "total": 2
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1
           }
         ],
         "pageViewsBySource": {
-          "ext_sidebar": 3,
           "chatgpt_com": 12,
-          "app-launcher": 1,
-          "ext_app_menu": 2
+          "ext_app_menu": 2,
+          "ext_sidebar": 2,
+          "app-launcher": 1
         },
-        "impressions": 538,
+        "impressions": 499,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "14-06-2026",
@@ -1831,15 +1855,19 @@
           {
             "date": "16-08-2026",
             "total": 7
+          },
+          {
+            "date": "17-08-2026",
+            "total": 8
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 28,
-          "disabled": 3,
-          "enabledPct": 90.3,
-          "disabledPct": 9.7,
-          "total": 31,
-          "date": "16-08-2026"
+          "enabled": 33,
+          "disabled": 2,
+          "enabledPct": 94.3,
+          "disabledPct": 5.7,
+          "total": 35,
+          "date": "17-08-2026"
         }
       }
     },
@@ -1848,7 +1876,7 @@
       "slug": "dex",
       "name": "DEX: Export Discord messages, channels & attachments",
       "analytics": {
-        "totalInstalls": 56,
+        "totalInstalls": 54,
         "installations": [
           {
             "date": "02-07-2026",
@@ -2029,6 +2057,10 @@
           {
             "date": "16-08-2026",
             "total": 4
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -2207,14 +2239,18 @@
           {
             "date": "16-08-2026",
             "total": 28
+          },
+          {
+            "date": "17-08-2026",
+            "total": 28
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 41,
+          "US": 39,
           "DE": 2,
+          "GB": 1,
           "AU": 1,
-          "BR": 1,
           "CA": 1,
           "other": 1
         },
@@ -2399,6 +2435,10 @@
           {
             "date": "16-08-2026",
             "total": 0
+          },
+          {
+            "date": "17-08-2026",
+            "total": 0
           }
         ],
         "uninstallsByRegion": {},
@@ -2526,12 +2566,12 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_sidebar": 2,
-          "copilot_com": 2,
           "ext_app_menu": 1,
-          "chatgpt_com": 1
+          "chatgpt_com": 1,
+          "ext_sidebar": 2,
+          "copilot_com": 2
         },
-        "impressions": 278,
+        "impressions": 276,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "02-07-2026",
@@ -2712,15 +2752,19 @@
           {
             "date": "16-08-2026",
             "total": 4
+          },
+          {
+            "date": "17-08-2026",
+            "total": 12
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 15,
-          "disabled": 1,
-          "enabledPct": 93.8,
-          "disabledPct": 6.3,
-          "total": 16,
-          "date": "16-08-2026"
+          "enabled": 13,
+          "disabled": 2,
+          "enabledPct": 86.7,
+          "disabledPct": 13.3,
+          "total": 15,
+          "date": "17-08-2026"
         }
       }
     },
@@ -2729,7 +2773,7 @@
       "slug": "youtube-filter-pro",
       "name": "Youtube Filter Pro: filtrar por visualizações, duração, data e mais",
       "analytics": {
-        "totalInstalls": 768,
+        "totalInstalls": 756,
         "installations": [
           {
             "date": "18-05-2026",
@@ -3090,6 +3134,10 @@
           {
             "date": "16-08-2026",
             "total": 28
+          },
+          {
+            "date": "17-08-2026",
+            "total": 42
           }
         ],
         "weeklyUsers": [
@@ -3444,18 +3492,22 @@
           {
             "date": "16-08-2026",
             "total": 767
+          },
+          {
+            "date": "17-08-2026",
+            "total": 780
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 204,
-          "IN": 49,
-          "BR": 24,
-          "GB": 20,
-          "DE": 18,
-          "other": 24
+          "US": 203,
+          "IN": 42,
+          "BR": 22,
+          "GB": 19,
+          "DE": 19,
+          "other": 27
         },
-        "uninstalls": 339,
+        "uninstalls": 330,
         "uninstallsOverTime": [
           {
             "date": "19-05-2026",
@@ -3764,10 +3816,14 @@
           {
             "date": "16-08-2026",
             "total": 10
+          },
+          {
+            "date": "17-08-2026",
+            "total": 15
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 1601,
+        "pageViews": 1611,
         "pageViewsOverTime": [
           {
             "date": "18-05-2026",
@@ -4128,21 +4184,25 @@
           {
             "date": "16-08-2026",
             "total": 56
+          },
+          {
+            "date": "17-08-2026",
+            "total": 131
           }
         ],
         "pageViewsBySource": {
-          "chatgpt_com": 126,
+          "chrome-app-launcher": 1,
+          "ext_app_menu": 45,
           "ext_sidebar": 120,
-          "ext_app_menu": 31,
+          "chatgpt_com": 138,
+          "app-launcher": 10,
           "PRICECOMPAREVIDEOAD": 2,
-          "app-launcher": 9,
-          "xads": 1,
           "bgads1": 3,
+          "xads": 1,
           "item-share-cb": 1,
-          "chrome-app-launcher": 3,
           "chrome-remove-extension-dialog": 1
         },
-        "impressions": 10072,
+        "impressions": 9985,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "19-05-2026",
@@ -4499,15 +4559,19 @@
           {
             "date": "16-08-2026",
             "total": 448
+          },
+          {
+            "date": "17-08-2026",
+            "total": 584
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 445,
-          "disabled": 100,
-          "enabledPct": 81.7,
-          "disabledPct": 18.3,
-          "total": 545,
-          "date": "16-08-2026"
+          "enabled": 459,
+          "disabled": 102,
+          "enabledPct": 81.8,
+          "disabledPct": 18.2,
+          "total": 561,
+          "date": "17-08-2026"
         }
       }
     },
@@ -4516,7 +4580,7 @@
       "slug": "claude-deep-search",
       "name": "Claude Message Search: Search Across All Your Past Conversations",
       "analytics": {
-        "totalInstalls": 112,
+        "totalInstalls": 110,
         "installations": [
           {
             "date": "22-05-2026",
@@ -4856,6 +4920,10 @@
           },
           {
             "date": "16-08-2026",
+            "total": 6
+          },
+          {
+            "date": "17-08-2026",
             "total": 6
           }
         ],
@@ -5203,15 +5271,20 @@
           {
             "date": "16-08-2026",
             "total": 49
+          },
+          {
+            "date": "17-08-2026",
+            "total": 54
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 90,
+          "US": 85,
           "DE": 5,
           "BR": 3,
-          "GB": 2,
-          "AU": 1
+          "IN": 3,
+          "AU": 1,
+          "other": 1
         },
         "uninstalls": 7,
         "uninstallsOverTime": [
@@ -5390,10 +5463,14 @@
           {
             "date": "06-08-2026",
             "total": 1
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 100,
+        "pageViews": 94,
         "pageViewsOverTime": [
           {
             "date": "22-05-2026",
@@ -5634,13 +5711,17 @@
           {
             "date": "16-08-2026",
             "total": 3
+          },
+          {
+            "date": "17-08-2026",
+            "total": 5
           }
         ],
         "pageViewsBySource": {
           "ext_app_menu": 1,
           "ext_sidebar": 3
         },
-        "impressions": 201,
+        "impressions": 181,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "22-05-2026",
@@ -5933,7 +6014,7 @@
           "enabledPct": 97.2,
           "disabledPct": 2.8,
           "total": 36,
-          "date": "16-08-2026"
+          "date": "17-08-2026"
         }
       }
     },
@@ -5942,7 +6023,7 @@
       "slug": "instagram-comments-exporter",
       "name": "Comments Exporter for Instagram: Export comments to CSV, JSON, XLSX, or TXT",
       "analytics": {
-        "totalInstalls": 43,
+        "totalInstalls": 40,
         "installations": [
           {
             "date": "19-06-2026",
@@ -6171,6 +6252,10 @@
           {
             "date": "16-08-2026",
             "total": 5
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -6329,11 +6414,15 @@
           {
             "date": "16-08-2026",
             "total": 16
+          },
+          {
+            "date": "17-08-2026",
+            "total": 17
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 37,
+          "US": 35,
           "BR": 2
         },
         "uninstalls": 3,
@@ -6456,7 +6545,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 33,
+        "pageViews": 36,
         "pageViewsOverTime": [
           {
             "date": "19-06-2026",
@@ -6573,12 +6662,16 @@
           {
             "date": "16-08-2026",
             "total": 5
+          },
+          {
+            "date": "17-08-2026",
+            "total": 5
           }
         ],
         "pageViewsBySource": {
           "chatgpt_com": 3
         },
-        "impressions": 52,
+        "impressions": 54,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "19-06-2026",
@@ -6763,15 +6856,19 @@
           {
             "date": "16-08-2026",
             "total": 5
+          },
+          {
+            "date": "17-08-2026",
+            "total": 5
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 9,
+          "enabled": 14,
           "disabled": 0,
           "enabledPct": 100,
           "disabledPct": 0,
-          "total": 9,
-          "date": "16-08-2026"
+          "total": 14,
+          "date": "17-08-2026"
         }
       }
     },
@@ -6780,7 +6877,7 @@
       "slug": "youtube-comments-exporter",
       "name": "Youtube Comments Exporter: Bulk Export to CSV, XLSX & TXT",
       "analytics": {
-        "totalInstalls": 47,
+        "totalInstalls": 46,
         "installations": [
           {
             "date": "14-05-2026",
@@ -7153,6 +7250,10 @@
           {
             "date": "16-08-2026",
             "total": 2
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -7343,11 +7444,15 @@
           {
             "date": "16-08-2026",
             "total": 10
+          },
+          {
+            "date": "17-08-2026",
+            "total": 11
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 41,
+          "US": 40,
           "BR": 4,
           "DE": 1
         },
@@ -7571,10 +7676,10 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_sidebar": 3,
-          "chatgpt_com": 1
+          "chatgpt_com": 1,
+          "ext_sidebar": 3
         },
-        "impressions": 130,
+        "impressions": 128,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "15-05-2026",
@@ -7803,15 +7908,19 @@
           {
             "date": "16-08-2026",
             "total": 10
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 5,
-          "disabled": 2,
-          "enabledPct": 71.4,
-          "disabledPct": 28.6,
-          "total": 7,
-          "date": "16-08-2026"
+          "enabled": 6,
+          "disabled": 3,
+          "enabledPct": 66.7,
+          "disabledPct": 33.3,
+          "total": 9,
+          "date": "17-08-2026"
         }
       }
     },
@@ -7820,26 +7929,53 @@
       "slug": "custom-data-gflljmlm",
       "name": "YouTube Quick AI Summary: Preview Any Video Before Watching",
       "analytics": {
-        "totalInstalls": 0,
-        "installations": [],
-        "weeklyUsers": [],
+        "totalInstalls": 3,
+        "installations": [
+          {
+            "date": "17-08-2026",
+            "total": 3
+          }
+        ],
+        "weeklyUsers": [
+          {
+            "date": "17-08-2026",
+            "total": 1
+          }
+        ],
         "weeklyUsersByRegion": {},
-        "installsByRegion": {},
-        "uninstalls": 0,
-        "uninstallsOverTime": [],
+        "installsByRegion": {
+          "US": 2
+        },
+        "uninstalls": 1,
+        "uninstallsOverTime": [
+          {
+            "date": "17-08-2026",
+            "total": 1
+          }
+        ],
         "uninstallsByRegion": {},
-        "pageViews": 0,
-        "pageViewsOverTime": [],
+        "pageViews": 2,
+        "pageViewsOverTime": [
+          {
+            "date": "17-08-2026",
+            "total": 2
+          }
+        ],
         "pageViewsBySource": {},
-        "impressions": 0,
-        "impressionsAcrossChromeWebStore": [],
+        "impressions": 8,
+        "impressionsAcrossChromeWebStore": [
+          {
+            "date": "17-08-2026",
+            "total": 8
+          }
+        ],
         "enabledVsDisabled": {
           "enabled": 0,
           "disabled": 0,
           "enabledPct": 0,
           "disabledPct": 0,
           "total": 0,
-          "date": null
+          "date": "20-08-2026"
         }
       }
     },
@@ -7848,7 +7984,7 @@
       "slug": "ai-bookmark",
       "name": "AI Bookmark: Save & Revisit AI Replies - Claude, ChatGPT, Grok",
       "analytics": {
-        "totalInstalls": 42,
+        "totalInstalls": 41,
         "installations": [
           {
             "date": "12-06-2026",
@@ -8105,6 +8241,10 @@
           {
             "date": "16-08-2026",
             "total": 3
+          },
+          {
+            "date": "17-08-2026",
+            "total": 2
           }
         ],
         "weeklyUsers": [
@@ -8323,16 +8463,19 @@
           {
             "date": "16-08-2026",
             "total": 13
+          },
+          {
+            "date": "17-08-2026",
+            "total": 15
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
           "US": 36,
           "BR": 1,
-          "CA": 1,
           "IN": 1
         },
-        "uninstalls": 1,
+        "uninstalls": 2,
         "uninstallsOverTime": [
           {
             "date": "12-06-2026",
@@ -8513,10 +8656,14 @@
           {
             "date": "12-08-2026",
             "total": 1
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 23,
+        "pageViews": 31,
         "pageViewsOverTime": [
           {
             "date": "12-06-2026",
@@ -8649,12 +8796,16 @@
           {
             "date": "16-08-2026",
             "total": 2
+          },
+          {
+            "date": "17-08-2026",
+            "total": 12
           }
         ],
         "pageViewsBySource": {
-          "ext_sidebar": 1
+          "ext_sidebar": 2
         },
-        "impressions": 54,
+        "impressions": 71,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "12-06-2026",
@@ -8867,6 +9018,10 @@
           {
             "date": "16-08-2026",
             "total": 4
+          },
+          {
+            "date": "17-08-2026",
+            "total": 18
           }
         ],
         "enabledVsDisabled": {
@@ -8875,7 +9030,7 @@
           "enabledPct": 88.9,
           "disabledPct": 11.1,
           "total": 9,
-          "date": "16-08-2026"
+          "date": "17-08-2026"
         }
       }
     },
@@ -8884,7 +9039,7 @@
       "slug": "instagram-dm-exporter",
       "name": "Instagram DM Exporter",
       "analytics": {
-        "totalInstalls": 348,
+        "totalInstalls": 335,
         "installations": [
           {
             "date": "26-05-2026",
@@ -9213,6 +9368,10 @@
           {
             "date": "16-08-2026",
             "total": 14
+          },
+          {
+            "date": "17-08-2026",
+            "total": 12
           }
         ],
         "weeklyUsers": [
@@ -9535,18 +9694,22 @@
           {
             "date": "16-08-2026",
             "total": 504
+          },
+          {
+            "date": "17-08-2026",
+            "total": 515
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
           "US": 75,
-          "IN": 36,
-          "CA": 17,
-          "BR": 13,
+          "IN": 33,
+          "CA": 15,
+          "BR": 12,
           "GB": 9,
           "other": 13
         },
-        "uninstalls": 130,
+        "uninstalls": 128,
         "uninstallsOverTime": [
           {
             "date": "04-06-2026",
@@ -9783,10 +9946,14 @@
           {
             "date": "16-08-2026",
             "total": 1
+          },
+          {
+            "date": "17-08-2026",
+            "total": 4
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 586,
+        "pageViews": 563,
         "pageViewsOverTime": [
           {
             "date": "26-05-2026",
@@ -10111,19 +10278,23 @@
           {
             "date": "16-08-2026",
             "total": 23
+          },
+          {
+            "date": "17-08-2026",
+            "total": 18
           }
         ],
         "pageViewsBySource": {
           "ext_app_menu": 8,
           "ext_sidebar": 35,
-          "item-share-cb": 5,
           "chatgpt_com": 9,
-          "inssist": 2,
-          "item-share-cp": 8,
+          "item-share-cb": 5,
+          "inssist": 1,
+          "quora-answer": 1,
           "app-launcher": 1,
-          "quora-answer": 1
+          "item-share-cp": 5
         },
-        "impressions": 1410,
+        "impressions": 1430,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "26-05-2026",
@@ -10444,15 +10615,19 @@
           {
             "date": "16-08-2026",
             "total": 80
+          },
+          {
+            "date": "17-08-2026",
+            "total": 68
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 179,
-          "disabled": 72,
-          "enabledPct": 71.3,
-          "disabledPct": 28.7,
-          "total": 251,
-          "date": "16-08-2026"
+          "enabled": 194,
+          "disabled": 95,
+          "enabledPct": 67.1,
+          "disabledPct": 32.9,
+          "total": 289,
+          "date": "17-08-2026"
         }
       }
     },
@@ -10461,7 +10636,7 @@
       "slug": "custom-data",
       "name": "Instagram Saved Posts Exporter",
       "analytics": {
-        "totalInstalls": 39,
+        "totalInstalls": 42,
         "installations": [
           {
             "date": "04-08-2026",
@@ -10510,6 +10685,10 @@
           {
             "date": "16-08-2026",
             "total": 3
+          },
+          {
+            "date": "17-08-2026",
+            "total": 3
           }
         ],
         "weeklyUsers": [
@@ -10556,12 +10735,16 @@
           {
             "date": "16-08-2026",
             "total": 13
+          },
+          {
+            "date": "17-08-2026",
+            "total": 13
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 24,
-          "IN": 2,
+          "US": 25,
+          "IN": 3,
           "DE": 1,
           "BR": 1
         },
@@ -10597,7 +10780,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 73,
+        "pageViews": 78,
         "pageViewsOverTime": [
           {
             "date": "04-08-2026",
@@ -10646,13 +10829,18 @@
           {
             "date": "16-08-2026",
             "total": 3
+          },
+          {
+            "date": "17-08-2026",
+            "total": 5
           }
         ],
         "pageViewsBySource": {
           "ext_sidebar": 11,
+          "ext_extensions_menu": 1,
           "ext_app_menu": 2
         },
-        "impressions": 259,
+        "impressions": 302,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "04-08-2026",
@@ -10701,15 +10889,19 @@
           {
             "date": "16-08-2026",
             "total": 24
+          },
+          {
+            "date": "17-08-2026",
+            "total": 43
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 6,
-          "disabled": 0,
-          "enabledPct": 100,
-          "disabledPct": 0,
-          "total": 6,
-          "date": "16-08-2026"
+          "enabled": 4,
+          "disabled": 1,
+          "enabledPct": 80,
+          "disabledPct": 20,
+          "total": 5,
+          "date": "17-08-2026"
         }
       }
     },
@@ -10718,7 +10910,7 @@
       "slug": "save-directly-to-drive",
       "name": "Save to Google Drive: Use Drive as Your Downloads Folder",
       "analytics": {
-        "totalInstalls": 151,
+        "totalInstalls": 137,
         "installations": [
           {
             "date": "10-06-2026",
@@ -11193,18 +11385,22 @@
           {
             "date": "16-08-2026",
             "total": 136
+          },
+          {
+            "date": "17-08-2026",
+            "total": 138
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 39,
-          "IN": 10,
-          "GB": 6,
+          "US": 36,
+          "IN": 8,
+          "GB": 5,
           "CA": 4,
           "DE": 2,
           "other": 2
         },
-        "uninstalls": 87,
+        "uninstalls": 78,
         "uninstallsOverTime": [
           {
             "date": "10-06-2026",
@@ -11400,7 +11596,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 330,
+        "pageViews": 291,
         "pageViewsOverTime": [
           {
             "date": "10-06-2026",
@@ -11596,13 +11792,12 @@
           }
         ],
         "pageViewsBySource": {
-          "chrome-ntp-icon": 1,
-          "ext_app_menu": 47,
-          "ext_sidebar": 79,
-          "app-launcher": 6,
-          "chrome-app-launcher": 1
+          "ext_app_menu": 40,
+          "ext_sidebar": 73,
+          "app-launcher": 5,
+          "chrome-ntp-icon": 1
         },
-        "impressions": 4891,
+        "impressions": 4245,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "10-06-2026",
@@ -11806,12 +12001,12 @@
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 54,
-          "disabled": 25,
-          "enabledPct": 68.4,
-          "disabledPct": 31.6,
-          "total": 79,
-          "date": "16-08-2026"
+          "enabled": 66,
+          "disabled": 24,
+          "enabledPct": 73.3,
+          "disabledPct": 26.7,
+          "total": 90,
+          "date": "17-08-2026"
         }
       }
     },
@@ -11820,7 +12015,7 @@
       "slug": "claude-limit-monitor",
       "name": "Claude Limit Monitor: Track Free Usage & When Limit Resets",
       "analytics": {
-        "totalInstalls": 749,
+        "totalInstalls": 709,
         "installations": [
           {
             "date": "03-06-2026",
@@ -12117,6 +12312,10 @@
           {
             "date": "16-08-2026",
             "total": 17
+          },
+          {
+            "date": "17-08-2026",
+            "total": 20
           }
         ],
         "weeklyUsers": [
@@ -12415,18 +12614,22 @@
           {
             "date": "16-08-2026",
             "total": 1101
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1136
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "IN": 285,
-          "US": 92,
+          "IN": 270,
+          "US": 81,
           "BR": 15,
-          "AU": 14,
-          "CA": 11,
-          "other": 17
+          "AU": 13,
+          "CA": 9,
+          "other": 13
         },
-        "uninstalls": 188,
+        "uninstalls": 180,
         "uninstallsOverTime": [
           {
             "date": "07-06-2026",
@@ -12667,10 +12870,14 @@
           {
             "date": "16-08-2026",
             "total": 6
+          },
+          {
+            "date": "17-08-2026",
+            "total": 5
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 1570,
+        "pageViews": 1448,
         "pageViewsOverTime": [
           {
             "date": "03-06-2026",
@@ -12967,18 +13174,22 @@
           {
             "date": "16-08-2026",
             "total": 30
+          },
+          {
+            "date": "17-08-2026",
+            "total": 28
           }
         ],
         "pageViewsBySource": {
-          "ext_app_menu": 55,
-          "ext_sidebar": 283,
-          "perplexity": 5,
-          "app-launcher": 6,
-          "item-share-cb": 1,
+          "ext_sidebar": 264,
           "chrome-app-launcher": 1,
+          "ext_app_menu": 52,
+          "app-launcher": 9,
+          "item-share-cb": 1,
+          "perplexity": 5,
           "chatgpt_com": 4
         },
-        "impressions": 36671,
+        "impressions": 37335,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "03-06-2026",
@@ -13275,15 +13486,19 @@
           {
             "date": "16-08-2026",
             "total": 1229
+          },
+          {
+            "date": "17-08-2026",
+            "total": 1670
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 693,
-          "disabled": 15,
-          "enabledPct": 97.9,
-          "disabledPct": 2.1,
-          "total": 708,
-          "date": "16-08-2026"
+          "enabled": 769,
+          "disabled": 17,
+          "enabledPct": 97.8,
+          "disabledPct": 2.2,
+          "total": 786,
+          "date": "17-08-2026"
         }
       }
     },
@@ -13292,7 +13507,7 @@
       "slug": "youtube-keyword-alert",
       "name": "YouTube Keyword Alert: Get Notified When a Video Appears on YouTube",
       "analytics": {
-        "totalInstalls": 47,
+        "totalInstalls": 48,
         "installations": [
           {
             "date": "22-06-2026",
@@ -13509,6 +13724,10 @@
           {
             "date": "16-08-2026",
             "total": 1
+          },
+          {
+            "date": "17-08-2026",
+            "total": 3
           }
         ],
         "weeklyUsers": [
@@ -13699,6 +13918,10 @@
           {
             "date": "16-08-2026",
             "total": 8
+          },
+          {
+            "date": "17-08-2026",
+            "total": 11
           }
         ],
         "weeklyUsersByRegion": {},
@@ -13802,7 +14025,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 53,
+        "pageViews": 51,
         "pageViewsOverTime": [
           {
             "date": "22-06-2026",
@@ -13971,6 +14194,10 @@
           {
             "date": "16-08-2026",
             "total": 1
+          },
+          {
+            "date": "17-08-2026",
+            "total": 3
           }
         ],
         "pageViewsBySource": {
@@ -14198,21 +14425,25 @@
           {
             "date": "16-08-2026",
             "total": 5
+          },
+          {
+            "date": "17-08-2026",
+            "total": 17
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 4,
+          "enabled": 7,
           "disabled": 0,
           "enabledPct": 100,
           "disabledPct": 0,
-          "total": 4,
-          "date": "16-08-2026"
+          "total": 7,
+          "date": "17-08-2026"
         }
       }
     }
   ],
   "analytics": {
-    "totalInstalls": 2514,
+    "totalInstalls": 2422,
     "installations": [
       {
         "date": "14-05-2026",
@@ -14589,6 +14820,10 @@
       {
         "date": "16-08-2026",
         "total": 89
+      },
+      {
+        "date": "17-08-2026",
+        "total": 96
       }
     ],
     "weeklyUsers": [
@@ -14943,6 +15178,10 @@
       {
         "date": "16-08-2026",
         "total": 2700
+      },
+      {
+        "date": "17-08-2026",
+        "total": 2778
       }
     ],
     "uninstallsOverTime": [
@@ -15293,22 +15532,26 @@
       {
         "date": "16-08-2026",
         "total": 18
+      },
+      {
+        "date": "17-08-2026",
+        "total": 27
       }
     ],
     "weeklyUsersByRegion": {},
     "installsByRegion": {
-      "US": 802,
-      "AU": 17,
-      "IN": 388,
-      "BR": 67,
-      "DE": 31,
-      "CA": 34,
-      "other": 57,
-      "GB": 37
+      "US": 772,
+      "AU": 16,
+      "IN": 365,
+      "BR": 62,
+      "DE": 32,
+      "GB": 34,
+      "CA": 29,
+      "other": 57
     },
-    "uninstalls": 781,
+    "uninstalls": 753,
     "uninstallsByRegion": {},
-    "pageViews": 4522,
+    "pageViews": 4344,
     "pageViewsOverTime": [
       {
         "date": "14-05-2026",
@@ -15685,27 +15928,32 @@
       {
         "date": "16-08-2026",
         "total": 126
+      },
+      {
+        "date": "17-08-2026",
+        "total": 210
       }
     ],
     "pageViewsBySource": {
-      "ext_sidebar": 544,
-      "chatgpt_com": 157,
-      "app-launcher": 23,
-      "ext_app_menu": 147,
+      "ext_sidebar": 519,
+      "chatgpt_com": 169,
+      "ext_app_menu": 151,
+      "app-launcher": 26,
       "copilot_com": 2,
+      "chrome-app-launcher": 2,
       "PRICECOMPAREVIDEOAD": 2,
-      "xads": 1,
       "bgads1": 3,
+      "xads": 1,
       "item-share-cb": 7,
-      "chrome-app-launcher": 5,
       "chrome-remove-extension-dialog": 1,
-      "inssist": 2,
-      "item-share-cp": 8,
+      "inssist": 1,
       "quora-answer": 1,
+      "item-share-cp": 5,
+      "ext_extensions_menu": 1,
       "chrome-ntp-icon": 1,
       "perplexity": 5
     },
-    "impressions": 55126,
+    "impressions": 55080,
     "impressionsAcrossChromeWebStore": [
       {
         "date": "15-05-2026",
@@ -16078,11 +16326,15 @@
       {
         "date": "16-08-2026",
         "total": 1838
+      },
+      {
+        "date": "17-08-2026",
+        "total": 2435
       }
     ],
     "enabledVsDisabled": {
-      "enabled": 1485,
-      "disabled": 220
+      "enabled": 1614,
+      "disabled": 248
     }
   }
 }
