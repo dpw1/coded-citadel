@@ -1,43 +1,43 @@
 {
   "available": true,
-  "updatedAt": "2026-08-20T07:27:45.937Z",
+  "updatedAt": "2026-08-20T18:17:14.125Z",
   "message": null,
-  "totalViews": 4911,
+  "totalViews": 4970,
   "blogViews": 117,
-  "averageTimeOnSiteSeconds": 140.7375604347708,
-  "uniqueVisitors": 3043,
+  "averageTimeOnSiteSeconds": 139.2670855764391,
+  "uniqueVisitors": 3077,
   "newVsReturning": {
-    "new": 3038,
-    "returning": 423
+    "new": 3072,
+    "returning": 427
   },
   "mostViewedPages": [
     {
       "path": "/thank-you/",
-      "views": 2751
+      "views": 2781
     },
     {
       "path": "/uninstall/",
-      "views": 868
+      "views": 876
     },
     {
       "path": "/",
-      "views": 651
+      "views": 655
     },
     {
       "path": "/apps",
-      "views": 101
+      "views": 105
     },
     {
       "path": "/live-stats",
-      "views": 85
+      "views": 87
     },
     {
       "path": "/work",
-      "views": 27
+      "views": 29
     },
     {
       "path": "/apps/youtube-filter-pro/",
-      "views": 25
+      "views": 27
     },
     {
       "path": "/save-directly-to-drive/",
@@ -48,7 +48,7 @@
       "views": 22
     },
     {
-      "path": "/blog",
+      "path": "/apps/youtube-filter-pro",
       "views": 19
     }
   ],
@@ -58,21 +58,21 @@
       "name": "India",
       "gaCountry": "India",
       "gaCountryId": "IN",
-      "users": 798
+      "users": 807
     },
     {
       "code": "US",
       "name": "United States",
       "gaCountry": "United States",
       "gaCountryId": "US",
-      "users": 490
+      "users": 492
     },
     {
       "code": "PK",
       "name": "Pakistan",
       "gaCountry": "Pakistan",
       "gaCountryId": "PK",
-      "users": 205
+      "users": 207
     },
     {
       "code": "JP",
@@ -82,25 +82,25 @@
       "users": 99
     },
     {
-      "code": "BR",
-      "name": "Brazil",
-      "gaCountry": "Brazil",
-      "gaCountryId": "BR",
-      "users": 95
-    },
-    {
       "code": "BD",
       "name": "Bangladesh",
       "gaCountry": "Bangladesh",
       "gaCountryId": "BD",
-      "users": 92
+      "users": 96
+    },
+    {
+      "code": "BR",
+      "name": "Brazil",
+      "gaCountry": "Brazil",
+      "gaCountryId": "BR",
+      "users": 96
     },
     {
       "code": "AU",
       "name": "Australia",
       "gaCountry": "Australia",
       "gaCountryId": "AU",
-      "users": 77
+      "users": 78
     },
     {
       "code": "KR",
@@ -121,7 +121,7 @@
       "name": "United Kingdom",
       "gaCountry": "United Kingdom",
       "gaCountryId": "GB",
-      "users": 53
+      "users": 55
     },
     {
       "code": "CA",
@@ -135,7 +135,7 @@
       "name": "Germany",
       "gaCountry": "Germany",
       "gaCountryId": "DE",
-      "users": 45
+      "users": 46
     },
     {
       "code": "RU",
@@ -170,7 +170,7 @@
       "name": "Spain",
       "gaCountry": "Spain",
       "gaCountryId": "ES",
-      "users": 37
+      "users": 38
     },
     {
       "code": "PL",
@@ -191,14 +191,14 @@
       "name": "Taiwan",
       "gaCountry": "Taiwan",
       "gaCountryId": "TW",
-      "users": 31
+      "users": 32
     },
     {
       "code": "IT",
       "name": "Italy",
       "gaCountry": "Italy",
       "gaCountryId": "IT",
-      "users": 30
+      "users": 31
     },
     {
       "code": "VN",
@@ -222,29 +222,29 @@
       "users": 26
     },
     {
-      "code": "MA",
-      "name": "Morocco",
-      "gaCountry": "Morocco",
-      "gaCountryId": "MA",
-      "users": 21
+      "code": "NL",
+      "name": "Netherlands",
+      "gaCountry": "Netherlands",
+      "gaCountryId": "NL",
+      "users": 22
     }
   ],
   "trafficSources": [
     {
       "source": "Direct",
-      "sessions": 3434
+      "sessions": 3475
     },
     {
       "source": "Organic Search",
-      "sessions": 120
+      "sessions": 122
     },
     {
       "source": "Referral",
-      "sessions": 102
+      "sessions": 104
     },
     {
       "source": "Unassigned",
-      "sessions": 29
+      "sessions": 27
     },
     {
       "source": "Organic Social",
@@ -252,33 +252,29 @@
     },
     {
       "source": "AI Assistant",
-      "sessions": 8
+      "sessions": 9
     },
     {
       "source": "Organic Video",
       "sessions": 5
-    },
-    {
-      "source": "Cross-network",
-      "sessions": 3
     }
   ],
   "topReferrers": [
     {
       "referrer": "(direct)",
-      "sessions": 3434
+      "sessions": 3475
     },
     {
       "referrer": "google",
-      "sessions": 96
+      "sessions": 98
     },
     {
       "referrer": "chromewebstore.google.com",
-      "sessions": 89
+      "sessions": 91
     },
     {
       "referrer": "(not set)",
-      "sessions": 29
+      "sessions": 27
     },
     {
       "referrer": "bing",
@@ -297,12 +293,12 @@
       "sessions": 5
     },
     {
-      "referrer": "claude.ai",
+      "referrer": "chatgpt.com",
       "sessions": 4
     },
     {
-      "referrer": "(data not available)",
-      "sessions": 3
+      "referrer": "claude.ai",
+      "sessions": 4
     }
   ],
   "timeSeries": {
@@ -613,11 +609,11 @@
       },
       {
         "date": "19-08-2026",
-        "total": 82
+        "total": 96
       },
       {
         "date": "20-08-2026",
-        "total": 10
+        "total": 55
       }
     ],
     "activeUsers": [
@@ -927,11 +923,11 @@
       },
       {
         "date": "19-08-2026",
-        "total": 54
+        "total": 58
       },
       {
         "date": "20-08-2026",
-        "total": 6
+        "total": 37
       }
     ],
     "blogViews": [
@@ -1555,11 +1551,11 @@
       },
       {
         "date": "19-08-2026",
-        "total": 65
+        "total": 70
       },
       {
         "date": "20-08-2026",
-        "total": 10
+        "total": 45
       }
     ]
   }

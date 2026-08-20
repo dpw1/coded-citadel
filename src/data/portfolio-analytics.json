@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-08-20",
-  "extractedAt": "2026-08-20T07:26:49.086Z",
+  "extractedAt": "2026-08-20T18:16:45.716Z",
   "appCount": 14,
   "apps": [
     {
@@ -1602,9 +1602,9 @@
         ],
         "pageViewsBySource": {
           "chatgpt_com": 12,
-          "ext_app_menu": 2,
+          "app-launcher": 1,
           "ext_sidebar": 2,
-          "app-launcher": 1
+          "ext_app_menu": 2
         },
         "impressions": 499,
         "impressionsAcrossChromeWebStore": [
@@ -2249,8 +2249,8 @@
         "installsByRegion": {
           "US": 39,
           "DE": 2,
-          "GB": 1,
           "AU": 1,
+          "BR": 1,
           "CA": 1,
           "other": 1
         },
@@ -2566,10 +2566,10 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_app_menu": 1,
-          "chatgpt_com": 1,
           "ext_sidebar": 2,
-          "copilot_com": 2
+          "copilot_com": 2,
+          "chatgpt_com": 1,
+          "ext_app_menu": 1
         },
         "impressions": 276,
         "impressionsAcrossChromeWebStore": [
@@ -4191,16 +4191,16 @@
           }
         ],
         "pageViewsBySource": {
-          "chrome-app-launcher": 1,
-          "ext_app_menu": 45,
-          "ext_sidebar": 120,
           "chatgpt_com": 138,
+          "ext_sidebar": 120,
           "app-launcher": 10,
-          "PRICECOMPAREVIDEOAD": 2,
           "bgads1": 3,
-          "xads": 1,
+          "ext_app_menu": 45,
+          "PRICECOMPAREVIDEOAD": 2,
           "item-share-cb": 1,
-          "chrome-remove-extension-dialog": 1
+          "xads": 1,
+          "chrome-remove-extension-dialog": 1,
+          "chrome-app-launcher": 1
         },
         "impressions": 9985,
         "impressionsAcrossChromeWebStore": [
@@ -5718,8 +5718,8 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_app_menu": 1,
-          "ext_sidebar": 3
+          "ext_sidebar": 3,
+          "ext_app_menu": 1
         },
         "impressions": 181,
         "impressionsAcrossChromeWebStore": [
@@ -7676,8 +7676,8 @@
           }
         ],
         "pageViewsBySource": {
-          "chatgpt_com": 1,
-          "ext_sidebar": 3
+          "ext_sidebar": 3,
+          "chatgpt_com": 1
         },
         "impressions": 128,
         "impressionsAcrossChromeWebStore": [
@@ -8472,8 +8472,8 @@
         "weeklyUsersByRegion": {},
         "installsByRegion": {
           "US": 36,
-          "BR": 1,
-          "IN": 1
+          "IN": 1,
+          "BR": 1
         },
         "uninstalls": 2,
         "uninstallsOverTime": [
@@ -10285,14 +10285,14 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_app_menu": 8,
           "ext_sidebar": 35,
           "chatgpt_com": 9,
+          "item-share-cp": 5,
+          "ext_app_menu": 8,
           "item-share-cb": 5,
           "inssist": 1,
-          "quora-answer": 1,
           "app-launcher": 1,
-          "item-share-cp": 5
+          "quora-answer": 1
         },
         "impressions": 1430,
         "impressionsAcrossChromeWebStore": [
@@ -10836,8 +10836,8 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_sidebar": 11,
           "ext_extensions_menu": 1,
+          "ext_sidebar": 11,
           "ext_app_menu": 2
         },
         "impressions": 302,
@@ -13182,12 +13182,12 @@
         ],
         "pageViewsBySource": {
           "ext_sidebar": 264,
-          "chrome-app-launcher": 1,
           "ext_app_menu": 52,
-          "app-launcher": 9,
           "item-share-cb": 1,
           "perplexity": 5,
-          "chatgpt_com": 4
+          "app-launcher": 9,
+          "chatgpt_com": 4,
+          "chrome-app-launcher": 1
         },
         "impressions": 37335,
         "impressionsAcrossChromeWebStore": [
@@ -15543,11 +15543,11 @@
       "US": 772,
       "AU": 16,
       "IN": 365,
-      "BR": 62,
+      "BR": 63,
       "DE": 32,
-      "GB": 34,
       "CA": 29,
-      "other": 57
+      "other": 57,
+      "GB": 33
     },
     "uninstalls": 753,
     "uninstallsByRegion": {},
@@ -15937,18 +15937,18 @@
     "pageViewsBySource": {
       "ext_sidebar": 519,
       "chatgpt_com": 169,
-      "ext_app_menu": 151,
       "app-launcher": 26,
+      "ext_app_menu": 151,
       "copilot_com": 2,
-      "chrome-app-launcher": 2,
-      "PRICECOMPAREVIDEOAD": 2,
       "bgads1": 3,
-      "xads": 1,
+      "PRICECOMPAREVIDEOAD": 2,
       "item-share-cb": 7,
+      "xads": 1,
       "chrome-remove-extension-dialog": 1,
+      "chrome-app-launcher": 2,
+      "item-share-cp": 5,
       "inssist": 1,
       "quora-answer": 1,
-      "item-share-cp": 5,
       "ext_extensions_menu": 1,
       "chrome-ntp-icon": 1,
       "perplexity": 5
