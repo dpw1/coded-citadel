@@ -1,4 +1,5 @@
 import SaveToDriveTermsContent from '../content/terms/save-to-drive-chrome-extension'
+import YoutubeFilterProTermsContent from '../content/terms/youtube-filter-pro'
 
 const TERMS_OF_SERVICE = {
   'save-to-drive-chrome-extension': {
@@ -6,6 +7,12 @@ const TERMS_OF_SERVICE = {
     lastUpdated: 'May 29, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: SaveToDriveTermsContent,
+  },
+  'youtube-filter-pro': {
+    appName: 'YouTube Filter Pro',
+    lastUpdated: 'August 22, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: YoutubeFilterProTermsContent,
   },
 }
 

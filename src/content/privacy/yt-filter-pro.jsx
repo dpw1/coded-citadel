@@ -2,150 +2,148 @@ export default function YtFilterProPrivacyContent() {
   return (
     <>
       <section>
-        <h2>Overview</h2>
         <p>
-          Youtube Filter Pro (“the extension”) is a Chrome browser extension that helps you filter
-          YouTube search results. This policy explains what information the extension handles and how
-          it is used.
+          <strong>YouTube Filter Pro</strong> (“the Extension”) is provided by Coded Citadel.
         </p>
         <p>
-          <strong>Summary:</strong> The extension does not collect, sell, or share your personal data
-          with the developer. All filtering happens on your device. Only your filter settings are
-          stored locally using Chrome’s built-in storage APIs.
+          This policy explains what we <strong>may</strong> collect, and — just as important — what
+          we <strong>never</strong> collect. We do not sell data. We do not build advertising
+          profiles.
         </p>
       </section>
 
       <section>
-        <h2>Who operates this extension</h2>
-        <p>
-          This extension is provided by Coded Citadel (“we,” “us,” or “the developer”).
-        </p>
-        <p>
-          Contact:{' '}
-          <a href="mailto:CodedCitadel@gmail.com">CodedCitadel@gmail.com</a>
-        </p>
-      </section>
-
-      <section>
-        <h2>Information we do not collect</h2>
-        <p>We do not collect, store on our servers, sell, or share:</p>
+        <h2>The short version</h2>
+        <p>The Extension runs in your browser on YouTube. Filtering happens on your device.</p>
         <ul>
-          <li>Your name, email address, or other personally identifiable information</li>
-          <li>Your Google or YouTube account credentials</li>
-          <li>Your search queries or browsing history sent to our servers</li>
-          <li>Payment or financial information</li>
-          <li>Location data (GPS, IP-based tracking, etc.)</li>
-          <li>Analytics, advertising identifiers, or usage telemetry sent to the developer</li>
+          <li>
+            We <strong>may</strong> store an <strong>anonymous install ID</strong> (a random number,
+            not your name, email, or Google account).
+          </li>
+          <li>
+            We <strong>may</strong> collect <strong>anonymous usage</strong> such as which{' '}
+            <em>types</em> of filters you use (for example “duration” or “views/day”), so we can
+            improve the product.
+          </li>
+          <li>
+            We <strong>never</strong> collect search terms, video titles, watch history, passwords, or
+            other sensitive or personal content.
+          </li>
         </ul>
+        <div className="CC__privacy__callout">
+          <p>
+            <strong>We never collect:</strong>
+          </p>
+          <ul>
+            <li>YouTube search terms or search queries</li>
+            <li>Keywords you type into filters</li>
+            <li>Video titles, descriptions, comments, or thumbnails</li>
+            <li>Watch history, playlists, or “liked” videos</li>
+            <li>Your YouTube / Google account, passwords, or cookies used to sign you in</li>
+            <li>Location, contacts, payment details, or other sensitive personal data</li>
+            <li>
+              Anything from pages that are not YouTube (the Extension only runs on youtube.com)
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>1. Anonymous install ID (optional / may)</h2>
         <p>
-          The extension has no backend servers operated by the developer and does not transmit your
-          YouTube activity to us.
+          We <strong>may</strong> create a random identifier on your computer (Chrome storage). It is
+          not your name, email, IP-as-identity, or YouTube account. We use it only to group
+          anonymous usage and feedback (for example “this install reported a bug”) and, if you
+          uninstall, to know that an anonymous install was removed. You can delete it by
+          uninstalling the Extension.
         </p>
       </section>
 
       <section>
-        <h2>How the extension works on your device</h2>
+        <h2>2. Anonymous usage (optional / may)</h2>
         <p>
-          When you use YouTube at{' '}
-          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-            https://www.youtube.com
+          We <strong>may</strong> collect high-level, anonymous product usage, such as:
+        </p>
+        <ul>
+          <li>
+            Which filter <em>categories</em> were on (duration, views, views/day, subscribers — not
+            the numbers or words you entered)
+          </li>
+          <li>Sort / fetch settings, result counts, and whether you exported (format only)</li>
+          <li>Whether the tutorial was started or finished</li>
+        </ul>
+        <p>This is aggregate product telemetry. It cannot tell us what you searched for on YouTube.</p>
+      </section>
+
+      <section>
+        <h2>3. What stays on your device</h2>
+        <p>
+          Your filter presets, settings, and cached extra stats stay in Chrome storage on your
+          computer. They are used locally to run filters. They are not uploaded as search content.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Feedback you choose to send</h2>
+        <p>
+          If you open “Report a bug” or send feedback, we store what <strong>you choose to type</strong>{' '}
+          (message and optional email). A bug report <strong>may</strong> include a snapshot of the
+          current filter settings and page URL so we can reproduce the issue. Do not include
+          passwords or private data in that form. If you never send feedback, we never receive that
+          content.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. YouTube and other sites</h2>
+        <p>
+          YouTube is operated by Google; their terms and privacy policy apply to your use of YouTube.
+          We may load country flags from a public CDN and store anonymous analytics/feedback with our
+          database host (Supabase). Optional links (coffee, social) only load if you click them.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Why we may collect anonymous data</h2>
+        <p>
+          Only to operate and improve the Extension (which filters people use, crash/bug context,
+          install vs uninstall). We do not use this data for ads.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Retention and sharing</h2>
+        <p>
+          Anonymous usage and feedback are kept only as long as needed to improve the product. We do
+          not sell your data. Infrastructure providers (hosting, database) process it solely to run
+          the service. We may disclose information if required by law.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Children</h2>
+        <p>
+          The Extension is not directed at children under 13 (or the age required in your country).
+        </p>
+      </section>
+
+      <section>
+        <h2>9. Your choices</h2>
+        <ul>
+          <li>Uninstall the Extension at any time — local storage is removed with it.</li>
+          <li>Do not send feedback if you do not want a message stored.</li>
+          <li>YouTube itself remains under Google’s privacy policy.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>10. Contact</h2>
+        <p>
+          Coded Citadel —{' '}
+          <a href="https://ezfycode.com" rel="noopener noreferrer" target="_blank">
+            ezfycode.com
           </a>
-          , the extension runs scripts only on that site to:
-        </p>
-        <ul>
-          <li>Show a Filters button and filter panel</li>
-          <li>
-            Read public metadata from videos on the search results page (for example: title, channel
-            name, view count, duration, and relative publish date) that YouTube already displays
-          </li>
-          <li>Hide or fade search results that do not match your chosen filters</li>
-        </ul>
-        <p>
-          This processing happens entirely in your browser. We do not receive copies of that
-          metadata.
-        </p>
-      </section>
-
-      <section>
-        <h2>Data stored on your device (Chrome storage)</h2>
-        <p>
-          The extension uses Chrome’s storage permission to save your filter preferences (for
-          example: duration range, view count limits, channel/title keywords, and related options)
-          using:
-        </p>
-        <ul>
-          <li>
-            <strong>chrome.storage.sync</strong> — may sync across your signed-in Chrome devices if
-            Chrome Sync is enabled
-          </li>
-          <li>
-            <strong>chrome.storage.local</strong> — stored locally for extension options
-          </li>
-        </ul>
-        <p>
-          This data is managed by Google Chrome on your device (and optionally synced by Google). It
-          is not sent to servers operated by the developer.
-        </p>
-      </section>
-
-      <section>
-        <h2>Permissions</h2>
-        <ul>
-          <li>
-            <strong>storage</strong> — save and restore your filter settings
-          </li>
-          <li>
-            <strong>Host access:</strong>{' '}
-            <code>https://www.youtube.com/*</code> — inject the extension’s interface and apply
-            filters on YouTube search results
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Remote code</h2>
-        <p>
-          The extension does not load or execute JavaScript, WebAssembly, or other code from remote
-          servers. All extension code is included in the package you install from the Chrome Web
-          Store.
-        </p>
-      </section>
-
-      <section>
-        <h2>Third parties</h2>
-        <p>
-          YouTube is operated by Google. Your use of YouTube remains subject to Google’s Privacy
-          Policy and YouTube’s terms. This extension is an independent product and is not affiliated
-          with, endorsed by, or sponsored by Google or YouTube.
-        </p>
-        <p>
-          The extension does not share your data with advertisers, analytics providers, or other
-          third parties operated by the developer.
-        </p>
-      </section>
-
-      <section>
-        <h2>Children’s privacy</h2>
-        <p>
-          The extension is not directed to children under 13, and we do not knowingly collect
-          personal information from children.
-        </p>
-      </section>
-
-      <section>
-        <h2>Changes to this policy</h2>
-        <p>
-          We may update this Privacy Policy from time to time. When we do, we will revise the “Last
-          updated” date at the top of this page. Continued use of the extension after changes means
-          you accept the updated policy.
-        </p>
-      </section>
-
-      <section>
-        <h2>Contact</h2>
-        <p>
-          If you have questions about this Privacy Policy or Youtube Filter Pro, contact us at{' '}
-          <a href="mailto:CodedCitadel@gmail.com">CodedCitadel@gmail.com</a>.
+          . You can also use the Extension’s feedback form.
         </p>
       </section>
     </>

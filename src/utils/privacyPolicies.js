@@ -67,8 +67,14 @@ const PRIVACY_POLICIES = {
     Content: YoutubeAiSummaryPrivacyContent,
   },
   'yt-filter-pro': {
-    appName: 'Youtube Filter Pro',
-    lastUpdated: 'July 18, 2026',
+    appName: 'YouTube Filter Pro',
+    lastUpdated: 'August 22, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: YtFilterProPrivacyContent,
+  },
+  'youtube-filter-pro': {
+    appName: 'YouTube Filter Pro',
+    lastUpdated: 'August 22, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: YtFilterProPrivacyContent,
   },

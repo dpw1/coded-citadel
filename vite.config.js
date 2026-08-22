@@ -21,11 +21,13 @@ const PRIVACY_POLICY_SLUGS = [
   'save-to-drive-chrome-extension',
   'youtube-keyword',
   'youtube-ai-summary',
+  'yt-filter-pro',
+  'youtube-filter-pro',
   'dex',
   'bluesky-hide-repost',
 ]
 
-const TERMS_OF_SERVICE_SLUGS = ['save-to-drive-chrome-extension']
+const TERMS_OF_SERVICE_SLUGS = ['save-to-drive-chrome-extension', 'youtube-filter-pro']
 
 function getPrerenderRoutes() {
   const { apps } = JSON.parse(
