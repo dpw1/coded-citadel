@@ -3,7 +3,7 @@ import ChromeIcon from './ChromeIcon'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
 import { WorkPortfolioDescription } from './WorkPortfolioDescription'
-import { appCardInstalls, getAllApps, pinAppLast } from '../utils/apps'
+import { getListedApps } from '../utils/apps'
 import { getWorkPortfolioProjects } from '../utils/workPortfolio'
 import {
   buildTechFilterOptions,
@@ -103,15 +103,7 @@ export default function WorkRecentTabsSection() {
   const showExtensions = activeTab === 'all' || activeTab === 'extensions'
   const showTechFilters = showExtensions
 
-  const extensions = useMemo(
-    () =>
-      pinAppLast(
-        [...getAllApps()].sort(
-          (a, b) => (appCardInstalls(b) ?? 0) - (appCardInstalls(a) ?? 0),
-        ),
-      ),
-    [],
-  )
+  const extensions = useMemo(() => getListedApps(), [])
 
   const extensionStacks = useMemo(
     () => extensions.map((app) => getAppTechStack(app)),

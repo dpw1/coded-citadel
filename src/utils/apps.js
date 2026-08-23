@@ -13,7 +13,7 @@ export function getAllApps() {
   return pinAppLast(appsData.apps ?? [])
 }
 
-/** Always show Save to Google Drive at the end of extension lists. */
+/** Discontinued: still in the extensions list, not counted in the live app total. */
 export const PIN_LAST_APP_SLUG = 'save-directly-to-drive'
 export const PIN_LAST_APP_CHROME_ID = 'jadjgiiaompdjacagaomgogdihbpgcpg'
 
@@ -29,6 +29,33 @@ export function isPinnedLastApp(appOrItem) {
     key === PIN_LAST_APP_CHROME_ID ||
     id === PIN_LAST_APP_CHROME_ID ||
     name.startsWith('Save to Google Drive')
+  )
+}
+
+/** Active storefront apps. Discontinued apps stay in the catalog but are not counted here. */
+export function isAppListed(app) {
+  if (!app) return false
+  if (app.listed === false) return false
+  if (isPinnedLastApp(app)) return false
+  return true
+}
+
+export function isAppDiscontinued(app) {
+  return Boolean(app) && !isAppListed(app) && isPinnedLastApp(app)
+}
+
+export function sortAppsByUsers(apps) {
+  return [...(apps ?? [])].sort(
+    (a, b) => (appActiveUsers(b) ?? 0) - (appActiveUsers(a) ?? 0),
+  )
+}
+
+/** Extensions shown on the site, most users first, discontinued last. */
+export function getListedApps() {
+  return pinAppLast(
+    sortAppsByUsers(
+      getAllApps().filter((app) => isAppListed(app) || isAppDiscontinued(app)),
+    ),
   )
 }
 
@@ -192,7 +219,7 @@ export function appRelatedSlugs(app) {
 export function appRelatedApps(app) {
   return appRelatedSlugs(app)
     .map((slug) => getAppBySlug(slug))
-    .filter(Boolean)
+    .filter((related) => related && isAppListed(related))
 }
 
 const GENERIC_APP_TAGS = new Set(['chromeExtension'])
@@ -206,9 +233,9 @@ export function appSimilarByTags(app, limit = 3) {
   )
   if (!tagSet.size) return []
 
-  return pinAppLast(
+  return sortAppsByUsers(
     getAllApps()
-      .filter((candidate) => candidate.slug !== app.slug && isAppLive(candidate))
+      .filter((candidate) => candidate.slug !== app.slug && isAppLive(candidate) && isAppListed(candidate))
       .map((candidate) => {
         const overlap = appTags(candidate).filter((tag) => tagSet.has(tag)).length
         return { candidate, overlap }

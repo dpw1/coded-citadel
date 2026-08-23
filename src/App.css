@@ -893,6 +893,21 @@
   align-self: flex-start;
 }
 
+.CC__ext-discontinued {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(255, 153, 0, 0.14);
+  color: var(--CC__color-primary);
+  padding: 2px 6px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
 .CC__ext-published {
   font-size: 0.6rem;
   font-weight: 600;

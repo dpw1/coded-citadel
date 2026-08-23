@@ -12,8 +12,9 @@ import {
   appSimilarByTags,
   appStoreUrl,
   appYoutubeHowToUse,
-  getAllApps,
+  getListedApps,
   getAppBySource,
+  isAppDiscontinued,
   isAppLive,
   youtubeEmbedId,
 } from '../utils/apps'
@@ -78,12 +79,12 @@ function getMoreApps(installedApp) {
 
   const add = (app) => {
     if (!app || seen.has(app.slug)) return
-    if (!isAppLive(app)) return
+    if (!isAppLive(app) || isAppDiscontinued(app)) return
     seen.add(app.slug)
     pool.push(app)
   }
 
-  getAllApps().forEach(add)
+  getListedApps().forEach(add)
 
   return pool.slice(0, 3)
 }

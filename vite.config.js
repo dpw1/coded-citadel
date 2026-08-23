@@ -52,7 +52,6 @@ function getPrerenderRoutes() {
     '/blog',
     '/live-stats',
     '/profit',
-    '/save-directly-to-drive',
     '/thank-you',
     '/uninstall',
     '/work',

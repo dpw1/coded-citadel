@@ -1,5 +1,5 @@
 import { useId, useMemo } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import ExtensionPageSEO from '../components/ExtensionPageSEO'
@@ -30,6 +30,7 @@ import {
   formatNumber,
   getAppsUpdatedAt,
   getAppBySlug,
+  isAppDiscontinued,
   isAppLive,
   splitAppTitle,
   youtubeEmbedId,
@@ -41,8 +42,6 @@ import {
 import '../components/extension/ExtensionChangelogBlock.css'
 import '../App.css'
 import './ExtensionLandingPage.css'
-
-const SAVE_TO_DRIVE_CANONICAL_URL = 'https://codedcitadel.com/save-directly-to-drive'
 
 function AppPageShell({ children }) {
   return (
@@ -82,8 +81,7 @@ export default function ExtensionLandingPage() {
   const { slug } = useParams()
   const ext = getAppBySlug(slug)
   const uid = useId().replace(/:/g, '')
-  const extensionCanonicalUrl =
-    ext?.slug === 'save-directly-to-drive' ? SAVE_TO_DRIVE_CANONICAL_URL : undefined
+  const extensionCanonicalUrl = undefined
 
   const chartIds = useMemo(
     () => ({
@@ -97,7 +95,9 @@ export default function ExtensionLandingPage() {
     [uid],
   )
 
-  if (!ext) return <AppNotFound />
+  if (!ext) return <Navigate to="/apps" replace />
+
+  const discontinued = isAppDiscontinued(ext)
 
   if (!isAppLive(ext)) {
     return (
@@ -142,8 +142,11 @@ export default function ExtensionLandingPage() {
   const showGithubBadge = Boolean(githubUrl && changelogApp?.githubPublic)
   const changelogKeys = changelogApp ? new Set([changelogApp.key]) : new Set()
 
-  const liveLabel =
-    ext.status === 'live' ? 'Live on Chrome Web Store' : `${ext.status} — ${ext.platform}`
+  const liveLabel = discontinued
+    ? 'Discontinued'
+    : ext.status === 'live'
+      ? 'Live on Chrome Web Store'
+      : `${ext.status} — ${ext.platform}`
   const analyticsUpdatedAt = getAppsUpdatedAt() ?? ext.lastUpdated
 
   return (
@@ -158,11 +161,23 @@ export default function ExtensionLandingPage() {
           All Apps
         </Link>
 
+        {discontinued ? (
+          <aside className="ext-discontinued" role="status">
+            <p className="ext-discontinued__title">This extension has been discontinued</p>
+            <p>
+              It was taken down because of too many bugs. The root issue is a Chrome extension
+              technical limitation that could not be fixed: detecting downloads in real time is
+              unreliable, and it is not consistent across Chromium browsers (Chrome, Edge, Brave,
+              Opera GX, and others).
+            </p>
+          </aside>
+        ) : null}
+
         <section className="ext-hero">
           <div className="ext-hero__grid">
             <div className="ext-hero__left">
-              <div className="ext-hero__live">
-                <span className="ext-hero__live-dot" />
+              <div className={`ext-hero__live${discontinued ? ' ext-hero__live--discontinued' : ''}`}>
+                {discontinued ? null : <span className="ext-hero__live-dot" />}
                 {liveLabel}
               </div>
 
@@ -224,7 +239,11 @@ export default function ExtensionLandingPage() {
               </div>
 
               <div className="ext-hero__cta">
-                {storeUrl ? (
+                {discontinued ? (
+                  <span className="CC__btn CC__btn--outline ext-hero__cta-primary" aria-disabled="true">
+                    No longer available
+                  </span>
+                ) : storeUrl ? (
                   <a href={storeUrl} className="CC__btn CC__btn--primary ext-hero__cta-primary" target="_blank" rel="noopener noreferrer">
                     <ChromeIcon size={16} />
                     <span>

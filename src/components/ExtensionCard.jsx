@@ -11,6 +11,7 @@ import {
   appIconUrl,
   appStoreUrl,
   formatAppPublishedAgo,
+  isAppDiscontinued,
   isAppLive,
   youtubeEmbedId,
 } from '../utils/apps'
@@ -106,6 +107,7 @@ export default function ExtensionCard({
 }) {
   const navigate = useNavigate()
   const live = isAppLive(app)
+  const discontinued = isAppDiscontinued(app)
   const blogPost = getBlogPostForApp(app)
   // Prefer the Coding Until $100k episode tied to the blog post over promo/listing clips.
   const episodeYoutubeUrl = blogPost?.youtubeId
@@ -181,7 +183,7 @@ export default function ExtensionCard({
       </Link>,
     )
   }
-  if (showStoreDownload && storeUrl) {
+  if (showStoreDownload && storeUrl && !discontinued) {
     quickActionNodes.push(
       <a
         key="store"
@@ -265,7 +267,9 @@ export default function ExtensionCard({
               ) : null}
               {displayName}
             </span>
-            {showVersion && app.version ? (
+            {discontinued ? (
+              <span className="CC__ext-discontinued">Discontinued</span>
+            ) : showVersion && app.version ? (
               <span className="CC__ext-version">v{app.version}</span>
             ) : null}
           </div>

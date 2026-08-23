@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ExtensionCard from './ExtensionCard'
 import ExtensionVideoModal from './ExtensionVideoModal'
-import { getAllApps, appCategory, appCardInstalls, pinAppLast } from '../utils/apps'
+import { getListedApps, appCategory, appActiveUsers } from '../utils/apps'
 
 const PREV_ICON = (
   <svg viewBox="0 0 24 24">
@@ -74,7 +74,7 @@ export default function AppsGridSection({
   const skipPageScrollRef = useRef(true)
 
   const apps = useMemo(
-    () => getAllApps().filter((app) => app.slug !== excludeSlug),
+    () => getListedApps().filter((app) => app.slug !== excludeSlug),
     [excludeSlug],
   )
 
@@ -95,14 +95,10 @@ export default function AppsGridSection({
   }, [activeTab, apps, enableTabs])
 
   const visibleApps = useMemo(() => {
-    let pool = filteredApps
-    if (sortByInstalls) {
-      pool = [...pool].sort(
-        (a, b) => (appCardInstalls(b) ?? 0) - (appCardInstalls(a) ?? 0),
-      )
-    }
+    let pool = [...filteredApps].sort(
+      (a, b) => (appActiveUsers(b) ?? 0) - (appActiveUsers(a) ?? 0),
+    )
     if (randomize) pool = shuffleApps(pool)
-    pool = pinAppLast(pool)
     if (maxItems != null) return pool.slice(0, maxItems)
     if (!enablePagination) return pool
     const start = (currentPage - 1) * perPage
@@ -114,7 +110,6 @@ export default function AppsGridSection({
     maxItems,
     perPage,
     randomize,
-    sortByInstalls,
   ])
 
   const totalPages = enablePagination ? Math.ceil(filteredApps.length / perPage) : 1

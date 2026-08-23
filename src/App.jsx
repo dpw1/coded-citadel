@@ -8,7 +8,6 @@ import PluginsIndexPage from './pages/PluginsIndexPage'
 import PluginLandingPage from './pages/PluginLandingPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsOfServicePage from './pages/TermsOfServicePage'
-import SaveDirectlyToDrivePage from './pages/SaveDirectlyToDrivePage'
 import BlogIndexPage from './pages/BlogIndexPage'
 import BlogPostPage from './pages/BlogPostPage'
 import StatsPage from './pages/StatsPage'
@@ -40,7 +39,10 @@ function AppRoutes() {
         <Route path="/plugins/:slug" element={<PluginSlugRedirect />} />
         <Route path="/privacy-policy/:slug" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service/:slug" element={<TermsOfServicePage />} />
-        <Route path="/save-directly-to-drive" element={<SaveDirectlyToDrivePage />} />
+        <Route
+          path="/save-directly-to-drive"
+          element={<Navigate to="/apps/save-directly-to-drive" replace />}
+        />
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/live-stats" element={<StatsPage />} />

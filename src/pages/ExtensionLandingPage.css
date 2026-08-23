@@ -145,6 +145,32 @@
   margin-bottom: 1rem;
 }
 
+.ext-hero__live--discontinued {
+  color: var(--CC__color-text-muted);
+}
+
+.ext-discontinued {
+  margin: 0 0 1.5rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid rgba(255, 153, 0, 0.35);
+  border-radius: var(--CC__radius);
+  background: rgba(255, 153, 0, 0.08);
+}
+
+.ext-discontinued__title {
+  margin: 0 0 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--CC__color-text-main);
+}
+
+.ext-discontinued p:last-child {
+  margin: 0;
+  color: var(--CC__color-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
 .ext-hero__live-dot {
   width: 7px;
   height: 7px;
