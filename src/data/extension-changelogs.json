@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-08-20T23:36:04.823Z",
+  "updatedAt": "2026-08-23T12:55:46.959Z",
   "message": null,
   "apps": [
     {
@@ -195,13 +195,22 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "6b5c2404123bfe2a0e1f43b9f03362479c79aeae",
+          "shortSha": "6b5c240",
+          "message": "Update version number to 1.0.06, add new dependencies for PDF handling, and enhance localization messages across multiple languages. Refactor export functionality to include progress tracking and improve user interface elements in modals and footers. Implement caching for export messages to optimize performance during exports.",
+          "date": "2026-08-22T18:26:51Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/discord-export/commit/6b5c2404123bfe2a0e1f43b9f03362479c79aeae",
+          "version": "1.0.06"
+        },
+        {
           "sha": "1cb2b10219e532f077e85278e2a48fde6f90ba60",
           "shortSha": "1cb2b10",
           "message": "Update .gitignore, manifest version, and localization messages for Discord channel exporter. Added new permissions, updated version number, and included additional icons. Enhanced user interface with new search functionality in channel selection and improved attachment handling. Added support for new dependencies and refined export options.",
           "date": "2026-06-27T01:49:57Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/discord-export/commit/1cb2b10219e532f077e85278e2a48fde6f90ba60",
-          "version": "1.0.05"
+          "version": "1.0.06"
         },
         {
           "sha": "6086e02eb7e6b6bc1fec72c3329d4804d9731408",
@@ -210,7 +219,7 @@
           "date": "2026-06-26T20:46:50Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/discord-export/commit/6086e02eb7e6b6bc1fec72c3329d4804d9731408",
-          "version": "1.0.05"
+          "version": "1.0.06"
         },
         {
           "sha": "412d4e5cb96745c116bd8cb3486b512979698336",
@@ -219,7 +228,7 @@
           "date": "2026-06-26T05:21:32Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/discord-export/commit/412d4e5cb96745c116bd8cb3486b512979698336",
-          "version": "1.0.05"
+          "version": "1.0.06"
         },
         {
           "sha": "8a804a995e053764e4d0af31642f1ca98e4872f1",
@@ -228,7 +237,7 @@
           "date": "2026-06-26T05:13:51Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/discord-export/commit/8a804a995e053764e4d0af31642f1ca98e4872f1",
-          "version": "1.0.05"
+          "version": "1.0.06"
         },
         {
           "sha": "74d428cc95ec655ecb1f859e03a29781c7857af6",
@@ -237,7 +246,7 @@
           "date": "2026-06-26T04:55:03Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/discord-export/commit/74d428cc95ec655ecb1f859e03a29781c7857af6",
-          "version": "1.0.05"
+          "version": "1.0.06"
         }
       ]
     },
@@ -250,6 +259,33 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "fab135505c3f502abd8627083dff60f22c547af6",
+          "shortSha": "fab1355",
+          "message": "Stop flashing Search complete after closing results, and fill remaining translations.",
+          "date": "2026-08-22T18:17:13Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/fab135505c3f502abd8627083dff60f22c547af6",
+          "version": "1.0.80"
+        },
+        {
+          "sha": "cb01b054d904faf5b1d76246d0f234acfc985a52",
+          "shortSha": "cb01b05",
+          "message": "Enhance localization support across multiple languages: Updated messages for search query editing, filtering hints, and modal UI prompts. Added new presets-related messages and refined existing ones for clarity. Improved user experience with clearer instructions and feedback during the filtering process. This update aims to provide a more intuitive interface for users interacting with the filtering features.",
+          "date": "2026-08-22T13:43:11Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/cb01b054d904faf5b1d76246d0f234acfc985a52",
+          "version": "1.0.80"
+        },
+        {
+          "sha": "44fdf2d755c272279167d7cac6b5638992963b13",
+          "shortSha": "44fdf2d",
+          "message": "Update to version 1.0.80: Incremented version number in manifest.json. Enhanced localization support by adding new messages for filter presets and search query functionalities across multiple languages. Improved modal UI with a new presets feature, allowing users to save and manage filter settings more effectively. Refined filtering mechanisms for better performance and user experience during search operations.",
+          "date": "2026-08-18T13:35:13Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/44fdf2d755c272279167d7cac6b5638992963b13",
+          "version": "1.0.80"
+        },
         {
           "sha": "e9c70d62bd07dc71c1f93cfe866eff105465ebbf",
           "shortSha": "e9c70d6",
@@ -581,7 +617,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.78"
+          "version": "1.0.81"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -590,7 +626,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.78"
+          "version": "1.0.81"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -599,7 +635,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.78"
+          "version": "1.0.81"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -608,7 +644,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.78"
+          "version": "1.0.81"
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -617,7 +653,7 @@
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.78"
+          "version": "1.0.81"
         }
       ]
     },
@@ -965,7 +1001,7 @@
     {
       "key": "hgojieiehkjgjhdnbglfhbcojeeggigi",
       "slug": "instagram-dm-exporter",
-      "name": "Instagram DM Exporter",
+      "name": "IG DM Exporter",
       "status": "live",
       "github": "https://github.com/dpw1/instagram-dm-exporter",
       "githubPublic": false,
@@ -1014,7 +1050,7 @@
           "date": "2026-05-25T20:18:09Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-dm-exporter/commit/96721ee79bae5412b79898e32c4b99114abc28d3",
-          "version": "1.0.36"
+          "version": "1.0.38"
         }
       ]
     },
@@ -1129,6 +1165,15 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "4c15292eed0f72246c185800e62ec6e02163deee",
+          "shortSha": "4c15292",
+          "message": "Read usage from completion SSE and cache local reset countdowns.",
+          "date": "2026-08-21T22:42:22Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/claude-limit-monitor/commit/4c15292eed0f72246c185800e62ec6e02163deee",
+          "version": "1.0.06"
+        },
+        {
           "sha": "ab1999e238001ef8c1b9d75a8b1b4eaa62d3ca4b",
           "shortSha": "ab1999e",
           "message": "Update manifest version to 1.0.06 and refactor element selection logic in content script",
@@ -1144,7 +1189,7 @@
           "date": "2026-07-16T17:12:51Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/af9c527d390649624b5cf58305f93824a0bb754d",
-          "version": "1.0.06"
+          "version": "1.0.7"
         },
         {
           "sha": "32f940aecda2bc4490eb36bc46064d034e789c81",
@@ -1153,7 +1198,7 @@
           "date": "2026-06-13T12:05:22Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/32f940aecda2bc4490eb36bc46064d034e789c81",
-          "version": "1.0.06"
+          "version": "1.0.7"
         },
         {
           "sha": "de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
@@ -1162,7 +1207,7 @@
           "date": "2026-06-13T11:34:26Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
-          "version": "1.0.06"
+          "version": "1.0.7"
         },
         {
           "sha": "e68b1d247848af795b32ac5a2ac329608ba911ff",
@@ -1171,7 +1216,7 @@
           "date": "2026-06-02T20:40:15Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/e68b1d247848af795b32ac5a2ac329608ba911ff",
-          "version": "1.0.06"
+          "version": "1.0.7"
         }
       ]
     },

@@ -31,6 +31,11 @@ const YT_FINGERPRINT_BLACKLIST = new Set([
   '29585cd8-f88f-4188-b6d6-2af881fc2319',
 ])
 
+/** hasProBenefits if first seen strictly before this local calendar day. */
+const YT_PRO_BENEFITS_BEFORE_DAY = '2026-08-20'
+const YT_PRO_BENEFITS_STORAGE_KEY = 'cc_admin_yt_pro_benefits_ids_v1'
+const YT_USERS_PAGE_SIZE = 50
+
 const CHART_COLORS = {
   primary: '#ff9900',
   blue: '#3b82f6',
@@ -445,6 +450,7 @@ function migrateLegacyReadIds() {
 
 const settings = createPersistedStore(SETTINGS_STORAGE_KEY, {
   activeTab: 'feedback',
+  ytSubTab: 'analytics',
   feedbackFilter: 'all',
   feedbackAppFilter: 'all',
   feedbackEmailOnly: false,
@@ -463,10 +469,12 @@ try {
 }
 
 const VALID_FILTERS = new Set(['all', 'unread', 'read'])
-const VALID_TABS = new Set(['feedback', 'yt', 'yt-dev'])
+const VALID_TABS = new Set(['feedback', 'yt'])
+const VALID_YT_SUBTABS = new Set(['analytics', 'users', 'dev'])
 const YT_CHART_KEYS = [
   'features',
   'featureDaily',
+  'presets',
   'subs',
   'settings',
   'exports',
@@ -582,7 +590,15 @@ function setFeedbackEmailOnly(value) {
   return next
 }
 
+function migrateLegacyYtDevTab() {
+  if (settings.get('activeTab') !== 'yt-dev') return
+  settings.set('activeTab', 'yt')
+  const currentSub = settings.get('ytSubTab')
+  if (!VALID_YT_SUBTABS.has(currentSub)) settings.set('ytSubTab', 'dev')
+}
+
 function getActiveTab() {
+  migrateLegacyYtDevTab()
   const value = settings.get('activeTab')
   // Legacy tab removed — feedback graph now lives inside Feedback.
   if (value === 'feedback-graph') return 'feedback'
@@ -590,15 +606,32 @@ function getActiveTab() {
 }
 
 function setActiveTab(value) {
-  const normalized = value === 'feedback-graph' ? 'feedback' : value
+  migrateLegacyYtDevTab()
+  const normalized = value === 'feedback-graph' || value === 'yt-dev' ? (value === 'yt-dev' ? 'yt' : 'feedback') : value
   const next = VALID_TABS.has(normalized) ? normalized : 'feedback'
   settings.set('activeTab', next)
+  return next
+}
+
+function getYtSubTab() {
+  migrateLegacyYtDevTab()
+  const value = settings.get('ytSubTab')
+  return VALID_YT_SUBTABS.has(value) ? value : 'analytics'
+}
+
+function setYtSubTab(value) {
+  const next = VALID_YT_SUBTABS.has(value) ? value : 'analytics'
+  settings.set('ytSubTab', next)
   return next
 }
 
 const state = {
   feedback: [],
   ytRows: [],
+  ytUserRecords: null,
+  ytUsersQuery: '',
+  ytUsersProFilter: 'all',
+  ytUsersPage: 1,
   charts: {},
   featureTooltip: null,
   loaded: { feedback: false, yt: false },
@@ -1068,6 +1101,10 @@ function setStatus(el, message, type) {
 }
 
 function switchTab(tab, { persist = true } = {}) {
+  if (tab === 'yt-dev') {
+    setYtSubTab('dev')
+    tab = 'yt'
+  }
   const next = persist ? setActiveTab(tab) : getActiveTab()
   const active = VALID_TABS.has(tab) ? tab : next
 
@@ -1078,17 +1115,34 @@ function switchTab(tab, { persist = true } = {}) {
   })
   document.getElementById('panel-feedback').hidden = active !== 'feedback'
   document.getElementById('panel-yt').hidden = active !== 'yt'
-  document.getElementById('panel-yt-dev').hidden = active !== 'yt-dev'
 
-  if (active === 'yt' && state.loaded.yt) {
-    requestAnimationFrame(() => renderYtCharts())
-  }
-  if (active === 'yt-dev' && state.loaded.yt) {
-    requestAnimationFrame(() => renderYtDev())
+  if (active === 'yt') {
+    applyYtSubTab()
   }
   if (active === 'feedback' && state.loaded.feedback) {
     requestAnimationFrame(() => renderFeedbackGraph())
   }
+}
+
+function applyYtSubTab() {
+  const sub = getYtSubTab()
+  document.querySelectorAll('[data-yt-subtab]').forEach((btn) => {
+    const isActive = btn.dataset.ytSubtab === sub
+    btn.classList.toggle('admin__subtab--active', isActive)
+    btn.setAttribute('aria-selected', isActive ? 'true' : 'false')
+  })
+  const analytics = document.getElementById('yt-subpanel-analytics')
+  const users = document.getElementById('yt-subpanel-users')
+  const dev = document.getElementById('yt-subpanel-dev')
+  if (analytics) analytics.hidden = sub !== 'analytics'
+  if (users) users.hidden = sub !== 'users'
+  if (dev) dev.hidden = sub !== 'dev'
+
+  if (document.getElementById('panel-yt')?.hidden) return
+  if (!state.loaded.yt) return
+  if (sub === 'analytics') requestAnimationFrame(() => renderYtCharts())
+  if (sub === 'users') requestAnimationFrame(() => renderYtUsers())
+  if (sub === 'dev') requestAnimationFrame(() => renderYtDev())
 }
 
 function syncFeedbackFilterChips() {
@@ -1687,6 +1741,257 @@ function renderYtDev() {
   }
 }
 
+function localDayKey(value) {
+  const d = value instanceof Date ? value : new Date(value)
+  if (Number.isNaN(d.getTime())) return ''
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+function formatSignedUpDate(ms) {
+  if (ms == null) return '—'
+  const d = new Date(ms)
+  if (Number.isNaN(d.getTime())) return '—'
+  return d.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  })
+}
+
+function qualifiesForProBenefits(firstMs) {
+  const day = firstMs == null ? '' : localDayKey(firstMs)
+  return Boolean(day) && day < YT_PRO_BENEFITS_BEFORE_DAY
+}
+
+function isYtFilterProFeedback(row) {
+  const app = formatFeedbackAppName(row?.app_name)
+  return /youtube filter|yt filter|filter pro/i.test(app)
+}
+
+function loadStoredProBenefitIds() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(YT_PRO_BENEFITS_STORAGE_KEY) || '')
+    const ids = Array.isArray(parsed?.ids) ? parsed.ids : Array.isArray(parsed) ? parsed : []
+    return new Set(ids.map((id) => normalizeDashboardFingerprint(id)).filter(Boolean))
+  } catch {
+    return new Set()
+  }
+}
+
+function saveStoredProBenefitIds(ids) {
+  const payload = {
+    cutoff: `before ${YT_PRO_BENEFITS_BEFORE_DAY}`,
+    updatedAt: new Date().toISOString(),
+    ids: [...ids].sort(),
+  }
+  try {
+    localStorage.setItem(YT_PRO_BENEFITS_STORAGE_KEY, JSON.stringify(payload))
+  } catch {
+    /* quota */
+  }
+  return payload
+}
+
+function syncProBenefitIds(records) {
+  const stored = loadStoredProBenefitIds()
+  for (const rec of records) {
+    if (rec.isDev) continue
+    if (qualifiesForProBenefits(rec.firstMs)) stored.add(rec.id)
+  }
+  saveStoredProBenefitIds(stored)
+  return stored
+}
+
+function buildYtUserRecords() {
+  /** @type {Map<string, object>} */
+  const map = new Map()
+
+  const ensure = (id) => {
+    if (!map.has(id)) {
+      map.set(id, {
+        id,
+        firstMs: null,
+        searches: 0,
+        isDev: isYtFingerprintBlacklisted(id),
+        hasProBenefits: false,
+      })
+    }
+    return map.get(id)
+  }
+
+  const touch = (rec, iso) => {
+    if (!iso) return
+    const ms = new Date(iso).getTime()
+    if (Number.isNaN(ms)) return
+    if (rec.firstMs == null || ms < rec.firstMs) rec.firstMs = ms
+  }
+
+  for (const row of state.ytRows || []) {
+    const id = normalizeDashboardFingerprint(ytRowFingerprint(row))
+    if (!id) continue
+    const rec = ensure(id)
+    rec.searches += 1
+    touch(rec, rowCreatedAt(row))
+  }
+
+  for (const row of state.feedback || []) {
+    const id = normalizeDashboardFingerprint(feedbackFingerprint(row))
+    if (!id) continue
+    if (!map.has(id) && !isYtFilterProFeedback(row) && row.app_name) continue
+    const rec = ensure(id)
+    touch(rec, row.created_at)
+  }
+
+  const proIds = syncProBenefitIds([...map.values()])
+  for (const rec of map.values()) {
+    rec.hasProBenefits = !rec.isDev && (proIds.has(rec.id) || qualifiesForProBenefits(rec.firstMs))
+  }
+
+  return [...map.values()].sort((a, b) => (b.firstMs || 0) - (a.firstMs || 0) || a.id.localeCompare(b.id))
+}
+
+function getYtUserRecords() {
+  if (!state.ytUserRecords) state.ytUserRecords = buildYtUserRecords()
+  return state.ytUserRecords
+}
+
+function filteredYtUsers(records) {
+  const query = String(state.ytUsersQuery || '')
+    .trim()
+    .toLowerCase()
+  const pro = state.ytUsersProFilter || 'all'
+  return records.filter((rec) => {
+    if (pro === 'yes' && !rec.hasProBenefits) return false
+    if (pro === 'no' && rec.hasProBenefits) return false
+    if (query && !rec.id.toLowerCase().includes(query)) return false
+    return true
+  })
+}
+
+function renderYtUsers() {
+  const kpis = document.getElementById('yt-users-kpis')
+  const toolbar = document.getElementById('yt-users-toolbar')
+  const wrap = document.getElementById('yt-users-table-wrap')
+  const body = document.getElementById('yt-users-body')
+  const empty = document.getElementById('yt-users-empty')
+  const badge = document.getElementById('yt-users-badge')
+  const pager = document.getElementById('yt-users-pager')
+  const pageLabel = document.getElementById('yt-users-page-label')
+  const prevBtn = document.getElementById('yt-users-prev')
+  const nextBtn = document.getElementById('yt-users-next')
+  if (!body) return
+
+  if (!state.loaded.yt) {
+    if (kpis) kpis.hidden = true
+    if (toolbar) toolbar.hidden = true
+    if (wrap) wrap.hidden = true
+    if (pager) pager.hidden = true
+    if (empty) {
+      empty.hidden = false
+      empty.textContent = 'Loading YouTube Filter Pro data…'
+    }
+    return
+  }
+
+  const records = getYtUserRecords()
+  const visible = filteredYtUsers(records)
+  const proCount = records.filter((rec) => rec.hasProBenefits).length
+  const pageCount = Math.max(1, Math.ceil(visible.length / YT_USERS_PAGE_SIZE))
+  const page = Math.min(Math.max(1, Number(state.ytUsersPage) || 1), pageCount)
+  state.ytUsersPage = page
+  const start = (page - 1) * YT_USERS_PAGE_SIZE
+  const pageRows = visible.slice(start, start + YT_USERS_PAGE_SIZE)
+
+  if (badge) {
+    badge.hidden = records.length === 0
+    badge.textContent = String(records.length)
+  }
+  const setKpi = (id, value) => {
+    const el = document.getElementById(id)
+    if (el) el.textContent = String(value)
+  }
+  setKpi('kpi-yt-users-total', records.length.toLocaleString('en-US'))
+  setKpi('kpi-yt-users-pro', proCount.toLocaleString('en-US'))
+  setKpi('kpi-yt-users-new', (records.length - proCount).toLocaleString('en-US'))
+
+  if (kpis) kpis.hidden = false
+  if (toolbar) toolbar.hidden = false
+
+  if (!visible.length) {
+    if (wrap) wrap.hidden = true
+    if (pager) pager.hidden = true
+    if (empty) {
+      empty.hidden = false
+      empty.textContent = records.length
+        ? 'No users match this filter.'
+        : 'No user ids in yt_filter_pro_data yet.'
+    }
+    body.innerHTML = ''
+    return
+  }
+
+  if (empty) empty.hidden = true
+  if (wrap) wrap.hidden = false
+  if (pager) pager.hidden = false
+  if (pageLabel) {
+    const from = start + 1
+    const to = start + pageRows.length
+    pageLabel.textContent = `${from}–${to} of ${visible.length.toLocaleString('en-US')} · page ${page} of ${pageCount}`
+  }
+  if (prevBtn) prevBtn.disabled = page <= 1
+  if (nextBtn) nextBtn.disabled = page >= pageCount
+  body.innerHTML = pageRows
+    .map((rec) => {
+      const signedUp = formatSignedUpDate(rec.firstMs)
+      const signedTitle = rec.firstMs ? formatDateWithRelative(new Date(rec.firstMs).toISOString()) : ''
+      const proClass = rec.hasProBenefits ? 'admin__users-pill--yes' : 'admin__users-pill--no'
+      const proLabel = rec.hasProBenefits ? 'true' : 'false'
+      return `<tr>
+        <td>
+          <button type="button" class="admin__fingerprint-btn admin__users-id" data-fingerprint="${escapeHtml(rec.id)}" title="${escapeHtml(rec.id)}">${escapeHtml(rec.id)}</button>
+        </td>
+        <td title="${escapeHtml(signedTitle)}">${escapeHtml(signedUp)}</td>
+        <td class="admin__users-num">${rec.searches.toLocaleString('en-US')}</td>
+        <td><span class="admin__users-pill ${proClass}">${proLabel}</span></td>
+      </tr>`
+    })
+    .join('')
+}
+
+function proBenefitRecords() {
+  return getYtUserRecords().filter((rec) => rec.hasProBenefits)
+}
+
+async function copyProBenefitIds() {
+  const ids = proBenefitRecords().map((rec) => rec.id)
+  try {
+    await copyTextToClipboard(ids.join('\n'))
+    flashCopyHint(true, 'yt-users-copy-hint')
+  } catch {
+    flashCopyHint(false, 'yt-users-copy-hint')
+  }
+}
+
+function downloadProBenefitJson() {
+  const ids = proBenefitRecords().map((rec) => rec.id).sort()
+  const payload = {
+    cutoff: `before ${YT_PRO_BENEFITS_BEFORE_DAY}`,
+    generatedAt: new Date().toISOString(),
+    count: ids.length,
+    ids,
+  }
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'yt-filter-pro-pro-benefits.json'
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
 function summarizeYtFingerprint(fingerprint) {
   const fp = normalizeDashboardFingerprint(fingerprint)
   const rows = (state.ytRows || []).filter(
@@ -2164,6 +2469,7 @@ async function loadFeedback({ force = false } = {}) {
 
   const applyFeedbackRows = (rows, { fromCache = false } = {}) => {
     state.feedback = rows
+    state.ytUserRecords = null
     state.loaded.feedback = true
 
     if (!rows.length) {
@@ -2191,6 +2497,9 @@ async function loadFeedback({ force = false } = {}) {
     kpis.hidden = false
     toolbar.hidden = false
     renderFeedback()
+    if (getYtSubTab() === 'users' && !document.getElementById('panel-yt')?.hidden) {
+      renderYtUsers()
+    }
     return true
   }
 
@@ -3084,6 +3393,17 @@ function buildYtMetricsText(rows) {
   }
   push('')
 
+  const presetTop = topEntries(stats.presetUsage || new Map(), 20)
+  push('=== Preset filters (unique users) ===')
+  if (!presetTop.length) {
+    push('(none)')
+  } else {
+    presetTop.forEach(([label, count], i) => {
+      push(`${i + 1}. ${label}: ${count} users`)
+    })
+  }
+  push('')
+
   const subTop = topSubRanges(stats.subRanges, 10)
   push('=== Top subscriber ranges (unique users) ===')
   if (!subTop.length) {
@@ -3170,8 +3490,8 @@ async function copyTextToClipboard(text) {
   if (!ok) throw new Error('copy failed')
 }
 
-function flashCopyHint(ok) {
-  const hint = document.getElementById('yt-copy-hint')
+function flashCopyHint(ok, elementId = 'yt-copy-hint') {
+  const hint = document.getElementById(elementId)
   if (!hint) return
   hint.hidden = false
   hint.textContent = ok ? 'Copied' : 'Copy failed'
@@ -3543,6 +3863,8 @@ function aggregateYt(rows) {
   const durationUsers = new Set()
   const countryFilterUsers = new Set()
   const socialFilterUsers = new Set()
+  /** @type {Map<string, Set<string>>} preset name → unique fingerprints */
+  const presetUsers = new Map()
   const transparentModeUsers = new Set()
   const shortsUsers = new Set()
   const filterActivityUsers = new Set()
@@ -3602,6 +3924,15 @@ function aggregateYt(rows) {
     if (!filter) continue
     normalized += 1
 
+    if (fingerprint && (filter.presetPicked || filter.presetId || filter.presetName)) {
+      const presetLabel =
+        (typeof filter.presetName === 'string' && filter.presetName.trim()) ||
+        (typeof filter.presetId === 'string' && filter.presetId.trim()) ||
+        'Unknown preset'
+      if (!presetUsers.has(presetLabel)) presetUsers.set(presetLabel, new Set())
+      presetUsers.get(presetLabel).add(fingerprint)
+    }
+
     if (fingerprint) {
       filterActivityUsers.add(fingerprint)
       if (filterUsesShorts(filter)) shortsUsers.add(fingerprint)
@@ -3633,7 +3964,16 @@ function aggregateYt(rows) {
       /** @type {Map<string, unknown>} */
       const usedByKey = new Map()
       entries.forEach(([key, value]) => {
-        if (key === 'event' || key === 'result_count' || key === 'results') return
+        if (
+          key === 'event' ||
+          key === 'result_count' ||
+          key === 'results' ||
+          key === 'presetPicked' ||
+          key === 'presetId' ||
+          key === 'presetName'
+        ) {
+          return
+        }
         if (!isFeatureUsed(key, value)) return
         usedByKey.set(key, value)
         if (!featureUsers.has(key)) featureUsers.set(key, new Set())
@@ -3732,6 +4072,7 @@ function aggregateYt(rows) {
     durationAny: durationUsers.size,
     countryFilterActive: countryFilterUsers.size,
     socialFilterActive: socialFilterUsers.size,
+    presetUsage: userSetsToCounts(presetUsers),
     transparentModeActive: transparentModeUsers.size,
     shortsUsers: shortsUsers.size,
     videosOnlyUsers,
@@ -3927,6 +4268,7 @@ function barData(labels, values, color = CHART_COLORS.primary) {
 }
 
 function renderYtCharts() {
+  if (getYtSubTab() !== 'analytics' || document.getElementById('panel-yt')?.hidden) return
   const rows = ytRowsPublic()
   destroyCharts()
   renderYtInstallChurnChart()
@@ -3956,6 +4298,20 @@ function renderYtCharts() {
     openIndex: null,
   }
   renderFeatureDailyChart(rows)
+  const presetTop = topEntries(stats.presetUsage || new Map(), 20)
+  const presetsCanvas = document.getElementById('chart-presets')
+  if (presetsCanvas) {
+    state.charts.presets = new Chart(presetsCanvas, {
+      type: 'bar',
+      data: barData(
+        presetTop.map(([label]) => label),
+        presetTop.map(([, count]) => count),
+        CHART_COLORS.purple,
+      ),
+      options: barOpts,
+    })
+  }
+
   state.charts.features = new Chart(document.getElementById('chart-features'), {
     type: 'bar',
     data: barData(
@@ -3985,16 +4341,19 @@ function renderYtCharts() {
     },
   })
 
-  const subTop = topSubRanges(stats.subRanges, 10)
-  state.charts.subs = new Chart(document.getElementById('chart-subs'), {
-    type: 'bar',
-    data: barData(
-      subTop.map(([label]) => label),
-      subTop.map(([, count]) => count),
-      CHART_COLORS.green,
-    ),
-    options: barOpts,
-  })
+  const subsCanvas = document.getElementById('chart-subs')
+  if (subsCanvas) {
+    const subTop = topSubRanges(stats.subRanges, 10)
+    state.charts.subs = new Chart(subsCanvas, {
+      type: 'bar',
+      data: barData(
+        subTop.map(([label]) => label),
+        subTop.map(([, count]) => count),
+        CHART_COLORS.green,
+      ),
+      options: barOpts,
+    })
+  }
 
   const exportsCanvas = document.getElementById('chart-exports')
   if (exportsCanvas) {
@@ -4863,6 +5222,7 @@ async function loadYt({ force = false } = {}) {
 
   const applyYtRows = (rows, { fromCache = false } = {}) => {
     state.ytRows = rows
+    state.ytUserRecords = null
     state.loaded.yt = true
 
     if (!rows.length) {
@@ -4904,12 +5264,7 @@ async function loadYt({ force = false } = {}) {
     if (growthRow) growthRow.hidden = false
     charts.hidden = false
     renderYtKpis()
-    if (!document.getElementById('panel-yt').hidden) {
-      renderYtCharts()
-    }
-    if (!document.getElementById('panel-yt-dev')?.hidden) {
-      renderYtDev()
-    }
+    applyYtSubTab()
     // Refresh feedback cards so "Used for …" can use first-search timestamps.
     if (state.loaded.feedback && !document.getElementById('panel-feedback')?.hidden) {
       renderFeedbackList()
@@ -5033,6 +5388,55 @@ function scheduleFeedbackCacheRefresh() {
 
 document.querySelectorAll('.admin__tab').forEach((btn) => {
   btn.addEventListener('click', () => switchTab(btn.dataset.tab))
+})
+
+document.querySelectorAll('[data-yt-subtab]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    setYtSubTab(btn.dataset.ytSubtab)
+    applyYtSubTab()
+  })
+})
+
+document.getElementById('yt-users-search')?.addEventListener('input', (event) => {
+  state.ytUsersQuery = event.currentTarget?.value || ''
+  state.ytUsersPage = 1
+  if (state.loaded.yt) renderYtUsers()
+})
+
+document.querySelectorAll('[data-users-pro]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    state.ytUsersProFilter = btn.dataset.usersPro || 'all'
+    state.ytUsersPage = 1
+    document.querySelectorAll('[data-users-pro]').forEach((chip) => {
+      chip.classList.toggle('admin__chip--active', chip.dataset.usersPro === state.ytUsersProFilter)
+    })
+    if (state.loaded.yt) renderYtUsers()
+  })
+})
+
+document.getElementById('yt-users-prev')?.addEventListener('click', () => {
+  state.ytUsersPage = Math.max(1, (Number(state.ytUsersPage) || 1) - 1)
+  renderYtUsers()
+})
+
+document.getElementById('yt-users-next')?.addEventListener('click', () => {
+  state.ytUsersPage = (Number(state.ytUsersPage) || 1) + 1
+  renderYtUsers()
+})
+
+document.getElementById('yt-users-copy-pro')?.addEventListener('click', () => {
+  void copyProBenefitIds()
+})
+
+document.getElementById('yt-users-download-pro')?.addEventListener('click', () => {
+  downloadProBenefitJson()
+})
+
+document.getElementById('yt-users-body')?.addEventListener('click', (event) => {
+  const fpBtn = event.target.closest('[data-fingerprint]')
+  if (!fpBtn) return
+  const fp = fpBtn.getAttribute('data-fingerprint') || ''
+  if (fp) openFingerprintModal(fp)
 })
 
 document.getElementById('admin-refresh').addEventListener('click', () => {

@@ -52,16 +52,6 @@
         YouTube Filter Pro
         <span class="admin__tab-status" id="yt-tab-status" hidden aria-hidden="true"></span>
       </button>
-      <button
-        type="button"
-        class="admin__tab"
-        role="tab"
-        aria-selected="false"
-        data-tab="yt-dev"
-        id="tab-yt-dev"
-      >
-        YT Filter Pro — Dev
-      </button>
     </nav>
 
     <!-- FEEDBACK -->
@@ -225,6 +215,41 @@
     >
       <div class="admin__status" id="yt-status">Loading YouTube Filter Pro data…</div>
 
+      <nav class="admin__subtabs" role="tablist" aria-label="YouTube Filter Pro sections">
+        <button
+          type="button"
+          class="admin__subtab admin__subtab--active"
+          role="tab"
+          aria-selected="true"
+          data-yt-subtab="analytics"
+          id="yt-subtab-analytics"
+        >
+          Analytics
+        </button>
+        <button
+          type="button"
+          class="admin__subtab"
+          role="tab"
+          aria-selected="false"
+          data-yt-subtab="users"
+          id="yt-subtab-users"
+        >
+          Users
+          <span class="admin__tab-badge" id="yt-users-badge" hidden>0</span>
+        </button>
+        <button
+          type="button"
+          class="admin__subtab"
+          role="tab"
+          aria-selected="false"
+          data-yt-subtab="dev"
+          id="yt-subtab-dev"
+        >
+          Dev
+        </button>
+      </nav>
+
+      <div id="yt-subpanel-analytics" role="tabpanel" aria-labelledby="yt-subtab-analytics">
       <div class="admin__yt-toolbar" id="yt-toolbar" hidden>
         <button type="button" class="admin__btn admin__btn--outline" id="yt-copy-metrics">
           Copy metrics for AI
@@ -566,9 +591,10 @@
           </div>
         </div>
         <div class="admin__chart-card admin__chart-card--wide">
-          <h3 class="admin__chart-title">Top subscriber ranges</h3>
+          <h3 class="admin__chart-title">Preset filters</h3>
+          <p class="admin__chart-subtitle">Unique users who searched with a builtin preset selected</p>
           <div class="admin__chart-wrap admin__chart-wrap--bar">
-            <canvas id="chart-subs"></canvas>
+            <canvas id="chart-presets"></canvas>
           </div>
         </div>
         <div class="admin__chart-card">
@@ -593,52 +619,123 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- YT FILTER PRO — DEV (own fingerprint only) -->
-    <section
-      class="admin__panel"
-      id="panel-yt-dev"
-      role="tabpanel"
-      aria-labelledby="tab-yt-dev"
-      hidden
-    >
-      <div class="admin__status" id="yt-dev-status">Loading your YT Filter Pro data…</div>
-
-      <p class="admin__note" id="yt-dev-note" hidden>
-        Scoped to your extension fingerprint
-        <code id="yt-dev-fp">—</code>
-        for testing Supabase inserts (filter searches + View Results).
-      </p>
-
-      <div class="admin__kpis" id="yt-dev-kpis" hidden>
-        <div class="admin__kpi">
-          <div class="admin__kpi-label">Total events</div>
-          <div class="admin__kpi-value" id="kpi-yt-dev-total">0</div>
-        </div>
-        <div class="admin__kpi">
-          <div class="admin__kpi-label">Filter searches</div>
-          <div class="admin__kpi-value" id="kpi-yt-dev-searches">0</div>
-        </div>
-        <div class="admin__kpi">
-          <div class="admin__kpi-label">View Results clicks</div>
-          <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-yt-dev-views">0</div>
-        </div>
-        <div class="admin__kpi">
-          <div class="admin__kpi-label">Total filtered results</div>
-          <div class="admin__kpi-value admin__kpi-value--green" id="kpi-yt-dev-results">0</div>
-        </div>
-        <div class="admin__kpi">
-          <div class="admin__kpi-label">Avg results / view</div>
-          <div class="admin__kpi-value admin__kpi-value--blue" id="kpi-yt-dev-avg">0</div>
-        </div>
-        <div class="admin__kpi">
-          <div class="admin__kpi-label">Last event</div>
-          <div class="admin__kpi-value admin__kpi-value--sm" id="kpi-yt-dev-last">—</div>
-        </div>
       </div>
 
-      <div class="admin__list" id="yt-dev-list" hidden></div>
+      <div id="yt-subpanel-users" role="tabpanel" aria-labelledby="yt-subtab-users" hidden>
+        <p class="admin__note">
+          Anonymous user ids (FingerprintJS hashes and newer UUIDs).
+          <code>hasProBenefits</code> is true when they first showed up
+          <strong>before 20 Aug 2026</strong> — those installs get the future Pro promo.
+        </p>
+
+        <div class="admin__kpis" id="yt-users-kpis" hidden>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Users</div>
+            <div class="admin__kpi-value" id="kpi-yt-users-total">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">hasProBenefits</div>
+            <div class="admin__kpi-value admin__kpi-value--green" id="kpi-yt-users-pro">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">No benefits</div>
+            <div class="admin__kpi-value" id="kpi-yt-users-new">0</div>
+          </div>
+        </div>
+
+        <div class="admin__users-toolbar" id="yt-users-toolbar" hidden>
+          <label class="admin__filter-group">
+            <span class="admin__filter-label">Search</span>
+            <input
+              type="search"
+              class="admin__users-search"
+              id="yt-users-search"
+              placeholder="id"
+              autocomplete="off"
+            />
+          </label>
+          <div class="admin__filter-group">
+            <span class="admin__filter-label">hasProBenefits</span>
+            <div class="admin__chips" role="group" aria-label="Filter by Pro benefits">
+              <button type="button" class="admin__chip admin__chip--active" data-users-pro="all">All</button>
+              <button type="button" class="admin__chip" data-users-pro="yes">Yes</button>
+              <button type="button" class="admin__chip" data-users-pro="no">No</button>
+            </div>
+          </div>
+          <div class="admin__users-actions">
+            <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-users-copy-pro">
+              Copy Pro IDs
+            </button>
+            <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-users-download-pro">
+              Download Pro JSON
+            </button>
+            <span class="admin__copy-hint" id="yt-users-copy-hint" hidden>Copied</span>
+          </div>
+        </div>
+
+        <div class="admin__users-table-wrap" id="yt-users-table-wrap" hidden>
+          <table class="admin__users-table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>signed-up-date</th>
+                <th class="admin__users-num">searches</th>
+                <th>hasProBenefits</th>
+              </tr>
+            </thead>
+            <tbody id="yt-users-body"></tbody>
+          </table>
+        </div>
+        <nav class="admin__users-pager" id="yt-users-pager" hidden>
+          <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-users-prev">
+            Prev
+          </button>
+          <span class="admin__users-pager-label" id="yt-users-page-label"></span>
+          <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-users-next">
+            Next
+          </button>
+        </nav>
+        <p class="admin__status admin__status--empty" id="yt-users-empty" hidden></p>
+      </div>
+
+      <div id="yt-subpanel-dev" role="tabpanel" aria-labelledby="yt-subtab-dev" hidden>
+        <div class="admin__status" id="yt-dev-status">Loading your YT Filter Pro data…</div>
+
+        <p class="admin__note" id="yt-dev-note" hidden>
+          Scoped to your extension fingerprint
+          <code id="yt-dev-fp">—</code>
+          for testing Supabase inserts (filter searches + View Results).
+        </p>
+
+        <div class="admin__kpis" id="yt-dev-kpis" hidden>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Total events</div>
+            <div class="admin__kpi-value" id="kpi-yt-dev-total">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Filter searches</div>
+            <div class="admin__kpi-value" id="kpi-yt-dev-searches">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">View Results clicks</div>
+            <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-yt-dev-views">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Total filtered results</div>
+            <div class="admin__kpi-value admin__kpi-value--green" id="kpi-yt-dev-results">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Avg results / view</div>
+            <div class="admin__kpi-value admin__kpi-value--blue" id="kpi-yt-dev-avg">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Last event</div>
+            <div class="admin__kpi-value admin__kpi-value--sm" id="kpi-yt-dev-last">—</div>
+          </div>
+        </div>
+
+        <div class="admin__list" id="yt-dev-list" hidden></div>
+      </div>
     </section>
   </div>
 
