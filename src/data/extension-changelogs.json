@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-08-23T12:55:46.959Z",
+  "updatedAt": "2026-08-26T21:00:05.057Z",
   "message": null,
   "apps": [
     {
@@ -253,12 +253,57 @@
     {
       "key": "dbkkcbfafkckhmefkpgnelikibobcabb",
       "slug": "youtube-filter-pro",
-      "name": "Youtube Filter Pro: filtrar por visualizações, duração, data e mais",
+      "name": "YT Filter Pro: filter by views, duration, date, and more",
       "status": "live",
       "github": "https://github.com/dpw1/youtube-filter-pro",
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "c19151321c6218eb8cfed15a58e7c8caa5e34bbe",
+          "shortSha": "c191513",
+          "message": "Update to version 1.0.85: Added .env to cursorignore, removed logo-128.png, and enhanced background authentication handling. Introduced session management improvements in backgroundAuth.ts and updated Supabase client configuration to disable auto-refresh token. Co-authored-by: Cursor <cursoragent@cursor.com>",
+          "date": "2026-08-26T14:17:48Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/c19151321c6218eb8cfed15a58e7c8caa5e34bbe",
+          "version": "1.0.85"
+        },
+        {
+          "sha": "7afe3e9c20ddf6ef8df1d8a702c329a934c4e9e3",
+          "shortSha": "7afe3e9",
+          "message": "Rename subscriber sort option to Subscriber and bump to 1.0.84.",
+          "date": "2026-08-26T12:52:32Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/7afe3e9c20ddf6ef8df1d8a702c329a934c4e9e3",
+          "version": "1.0.80"
+        },
+        {
+          "sha": "93a4ba7015eb79788ca4c4714f32c2250aabad93",
+          "shortSha": "93a4ba7",
+          "message": "Add Pro billing, early-user gift flow, and extra Sort presets.",
+          "date": "2026-08-25T21:17:34Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/93a4ba7015eb79788ca4c4714f32c2250aabad93",
+          "version": "1.0.80"
+        },
+        {
+          "sha": "5fc34b1b42e943834e1d9d9778b366357f0f19d5",
+          "shortSha": "5fc34b1",
+          "message": "Implement Google account integration and enhance localization: Added support for Google sign-in functionality, including session management and error handling. Updated localization files to include new account-related messages across multiple languages. Incremented version number in manifest.json to 1.0.83 and added necessary permissions for identity management.",
+          "date": "2026-08-25T00:52:28Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/5fc34b1b42e943834e1d9d9778b366357f0f19d5",
+          "version": "1.0.80"
+        },
+        {
+          "sha": "63710fc73caa9c4fff1e3570fb35f4af613b41c7",
+          "shortSha": "63710fc",
+          "message": "Enhance feedback widget and localization support: Introduced a new checkbox in the feedback widget to optionally include search query and results in bug reports. Updated localization files across multiple languages to reflect new feedback options and hints, ensuring clarity and consistency. Incremented version number in manifest.json to 1.0.82.",
+          "date": "2026-08-24T12:25:09Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/63710fc73caa9c4fff1e3570fb35f4af613b41c7",
+          "version": "1.0.80"
+        },
         {
           "sha": "fab135505c3f502abd8627083dff60f22c547af6",
           "shortSha": "fab1355",
@@ -617,7 +662,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.81"
+          "version": "1.0.85"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -626,7 +671,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.81"
+          "version": "1.0.85"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -635,7 +680,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.81"
+          "version": "1.0.85"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -644,7 +689,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.81"
+          "version": "1.0.85"
         },
         {
           "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
@@ -653,7 +698,7 @@
           "date": "2026-05-14T04:20:39Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.81"
+          "version": "1.0.85"
         }
       ]
     },
@@ -667,13 +712,22 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "f8198d5b588f91f6b791a3114b85e457f82d2b7e",
+          "shortSha": "f8198d5",
+          "message": "Restore Deep Search in Claude's updated sidebar, open claude.ai on install, and add a Coded Citadel footer credit.",
+          "date": "2026-08-26T12:45:35Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/claude-search/commit/f8198d5b588f91f6b791a3114b85e457f82d2b7e",
+          "version": "1.0.13"
+        },
+        {
           "sha": "22064203164c11ff56e7a69ab9d4acc19fd5d16f",
           "shortSha": "2206420",
           "message": "Add daily full re-index and fix Claude find-in-conversation open.",
           "date": "2026-08-03T00:57:04Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/22064203164c11ff56e7a69ab9d4acc19fd5d16f",
-          "version": "1.0.12"
+          "version": "1.0.13"
         },
         {
           "sha": "8aa089e809d455cf8fa3b56a8c22e8ed8121e7e5",
@@ -682,7 +736,7 @@
           "date": "2026-07-30T12:17:38Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/8aa089e809d455cf8fa3b56a8c22e8ed8121e7e5",
-          "version": "1.0.12"
+          "version": "1.0.13"
         },
         {
           "sha": "b52208379a3e55c11262f243edb5a8f47f872017",
@@ -691,7 +745,7 @@
           "date": "2026-06-23T17:42:32Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/b52208379a3e55c11262f243edb5a8f47f872017",
-          "version": "1.0.12"
+          "version": "1.0.13"
         },
         {
           "sha": "4d8a4cd63fed43779a78f7c6e74ecb9c7916d806",
@@ -700,7 +754,7 @@
           "date": "2026-05-23T16:18:35Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/4d8a4cd63fed43779a78f7c6e74ecb9c7916d806",
-          "version": "1.0.12"
+          "version": "1.0.13"
         },
         {
           "sha": "916d2bf30b0b2b3ab9d1d734ff7658313fbd817c",
@@ -709,7 +763,7 @@
           "date": "2026-05-21T16:26:38Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/916d2bf30b0b2b3ab9d1d734ff7658313fbd817c",
-          "version": "1.0.12"
+          "version": "1.0.13"
         },
         {
           "sha": "df4c595a37fef6ea845bb572a5408eb5b9f5b4d5",
@@ -718,7 +772,7 @@
           "date": "2026-05-21T16:08:55Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/df4c595a37fef6ea845bb572a5408eb5b9f5b4d5",
-          "version": "1.0.12"
+          "version": "1.0.13"
         },
         {
           "sha": "2084ba31229dd8a07d15667959724a6a6d274c0d",
@@ -727,7 +781,7 @@
           "date": "2026-05-19T15:02:50Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/2084ba31229dd8a07d15667959724a6a6d274c0d",
-          "version": "1.0.12"
+          "version": "1.0.13"
         },
         {
           "sha": "a5a8c2e0dc802ca3ee4b9ec74a56e94b9c056b9e",
@@ -736,7 +790,7 @@
           "date": "2026-05-19T14:57:47Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/a5a8c2e0dc802ca3ee4b9ec74a56e94b9c056b9e",
-          "version": "1.0.12"
+          "version": "1.0.13"
         },
         {
           "sha": "6c244a0905678d3452fe9223e27685e294dee419",
@@ -745,7 +799,7 @@
           "date": "2026-05-19T14:37:26Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-search/commit/6c244a0905678d3452fe9223e27685e294dee419",
-          "version": "1.0.12"
+          "version": "1.0.13"
         }
       ]
     },
@@ -1050,7 +1104,7 @@
           "date": "2026-05-25T20:18:09Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-dm-exporter/commit/96721ee79bae5412b79898e32c4b99114abc28d3",
-          "version": "1.0.38"
+          "version": "1.0.39"
         }
       ]
     },

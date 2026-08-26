@@ -3,6 +3,8 @@
 const SUPABASE_URL = 'https://pinypmgcawshibcmyxqp.supabase.co'
 const SUPABASE_ANON_KEY =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpbnlwbWdjYXdzaGliY215eHFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxOTA2OTMsImV4cCI6MjA5Mzc2NjY5M30.Oabrt3eiLuYA-Lr5uH4w9VPh_CWqQJ2uo-hE07WQsFM'
+window.SUPABASE_URL = SUPABASE_URL
+window.SUPABASE_ANON_KEY = SUPABASE_ANON_KEY
 
 const READ_STORAGE_KEY = 'cc_admin_feedback_read' // legacy; migrated into settings store
 const SETTINGS_STORAGE_KEY = 'cc_admin_settings'
@@ -12,7 +14,9 @@ const YT_CACHE_META_KEY = 'cc_admin_yt_filter_pro_cache_meta'
 const YT_IDB_NAME = 'cc_admin_yt_cache'
 const YT_IDB_STORE = 'cache'
 const YT_IDB_KEY = 'yt_filter_pro'
-const YT_CACHE_TTL_MS = 60 * 60 * 1000 // 1 hour
+const YT_CACHE_TTL_MS = 24 * 60 * 60 * 1000 // once a day; later pulls are incremental
+/** Overlap so rows created during the last page of a fetch are not missed. */
+const YT_INCREMENTAL_OVERLAP_MS = 2 * 60 * 1000
 const FEEDBACK_CACHE_KEY = 'cc_admin_feedback_cache'
 const FEEDBACK_CACHE_TTL_MS = 12 * 60 * 60 * 1000 // 12 hours
 const FEEDBACK_CONVERSION_CUTOFF_DAY = '2026-07-21'
@@ -30,6 +34,48 @@ const YT_FINGERPRINT_BLACKLIST = new Set([
   YT_DEV_FINGERPRINT,
   '29585cd8-f88f-4188-b6d6-2af881fc2319',
 ])
+
+/**
+ * Google emails omitted from admin (Logged-in, gifts, feedback, and any
+ * telemetry fingerprints linked via feedback). Lowercase. No UI toggle.
+ */
+const YT_EMAIL_BLACKLIST = new Set([
+  'shaereed.533962@gmail.com',
+  'lotharliu996@gmail.com',
+  'aryatargaryen.711632@gmail.com',
+  'joemorales@gmail.com',
+  'soohyunjeon1213@gmail.com',
+  'shaemormont.774769@gmail.com',
+  'branmormont.324789@gmail.com',
+  'cwsdcrtest@gmail.com',
+  'cwsctstest002@gmail.com',
+])
+
+function normalizeAdminEmail(email) {
+  return String(email || '').trim().toLowerCase()
+}
+
+function isYtEmailBlacklisted(email) {
+  const value = normalizeAdminEmail(email)
+  return Boolean(value) && YT_EMAIL_BLACKLIST.has(value)
+}
+
+window.isYtEmailBlacklisted = isYtEmailBlacklisted
+window.YT_EMAIL_BLACKLIST = YT_EMAIL_BLACKLIST
+
+let ytEmailLinkedFingerprintCache = null
+
+function fingerprintsLinkedToBlacklistedEmails() {
+  if (ytEmailLinkedFingerprintCache) return ytEmailLinkedFingerprintCache
+  const fps = new Set()
+  for (const row of state.feedback || []) {
+    if (!isYtEmailBlacklisted(feedbackEmail(row))) continue
+    const fp = normalizeDashboardFingerprint(feedbackFingerprint(row))
+    if (fp) fps.add(fp)
+  }
+  ytEmailLinkedFingerprintCache = fps
+  return fps
+}
 
 /** hasProBenefits if first seen strictly before this local calendar day. */
 const YT_PRO_BENEFITS_BEFORE_DAY = '2026-08-20'
@@ -451,6 +497,7 @@ function migrateLegacyReadIds() {
 const settings = createPersistedStore(SETTINGS_STORAGE_KEY, {
   activeTab: 'feedback',
   ytSubTab: 'analytics',
+  ytServiceRoleKey: '',
   feedbackFilter: 'all',
   feedbackAppFilter: 'all',
   feedbackEmailOnly: false,
@@ -470,7 +517,7 @@ try {
 
 const VALID_FILTERS = new Set(['all', 'unread', 'read'])
 const VALID_TABS = new Set(['feedback', 'yt'])
-const VALID_YT_SUBTABS = new Set(['analytics', 'users', 'dev'])
+const VALID_YT_SUBTABS = new Set(['analytics', 'users', 'logged-in', 'gifts', 'dev'])
 const YT_CHART_KEYS = [
   'features',
   'featureDaily',
@@ -883,15 +930,15 @@ function formatError(error, table) {
   return `Failed to load "${table}"${code}${status}: ${msg}${hint}`
 }
 
-async function fetchAllRows(table, orderColumn) {
+async function fetchRestRows(table, { orderColumn, extraParams } = {}) {
   const rows = []
   let from = 0
   const base = `${SUPABASE_URL.replace(/\/+$/, '')}/rest/v1/${encodeURIComponent(table)}`
 
   for (;;) {
-    const params = new URLSearchParams()
-    params.set('select', '*')
-    if (orderColumn) {
+    const params = new URLSearchParams(extraParams || {})
+    if (!params.has('select')) params.set('select', '*')
+    if (orderColumn && !params.has('order')) {
       params.set('order', `${orderColumn}.desc.nullslast`)
     }
 
@@ -932,6 +979,55 @@ async function fetchAllRows(table, orderColumn) {
   }
 
   return rows
+}
+
+function fetchAllRows(table, orderColumn) {
+  return fetchRestRows(table, { orderColumn })
+}
+
+function ytRowKey(row) {
+  if (row?.id != null && row.id !== '') return `id:${row.id}`
+  const created = row?.created_at || row?.inserted_at || ''
+  const fp = row?.fingerprint || row?.idfp || ''
+  return `fallback:${created}:${fp}`
+}
+
+function ytRowCreatedMs(row) {
+  const raw = row?.created_at || row?.inserted_at
+  if (!raw) return NaN
+  const ms = new Date(raw).getTime()
+  return Number.isFinite(ms) ? ms : NaN
+}
+
+function maxYtCreatedIso(rows) {
+  let maxMs = NaN
+  for (const row of rows || []) {
+    const ms = ytRowCreatedMs(row)
+    if (!Number.isFinite(ms)) continue
+    if (!Number.isFinite(maxMs) || ms > maxMs) maxMs = ms
+  }
+  return Number.isFinite(maxMs) ? new Date(maxMs).toISOString() : null
+}
+
+function mergeYtRows(existing, incoming) {
+  const map = new Map()
+  for (const row of existing || []) map.set(ytRowKey(row), row)
+  for (const row of incoming || []) map.set(ytRowKey(row), row)
+  return [...map.values()]
+}
+
+async function fetchYtRowsSince(sinceIso) {
+  const sinceMs = new Date(sinceIso).getTime()
+  const overlapIso = Number.isFinite(sinceMs)
+    ? new Date(sinceMs - YT_INCREMENTAL_OVERLAP_MS).toISOString()
+    : sinceIso
+  return fetchRestRows('yt_filter_pro_data', {
+    extraParams: {
+      select: '*',
+      created_at: `gt.${overlapIso}`,
+      order: 'created_at.asc.nullslast',
+    },
+  })
 }
 
 function getReadSet() {
@@ -1100,7 +1196,63 @@ function setStatus(el, message, type) {
   el.classList.toggle('admin__status--empty', type === 'empty')
 }
 
-function switchTab(tab, { persist = true } = {}) {
+function currentAdminPath() {
+  const tab = getActiveTab()
+  if (tab === 'yt') {
+    const sub = getYtSubTab()
+    if (sub === 'users') return '/yt-filter-pro/users'
+    if (sub === 'logged-in') return '/yt-filter-pro/logged-in'
+    if (sub === 'gifts') return '/yt-filter-pro/gifts'
+    if (sub === 'dev') return '/yt-filter-pro/dev'
+    return '/yt-filter-pro'
+  }
+  return '/admin'
+}
+
+function syncAdminUrl() {
+  if (applyingAdminRoute) return
+  const next = `#${currentAdminPath()}`
+  if (location.hash !== next) history.replaceState(null, '', next)
+}
+
+function parseAdminPath(hash) {
+  const clean = String(hash || '')
+    .replace(/^#/, '')
+    .replace(/^\/+|\/+$/g, '')
+    .toLowerCase()
+  if (!clean) return null
+  if (clean === 'admin' || clean === 'admin/feedback' || clean === 'feedback') {
+    return { tab: 'feedback' }
+  }
+  if (clean === 'yt-filter-pro' || clean === 'yt-filter-pro/analytics') {
+    return { tab: 'yt', sub: 'analytics' }
+  }
+  if (clean === 'yt-filter-pro/users') return { tab: 'yt', sub: 'users' }
+  if (clean === 'yt-filter-pro/logged-in' || clean === 'yt-filter-pro/loggedin') {
+    return { tab: 'yt', sub: 'logged-in' }
+  }
+  if (clean === 'yt-filter-pro/gifts' || clean === 'yt-filter-pro/gift-codes') {
+    return { tab: 'yt', sub: 'gifts' }
+  }
+  if (clean === 'yt-filter-pro/dev') return { tab: 'yt', sub: 'dev' }
+  return null
+}
+
+let applyingAdminRoute = false
+
+function applyAdminRouteFromUrl() {
+  const parsed = parseAdminPath(location.hash)
+  if (!parsed) return
+  applyingAdminRoute = true
+  try {
+    if (parsed.sub) setYtSubTab(parsed.sub)
+    switchTab(parsed.tab, { persist: true, skipUrl: true })
+  } finally {
+    applyingAdminRoute = false
+  }
+}
+
+function switchTab(tab, { persist = true, skipUrl = false } = {}) {
   if (tab === 'yt-dev') {
     setYtSubTab('dev')
     tab = 'yt'
@@ -1122,6 +1274,7 @@ function switchTab(tab, { persist = true } = {}) {
   if (active === 'feedback' && state.loaded.feedback) {
     requestAnimationFrame(() => renderFeedbackGraph())
   }
+  if (!skipUrl) syncAdminUrl()
 }
 
 function applyYtSubTab() {
@@ -1133,15 +1286,46 @@ function applyYtSubTab() {
   })
   const analytics = document.getElementById('yt-subpanel-analytics')
   const users = document.getElementById('yt-subpanel-users')
+  const loggedIn = document.getElementById('yt-subpanel-logged-in')
+  const gifts = document.getElementById('yt-subpanel-gifts')
   const dev = document.getElementById('yt-subpanel-dev')
   if (analytics) analytics.hidden = sub !== 'analytics'
   if (users) users.hidden = sub !== 'users'
+  if (loggedIn) loggedIn.hidden = sub !== 'logged-in'
+  if (gifts) gifts.hidden = sub !== 'gifts'
   if (dev) dev.hidden = sub !== 'dev'
+  syncAdminUrl()
 
   if (document.getElementById('panel-yt')?.hidden) return
+  if (sub === 'users') requestAnimationFrame(() => renderYtUsers())
+  if (sub === 'logged-in') {
+    const loadLoggedIn = () => {
+      if (window.YfpAdminAccounts) {
+        void window.YfpAdminAccounts.render()
+        return true
+      }
+      return false
+    }
+    requestAnimationFrame(() => {
+      if (loadLoggedIn()) return
+      setTimeout(loadLoggedIn, 0)
+    })
+  }
+  if (sub === 'gifts') {
+    const loadGifts = () => {
+      if (window.YfpAdminAccounts) {
+        void window.YfpAdminAccounts.renderGifts()
+        return true
+      }
+      return false
+    }
+    requestAnimationFrame(() => {
+      if (loadGifts()) return
+      setTimeout(loadGifts, 0)
+    })
+  }
   if (!state.loaded.yt) return
   if (sub === 'analytics') requestAnimationFrame(() => renderYtCharts())
-  if (sub === 'users') requestAnimationFrame(() => renderYtUsers())
   if (sub === 'dev') requestAnimationFrame(() => renderYtDev())
 }
 
@@ -1170,6 +1354,7 @@ function feedbackRowsForStatusFilter(filter = getFeedbackFilter()) {
   // Status "All" = every row. Contact filter only applies to Unread / Read.
   const emailOnly = filter !== 'all' && getFeedbackEmailOnly()
   return state.feedback.filter((row) => {
+    if (isYtEmailBlacklisted(feedbackEmail(row))) return false
     const read = feedbackRowIsRead(row)
     if (filter === 'unread' && read) return false
     if (filter === 'read' && !read) return false
@@ -1401,6 +1586,53 @@ function formatFeedbackContactHtml(row) {
   return '<span>No fingerprint</span>'
 }
 
+const FEEDBACK_JSON_MARKERS = [
+  '\n---\nCurrent filters JSON:\n',
+  '\n---\nCurrent search JSON:\n',
+]
+
+function splitFeedbackSuggestion(raw) {
+  const text = String(raw ?? '')
+  for (const marker of FEEDBACK_JSON_MARKERS) {
+    const idx = text.indexOf(marker)
+    if (idx === -1) continue
+    return {
+      comment: text.slice(0, idx).trim(),
+      json: text.slice(idx + marker.length).trim(),
+    }
+  }
+  return { comment: text.trim(), json: '' }
+}
+
+function feedbackCommentHtml(text) {
+  const { comment, json } = splitFeedbackSuggestion(text)
+  const commentHtml = comment
+    ? `<div class="admin__card-comment" data-feedback-comment>${escapeHtml(comment)}</div>`
+    : ''
+  const jsonHtml = json
+    ? `<pre class="admin__card-json" tabindex="0"><code>${escapeHtml(json)}</code></pre>`
+    : ''
+  return `${commentHtml}${jsonHtml}` || '<div class="admin__card-comment">(empty)</div>'
+}
+
+function enhanceFeedbackComments(root) {
+  root.querySelectorAll('[data-feedback-comment]').forEach((el) => {
+    if (el.dataset.expandReady === '1') return
+    el.classList.add('admin__card-comment--clamped')
+    if (el.scrollHeight <= el.clientHeight + 2) {
+      el.classList.remove('admin__card-comment--clamped')
+      return
+    }
+    el.dataset.expandReady = '1'
+    const btn = document.createElement('button')
+    btn.type = 'button'
+    btn.className = 'admin__card-more'
+    btn.setAttribute('data-feedback-expand', '1')
+    btn.textContent = 'Read more'
+    el.insertAdjacentElement('afterend', btn)
+  })
+}
+
 /** True when suggestion has detail beyond a bare "[Reason]" tag. */
 function feedbackHasComment(row) {
   const text = String(row?.suggestion ?? '').trim()
@@ -1433,11 +1665,14 @@ function feedbackRowIsRead(row, readSet = getReadSet()) {
 }
 
 function countUnreadFeedback() {
-  return state.feedback.reduce((count, row) => count + (feedbackRowIsRead(row) ? 0 : 1), 0)
+  return state.feedback.reduce((count, row) => {
+    if (isYtEmailBlacklisted(feedbackEmail(row))) return count
+    return count + (feedbackRowIsRead(row) ? 0 : 1)
+  }, 0)
 }
 
 function renderFeedbackKpis() {
-  const total = state.feedback.length
+  const total = state.feedback.filter((row) => !isYtEmailBlacklisted(feedbackEmail(row))).length
   const unread = countUnreadFeedback()
   const read = total - unread
 
@@ -1509,7 +1744,7 @@ function renderFeedbackList() {
               ${read ? 'Read' : 'Unread'}
             </span>
           </div>
-          <div class="admin__card-body">${escapeHtml(row.suggestion || '(empty)')}</div>
+          <div class="admin__card-body">${feedbackCommentHtml(row.suggestion)}</div>
           <div class="admin__card-actions">
             <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" data-toggle-read="${escapeHtml(id)}">
               Mark as ${read ? 'unread' : 'read'}
@@ -1519,6 +1754,8 @@ function renderFeedbackList() {
       `
     })
     .join('')
+
+  enhanceFeedbackComments(list)
 }
 
 function renderFeedback() {
@@ -1617,7 +1854,9 @@ function ytRowsPublic() {
 
 function isYtFingerprintBlacklisted(fingerprint) {
   const fp = normalizeDashboardFingerprint(fingerprint)
-  return Boolean(fp) && YT_FINGERPRINT_BLACKLIST.has(fp)
+  if (!fp) return false
+  if (YT_FINGERPRINT_BLACKLIST.has(fp)) return true
+  return fingerprintsLinkedToBlacklistedEmails().has(fp)
 }
 
 function renderYtDev() {
@@ -1832,14 +2071,16 @@ function buildYtUserRecords() {
   for (const row of state.ytRows || []) {
     const id = normalizeDashboardFingerprint(ytRowFingerprint(row))
     if (!id) continue
+    if (isYtFingerprintBlacklisted(id)) continue
     const rec = ensure(id)
     rec.searches += 1
     touch(rec, rowCreatedAt(row))
   }
 
   for (const row of state.feedback || []) {
+    if (isYtEmailBlacklisted(feedbackEmail(row))) continue
     const id = normalizeDashboardFingerprint(feedbackFingerprint(row))
-    if (!id) continue
+    if (!id || isYtFingerprintBlacklisted(id)) continue
     if (!map.has(id) && !isYtFilterProFeedback(row) && row.app_name) continue
     const rec = ensure(id)
     touch(rec, row.created_at)
@@ -2469,6 +2710,7 @@ async function loadFeedback({ force = false } = {}) {
 
   const applyFeedbackRows = (rows, { fromCache = false } = {}) => {
     state.feedback = rows
+    ytEmailLinkedFingerprintCache = null
     state.ytUserRecords = null
     state.loaded.feedback = true
 
@@ -2497,9 +2739,6 @@ async function loadFeedback({ force = false } = {}) {
     kpis.hidden = false
     toolbar.hidden = false
     renderFeedback()
-    if (getYtSubTab() === 'users' && !document.getElementById('panel-yt')?.hidden) {
-      renderYtUsers()
-    }
     return true
   }
 
@@ -2528,6 +2767,8 @@ async function loadFeedback({ force = false } = {}) {
 
   if (state.feedbackLoading) return
   state.feedbackLoading = true
+  updateCacheTimers()
+  syncFeedbackRefreshButton()
 
   try {
     const rows = await fetchAllRows('feedback', 'created_at')
@@ -2544,6 +2785,8 @@ async function loadFeedback({ force = false } = {}) {
     }
   } finally {
     state.feedbackLoading = false
+    updateCacheTimers()
+    syncFeedbackRefreshButton()
   }
 }
 
@@ -5304,11 +5547,18 @@ async function loadYt({ force = false } = {}) {
   updateCacheTimers()
 
   try {
+    const localRows = cached?.rows || state.ytRows || []
+    const sinceIso = maxYtCreatedIso(localRows)
     let rows
-    try {
-      rows = await fetchAllRows('yt_filter_pro_data', 'created_at')
-    } catch {
-      rows = await fetchAllRows('yt_filter_pro_data', null)
+    if (sinceIso) {
+      const incoming = await fetchYtRowsSince(sinceIso)
+      rows = mergeYtRows(localRows, incoming)
+    } else {
+      try {
+        rows = await fetchAllRows('yt_filter_pro_data', 'created_at')
+      } catch {
+        rows = await fetchAllRows('yt_filter_pro_data', null)
+      }
     }
 
     const cachedOk = await writeYtCache(rows)
@@ -5316,7 +5566,7 @@ async function loadYt({ force = false } = {}) {
     if (!cachedOk) {
       setStatus(
         status,
-        'Loaded live data, but could not persist the 1h cache (storage full). Reloads may re-fetch.',
+        'Loaded live data, but could not persist the local cache (storage full). Reloads may re-fetch.',
         'error',
       )
     }
@@ -5366,6 +5616,10 @@ function scheduleYtCacheRefresh() {
       ? Math.max(5_000, latestTimestamp + YT_CACHE_TTL_MS - Date.now())
       : 5_000
     window.setTimeout(async () => {
+      if (document.visibilityState === 'hidden') {
+        scheduleNext()
+        return
+      }
       await loadYt({ force: true })
       scheduleNext()
     }, delay)
@@ -5528,6 +5782,20 @@ document.getElementById('feedback-app-chips')?.addEventListener('click', (event)
   renderFeedbackList()
 })
 
+function syncFeedbackRefreshButton() {
+  const btn = document.getElementById('feedback-refresh')
+  if (!btn) return
+  btn.disabled = state.feedbackLoading
+  btn.textContent = state.feedbackLoading ? 'Refreshing…' : 'Refresh feedback'
+}
+
+document.getElementById('feedback-refresh')?.addEventListener('click', () => {
+  // Feedback table only — never loadYt / uninstalls / refreshAll.
+  void loadFeedback({ force: true }).then(() => {
+    updateUpdatedAt()
+  })
+})
+
 document.getElementById('mark-all-read').addEventListener('click', () => {
   // Mark whatever the list is currently showing (status + contact + app filters).
   const filter = getFeedbackFilter()
@@ -5554,6 +5822,17 @@ document.getElementById('mark-all-read').addEventListener('click', () => {
 })
 
 document.getElementById('feedback-list').addEventListener('click', (event) => {
+  const moreBtn = event.target.closest('[data-feedback-expand]')
+  if (moreBtn) {
+    const comment = moreBtn.previousElementSibling
+    if (comment?.hasAttribute('data-feedback-comment')) {
+      const expanded = comment.classList.toggle('admin__card-comment--expanded')
+      comment.classList.toggle('admin__card-comment--clamped', !expanded)
+      moreBtn.textContent = expanded ? 'Read less' : 'Read more'
+    }
+    return
+  }
+
   const fpBtn = event.target.closest('[data-fingerprint]')
   if (fpBtn) {
     const fp = fpBtn.getAttribute('data-fingerprint') || fpBtn.dataset.fingerprint || ''
@@ -5603,7 +5882,12 @@ document.addEventListener('mousedown', (event) => {
   hideFeaturePicksTooltip()
 })
 
-switchTab(getActiveTab(), { persist: false })
+window.addEventListener('hashchange', () => applyAdminRouteFromUrl())
+if (parseAdminPath(location.hash)) applyAdminRouteFromUrl()
+else {
+  switchTab(getActiveTab(), { persist: false })
+  syncAdminUrl()
+}
 refreshAll({ forceYt: false, forceFeedback: false })
 scheduleYtCacheRefresh()
 scheduleFeedbackCacheRefresh()

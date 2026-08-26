@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./admin.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css" />
 </head>
 <body>
   <div class="admin">
@@ -63,6 +64,12 @@
     >
       <div class="admin__status" id="feedback-status">Loading feedback…</div>
 
+      <div class="admin__panel-actions">
+        <button type="button" class="admin__btn admin__btn--outline" id="feedback-refresh">
+          Refresh feedback
+        </button>
+      </div>
+
       <div class="admin__kpis" id="feedback-kpis" hidden>
         <div class="admin__kpi">
           <div class="admin__kpi-label">Total</div>
@@ -98,9 +105,11 @@
               </div>
             </div>
           </div>
-          <button type="button" class="admin__btn admin__btn--outline" id="mark-all-read">
-            Mark all as read
-          </button>
+          <div class="admin__toolbar-actions">
+            <button type="button" class="admin__btn admin__btn--outline" id="mark-all-read">
+              Mark all as read
+            </button>
+          </div>
         </div>
         <div class="admin__toolbar-row admin__toolbar-row--app">
           <span class="admin__filter-label" id="feedback-app-label">App</span>
@@ -236,6 +245,26 @@
         >
           Users
           <span class="admin__tab-badge" id="yt-users-badge" hidden>0</span>
+        </button>
+        <button
+          type="button"
+          class="admin__subtab"
+          role="tab"
+          aria-selected="false"
+          data-yt-subtab="logged-in"
+          id="yt-subtab-logged-in"
+        >
+          Logged in
+        </button>
+        <button
+          type="button"
+          class="admin__subtab"
+          role="tab"
+          aria-selected="false"
+          data-yt-subtab="gifts"
+          id="yt-subtab-gifts"
+        >
+          Gift codes
         </button>
         <button
           type="button"
@@ -698,6 +727,121 @@
         <p class="admin__status admin__status--empty" id="yt-users-empty" hidden></p>
       </div>
 
+      <div id="yt-subpanel-logged-in" role="tabpanel" aria-labelledby="yt-subtab-logged-in" hidden>
+        <p class="admin__note">
+          Google accounts from <code>yt_filter_pro_profiles</code>.
+          Quota <code>&gt;= 9999</code> is unlimited.
+        </p>
+        <p class="admin__status" id="yt-loggedin-status" hidden></p>
+
+        <div class="admin__kpis" id="yt-loggedin-kpis" hidden>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Logged-in users</div>
+            <div class="admin__kpi-value" id="kpi-yt-loggedin-total">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Unlimited</div>
+            <div class="admin__kpi-value admin__kpi-value--green" id="kpi-yt-loggedin-unlimited">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Paying</div>
+            <div class="admin__kpi-value" id="kpi-yt-loggedin-paying">0</div>
+          </div>
+        </div>
+
+        <div class="admin__users-toolbar" id="yt-loggedin-toolbar" hidden>
+          <label class="admin__filter-group">
+            <span class="admin__filter-label">Search</span>
+            <input
+              type="search"
+              class="admin__users-search"
+              id="yt-loggedin-search"
+              placeholder="email"
+              autocomplete="off"
+            />
+          </label>
+          <div class="admin__users-actions">
+            <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-loggedin-refresh">
+              Refresh users
+            </button>
+          </div>
+        </div>
+
+        <div class="admin__users-table-wrap" id="yt-loggedin-table-wrap" hidden>
+          <table class="admin__users-table">
+            <thead>
+              <tr>
+                <th><button type="button" class="admin__users-sort" data-sort="email">email</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="quota">quota</button></th>
+                <th class="admin__users-num"><button type="button" class="admin__users-sort" data-sort="used">used</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="paying">paying</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="lifetime">lifetime</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="grant">grant until</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="created">created</button></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="yt-loggedin-body"></tbody>
+          </table>
+        </div>
+        <p class="admin__status admin__status--empty" id="yt-loggedin-empty" hidden></p>
+      </div>
+
+      <div id="yt-subpanel-gifts" role="tabpanel" aria-labelledby="yt-subtab-gifts" hidden>
+        <p class="admin__note">
+          Custom gift codes in <code>yt_filter_pro_gift_codes</code>.
+          Give each code a unique name on create. Hover a row to edit the name or other fields, then Save.
+        </p>
+        <section class="admin__gifts" id="yt-gifts">
+          <h3 class="admin__gifts-title">Create code</h3>
+          <form class="admin__gifts-form" id="yt-gifts-form">
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Name</span>
+              <input type="text" id="yt-gift-name" class="admin__users-search yt-gift-name" placeholder="e.g. BETA-CREATORS" autocomplete="off" spellcheck="false" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Kind</span>
+              <select id="yt-gift-kind" class="admin__select yt-gift-kind">
+                <option value="days">Days</option>
+                <option value="lifetime">Lifetime</option>
+              </select>
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Days</span>
+              <input type="number" id="yt-gift-days" class="admin__users-search" min="1" value="60" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Max uses</span>
+              <input type="number" id="yt-gift-max" class="admin__users-search" min="1" value="1" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Note</span>
+              <input type="text" id="yt-gift-note" class="admin__users-search" placeholder="beta / 2 months" />
+            </label>
+            <button type="submit" class="admin__btn admin__btn--sm" id="yt-gift-create">Create code</button>
+          </form>
+          <p class="admin__copy-hint" id="yt-gift-created" hidden></p>
+          <div class="admin__users-table-wrap">
+            <table class="admin__users-table admin__gifts-table">
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>kind</th>
+                  <th>days</th>
+                  <th>max uses</th>
+                  <th>used</th>
+                  <th>note</th>
+                  <th>redeemed by</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="yt-gifts-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
       <div id="yt-subpanel-dev" role="tabpanel" aria-labelledby="yt-subtab-dev" hidden>
         <div class="admin__status" id="yt-dev-status">Loading your YT Filter Pro data…</div>
 
@@ -786,6 +930,8 @@
   <script src="./yt-filter-pro-churn.js"></script>
   <!-- Chart.js — Supabase via REST fetch so file:// works (no SDK iframe). -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>
   <script src="./admin.js"></script>
+  <script src="./yt-filter-pro-accounts.js"></script>
 </body>
 </html>
