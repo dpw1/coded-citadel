@@ -1,7 +1,7 @@
 window.CC_ADMIN_UNINSTALLS = {
   "source": "src/data/portfolio-analytics.json",
-  "updatedAt": "2026-08-26",
-  "extractedAt": "2026-08-26T20:59:12.585Z",
+  "updatedAt": "2026-08-28",
+  "extractedAt": "2026-08-28T15:15:54.765Z",
   "daily": [
     {
       "date": "2026-05-19",
@@ -85,7 +85,7 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-06-10",
-      "total": 5
+      "total": 2
     },
     {
       "date": "2026-06-11",
@@ -97,7 +97,7 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-06-13",
-      "total": 4
+      "total": 3
     },
     {
       "date": "2026-06-14",
@@ -117,7 +117,7 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-06-18",
-      "total": 7
+      "total": 6
     },
     {
       "date": "2026-06-19",
@@ -125,67 +125,67 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-06-20",
-      "total": 1
+      "total": 0
     },
     {
       "date": "2026-06-21",
-      "total": 6
+      "total": 5
     },
     {
       "date": "2026-06-22",
-      "total": 6
-    },
-    {
-      "date": "2026-06-23",
       "total": 4
     },
     {
+      "date": "2026-06-23",
+      "total": 3
+    },
+    {
       "date": "2026-06-24",
-      "total": 18
+      "total": 14
     },
     {
       "date": "2026-06-25",
-      "total": 5
+      "total": 4
     },
     {
       "date": "2026-06-26",
-      "total": 7
-    },
-    {
-      "date": "2026-06-27",
-      "total": 11
-    },
-    {
-      "date": "2026-06-28",
       "total": 5
     },
     {
+      "date": "2026-06-27",
+      "total": 4
+    },
+    {
+      "date": "2026-06-28",
+      "total": 4
+    },
+    {
       "date": "2026-06-29",
-      "total": 10
+      "total": 7
     },
     {
       "date": "2026-06-30",
-      "total": 12
+      "total": 11
     },
     {
       "date": "2026-07-01",
-      "total": 15
+      "total": 14
     },
     {
       "date": "2026-07-02",
-      "total": 17
-    },
-    {
-      "date": "2026-07-03",
-      "total": 20
-    },
-    {
-      "date": "2026-07-04",
       "total": 15
     },
     {
-      "date": "2026-07-05",
+      "date": "2026-07-03",
       "total": 16
+    },
+    {
+      "date": "2026-07-04",
+      "total": 12
+    },
+    {
+      "date": "2026-07-05",
+      "total": 15
     },
     {
       "date": "2026-07-06",
@@ -197,15 +197,15 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-07-08",
-      "total": 34
+      "total": 31
     },
     {
       "date": "2026-07-09",
-      "total": 22
+      "total": 19
     },
     {
       "date": "2026-07-10",
-      "total": 19
+      "total": 14
     },
     {
       "date": "2026-07-11",
@@ -221,75 +221,75 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-07-14",
-      "total": 34
+      "total": 29
     },
     {
       "date": "2026-07-15",
-      "total": 26
+      "total": 20
     },
     {
       "date": "2026-07-16",
-      "total": 18
+      "total": 14
     },
     {
       "date": "2026-07-17",
-      "total": 30
+      "total": 26
     },
     {
       "date": "2026-07-18",
-      "total": 17
+      "total": 15
     },
     {
       "date": "2026-07-19",
-      "total": 30
+      "total": 26
     },
     {
       "date": "2026-07-20",
-      "total": 25
+      "total": 20
     },
     {
       "date": "2026-07-21",
-      "total": 32
+      "total": 28
     },
     {
       "date": "2026-07-22",
-      "total": 33
+      "total": 27
     },
     {
       "date": "2026-07-23",
-      "total": 48
-    },
-    {
-      "date": "2026-07-24",
-      "total": 21
-    },
-    {
-      "date": "2026-07-25",
-      "total": 34
-    },
-    {
-      "date": "2026-07-26",
-      "total": 21
-    },
-    {
-      "date": "2026-07-27",
-      "total": 36
-    },
-    {
-      "date": "2026-07-28",
-      "total": 31
-    },
-    {
-      "date": "2026-07-29",
       "total": 38
     },
     {
-      "date": "2026-07-30",
+      "date": "2026-07-24",
       "total": 18
     },
     {
-      "date": "2026-07-31",
+      "date": "2026-07-25",
+      "total": 25
+    },
+    {
+      "date": "2026-07-26",
+      "total": 17
+    },
+    {
+      "date": "2026-07-27",
       "total": 20
+    },
+    {
+      "date": "2026-07-28",
+      "total": 25
+    },
+    {
+      "date": "2026-07-29",
+      "total": 32
+    },
+    {
+      "date": "2026-07-30",
+      "total": 16
+    },
+    {
+      "date": "2026-07-31",
+      "total": 18
     },
     {
       "date": "2026-08-01",
@@ -305,15 +305,15 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-08-04",
-      "total": 25
+      "total": 24
     },
     {
       "date": "2026-08-05",
-      "total": 39
+      "total": 37
     },
     {
       "date": "2026-08-06",
-      "total": 17
+      "total": 15
     },
     {
       "date": "2026-08-07",
@@ -321,19 +321,19 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-08-08",
-      "total": 33
+      "total": 32
     },
     {
       "date": "2026-08-09",
-      "total": 24
+      "total": 23
     },
     {
       "date": "2026-08-10",
-      "total": 29
+      "total": 28
     },
     {
       "date": "2026-08-11",
-      "total": 32
+      "total": 31
     },
     {
       "date": "2026-08-12",
@@ -349,7 +349,7 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-08-16",
-      "total": 18
+      "total": 17
     },
     {
       "date": "2026-08-17",
@@ -357,7 +357,7 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-08-19",
-      "total": 36
+      "total": 35
     },
     {
       "date": "2026-08-21",
@@ -373,11 +373,15 @@ window.CC_ADMIN_UNINSTALLS = {
     },
     {
       "date": "2026-08-24",
-      "total": 53
+      "total": 51
     },
     {
       "date": "2026-08-25",
       "total": 34
+    },
+    {
+      "date": "2026-08-26",
+      "total": 48
     }
   ]
 };

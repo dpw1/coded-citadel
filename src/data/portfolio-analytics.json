@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-08-26",
-  "extractedAt": "2026-08-26T20:59:12.585Z",
-  "appCount": 14,
+  "updatedAt": "2026-08-28",
+  "extractedAt": "2026-08-28T15:15:54.765Z",
+  "appCount": 13,
   "apps": [
     {
       "key": "amcnbfpogccggckogifbdjekbammlahl",
       "slug": "hide-reposts-for-bluesky",
       "name": "Hide Reposts for Bluesky",
       "analytics": {
-        "totalInstalls": 39,
+        "totalInstalls": 38,
         "installations": [
           {
             "date": "03-07-2026",
@@ -212,6 +212,10 @@
           },
           {
             "date": "25-08-2026",
+            "total": 1
+          },
+          {
+            "date": "26-08-2026",
             "total": 1
           }
         ],
@@ -419,11 +423,15 @@
           {
             "date": "25-08-2026",
             "total": 8
+          },
+          {
+            "date": "26-08-2026",
+            "total": 9
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 35,
+          "US": 34,
           "AU": 1
         },
         "uninstalls": 4,
@@ -530,7 +538,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 18,
+        "pageViews": 19,
         "pageViewsOverTime": [
           {
             "date": "03-07-2026",
@@ -639,12 +647,16 @@
           {
             "date": "24-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1
           }
         ],
         "pageViewsBySource": {
           "ext_sidebar": 3
         },
-        "impressions": 101,
+        "impressions": 94,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "03-07-2026",
@@ -833,6 +845,10 @@
           {
             "date": "25-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 5
           }
         ],
         "enabledVsDisabled": {
@@ -841,7 +857,7 @@
           "enabledPct": 100,
           "disabledPct": 0,
           "total": 6,
-          "date": "25-08-2026"
+          "date": "26-08-2026"
         }
       }
     },
@@ -850,7 +866,7 @@
       "slug": "gmail-to-pdf",
       "name": "Gmail to PDF: Save Emails as PDF, HTML, TXT",
       "analytics": {
-        "totalInstalls": 64,
+        "totalInstalls": 62,
         "installations": [
           {
             "date": "14-06-2026",
@@ -1127,6 +1143,10 @@
           {
             "date": "25-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 2
           }
         ],
         "weeklyUsers": [
@@ -1401,15 +1421,20 @@
           {
             "date": "25-08-2026",
             "total": 61
+          },
+          {
+            "date": "26-08-2026",
+            "total": 60
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 40,
+          "US": 38,
           "IN": 7,
-          "BR": 2
+          "BR": 2,
+          "AU": 1
         },
-        "uninstalls": 7,
+        "uninstalls": 8,
         "uninstallsOverTime": [
           {
             "date": "14-06-2026",
@@ -1506,10 +1531,14 @@
           {
             "date": "19-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 63,
+        "pageViews": 67,
         "pageViewsOverTime": [
           {
             "date": "14-06-2026",
@@ -1750,14 +1779,18 @@
           {
             "date": "25-08-2026",
             "total": 2
+          },
+          {
+            "date": "26-08-2026",
+            "total": 8
           }
         ],
         "pageViewsBySource": {
-          "chatgpt_com": 14,
-          "ext_app_menu": 1,
-          "ext_sidebar": 4
+          "chatgpt_com": 19,
+          "ext_sidebar": 3,
+          "ext_app_menu": 1
         },
-        "impressions": 480,
+        "impressions": 437,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "14-06-2026",
@@ -2034,15 +2067,19 @@
           {
             "date": "25-08-2026",
             "total": 28
+          },
+          {
+            "date": "26-08-2026",
+            "total": 22
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 44,
-          "disabled": 3,
-          "enabledPct": 93.6,
-          "disabledPct": 6.4,
-          "total": 47,
-          "date": "25-08-2026"
+          "enabled": 42,
+          "disabled": 2,
+          "enabledPct": 95.5,
+          "disabledPct": 4.5,
+          "total": 44,
+          "date": "26-08-2026"
         }
       }
     },
@@ -2051,7 +2088,7 @@
       "slug": "dex",
       "name": "DEX: Export Discord messages, channels & attachments",
       "analytics": {
-        "totalInstalls": 58,
+        "totalInstalls": 52,
         "installations": [
           {
             "date": "02-07-2026",
@@ -2260,6 +2297,10 @@
           {
             "date": "25-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -2466,16 +2507,18 @@
           {
             "date": "25-08-2026",
             "total": 31
+          },
+          {
+            "date": "26-08-2026",
+            "total": 32
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 42,
+          "US": 41,
           "BR": 3,
-          "DE": 1,
-          "GB": 1,
-          "CA": 1,
-          "other": 1
+          "AU": 1,
+          "GB": 1
         },
         "uninstalls": 5,
         "uninstallsOverTime": [
@@ -2677,7 +2720,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 42,
+        "pageViews": 37,
         "pageViewsOverTime": [
           {
             "date": "02-07-2026",
@@ -2817,11 +2860,11 @@
           }
         ],
         "pageViewsBySource": {
+          "chatgpt_com": 1,
           "copilot_com": 2,
-          "ext_sidebar": 1,
-          "chatgpt_com": 1
+          "ext_sidebar": 1
         },
-        "impressions": 245,
+        "impressions": 222,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "02-07-2026",
@@ -3030,15 +3073,19 @@
           {
             "date": "25-08-2026",
             "total": 7
+          },
+          {
+            "date": "26-08-2026",
+            "total": 7
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 18,
+          "enabled": 19,
           "disabled": 2,
-          "enabledPct": 90,
-          "disabledPct": 10,
-          "total": 20,
-          "date": "25-08-2026"
+          "enabledPct": 90.5,
+          "disabledPct": 9.5,
+          "total": 21,
+          "date": "26-08-2026"
         }
       }
     },
@@ -3047,7 +3094,7 @@
       "slug": "youtube-filter-pro",
       "name": "YT Filter Pro: filter by views, duration, date, and more",
       "analytics": {
-        "totalInstalls": 861,
+        "totalInstalls": 852,
         "installations": [
           {
             "date": "18-05-2026",
@@ -3436,6 +3483,10 @@
           {
             "date": "25-08-2026",
             "total": 48
+          },
+          {
+            "date": "26-08-2026",
+            "total": 45
           }
         ],
         "weeklyUsers": [
@@ -3818,18 +3869,22 @@
           {
             "date": "25-08-2026",
             "total": 1019
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1048
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 210,
-          "IN": 53,
-          "BR": 39,
-          "CA": 26,
-          "DE": 25,
-          "other": 32
+          "US": 200,
+          "IN": 51,
+          "BR": 41,
+          "DE": 27,
+          "CA": 23,
+          "other": 36
         },
-        "uninstalls": 324,
+        "uninstalls": 328,
         "uninstallsOverTime": [
           {
             "date": "19-05-2026",
@@ -4166,10 +4221,14 @@
           {
             "date": "25-08-2026",
             "total": 13
+          },
+          {
+            "date": "26-08-2026",
+            "total": 29
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 1859,
+        "pageViews": 1829,
         "pageViewsOverTime": [
           {
             "date": "18-05-2026",
@@ -4558,21 +4617,25 @@
           {
             "date": "25-08-2026",
             "total": 100
+          },
+          {
+            "date": "26-08-2026",
+            "total": 102
           }
         ],
         "pageViewsBySource": {
-          "PRICECOMPAREVIDEOAD": 2,
           "app-launcher": 18,
-          "chatgpt_com": 186,
-          "ext_app_menu": 49,
-          "ext_sidebar": 124,
+          "chatgpt_com": 189,
+          "ext_sidebar": 119,
+          "PRICECOMPAREVIDEOAD": 2,
+          "ext_app_menu": 44,
           "bgads1": 6,
           "xads": 1,
-          "item-share-cb": 1,
           "chrome-remove-extension-dialog": 1,
-          "google": 2
+          "google": 2,
+          "item-share-cb": 1
         },
-        "impressions": 11038,
+        "impressions": 10801,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "19-05-2026",
@@ -4957,15 +5020,19 @@
           {
             "date": "25-08-2026",
             "total": 495
+          },
+          {
+            "date": "26-08-2026",
+            "total": 525
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 626,
+          "enabled": 660,
           "disabled": 126,
-          "enabledPct": 83.2,
-          "disabledPct": 16.8,
-          "total": 752,
-          "date": "25-08-2026"
+          "enabledPct": 84,
+          "disabledPct": 16,
+          "total": 786,
+          "date": "26-08-2026"
         }
       }
     },
@@ -4974,7 +5041,7 @@
       "slug": "claude-deep-search",
       "name": "Claude Message Search: Search Across All Your Past Conversations",
       "analytics": {
-        "totalInstalls": 99,
+        "totalInstalls": 93,
         "installations": [
           {
             "date": "22-05-2026",
@@ -5343,6 +5410,10 @@
           {
             "date": "25-08-2026",
             "total": 2
+          },
+          {
+            "date": "26-08-2026",
+            "total": 4
           }
         ],
         "weeklyUsers": [
@@ -5717,15 +5788,19 @@
           {
             "date": "25-08-2026",
             "total": 57
+          },
+          {
+            "date": "26-08-2026",
+            "total": 58
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 78,
-          "DE": 5,
+          "US": 76,
           "IN": 3,
-          "BR": 1,
-          "AU": 1
+          "DE": 2,
+          "AU": 1,
+          "BR": 1
         },
         "uninstalls": 4,
         "uninstallsOverTime": [
@@ -5911,7 +5986,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 71,
+        "pageViews": 60,
         "pageViewsOverTime": [
           {
             "date": "22-05-2026",
@@ -6172,12 +6247,16 @@
           {
             "date": "24-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1
           }
         ],
         "pageViewsBySource": {
           "ext_sidebar": 2
         },
-        "impressions": 157,
+        "impressions": 146,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "22-05-2026",
@@ -6482,15 +6561,19 @@
           {
             "date": "24-08-2026",
             "total": 5
+          },
+          {
+            "date": "26-08-2026",
+            "total": 2
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 40,
+          "enabled": 38,
           "disabled": 1,
-          "enabledPct": 97.6,
-          "disabledPct": 2.4,
-          "total": 41,
-          "date": "25-08-2026"
+          "enabledPct": 97.4,
+          "disabledPct": 2.6,
+          "total": 39,
+          "date": "26-08-2026"
         }
       }
     },
@@ -6499,7 +6582,7 @@
       "slug": "instagram-comments-exporter",
       "name": "Comments Exporter for Instagram: Export comments to CSV, JSON, XLSX, or TXT",
       "analytics": {
-        "totalInstalls": 45,
+        "totalInstalls": 44,
         "installations": [
           {
             "date": "19-06-2026",
@@ -6756,6 +6839,10 @@
           {
             "date": "25-08-2026",
             "total": 4
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -6942,11 +7029,15 @@
           {
             "date": "25-08-2026",
             "total": 24
+          },
+          {
+            "date": "26-08-2026",
+            "total": 27
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 36,
+          "US": 35,
           "BR": 2,
           "AU": 1
         },
@@ -7078,7 +7169,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 52,
+        "pageViews": 54,
         "pageViewsOverTime": [
           {
             "date": "19-06-2026",
@@ -7219,13 +7310,17 @@
           {
             "date": "25-08-2026",
             "total": 8
+          },
+          {
+            "date": "26-08-2026",
+            "total": 3
           }
         ],
         "pageViewsBySource": {
           "chatgpt_com": 3,
           "ext_sidebar": 1
         },
-        "impressions": 151,
+        "impressions": 177,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "19-06-2026",
@@ -7438,15 +7533,19 @@
           {
             "date": "25-08-2026",
             "total": 33
+          },
+          {
+            "date": "26-08-2026",
+            "total": 28
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 17,
-          "disabled": 1,
-          "enabledPct": 94.4,
-          "disabledPct": 5.6,
-          "total": 18,
-          "date": "25-08-2026"
+          "enabled": 20,
+          "disabled": 0,
+          "enabledPct": 100,
+          "disabledPct": 0,
+          "total": 20,
+          "date": "26-08-2026"
         }
       }
     },
@@ -7856,6 +7955,10 @@
           {
             "date": "25-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 2
           }
         ],
         "weeklyUsers": [
@@ -8074,6 +8177,10 @@
           {
             "date": "25-08-2026",
             "total": 14
+          },
+          {
+            "date": "26-08-2026",
+            "total": 14
           }
         ],
         "weeklyUsersByRegion": {},
@@ -8111,7 +8218,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 25,
+        "pageViews": 24,
         "pageViewsOverTime": [
           {
             "date": "14-05-2026",
@@ -8327,10 +8434,10 @@
           }
         ],
         "pageViewsBySource": {
-          "ext_sidebar": 3,
-          "chatgpt_com": 1
+          "chatgpt_com": 1,
+          "ext_sidebar": 3
         },
-        "impressions": 145,
+        "impressions": 124,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "15-05-2026",
@@ -8587,15 +8694,19 @@
           {
             "date": "25-08-2026",
             "total": 5
+          },
+          {
+            "date": "26-08-2026",
+            "total": 4
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 9,
+          "enabled": 8,
           "disabled": 0,
           "enabledPct": 100,
           "disabledPct": 0,
-          "total": 9,
-          "date": "25-08-2026"
+          "total": 8,
+          "date": "26-08-2026"
         }
       }
     },
@@ -8604,7 +8715,7 @@
       "slug": "custom-data-gflljmlm",
       "name": "YouTube Quick AI Summary: Preview Any Video Before Watching",
       "analytics": {
-        "totalInstalls": 15,
+        "totalInstalls": 17,
         "installations": [
           {
             "date": "17-08-2026",
@@ -8633,6 +8744,10 @@
           {
             "date": "25-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 2
           }
         ],
         "weeklyUsers": [
@@ -8663,11 +8778,15 @@
           {
             "date": "25-08-2026",
             "total": 2
+          },
+          {
+            "date": "26-08-2026",
+            "total": 4
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 14
+          "US": 15
         },
         "uninstalls": 1,
         "uninstallsOverTime": [
@@ -8677,7 +8796,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 8,
+        "pageViews": 9,
         "pageViewsOverTime": [
           {
             "date": "17-08-2026",
@@ -8698,10 +8817,14 @@
           {
             "date": "24-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1
           }
         ],
         "pageViewsBySource": {},
-        "impressions": 63,
+        "impressions": 72,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "17-08-2026",
@@ -8730,14 +8853,18 @@
           {
             "date": "25-08-2026",
             "total": 11
+          },
+          {
+            "date": "26-08-2026",
+            "total": 9
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 0,
+          "enabled": 1,
           "disabled": 0,
-          "enabledPct": 0,
+          "enabledPct": 100,
           "disabledPct": 0,
-          "total": 0,
+          "total": 1,
           "date": "26-08-2026"
         }
       }
@@ -8747,7 +8874,7 @@
       "slug": "ai-bookmark",
       "name": "AI Bookmark: Save & Revisit AI Replies - Claude, ChatGPT, Grok",
       "analytics": {
-        "totalInstalls": 42,
+        "totalInstalls": 41,
         "installations": [
           {
             "date": "12-06-2026",
@@ -9032,6 +9159,10 @@
           {
             "date": "25-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1
           }
         ],
         "weeklyUsers": [
@@ -9278,15 +9409,19 @@
           {
             "date": "25-08-2026",
             "total": 12
+          },
+          {
+            "date": "26-08-2026",
+            "total": 12
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 38,
-          "BR": 1,
-          "IN": 1
+          "US": 37,
+          "IN": 1,
+          "BR": 1
         },
-        "uninstalls": 4,
+        "uninstalls": 5,
         "uninstallsOverTime": [
           {
             "date": "12-06-2026",
@@ -9479,6 +9614,10 @@
           {
             "date": "23-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1
           }
         ],
         "uninstallsByRegion": {},
@@ -9635,13 +9774,17 @@
           {
             "date": "23-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1
           }
         ],
         "pageViewsBySource": {
           "chatgpt_com": 1,
-          "ext_sidebar": 2
+          "ext_sidebar": 1
         },
-        "impressions": 112,
+        "impressions": 113,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "12-06-2026",
@@ -9882,6 +10025,10 @@
           {
             "date": "25-08-2026",
             "total": 8
+          },
+          {
+            "date": "26-08-2026",
+            "total": 9
           }
         ],
         "enabledVsDisabled": {
@@ -9890,7 +10037,7 @@
           "enabledPct": 83.3,
           "disabledPct": 16.7,
           "total": 6,
-          "date": "25-08-2026"
+          "date": "26-08-2026"
         }
       }
     },
@@ -9899,7 +10046,7 @@
       "slug": "instagram-dm-exporter",
       "name": "IG DM Exporter",
       "analytics": {
-        "totalInstalls": 398,
+        "totalInstalls": 394,
         "installations": [
           {
             "date": "26-05-2026",
@@ -10256,6 +10403,10 @@
           {
             "date": "25-08-2026",
             "total": 13
+          },
+          {
+            "date": "26-08-2026",
+            "total": 14
           }
         ],
         "weeklyUsers": [
@@ -10606,18 +10757,22 @@
           {
             "date": "25-08-2026",
             "total": 605
+          },
+          {
+            "date": "26-08-2026",
+            "total": 592
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
           "US": 88,
-          "IN": 42,
-          "CA": 15,
+          "IN": 40,
+          "CA": 16,
           "BR": 14,
-          "AU": 11,
-          "other": 18
+          "GB": 11,
+          "other": 17
         },
-        "uninstalls": 156,
+        "uninstalls": 155,
         "uninstallsOverTime": [
           {
             "date": "04-06-2026",
@@ -10882,10 +11037,14 @@
           {
             "date": "25-08-2026",
             "total": 9
+          },
+          {
+            "date": "26-08-2026",
+            "total": 4
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 682,
+        "pageViews": 674,
         "pageViewsOverTime": [
           {
             "date": "26-05-2026",
@@ -11238,19 +11397,23 @@
           {
             "date": "25-08-2026",
             "total": 24
+          },
+          {
+            "date": "26-08-2026",
+            "total": 23
           }
         ],
         "pageViewsBySource": {
-          "ext_app_menu": 10,
-          "ext_sidebar": 36,
+          "ext_app_menu": 11,
+          "ext_sidebar": 37,
           "chatgpt_com": 11,
-          "app-launcher": 2,
+          "app-launcher": 1,
           "item-share-cp": 5,
-          "item-share-cb": 2,
+          "item-share-cb": 1,
           "inssist": 1,
           "quora-answer": 1
         },
-        "impressions": 1602,
+        "impressions": 1581,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "26-05-2026",
@@ -11599,15 +11762,19 @@
           {
             "date": "25-08-2026",
             "total": 57
+          },
+          {
+            "date": "26-08-2026",
+            "total": 56
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 275,
-          "disabled": 76,
-          "enabledPct": 78.3,
-          "disabledPct": 21.7,
-          "total": 351,
-          "date": "25-08-2026"
+          "enabled": 281,
+          "disabled": 66,
+          "enabledPct": 81,
+          "disabledPct": 19,
+          "total": 347,
+          "date": "26-08-2026"
         }
       }
     },
@@ -11616,7 +11783,7 @@
       "slug": "custom-data",
       "name": "Saved Posts Exporter for IG",
       "analytics": {
-        "totalInstalls": 63,
+        "totalInstalls": 65,
         "installations": [
           {
             "date": "04-08-2026",
@@ -11693,6 +11860,10 @@
           {
             "date": "25-08-2026",
             "total": 3
+          },
+          {
+            "date": "26-08-2026",
+            "total": 2
           }
         ],
         "weeklyUsers": [
@@ -11767,15 +11938,19 @@
           {
             "date": "25-08-2026",
             "total": 26
+          },
+          {
+            "date": "26-08-2026",
+            "total": 27
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 37,
+          "US": 38,
           "IN": 4,
           "BR": 2,
-          "DE": 1,
-          "GB": 1
+          "GB": 1,
+          "DE": 1
         },
         "uninstalls": 12,
         "uninstallsOverTime": [
@@ -11821,7 +11996,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 118,
+        "pageViews": 124,
         "pageViewsOverTime": [
           {
             "date": "04-08-2026",
@@ -11898,14 +12073,18 @@
           {
             "date": "25-08-2026",
             "total": 9
+          },
+          {
+            "date": "26-08-2026",
+            "total": 6
           }
         ],
         "pageViewsBySource": {
           "ext_sidebar": 11,
-          "ext_app_menu": 2,
-          "ext_extensions_menu": 1
+          "ext_extensions_menu": 1,
+          "ext_app_menu": 2
         },
-        "impressions": 365,
+        "impressions": 375,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "04-08-2026",
@@ -11982,6 +12161,10 @@
           {
             "date": "25-08-2026",
             "total": 8
+          },
+          {
+            "date": "26-08-2026",
+            "total": 10
           }
         ],
         "enabledVsDisabled": {
@@ -11990,1143 +12173,7 @@
           "enabledPct": 88.2,
           "disabledPct": 11.8,
           "total": 17,
-          "date": "25-08-2026"
-        }
-      }
-    },
-    {
-      "key": "jadjgiiaompdjacagaomgogdihbpgcpg",
-      "slug": "save-directly-to-drive",
-      "name": "Save to Google Drive: Use Drive as Your Downloads Folder",
-      "analytics": {
-        "totalInstalls": 45,
-        "installations": [
-          {
-            "date": "10-06-2026",
-            "total": 5
-          },
-          {
-            "date": "11-06-2026",
-            "total": 2
-          },
-          {
-            "date": "12-06-2026",
-            "total": 2
-          },
-          {
-            "date": "13-06-2026",
-            "total": 2
-          },
-          {
-            "date": "14-06-2026",
-            "total": 1
-          },
-          {
-            "date": "15-06-2026",
-            "total": 1
-          },
-          {
-            "date": "16-06-2026",
-            "total": 1
-          },
-          {
-            "date": "17-06-2026",
-            "total": 1
-          },
-          {
-            "date": "18-06-2026",
-            "total": 1
-          },
-          {
-            "date": "19-06-2026",
-            "total": 4
-          },
-          {
-            "date": "20-06-2026",
-            "total": 3
-          },
-          {
-            "date": "21-06-2026",
-            "total": 2
-          },
-          {
-            "date": "22-06-2026",
-            "total": 9
-          },
-          {
-            "date": "23-06-2026",
-            "total": 7
-          },
-          {
-            "date": "24-06-2026",
-            "total": 8
-          },
-          {
-            "date": "25-06-2026",
-            "total": 5
-          },
-          {
-            "date": "26-06-2026",
-            "total": 5
-          },
-          {
-            "date": "27-06-2026",
-            "total": 6
-          },
-          {
-            "date": "28-06-2026",
-            "total": 10
-          },
-          {
-            "date": "29-06-2026",
-            "total": 8
-          },
-          {
-            "date": "30-06-2026",
-            "total": 11
-          },
-          {
-            "date": "01-07-2026",
-            "total": 7
-          },
-          {
-            "date": "02-07-2026",
-            "total": 7
-          },
-          {
-            "date": "03-07-2026",
-            "total": 6
-          },
-          {
-            "date": "04-07-2026",
-            "total": 8
-          },
-          {
-            "date": "05-07-2026",
-            "total": 2
-          },
-          {
-            "date": "06-07-2026",
-            "total": 3
-          },
-          {
-            "date": "07-07-2026",
-            "total": 6
-          },
-          {
-            "date": "08-07-2026",
-            "total": 9
-          },
-          {
-            "date": "09-07-2026",
-            "total": 9
-          },
-          {
-            "date": "10-07-2026",
-            "total": 9
-          },
-          {
-            "date": "11-07-2026",
-            "total": 6
-          },
-          {
-            "date": "12-07-2026",
-            "total": 4
-          },
-          {
-            "date": "13-07-2026",
-            "total": 6
-          },
-          {
-            "date": "14-07-2026",
-            "total": 12
-          },
-          {
-            "date": "15-07-2026",
-            "total": 6
-          },
-          {
-            "date": "16-07-2026",
-            "total": 11
-          },
-          {
-            "date": "17-07-2026",
-            "total": 9
-          },
-          {
-            "date": "18-07-2026",
-            "total": 7
-          },
-          {
-            "date": "19-07-2026",
-            "total": 6
-          },
-          {
-            "date": "20-07-2026",
-            "total": 8
-          },
-          {
-            "date": "21-07-2026",
-            "total": 12
-          },
-          {
-            "date": "22-07-2026",
-            "total": 13
-          },
-          {
-            "date": "23-07-2026",
-            "total": 12
-          },
-          {
-            "date": "24-07-2026",
-            "total": 8
-          },
-          {
-            "date": "25-07-2026",
-            "total": 17
-          },
-          {
-            "date": "26-07-2026",
-            "total": 30
-          },
-          {
-            "date": "27-07-2026",
-            "total": 24
-          },
-          {
-            "date": "28-07-2026",
-            "total": 13
-          },
-          {
-            "date": "29-07-2026",
-            "total": 7
-          },
-          {
-            "date": "09-08-2026",
-            "total": 1
-          }
-        ],
-        "weeklyUsers": [
-          {
-            "date": "10-06-2026",
-            "total": 2
-          },
-          {
-            "date": "11-06-2026",
-            "total": 3
-          },
-          {
-            "date": "12-06-2026",
-            "total": 3
-          },
-          {
-            "date": "13-06-2026",
-            "total": 3
-          },
-          {
-            "date": "14-06-2026",
-            "total": 3
-          },
-          {
-            "date": "15-06-2026",
-            "total": 3
-          },
-          {
-            "date": "16-06-2026",
-            "total": 3
-          },
-          {
-            "date": "17-06-2026",
-            "total": 2
-          },
-          {
-            "date": "18-06-2026",
-            "total": 2
-          },
-          {
-            "date": "19-06-2026",
-            "total": 2
-          },
-          {
-            "date": "20-06-2026",
-            "total": 3
-          },
-          {
-            "date": "21-06-2026",
-            "total": 3
-          },
-          {
-            "date": "22-06-2026",
-            "total": 7
-          },
-          {
-            "date": "23-06-2026",
-            "total": 9
-          },
-          {
-            "date": "24-06-2026",
-            "total": 10
-          },
-          {
-            "date": "25-06-2026",
-            "total": 10
-          },
-          {
-            "date": "26-06-2026",
-            "total": 14
-          },
-          {
-            "date": "27-06-2026",
-            "total": 18
-          },
-          {
-            "date": "28-06-2026",
-            "total": 24
-          },
-          {
-            "date": "29-06-2026",
-            "total": 26
-          },
-          {
-            "date": "30-06-2026",
-            "total": 31
-          },
-          {
-            "date": "01-07-2026",
-            "total": 34
-          },
-          {
-            "date": "02-07-2026",
-            "total": 35
-          },
-          {
-            "date": "03-07-2026",
-            "total": 37
-          },
-          {
-            "date": "04-07-2026",
-            "total": 40
-          },
-          {
-            "date": "05-07-2026",
-            "total": 38
-          },
-          {
-            "date": "06-07-2026",
-            "total": 38
-          },
-          {
-            "date": "07-07-2026",
-            "total": 39
-          },
-          {
-            "date": "08-07-2026",
-            "total": 40
-          },
-          {
-            "date": "09-07-2026",
-            "total": 44
-          },
-          {
-            "date": "10-07-2026",
-            "total": 50
-          },
-          {
-            "date": "11-07-2026",
-            "total": 53
-          },
-          {
-            "date": "12-07-2026",
-            "total": 55
-          },
-          {
-            "date": "13-07-2026",
-            "total": 65
-          },
-          {
-            "date": "14-07-2026",
-            "total": 74
-          },
-          {
-            "date": "15-07-2026",
-            "total": 82
-          },
-          {
-            "date": "16-07-2026",
-            "total": 84
-          },
-          {
-            "date": "17-07-2026",
-            "total": 91
-          },
-          {
-            "date": "18-07-2026",
-            "total": 90
-          },
-          {
-            "date": "19-07-2026",
-            "total": 101
-          },
-          {
-            "date": "20-07-2026",
-            "total": 103
-          },
-          {
-            "date": "21-07-2026",
-            "total": 111
-          },
-          {
-            "date": "22-07-2026",
-            "total": 120
-          },
-          {
-            "date": "23-07-2026",
-            "total": 120
-          },
-          {
-            "date": "24-07-2026",
-            "total": 125
-          },
-          {
-            "date": "25-07-2026",
-            "total": 134
-          },
-          {
-            "date": "26-07-2026",
-            "total": 144
-          },
-          {
-            "date": "27-07-2026",
-            "total": 162
-          },
-          {
-            "date": "28-07-2026",
-            "total": 182
-          },
-          {
-            "date": "29-07-2026",
-            "total": 190
-          },
-          {
-            "date": "30-07-2026",
-            "total": 189
-          },
-          {
-            "date": "31-07-2026",
-            "total": 184
-          },
-          {
-            "date": "01-08-2026",
-            "total": 177
-          },
-          {
-            "date": "02-08-2026",
-            "total": 180
-          },
-          {
-            "date": "03-08-2026",
-            "total": 170
-          },
-          {
-            "date": "04-08-2026",
-            "total": 166
-          },
-          {
-            "date": "05-08-2026",
-            "total": 159
-          },
-          {
-            "date": "06-08-2026",
-            "total": 156
-          },
-          {
-            "date": "07-08-2026",
-            "total": 152
-          },
-          {
-            "date": "08-08-2026",
-            "total": 154
-          },
-          {
-            "date": "09-08-2026",
-            "total": 150
-          },
-          {
-            "date": "10-08-2026",
-            "total": 147
-          },
-          {
-            "date": "11-08-2026",
-            "total": 147
-          },
-          {
-            "date": "12-08-2026",
-            "total": 147
-          },
-          {
-            "date": "13-08-2026",
-            "total": 145
-          },
-          {
-            "date": "15-08-2026",
-            "total": 139
-          },
-          {
-            "date": "16-08-2026",
-            "total": 136
-          },
-          {
-            "date": "17-08-2026",
-            "total": 138
-          },
-          {
-            "date": "19-08-2026",
-            "total": 133
-          },
-          {
-            "date": "21-08-2026",
-            "total": 131
-          },
-          {
-            "date": "22-08-2026",
-            "total": 129
-          },
-          {
-            "date": "23-08-2026",
-            "total": 130
-          },
-          {
-            "date": "24-08-2026",
-            "total": 132
-          },
-          {
-            "date": "25-08-2026",
-            "total": 133
-          }
-        ],
-        "weeklyUsersByRegion": {},
-        "installsByRegion": {
-          "US": 13,
-          "IN": 4,
-          "GB": 3,
-          "CA": 3,
-          "DE": 1,
-          "other": 1
-        },
-        "uninstalls": 45,
-        "uninstallsOverTime": [
-          {
-            "date": "10-06-2026",
-            "total": 3
-          },
-          {
-            "date": "13-06-2026",
-            "total": 1
-          },
-          {
-            "date": "18-06-2026",
-            "total": 1
-          },
-          {
-            "date": "20-06-2026",
-            "total": 1
-          },
-          {
-            "date": "21-06-2026",
-            "total": 1
-          },
-          {
-            "date": "22-06-2026",
-            "total": 2
-          },
-          {
-            "date": "23-06-2026",
-            "total": 1
-          },
-          {
-            "date": "24-06-2026",
-            "total": 4
-          },
-          {
-            "date": "25-06-2026",
-            "total": 1
-          },
-          {
-            "date": "26-06-2026",
-            "total": 2
-          },
-          {
-            "date": "27-06-2026",
-            "total": 7
-          },
-          {
-            "date": "28-06-2026",
-            "total": 1
-          },
-          {
-            "date": "29-06-2026",
-            "total": 3
-          },
-          {
-            "date": "30-06-2026",
-            "total": 1
-          },
-          {
-            "date": "01-07-2026",
-            "total": 1
-          },
-          {
-            "date": "02-07-2026",
-            "total": 2
-          },
-          {
-            "date": "03-07-2026",
-            "total": 4
-          },
-          {
-            "date": "04-07-2026",
-            "total": 3
-          },
-          {
-            "date": "05-07-2026",
-            "total": 1
-          },
-          {
-            "date": "08-07-2026",
-            "total": 3
-          },
-          {
-            "date": "09-07-2026",
-            "total": 3
-          },
-          {
-            "date": "10-07-2026",
-            "total": 5
-          },
-          {
-            "date": "14-07-2026",
-            "total": 5
-          },
-          {
-            "date": "15-07-2026",
-            "total": 6
-          },
-          {
-            "date": "16-07-2026",
-            "total": 4
-          },
-          {
-            "date": "17-07-2026",
-            "total": 4
-          },
-          {
-            "date": "18-07-2026",
-            "total": 2
-          },
-          {
-            "date": "19-07-2026",
-            "total": 4
-          },
-          {
-            "date": "20-07-2026",
-            "total": 5
-          },
-          {
-            "date": "21-07-2026",
-            "total": 4
-          },
-          {
-            "date": "22-07-2026",
-            "total": 6
-          },
-          {
-            "date": "23-07-2026",
-            "total": 10
-          },
-          {
-            "date": "24-07-2026",
-            "total": 3
-          },
-          {
-            "date": "25-07-2026",
-            "total": 9
-          },
-          {
-            "date": "26-07-2026",
-            "total": 4
-          },
-          {
-            "date": "27-07-2026",
-            "total": 16
-          },
-          {
-            "date": "28-07-2026",
-            "total": 6
-          },
-          {
-            "date": "29-07-2026",
-            "total": 6
-          },
-          {
-            "date": "30-07-2026",
-            "total": 2
-          },
-          {
-            "date": "31-07-2026",
-            "total": 2
-          },
-          {
-            "date": "04-08-2026",
-            "total": 1
-          },
-          {
-            "date": "05-08-2026",
-            "total": 2
-          },
-          {
-            "date": "06-08-2026",
-            "total": 2
-          },
-          {
-            "date": "08-08-2026",
-            "total": 1
-          },
-          {
-            "date": "09-08-2026",
-            "total": 1
-          },
-          {
-            "date": "10-08-2026",
-            "total": 1
-          },
-          {
-            "date": "11-08-2026",
-            "total": 1
-          },
-          {
-            "date": "16-08-2026",
-            "total": 1
-          },
-          {
-            "date": "19-08-2026",
-            "total": 1
-          },
-          {
-            "date": "24-08-2026",
-            "total": 2
-          }
-        ],
-        "uninstallsByRegion": {},
-        "pageViews": 98,
-        "pageViewsOverTime": [
-          {
-            "date": "10-06-2026",
-            "total": 4
-          },
-          {
-            "date": "11-06-2026",
-            "total": 5
-          },
-          {
-            "date": "12-06-2026",
-            "total": 1
-          },
-          {
-            "date": "13-06-2026",
-            "total": 3
-          },
-          {
-            "date": "15-06-2026",
-            "total": 2
-          },
-          {
-            "date": "16-06-2026",
-            "total": 1
-          },
-          {
-            "date": "17-06-2026",
-            "total": 2
-          },
-          {
-            "date": "19-06-2026",
-            "total": 3
-          },
-          {
-            "date": "20-06-2026",
-            "total": 7
-          },
-          {
-            "date": "21-06-2026",
-            "total": 6
-          },
-          {
-            "date": "22-06-2026",
-            "total": 10
-          },
-          {
-            "date": "23-06-2026",
-            "total": 4
-          },
-          {
-            "date": "24-06-2026",
-            "total": 13
-          },
-          {
-            "date": "25-06-2026",
-            "total": 6
-          },
-          {
-            "date": "26-06-2026",
-            "total": 9
-          },
-          {
-            "date": "27-06-2026",
-            "total": 16
-          },
-          {
-            "date": "28-06-2026",
-            "total": 11
-          },
-          {
-            "date": "29-06-2026",
-            "total": 15
-          },
-          {
-            "date": "30-06-2026",
-            "total": 20
-          },
-          {
-            "date": "01-07-2026",
-            "total": 11
-          },
-          {
-            "date": "02-07-2026",
-            "total": 17
-          },
-          {
-            "date": "03-07-2026",
-            "total": 19
-          },
-          {
-            "date": "04-07-2026",
-            "total": 16
-          },
-          {
-            "date": "05-07-2026",
-            "total": 7
-          },
-          {
-            "date": "06-07-2026",
-            "total": 17
-          },
-          {
-            "date": "07-07-2026",
-            "total": 18
-          },
-          {
-            "date": "08-07-2026",
-            "total": 23
-          },
-          {
-            "date": "09-07-2026",
-            "total": 15
-          },
-          {
-            "date": "10-07-2026",
-            "total": 17
-          },
-          {
-            "date": "11-07-2026",
-            "total": 18
-          },
-          {
-            "date": "12-07-2026",
-            "total": 8
-          },
-          {
-            "date": "13-07-2026",
-            "total": 16
-          },
-          {
-            "date": "14-07-2026",
-            "total": 29
-          },
-          {
-            "date": "15-07-2026",
-            "total": 16
-          },
-          {
-            "date": "16-07-2026",
-            "total": 25
-          },
-          {
-            "date": "17-07-2026",
-            "total": 24
-          },
-          {
-            "date": "18-07-2026",
-            "total": 23
-          },
-          {
-            "date": "19-07-2026",
-            "total": 20
-          },
-          {
-            "date": "20-07-2026",
-            "total": 19
-          },
-          {
-            "date": "21-07-2026",
-            "total": 29
-          },
-          {
-            "date": "22-07-2026",
-            "total": 29
-          },
-          {
-            "date": "23-07-2026",
-            "total": 27
-          },
-          {
-            "date": "24-07-2026",
-            "total": 21
-          },
-          {
-            "date": "25-07-2026",
-            "total": 28
-          },
-          {
-            "date": "26-07-2026",
-            "total": 59
-          },
-          {
-            "date": "27-07-2026",
-            "total": 53
-          },
-          {
-            "date": "28-07-2026",
-            "total": 32
-          },
-          {
-            "date": "29-07-2026",
-            "total": 13
-          }
-        ],
-        "pageViewsBySource": {
-          "ext_sidebar": 33,
-          "ext_app_menu": 12,
-          "chrome-ntp-icon": 1
-        },
-        "impressions": 1628,
-        "impressionsAcrossChromeWebStore": [
-          {
-            "date": "10-06-2026",
-            "total": 40
-          },
-          {
-            "date": "11-06-2026",
-            "total": 53
-          },
-          {
-            "date": "12-06-2026",
-            "total": 22
-          },
-          {
-            "date": "13-06-2026",
-            "total": 15
-          },
-          {
-            "date": "14-06-2026",
-            "total": 6
-          },
-          {
-            "date": "15-06-2026",
-            "total": 14
-          },
-          {
-            "date": "16-06-2026",
-            "total": 6
-          },
-          {
-            "date": "17-06-2026",
-            "total": 13
-          },
-          {
-            "date": "18-06-2026",
-            "total": 9
-          },
-          {
-            "date": "19-06-2026",
-            "total": 95
-          },
-          {
-            "date": "20-06-2026",
-            "total": 113
-          },
-          {
-            "date": "21-06-2026",
-            "total": 125
-          },
-          {
-            "date": "22-06-2026",
-            "total": 168
-          },
-          {
-            "date": "23-06-2026",
-            "total": 143
-          },
-          {
-            "date": "24-06-2026",
-            "total": 168
-          },
-          {
-            "date": "25-06-2026",
-            "total": 201
-          },
-          {
-            "date": "26-06-2026",
-            "total": 192
-          },
-          {
-            "date": "27-06-2026",
-            "total": 146
-          },
-          {
-            "date": "28-06-2026",
-            "total": 170
-          },
-          {
-            "date": "29-06-2026",
-            "total": 270
-          },
-          {
-            "date": "30-06-2026",
-            "total": 276
-          },
-          {
-            "date": "01-07-2026",
-            "total": 247
-          },
-          {
-            "date": "02-07-2026",
-            "total": 270
-          },
-          {
-            "date": "03-07-2026",
-            "total": 253
-          },
-          {
-            "date": "04-07-2026",
-            "total": 161
-          },
-          {
-            "date": "05-07-2026",
-            "total": 182
-          },
-          {
-            "date": "06-07-2026",
-            "total": 256
-          },
-          {
-            "date": "07-07-2026",
-            "total": 329
-          },
-          {
-            "date": "08-07-2026",
-            "total": 308
-          },
-          {
-            "date": "09-07-2026",
-            "total": 257
-          },
-          {
-            "date": "10-07-2026",
-            "total": 305
-          },
-          {
-            "date": "11-07-2026",
-            "total": 230
-          },
-          {
-            "date": "12-07-2026",
-            "total": 239
-          },
-          {
-            "date": "13-07-2026",
-            "total": 266
-          },
-          {
-            "date": "14-07-2026",
-            "total": 343
-          },
-          {
-            "date": "15-07-2026",
-            "total": 308
-          },
-          {
-            "date": "16-07-2026",
-            "total": 301
-          },
-          {
-            "date": "17-07-2026",
-            "total": 269
-          },
-          {
-            "date": "18-07-2026",
-            "total": 272
-          },
-          {
-            "date": "19-07-2026",
-            "total": 283
-          },
-          {
-            "date": "20-07-2026",
-            "total": 363
-          },
-          {
-            "date": "21-07-2026",
-            "total": 346
-          },
-          {
-            "date": "22-07-2026",
-            "total": 326
-          },
-          {
-            "date": "23-07-2026",
-            "total": 309
-          },
-          {
-            "date": "24-07-2026",
-            "total": 338
-          },
-          {
-            "date": "25-07-2026",
-            "total": 552
-          },
-          {
-            "date": "26-07-2026",
-            "total": 746
-          },
-          {
-            "date": "27-07-2026",
-            "total": 974
-          },
-          {
-            "date": "28-07-2026",
-            "total": 575
-          },
-          {
-            "date": "29-07-2026",
-            "total": 79
-          }
-        ],
-        "enabledVsDisabled": {
-          "enabled": 65,
-          "disabled": 23,
-          "enabledPct": 73.9,
-          "disabledPct": 26.1,
-          "total": 88,
-          "date": "25-08-2026"
+          "date": "26-08-2026"
         }
       }
     },
@@ -13135,7 +12182,7 @@
       "slug": "claude-limit-monitor",
       "name": "Claude Limit Monitor: Track Free Usage & When Limit Resets",
       "analytics": {
-        "totalInstalls": 644,
+        "totalInstalls": 605,
         "installations": [
           {
             "date": "03-06-2026",
@@ -13460,6 +12507,10 @@
           {
             "date": "25-08-2026",
             "total": 16
+          },
+          {
+            "date": "26-08-2026",
+            "total": 37
           }
         ],
         "weeklyUsers": [
@@ -13786,18 +12837,22 @@
           {
             "date": "25-08-2026",
             "total": 1277
+          },
+          {
+            "date": "26-08-2026",
+            "total": 1286
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "IN": 272,
-          "US": 74,
-          "BR": 20,
-          "AU": 11,
-          "CA": 7,
-          "other": 9
+          "IN": 268,
+          "US": 70,
+          "BR": 18,
+          "AU": 8,
+          "CA": 6,
+          "other": 6
         },
-        "uninstalls": 202,
+        "uninstalls": 200,
         "uninstallsOverTime": [
           {
             "date": "07-06-2026",
@@ -14066,10 +13121,14 @@
           {
             "date": "25-08-2026",
             "total": 10
+          },
+          {
+            "date": "26-08-2026",
+            "total": 13
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 1388,
+        "pageViews": 1298,
         "pageViewsOverTime": [
           {
             "date": "03-06-2026",
@@ -14394,19 +13453,24 @@
           {
             "date": "25-08-2026",
             "total": 54
+          },
+          {
+            "date": "26-08-2026",
+            "total": 75
           }
         ],
         "pageViewsBySource": {
-          "app-launcher": 11,
-          "ext_app_menu": 54,
-          "ext_sidebar": 284,
-          "chatgpt_com": 8,
+          "ext_app_menu": 55,
+          "ext_sidebar": 276,
+          "app-launcher": 10,
+          "chatgpt_com": 4,
+          "item-share-cb": 1,
+          "landingpage": 1,
           "claudekarma_ext": 1,
           "ext_ntp_promo_1p": 1,
-          "item-share-cb": 1,
           "perplexity": 5
         },
-        "impressions": 49785,
+        "impressions": 49617,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "03-06-2026",
@@ -14731,15 +13795,19 @@
           {
             "date": "25-08-2026",
             "total": 5354
+          },
+          {
+            "date": "26-08-2026",
+            "total": 3208
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 816,
-          "disabled": 24,
-          "enabledPct": 97.1,
-          "disabledPct": 2.9,
-          "total": 840,
-          "date": "25-08-2026"
+          "enabled": 846,
+          "disabled": 26,
+          "enabledPct": 97,
+          "disabledPct": 3,
+          "total": 872,
+          "date": "26-08-2026"
         }
       }
     },
@@ -14993,6 +14061,10 @@
           {
             "date": "25-08-2026",
             "total": 1
+          },
+          {
+            "date": "26-08-2026",
+            "total": 3
           }
         ],
         "weeklyUsers": [
@@ -15211,11 +14283,15 @@
           {
             "date": "25-08-2026",
             "total": 11
+          },
+          {
+            "date": "26-08-2026",
+            "total": 13
           }
         ],
         "weeklyUsersByRegion": {},
         "installsByRegion": {
-          "US": 42,
+          "US": 40,
           "DE": 2,
           "BR": 1
         },
@@ -15319,7 +14395,7 @@
           }
         ],
         "uninstallsByRegion": {},
-        "pageViews": 56,
+        "pageViews": 57,
         "pageViewsOverTime": [
           {
             "date": "22-06-2026",
@@ -15512,6 +14588,10 @@
           {
             "date": "24-08-2026",
             "total": 2
+          },
+          {
+            "date": "26-08-2026",
+            "total": 5
           }
         ],
         "pageViewsBySource": {
@@ -15519,7 +14599,7 @@
           "ext_sidebar": 2,
           "app-launcher": 1
         },
-        "impressions": 427,
+        "impressions": 401,
         "impressionsAcrossChromeWebStore": [
           {
             "date": "22-06-2026",
@@ -15768,21 +14848,25 @@
           {
             "date": "25-08-2026",
             "total": 28
+          },
+          {
+            "date": "26-08-2026",
+            "total": 16
           }
         ],
         "enabledVsDisabled": {
-          "enabled": 6,
+          "enabled": 9,
           "disabled": 0,
           "enabledPct": 100,
           "disabledPct": 0,
-          "total": 6,
-          "date": "25-08-2026"
+          "total": 9,
+          "date": "26-08-2026"
         }
       }
     }
   ],
   "analytics": {
-    "totalInstalls": 2473,
+    "totalInstalls": 2363,
     "installations": [
       {
         "date": "14-05-2026",
@@ -15894,203 +14978,203 @@
       },
       {
         "date": "10-06-2026",
-        "total": 20
+        "total": 15
       },
       {
         "date": "11-06-2026",
-        "total": 18
+        "total": 16
       },
       {
         "date": "12-06-2026",
-        "total": 19
+        "total": 17
       },
       {
         "date": "13-06-2026",
-        "total": 16
+        "total": 14
       },
       {
         "date": "14-06-2026",
-        "total": 24
+        "total": 23
       },
       {
         "date": "15-06-2026",
-        "total": 20
-      },
-      {
-        "date": "16-06-2026",
-        "total": 16
-      },
-      {
-        "date": "17-06-2026",
         "total": 19
       },
       {
-        "date": "18-06-2026",
+        "date": "16-06-2026",
+        "total": 15
+      },
+      {
+        "date": "17-06-2026",
         "total": 18
+      },
+      {
+        "date": "18-06-2026",
+        "total": 17
       },
       {
         "date": "19-06-2026",
-        "total": 29
-      },
-      {
-        "date": "20-06-2026",
-        "total": 18
-      },
-      {
-        "date": "21-06-2026",
-        "total": 22
-      },
-      {
-        "date": "22-06-2026",
-        "total": 32
-      },
-      {
-        "date": "23-06-2026",
-        "total": 57
-      },
-      {
-        "date": "24-06-2026",
-        "total": 37
-      },
-      {
-        "date": "25-06-2026",
-        "total": 33
-      },
-      {
-        "date": "26-06-2026",
-        "total": 26
-      },
-      {
-        "date": "27-06-2026",
         "total": 25
       },
       {
-        "date": "28-06-2026",
-        "total": 37
+        "date": "20-06-2026",
+        "total": 15
       },
       {
-        "date": "29-06-2026",
-        "total": 47
+        "date": "21-06-2026",
+        "total": 20
       },
       {
-        "date": "30-06-2026",
+        "date": "22-06-2026",
+        "total": 23
+      },
+      {
+        "date": "23-06-2026",
         "total": 50
       },
       {
+        "date": "24-06-2026",
+        "total": 29
+      },
+      {
+        "date": "25-06-2026",
+        "total": 28
+      },
+      {
+        "date": "26-06-2026",
+        "total": 21
+      },
+      {
+        "date": "27-06-2026",
+        "total": 19
+      },
+      {
+        "date": "28-06-2026",
+        "total": 27
+      },
+      {
+        "date": "29-06-2026",
+        "total": 39
+      },
+      {
+        "date": "30-06-2026",
+        "total": 39
+      },
+      {
         "date": "01-07-2026",
-        "total": 44
+        "total": 37
       },
       {
         "date": "02-07-2026",
-        "total": 36
+        "total": 29
       },
       {
         "date": "03-07-2026",
-        "total": 38
+        "total": 32
       },
       {
         "date": "04-07-2026",
-        "total": 51
+        "total": 43
       },
       {
         "date": "05-07-2026",
-        "total": 76
+        "total": 74
       },
       {
         "date": "06-07-2026",
-        "total": 61
+        "total": 58
       },
       {
         "date": "07-07-2026",
-        "total": 73
+        "total": 67
       },
       {
         "date": "08-07-2026",
-        "total": 85
+        "total": 76
       },
       {
         "date": "09-07-2026",
-        "total": 57
+        "total": 48
       },
       {
         "date": "10-07-2026",
-        "total": 57
+        "total": 48
       },
       {
         "date": "11-07-2026",
-        "total": 59
+        "total": 53
       },
       {
         "date": "12-07-2026",
-        "total": 56
+        "total": 52
       },
       {
         "date": "13-07-2026",
-        "total": 84
+        "total": 78
       },
       {
         "date": "14-07-2026",
-        "total": 84
-      },
-      {
-        "date": "15-07-2026",
         "total": 72
       },
       {
+        "date": "15-07-2026",
+        "total": 66
+      },
+      {
         "date": "16-07-2026",
-        "total": 84
+        "total": 73
       },
       {
         "date": "17-07-2026",
-        "total": 94
+        "total": 85
       },
       {
         "date": "18-07-2026",
-        "total": 82
+        "total": 75
       },
       {
         "date": "19-07-2026",
-        "total": 98
+        "total": 92
       },
       {
         "date": "20-07-2026",
-        "total": 90
+        "total": 82
       },
       {
         "date": "21-07-2026",
-        "total": 99
+        "total": 87
       },
       {
         "date": "22-07-2026",
-        "total": 107
+        "total": 94
       },
       {
         "date": "23-07-2026",
-        "total": 100
-      },
-      {
-        "date": "24-07-2026",
-        "total": 86
-      },
-      {
-        "date": "25-07-2026",
         "total": 88
       },
       {
+        "date": "24-07-2026",
+        "total": 78
+      },
+      {
+        "date": "25-07-2026",
+        "total": 71
+      },
+      {
         "date": "26-07-2026",
-        "total": 99
+        "total": 69
       },
       {
         "date": "27-07-2026",
-        "total": 119
+        "total": 95
       },
       {
         "date": "28-07-2026",
-        "total": 98
+        "total": 85
       },
       {
         "date": "29-07-2026",
-        "total": 104
+        "total": 97
       },
       {
         "date": "30-07-2026",
@@ -16134,7 +15218,7 @@
       },
       {
         "date": "09-08-2026",
-        "total": 69
+        "total": 68
       },
       {
         "date": "10-08-2026",
@@ -16187,6 +15271,10 @@
       {
         "date": "25-08-2026",
         "total": 93
+      },
+      {
+        "date": "26-08-2026",
+        "total": 115
       }
     ],
     "weeklyUsers": [
@@ -16276,299 +15364,303 @@
       },
       {
         "date": "10-06-2026",
-        "total": 81
+        "total": 79
       },
       {
         "date": "11-06-2026",
-        "total": 88
+        "total": 85
       },
       {
         "date": "12-06-2026",
-        "total": 95
+        "total": 92
       },
       {
         "date": "13-06-2026",
-        "total": 103
+        "total": 100
       },
       {
         "date": "14-06-2026",
-        "total": 110
+        "total": 107
       },
       {
         "date": "15-06-2026",
-        "total": 118
+        "total": 115
       },
       {
         "date": "16-06-2026",
-        "total": 127
+        "total": 124
       },
       {
         "date": "17-06-2026",
-        "total": 130
+        "total": 128
       },
       {
         "date": "18-06-2026",
-        "total": 138
+        "total": 136
       },
       {
         "date": "19-06-2026",
-        "total": 142
+        "total": 140
       },
       {
         "date": "20-06-2026",
-        "total": 149
+        "total": 146
       },
       {
         "date": "21-06-2026",
-        "total": 157
+        "total": 154
       },
       {
         "date": "22-06-2026",
-        "total": 165
+        "total": 158
       },
       {
         "date": "23-06-2026",
-        "total": 181
+        "total": 172
       },
       {
         "date": "24-06-2026",
-        "total": 188
+        "total": 178
       },
       {
         "date": "25-06-2026",
-        "total": 189
+        "total": 179
       },
       {
         "date": "26-06-2026",
-        "total": 201
+        "total": 187
       },
       {
         "date": "27-06-2026",
-        "total": 219
+        "total": 201
       },
       {
         "date": "28-06-2026",
-        "total": 233
+        "total": 209
       },
       {
         "date": "29-06-2026",
-        "total": 248
+        "total": 222
       },
       {
         "date": "30-06-2026",
-        "total": 273
+        "total": 242
       },
       {
         "date": "01-07-2026",
-        "total": 296
+        "total": 262
       },
       {
         "date": "02-07-2026",
-        "total": 307
+        "total": 272
       },
       {
         "date": "03-07-2026",
-        "total": 325
+        "total": 288
       },
       {
         "date": "04-07-2026",
-        "total": 342
+        "total": 302
       },
       {
         "date": "05-07-2026",
-        "total": 374
+        "total": 336
       },
       {
         "date": "06-07-2026",
-        "total": 413
+        "total": 375
       },
       {
         "date": "07-07-2026",
-        "total": 449
+        "total": 410
       },
       {
         "date": "08-07-2026",
-        "total": 500
+        "total": 460
       },
       {
         "date": "09-07-2026",
-        "total": 531
+        "total": 487
       },
       {
         "date": "10-07-2026",
-        "total": 569
+        "total": 519
       },
       {
         "date": "11-07-2026",
-        "total": 608
+        "total": 555
       },
       {
         "date": "12-07-2026",
-        "total": 656
+        "total": 601
       },
       {
         "date": "13-07-2026",
-        "total": 714
+        "total": 649
       },
       {
         "date": "14-07-2026",
-        "total": 793
+        "total": 719
       },
       {
         "date": "15-07-2026",
-        "total": 853
+        "total": 771
       },
       {
         "date": "16-07-2026",
-        "total": 905
+        "total": 821
       },
       {
         "date": "17-07-2026",
-        "total": 958
+        "total": 867
       },
       {
         "date": "18-07-2026",
-        "total": 1016
+        "total": 926
       },
       {
         "date": "19-07-2026",
-        "total": 1071
+        "total": 970
       },
       {
         "date": "20-07-2026",
-        "total": 1142
+        "total": 1039
       },
       {
         "date": "21-07-2026",
-        "total": 1208
+        "total": 1097
       },
       {
         "date": "22-07-2026",
-        "total": 1294
+        "total": 1174
       },
       {
         "date": "23-07-2026",
-        "total": 1351
+        "total": 1231
       },
       {
         "date": "24-07-2026",
-        "total": 1432
+        "total": 1307
       },
       {
         "date": "25-07-2026",
-        "total": 1488
+        "total": 1354
       },
       {
         "date": "26-07-2026",
-        "total": 1551
+        "total": 1407
       },
       {
         "date": "27-07-2026",
-        "total": 1651
+        "total": 1489
       },
       {
         "date": "28-07-2026",
-        "total": 1723
+        "total": 1541
       },
       {
         "date": "29-07-2026",
-        "total": 1780
+        "total": 1590
       },
       {
         "date": "30-07-2026",
-        "total": 1825
+        "total": 1636
       },
       {
         "date": "31-07-2026",
-        "total": 1844
+        "total": 1660
       },
       {
         "date": "01-08-2026",
-        "total": 1902
+        "total": 1725
       },
       {
         "date": "02-08-2026",
-        "total": 1959
+        "total": 1779
       },
       {
         "date": "03-08-2026",
-        "total": 2016
+        "total": 1846
       },
       {
         "date": "04-08-2026",
-        "total": 2068
+        "total": 1902
       },
       {
         "date": "05-08-2026",
-        "total": 2122
+        "total": 1963
       },
       {
         "date": "06-08-2026",
-        "total": 2202
+        "total": 2046
       },
       {
         "date": "07-08-2026",
-        "total": 2257
+        "total": 2105
       },
       {
         "date": "08-08-2026",
-        "total": 2289
+        "total": 2135
       },
       {
         "date": "09-08-2026",
-        "total": 2363
+        "total": 2213
       },
       {
         "date": "10-08-2026",
-        "total": 2384
+        "total": 2237
       },
       {
         "date": "11-08-2026",
-        "total": 2479
+        "total": 2332
       },
       {
         "date": "12-08-2026",
-        "total": 2536
+        "total": 2389
       },
       {
         "date": "13-08-2026",
-        "total": 2602
+        "total": 2457
       },
       {
         "date": "15-08-2026",
-        "total": 2682
+        "total": 2543
       },
       {
         "date": "16-08-2026",
-        "total": 2700
+        "total": 2564
       },
       {
         "date": "17-08-2026",
-        "total": 2778
+        "total": 2640
       },
       {
         "date": "19-08-2026",
-        "total": 2875
+        "total": 2742
       },
       {
         "date": "21-08-2026",
-        "total": 3023
+        "total": 2892
       },
       {
         "date": "22-08-2026",
-        "total": 3094
+        "total": 2965
       },
       {
         "date": "23-08-2026",
-        "total": 3166
+        "total": 3036
       },
       {
         "date": "24-08-2026",
-        "total": 3221
+        "total": 3089
       },
       {
         "date": "25-08-2026",
-        "total": 3280
+        "total": 3147
+      },
+      {
+        "date": "26-08-2026",
+        "total": 3182
       }
     ],
     "uninstallsOverTime": [
@@ -16654,7 +15746,7 @@
       },
       {
         "date": "10-06-2026",
-        "total": 5
+        "total": 2
       },
       {
         "date": "11-06-2026",
@@ -16666,7 +15758,7 @@
       },
       {
         "date": "13-06-2026",
-        "total": 4
+        "total": 3
       },
       {
         "date": "14-06-2026",
@@ -16686,7 +15778,7 @@
       },
       {
         "date": "18-06-2026",
-        "total": 7
+        "total": 6
       },
       {
         "date": "19-06-2026",
@@ -16694,67 +15786,67 @@
       },
       {
         "date": "20-06-2026",
-        "total": 1
+        "total": 0
       },
       {
         "date": "21-06-2026",
-        "total": 6
+        "total": 5
       },
       {
         "date": "22-06-2026",
-        "total": 6
-      },
-      {
-        "date": "23-06-2026",
         "total": 4
       },
       {
+        "date": "23-06-2026",
+        "total": 3
+      },
+      {
         "date": "24-06-2026",
-        "total": 18
+        "total": 14
       },
       {
         "date": "25-06-2026",
-        "total": 5
+        "total": 4
       },
       {
         "date": "26-06-2026",
-        "total": 7
-      },
-      {
-        "date": "27-06-2026",
-        "total": 11
-      },
-      {
-        "date": "28-06-2026",
         "total": 5
       },
       {
+        "date": "27-06-2026",
+        "total": 4
+      },
+      {
+        "date": "28-06-2026",
+        "total": 4
+      },
+      {
         "date": "29-06-2026",
-        "total": 10
+        "total": 7
       },
       {
         "date": "30-06-2026",
-        "total": 12
+        "total": 11
       },
       {
         "date": "01-07-2026",
-        "total": 15
+        "total": 14
       },
       {
         "date": "02-07-2026",
-        "total": 17
-      },
-      {
-        "date": "03-07-2026",
-        "total": 20
-      },
-      {
-        "date": "04-07-2026",
         "total": 15
       },
       {
-        "date": "05-07-2026",
+        "date": "03-07-2026",
         "total": 16
+      },
+      {
+        "date": "04-07-2026",
+        "total": 12
+      },
+      {
+        "date": "05-07-2026",
+        "total": 15
       },
       {
         "date": "06-07-2026",
@@ -16766,15 +15858,15 @@
       },
       {
         "date": "08-07-2026",
-        "total": 34
+        "total": 31
       },
       {
         "date": "09-07-2026",
-        "total": 22
+        "total": 19
       },
       {
         "date": "10-07-2026",
-        "total": 19
+        "total": 14
       },
       {
         "date": "11-07-2026",
@@ -16790,75 +15882,75 @@
       },
       {
         "date": "14-07-2026",
-        "total": 34
+        "total": 29
       },
       {
         "date": "15-07-2026",
-        "total": 26
+        "total": 20
       },
       {
         "date": "16-07-2026",
-        "total": 18
+        "total": 14
       },
       {
         "date": "17-07-2026",
-        "total": 30
+        "total": 26
       },
       {
         "date": "18-07-2026",
-        "total": 17
+        "total": 15
       },
       {
         "date": "19-07-2026",
-        "total": 30
+        "total": 26
       },
       {
         "date": "20-07-2026",
-        "total": 25
+        "total": 20
       },
       {
         "date": "21-07-2026",
-        "total": 32
+        "total": 28
       },
       {
         "date": "22-07-2026",
-        "total": 33
+        "total": 27
       },
       {
         "date": "23-07-2026",
-        "total": 48
-      },
-      {
-        "date": "24-07-2026",
-        "total": 21
-      },
-      {
-        "date": "25-07-2026",
-        "total": 34
-      },
-      {
-        "date": "26-07-2026",
-        "total": 21
-      },
-      {
-        "date": "27-07-2026",
-        "total": 36
-      },
-      {
-        "date": "28-07-2026",
-        "total": 31
-      },
-      {
-        "date": "29-07-2026",
         "total": 38
       },
       {
-        "date": "30-07-2026",
+        "date": "24-07-2026",
         "total": 18
       },
       {
-        "date": "31-07-2026",
+        "date": "25-07-2026",
+        "total": 25
+      },
+      {
+        "date": "26-07-2026",
+        "total": 17
+      },
+      {
+        "date": "27-07-2026",
         "total": 20
+      },
+      {
+        "date": "28-07-2026",
+        "total": 25
+      },
+      {
+        "date": "29-07-2026",
+        "total": 32
+      },
+      {
+        "date": "30-07-2026",
+        "total": 16
+      },
+      {
+        "date": "31-07-2026",
+        "total": 18
       },
       {
         "date": "01-08-2026",
@@ -16874,15 +15966,15 @@
       },
       {
         "date": "04-08-2026",
-        "total": 25
+        "total": 24
       },
       {
         "date": "05-08-2026",
-        "total": 39
+        "total": 37
       },
       {
         "date": "06-08-2026",
-        "total": 17
+        "total": 15
       },
       {
         "date": "07-08-2026",
@@ -16890,19 +15982,19 @@
       },
       {
         "date": "08-08-2026",
-        "total": 33
+        "total": 32
       },
       {
         "date": "09-08-2026",
-        "total": 24
+        "total": 23
       },
       {
         "date": "10-08-2026",
-        "total": 29
+        "total": 28
       },
       {
         "date": "11-08-2026",
-        "total": 32
+        "total": 31
       },
       {
         "date": "12-08-2026",
@@ -16918,7 +16010,7 @@
       },
       {
         "date": "16-08-2026",
-        "total": 18
+        "total": 17
       },
       {
         "date": "17-08-2026",
@@ -16926,7 +16018,7 @@
       },
       {
         "date": "19-08-2026",
-        "total": 36
+        "total": 35
       },
       {
         "date": "21-08-2026",
@@ -16942,27 +16034,31 @@
       },
       {
         "date": "24-08-2026",
-        "total": 53
+        "total": 51
       },
       {
         "date": "25-08-2026",
         "total": 34
+      },
+      {
+        "date": "26-08-2026",
+        "total": 48
       }
     ],
     "weeklyUsersByRegion": {},
     "installsByRegion": {
-      "US": 786,
-      "AU": 25,
-      "IN": 387,
+      "US": 751,
+      "AU": 13,
+      "IN": 375,
       "BR": 89,
-      "DE": 36,
-      "GB": 5,
-      "CA": 52,
-      "other": 61
+      "GB": 13,
+      "DE": 33,
+      "CA": 45,
+      "other": 59
     },
-    "uninstalls": 773,
+    "uninstalls": 731,
     "uninstallsByRegion": {},
-    "pageViews": 4515,
+    "pageViews": 4287,
     "pageViewsOverTime": [
       {
         "date": "14-05-2026",
@@ -17074,19 +16170,19 @@
       },
       {
         "date": "10-06-2026",
-        "total": 30
+        "total": 26
       },
       {
         "date": "11-06-2026",
-        "total": 24
+        "total": 19
       },
       {
         "date": "12-06-2026",
-        "total": 31
+        "total": 30
       },
       {
         "date": "13-06-2026",
-        "total": 25
+        "total": 22
       },
       {
         "date": "14-06-2026",
@@ -17094,15 +16190,15 @@
       },
       {
         "date": "15-06-2026",
-        "total": 21
+        "total": 19
       },
       {
         "date": "16-06-2026",
-        "total": 23
+        "total": 22
       },
       {
         "date": "17-06-2026",
-        "total": 18
+        "total": 16
       },
       {
         "date": "18-06-2026",
@@ -17110,167 +16206,167 @@
       },
       {
         "date": "19-06-2026",
-        "total": 38
+        "total": 35
       },
       {
         "date": "20-06-2026",
-        "total": 25
+        "total": 18
       },
       {
         "date": "21-06-2026",
-        "total": 39
+        "total": 33
       },
       {
         "date": "22-06-2026",
-        "total": 48
+        "total": 38
       },
       {
         "date": "23-06-2026",
-        "total": 62
+        "total": 58
       },
       {
         "date": "24-06-2026",
-        "total": 42
+        "total": 29
       },
       {
         "date": "25-06-2026",
-        "total": 43
+        "total": 37
       },
       {
         "date": "26-06-2026",
-        "total": 43
+        "total": 34
       },
       {
         "date": "27-06-2026",
-        "total": 41
+        "total": 25
       },
       {
         "date": "28-06-2026",
-        "total": 44
+        "total": 33
       },
       {
         "date": "29-06-2026",
-        "total": 59
+        "total": 44
       },
       {
         "date": "30-06-2026",
-        "total": 75
+        "total": 55
       },
       {
         "date": "01-07-2026",
-        "total": 66
+        "total": 55
       },
       {
         "date": "02-07-2026",
-        "total": 73
+        "total": 56
       },
       {
         "date": "03-07-2026",
-        "total": 113
+        "total": 94
       },
       {
         "date": "04-07-2026",
-        "total": 113
+        "total": 97
       },
       {
         "date": "05-07-2026",
-        "total": 113
+        "total": 106
       },
       {
         "date": "06-07-2026",
-        "total": 140
+        "total": 123
       },
       {
         "date": "07-07-2026",
-        "total": 121
+        "total": 103
       },
       {
         "date": "08-07-2026",
-        "total": 170
+        "total": 147
       },
       {
         "date": "09-07-2026",
-        "total": 132
+        "total": 117
       },
       {
         "date": "10-07-2026",
-        "total": 109
+        "total": 92
       },
       {
         "date": "11-07-2026",
-        "total": 120
+        "total": 102
       },
       {
         "date": "12-07-2026",
-        "total": 105
+        "total": 97
       },
       {
         "date": "13-07-2026",
-        "total": 161
+        "total": 145
       },
       {
         "date": "14-07-2026",
-        "total": 179
-      },
-      {
-        "date": "15-07-2026",
         "total": 150
       },
       {
+        "date": "15-07-2026",
+        "total": 134
+      },
+      {
         "date": "16-07-2026",
-        "total": 178
-      },
-      {
-        "date": "17-07-2026",
-        "total": 180
-      },
-      {
-        "date": "18-07-2026",
-        "total": 171
-      },
-      {
-        "date": "19-07-2026",
-        "total": 203
-      },
-      {
-        "date": "20-07-2026",
-        "total": 185
-      },
-      {
-        "date": "21-07-2026",
-        "total": 196
-      },
-      {
-        "date": "22-07-2026",
-        "total": 221
-      },
-      {
-        "date": "23-07-2026",
-        "total": 182
-      },
-      {
-        "date": "24-07-2026",
-        "total": 164
-      },
-      {
-        "date": "25-07-2026",
         "total": 153
       },
       {
+        "date": "17-07-2026",
+        "total": 156
+      },
+      {
+        "date": "18-07-2026",
+        "total": 148
+      },
+      {
+        "date": "19-07-2026",
+        "total": 183
+      },
+      {
+        "date": "20-07-2026",
+        "total": 166
+      },
+      {
+        "date": "21-07-2026",
+        "total": 167
+      },
+      {
+        "date": "22-07-2026",
+        "total": 192
+      },
+      {
+        "date": "23-07-2026",
+        "total": 155
+      },
+      {
+        "date": "24-07-2026",
+        "total": 143
+      },
+      {
+        "date": "25-07-2026",
+        "total": 125
+      },
+      {
         "date": "26-07-2026",
-        "total": 180
+        "total": 121
       },
       {
         "date": "27-07-2026",
-        "total": 227
+        "total": 174
       },
       {
         "date": "28-07-2026",
-        "total": 214
+        "total": 182
       },
       {
         "date": "29-07-2026",
-        "total": 196
+        "total": 183
       },
       {
         "date": "30-07-2026",
@@ -17367,30 +16463,34 @@
       {
         "date": "25-08-2026",
         "total": 198
+      },
+      {
+        "date": "26-08-2026",
+        "total": 226
       }
     ],
     "pageViewsBySource": {
-      "ext_sidebar": 506,
-      "chatgpt_com": 226,
-      "ext_app_menu": 128,
+      "ext_sidebar": 459,
+      "chatgpt_com": 230,
+      "ext_app_menu": 113,
       "copilot_com": 2,
+      "app-launcher": 30,
       "PRICECOMPAREVIDEOAD": 2,
-      "app-launcher": 32,
       "bgads1": 6,
       "xads": 1,
-      "item-share-cb": 4,
       "chrome-remove-extension-dialog": 1,
       "google": 2,
+      "item-share-cb": 3,
       "item-share-cp": 5,
       "inssist": 1,
       "quora-answer": 1,
       "ext_extensions_menu": 1,
-      "chrome-ntp-icon": 1,
+      "landingpage": 1,
       "claudekarma_ext": 1,
       "ext_ntp_promo_1p": 1,
       "perplexity": 5
     },
-    "impressions": 66299,
+    "impressions": 64160,
     "impressionsAcrossChromeWebStore": [
       {
         "date": "15-05-2026",
@@ -17498,203 +16598,203 @@
       },
       {
         "date": "10-06-2026",
-        "total": 163
+        "total": 123
       },
       {
         "date": "11-06-2026",
-        "total": 124
+        "total": 71
       },
       {
         "date": "12-06-2026",
-        "total": 92
+        "total": 70
       },
       {
         "date": "13-06-2026",
-        "total": 54
+        "total": 39
       },
       {
         "date": "14-06-2026",
-        "total": 75
+        "total": 69
       },
       {
         "date": "15-06-2026",
-        "total": 106
+        "total": 92
       },
       {
         "date": "16-06-2026",
-        "total": 68
+        "total": 62
       },
       {
         "date": "17-06-2026",
-        "total": 85
+        "total": 72
       },
       {
         "date": "18-06-2026",
-        "total": 135
+        "total": 126
       },
       {
         "date": "19-06-2026",
-        "total": 157
+        "total": 62
       },
       {
         "date": "20-06-2026",
-        "total": 172
+        "total": 59
       },
       {
         "date": "21-06-2026",
-        "total": 186
+        "total": 61
       },
       {
         "date": "22-06-2026",
-        "total": 262
+        "total": 94
       },
       {
         "date": "23-06-2026",
-        "total": 249
+        "total": 106
       },
       {
         "date": "24-06-2026",
-        "total": 282
+        "total": 114
       },
       {
         "date": "25-06-2026",
-        "total": 306
+        "total": 105
       },
       {
         "date": "26-06-2026",
-        "total": 324
+        "total": 132
       },
       {
         "date": "27-06-2026",
-        "total": 232
+        "total": 86
       },
       {
         "date": "28-06-2026",
-        "total": 273
+        "total": 103
       },
       {
         "date": "29-06-2026",
-        "total": 399
+        "total": 129
       },
       {
         "date": "30-06-2026",
-        "total": 401
+        "total": 125
       },
       {
         "date": "01-07-2026",
-        "total": 377
+        "total": 130
       },
       {
         "date": "02-07-2026",
-        "total": 453
+        "total": 183
       },
       {
         "date": "03-07-2026",
-        "total": 536
+        "total": 283
       },
       {
         "date": "04-07-2026",
-        "total": 582
+        "total": 421
       },
       {
         "date": "05-07-2026",
-        "total": 624
+        "total": 442
       },
       {
         "date": "06-07-2026",
-        "total": 709
+        "total": 453
       },
       {
         "date": "07-07-2026",
-        "total": 911
+        "total": 582
       },
       {
         "date": "08-07-2026",
-        "total": 1022
+        "total": 714
       },
       {
         "date": "09-07-2026",
-        "total": 893
+        "total": 636
       },
       {
         "date": "10-07-2026",
-        "total": 809
+        "total": 504
       },
       {
         "date": "11-07-2026",
-        "total": 731
+        "total": 501
       },
       {
         "date": "12-07-2026",
-        "total": 727
+        "total": 488
       },
       {
         "date": "13-07-2026",
-        "total": 899
+        "total": 633
       },
       {
         "date": "14-07-2026",
-        "total": 1007
+        "total": 664
       },
       {
         "date": "15-07-2026",
-        "total": 1068
+        "total": 760
       },
       {
         "date": "16-07-2026",
-        "total": 1081
+        "total": 780
       },
       {
         "date": "17-07-2026",
-        "total": 905
+        "total": 636
       },
       {
         "date": "18-07-2026",
-        "total": 926
+        "total": 654
       },
       {
         "date": "19-07-2026",
-        "total": 1117
+        "total": 834
       },
       {
         "date": "20-07-2026",
-        "total": 1364
+        "total": 1001
       },
       {
         "date": "21-07-2026",
-        "total": 1281
+        "total": 935
       },
       {
         "date": "22-07-2026",
-        "total": 1498
+        "total": 1172
       },
       {
         "date": "23-07-2026",
-        "total": 1368
+        "total": 1059
       },
       {
         "date": "24-07-2026",
-        "total": 1485
+        "total": 1147
       },
       {
         "date": "25-07-2026",
-        "total": 1642
+        "total": 1090
       },
       {
         "date": "26-07-2026",
-        "total": 2365
+        "total": 1619
       },
       {
         "date": "27-07-2026",
-        "total": 3027
+        "total": 2053
       },
       {
         "date": "28-07-2026",
-        "total": 2934
+        "total": 2359
       },
       {
         "date": "29-07-2026",
-        "total": 2117
+        "total": 2038
       },
       {
         "date": "30-07-2026",
@@ -17791,11 +16891,15 @@
       {
         "date": "25-08-2026",
         "total": 6035
+      },
+      {
+        "date": "26-08-2026",
+        "total": 3901
       }
     ],
     "enabledVsDisabled": {
-      "enabled": 1942,
-      "disabled": 259
+      "enabled": 1950,
+      "disabled": 226
     }
   }
 }

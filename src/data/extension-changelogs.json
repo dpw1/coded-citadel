@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-08-26T21:00:05.057Z",
+  "updatedAt": "2026-08-28T15:16:29.275Z",
   "message": null,
   "apps": [
     {
@@ -12,6 +12,15 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "d974c80f30783ede92cbdb2449a132295480ead4",
+          "shortSha": "d974c80",
+          "message": "Fix Gmail print-view fetches and add a copyable diagnostic report on export failure.",
+          "date": "2026-08-27T02:19:26Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/gmail-export/commit/d974c80f30783ede92cbdb2449a132295480ead4",
+          "version": "1.0.89"
+        },
         {
           "sha": "6f762302c934cdad5c3f2a838e94e4138dd95d26",
           "shortSha": "6f76230",
@@ -82,7 +91,7 @@
           "date": "2026-06-23T17:50:27Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/086064d23b8edccb9dc3c8b40e4f32e7e80b4385",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "39b27122aa80db3eed1fb485a5478021da797c7a",
@@ -91,7 +100,7 @@
           "date": "2026-06-14T11:38:44Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/39b27122aa80db3eed1fb485a5478021da797c7a",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "18648e6acd3ad40d3292e89178f1ae2dfcf51572",
@@ -100,7 +109,7 @@
           "date": "2026-06-14T10:52:36Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/18648e6acd3ad40d3292e89178f1ae2dfcf51572",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "ac36d265f609af526c5c30a2dea2f87de6b805ef",
@@ -109,7 +118,7 @@
           "date": "2026-06-14T10:34:55Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/ac36d265f609af526c5c30a2dea2f87de6b805ef",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "78da3a2a5cd7ec36cf5bbd37114538e45f484257",
@@ -118,7 +127,7 @@
           "date": "2026-06-13T16:36:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/78da3a2a5cd7ec36cf5bbd37114538e45f484257",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "bd5c10be386c739cdfa44cd17dc05a8807060115",
@@ -127,7 +136,7 @@
           "date": "2026-06-13T16:36:05Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/bd5c10be386c739cdfa44cd17dc05a8807060115",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "80516b6b8e281dee4891f24364016d30917cd49c",
@@ -136,7 +145,7 @@
           "date": "2026-06-13T10:47:47Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/80516b6b8e281dee4891f24364016d30917cd49c",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "0501042709f8ef9fbdfd6ead7419f05780f762f4",
@@ -145,7 +154,7 @@
           "date": "2026-06-13T06:39:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/0501042709f8ef9fbdfd6ead7419f05780f762f4",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "36c98dc71d13284c0b8ff1cca8f64d3a3c929532",
@@ -154,7 +163,7 @@
           "date": "2026-06-13T06:34:07Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/36c98dc71d13284c0b8ff1cca8f64d3a3c929532",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "b48dd916121d4f61feb2a6e12e41b7724b48116e",
@@ -163,7 +172,7 @@
           "date": "2026-06-13T05:45:36Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/b48dd916121d4f61feb2a6e12e41b7724b48116e",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "62118b058028aabaf03465f8f0d432e25b3395c4",
@@ -172,7 +181,7 @@
           "date": "2026-06-13T04:23:46Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/62118b058028aabaf03465f8f0d432e25b3395c4",
-          "version": "1.0.89"
+          "version": "1.0.90"
         },
         {
           "sha": "ee89ed8f71ab096ac8d9ffccc7ca76bf8fb3dfef",
@@ -181,7 +190,7 @@
           "date": "2026-06-12T12:49:48Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/ee89ed8f71ab096ac8d9ffccc7ca76bf8fb3dfef",
-          "version": "1.0.89"
+          "version": "1.0.90"
         }
       ]
     },
@@ -1021,7 +1030,7 @@
           "date": "2026-06-07T08:33:55Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/ai-bookmark/commit/43cb97bb9e6dc3caee46696a518b4050e32ddf0d",
-          "version": "1.0.37"
+          "version": "1.0.38"
         },
         {
           "sha": "84674ca8de149a2312a8224bab9e2d827781e939",
@@ -1030,7 +1039,7 @@
           "date": "2026-06-07T03:46:35Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/ai-bookmark/commit/84674ca8de149a2312a8224bab9e2d827781e939",
-          "version": "1.0.37"
+          "version": "1.0.38"
         },
         {
           "sha": "c89a5b6da556dd61b4b537c5bbb1608cc5e3f78d",
@@ -1039,7 +1048,7 @@
           "date": "2026-06-07T02:06:20Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/ai-bookmark/commit/c89a5b6da556dd61b4b537c5bbb1608cc5e3f78d",
-          "version": "1.0.37"
+          "version": "1.0.38"
         },
         {
           "sha": "cdd2f560dd71d8b160db8480c27073c21fe31c42",
@@ -1048,7 +1057,7 @@
           "date": "2026-06-06T23:05:18Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/ai-bookmark/commit/cdd2f560dd71d8b160db8480c27073c21fe31c42",
-          "version": "1.0.37"
+          "version": "1.0.38"
         }
       ]
     },
@@ -1109,107 +1118,6 @@
       ]
     },
     {
-      "key": "jadjgiiaompdjacagaomgogdihbpgcpg",
-      "slug": "save-directly-to-drive",
-      "name": "Save to Google Drive: Use Drive as Your Downloads Folder",
-      "status": "live",
-      "github": "https://github.com/dpw1/save-to-drive",
-      "githubPublic": false,
-      "defaultBranch": "main",
-      "commits": [
-        {
-          "sha": "08b9fbac914bded855d15543e5326697459abfd9",
-          "shortSha": "08b9fba",
-          "message": "Update version to 1.0.40 and enhance folder management features. Added support for selecting and adding known folders in the popup UI, improved folder handling in background scripts, and updated localization files for new folder-related messages across multiple languages.",
-          "date": "2026-07-09T22:49:21Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/08b9fbac914bded855d15543e5326697459abfd9",
-          "version": "1.0.40"
-        },
-        {
-          "sha": "7ffaf4be01a1abd6f54aeb58dc0fda4b63dc718a",
-          "shortSha": "7ffaf4b",
-          "message": "Prevent repeated OAuth popups on Opera during auto-save downloads.",
-          "date": "2026-07-01T02:55:16Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/7ffaf4be01a1abd6f54aeb58dc0fda4b63dc718a",
-          "version": "1.0.38"
-        },
-        {
-          "sha": "76816e89ea88f35e8edeb22a790cc6580e48fb3b",
-          "shortSha": "76816e8",
-          "message": "Update version to 1.0.38 and enhance download toast handling in background and content scripts. Introduced logic to dismiss toasts on inactive tabs and improved conditions for displaying download notifications based on auto-save settings.",
-          "date": "2026-06-30T23:07:48Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/76816e89ea88f35e8edeb22a790cc6580e48fb3b",
-          "version": "1.0.38"
-        },
-        {
-          "sha": "2e8b37f6512414c382c0113992153216884d5dee",
-          "shortSha": "2e8b37f",
-          "message": "Update version to 1.0.37 and refactor toast handling in background and content scripts. Improved download toast delivery logic and removed deprecated code for better clarity and performance.",
-          "date": "2026-06-29T11:40:58Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/2e8b37f6512414c382c0113992153216884d5dee",
-          "version": "1.0.37"
-        },
-        {
-          "sha": "fba78dc34bbad444d6a58edb91bcb64c38932305",
-          "shortSha": "fba78dc",
-          "message": "Add settings toggles, save confirmation, and fix auto-save toasts.",
-          "date": "2026-06-28T06:30:14Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/fba78dc34bbad444d6a58edb91bcb64c38932305",
-          "version": "1.0.31"
-        },
-        {
-          "sha": "b2750decbf6b0f1a879708dbfc75737ab255a660",
-          "shortSha": "b2750de",
-          "message": "Refactor extension for internationalization support and improve build process",
-          "date": "2026-06-27T19:54:33Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/b2750decbf6b0f1a879708dbfc75737ab255a660",
-          "version": "1.0.31"
-        },
-        {
-          "sha": "9a20a1247387ada665822e3424a760a7b883a476",
-          "shortSha": "9a20a12",
-          "message": "Update uninstall URL to include source parameter for better tracking",
-          "date": "2026-06-27T19:27:16Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/9a20a1247387ada665822e3424a760a7b883a476",
-          "version": "1.0.31"
-        },
-        {
-          "sha": "3f3a3ca4dc488bdf3ab3dc34530a1baab3a7ad9f",
-          "shortSha": "3f3a3ca",
-          "message": "Update extension to version 1.0.31, adding auto-save functionality for downloads, enhancing authentication flow, and improving error handling. Updated manifest permissions and OAuth client ID. Refined UI elements and added new styles for better user experience.",
-          "date": "2026-06-27T19:08:12Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/3f3a3ca4dc488bdf3ab3dc34530a1baab3a7ad9f",
-          "version": "1.0.31"
-        },
-        {
-          "sha": "501bdcba339d77a6118d3827d130d2f2ab1fb538",
-          "shortSha": "501bdcb",
-          "message": "Added thank you and uninstall pages",
-          "date": "2026-06-23T18:12:01Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/501bdcba339d77a6118d3827d130d2f2ab1fb538",
-          "version": "1.0.42"
-        },
-        {
-          "sha": "e7c564eea1df62ed3450dbc06b8db762a798eef3",
-          "shortSha": "e7c564e",
-          "message": "Initial commit: Save to Drive Chrome extension.",
-          "date": "2026-05-29T22:43:58Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/save-to-drive/commit/e7c564eea1df62ed3450dbc06b8db762a798eef3",
-          "version": "1.0.42"
-        }
-      ]
-    },
-    {
       "key": "mljfhcfnjbfibedpiaheeihpbjajfcal",
       "slug": "claude-limit-monitor",
       "name": "Claude Limit Monitor: Track Free Usage & When Limit Resets",
@@ -1243,7 +1151,7 @@
           "date": "2026-07-16T17:12:51Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/af9c527d390649624b5cf58305f93824a0bb754d",
-          "version": "1.0.7"
+          "version": "1.0.71"
         },
         {
           "sha": "32f940aecda2bc4490eb36bc46064d034e789c81",
@@ -1252,7 +1160,7 @@
           "date": "2026-06-13T12:05:22Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/32f940aecda2bc4490eb36bc46064d034e789c81",
-          "version": "1.0.7"
+          "version": "1.0.71"
         },
         {
           "sha": "de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
@@ -1261,7 +1169,7 @@
           "date": "2026-06-13T11:34:26Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
-          "version": "1.0.7"
+          "version": "1.0.71"
         },
         {
           "sha": "e68b1d247848af795b32ac5a2ac329608ba911ff",
@@ -1270,7 +1178,7 @@
           "date": "2026-06-02T20:40:15Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/e68b1d247848af795b32ac5a2ac329608ba911ff",
-          "version": "1.0.7"
+          "version": "1.0.71"
         }
       ]
     },
