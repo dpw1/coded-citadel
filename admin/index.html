@@ -20,7 +20,6 @@
       </div>
       <div class="admin__header-right">
         <span class="admin__updated" id="admin-updated">Not loaded yet</span>
-        <button type="button" class="admin__btn" id="admin-refresh">Refresh</button>
       </div>
     </header>
 
@@ -223,6 +222,16 @@
       hidden
     >
       <div class="admin__status" id="yt-status">Loading YouTube Filter Pro data…</div>
+
+      <div class="admin__panel-actions" id="yt-panel-actions">
+        <span class="admin__copy-hint" id="yt-local-data-hint" hidden></span>
+        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-refresh-local">
+          Refresh local data
+        </button>
+        <button type="button" class="admin__btn admin__btn--sm" id="yt-refresh-supabase">
+          Refresh Supabase
+        </button>
+      </div>
 
       <nav class="admin__subtabs" role="tablist" aria-label="YouTube Filter Pro sections">
         <button
@@ -655,6 +664,11 @@
           Anonymous user ids (FingerprintJS hashes and newer UUIDs).
           <code>hasProBenefits</code> is true when they first showed up
           <strong>before 20 Aug 2026</strong> — those installs get the future Pro promo.
+          Users without benefits are limited to
+          <strong id="yt-users-weekly-search-cap">…</strong> searches per week in the extension;
+          filter <strong>Over quota</strong> to see ids that exceeded that in any calendar week (telemetry).
+          Search counts use <code>filter_search</code> events only — not
+          <code>view_results</code> (one Search emits both).
         </p>
 
         <div class="admin__kpis" id="yt-users-kpis" hidden>
@@ -669,6 +683,10 @@
           <div class="admin__kpi">
             <div class="admin__kpi-label">No benefits</div>
             <div class="admin__kpi-value" id="kpi-yt-users-new">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Over weekly quota</div>
+            <div class="admin__kpi-value admin__kpi-value--accent" id="kpi-yt-users-over-quota">0</div>
           </div>
         </div>
 
@@ -691,6 +709,13 @@
               <button type="button" class="admin__chip" data-users-pro="no">No</button>
             </div>
           </div>
+          <div class="admin__filter-group">
+            <span class="admin__filter-label">Weekly quota</span>
+            <div class="admin__chips" role="group" aria-label="Filter by weekly search quota">
+              <button type="button" class="admin__chip admin__chip--active" data-users-quota="all">All</button>
+              <button type="button" class="admin__chip" data-users-quota="over" id="yt-users-quota-over-chip">Over quota</button>
+            </div>
+          </div>
           <div class="admin__users-actions">
             <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-users-copy-pro">
               Copy Pro IDs
@@ -706,9 +731,13 @@
           <table class="admin__users-table">
             <thead>
               <tr>
-                <th>id</th>
-                <th>signed-up-date</th>
+                <th class="admin__users-id-col">id</th>
+                <th>installed</th>
+                <th class="admin__users-version-col">version</th>
                 <th class="admin__users-num">searches</th>
+                <th class="admin__users-num">exports</th>
+                <th class="admin__users-num">AI chats</th>
+                <th class="admin__users-num">max/wk</th>
                 <th>hasProBenefits</th>
               </tr>
             </thead>
@@ -773,7 +802,9 @@
               <tr>
                 <th><button type="button" class="admin__users-sort" data-sort="email">email</button></th>
                 <th><button type="button" class="admin__users-sort" data-sort="quota">quota</button></th>
-                <th class="admin__users-num"><button type="button" class="admin__users-sort" data-sort="used">used</button></th>
+                <th class="admin__users-num"><button type="button" class="admin__users-sort" data-sort="used">searches</button></th>
+                <th class="admin__users-num"><button type="button" class="admin__users-sort" data-sort="exports">exports</button></th>
+                <th class="admin__users-num"><button type="button" class="admin__users-sort" data-sort="aiChats">AI chats</button></th>
                 <th><button type="button" class="admin__users-sort" data-sort="paying">paying</button></th>
                 <th><button type="button" class="admin__users-sort" data-sort="lifetime">lifetime</button></th>
                 <th><button type="button" class="admin__users-sort" data-sort="grant">grant until</button></th>
@@ -926,6 +957,7 @@
   </div>
 
   <!-- Local analytics data is a script because file:// blocks fetch() for local JSON. -->
+  <script src="./yfp-quota-limits.js"></script>
   <script src="./uninstalls-over-time.js"></script>
   <script src="./yt-filter-pro-churn.js"></script>
   <!-- Chart.js — Supabase via REST fetch so file:// works (no SDK iframe). -->

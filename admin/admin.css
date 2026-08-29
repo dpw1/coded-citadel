@@ -1649,13 +1649,45 @@ code {
   white-space: nowrap;
 }
 
+.admin__users-num--warn {
+  color: var(--CC__color-accent, #f97316);
+  font-weight: 600;
+}
+
+.admin__users-id-cell {
+  max-width: 7.5rem;
+  width: 7.5rem;
+}
+
 .admin__users-id {
-  display: inline;
+  display: block;
+  width: 100%;
+  max-width: 7.5rem;
   text-align: left;
-  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.62rem;
+  line-height: 1.35;
+  word-break: normal;
+}
+
+.admin__users-datetime {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
   font-size: 0.78rem;
-  word-break: break-all;
+}
+
+.admin__users-version,
+.admin__users-version-col {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+}
+
+.admin__users-version-col {
+  width: 4.5rem;
 }
 
 .admin__users-pill {

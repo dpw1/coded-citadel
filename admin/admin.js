@@ -82,6 +82,27 @@ const YT_PRO_BENEFITS_BEFORE_DAY = '2026-08-20'
 const YT_PRO_BENEFITS_STORAGE_KEY = 'cc_admin_yt_pro_benefits_ids_v1'
 const YT_USERS_PAGE_SIZE = 50
 
+function ytFreeTierLimits() {
+  const limits = typeof window !== 'undefined' ? window.YFP_FREE_TIER_LIMITS : null
+  return {
+    weeklySearchCap: Number(limits?.weeklySearchCap) || 10,
+    weeklyExportCap: Number(limits?.weeklyExportCap) || 10,
+    weeklyAiChatCap: Number(limits?.weeklyAiChatCap) || 10,
+  }
+}
+
+function ytWeeklySearchLimit() {
+  return ytFreeTierLimits().weeklySearchCap
+}
+
+function applyYtFreeTierLimitLabels() {
+  const cap = ytWeeklySearchLimit()
+  const chip = document.getElementById('yt-users-quota-over-chip')
+  if (chip) chip.textContent = `Over quota (>${cap}/wk)`
+  const noteCap = document.getElementById('yt-users-weekly-search-cap')
+  if (noteCap) noteCap.textContent = String(cap)
+}
+
 const CHART_COLORS = {
   primary: '#ff9900',
   blue: '#3b82f6',
@@ -678,7 +699,9 @@ const state = {
   ytUserRecords: null,
   ytUsersQuery: '',
   ytUsersProFilter: 'all',
+  ytUsersQuotaFilter: 'all',
   ytUsersPage: 1,
+  ytLocalRefreshing: false,
   charts: {},
   featureTooltip: null,
   loaded: { feedback: false, yt: false },
@@ -1060,17 +1083,34 @@ function markAllRead(ids) {
   saveReadSet(set)
 }
 
-function formatDate(value) {
+function formatAdminDateTime(value) {
   if (!value) return '—'
   const d = new Date(value)
   if (Number.isNaN(d.getTime())) return String(value)
-  return d.toLocaleString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  })
+  const dd = String(d.getDate()).padStart(2, '0')
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const yyyy = d.getFullYear()
+  const hh = String(d.getHours()).padStart(2, '0')
+  const min = String(d.getMinutes()).padStart(2, '0')
+  const ss = String(d.getSeconds()).padStart(2, '0')
+  return `${dd}-${mm}-${yyyy} ${hh}-${min}-${ss}`
+}
+
+/** Admin display: dd/mm (hh:mm:ss) in local timezone. */
+function formatAdminCompactDateTime(value) {
+  if (!value) return '—'
+  const d = new Date(value)
+  if (Number.isNaN(d.getTime())) return String(value)
+  const dd = String(d.getDate()).padStart(2, '0')
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const hh = String(d.getHours()).padStart(2, '0')
+  const min = String(d.getMinutes()).padStart(2, '0')
+  const ss = String(d.getSeconds()).padStart(2, '0')
+  return `${dd}/${mm} (${hh}:${min}:${ss})`
+}
+
+function formatDate(value) {
+  return formatAdminDateTime(value)
 }
 
 function formatRelativeTime(value) {
@@ -1081,29 +1121,25 @@ function formatRelativeTime(value) {
   const diffMs = Date.now() - d.getTime()
   const future = diffMs < 0
   const abs = Math.abs(diffMs)
-  const sec = Math.round(abs / 1000)
-  const min = Math.round(sec / 60)
-  const hr = Math.round(min / 60)
-  const day = Math.round(hr / 24)
-  const week = Math.round(day / 7)
-  const month = Math.round(day / 30)
-  const year = Math.round(day / 365)
+  const totalSec = Math.floor(abs / 1000)
+  if (totalSec < 5) return future ? 'in a moment' : 'just now'
 
-  let label
-  if (sec < 45) label = 'just now'
-  else if (min < 60) label = `${min} minute${min === 1 ? '' : 's'}`
-  else if (hr < 24) label = `${hr} hour${hr === 1 ? '' : 's'}`
-  else if (day < 7) label = `${day} day${day === 1 ? '' : 's'}`
-  else if (week < 5) label = `${week} week${week === 1 ? '' : 's'}`
-  else if (month < 12) label = `${month} month${month === 1 ? '' : 's'}`
-  else label = `${year} year${year === 1 ? '' : 's'}`
+  const days = Math.floor(totalSec / 86400)
+  const hours = Math.floor((totalSec % 86400) / 3600)
+  const minutes = Math.floor((totalSec % 3600) / 60)
+  const seconds = totalSec % 60
 
-  if (label === 'just now') return label
+  const parts = []
+  if (days > 0) parts.push(`${days}d`)
+  parts.push(`${hours}h`)
+  parts.push(`${minutes}m`)
+  parts.push(`${seconds}s`)
+  const label = parts.join(' ')
   return future ? `in ${label}` : `${label} ago`
 }
 
 function formatDateWithRelative(value) {
-  const absolute = formatDate(value)
+  const absolute = formatAdminCompactDateTime(value)
   const relative = formatRelativeTime(value)
   if (!relative || absolute === '—') return absolute
   return `${absolute} (${relative})`
@@ -1141,6 +1177,7 @@ function buildYtUsageByFingerprint(rows = state.ytRows) {
   for (const row of rows || []) {
     const fp = normalizeDashboardFingerprint(ytRowFingerprint(row))
     if (!fp || isYtFingerprintBlacklisted(fp)) continue
+    if (!isFilterSearchEvent(row)) continue
     searchCounts.set(fp, (searchCounts.get(fp) || 0) + 1)
     const created = rowCreatedAt(row)
     if (!created) continue
@@ -1816,6 +1853,11 @@ function ytRowEvent(row) {
   return 'filter_search'
 }
 
+/** One filtered Search click → one filter_search row (view_results is a separate event). */
+function isFilterSearchEvent(row) {
+  return ytRowEvent(row) === 'filter_search'
+}
+
 /** Export format from export_results rows (`filter_data.format`). */
 function ytRowExportFormat(row) {
   if (ytRowEvent(row) !== 'export_results') return null
@@ -1913,7 +1955,7 @@ function renderYtDev() {
       views += 1
       const count = ytRowResultCount(row)
       if (count != null) totalResults += count
-    } else {
+    } else if (isFilterSearchEvent(row)) {
       searches += 1
     }
     const created = rowCreatedAt(row)
@@ -1991,13 +2033,59 @@ function localDayKey(value) {
 
 function formatSignedUpDate(ms) {
   if (ms == null) return '—'
+  return formatAdminCompactDateTime(new Date(ms).toISOString())
+}
+
+function ytRowExtensionVersion(row) {
+  const top = String(row?.extension_version || '').trim()
+  if (top) return top
+  const fd = row?.filter_data
+  if (fd && typeof fd === 'object' && !Array.isArray(fd)) {
+    return String(fd.extensionVersion || '').trim()
+  }
+  return ''
+}
+
+/** Monday-start calendar week key (local timezone) for quota bucketing. */
+function localWeekStartKey(ms) {
   const d = new Date(ms)
-  if (Number.isNaN(d.getTime())) return '—'
-  return d.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
+  if (Number.isNaN(d.getTime())) return null
+  const copy = new Date(d)
+  const dow = copy.getDay()
+  const toMonday = dow === 0 ? -6 : 1 - dow
+  copy.setDate(copy.getDate() + toMonday)
+  copy.setHours(0, 0, 0, 0)
+  const y = copy.getFullYear()
+  const m = String(copy.getMonth() + 1).padStart(2, '0')
+  const day = String(copy.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+/** @returns {Map<string, number>} fingerprint → peak searches in any calendar week */
+function buildYtPeakWeeklySearchMap() {
+  /** @type {Map<string, Map<string, number>>} */
+  const byFp = new Map()
+  for (const row of state.ytRows || []) {
+    const id = normalizeDashboardFingerprint(ytRowFingerprint(row))
+    if (!id || isYtFingerprintBlacklisted(id)) continue
+    const created = rowCreatedAt(row)
+    if (!created) continue
+    if (!isFilterSearchEvent(row)) continue
+    const ms = new Date(created).getTime()
+    const weekKey = localWeekStartKey(ms)
+    if (!weekKey) continue
+    if (!byFp.has(id)) byFp.set(id, new Map())
+    const weeks = byFp.get(id)
+    weeks.set(weekKey, (weeks.get(weekKey) || 0) + 1)
+  }
+  /** @type {Map<string, number>} */
+  const peak = new Map()
+  for (const [id, weeks] of byFp) {
+    let max = 0
+    for (const count of weeks.values()) max = Math.max(max, count)
+    peak.set(id, max)
+  }
+  return peak
 }
 
 function qualifiesForProBenefits(firstMs) {
@@ -2053,7 +2141,11 @@ function buildYtUserRecords() {
       map.set(id, {
         id,
         firstMs: null,
+        lastMs: null,
+        version: '',
         searches: 0,
+        exports: 0,
+        aiChats: 0,
         isDev: isYtFingerprintBlacklisted(id),
         hasProBenefits: false,
       })
@@ -2066,6 +2158,17 @@ function buildYtUserRecords() {
     const ms = new Date(iso).getTime()
     if (Number.isNaN(ms)) return
     if (rec.firstMs == null || ms < rec.firstMs) rec.firstMs = ms
+    if (rec.lastMs == null || ms > rec.lastMs) rec.lastMs = ms
+  }
+
+  const touchVersion = (rec, row, iso) => {
+    const ver = ytRowExtensionVersion(row)
+    if (!ver || !iso) return
+    const ms = new Date(iso).getTime()
+    if (Number.isNaN(ms)) return
+    if (rec.lastMs == null || ms >= rec.lastMs) {
+      rec.version = ver
+    }
   }
 
   for (const row of state.ytRows || []) {
@@ -2073,8 +2176,13 @@ function buildYtUserRecords() {
     if (!id) continue
     if (isYtFingerprintBlacklisted(id)) continue
     const rec = ensure(id)
-    rec.searches += 1
-    touch(rec, rowCreatedAt(row))
+    const event = ytRowEvent(row)
+    if (event === 'export_results') rec.exports += 1
+    else if (event === 'ai_chat') rec.aiChats += 1
+    else if (isFilterSearchEvent(row)) rec.searches += 1
+    const created = rowCreatedAt(row)
+    touch(rec, created)
+    touchVersion(rec, row, created)
   }
 
   for (const row of state.feedback || []) {
@@ -2087,8 +2195,14 @@ function buildYtUserRecords() {
   }
 
   const proIds = syncProBenefitIds([...map.values()])
+  const peakWeekly = buildYtPeakWeeklySearchMap()
   for (const rec of map.values()) {
     rec.hasProBenefits = !rec.isDev && (proIds.has(rec.id) || qualifiesForProBenefits(rec.firstMs))
+    rec.maxWeeklySearches = peakWeekly.get(rec.id) || 0
+    rec.overWeeklyQuota =
+      !rec.isDev &&
+      !rec.hasProBenefits &&
+      rec.maxWeeklySearches > ytWeeklySearchLimit()
   }
 
   return [...map.values()].sort((a, b) => (b.firstMs || 0) - (a.firstMs || 0) || a.id.localeCompare(b.id))
@@ -2104,9 +2218,11 @@ function filteredYtUsers(records) {
     .trim()
     .toLowerCase()
   const pro = state.ytUsersProFilter || 'all'
+  const quota = state.ytUsersQuotaFilter || 'all'
   return records.filter((rec) => {
     if (pro === 'yes' && !rec.hasProBenefits) return false
     if (pro === 'no' && rec.hasProBenefits) return false
+    if (quota === 'over' && !rec.overWeeklyQuota) return false
     if (query && !rec.id.toLowerCase().includes(query)) return false
     return true
   })
@@ -2140,6 +2256,7 @@ function renderYtUsers() {
   const records = getYtUserRecords()
   const visible = filteredYtUsers(records)
   const proCount = records.filter((rec) => rec.hasProBenefits).length
+  const overQuotaCount = records.filter((rec) => rec.overWeeklyQuota).length
   const pageCount = Math.max(1, Math.ceil(visible.length / YT_USERS_PAGE_SIZE))
   const page = Math.min(Math.max(1, Number(state.ytUsersPage) || 1), pageCount)
   state.ytUsersPage = page
@@ -2157,6 +2274,7 @@ function renderYtUsers() {
   setKpi('kpi-yt-users-total', records.length.toLocaleString('en-US'))
   setKpi('kpi-yt-users-pro', proCount.toLocaleString('en-US'))
   setKpi('kpi-yt-users-new', (records.length - proCount).toLocaleString('en-US'))
+  setKpi('kpi-yt-users-over-quota', overQuotaCount.toLocaleString('en-US'))
 
   if (kpis) kpis.hidden = false
   if (toolbar) toolbar.hidden = false
@@ -2186,16 +2304,21 @@ function renderYtUsers() {
   if (nextBtn) nextBtn.disabled = page >= pageCount
   body.innerHTML = pageRows
     .map((rec) => {
-      const signedUp = formatSignedUpDate(rec.firstMs)
-      const signedTitle = rec.firstMs ? formatDateWithRelative(new Date(rec.firstMs).toISOString()) : ''
+      const installed = formatSignedUpDate(rec.firstMs)
+      const versionLabel = rec.version ? `v${rec.version.replace(/^v/i, '')}` : '—'
       const proClass = rec.hasProBenefits ? 'admin__users-pill--yes' : 'admin__users-pill--no'
       const proLabel = rec.hasProBenefits ? 'true' : 'false'
+      const maxWkClass = rec.overWeeklyQuota ? ' admin__users-num--warn' : ''
       return `<tr>
-        <td>
+        <td class="admin__users-id-cell">
           <button type="button" class="admin__fingerprint-btn admin__users-id" data-fingerprint="${escapeHtml(rec.id)}" title="${escapeHtml(rec.id)}">${escapeHtml(rec.id)}</button>
         </td>
-        <td title="${escapeHtml(signedTitle)}">${escapeHtml(signedUp)}</td>
+        <td class="admin__users-datetime">${escapeHtml(installed)}</td>
+        <td class="admin__users-version">${escapeHtml(versionLabel)}</td>
         <td class="admin__users-num">${rec.searches.toLocaleString('en-US')}</td>
+        <td class="admin__users-num">${rec.exports.toLocaleString('en-US')}</td>
+        <td class="admin__users-num">${rec.aiChats.toLocaleString('en-US')}</td>
+        <td class="admin__users-num${maxWkClass}">${rec.maxWeeklySearches.toLocaleString('en-US')}</td>
         <td><span class="admin__users-pill ${proClass}">${proLabel}</span></td>
       </tr>`
     })
@@ -2236,7 +2359,9 @@ function downloadProBenefitJson() {
 function summarizeYtFingerprint(fingerprint) {
   const fp = normalizeDashboardFingerprint(fingerprint)
   const rows = (state.ytRows || []).filter(
-    (row) => normalizeDashboardFingerprint(ytRowFingerprint(row)) === fp,
+    (row) =>
+      normalizeDashboardFingerprint(ytRowFingerprint(row)) === fp &&
+      isFilterSearchEvent(row),
   )
 
   const daySet = new Set()
@@ -2405,13 +2530,13 @@ function openFingerprintModal(fingerprint, { email = null } = {}) {
       <div class="admin__modal-kpi">
         <div class="admin__modal-kpi-label">First seen</div>
         <div class="admin__modal-kpi-value" style="font-size:0.85rem">${escapeHtml(
-          formatDate(summary.firstSeen ? new Date(summary.firstSeen).toISOString() : null),
+          formatAdminCompactDateTime(summary.firstSeen ? new Date(summary.firstSeen).toISOString() : null),
         )}</div>
       </div>
       <div class="admin__modal-kpi">
         <div class="admin__modal-kpi-label">Last seen</div>
         <div class="admin__modal-kpi-value" style="font-size:0.85rem">${escapeHtml(
-          formatDate(summary.lastSeen ? new Date(summary.lastSeen).toISOString() : null),
+          formatAdminCompactDateTime(summary.lastSeen ? new Date(summary.lastSeen).toISOString() : null),
         )}</div>
       </div>
     </div>
@@ -3090,7 +3215,8 @@ function buildFeatureDailySeries(rows, topN = FEATURE_DAILY_TOP_N, windowKey = g
   for (const row of rows || []) {
     const event = ytRowEvent(row)
     if (event === 'started_tutorial' || event === 'completed_tutorial') continue
-    if (event === 'export_results') continue
+    if (event === 'export_results' || event === 'view_results' || event === 'ai_chat') continue
+    if (!isFilterSearchEvent(row)) continue
 
     const fingerprint = normalizeDashboardFingerprint(ytRowFingerprint(row))
     if (!fingerprint) continue
@@ -3314,7 +3440,9 @@ function buildUserGrowthSeries(rows) {
 
     if (!dayFpSearches.has(dayKey)) dayFpSearches.set(dayKey, new Map())
     const fpMap = dayFpSearches.get(dayKey)
-    fpMap.set(fingerprint, (fpMap.get(fingerprint) || 0) + 1)
+    if (isFilterSearchEvent(row)) {
+      fpMap.set(fingerprint, (fpMap.get(fingerprint) || 0) + 1)
+    }
   }
 
   const newUsersByDay = new Map()
@@ -3414,6 +3542,7 @@ function buildYtMetricsText(rows) {
   const searchesByFp = new Map()
 
   for (const row of rows) {
+    if (!isFilterSearchEvent(row)) continue
     const fpRaw = row?.fingerprint
     const fingerprint =
       fpRaw != null && String(fpRaw).trim() !== '' ? String(fpRaw) : null
@@ -4148,19 +4277,20 @@ function aggregateYt(rows) {
       }
       continue
     }
-
-    activityRowCount += 1
-    if (fingerprint) {
-      uniqueFingerprints.add(fingerprint)
-      searchesByFp.set(fingerprint, (searchesByFp.get(fingerprint) || 0) + 1)
-    }
-
     if (event === 'export_results') {
       totalExports += 1
       const format = ytRowExportFormat(row) || 'unknown'
       exportsByFormat.set(format, (exportsByFormat.get(format) || 0) + 1)
       if (fingerprint) exportUsers.add(fingerprint)
       continue
+    }
+    if (event === 'view_results' || event === 'ai_chat') continue
+    if (!isFilterSearchEvent(row)) continue
+
+    activityRowCount += 1
+    if (fingerprint) {
+      uniqueFingerprints.add(fingerprint)
+      searchesByFp.set(fingerprint, (searchesByFp.get(fingerprint) || 0) + 1)
     }
 
     const filter = pickFilterObject(row)
@@ -4899,10 +5029,6 @@ function renderYtCharts() {
   renderSearchesWindowChart(rows)
 }
 
-function isFilterSearchEvent(row) {
-  return ytRowEvent(row) === 'filter_search'
-}
-
 function formatSearchesWindowTick(ms, windowKey) {
   const date = new Date(ms)
   if (Number.isNaN(date.getTime())) return '—'
@@ -5592,6 +5718,85 @@ async function loadYt({ force = false } = {}) {
 /* Boot                                                                       */
 /* -------------------------------------------------------------------------- */
 
+function destroyInstallChurnChart() {
+  const chart = state.charts.installChurn
+  if (!chart) return
+  try {
+    chart.destroy()
+  } catch {
+    /* ignore */
+  }
+  delete state.charts.installChurn
+}
+
+function updateYtLocalDataHint() {
+  const el = document.getElementById('yt-local-data-hint')
+  if (!el) return
+  const data = window.CC_ADMIN_YT_FILTER_CHURN
+  const at = data?.extractedAt || data?.updatedAt
+  if (!at) {
+    el.hidden = true
+    el.textContent = ''
+    return
+  }
+  el.hidden = false
+  el.textContent = `Local portfolio: ${formatDateWithRelative(at)}`
+}
+
+function reloadLocalAdminScript(relativePath) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script')
+    script.src = `${relativePath}?v=${Date.now()}`
+    script.onload = () => resolve()
+    script.onerror = () => reject(new Error(`Failed to reload ${relativePath}`))
+    document.body.appendChild(script)
+  })
+}
+
+async function refreshYtLocalData() {
+  if (state.ytLocalRefreshing) return
+  state.ytLocalRefreshing = true
+  const btn = document.getElementById('yt-refresh-local')
+  if (btn) btn.disabled = true
+  try {
+    await reloadLocalAdminScript('./yt-filter-pro-churn.js')
+    destroyInstallChurnChart()
+    renderYtInstallChurnChart()
+    updateYtLocalDataHint()
+    if (typeof Toastify !== 'undefined') {
+      Toastify({
+        text: 'Local portfolio data reloaded.',
+        duration: 2800,
+        gravity: 'top',
+        position: 'right',
+      }).showToast()
+    }
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error)
+    if (typeof Toastify !== 'undefined') {
+      Toastify({
+        text: msg,
+        duration: 4000,
+        gravity: 'top',
+        position: 'right',
+        style: { background: '#ef4444' },
+      }).showToast()
+    }
+  } finally {
+    state.ytLocalRefreshing = false
+    if (btn) btn.disabled = false
+  }
+}
+
+async function refreshYtSupabase() {
+  updateUpdatedAt()
+  await loadYt({ force: true })
+  if (window.YfpAdminAccounts?.refresh) {
+    await window.YfpAdminAccounts.refresh({ silent: true })
+  }
+  updateUpdatedAt()
+}
+
 async function refreshAll({ forceYt = true, forceFeedback = true } = {}) {
   updateUpdatedAt()
   await Promise.all([
@@ -5668,6 +5873,17 @@ document.querySelectorAll('[data-users-pro]').forEach((btn) => {
   })
 })
 
+document.querySelectorAll('[data-users-quota]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    state.ytUsersQuotaFilter = btn.dataset.usersQuota || 'all'
+    state.ytUsersPage = 1
+    document.querySelectorAll('[data-users-quota]').forEach((chip) => {
+      chip.classList.toggle('admin__chip--active', chip.dataset.usersQuota === state.ytUsersQuotaFilter)
+    })
+    if (state.loaded.yt) renderYtUsers()
+  })
+})
+
 document.getElementById('yt-users-prev')?.addEventListener('click', () => {
   state.ytUsersPage = Math.max(1, (Number(state.ytUsersPage) || 1) - 1)
   renderYtUsers()
@@ -5693,8 +5909,12 @@ document.getElementById('yt-users-body')?.addEventListener('click', (event) => {
   if (fp) openFingerprintModal(fp)
 })
 
-document.getElementById('admin-refresh').addEventListener('click', () => {
-  refreshAll()
+document.getElementById('yt-refresh-supabase')?.addEventListener('click', () => {
+  void refreshYtSupabase()
+})
+
+document.getElementById('yt-refresh-local')?.addEventListener('click', () => {
+  void refreshYtLocalData()
 })
 
 document.getElementById('yt-copy-metrics')?.addEventListener('click', () => {
@@ -5883,12 +6103,14 @@ document.addEventListener('mousedown', (event) => {
 })
 
 window.addEventListener('hashchange', () => applyAdminRouteFromUrl())
+applyYtFreeTierLimitLabels()
 if (parseAdminPath(location.hash)) applyAdminRouteFromUrl()
 else {
   switchTab(getActiveTab(), { persist: false })
   syncAdminUrl()
 }
 refreshAll({ forceYt: false, forceFeedback: false })
+updateYtLocalDataHint()
 scheduleYtCacheRefresh()
 scheduleFeedbackCacheRefresh()
 startCacheTimerTicker()

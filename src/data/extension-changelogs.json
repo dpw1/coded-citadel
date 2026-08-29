@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-08-28T15:16:29.275Z",
+  "updatedAt": "2026-08-29T19:37:56.063Z",
   "message": null,
   "apps": [
     {
@@ -268,6 +268,24 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "11f5a306a717a83678b89dcf51dec96a7dd400db",
+          "shortSha": "11f5a30",
+          "message": "Raise free tier to 10/week, harden quota gates, and add Ask AI module.",
+          "date": "2026-08-28T21:44:40Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/11f5a306a717a83678b89dcf51dec96a7dd400db",
+          "version": "1.0.86"
+        },
+        {
+          "sha": "2d0f865be732bc5c799754e50d48e35a94f0a3b8",
+          "shortSha": "2d0f865",
+          "message": "Weekly quota enforcement, export UX, and v1.0.86.",
+          "date": "2026-08-28T15:49:56Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/2d0f865be732bc5c799754e50d48e35a94f0a3b8",
+          "version": "1.0.86"
+        },
         {
           "sha": "c19151321c6218eb8cfed15a58e7c8caa5e34bbe",
           "shortSha": "c191513",
@@ -671,7 +689,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.85"
+          "version": "1.0.87"
         },
         {
           "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
@@ -680,7 +698,7 @@
           "date": "2026-05-18T00:59:12Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.85"
+          "version": "1.0.87"
         },
         {
           "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
@@ -689,7 +707,7 @@
           "date": "2026-05-14T05:26:00Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.85"
+          "version": "1.0.87"
         },
         {
           "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
@@ -698,16 +716,7 @@
           "date": "2026-05-14T05:11:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.85"
-        },
-        {
-          "sha": "fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "shortSha": "fbeadc2",
-          "message": "Initial commit: YouTube Filter Pro Chrome extension",
-          "date": "2026-05-14T04:20:39Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/fbeadc240b991b1fd10c89cdc951b6eec1b43923",
-          "version": "1.0.85"
+          "version": "1.0.87"
         }
       ]
     },

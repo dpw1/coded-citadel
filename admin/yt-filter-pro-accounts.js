@@ -14,12 +14,18 @@ function yfpUtcMonth() {
 
 function yfpUsage(row) {
   const data = row && row.data && typeof row.data === 'object' ? row.data : {}
+  const limits = typeof window !== 'undefined' && window.YFP_FREE_TIER_LIMITS ? window.YFP_FREE_TIER_LIMITS : {}
+  const defaultExportCap = Number(limits.weeklyExportCap) || 10
+  const defaultAiChatCap = Number(limits.weeklyAiChatCap) || 10
+  const defaultSearchCap = Number(limits.weeklySearchCap) || 10
   return {
     month: String(data.month || row.usage_month || ''),
     searches: Number(data.searches ?? row.searches_this_month ?? 0),
-    searchCap: Number(row.monthly_quota ?? data.searchCap ?? 25),
+    searchCap: Number(row.monthly_quota ?? data.searchCap ?? defaultSearchCap),
     exports: Number(data.exports || 0),
-    exportCap: Number(data.exportCap || 5),
+    exportCap: Number(data.exportCap || defaultExportCap),
+    aiChats: Number(data.aiChats || 0),
+    aiChatCap: Number(data.aiChatCap || defaultAiChatCap),
   }
 }
 
@@ -225,7 +231,10 @@ function yfpFormatDateRelative(value) {
   const dd = String(d.getUTCDate()).padStart(2, '0')
   const mm = String(d.getUTCMonth() + 1).padStart(2, '0')
   const yyyy = d.getUTCFullYear()
-  const absolute = `${dd}-${mm}-${yyyy}`
+  const hh = String(d.getUTCHours()).padStart(2, '0')
+  const min = String(d.getUTCMinutes()).padStart(2, '0')
+  const ss = String(d.getUTCSeconds()).padStart(2, '0')
+  const absolute = `${dd}-${mm}-${yyyy} ${hh}-${min}-${ss}`
   const relative = yfpRelativeLabel(value)
   return relative ? `${absolute} (${relative})` : absolute
 }
@@ -233,6 +242,14 @@ function yfpFormatDateRelative(value) {
 function yfpUsedThisMonth(row) {
   const usage = yfpUsage(row)
   return usage.month === yfpUtcMonth() ? usage.searches : 0
+}
+
+function yfpUsedExports(row) {
+  return yfpUsage(row).exports
+}
+
+function yfpUsedAiChats(row) {
+  return yfpUsage(row).aiChats
 }
 
 function yfpSortValue(row, key) {
@@ -244,6 +261,10 @@ function yfpSortValue(row, key) {
       return Number.isFinite(usage.searchCap) ? usage.searchCap : 0
     case 'used':
       return yfpUsedThisMonth(row)
+    case 'exports':
+      return yfpUsedExports(row)
+    case 'aiChats':
+      return yfpUsedAiChats(row)
     case 'paying':
       return row.is_paying ? 1 : 0
     case 'lifetime':
@@ -331,6 +352,8 @@ function yfpRenderProfiles(rows) {
     .map((row) => {
       const usage = yfpUsage(row)
       const used = yfpUsedThisMonth(row)
+      const exportsUsed = yfpUsedExports(row)
+      const aiChatsUsed = yfpUsedAiChats(row)
       const quota = Number.isFinite(usage.searchCap) ? usage.searchCap : 0
       const grant = yfpFormatDateRelative(row.grant_until)
       const created = yfpFormatDateRelative(row.created_at)
@@ -343,6 +366,8 @@ function yfpRenderProfiles(rows) {
           <input type="number" class="admin__users-search yt-quota-input" min="0" value="${quota}" hidden />
         </td>
         <td class="admin__users-num">${used}</td>
+        <td class="admin__users-num" title="cap ${usage.exportCap}">${exportsUsed}</td>
+        <td class="admin__users-num" title="cap ${usage.aiChatCap}">${aiChatsUsed}</td>
         <td><span class="admin__users-pill ${row.is_paying ? 'admin__users-pill--yes' : 'admin__users-pill--no'}">${row.is_paying ? 'yes' : 'no'}</span></td>
         <td><span class="admin__users-pill ${row.is_lifetime ? 'admin__users-pill--yes' : 'admin__users-pill--no'}">${row.is_lifetime ? 'yes' : 'no'}</span></td>
         <td title="${escapeHtmlAdmin(grantTitle)}">${escapeHtmlAdmin(grant)}</td>
