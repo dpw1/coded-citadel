@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-08-29T19:37:56.063Z",
+  "updatedAt": "2026-09-01T19:36:45.679Z",
   "message": null,
   "apps": [
     {
@@ -268,6 +268,33 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "a7a6500223902e872211422fc9f2591cbd139653",
+          "shortSha": "a7a6500",
+          "message": "Update documentation, version bump to 1.0.95, and enhance localization support.",
+          "date": "2026-09-01T05:18:20Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/a7a6500223902e872211422fc9f2591cbd139653",
+          "version": "1.0.86"
+        },
+        {
+          "sha": "6cc689aa98bf952807be65db2cbfad032ecc5704",
+          "shortSha": "6cc689a",
+          "message": "Add gift grants, 24h sync, profile UX, and complete locale coverage.",
+          "date": "2026-08-30T20:18:14Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/6cc689aa98bf952807be65db2cbfad032ecc5704",
+          "version": "1.0.86"
+        },
+        {
+          "sha": "512a5a6c496471a7182d601ac72290106be29758",
+          "shortSha": "512a5a6",
+          "message": "Add include-channels filter, profile UX polish, and full i18n for new features.",
+          "date": "2026-08-29T20:46:14Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/512a5a6c496471a7182d601ac72290106be29758",
+          "version": "1.0.86"
+        },
         {
           "sha": "11f5a306a717a83678b89dcf51dec96a7dd400db",
           "shortSha": "11f5a30",
@@ -689,34 +716,7 @@
           "date": "2026-05-18T14:12:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.87"
-        },
-        {
-          "sha": "ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "shortSha": "ec70bc7",
-          "message": "Enhance filter functionality in YouTube Filter Pro: expanded date range presets for improved filtering options, added enable/disable button in modal, and implemented duration clear button. Updated styles for active filter rows and modal elements for better user experience.",
-          "date": "2026-05-18T00:59:12Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/ec70bc78f8e07e687557a66aadb88b6f272ff59e",
-          "version": "1.0.87"
-        },
-        {
-          "sha": "db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "shortSha": "db1f0c5",
-          "message": "Refactor filter synchronization in YouTube Filter Pro: replaced loadFilters with filterSyncState for improved state management, added duration input padding, and updated modal behavior to ensure consistent filter application. Adjusted styles for better layout responsiveness.",
-          "date": "2026-05-14T05:26:00Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/db1f0c52d75d9d5b3120d03fcd86b13711c0fadb",
-          "version": "1.0.87"
-        },
-        {
-          "sha": "bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "shortSha": "bf8dc7f",
-          "message": "Enhance YouTube Filter Pro: Added support for main world script execution, improved filter UI with duration input validation, and refined logging and filter logic. Updated styles for verified channels and adjusted filter button behavior.",
-          "date": "2026-05-14T05:11:24Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf8dc7fc488d5e1da3d60939525eed216c9921fa",
-          "version": "1.0.87"
+          "version": "1.0.96"
         }
       ]
     },
@@ -1080,6 +1080,24 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "adccdf7232c0abdee12dded302c9e70e0451bf49",
+          "shortSha": "adccdf7",
+          "message": "Release v1.0.42: Enhanced PDF export functionality by increasing canvas scale for better quality. Removed deprecated PDF export files and updated the manifest to streamline permissions and include new dependencies. Improved export process by utilizing a data URL for PDF downloads.",
+          "date": "2026-08-30T04:18:18Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/adccdf7232c0abdee12dded302c9e70e0451bf49",
+          "version": "1.0.42"
+        },
+        {
+          "sha": "f218ff1c26fe5fc976e10efd5d7ff4da55cdc4fe",
+          "shortSha": "f218ff1",
+          "message": "Release v1.0.41 with PDF export, UI refinements, and export improvements.",
+          "date": "2026-08-30T04:11:00Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/f218ff1c26fe5fc976e10efd5d7ff4da55cdc4fe",
+          "version": "1.0.41"
+        },
+        {
           "sha": "53e89f52c7a74718dc816a1e6b3402a4cecd4e80",
           "shortSha": "53e89f5",
           "message": "Update Instagram DM Exporter to version 1.0.36. Introduced audio transcription feature, enhanced attachment handling, and improved UI settings for export options. Updated manifest permissions and refined build process for better asset management.",
@@ -1122,7 +1140,7 @@
           "date": "2026-05-25T20:18:09Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-dm-exporter/commit/96721ee79bae5412b79898e32c4b99114abc28d3",
-          "version": "1.0.39"
+          "version": "1.0.42"
         }
       ]
     },
@@ -1160,7 +1178,7 @@
           "date": "2026-07-16T17:12:51Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/af9c527d390649624b5cf58305f93824a0bb754d",
-          "version": "1.0.71"
+          "version": "1.0.72"
         },
         {
           "sha": "32f940aecda2bc4490eb36bc46064d034e789c81",
@@ -1169,7 +1187,7 @@
           "date": "2026-06-13T12:05:22Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/32f940aecda2bc4490eb36bc46064d034e789c81",
-          "version": "1.0.71"
+          "version": "1.0.72"
         },
         {
           "sha": "de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
@@ -1178,7 +1196,7 @@
           "date": "2026-06-13T11:34:26Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
-          "version": "1.0.71"
+          "version": "1.0.72"
         },
         {
           "sha": "e68b1d247848af795b32ac5a2ac329608ba911ff",
@@ -1187,7 +1205,7 @@
           "date": "2026-06-02T20:40:15Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/e68b1d247848af795b32ac5a2ac329608ba911ff",
-          "version": "1.0.71"
+          "version": "1.0.72"
         }
       ]
     },

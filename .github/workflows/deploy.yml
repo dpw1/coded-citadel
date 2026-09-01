@@ -46,6 +46,10 @@ jobs:
           test -f dist/index.html
           test -f dist/favicon-32x32.png
           test -f dist/favicon.ico
+          if test -d dist/admin; then
+            echo "admin/ must not be deployed — remove dist/admin from the build output"
+            exit 1
+          fi
           if grep -qE '\.jsx|/src/main' dist/index.html; then
             echo "dist/index.html still references source JSX — build misconfigured"
             exit 1

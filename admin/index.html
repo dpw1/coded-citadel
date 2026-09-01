@@ -758,9 +758,40 @@
 
       <div id="yt-subpanel-logged-in" role="tabpanel" aria-labelledby="yt-subtab-logged-in" hidden>
         <p class="admin__note">
-          Google accounts from <code>yt_filter_pro_profiles</code>.
-          Quota <code>&gt;= 9999</code> is unlimited.
+          Google accounts from <code>yt_filter_pro_profiles</code> plus device-only Lemon customers.
+          Quota <code>&gt;= 9999</code> is unlimited. Use <strong>Refresh from Lemon</strong> after
+          manual changes in the Lemon admin (cancel, refund, etc.).
         </p>
+
+        <nav
+          class="admin__subtabs admin__loggedin-audience"
+          role="tablist"
+          aria-label="Production vs test checkout users"
+        >
+          <button
+            type="button"
+            class="admin__subtab admin__subtab--active"
+            role="tab"
+            aria-selected="true"
+            data-yfp-audience="real"
+            id="yt-loggedin-tab-real"
+          >
+            Real users
+            <span class="admin__tab-badge" id="yt-loggedin-badge-real" hidden>0</span>
+          </button>
+          <button
+            type="button"
+            class="admin__subtab"
+            role="tab"
+            aria-selected="false"
+            data-yfp-audience="test"
+            id="yt-loggedin-tab-test"
+          >
+            Test users
+            <span class="admin__tab-badge" id="yt-loggedin-badge-test" hidden>0</span>
+          </button>
+        </nav>
+
         <p class="admin__status" id="yt-loggedin-status" hidden></p>
 
         <div class="admin__kpis" id="yt-loggedin-kpis" hidden>
@@ -775,6 +806,10 @@
           <div class="admin__kpi">
             <div class="admin__kpi-label">Paying</div>
             <div class="admin__kpi-value" id="kpi-yt-loggedin-paying">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Subscribed</div>
+            <div class="admin__kpi-value admin__kpi-value--green" id="kpi-yt-loggedin-subscribed">0</div>
           </div>
         </div>
 
@@ -791,7 +826,7 @@
           </label>
           <div class="admin__users-actions">
             <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-loggedin-refresh">
-              Refresh users
+              Refresh from Lemon
             </button>
           </div>
         </div>
@@ -805,6 +840,9 @@
                 <th class="admin__users-num"><button type="button" class="admin__users-sort" data-sort="used">searches</button></th>
                 <th class="admin__users-num"><button type="button" class="admin__users-sort" data-sort="exports">exports</button></th>
                 <th class="admin__users-num"><button type="button" class="admin__users-sort" data-sort="aiChats">AI chats</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="test">test</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="subscribed">subscribed</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="nextPayment">next payment</button></th>
                 <th><button type="button" class="admin__users-sort" data-sort="paying">paying</button></th>
                 <th><button type="button" class="admin__users-sort" data-sort="lifetime">lifetime</button></th>
                 <th><button type="button" class="admin__users-sort" data-sort="grant">grant until</button></th>
@@ -834,11 +872,12 @@
               <span class="admin__filter-label">Kind</span>
               <select id="yt-gift-kind" class="admin__select yt-gift-kind">
                 <option value="days">Days</option>
+                <option value="months">Months</option>
                 <option value="lifetime">Lifetime</option>
               </select>
             </label>
             <label class="admin__filter-group">
-              <span class="admin__filter-label">Days</span>
+              <span class="admin__filter-label" id="yt-gift-duration-label">Days</span>
               <input type="number" id="yt-gift-days" class="admin__users-search" min="1" value="60" />
             </label>
             <label class="admin__filter-group">
@@ -849,8 +888,13 @@
               <span class="admin__filter-label">Note</span>
               <input type="text" id="yt-gift-note" class="admin__users-search" placeholder="beta / 2 months" />
             </label>
+            <label class="admin__filter-group admin__filter-group--checkbox">
+              <span class="admin__filter-label">Requires login</span>
+              <input type="checkbox" id="yt-gift-requires-login" />
+            </label>
             <button type="submit" class="admin__btn admin__btn--sm" id="yt-gift-create">Create code</button>
           </form>
+          <p class="admin__copy-hint" id="yt-gift-expiration-preview" aria-live="polite"></p>
           <p class="admin__copy-hint" id="yt-gift-created" hidden></p>
           <div class="admin__users-table-wrap">
             <table class="admin__users-table admin__gifts-table">
@@ -858,11 +902,15 @@
                 <tr>
                   <th>name</th>
                   <th>kind</th>
-                  <th>days</th>
+                  <th>duration</th>
                   <th>max uses</th>
                   <th>used</th>
                   <th>note</th>
+                  <th>requires login</th>
+                  <th>created</th>
+                  <th>expiration</th>
                   <th>redeemed by</th>
+                  <th>revoke</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -953,6 +1001,27 @@
         </button>
       </div>
       <div class="admin__modal-body admin__modal-body--yfp" id="searches-preview-body"></div>
+    </div>
+  </div>
+
+  <div class="admin__modal" id="yt-gift-redemptions-modal" hidden>
+    <button type="button" class="admin__modal-backdrop" id="yt-gift-redemptions-modal-backdrop" aria-label="Close"></button>
+    <div
+      class="admin__modal-dialog admin__modal-dialog--yfp"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="yt-gift-redemptions-title"
+    >
+      <div class="admin__modal-header">
+        <div>
+          <p class="admin__eyebrow">Gift redemptions</p>
+          <h2 class="admin__modal-title" id="yt-gift-redemptions-title">Code</h2>
+        </div>
+        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-gift-redemptions-modal-close">
+          Close
+        </button>
+      </div>
+      <div class="admin__modal-body admin__modal-body--yfp" id="yt-gift-redemptions-body"></div>
     </div>
   </div>
 

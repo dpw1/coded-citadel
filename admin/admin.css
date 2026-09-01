@@ -80,6 +80,67 @@ code {
   flex-wrap: wrap;
 }
 
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+.admin-login__card {
+  width: min(100%, 420px);
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius);
+  padding: 2rem 1.75rem;
+}
+
+.admin-login__title {
+  font-family: var(--CC__font-display);
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+.admin-login__note {
+  color: var(--CC__color-text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 1.25rem;
+}
+
+.admin-login__form {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.admin-login__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--CC__color-text-muted);
+}
+
+.admin-login__input {
+  width: 100%;
+  background: var(--CC__color-bg-surface);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius);
+  color: var(--CC__color-text-main);
+  font: inherit;
+  padding: 0.65rem 0.75rem;
+}
+
+.admin-login__input:focus {
+  outline: 2px solid color-mix(in srgb, var(--CC__color-primary) 45%, transparent);
+  border-color: var(--CC__color-primary);
+}
+
+.admin-login__error {
+  color: var(--CC__color-danger);
+  font-size: 0.88rem;
+}
+
 .admin__updated {
   color: var(--CC__color-text-muted);
   font-size: 0.85rem;
@@ -244,6 +305,11 @@ code {
 .admin__subtab--active {
   color: var(--CC__color-primary);
   border-bottom-color: var(--CC__color-primary);
+}
+
+.admin__loggedin-audience {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
 }
 
 .admin__tab-badge {
@@ -1821,6 +1887,27 @@ code {
   min-width: 36px;
   padding: 0 0.45rem;
   color: var(--CC__color-danger, #f06560);
+}
+.yt-gift-emails-btn {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--CC__color-accent, #7c5cff);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.yt-gift-emails-btn:hover {
+  color: var(--CC__color-text-primary, #fff);
+}
+.yt-gift-revoke-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
 }
 .yt-gift-delete svg {
   display: block;
