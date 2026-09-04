@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-09-01T19:36:45.679Z",
+  "updatedAt": "2026-09-04T19:20:33.201Z",
   "message": null,
   "apps": [
     {
@@ -268,6 +268,33 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "d63aab36e512246ce653d9ccc2f4a6b02b3b069a",
+          "shortSha": "d63aab3",
+          "message": "Add view-comments tippy, free-tier limits, and profile compare updates.",
+          "date": "2026-09-04T02:49:15Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/d63aab36e512246ce653d9ccc2f4a6b02b3b069a",
+          "version": "1.0.98"
+        },
+        {
+          "sha": "0c17d3f878af5d029f2f702a667cb6ea36c673b5",
+          "shortSha": "0c17d3f",
+          "message": "Update version to 1.0.98, add feedback prompts, and clear uninstall URL handling.",
+          "date": "2026-09-02T09:44:15Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/0c17d3f878af5d029f2f702a667cb6ea36c673b5",
+          "version": "1.0.98"
+        },
+        {
+          "sha": "7fdc74d9b38f41efed96e0adcfcea398d70aef4d",
+          "shortSha": "7fdc74d",
+          "message": "Add export field picker, dislikes features, and fix off-page search flow.",
+          "date": "2026-09-02T09:12:15Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/7fdc74d9b38f41efed96e0adcfcea398d70aef4d",
+          "version": "1.0.86"
+        },
         {
           "sha": "a7a6500223902e872211422fc9f2591cbd139653",
           "shortSha": "a7a6500",
@@ -689,34 +716,7 @@
           "date": "2026-06-23T18:02:21Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/5de640c1ed81f83d3057f79a91f4453c41bd0682",
-          "version": "1.0.42"
-        },
-        {
-          "sha": "500c26ea5179952a97992c462f41f4ce0a3cccc4",
-          "shortSha": "500c26e",
-          "message": "Update YouTube Filter Pro: Incremented version to 1.0.42, added new methods for parsing subscriber and video count labels, and improved channel information extraction logic. Enhanced filtering functionality with better cache management and refined DOM handling for channel links. Updated styles for toast notifications and modal elements for improved user experience.",
-          "date": "2026-06-18T01:39:55Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/500c26ea5179952a97992c462f41f4ce0a3cccc4",
-          "version": "1.0.42"
-        },
-        {
-          "sha": "5c3986eb1cd880f84d946bddb14a36c36083682a",
-          "shortSha": "5c3986e",
-          "message": "Update YouTube Filter Pro: Incremented version to 1.0.41, added host permissions for Supabase, and enhanced filtering capabilities with new subscriber and channel video count filters. Improved modal UI with clear buttons for filter inputs and refined logging for better debugging. Updated styles for channel subscriber information display.",
-          "date": "2026-06-11T06:29:26Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/5c3986eb1cd880f84d946bddb14a36c36083682a",
-          "version": "1.0.41"
-        },
-        {
-          "sha": "dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "shortSha": "dab809f",
-          "message": "Update YouTube Filter Pro: Enhanced manifest with updated name and version, added web accessible resources. Improved filter functionality by introducing new methods for clearing YFP attributes and managing filter sessions. Added toast notifications for hidden videos and refined modal settings for better user experience. Updated styles for filter toasts and improved navigation handling.",
-          "date": "2026-05-18T14:12:01Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/dab809fc79fccd93abe8f0bb6c751db6723d1e83",
-          "version": "1.0.96"
+          "version": "1.0.99"
         }
       ]
     },
