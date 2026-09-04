@@ -107,6 +107,7 @@ export function getHomeStats() {
   return {
     totalActiveUsers: s.totalActiveUsers,
     totalInstalls: s.totalInstalls,
+    totalProfit: s.totalProfit,
     installDelta: s.installsDelta7d,
     activeUsersDelta7d: s.activeUsersDelta7d,
     built: s.built,

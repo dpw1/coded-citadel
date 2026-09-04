@@ -8,9 +8,9 @@ export function getTotalProfit() {
   return sources.reduce((sum, entry) => sum + (Number(entry?.amount) || 0), 0)
 }
 
-/** Display string for announcement bar / KPIs (e.g. "$1,431"). */
+/** Display string for announcement bar / KPIs (e.g. "$1,462.57"). */
 export function getProfitDisplay() {
-  return `$${Math.round(getTotalProfit()).toLocaleString('en-US')}`
+  return formatProfitAmount(getTotalProfit())
 }
 
 export function getProfitSources() {
@@ -43,7 +43,12 @@ export function getProfitProgress() {
 
 export function formatProfitAmount(amount) {
   const value = Number(amount) || 0
-  return `$${Math.round(value).toLocaleString('en-US')}`
+  const cents = Math.round(value * 100)
+  const hasCents = cents % 100 !== 0
+  return `$${(cents / 100).toLocaleString('en-US', {
+    minimumFractionDigits: hasCents ? 2 : 0,
+    maximumFractionDigits: 2,
+  })}`
 }
 
 export function formatProfitDate(isoDay) {

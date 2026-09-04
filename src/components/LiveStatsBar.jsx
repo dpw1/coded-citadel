@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import CyberCorners from './CyberCorners'
-import { formatNumber, getHomeStats, getJourneyStartDateLabel } from '../utils/apps'
+import { formatNumber, formatRevenue, getHomeStats, getJourneyStartDateLabel } from '../utils/apps'
 
 export default function LiveStatsBar() {
   const stats = getHomeStats()
 
   return (
     <div className="CC__stats-section CC__container" data-nosnippet>
-      <Link to="/live-stats" className="CC__stats-bar-link" aria-label="View live portfolio stats">
+      <Link to="/profit" className="CC__stats-bar-link" aria-label="View profit journey">
         <div className="CC__stats-bar CC__cyber-accent">
         <div className="CC__stats-bar__corners" aria-hidden="true">
           <CyberCorners />
@@ -25,23 +25,16 @@ export default function LiveStatsBar() {
           <li className="CC__stats-bar__item">
             <div className="CC__stats-bar__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <polyline points="8 17 12 21 16 17" />
-                <line x1="12" y1="12" x2="12" y2="21" />
-                <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29" />
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
               </svg>
             </div>
             <div className="CC__stats-bar__info">
-              <span className="CC__stats-bar__label">Total Installs</span>
-              <span className="CC__stats-bar__value">{formatNumber(stats.totalInstalls)}</span>
-              {stats.installDelta > 0 ? (
-                <span className="CC__stats-bar__delta">
-                  ↑ +{formatNumber(stats.installDelta)} past 7 days
-                </span>
-              ) : (
-                <span className="CC__stats-bar__delta" aria-hidden="true">
-                  &nbsp;
-                </span>
-              )}
+              <span className="CC__stats-bar__label">Total Made</span>
+              <span className="CC__stats-bar__value">{formatRevenue(stats.totalProfit)}</span>
+              <span className="CC__stats-bar__delta CC__stats-bar__delta--muted">
+                of $100k goal
+              </span>
             </div>
           </li>
 

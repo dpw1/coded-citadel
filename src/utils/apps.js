@@ -295,7 +295,13 @@ export function appGithubUrl(app) {
 }
 
 export function formatRevenue(total) {
-  return `$${Math.round(total).toLocaleString('en-US')}`
+  const value = Number(total) || 0
+  const cents = Math.round(value * 100)
+  const hasCents = cents % 100 !== 0
+  return `$${(cents / 100).toLocaleString('en-US', {
+    minimumFractionDigits: hasCents ? 2 : 0,
+    maximumFractionDigits: 2,
+  })}`
 }
 
 export {

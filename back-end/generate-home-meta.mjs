@@ -14,6 +14,7 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const INDEX_FILE = resolve(__dirname, '../index.html')
 const APPS_FILE = resolve(__dirname, '../src/data/apps.json')
+const PROFIT_FILE = resolve(__dirname, '../src/data/profit.json')
 
 const JOURNEY_DAY_ONE = new Date(2026, 4, 12)
 const MS_PER_DAY = 24 * 60 * 60 * 1000
@@ -32,6 +33,16 @@ function getDaysIntoJourney(now = Date.now()) {
   return elapsed + 1
 }
 
+function getTotalProfit() {
+  try {
+    const profitData = JSON.parse(readFileSync(PROFIT_FILE, 'utf8'))
+    const sources = Array.isArray(profitData?.sources) ? profitData.sources : []
+    return sources.reduce((sum, entry) => sum + (Number(entry?.amount) || 0), 0)
+  } catch {
+    return 0
+  }
+}
+
 function loadHomeStats() {
   const appsData = JSON.parse(readFileSync(APPS_FILE, 'utf8'))
   const apps = appsData.apps ?? []
@@ -40,6 +51,7 @@ function loadHomeStats() {
   return {
     totalActiveUsers: portfolio.totalActiveUsers ?? 0,
     totalInstalls: portfolio.totalInstalls ?? 0,
+    totalProfit: getTotalProfit(),
     activeUsersDelta7d: portfolio.activeUsersDelta7d ?? null,
     installsDelta7d: portfolio.installsDelta7d ?? null,
     built: apps.length,

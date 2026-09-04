@@ -20,12 +20,18 @@ export function buildHomeMetaDescriptionSocial(stats) {
   }
 
   const users = formatMetaCount(stats.totalActiveUsers)
-  const installs = formatMetaCount(stats.totalInstalls)
+  const profit =
+    stats.totalProfit != null
+      ? `$${Number(stats.totalProfit).toLocaleString('en-US', {
+          minimumFractionDigits: Math.round(Number(stats.totalProfit) * 100) % 100 ? 2 : 0,
+          maximumFractionDigits: 2,
+        })}`
+      : '$0'
   const apps = formatMetaCount(stats.built)
   const days = stats.daysIntoJourney
 
   let description =
-    `Coding in Public Until I Make $100k USD. Currently ${users} active users and ${installs} total installs ` +
+    `Coding in Public Until I Make $100k USD. Currently ${users} active users and ${profit} total made ` +
     `across ${apps} Chrome extensions, each documented step by step on YouTube`
 
   if (days != null) {
@@ -37,9 +43,6 @@ export function buildHomeMetaDescriptionSocial(stats) {
   const growthNotes = []
   if (stats.activeUsersDelta7d != null && stats.activeUsersDelta7d > 0) {
     growthNotes.push(`+${formatMetaCount(stats.activeUsersDelta7d)} users this week`)
-  }
-  if (stats.installsDelta7d != null && stats.installsDelta7d > 0) {
-    growthNotes.push(`+${formatMetaCount(stats.installsDelta7d)} installs this week`)
   }
 
   if (growthNotes.length) {
