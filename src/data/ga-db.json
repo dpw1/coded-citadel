@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-04T19:20:24.303Z",
+  "updatedAt": "2026-09-05T15:37:53.656Z",
   "daily": [
     {
       "date": "2026-06-03",
@@ -832,12 +832,21 @@
     },
     {
       "date": "2026-09-04",
-      "pageViews": 45,
-      "activeUsers": 32,
-      "sessions": 41,
+      "pageViews": 83,
+      "activeUsers": 53,
+      "sessions": 65,
+      "blogViews": 1,
+      "avgSessionDurationSeconds": 45.90082636923077,
+      "bounceRate": 0.9846153846153847
+    },
+    {
+      "date": "2026-09-05",
+      "pageViews": 41,
+      "activeUsers": 30,
+      "sessions": 33,
       "blogViews": 0,
-      "avgSessionDurationSeconds": 35.350479853658534,
-      "bounceRate": 0.975609756097561
+      "avgSessionDurationSeconds": 218.9726576969697,
+      "bounceRate": 1
     }
   ],
   "snapshots": [
@@ -16004,12 +16013,323 @@
           }
         ]
       }
+    },
+    {
+      "extractedAt": "2026-09-05T15:37:53.656Z",
+      "analytics": {
+        "available": true,
+        "updatedAt": "2026-09-05T15:37:53.656Z",
+        "message": null,
+        "totalViews": 6498,
+        "blogViews": 125,
+        "averageTimeOnSiteSeconds": 138.58290240800974,
+        "uniqueVisitors": 3977,
+        "newVsReturning": {
+          "new": 3976,
+          "returning": 580
+        },
+        "mostViewedPages": [
+          {
+            "path": "/thank-you/",
+            "views": 3582
+          },
+          {
+            "path": "/uninstall/",
+            "views": 1271
+          },
+          {
+            "path": "/",
+            "views": 743
+          },
+          {
+            "path": "/apps",
+            "views": 161
+          },
+          {
+            "path": "/live-stats",
+            "views": 105
+          },
+          {
+            "path": "/apps/youtube-filter-pro/",
+            "views": 43
+          },
+          {
+            "path": "/work",
+            "views": 35
+          },
+          {
+            "path": "/save-directly-to-drive/",
+            "views": 28
+          },
+          {
+            "path": "/apps/youtube-filter-pro",
+            "views": 26
+          },
+          {
+            "path": "/blog",
+            "views": 22
+          }
+        ],
+        "countries": [
+          {
+            "code": "IN",
+            "name": "India",
+            "gaCountry": "India",
+            "gaCountryId": "IN",
+            "users": 1020
+          },
+          {
+            "code": "US",
+            "name": "United States",
+            "gaCountry": "United States",
+            "gaCountryId": "US",
+            "users": 594
+          },
+          {
+            "code": "PK",
+            "name": "Pakistan",
+            "gaCountry": "Pakistan",
+            "gaCountryId": "PK",
+            "users": 253
+          },
+          {
+            "code": "BR",
+            "name": "Brazil",
+            "gaCountry": "Brazil",
+            "gaCountryId": "BR",
+            "users": 141
+          },
+          {
+            "code": "JP",
+            "name": "Japan",
+            "gaCountry": "Japan",
+            "gaCountryId": "JP",
+            "users": 122
+          },
+          {
+            "code": "BD",
+            "name": "Bangladesh",
+            "gaCountry": "Bangladesh",
+            "gaCountryId": "BD",
+            "users": 118
+          },
+          {
+            "code": "AU",
+            "name": "Australia",
+            "gaCountry": "Australia",
+            "gaCountryId": "AU",
+            "users": 98
+          },
+          {
+            "code": "KR",
+            "name": "South Korea",
+            "gaCountry": "South Korea",
+            "gaCountryId": "KR",
+            "users": 95
+          },
+          {
+            "code": "ID",
+            "name": "Indonesia",
+            "gaCountry": "Indonesia",
+            "gaCountryId": "ID",
+            "users": 80
+          },
+          {
+            "code": "GB",
+            "name": "United Kingdom",
+            "gaCountry": "United Kingdom",
+            "gaCountryId": "GB",
+            "users": 74
+          },
+          {
+            "code": "DE",
+            "name": "Germany",
+            "gaCountry": "Germany",
+            "gaCountryId": "DE",
+            "users": 66
+          },
+          {
+            "code": "CA",
+            "name": "Canada",
+            "gaCountry": "Canada",
+            "gaCountryId": "CA",
+            "users": 62
+          },
+          {
+            "code": "TR",
+            "name": "Türkiye",
+            "gaCountry": "Türkiye",
+            "gaCountryId": "TR",
+            "users": 55
+          },
+          {
+            "code": "ES",
+            "name": "Spain",
+            "gaCountry": "Spain",
+            "gaCountryId": "ES",
+            "users": 54
+          },
+          {
+            "code": "RU",
+            "name": "Russia",
+            "gaCountry": "Russia",
+            "gaCountryId": "RU",
+            "users": 53
+          },
+          {
+            "code": "FR",
+            "name": "France",
+            "gaCountry": "France",
+            "gaCountryId": "FR",
+            "users": 50
+          },
+          {
+            "code": "PL",
+            "name": "Poland",
+            "gaCountry": "Poland",
+            "gaCountryId": "PL",
+            "users": 48
+          },
+          {
+            "code": null,
+            "name": "(not set)",
+            "gaCountry": "(not set)",
+            "gaCountryId": "(not set)",
+            "users": 45
+          },
+          {
+            "code": "TH",
+            "name": "Thailand",
+            "gaCountry": "Thailand",
+            "gaCountryId": "TH",
+            "users": 45
+          },
+          {
+            "code": "TW",
+            "name": "Taiwan",
+            "gaCountry": "Taiwan",
+            "gaCountryId": "TW",
+            "users": 43
+          },
+          {
+            "code": "PH",
+            "name": "Philippines",
+            "gaCountry": "Philippines",
+            "gaCountryId": "PH",
+            "users": 41
+          },
+          {
+            "code": "IT",
+            "name": "Italy",
+            "gaCountry": "Italy",
+            "gaCountryId": "IT",
+            "users": 40
+          },
+          {
+            "code": "CN",
+            "name": "China",
+            "gaCountry": "China",
+            "gaCountryId": "CN",
+            "users": 37
+          },
+          {
+            "code": "VN",
+            "name": "Vietnam",
+            "gaCountry": "Vietnam",
+            "gaCountryId": "VN",
+            "users": 37
+          },
+          {
+            "code": "EG",
+            "name": "Egypt",
+            "gaCountry": "Egypt",
+            "gaCountryId": "EG",
+            "users": 31
+          }
+        ],
+        "trafficSources": [
+          {
+            "source": "Direct",
+            "sessions": 4595
+          },
+          {
+            "source": "Referral",
+            "sessions": 152
+          },
+          {
+            "source": "Organic Search",
+            "sessions": 143
+          },
+          {
+            "source": "Unassigned",
+            "sessions": 35
+          },
+          {
+            "source": "Organic Social",
+            "sessions": 21
+          },
+          {
+            "source": "AI Assistant",
+            "sessions": 13
+          },
+          {
+            "source": "Organic Video",
+            "sessions": 5
+          },
+          {
+            "source": "Cross-network",
+            "sessions": 1
+          }
+        ],
+        "topReferrers": [
+          {
+            "referrer": "(direct)",
+            "sessions": 4595
+          },
+          {
+            "referrer": "chromewebstore.google.com",
+            "sessions": 134
+          },
+          {
+            "referrer": "google",
+            "sessions": 118
+          },
+          {
+            "referrer": "(not set)",
+            "sessions": 35
+          },
+          {
+            "referrer": "bing",
+            "sessions": 24
+          },
+          {
+            "referrer": "reddit.com",
+            "sessions": 9
+          },
+          {
+            "referrer": "facebook.com",
+            "sessions": 7
+          },
+          {
+            "referrer": "chatgpt.com",
+            "sessions": 6
+          },
+          {
+            "referrer": "youtube.com",
+            "sessions": 5
+          },
+          {
+            "referrer": "claude.ai",
+            "sessions": 4
+          }
+        ]
+      }
     }
   ],
   "blogPostViews": [
     {
       "path": "/blog/instagram-dm-exporter-chrome-extension/",
-      "views": 16
+      "views": 17
     },
     {
       "path": "/blog/ep-8-gmail-to-pdf/",

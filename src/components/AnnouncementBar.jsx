@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { formatNumber, formatRevenue, getAnnouncementBarStats } from '../utils/apps'
 import './AnnouncementBar.css'
 
-function MarqueeStrip({ liveApps, totalActiveUsers, profitDisplay, duplicate = false }) {
+function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, profitDisplay, duplicate = false }) {
   const dupClass = duplicate ? ' CC__announcement-bar__marquee-duplicate' : ''
 
   return (
@@ -30,6 +30,14 @@ function MarqueeStrip({ liveApps, totalActiveUsers, profitDisplay, duplicate = f
       </Link>
       <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
       <Link
+        to="/live-stats"
+        className={`CC__announcement-bar__marquee-item${dupClass}`}
+        tabIndex={duplicate ? -1 : undefined}
+      >
+        {formatNumber(totalInstalls)} installs
+      </Link>
+      <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
+      <Link
         to="/profit"
         className={`CC__announcement-bar__marquee-item CC__announcement-bar__marquee-item--profit${dupClass}`}
         tabIndex={duplicate ? -1 : undefined}
@@ -45,17 +53,18 @@ function MarqueeStrip({ liveApps, totalActiveUsers, profitDisplay, duplicate = f
 }
 
 export default function AnnouncementBar() {
-  const { liveApps, totalActiveUsers, totalProfit } = getAnnouncementBarStats()
+  const { liveApps, totalActiveUsers, totalInstalls, totalProfit } = getAnnouncementBarStats()
   const profitDisplay = formatRevenue(totalProfit)
 
   const ariaLabel = [
     'Coding in Public Until I Make $100k USD',
     `${formatNumber(liveApps)} apps`,
     `${formatNumber(totalActiveUsers)} users`,
+    `${formatNumber(totalInstalls)} installs`,
     `profit: ${profitDisplay}`,
   ].join(' | ')
 
-  const stripProps = { liveApps, totalActiveUsers, profitDisplay }
+  const stripProps = { liveApps, totalActiveUsers, totalInstalls, profitDisplay }
 
   return (
     <div className="CC__announcement-bar" aria-label={ariaLabel}>
@@ -67,6 +76,9 @@ export default function AnnouncementBar() {
           </li>
           <li>
             <Link to="/live-stats">{formatNumber(totalActiveUsers)} users</Link>
+          </li>
+          <li>
+            <Link to="/live-stats">{formatNumber(totalInstalls)} installs</Link>
           </li>
           <li>
             <Link to="/profit" className="CC__announcement-bar__profit-link">

@@ -148,13 +148,23 @@ function getLatestSnapshot(snapshots) {
   })
 }
 
+function seriesTotal(series) {
+  return (series ?? []).reduce((sum, row) => sum + (Number(row.total) || 0), 0)
+}
+
 function buildAppAnalytics(app, snapshots) {
   const key = appIdentityKey(app)
   const an = app.analytics ?? {}
+  const installations = mergeAppSeriesFromSnapshots(
+    snapshots,
+    key,
+    (a) => a.analytics?.installations,
+  )
 
   return dedupeAnalyticsObject({
-    totalInstalls: an.totalInstalls ?? 0,
-    installations: mergeAppSeriesFromSnapshots(snapshots, key, (a) => a.analytics?.installations),
+    // Prefer merged daily history across scrapes (scrapes are ~30d windows).
+    totalInstalls: seriesTotal(installations) || (an.totalInstalls ?? 0),
+    installations,
     weeklyUsers: mergeAppSeriesFromSnapshots(snapshots, key, (a) => a.analytics?.weeklyUsers),
     weeklyUsersByRegion: an.weeklyUsersByRegion ?? {},
     installsByRegion: an.installsByRegion ?? {},
@@ -204,7 +214,6 @@ function aggregateFromAppEntries(appEntries) {
   const pageViewsBySourceMaps = []
 
   for (const an of analyticsList) {
-    totalInstalls += an.totalInstalls ?? 0
     pageViews += an.pageViews ?? 0
     impressions += an.impressions ?? 0
     uninstalls += an.uninstalls ?? 0
@@ -221,9 +230,15 @@ function aggregateFromAppEntries(appEntries) {
     pageViewsBySourceMaps.push(an.pageViewsBySource)
   }
 
+  const installations = sumSeriesAcrossApps(installationsByApp)
+  totalInstalls = seriesTotal(installations)
+  if (!totalInstalls) {
+    for (const an of analyticsList) totalInstalls += an.totalInstalls ?? 0
+  }
+
   return dedupeAnalyticsObject({
     totalInstalls,
-    installations: sumSeriesAcrossApps(installationsByApp),
+    installations,
     weeklyUsers: sumSeriesAcrossApps(weeklyUsersByApp),
     uninstallsOverTime: sumSeriesAcrossApps(uninstallsByApp),
     weeklyUsersByRegion: sumRegionMaps(weeklyUsersByRegionMaps),

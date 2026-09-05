@@ -10,6 +10,7 @@ import {
   formatNumber,
   getInstallationsSeries,
   installationsDelta,
+  installationsTotal,
   impressionsDelta,
   pageViewsDelta,
   totalUsersDelta,
@@ -74,7 +75,10 @@ export default function ExtensionAnalyticsBlock({
         siteStatsHeadlines.baselineTotalInstalls,
       ) ?? installationsDelta(installations)
     : installationsDelta(installations)
-  const totalInstalls = siteStatsHeadlines?.totalInstalls ?? analytics.totalInstalls
+  const installsFromSeries = installations.length ? installationsTotal(installations) : 0
+  const totalInstalls =
+    siteStatsHeadlines?.totalInstalls ??
+    (installsFromSeries || analytics.totalInstalls)
   const totalUsers = siteStatsHeadlines?.activeUsers ?? analyticsActiveUsers(analytics)
   const usersDelta = siteStatsHeadlines
     ? siteStatsWeekDeltaPct(

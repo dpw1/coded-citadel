@@ -14,6 +14,7 @@ import AppsGridSection from '../components/AppsGridSection'
 import YoutubeSection from '../components/YoutubeSection'
 import {
   appActiveUsers,
+  appCardInstalls,
   appCategory,
   appGithubUrl,
   appHeroPreviewUrl,
@@ -285,7 +286,7 @@ export default function ExtensionLandingPage() {
                     <polyline points="7 10 12 15 17 10" />
                     <line x1="12" y1="15" x2="12" y2="3" />
                   </svg>
-                  {formatNumber(an?.totalInstalls ?? 0)} installs
+                  {formatNumber(appCardInstalls(ext) ?? an?.totalInstalls ?? 0)} installs
                 </span>
               </div>
             </div>

@@ -237,6 +237,48 @@ export function buildMergedInstallationsDailyMap(app, snapshots) {
   return mergeInstallationsDailyMaps(sources)
 }
 
+export function isoMapToInstallationsSeries(byIso) {
+  return [...byIso.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([iso, total]) => {
+      const [y, m, d] = iso.split('-')
+      return { date: `${d}-${m}-${y}`, total }
+    })
+}
+
+export function mergedInstallationsTotal(dailyByIso) {
+  let sum = 0
+  for (const total of dailyByIso.values()) sum += total
+  return sum
+}
+
+/**
+ * Expand each live app's installations series + totalInstalls from db.json scrape history
+ * (each scrape only keeps ~30 days).
+ */
+export function enrichAppsWithMergedInstallations(apps, snapshots) {
+  if (!snapshots?.length) return apps
+
+  return apps.map((app) => {
+    if (!isAppLive(app) || !app.analytics) return app
+
+    const merged = buildMergedInstallationsDailyMap(app, snapshots)
+    if (!merged.size) return app
+
+    const installations = isoMapToInstallationsSeries(merged)
+    const totalInstalls = mergedInstallationsTotal(merged)
+
+    return {
+      ...app,
+      analytics: {
+        ...app.analytics,
+        installations,
+        totalInstalls,
+      },
+    }
+  })
+}
+
 export function cumulativeInstallsOnOrBefore(dailyByIso, targetIso) {
   let sum = 0
   for (const [iso, total] of dailyByIso) {
@@ -292,7 +334,10 @@ export function computeInstallsDelta7d(currentApps, { baselineDateIso, snapshots
   let baselineTotal = 0
 
   for (const app of currentApps.filter(isAppLive)) {
-    const now = app.analytics?.totalInstalls ?? 0
+    const merged = buildMergedInstallationsDailyMap(app, snapshots)
+    const now = merged.size
+      ? mergedInstallationsTotal(merged)
+      : (app.analytics?.totalInstalls ?? 0)
     currentTotal += now
     baselineTotal += baselineInstallsForApp(app, { baselineDateIso, snapshots })
   }
@@ -416,8 +461,11 @@ export function updateAppsJsonPortfolioStats({
     )
   }
 
+  const apps = enrichAppsWithMergedInstallations(payload.apps ?? [], snapshots)
+  payload.apps = apps
+
   const portfolioStats = buildPortfolioStats({
-    apps: payload.apps ?? [],
+    apps,
     snapshots,
     nowMs,
   })

@@ -32,7 +32,9 @@ function sumLiveTotals(apps) {
   let totalActiveUsers = 0
 
   for (const app of live) {
-    totalInstalls += app.analytics?.totalInstalls ?? 0
+    const series = dedupeAnalyticsSeriesByDate(app.analytics?.installations ?? [])
+    const fromSeries = series.reduce((sum, row) => sum + (row.total ?? 0), 0)
+    totalInstalls += fromSeries || (app.analytics?.totalInstalls ?? 0)
     totalActiveUsers += activeUsersFromAnalytics(app.analytics)
   }
 

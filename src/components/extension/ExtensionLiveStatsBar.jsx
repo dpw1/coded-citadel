@@ -4,6 +4,7 @@ import {
   formatNumber,
   getInstallationsSeries,
   installationsDelta,
+  installationsTotal,
   impressionsDelta,
   pageViewsDelta,
   totalUsersDelta,
@@ -17,7 +18,11 @@ export default function ExtensionLiveStatsBar({
 }) {
   if (!analytics) return null
 
-  const installDelta = installationsDelta(getInstallationsSeries(analytics))
+  const installations = getInstallationsSeries(analytics)
+  const totalInstalls = installations.length
+    ? installationsTotal(installations)
+    : (analytics.totalInstalls ?? 0)
+  const installDelta = installationsDelta(installations)
   const usersDelta = totalUsersDelta(analytics)
   const viewsDelta = pageViewsDelta(analytics)
   const imprDelta = impressionsDelta(analytics)
@@ -39,7 +44,7 @@ export default function ExtensionLiveStatsBar({
           <li className="CC__stats-bar__item">
             <div className="CC__stats-bar__info">
               <span className="CC__stats-bar__label">Total Installs</span>
-              <span className="CC__stats-bar__value">{formatNumber(analytics.totalInstalls)}</span>
+              <span className="CC__stats-bar__value">{formatNumber(totalInstalls)}</span>
               <WeekPercentDelta delta={installDelta} />
             </div>
           </li>

@@ -356,6 +356,8 @@ export function appActiveUsers(app) {
 
 export function appCardInstalls(app) {
   if (!isAppLive(app)) return null
+  const series = getInstallationsSeries(app.analytics)
+  if (series.length) return installationsTotal(series)
   const installs = app.analytics?.totalInstalls
   return installs != null ? installs : 0
 }

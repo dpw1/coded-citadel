@@ -38,7 +38,6 @@ function sumSeriesAcrossApps(appSeriesList) {
 export function aggregateAnalyticsList(analyticsList) {
   if (!analyticsList?.length) return null
 
-  let totalInstalls = 0
   let pageViews = 0
   let impressions = 0
   let uninstalls = 0
@@ -56,7 +55,6 @@ export function aggregateAnalyticsList(analyticsList) {
 
   for (const an of analyticsList) {
     if (!an) continue
-    totalInstalls += an.totalInstalls ?? 0
     pageViews += an.pageViews ?? 0
     impressions += an.impressions ?? 0
     uninstalls += an.uninstalls ?? 0
@@ -73,9 +71,18 @@ export function aggregateAnalyticsList(analyticsList) {
     pageViewsBySourceMaps.push(an.pageViewsBySource)
   }
 
+  const installations = sumSeriesAcrossApps(installationsByApp)
+  let totalInstalls = installations.reduce((sum, row) => sum + (row.total ?? 0), 0)
+  if (!totalInstalls) {
+    for (const an of analyticsList) {
+      if (!an) continue
+      totalInstalls += an.totalInstalls ?? 0
+    }
+  }
+
   return dedupeAnalyticsObject({
     totalInstalls,
-    installations: sumSeriesAcrossApps(installationsByApp),
+    installations,
     weeklyUsers: sumSeriesAcrossApps(weeklyUsersByApp),
     weeklyUsersByRegion: sumRegionMaps(weeklyUsersByRegionMaps),
     installsByRegion: sumRegionMaps(installsByRegionMaps),
