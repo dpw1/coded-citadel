@@ -52,6 +52,17 @@
         YouTube Filter Pro
         <span class="admin__tab-status" id="yt-tab-status" hidden aria-hidden="true"></span>
       </button>
+      <button
+        type="button"
+        class="admin__tab"
+        role="tab"
+        aria-selected="false"
+        data-tab="idme"
+        id="tab-idme"
+      >
+        IG DM Exporter
+        <span class="admin__tab-status" id="idme-tab-status" hidden aria-hidden="true"></span>
+      </button>
     </nav>
 
     <!-- FEEDBACK -->
@@ -738,6 +749,8 @@
                 <th class="admin__users-num">exports</th>
                 <th class="admin__users-num">AI chats</th>
                 <th class="admin__users-num">max/wk</th>
+                <th>sorting used?</th>
+                <th>view comments?</th>
                 <th>hasProBenefits</th>
               </tr>
             </thead>
@@ -960,6 +973,160 @@
         <div class="admin__list" id="yt-dev-list" hidden></div>
       </div>
     </section>
+
+    <!-- IG DM EXPORTER -->
+    <section
+      class="admin__panel"
+      id="panel-idme"
+      role="tabpanel"
+      aria-labelledby="tab-idme"
+      hidden
+    >
+      <div class="admin__panel-actions" id="idme-panel-actions">
+        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="idme-users-refresh">
+          Refresh users
+        </button>
+      </div>
+
+      <nav class="admin__subtabs" role="tablist" aria-label="IG DM Exporter sections">
+        <button
+          type="button"
+          class="admin__subtab admin__subtab--active"
+          role="tab"
+          aria-selected="true"
+          data-idme-subtab="users"
+          id="idme-subtab-users"
+        >
+          Users
+        </button>
+        <button
+          type="button"
+          class="admin__subtab"
+          role="tab"
+          aria-selected="false"
+          data-idme-subtab="gifts"
+          id="idme-subtab-gifts"
+        >
+          Gift codes
+        </button>
+      </nav>
+
+      <div id="idme-subpanel-users" role="tabpanel" aria-labelledby="idme-subtab-users">
+        <p class="admin__note">
+          License device grants from <code>idme_license_device_grants</code>
+          (Lemon purchase → activate). Free-tier usage may also appear from
+          <code>idme_export_usage</code> when synced.
+        </p>
+        <p class="admin__status" id="idme-users-status" hidden></p>
+
+        <div class="admin__kpis" id="idme-users-kpis" hidden>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Grants</div>
+            <div class="admin__kpi-value" id="kpi-idme-users-total">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Active Pro</div>
+            <div class="admin__kpi-value admin__kpi-value--green" id="kpi-idme-users-active">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Lifetime</div>
+            <div class="admin__kpi-value" id="kpi-idme-users-lifetime">0</div>
+          </div>
+        </div>
+
+        <div class="admin__users-toolbar" id="idme-users-toolbar" hidden>
+          <label class="admin__filter-group">
+            <span class="admin__filter-label">Search</span>
+            <input
+              type="search"
+              class="admin__users-search"
+              id="idme-users-search"
+              placeholder="device id or email"
+              autocomplete="off"
+            />
+          </label>
+        </div>
+
+        <div class="admin__users-table-wrap" id="idme-users-table-wrap" hidden>
+          <table class="admin__users-table">
+            <thead>
+              <tr>
+                <th><button type="button" class="admin__users-sort" data-sort="device">device</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="email">email</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="status">status</button></th>
+                <th>lifetime</th>
+                <th class="admin__users-num"><button type="button" class="admin__users-sort" data-sort="exports">exports</button></th>
+                <th class="admin__users-num">transcriptions</th>
+                <th><button type="button" class="admin__users-sort" data-sort="grant">grant until</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="activated">activated</button></th>
+                <th>lemon status</th>
+              </tr>
+            </thead>
+            <tbody id="idme-users-body"></tbody>
+          </table>
+        </div>
+        <p class="admin__status admin__status--empty" id="idme-users-empty" hidden></p>
+      </div>
+
+      <div id="idme-subpanel-gifts" role="tabpanel" aria-labelledby="idme-subtab-gifts" hidden>
+        <p class="admin__note">
+          Custom gift codes in <code>idme_gift_codes</code> (device redeem, no login).
+          Give each code a unique name on create. Hover a row to edit, then Save.
+        </p>
+        <section class="admin__gifts" id="idme-gifts">
+          <h3 class="admin__gifts-title">Create code</h3>
+          <form class="admin__gifts-form" id="idme-gifts-form">
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Name</span>
+              <input type="text" id="idme-gift-name" class="admin__users-search yt-gift-name" placeholder="e.g. BETA-CREATORS" autocomplete="off" spellcheck="false" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Kind</span>
+              <select id="idme-gift-kind" class="admin__select yt-gift-kind">
+                <option value="days">Days</option>
+                <option value="months">Months</option>
+                <option value="lifetime">Lifetime</option>
+              </select>
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label" id="idme-gift-duration-label">Days</span>
+              <input type="number" id="idme-gift-days" class="admin__users-search" min="1" value="60" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Max uses</span>
+              <input type="number" id="idme-gift-max" class="admin__users-search" min="1" value="1" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Note</span>
+              <input type="text" id="idme-gift-note" class="admin__users-search" placeholder="beta / 2 months" />
+            </label>
+            <button type="submit" class="admin__btn admin__btn--sm" id="idme-gift-create">Create code</button>
+          </form>
+          <p class="admin__copy-hint" id="idme-gift-expiration-preview" aria-live="polite"></p>
+          <div class="admin__users-table-wrap">
+            <table class="admin__users-table admin__gifts-table">
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>kind</th>
+                  <th>duration</th>
+                  <th>max uses</th>
+                  <th>used</th>
+                  <th>note</th>
+                  <th>created</th>
+                  <th>expiration</th>
+                  <th>redeemed by</th>
+                  <th>revoke</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="idme-gifts-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
   </div>
 
   <div class="admin__modal" id="fingerprint-modal" hidden>
@@ -1025,6 +1192,27 @@
     </div>
   </div>
 
+  <div class="admin__modal" id="idme-gift-redemptions-modal" hidden>
+    <button type="button" class="admin__modal-backdrop" id="idme-gift-redemptions-modal-backdrop" aria-label="Close"></button>
+    <div
+      class="admin__modal-dialog admin__modal-dialog--yfp"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="idme-gift-redemptions-title"
+    >
+      <div class="admin__modal-header">
+        <div>
+          <p class="admin__eyebrow">IG DM gift redemptions</p>
+          <h2 class="admin__modal-title" id="idme-gift-redemptions-title">Code</h2>
+        </div>
+        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="idme-gift-redemptions-modal-close">
+          Close
+        </button>
+      </div>
+      <div class="admin__modal-body admin__modal-body--yfp" id="idme-gift-redemptions-body"></div>
+    </div>
+  </div>
+
   <!-- Local analytics data is a script because file:// blocks fetch() for local JSON. -->
   <script src="./yfp-quota-limits.js"></script>
   <script src="./uninstalls-over-time.js"></script>
@@ -1034,5 +1222,6 @@
   <script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>
   <script src="./admin.js"></script>
   <script src="./yt-filter-pro-accounts.js"></script>
+  <script src="./ig-dm-exporter-accounts.js"></script>
 </body>
 </html>

@@ -537,8 +537,9 @@ try {
 }
 
 const VALID_FILTERS = new Set(['all', 'unread', 'read'])
-const VALID_TABS = new Set(['feedback', 'yt'])
+const VALID_TABS = new Set(['feedback', 'yt', 'idme'])
 const VALID_YT_SUBTABS = new Set(['analytics', 'users', 'logged-in', 'gifts', 'dev'])
+const VALID_IDME_SUBTABS = new Set(['users', 'gifts'])
 const YT_CHART_KEYS = [
   'features',
   'featureDaily',
@@ -690,6 +691,17 @@ function getYtSubTab() {
 function setYtSubTab(value) {
   const next = VALID_YT_SUBTABS.has(value) ? value : 'analytics'
   settings.set('ytSubTab', next)
+  return next
+}
+
+function getIdmeSubTab() {
+  const value = settings.get('idmeSubTab')
+  return VALID_IDME_SUBTABS.has(value) ? value : 'users'
+}
+
+function setIdmeSubTab(value) {
+  const next = VALID_IDME_SUBTABS.has(value) ? value : 'users'
+  settings.set('idmeSubTab', next)
   return next
 }
 
@@ -1243,6 +1255,11 @@ function currentAdminPath() {
     if (sub === 'dev') return '/yt-filter-pro/dev'
     return '/yt-filter-pro'
   }
+  if (tab === 'idme') {
+    const sub = getIdmeSubTab()
+    if (sub === 'gifts') return '/ig-dm-exporter/gifts'
+    return '/ig-dm-exporter/users'
+  }
   return '/admin'
 }
 
@@ -1272,6 +1289,21 @@ function parseAdminPath(hash) {
     return { tab: 'yt', sub: 'gifts' }
   }
   if (clean === 'yt-filter-pro/dev') return { tab: 'yt', sub: 'dev' }
+  if (
+    clean === 'ig-dm-exporter' ||
+    clean === 'ig-dm-exporter/users' ||
+    clean === 'idme' ||
+    clean === 'idme/users'
+  ) {
+    return { tab: 'idme', sub: 'users' }
+  }
+  if (
+    clean === 'ig-dm-exporter/gifts' ||
+    clean === 'ig-dm-exporter/gift-codes' ||
+    clean === 'idme/gifts'
+  ) {
+    return { tab: 'idme', sub: 'gifts' }
+  }
   return null
 }
 
@@ -1282,7 +1314,8 @@ function applyAdminRouteFromUrl() {
   if (!parsed) return
   applyingAdminRoute = true
   try {
-    if (parsed.sub) setYtSubTab(parsed.sub)
+    if (parsed.tab === 'idme' && parsed.sub) setIdmeSubTab(parsed.sub)
+    else if (parsed.sub) setYtSubTab(parsed.sub)
     switchTab(parsed.tab, { persist: true, skipUrl: true })
   } finally {
     applyingAdminRoute = false
@@ -1304,14 +1337,61 @@ function switchTab(tab, { persist = true, skipUrl = false } = {}) {
   })
   document.getElementById('panel-feedback').hidden = active !== 'feedback'
   document.getElementById('panel-yt').hidden = active !== 'yt'
+  const panelIdme = document.getElementById('panel-idme')
+  if (panelIdme) panelIdme.hidden = active !== 'idme'
 
   if (active === 'yt') {
     applyYtSubTab()
+  }
+  if (active === 'idme') {
+    applyIdmeSubTab()
   }
   if (active === 'feedback' && state.loaded.feedback) {
     requestAnimationFrame(() => renderFeedbackGraph())
   }
   if (!skipUrl) syncAdminUrl()
+}
+
+function applyIdmeSubTab() {
+  const sub = getIdmeSubTab()
+  document.querySelectorAll('[data-idme-subtab]').forEach((btn) => {
+    const isActive = btn.dataset.idmeSubtab === sub
+    btn.classList.toggle('admin__subtab--active', isActive)
+    btn.setAttribute('aria-selected', isActive ? 'true' : 'false')
+  })
+  const users = document.getElementById('idme-subpanel-users')
+  const gifts = document.getElementById('idme-subpanel-gifts')
+  if (users) users.hidden = sub !== 'users'
+  if (gifts) gifts.hidden = sub !== 'gifts'
+  syncAdminUrl()
+
+  if (document.getElementById('panel-idme')?.hidden) return
+  if (sub === 'users') {
+    const loadUsers = () => {
+      if (window.IdmeAdminAccounts) {
+        void window.IdmeAdminAccounts.render()
+        return true
+      }
+      return false
+    }
+    requestAnimationFrame(() => {
+      if (loadUsers()) return
+      setTimeout(loadUsers, 0)
+    })
+  }
+  if (sub === 'gifts') {
+    const loadGifts = () => {
+      if (window.IdmeAdminAccounts) {
+        void window.IdmeAdminAccounts.renderGifts()
+        return true
+      }
+      return false
+    }
+    requestAnimationFrame(() => {
+      if (loadGifts()) return
+      setTimeout(loadGifts, 0)
+    })
+  }
 }
 
 function applyYtSubTab() {
@@ -2132,6 +2212,23 @@ function syncProBenefitIds(records) {
   return stored
 }
 
+/** True when a filter_search payload used a non-default sort (modal or search). */
+function filterUsedSorting(filter) {
+  if (!filter || typeof filter !== 'object') return false
+  const sorting = filter.sorting
+  if (sorting && typeof sorting === 'object' && !Array.isArray(sorting)) {
+    const modalKey = String(sorting.modalSortKey || 'default').trim()
+    const searchKey = String(sorting.searchSortKey || 'default').trim()
+    if (modalKey !== 'default' || searchKey !== 'default') return true
+  }
+  const opts = filter.options
+  if (opts && typeof opts === 'object' && !Array.isArray(opts)) {
+    if (String(opts.searchSortKey || 'default').trim() !== 'default') return true
+    if (String(opts.modalSortKey || 'default').trim() !== 'default') return true
+  }
+  return false
+}
+
 function buildYtUserRecords() {
   /** @type {Map<string, object>} */
   const map = new Map()
@@ -2146,6 +2243,8 @@ function buildYtUserRecords() {
         searches: 0,
         exports: 0,
         aiChats: 0,
+        usedSorting: false,
+        viewedComments: false,
         isDev: isYtFingerprintBlacklisted(id),
         hasProBenefits: false,
       })
@@ -2179,7 +2278,13 @@ function buildYtUserRecords() {
     const event = ytRowEvent(row)
     if (event === 'export_results') rec.exports += 1
     else if (event === 'ai_chat') rec.aiChats += 1
-    else if (isFilterSearchEvent(row)) rec.searches += 1
+    else if (event === 'comments_read') rec.viewedComments = true
+    else if (isFilterSearchEvent(row)) {
+      rec.searches += 1
+      if (!rec.usedSorting && filterUsedSorting(pickFilterObject(row))) {
+        rec.usedSorting = true
+      }
+    }
     const created = rowCreatedAt(row)
     touch(rec, created)
     touchVersion(rec, row, created)
@@ -2306,8 +2411,8 @@ function renderYtUsers() {
     .map((rec) => {
       const installed = formatSignedUpDate(rec.firstMs)
       const versionLabel = rec.version ? `v${rec.version.replace(/^v/i, '')}` : '—'
-      const proClass = rec.hasProBenefits ? 'admin__users-pill--yes' : 'admin__users-pill--no'
-      const proLabel = rec.hasProBenefits ? 'true' : 'false'
+      const boolPill = (yes) =>
+        `<span class="admin__users-pill ${yes ? 'admin__users-pill--yes' : 'admin__users-pill--no'}">${yes ? 'true' : 'false'}</span>`
       const maxWkClass = rec.overWeeklyQuota ? ' admin__users-num--warn' : ''
       return `<tr>
         <td class="admin__users-id-cell">
@@ -2319,7 +2424,9 @@ function renderYtUsers() {
         <td class="admin__users-num">${rec.exports.toLocaleString('en-US')}</td>
         <td class="admin__users-num">${rec.aiChats.toLocaleString('en-US')}</td>
         <td class="admin__users-num${maxWkClass}">${rec.maxWeeklySearches.toLocaleString('en-US')}</td>
-        <td><span class="admin__users-pill ${proClass}">${proLabel}</span></td>
+        <td>${boolPill(rec.usedSorting)}</td>
+        <td>${boolPill(rec.viewedComments)}</td>
+        <td>${boolPill(rec.hasProBenefits)}</td>
       </tr>`
     })
     .join('')
@@ -5853,6 +5960,13 @@ document.querySelectorAll('[data-yt-subtab]').forEach((btn) => {
   btn.addEventListener('click', () => {
     setYtSubTab(btn.dataset.ytSubtab)
     applyYtSubTab()
+  })
+})
+
+document.querySelectorAll('[data-idme-subtab]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    setIdmeSubTab(btn.dataset.idmeSubtab)
+    applyIdmeSubTab()
   })
 })
 

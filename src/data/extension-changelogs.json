@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-09-05T15:38:00.027Z",
+  "updatedAt": "2026-09-08T22:55:39.846Z",
   "message": null,
   "apps": [
     {
@@ -268,6 +268,24 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "3f465b1fdc88c690eb0830b4026f204d9ebec464",
+          "shortSha": "3f465b1",
+          "message": "Update version to 2.0.12, add comments read telemetry, and enhance original video title handling.",
+          "date": "2026-09-07T06:24:55Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/3f465b1fdc88c690eb0830b4026f204d9ebec464",
+          "version": "2.0.12"
+        },
+        {
+          "sha": "305f88c09f2c42d18d83ff4221578ac5e3744572",
+          "shortSha": "305f88c",
+          "message": "Update version to 2.0.11, enhance localization for captions, and improve user feedback prompts.",
+          "date": "2026-09-06T07:42:56Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/305f88c09f2c42d18d83ff4221578ac5e3744572",
+          "version": "2.0.11"
+        },
         {
           "sha": "5cc029e41e94f1b2a937bae993b2e909cedc303f",
           "shortSha": "5cc029e",
@@ -698,25 +716,7 @@
           "date": "2026-06-29T13:34:25Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/a82184b6285acb6b46ce69ce880e582e44d3a974",
-          "version": "1.0.45"
-        },
-        {
-          "sha": "94b7b7b14778bdb8b74e575be501131961de11ea",
-          "shortSha": "94b7b7b",
-          "message": "Add video filters, i18n, and polish search-page UX for v1.0.45.",
-          "date": "2026-06-29T13:14:45Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/94b7b7b14778bdb8b74e575be501131961de11ea",
-          "version": "1.0.45"
-        },
-        {
-          "sha": "bc738ab8cc4b26d1ef856e9f9a3aa74a50ea4874",
-          "shortSha": "bc738ab",
-          "message": "Update YouTube Filter Pro: Incremented version to 1.0.44, improved title filtering logic to require all specified keywords, enhanced toast notifications for better user feedback, and added a settings modal for managing filter options. Updated styles for improved UI consistency and user experience.",
-          "date": "2026-06-27T17:50:21Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/bc738ab8cc4b26d1ef856e9f9a3aa74a50ea4874",
-          "version": "1.0.44"
+          "version": "2.0.14"
         }
       ]
     },
@@ -1080,6 +1080,15 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "2633bff37bf482f827956290807ce1fcd2733110",
+          "shortSha": "2633bff",
+          "message": "Release v1.0.43: Introduced new audio transcription options with limits on new transcriptions, enhanced UI for export settings, and integrated support for Supabase and LemonSqueezy. Updated manifest permissions and added new dependencies including Tippy.js. Refined build process for improved asset management and error handling in background scripts.",
+          "date": "2026-09-07T11:14:01Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/2633bff37bf482f827956290807ce1fcd2733110",
+          "version": "1.0.43"
+        },
+        {
           "sha": "adccdf7232c0abdee12dded302c9e70e0451bf49",
           "shortSha": "adccdf7",
           "message": "Release v1.0.42: Enhanced PDF export functionality by increasing canvas scale for better quality. Removed deprecated PDF export files and updated the manifest to streamline permissions and include new dependencies. Improved export process by utilizing a data URL for PDF downloads.",
@@ -1140,7 +1149,7 @@
           "date": "2026-05-25T20:18:09Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-dm-exporter/commit/96721ee79bae5412b79898e32c4b99114abc28d3",
-          "version": "1.0.42"
+          "version": "1.0.43"
         }
       ]
     },
