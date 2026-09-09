@@ -15,8 +15,14 @@ export default function YoutubeFilterProTermsContent() {
       <section>
         <h2>1. The service</h2>
         <p>
-          The Extension helps you filter, sort, and export YouTube search results. It is provided
-          free of charge. Optional donations are voluntary.
+          The Extension helps you filter, sort, and export YouTube search results. Core search and
+          filtering run in your browser. Optional settings (including Process mode) may use small
+          helpers we operate only to fetch the same kind of <strong>public</strong> stats already
+          shown on YouTube — see the Privacy Policy for a plain-language description.
+        </p>
+        <p>
+          Parts of the Extension may be free; optional paid plans or donations, if offered, are
+          voluntary and described in the product.
         </p>
       </section>
 
@@ -25,7 +31,7 @@ export default function YoutubeFilterProTermsContent() {
         <p>
           YouTube and related marks are trademarks of Google LLC. The Extension is an independent
           tool, not sponsored or endorsed by YouTube or Google. You must also follow YouTube’s Terms
-          of Service.
+          of Service and Google’s API terms when features use public YouTube data.
         </p>
       </section>
 
@@ -33,7 +39,8 @@ export default function YoutubeFilterProTermsContent() {
         <h2>3. License</h2>
         <p>
           We grant you a personal, non-exclusive license to install and use the Extension in Chrome
-          for lawful searching. You may not use it to violate YouTube’s rules or applicable law.
+          for lawful searching. You may not use it to violate YouTube’s rules or applicable law, or
+          to abuse, overload, or circumvent limits on YouTube or our helpers.
         </p>
       </section>
 
@@ -45,6 +52,11 @@ export default function YoutubeFilterProTermsContent() {
             estimates and may be incomplete.
           </li>
           <li>
+            Optional External enrichment requests public video/channel identifiers only to retrieve
+            public stats. Use the Extension reasonably — do not attempt to scrape or harvest data at
+            a scale that harms YouTube, Google’s APIs, or our service.
+          </li>
+          <li>
             Do not rely on the Extension as the sole basis for legal, medical, financial, or safety
             decisions.
           </li>
@@ -54,8 +66,9 @@ export default function YoutubeFilterProTermsContent() {
       <section>
         <h2>5. Availability</h2>
         <p>
-          YouTube’s layout and APIs change. We do not guarantee uninterrupted service or complete
-          results. We may update or discontinue the Extension at any time.
+          YouTube’s layout and APIs change. Helpers we operate may rate-limit, pause, or fall back
+          to in-browser loading so your search can continue. We do not guarantee uninterrupted
+          service or complete results. We may update or discontinue the Extension at any time.
         </p>
       </section>
 
