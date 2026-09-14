@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import CyberCorners from './CyberCorners'
-import { formatNumber, formatRevenue, getHomeStats, getJourneyStartDateLabel } from '../utils/apps'
+import { formatNumber, getHomeStats, getJourneyStartDateLabel } from '../utils/apps'
 
 export default function LiveStatsBar() {
   const stats = getHomeStats()
 
   return (
     <div className="CC__stats-section CC__container" data-nosnippet>
-      <Link to="/profit" className="CC__stats-bar-link" aria-label="View profit journey">
+      <Link to="/live-stats" className="CC__stats-bar-link" aria-label="View live stats">
         <div className="CC__stats-bar CC__cyber-accent">
         <div className="CC__stats-bar__corners" aria-hidden="true">
           <CyberCorners />
@@ -25,22 +25,6 @@ export default function LiveStatsBar() {
           <li className="CC__stats-bar__item">
             <div className="CC__stats-bar__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <line x1="12" y1="1" x2="12" y2="23" />
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-              </svg>
-            </div>
-            <div className="CC__stats-bar__info">
-              <span className="CC__stats-bar__label">Total Made</span>
-              <span className="CC__stats-bar__value">{formatRevenue(stats.totalProfit)}</span>
-              <span className="CC__stats-bar__delta CC__stats-bar__delta--muted">
-                of $100k goal
-              </span>
-            </div>
-          </li>
-
-          <li className="CC__stats-bar__item">
-            <div className="CC__stats-bar__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                 <circle cx="9" cy="7" r="4" />
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -53,6 +37,29 @@ export default function LiveStatsBar() {
               {stats.activeUsersDelta7d > 0 ? (
                 <span className="CC__stats-bar__delta">
                   ↑ +{formatNumber(stats.activeUsersDelta7d)} past 7 days
+                </span>
+              ) : (
+                <span className="CC__stats-bar__delta" aria-hidden="true">
+                  &nbsp;
+                </span>
+              )}
+            </div>
+          </li>
+
+          <li className="CC__stats-bar__item">
+            <div className="CC__stats-bar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </div>
+            <div className="CC__stats-bar__info">
+              <span className="CC__stats-bar__label">Total Installs</span>
+              <span className="CC__stats-bar__value">{formatNumber(stats.totalInstalls)}</span>
+              {stats.installDelta > 0 ? (
+                <span className="CC__stats-bar__delta">
+                  ↑ +{formatNumber(stats.installDelta)} past 7 days
                 </span>
               ) : (
                 <span className="CC__stats-bar__delta" aria-hidden="true">
@@ -88,7 +95,7 @@ export default function LiveStatsBar() {
               </svg>
             </div>
             <div className="CC__stats-bar__info">
-              <span className="CC__stats-bar__label">Days Into Journey</span>
+              <span className="CC__stats-bar__label">Days Building</span>
               <span className="CC__stats-bar__value CC__stats-bar__value--white">
                 {stats.daysIntoJourney ?? '—'}
               </span>

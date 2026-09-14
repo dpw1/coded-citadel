@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
-import { formatNumber, formatRevenue, getAnnouncementBarStats } from '../utils/apps'
+import { formatNumber, getAnnouncementBarStats } from '../utils/apps'
 import './AnnouncementBar.css'
 
-function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, profitDisplay, duplicate = false }) {
+const TAGLINE = 'Building Social Media & Ecom Tools in Public'
+
+function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, duplicate = false }) {
   const dupClass = duplicate ? ' CC__announcement-bar__marquee-duplicate' : ''
 
   return (
@@ -10,7 +12,7 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, profitDisplay
       <span
         className={`CC__announcement-bar__marquee-item CC__announcement-bar__marquee-item--tagline${dupClass}`}
       >
-        Coding in Public Until I Make $100k USD
+        {TAGLINE}
       </span>
       <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
       <Link
@@ -36,14 +38,6 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, profitDisplay
       >
         {formatNumber(totalInstalls)} installs
       </Link>
-      <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
-      <Link
-        to="/profit"
-        className={`CC__announcement-bar__marquee-item CC__announcement-bar__marquee-item--profit${dupClass}`}
-        tabIndex={duplicate ? -1 : undefined}
-      >
-        profit: {profitDisplay}
-      </Link>
       <span
         className={`CC__announcement-bar__sep CC__announcement-bar__sep--trail${dupClass}`}
         aria-hidden="true"
@@ -53,23 +47,21 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, profitDisplay
 }
 
 export default function AnnouncementBar() {
-  const { liveApps, totalActiveUsers, totalInstalls, totalProfit } = getAnnouncementBarStats()
-  const profitDisplay = formatRevenue(totalProfit)
+  const { liveApps, totalActiveUsers, totalInstalls } = getAnnouncementBarStats()
 
   const ariaLabel = [
-    'Coding in Public Until I Make $100k USD',
+    TAGLINE,
     `${formatNumber(liveApps)} apps`,
     `${formatNumber(totalActiveUsers)} users`,
     `${formatNumber(totalInstalls)} installs`,
-    `profit: ${profitDisplay}`,
   ].join(' | ')
 
-  const stripProps = { liveApps, totalActiveUsers, totalInstalls, profitDisplay }
+  const stripProps = { liveApps, totalActiveUsers, totalInstalls }
 
   return (
     <div className="CC__announcement-bar" aria-label={ariaLabel}>
       <div className="CC__announcement-bar__desktop CC__container">
-        <p className="CC__announcement-bar__tagline">Coding in Public Until I Make $100k USD</p>
+        <p className="CC__announcement-bar__tagline">{TAGLINE}</p>
         <ul className="CC__announcement-bar__stats">
           <li>
             <Link to="/live-stats">{formatNumber(liveApps)} apps</Link>
@@ -79,11 +71,6 @@ export default function AnnouncementBar() {
           </li>
           <li>
             <Link to="/live-stats">{formatNumber(totalInstalls)} installs</Link>
-          </li>
-          <li>
-            <Link to="/profit" className="CC__announcement-bar__profit-link">
-              profit: {profitDisplay}
-            </Link>
           </li>
         </ul>
       </div>

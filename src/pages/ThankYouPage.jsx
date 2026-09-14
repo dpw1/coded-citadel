@@ -190,16 +190,16 @@ export default function ThankYouPage() {
               <div className="CC__about-content">
                 <p className="CC__section-eyebrow">About me</p>
                 <h2 className="CC__section-title">
-                  Building to <span className="CC__section-title-accent">$100k</span>
+                  Building <span className="CC__section-title-accent">in public</span>
                 </h2>
                 <p className="CC__about-text">
                   I&apos;m a graduated computer scientist &amp; senior dev for 10+ years. This
-                  extension is <strong>free</strong> and part of my public series: &quot;building in
-                  public until I make $100k USD.&quot;
+                  extension is <strong>free</strong> and part of Coded Citadel — where I build
+                  social media and ecommerce tools in public.
                 </p>
                 <p className="CC__about-text">
-                  I&apos;m building free extensions with the intent of eventually building something
-                  truly valuable by trial and error.
+                  I&apos;m shipping free extensions to learn what people actually need, by trial
+                  and error.
                 </p>
                 <p className="CC__about-text">
                   If this extension helps you in any way, your contribution means the world to me.
@@ -292,8 +292,8 @@ export default function ThankYouPage() {
               <CyberPanel className="CC__thank-you-footer-cta-inner">
                 <h2>Following the build</h2>
                 <p>
-                  New extensions, teardown breakdowns, and the numbers behind the $100k run,
-                  posted as it happens.
+                  New extensions, teardown breakdowns, and live install stats — posted as it
+                  happens.
                 </p>
                 <div className="CC__thank-you-footer-cta-actions">
                   <a

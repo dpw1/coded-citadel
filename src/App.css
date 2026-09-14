@@ -134,7 +134,10 @@
   display: block;
   padding: 0.65rem 0.85rem;
   border-radius: calc(var(--CC__radius) - 1px);
+  font-family: inherit;
   font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.3;
   color: var(--CC__color-text-muted);
   white-space: nowrap;
 }
@@ -154,6 +157,73 @@
 
 .CC__nav-dropdown__item--active {
   color: var(--CC__color-primary);
+}
+
+.CC__nav-submenu {
+  position: relative;
+}
+
+.CC__nav-submenu__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  width: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.CC__nav-submenu__chevron {
+  display: block;
+  flex-shrink: 0;
+  width: 11px;
+  height: 11px;
+  transform: rotate(-90deg);
+  transition: transform 0.2s ease;
+}
+
+.CC__nav-submenu__menu {
+  display: none;
+  flex-direction: column;
+  min-width: 14rem;
+  padding: 0.4rem;
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border-glow);
+  border-radius: var(--CC__radius);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+@media (min-width: 969px) {
+  .CC__nav-submenu__menu {
+    position: absolute;
+    top: -0.4rem;
+    left: calc(100% + 0.35rem);
+    z-index: 130;
+  }
+
+  .CC__nav-submenu:hover .CC__nav-submenu__menu,
+  .CC__nav-submenu:focus-within .CC__nav-submenu__menu,
+  .CC__nav-submenu--open .CC__nav-submenu__menu {
+    display: flex;
+  }
+
+  .CC__nav-submenu:hover .CC__nav-submenu__chevron,
+  .CC__nav-submenu:focus-within .CC__nav-submenu__chevron,
+  .CC__nav-submenu--open .CC__nav-submenu__chevron {
+    transform: rotate(-90deg) translateY(1px);
+  }
+
+  /* Bridge so the flyout stays open while moving the cursor */
+  .CC__nav-submenu__menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -0.55rem;
+    width: 0.55rem;
+  }
 }
 
 @media (min-width: 969px) {
@@ -1711,7 +1781,36 @@ html {
   .CC__nav-dropdown__item {
     padding: 0.7rem 0.5rem;
     white-space: normal;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+  }
+
+  .CC__nav-submenu__trigger {
+    padding: 0.7rem 0.5rem;
+  }
+
+  .CC__nav-submenu__chevron {
+    transform: rotate(0deg);
+  }
+
+  .CC__nav-submenu--open .CC__nav-submenu__chevron {
+    transform: rotate(180deg);
+  }
+
+  .CC__nav-submenu--open .CC__nav-submenu__menu {
+    display: flex;
+  }
+
+  .CC__nav-submenu__menu {
+    position: static;
+    min-width: 0;
+    width: 100%;
+    margin: 0.1rem 0 0.25rem;
+    padding: 0.15rem 0 0.15rem 0.65rem;
+    background: transparent;
+    border: none;
+    border-left: 2px solid var(--CC__color-border-glow);
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .CC__nav-backdrop {

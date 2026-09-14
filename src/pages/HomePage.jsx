@@ -38,7 +38,7 @@ export default function HomePage() {
       <HomePageSEO />
       <SiteHeader />
 
-      <section className="CC__hero" aria-label="Hero – Code to $100K">
+      <section className="CC__hero" aria-label="Hero – Building social media and ecom tools in public">
         <div className="CC__hero__image" aria-hidden="true">
           <picture>
             <source
@@ -47,7 +47,7 @@ export default function HomePage() {
             />
             <img
               src={`${import.meta.env.BASE_URL}diego-hero.png`}
-              alt="Diego — Coded Citadel founder on the $100K journey"
+              alt="Diego — Coded Citadel founder building social media and ecom tools in public"
             />
           </picture>
         </div>
@@ -69,17 +69,18 @@ export default function HomePage() {
               <span className="CC__hero__tag-text">Building in Public</span>
             </div>
             <h1 className="CC__hero__headline">
-              Follow the
+              Senior Dev Building
               <br />
-              Journey of a Man
+              <span className="CC__hero__headline-accent">Social Media</span>
               <br />
-              Coding His Way
+              &amp; Ecom Tools
               <br />
-              to <span className="CC__hero__headline-accent">$100K</span>
+              in Public
             </h1>
 
             <p className="CC__hero__sub">
-            This is not marketing. Not a "making X in Y days" type of video to sell you some course. This my true, transparent journey: a senior dev going from $0 to $100k.
+              Free Chrome extensions for Instagram, YouTube, and ecommerce —
+              shipped in public with live install stats and YouTube build logs.
             </p>
 
             <div className="CC__hero__actions">
@@ -144,7 +145,11 @@ export default function HomePage() {
             <p className="CC__section-eyebrow">About Me</p>
             <h2 className="CC__section-title">Welcome!</h2>
             <p className="CC__about-text">
-            My name is Diego. I'm a senior software engineer and computer scientist with over a decade of experience. I have always had the desire to start a project of the "going from 0 to X USD" sort, but I was never completely sure what exactly I should do or how to make progress with it. And that hasn't changed: I still have no clue. All I know is that the only way through is forward. So join me on my journey, and let's see where it leads us.
+              My name is Diego. I&apos;m a senior software engineer and computer
+              scientist with over a decade of experience in ecommerce and SaaS.
+              At Coded Citadel I build social media and ecommerce tools in public —
+              documenting the research, the bugs, and the launches so you can
+              follow along.
             </p>
             
     

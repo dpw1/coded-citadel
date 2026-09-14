@@ -6,7 +6,7 @@ import {
 import { applyPageSeo, DEFAULT_OG_IMAGE, SITE_URL } from '../utils/seo'
 import { getSiteStats } from '../utils/siteStats'
 
-const HOME_TITLE = 'Coded Citadel — Coding in Public Until I Make $100k USD'
+const HOME_TITLE = 'Coded Citadel — Building Social Media & Ecom Tools in Public'
 
 export default function HomePageSEO() {
   const stats = useMemo(() => getSiteStats(), [])

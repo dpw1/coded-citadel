@@ -69,24 +69,24 @@ export default function ProfitPage() {
   return (
     <>
       <PageSEO
-        title="Profit Journey to $100K - Coded Citadel"
-        description={`Building in public from $0 to $100k. Current profit: ${formatProfitAmount(total)}. Every milestone is public with proof.`}
+        title="Public Earnings — Coded Citadel"
+        description={`Earnings from tools built in public. Current total: ${formatProfitAmount(total)}. Every milestone is logged with proof.`}
         canonicalPath="/profit"
       />
       <SiteHeader />
 
       <main className="CC__profit-page">
-        <section className="CC__profit-hero" aria-label="Profit journey hero">
+        <section className="CC__profit-hero" aria-label="Public earnings hero">
           <div className="CC__profit-hero__atmosphere" aria-hidden="true" />
           <div className="CC__container CC__profit-hero__inner">
             <p className="CC__profit-hero__brand">Coded Citadel</p>
             <h1 className="CC__profit-hero__title">
-              The road to{' '}
-              <span className="CC__profit-hero__accent">{formatProfitAmount(goal)}</span>
+              Earnings, logged{' '}
+              <span className="CC__profit-hero__accent">in public</span>
             </h1>
             <p className="CC__profit-hero__lede">
-              Every dollar earned on this journey - donations, freelance, products -
-              logged in public with proof.
+              Donations, freelance, and product revenue from tools built in public —
+              each entry has a receipt.
             </p>
 
             <div className="CC__profit-hero__progress" aria-label="Progress toward goal">
@@ -124,8 +124,7 @@ export default function ProfitPage() {
                 Follow the path
               </h2>
               <p className="CC__profit-journey__intro">
-                From zero toward six figures. Scroll the trail - each stop is a real
-                receipt.
+                Scroll the trail — each stop is a real receipt from shipping in public.
               </p>
             </header>
 

@@ -224,6 +224,30 @@ export function appRelatedApps(app) {
 
 const GENERIC_APP_TAGS = new Set(['chromeExtension'])
 
+/** Slug fallbacks when apps-custom-data.json has no platform tags yet. */
+const PLATFORM_SLUG_FALLBACKS = {
+  youtube: new Set(['custom-data-gflljmlm']),
+  instagram: new Set(['custom-data']),
+}
+
+/** Listed apps for a social platform nav group (`youtube` | `instagram`). */
+export function getAppsForPlatform(platform) {
+  const key = String(platform ?? '').toLowerCase()
+  if (key !== 'youtube' && key !== 'instagram') return []
+
+  const slugFallback = PLATFORM_SLUG_FALLBACKS[key] ?? new Set()
+
+  return sortAppsByUsers(
+    getListedApps().filter((app) => {
+      if (slugFallback.has(app.slug)) return true
+      const tags = appTags(app).map((tag) => String(tag).toLowerCase())
+      if (tags.includes(key)) return true
+      const haystack = `${app.slug} ${app.name ?? ''}`.toLowerCase()
+      return haystack.includes(key)
+    }),
+  )
+}
+
 /** Live apps that share tags with the given app (best overlap first). */
 export function appSimilarByTags(app, limit = 3) {
   if (!app) return []

@@ -109,7 +109,7 @@ export default function ExtensionCard({
   const live = isAppLive(app)
   const discontinued = isAppDiscontinued(app)
   const blogPost = getBlogPostForApp(app)
-  // Prefer the Coding Until $100k episode tied to the blog post over promo/listing clips.
+  // Prefer the build-log episode tied to the blog post over promo/listing clips.
   const episodeYoutubeUrl = blogPost?.youtubeId
     ? `https://www.youtube.com/watch?v=${blogPost.youtubeId}`
     : null

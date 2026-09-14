@@ -1,44 +1,74 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useMemo, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { appFilterLabel, getAppsForPlatform } from '../utils/apps'
 import { isPluginsPath, pluginsIndexPath } from '../utils/plugins'
 import { scrollToSection } from '../utils/scroll'
 import AnnouncementBar from './AnnouncementBar'
 
 const YOUTUBE_URL = 'https://www.youtube.com/@CodedCitadel'
 
-const APPS_DROPDOWN_ITEMS = [
+const APPS_DROPDOWN_LINKS = [
   { to: '/apps', label: 'Chrome Extensions' },
   { to: pluginsIndexPath(), label: 'DaVinci Resolve Plugins' },
 ]
+
+const PLATFORM_MENU_GROUPS = [
+  { id: 'instagram', label: 'Instagram' },
+  { id: 'youtube', label: 'YouTube' },
+]
+
+function ChevronIcon({ className = 'CC__nav-dropdown__chevron' }) {
+  return (
+    <svg
+      className={className}
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      aria-hidden="true"
+    >
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  )
+}
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [appsOpen, setAppsOpen] = useState(false)
   const [aboutOpen, setAboutOpen] = useState(false)
+  const [platformOpen, setPlatformOpen] = useState(null)
   const { pathname, hash } = useLocation()
   const navigate = useNavigate()
   const appsMenuId = useId().replace(/:/g, '')
   const aboutMenuId = useId().replace(/:/g, '')
-  const billGradId = useId().replace(/:/g, '')
-  const billGrad1Id = `CC__bill-grad1-${billGradId}`
-  const billGrad2Id = `CC__bill-grad2-${billGradId}`
   const isHome = pathname === '/'
   const appsNavActive =
     pathname === '/apps' ||
     pathname.startsWith('/apps/') ||
     isPluginsPath(pathname)
   const blogNavActive = pathname === '/blog' || pathname.startsWith('/blog/')
-  const profitNavActive = pathname === '/profit'
   const aboutSectionActive = isHome && hash === '#about'
-  const aboutNavActive = blogNavActive || aboutSectionActive || profitNavActive
+  const aboutNavActive = blogNavActive || aboutSectionActive
   const liveStatsNavActive = pathname === '/live-stats'
   const workNavActive = pathname === '/work' || pathname.startsWith('/work/')
   const contactNavActive = pathname === '/contact'
+
+  const platformGroups = useMemo(
+    () =>
+      PLATFORM_MENU_GROUPS.map((group) => ({
+        ...group,
+        apps: getAppsForPlatform(group.id),
+      })).filter((group) => group.apps.length > 0),
+    [],
+  )
 
   const closeMenu = () => {
     setMenuOpen(false)
     setAppsOpen(false)
     setAboutOpen(false)
+    setPlatformOpen(null)
   }
 
   const handleAboutNav = (e) => {
@@ -55,17 +85,21 @@ export default function SiteHeader() {
     setMenuOpen(false)
     setAppsOpen(false)
     setAboutOpen(false)
+    setPlatformOpen(null)
   }, [pathname, hash])
 
   useEffect(() => {
     if (!menuOpen) {
       setAppsOpen(false)
       setAboutOpen(false)
+      setPlatformOpen(null)
       return undefined
     }
     const onKeyDown = (e) => {
       if (e.key === 'Escape') {
-        if (appsOpen) {
+        if (platformOpen) {
+          setPlatformOpen(null)
+        } else if (appsOpen) {
           setAppsOpen(false)
         } else if (aboutOpen) {
           setAboutOpen(false)
@@ -80,7 +114,7 @@ export default function SiteHeader() {
       document.body.style.overflow = ''
       window.removeEventListener('keydown', onKeyDown)
     }
-  }, [menuOpen, appsOpen, aboutOpen])
+  }, [menuOpen, appsOpen, aboutOpen, platformOpen])
 
   return (
     <>
@@ -129,24 +163,14 @@ export default function SiteHeader() {
                 onClick={() => {
                   setAppsOpen((open) => !open)
                   setAboutOpen(false)
+                  setPlatformOpen(null)
                 }}
               >
                 Apps
-                <svg
-                  className="CC__nav-dropdown__chevron"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  aria-hidden="true"
-                >
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
+                <ChevronIcon />
               </button>
               <div id={appsMenuId} className="CC__nav-dropdown__menu" role="menu">
-                {APPS_DROPDOWN_ITEMS.map((item) => {
+                {APPS_DROPDOWN_LINKS.map((item) => {
                   const itemActive =
                     pathname === item.to || pathname.startsWith(`${item.to}/`)
                   return (
@@ -163,6 +187,73 @@ export default function SiteHeader() {
                     </Link>
                   )
                 })}
+
+                {platformGroups.map((group) => {
+                  const submenuId = `${appsMenuId}-${group.id}`
+                  const isOpen = platformOpen === group.id
+                  const groupActive = group.apps.some(
+                    (app) => pathname === `/apps/${app.slug}`,
+                  )
+
+                  return (
+                    <div
+                      key={group.id}
+                      className={`CC__nav-submenu${isOpen ? ' CC__nav-submenu--open' : ''}${
+                        groupActive ? ' CC__nav-submenu--active' : ''
+                      }`}
+                      onMouseEnter={() => setPlatformOpen(group.id)}
+                      onFocus={() => setPlatformOpen(group.id)}
+                    >
+                      <button
+                        type="button"
+                        className={`CC__nav-dropdown__item CC__nav-submenu__trigger${
+                          groupActive ? ' CC__nav-dropdown__item--active' : ''
+                        }`}
+                        aria-expanded={isOpen}
+                        aria-controls={submenuId}
+                        aria-haspopup="true"
+                        onClick={() =>
+                          setPlatformOpen((current) =>
+                            current === group.id ? null : group.id,
+                          )
+                        }
+                      >
+                        {group.label}
+                        <ChevronIcon className="CC__nav-submenu__chevron" />
+                      </button>
+                      <div id={submenuId} className="CC__nav-submenu__menu" role="menu">
+                        {group.apps.map((app) => {
+                          const to = `/apps/${app.slug}`
+                          const itemActive = pathname === to
+                          return (
+                            <Link
+                              key={app.slug}
+                              to={to}
+                              role="menuitem"
+                              className={`CC__nav-dropdown__item${
+                                itemActive ? ' CC__nav-dropdown__item--active' : ''
+                              }`}
+                              onClick={closeMenu}
+                            >
+                              {appFilterLabel(app)}
+                            </Link>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )
+                })}
+
+                <Link
+                  to="/apps"
+                  role="menuitem"
+                  className={`CC__nav-dropdown__item${
+                    pathname === '/apps' ? ' CC__nav-dropdown__item--active' : ''
+                  }`}
+                  onClick={closeMenu}
+                >
+                  All Apps
+                </Link>
               </div>
             </div>
             <div
@@ -181,21 +272,11 @@ export default function SiteHeader() {
                 onClick={() => {
                   setAboutOpen((open) => !open)
                   setAppsOpen(false)
+                  setPlatformOpen(null)
                 }}
               >
                 About
-                <svg
-                  className="CC__nav-dropdown__chevron"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  aria-hidden="true"
-                >
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
+                <ChevronIcon />
               </button>
               <div id={aboutMenuId} className="CC__nav-dropdown__menu" role="menu">
                 <Link
@@ -228,117 +309,6 @@ export default function SiteHeader() {
                 >
                   About me
                 </a>
-                <Link
-                  to="/profit"
-                  role="menuitem"
-                  className={`CC__nav-dropdown__item CC__nav-dropdown__item--with-badge${
-                    profitNavActive ? ' CC__nav-dropdown__item--active' : ''
-                  }`}
-                  onClick={closeMenu}
-                >
-                  Profit
-                  <span className="CC__nav-badge__dollar" aria-hidden="true">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 680 620"
-                      width="100%"
-                      role="img"
-                    >
-                      <defs>
-                        <linearGradient
-                          id={billGrad1Id}
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                          y2="100%"
-                        >
-                          <stop offset="0%" stopColor="#8fe560" />
-                          <stop offset="100%" stopColor="#2e9e4f" />
-                        </linearGradient>
-                        <linearGradient
-                          id={billGrad2Id}
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                          y2="100%"
-                        >
-                          <stop offset="0%" stopColor="#7fd955" />
-                          <stop offset="100%" stopColor="#279144" />
-                        </linearGradient>
-                      </defs>
-                      <g transform="rotate(-8 340 400)">
-                        <rect
-                          x="140"
-                          y="330"
-                          width="420"
-                          height="220"
-                          rx="26"
-                          fill={`url(#${billGrad2Id})`}
-                        />
-                        <rect
-                          x="170"
-                          y="360"
-                          width="360"
-                          height="160"
-                          rx="14"
-                          fill="none"
-                          stroke="#eafce0"
-                          strokeWidth="4"
-                          opacity="0.5"
-                        />
-                        <circle cx="230" cy="440" r="26" fill="#eafce0" opacity="0.85" />
-                        <circle cx="470" cy="440" r="26" fill="#eafce0" opacity="0.85" />
-                        <circle cx="350" cy="440" r="60" fill="#3fb35e" />
-                        <text
-                          x="350"
-                          y="465"
-                          textAnchor="middle"
-                          fontSize="70"
-                          fontWeight="700"
-                          fill="#eafce0"
-                          fontFamily="Arial, sans-serif"
-                        >
-                          $
-                        </text>
-                      </g>
-                      <g transform="rotate(4 340 260)">
-                        <rect
-                          x="120"
-                          y="150"
-                          width="440"
-                          height="230"
-                          rx="26"
-                          fill={`url(#${billGrad1Id})`}
-                        />
-                        <rect
-                          x="150"
-                          y="180"
-                          width="380"
-                          height="170"
-                          rx="14"
-                          fill="none"
-                          stroke="#f2fde8"
-                          strokeWidth="4"
-                          opacity="0.5"
-                        />
-                        <circle cx="215" cy="265" r="28" fill="#f2fde8" opacity="0.9" />
-                        <circle cx="465" cy="265" r="28" fill="#f2fde8" opacity="0.9" />
-                        <circle cx="340" cy="265" r="68" fill="#4bc264" />
-                        <text
-                          x="340"
-                          y="294"
-                          textAnchor="middle"
-                          fontSize="78"
-                          fontWeight="700"
-                          fill="#f2fde8"
-                          fontFamily="Arial, sans-serif"
-                        >
-                          $
-                        </text>
-                      </g>
-                    </svg>
-                  </span>
-                </Link>
               </div>
             </div>
             <Link

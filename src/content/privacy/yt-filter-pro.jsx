@@ -29,9 +29,9 @@ export default function YtFilterProPrivacyContent() {
             improve the product.
           </li>
           <li>
-            An optional Settings choice, <strong>Process mode → External</strong>, can ask our
-            lightweight helper for <em>public</em> video/channel stats only (see section 5). Local
-            mode stays the default.
+            An optional Settings choice, <strong>Process mode</strong>, controls where public
+            video/channel stats are loaded. <strong>External (Cloudflare)</strong> is the default;
+            you can switch to Local anytime (see section 5).
           </li>
           <li>
             We <strong>never</strong> collect search terms, watch history, passwords, or other
@@ -105,15 +105,12 @@ export default function YtFilterProPrivacyContent() {
       <section>
         <h2>5. Optional External enrichment (Process mode)</h2>
         <p>
-          By default, extra stats (likes, comments, channel size, and similar) are loaded{' '}
-          <strong>locally in your browser</strong> from YouTube — the same kind of public information
-          you already see on the site.
+          By default, extra stats (likes, comments, channel size, and similar) use optional{' '}
+          <strong>Process mode → External (Cloudflare)</strong> — a lightweight helper for the same
+          kind of <em>public</em> information you already see on YouTube. You can switch to{' '}
+          <strong>Local</strong> in Settings anytime to load those stats only in your browser.
         </p>
-        <p>
-          In Settings you can optionally choose <strong>Process mode → External (Cloudflare)</strong>.
-          That mode is designed to be <strong>faster and lighter on your browser</strong> for the same
-          public stats. When it is on:
-        </p>
+        <p>When External mode is on:</p>
         <ul>
           <li>
             The Extension may send only <strong>public video or channel IDs</strong> (the short codes
@@ -197,8 +194,8 @@ export default function YtFilterProPrivacyContent() {
         <ul>
           <li>Uninstall the Extension at any time — local storage is removed with it.</li>
           <li>
-            Keep <strong>Process mode → Local</strong> (default), or turn External off whenever you
-            prefer everything to stay in-browser for enrichment.
+            Keep <strong>Process mode → External</strong> (default), or switch to{' '}
+            <strong>Local</strong> whenever you prefer enrichment to stay fully in-browser.
           </li>
           <li>Do not send feedback if you do not want a message stored.</li>
           <li>YouTube itself remains under Google’s privacy policy.</li>

@@ -63,7 +63,7 @@ export function BlogIndexSEO() {
     const pageUrl = `${BLOG_SITE_URL}/blog`
     const title = 'Blog — Coded Citadel'
     const description =
-      'Build logs, lessons, and updates from the journey of shipping Chrome extensions in public toward $100K.'
+      'Build logs, lessons, and updates from shipping social media and ecommerce tools in public.'
 
     const previousTitle = document.title
     document.title = title

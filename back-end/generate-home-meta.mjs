@@ -73,6 +73,24 @@ function replaceMetaDescription(html, description) {
   )
 }
 
+function replaceDocumentTitle(html, title) {
+  const escaped = escapeHtmlAttr(title)
+  return html.replace(/<title>[^<]*<\/title>/, `<title>${escaped}</title>`)
+}
+
+function replaceOgAndTwitterTitles(html, title) {
+  const escaped = escapeHtmlAttr(title)
+  return html
+    .replace(
+      /<meta property="og:title" content="[^"]*">/,
+      `<meta property="og:title" content="${escaped}">`,
+    )
+    .replace(
+      /<meta name="twitter:title" content="[^"]*">/,
+      `<meta name="twitter:title" content="${escaped}">`,
+    )
+}
+
 function replaceSocialDescriptions(html, description) {
   const escaped = escapeHtmlAttr(description)
   return html
@@ -94,13 +112,17 @@ function replaceWebSiteJsonLdDescription(html, description) {
   )
 }
 
+const HOME_TITLE = 'Coded Citadel — Building Social Media & Ecom Tools in Public'
+
 function main() {
   const stats = loadHomeStats()
   const searchDescription = buildHomeMetaDescriptionSearch(stats)
   const socialDescription = buildHomeMetaDescriptionSocial(stats)
   const html = readFileSync(INDEX_FILE, 'utf8')
 
-  let next = replaceMetaDescription(html, searchDescription)
+  let next = replaceDocumentTitle(html, HOME_TITLE)
+  next = replaceOgAndTwitterTitles(next, HOME_TITLE)
+  next = replaceMetaDescription(next, searchDescription)
   next = replaceSocialDescriptions(next, socialDescription)
   next = replaceWebSiteJsonLdDescription(next, socialDescription)
 
@@ -109,6 +131,7 @@ function main() {
   }
 
   writeFileSync(INDEX_FILE, next, 'utf8')
+  console.log(`Homepage title → ${HOME_TITLE}`)
   console.log(`Homepage search description → ${searchDescription}`)
   console.log(`Homepage social description → ${socialDescription}`)
 }

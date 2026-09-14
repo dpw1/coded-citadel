@@ -15,7 +15,7 @@ export default function SiteFooter() {
             <span className="CC__logo-text">CODED CITADEL</span>
           </Link>
           <p>
-            Senior dev coding in public.
+            Senior dev building social media &amp; ecom tools in public.
           </p>
         </div>
         <div>
@@ -34,13 +34,16 @@ export default function SiteFooter() {
               <Link to="/live-stats">Live Stats</Link>
             </li>
             <li>
-              <Link to="/profit">Profit</Link>
+              <Link to="/profit">Earnings</Link>
             </li>
             <li>
               <Link to="/work">Hire me</Link>
             </li>
             <li>
               <Link to="/contact">Contact</Link>
+            </li>
+            <li>
+              <Link to="/affiliate">Affiliate</Link>
             </li>
             <li>
               <Link to="/#youtube">YouTube Channel</Link>
