@@ -112,6 +112,24 @@ function replaceWebSiteJsonLdDescription(html, description) {
   )
 }
 
+function htmlHasExpectedHomeMeta(html, title, searchDescription, socialDescription) {
+  const titleEscaped = escapeHtmlAttr(title)
+  const searchEscaped = escapeHtmlAttr(searchDescription)
+  const socialEscaped = escapeHtmlAttr(socialDescription)
+  const jsonEscaped = JSON.stringify(socialDescription).slice(1, -1)
+
+  return (
+    html.includes(`<title>${titleEscaped}</title>`) &&
+    html.includes(`<meta name="description" content="${searchEscaped}"`) &&
+    html.includes(`<meta property="og:title" content="${titleEscaped}">`) &&
+    html.includes(`<meta property="og:description" content="${socialEscaped}">`) &&
+    html.includes(`<meta name="twitter:title" content="${titleEscaped}">`) &&
+    html.includes(`<meta name="twitter:description" content="${socialEscaped}">`) &&
+    html.includes(`"@type": "WebSite"`) &&
+    html.includes(`"description": "${jsonEscaped}"`)
+  )
+}
+
 const HOME_TITLE = 'Coded Citadel — Building Social Media & Ecom Tools in Public'
 
 function main() {
@@ -127,6 +145,14 @@ function main() {
   next = replaceWebSiteJsonLdDescription(next, socialDescription)
 
   if (next === html) {
+    if (htmlHasExpectedHomeMeta(html, HOME_TITLE, searchDescription, socialDescription)) {
+      console.log('Homepage meta descriptions already up to date')
+      console.log(`Homepage title → ${HOME_TITLE}`)
+      console.log(`Homepage search description → ${searchDescription}`)
+      console.log(`Homepage social description → ${socialDescription}`)
+      return
+    }
+
     throw new Error('Failed to update homepage meta descriptions in index.html')
   }
 
