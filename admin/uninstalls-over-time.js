@@ -1,7 +1,7 @@
 window.CC_ADMIN_UNINSTALLS = {
   "source": "src/data/portfolio-analytics.json",
-  "updatedAt": "2026-09-08",
-  "extractedAt": "2026-09-08T22:55:05.751Z",
+  "updatedAt": "2026-09-16",
+  "extractedAt": "2026-09-16T10:20:17.334Z",
   "daily": [
     {
       "date": "2026-05-19",
@@ -442,6 +442,26 @@ window.CC_ADMIN_UNINSTALLS = {
     {
       "date": "2026-09-07",
       "total": 49
+    },
+    {
+      "date": "2026-09-08",
+      "total": 92
+    },
+    {
+      "date": "2026-09-11",
+      "total": 54
+    },
+    {
+      "date": "2026-09-12",
+      "total": 60
+    },
+    {
+      "date": "2026-09-13",
+      "total": 58
+    },
+    {
+      "date": "2026-09-14",
+      "total": 45
     }
   ]
 };

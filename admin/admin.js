@@ -2243,6 +2243,7 @@ function buildYtUserRecords() {
         searches: 0,
         exports: 0,
         aiChats: 0,
+        videoStats: 0,
         usedSorting: false,
         viewedComments: false,
         isDev: isYtFingerprintBlacklisted(id),
@@ -2279,6 +2280,7 @@ function buildYtUserRecords() {
     if (event === 'export_results') rec.exports += 1
     else if (event === 'ai_chat') rec.aiChats += 1
     else if (event === 'comments_read') rec.viewedComments = true
+    else if (event === 'video_stats') rec.videoStats += 1
     else if (isFilterSearchEvent(row)) {
       rec.searches += 1
       if (!rec.usedSorting && filterUsedSorting(pickFilterObject(row))) {
@@ -2423,6 +2425,7 @@ function renderYtUsers() {
         <td class="admin__users-num">${rec.searches.toLocaleString('en-US')}</td>
         <td class="admin__users-num">${rec.exports.toLocaleString('en-US')}</td>
         <td class="admin__users-num">${rec.aiChats.toLocaleString('en-US')}</td>
+        <td class="admin__users-num">${(rec.videoStats || 0).toLocaleString('en-US')}</td>
         <td class="admin__users-num${maxWkClass}">${rec.maxWeeklySearches.toLocaleString('en-US')}</td>
         <td>${boolPill(rec.usedSorting)}</td>
         <td>${boolPill(rec.viewedComments)}</td>
@@ -3322,7 +3325,15 @@ function buildFeatureDailySeries(rows, topN = FEATURE_DAILY_TOP_N, windowKey = g
   for (const row of rows || []) {
     const event = ytRowEvent(row)
     if (event === 'started_tutorial' || event === 'completed_tutorial') continue
-    if (event === 'export_results' || event === 'view_results' || event === 'ai_chat') continue
+    if (
+      event === 'export_results' ||
+      event === 'view_results' ||
+      event === 'ai_chat' ||
+      event === 'comments_read' ||
+      event === 'video_stats'
+    ) {
+      continue
+    }
     if (!isFilterSearchEvent(row)) continue
 
     const fingerprint = normalizeDashboardFingerprint(ytRowFingerprint(row))
@@ -3732,6 +3743,9 @@ function buildYtMetricsText(rows) {
   push(`Total searches: ${stats.total}`)
   push(`Unique users (anonymous ids): ${stats.uniqueUsers}`)
   push(`Total exports: ${stats.totalExports} (${stats.exportUsers} unique users)`)
+  push(
+    `Video Stats clicks: ${stats.totalVideoStats} (${stats.videoStatsUsers} unique users)`,
+  )
   push(
     `Tutorials started: ${stats.totalStartedTutorials} (${stats.startedTutorialUsers} unique users)`,
   )
@@ -4352,6 +4366,8 @@ function aggregateYt(rows) {
   const exportsByFormat = new Map(EXPORT_FORMATS.map((fmt) => [fmt, 0]))
   const exportUsers = new Set()
   let totalExports = 0
+  let totalVideoStats = 0
+  const videoStatsUsers = new Set()
   let totalStartedTutorials = 0
   let totalCompletedTutorials = 0
   const startedTutorialUsers = new Set()
@@ -4389,6 +4405,14 @@ function aggregateYt(rows) {
       const format = ytRowExportFormat(row) || 'unknown'
       exportsByFormat.set(format, (exportsByFormat.get(format) || 0) + 1)
       if (fingerprint) exportUsers.add(fingerprint)
+      continue
+    }
+    if (event === 'video_stats') {
+      totalVideoStats += 1
+      if (fingerprint) {
+        videoStatsUsers.add(fingerprint)
+        uniqueFingerprints.add(fingerprint)
+      }
       continue
     }
     if (event === 'view_results' || event === 'ai_chat') continue
@@ -4560,6 +4584,8 @@ function aggregateYt(rows) {
     totalExports,
     exportUsers: exportUsers.size,
     exportsByFormat,
+    totalVideoStats,
+    videoStatsUsers: videoStatsUsers.size,
     totalStartedTutorials,
     totalCompletedTutorials,
     startedTutorialUsers: startedTutorialUsers.size,
@@ -5545,6 +5571,8 @@ function renderYtKpis() {
   document.getElementById('kpi-yt-total').textContent = String(stats.total)
   const exportsKpi = document.getElementById('kpi-yt-exports')
   if (exportsKpi) exportsKpi.textContent = String(stats.totalExports)
+  const videoStatsKpi = document.getElementById('kpi-yt-video-stats')
+  if (videoStatsKpi) videoStatsKpi.textContent = String(stats.totalVideoStats || 0)
   const setKpi = (id, value) => {
     const el = document.getElementById(id)
     if (el) el.textContent = value
