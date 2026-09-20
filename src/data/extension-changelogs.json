@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-09-16T10:20:50.623Z",
+  "updatedAt": "2026-09-20T22:03:36.875Z",
   "message": null,
   "apps": [
     {
@@ -268,6 +268,87 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "a6c12857ff6ac1426dff2eccf17fc4d0c703339f",
+          "shortSha": "a6c1285",
+          "message": "Enhance YouTube API key management and update free tier quotas",
+          "date": "2026-09-20T18:47:22Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/a6c12857ff6ac1426dff2eccf17fc4d0c703339f",
+          "version": "2.0.155"
+        },
+        {
+          "sha": "44b0ab7aadfcd1bc612ad28e47d749b1f1435da1",
+          "shortSha": "44b0ab7",
+          "message": "Refactor video engagement metrics handling and enhance performance data display",
+          "date": "2026-09-20T17:51:55Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/44b0ab7aadfcd1bc612ad28e47d749b1f1435da1",
+          "version": "2.0.155"
+        },
+        {
+          "sha": "0e623f163fe0275a40fe6cc1fec4e949d72d7f9c",
+          "shortSha": "0e623f1",
+          "message": "Enhance modal filter results and YFP data handling",
+          "date": "2026-09-20T17:31:16Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/0e623f163fe0275a40fe6cc1fec4e949d72d7f9c",
+          "version": "2.0.155"
+        },
+        {
+          "sha": "8c134ffc1da077624305dde9996ff8e3200433be",
+          "shortSha": "8c134ff",
+          "message": "Add Amazon social platform support and improve unknown data handling",
+          "date": "2026-09-20T15:14:23Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/8c134ffc1da077624305dde9996ff8e3200433be",
+          "version": "2.0.155"
+        },
+        {
+          "sha": "fa27bdacf153ea7194fa00aefc5140e8dd8b3a05",
+          "shortSha": "fa27bda",
+          "message": "Update version to 2.0.155, enhance cadence display logic, and improve performance sidebar features.",
+          "date": "2026-09-20T15:01:54Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/fa27bdacf153ea7194fa00aefc5140e8dd8b3a05",
+          "version": "2.0.155"
+        },
+        {
+          "sha": "39c39521b025ccb0fc272373f2b6d8c7bc15690e",
+          "shortSha": "39c3952",
+          "message": "Update version to 2.0.153, enhance video engagement metrics handling, and improve documentation.",
+          "date": "2026-09-17T19:03:39Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/39c39521b025ccb0fc272373f2b6d8c7bc15690e",
+          "version": "2.0.153"
+        },
+        {
+          "sha": "80a7491097a9fc16b532d6cd5ebb0e3154dfc5f0",
+          "shortSha": "80a7491",
+          "message": "Update version to 2.0.152, enhance YouTube Performance (YFPS) features, and improve documentation.",
+          "date": "2026-09-17T14:19:14Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/80a7491097a9fc16b532d6cd5ebb0e3154dfc5f0",
+          "version": "2.0.152"
+        },
+        {
+          "sha": "bf23676f1db007844b0a6c6e859affaf7d471211",
+          "shortSha": "bf23676",
+          "message": "Everything working perfectly on this commit.",
+          "date": "2026-09-17T10:05:53Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/bf23676f1db007844b0a6c6e859affaf7d471211",
+          "version": "2.0.150"
+        },
+        {
+          "sha": "b778f349a4a1f20ebf4345a40f20e5a7d920fceb",
+          "shortSha": "b778f34",
+          "message": "Update version to 2.0.150, enhance channel enrichment features, and improve video engagement handling.",
+          "date": "2026-09-17T09:46:37Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/b778f349a4a1f20ebf4345a40f20e5a7d920fceb",
+          "version": "2.0.150"
+        },
         {
           "sha": "3fc5720e0c8d80e1af872913a3c7eae1ad00229d",
           "shortSha": "3fc5720",
@@ -636,87 +717,6 @@
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/a9af0d27c81878b5b1f59a6cfa033ed42e581f73",
           "version": "1.0.63"
-        },
-        {
-          "sha": "d1e5ee3f53e851d6448af5c777fd3bc64b25c4e6",
-          "shortSha": "d1e5ee3",
-          "message": "Enhance YFP data handling: Introduced reset function for About-tab stats, improved polling mechanism for incomplete data bars, and refined conditions for displaying channel views and joined stats. Updated auto-refetch interval and maximum attempts for better performance. Ensured proper handling of stats visibility based on data readiness.",
-          "date": "2026-07-25T09:37:08Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/d1e5ee3f53e851d6448af5c777fd3bc64b25c4e6",
-          "version": "1.0.63"
-        },
-        {
-          "sha": "fe8a96ae0915898c9b5192b46c8f40fd5645a709",
-          "shortSha": "fe8a96a",
-          "message": "Update YouTube Filter Pro to version 1.0.63: Incremented version number and added new localization messages for filtering options across multiple languages. Enhanced user guidance with updated helper texts and improved clarity in filter functionalities. Introduced new settings for channel country filtering and refined existing messages for better user experience. Improved overall UI consistency and accessibility in filtering mechanisms.",
-          "date": "2026-07-25T09:25:20Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/fe8a96ae0915898c9b5192b46c8f40fd5645a709",
-          "version": "1.0.63"
-        },
-        {
-          "sha": "d52286513c09013a74a76f36fb83260b1ef43fb8",
-          "shortSha": "d522865",
-          "message": "Update YouTube Filter Pro to version 1.0.62: Incremented version number and added new localization messages for email requirements in video descriptions and channel About sections. Enhanced auto-scroll functionality with improved handling of search results exhaustion. Refactored filtering mechanisms to support email presence checks and updated toast notifications for better user feedback. Improved channel data fetching and UI elements for clarity and consistency.",
-          "date": "2026-07-25T08:19:41Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/d52286513c09013a74a76f36fb83260b1ef43fb8",
-          "version": "1.0.62"
-        },
-        {
-          "sha": "2de2561eea584c63b0595ae1dcbd4dc08f2ff4c4",
-          "shortSha": "2de2561",
-          "message": "Update YouTube Filter Pro to version 1.0.61: Incremented version number and updated localization messages across multiple languages, including new entries for tutorial completion and filtering instructions. Enhanced auto-scroll functionality with improved handling of search continuation and added new settings for filtering modes. Refactored filtering mechanisms to ensure better user experience and interaction with channel metadata. Improved toast notifications for filtering status and refined UI elements for clarity.",
-          "date": "2026-07-24T17:48:18Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/2de2561eea584c63b0595ae1dcbd4dc08f2ff4c4",
-          "version": "1.0.61"
-        },
-        {
-          "sha": "f34d80370a4e69a54dfcf80baafbdaad9f43e40d",
-          "shortSha": "f34d803",
-          "message": "Update YouTube Filter Pro to version 1.0.60: Incremented version number and added new localization messages for social platforms, including Discord and LinkedIn. Enhanced channel data fetching with improved handling of video counts and country normalization. Introduced settings for hiding ads in search results and refined user interface elements for better accessibility. Updated filtering mechanisms to support additional social platforms and improved overall user experience.",
-          "date": "2026-07-24T03:17:46Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/f34d80370a4e69a54dfcf80baafbdaad9f43e40d",
-          "version": "1.0.60"
-        },
-        {
-          "sha": "822de5952dc2fca503aad1e1c27a0203b62c51ec",
-          "shortSha": "822de59",
-          "message": "Update YouTube Filter Pro to version 1.0.58: Incremented version number and enhanced manifest permissions to include support for both \"youtube.com\" and \"www.youtube.com\". Improved background script functionality with dynamic uninstall URL handling based on user fingerprint. Refactored content scripts to support detailed channel and video data fetching, including additional raw data extraction for better user insights. Updated filtering mechanisms to ensure smoother integration with enriched video data and improved overall user experience.",
-          "date": "2026-07-24T00:29:59Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/822de5952dc2fca503aad1e1c27a0203b62c51ec",
-          "version": "1.0.58"
-        },
-        {
-          "sha": "8544e1e70cbe18105a9627a1bf16d0dc81339a69",
-          "shortSha": "8544e1e",
-          "message": "Update YouTube Filter Pro to version 1.0.56: Incremented version number and added new localization messages for displaying extra information in search results. Enhanced user experience with additional settings for showing likes, views per day, and channel information. Improved toast notifications for filtering status, including pause and resume functionality. Refactored related components for better interaction and updated styles for improved UI consistency.",
-          "date": "2026-07-23T09:33:50Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/8544e1e70cbe18105a9627a1bf16d0dc81339a69",
-          "version": "1.0.56"
-        },
-        {
-          "sha": "7affa0d6b24ce58eb704d03a1e468ba62141843a",
-          "shortSha": "7affa0d",
-          "message": "Update YouTube Filter Pro to version 1.0.55: Incremented version number and added the \"i18n-iso-countries\" library as a dependency. Enhanced localization messages across multiple languages, including new entries for display options and improved user guidance. Updated manifest permissions to include a new host and refined the Vite configuration for better build processes and proprietary comment injection.",
-          "date": "2026-07-23T01:58:43Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/7affa0d6b24ce58eb704d03a1e468ba62141843a",
-          "version": "1.0.55"
-        },
-        {
-          "sha": "586231c361131d1a453de8df36c8f91105e98046",
-          "shortSha": "586231c",
-          "message": "Update YouTube Filter Pro to version 1.0.54: Incremented version number and added the \"driver.js\" library as a dependency. Updated localization messages across multiple languages to enhance user guidance and clarity in filtering options. Improved the user experience with new onboarding tutorial messages and refined existing helper texts for better understanding of filter functionalities.",
-          "date": "2026-07-22T07:25:41Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/586231c361131d1a453de8df36c8f91105e98046",
-          "version": "1.0.54"
         }
       ]
     },
