@@ -56,6 +56,7 @@ function getPrerenderRoutes() {
     '/uninstall',
     '/work',
     '/contact',
+    '/links',
     ...(apps || []).map((app) => `/apps/${app.slug}`),
     ...pluginSlugs.map((slug) => `/davinci-resolve-plugins/${slug}`),
     ...PRIVACY_POLICY_SLUGS.map((slug) => `/privacy-policy/${slug}`),

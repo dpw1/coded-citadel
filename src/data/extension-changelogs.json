@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-09-20T22:03:36.875Z",
+  "updatedAt": "2026-10-01T15:05:00.043Z",
   "message": null,
   "apps": [
     {
@@ -12,6 +12,33 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "9a50978270ea6721920241c7f845515b36a3f90f",
+          "shortSha": "9a50978",
+          "message": "Update Gmail export extension to version 1.0.903. Add support for environment variables by including .env in .gitignore. Enhance build scripts to streamline background and static builds. Update localization files for multiple languages with new options for downloading images and emails, including tooltips and improved user prompts. Add new permissions for Supabase integration and include additional JavaScript files in the build process.",
+          "date": "2026-09-29T10:06:58Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/gmail-export/commit/9a50978270ea6721920241c7f845515b36a3f90f",
+          "version": "1.0.903"
+        },
+        {
+          "sha": "64ba56d28a7ee1e11fdb7a87a08973094a79c793",
+          "shortSha": "64ba56d",
+          "message": "Remove sensitive environment configuration file (.env) to enhance security and prevent exposure of API keys and secrets.",
+          "date": "2026-09-29T10:06:31Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/gmail-export/commit/64ba56d28a7ee1e11fdb7a87a08973094a79c793",
+          "version": "1.0.901"
+        },
+        {
+          "sha": "08351f3f4a485e50d8c27d14c7292a2ef4b0b56d",
+          "shortSha": "08351f3",
+          "message": "Enhance Gmail export extension by adding support for generating non-English locale files during the build process. Update localization files for multiple languages to include new options for downloading images and emails as a single file. Increment version to 1.0.901 in manifest. Refactor build scripts for improved consistency and streamline the export process.",
+          "date": "2026-09-29T01:40:46Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/gmail-export/commit/08351f3f4a485e50d8c27d14c7292a2ef4b0b56d",
+          "version": "1.0.901"
+        },
         {
           "sha": "d974c80f30783ede92cbdb2449a132295480ead4",
           "shortSha": "d974c80",
@@ -91,7 +118,7 @@
           "date": "2026-06-23T17:50:27Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/086064d23b8edccb9dc3c8b40e4f32e7e80b4385",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "39b27122aa80db3eed1fb485a5478021da797c7a",
@@ -100,7 +127,7 @@
           "date": "2026-06-14T11:38:44Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/39b27122aa80db3eed1fb485a5478021da797c7a",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "18648e6acd3ad40d3292e89178f1ae2dfcf51572",
@@ -109,7 +136,7 @@
           "date": "2026-06-14T10:52:36Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/18648e6acd3ad40d3292e89178f1ae2dfcf51572",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "ac36d265f609af526c5c30a2dea2f87de6b805ef",
@@ -118,7 +145,7 @@
           "date": "2026-06-14T10:34:55Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/ac36d265f609af526c5c30a2dea2f87de6b805ef",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "78da3a2a5cd7ec36cf5bbd37114538e45f484257",
@@ -127,7 +154,7 @@
           "date": "2026-06-13T16:36:24Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/78da3a2a5cd7ec36cf5bbd37114538e45f484257",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "bd5c10be386c739cdfa44cd17dc05a8807060115",
@@ -136,7 +163,7 @@
           "date": "2026-06-13T16:36:05Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/bd5c10be386c739cdfa44cd17dc05a8807060115",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "80516b6b8e281dee4891f24364016d30917cd49c",
@@ -145,7 +172,7 @@
           "date": "2026-06-13T10:47:47Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/80516b6b8e281dee4891f24364016d30917cd49c",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "0501042709f8ef9fbdfd6ead7419f05780f762f4",
@@ -154,7 +181,7 @@
           "date": "2026-06-13T06:39:01Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/0501042709f8ef9fbdfd6ead7419f05780f762f4",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "36c98dc71d13284c0b8ff1cca8f64d3a3c929532",
@@ -163,7 +190,7 @@
           "date": "2026-06-13T06:34:07Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/36c98dc71d13284c0b8ff1cca8f64d3a3c929532",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "b48dd916121d4f61feb2a6e12e41b7724b48116e",
@@ -172,7 +199,7 @@
           "date": "2026-06-13T05:45:36Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/b48dd916121d4f61feb2a6e12e41b7724b48116e",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "62118b058028aabaf03465f8f0d432e25b3395c4",
@@ -181,7 +208,7 @@
           "date": "2026-06-13T04:23:46Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/62118b058028aabaf03465f8f0d432e25b3395c4",
-          "version": "1.0.90"
+          "version": "1.0.903"
         },
         {
           "sha": "ee89ed8f71ab096ac8d9ffccc7ca76bf8fb3dfef",
@@ -190,7 +217,7 @@
           "date": "2026-06-12T12:49:48Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/gmail-export/commit/ee89ed8f71ab096ac8d9ffccc7ca76bf8fb3dfef",
-          "version": "1.0.90"
+          "version": "1.0.903"
         }
       ]
     },
@@ -268,6 +295,114 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "555ebcf95577cc02aa413eb5420b17aeeed366e7",
+          "shortSha": "555ebcf",
+          "message": "Update version to 2.0.166, enhance Lemon Squeezy documentation, and improve performance button functionality",
+          "date": "2026-09-30T12:46:15Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/555ebcf95577cc02aa413eb5420b17aeeed366e7",
+          "version": "2.0.166"
+        },
+        {
+          "sha": "80cc59ce9b0460e19adb6f5aeb6c94f7c4624756",
+          "shortSha": "80cc59c",
+          "message": "Update version to 2.0.165, remove comments quick-read onboarding tip, and enforce Efficient fetch mode",
+          "date": "2026-09-28T22:42:37Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/80cc59ce9b0460e19adb6f5aeb6c94f7c4624756",
+          "version": "2.0.165"
+        },
+        {
+          "sha": "241b44b0db4ddf786d11ea457ec33cfe9932ecfd",
+          "shortSha": "241b44b",
+          "message": "Update version to 2.0.164, adjust account pricing, and enhance video enrichment functionality",
+          "date": "2026-09-28T12:34:36Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/241b44b0db4ddf786d11ea457ec33cfe9932ecfd",
+          "version": "2.0.164"
+        },
+        {
+          "sha": "225fa61af683159a3b515c184ad1b1d5a84a78fd",
+          "shortSha": "225fa61",
+          "message": "Enhance documentation and refactor sorting logic",
+          "date": "2026-09-26T22:42:24Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/225fa61af683159a3b515c184ad1b1d5a84a78fd",
+          "version": "2.0.162"
+        },
+        {
+          "sha": "898705c25827dd652d4b92e551f934ed1dbd4b2a",
+          "shortSha": "898705c",
+          "message": "Enhance state persistence and sorting functionality",
+          "date": "2026-09-26T21:52:08Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/898705c25827dd652d4b92e551f934ed1dbd4b2a",
+          "version": "2.0.162"
+        },
+        {
+          "sha": "31164cd3b58ddf47145fba8be00b5c9ab6d73dbc",
+          "shortSha": "31164cd",
+          "message": "Fixed 24h bug",
+          "date": "2026-09-26T21:29:07Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/31164cd3b58ddf47145fba8be00b5c9ab6d73dbc",
+          "version": "2.0.162"
+        },
+        {
+          "sha": "28c666df56cf2c535e87681c2f8813fde8450052",
+          "shortSha": "28c666d",
+          "message": "Update version to 2.0.162, enhance daily reach metrics, and improve performance data handling",
+          "date": "2026-09-26T05:19:43Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/28c666df56cf2c535e87681c2f8813fde8450052",
+          "version": "2.0.162"
+        },
+        {
+          "sha": "e4cc127f9f9d69709228757f2d7584e85934a8f8",
+          "shortSha": "e4cc127",
+          "message": "Update version to 2.0.161, enhance account checkout process, and improve telemetry data handling",
+          "date": "2026-09-25T19:22:42Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/e4cc127f9f9d69709228757f2d7584e85934a8f8",
+          "version": "2.0.161"
+        },
+        {
+          "sha": "0fed8e4933d548579361aef750d4fcfb1626abd7",
+          "shortSha": "0fed8e4",
+          "message": "Update version to 2.0.159, refine cadence status handling, and enhance performance metrics",
+          "date": "2026-09-24T00:29:24Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/0fed8e4933d548579361aef750d4fcfb1626abd7",
+          "version": "2.0.159"
+        },
+        {
+          "sha": "b645dd793045e1b0dfa11fe61eada0be1c01c7fc",
+          "shortSha": "b645dd7",
+          "message": "Update version to 2.0.158, enhance localization strings, and improve account features",
+          "date": "2026-09-22T17:50:27Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/b645dd793045e1b0dfa11fe61eada0be1c01c7fc",
+          "version": "2.0.158"
+        },
+        {
+          "sha": "7ebd33af8a024ccc2697bf103d9c39887fe2c017",
+          "shortSha": "7ebd33a",
+          "message": "Update version to 2.0.157, enhance daily reach metrics, and improve performance data handling",
+          "date": "2026-09-22T17:30:43Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/7ebd33af8a024ccc2697bf103d9c39887fe2c017",
+          "version": "2.0.157"
+        },
+        {
+          "sha": "f511bf2cc6c90aaf99cfad16a1a1cfc712101a82",
+          "shortSha": "f511bf2",
+          "message": "Update version to 2.0.156, enhance account pricing display, and improve daily reach metrics handling",
+          "date": "2026-09-20T23:40:19Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/f511bf2cc6c90aaf99cfad16a1a1cfc712101a82",
+          "version": "2.0.156"
+        },
         {
           "sha": "a6c12857ff6ac1426dff2eccf17fc4d0c703339f",
           "shortSha": "a6c1285",
@@ -609,114 +744,6 @@
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/9d68b2933d1f89af7de9264a34efa2554ab616f3",
           "version": "1.0.78"
-        },
-        {
-          "sha": "f0236ff4a9c0db68e86ad01c61904d4af11e1990",
-          "shortSha": "f0236ff",
-          "message": "Update to version 1.0.77: Added new localization message for \"Show example of videos with chapters\" across multiple languages. Enhanced the modal UI to include a help button that triggers a video tip for chapters. Updated web-accessible resources to include help media. Improved styling for filter help elements to enhance user experience.",
-          "date": "2026-08-10T03:29:59Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/f0236ff4a9c0db68e86ad01c61904d4af11e1990",
-          "version": "1.0.77"
-        },
-        {
-          "sha": "d99df158916c64b4993bd2b08f6445e87ef36e50",
-          "shortSha": "d99df15",
-          "message": "Ship 1.0.76: improve filtered-results UX, Bluesky socials, and channel exclude flow.",
-          "date": "2026-08-10T03:20:04Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/d99df158916c64b4993bd2b08f6445e87ef36e50",
-          "version": "1.0.75"
-        },
-        {
-          "sha": "d05f1718fed3c4a7f872920f5f17a8c02d146e47",
-          "shortSha": "d05f171",
-          "message": "Update YouTube Filter Pro to version 1.0.75: Added new localization messages for loading more results and sorting options across multiple languages. Enhanced auto-scroll functionality to accommodate new results fetching methods. Incremented version number and refined UI elements for better user experience in the filtering process.",
-          "date": "2026-08-09T23:57:15Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/d05f1718fed3c4a7f872920f5f17a8c02d146e47",
-          "version": "1.0.75"
-        },
-        {
-          "sha": "2e4807ab5229a4e6a5e580ffb52cbf6fd2283d54",
-          "shortSha": "2e4807a",
-          "message": "Update YouTube Filter Pro to version 1.0.73: Added new localization messages for search query and video type filters across multiple languages. Enhanced error handling for Shorts duration limits and improved user feedback with new modal prompts. Refined auto-scroll functionality to better handle end-of-results detection for Shorts. Updated telemetry for improved tracking of user interactions and filtering performance.",
-          "date": "2026-08-06T04:19:21Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/2e4807ab5229a4e6a5e580ffb52cbf6fd2283d54",
-          "version": "1.0.73"
-        },
-        {
-          "sha": "cb084bfa5c8db2511d7b795f88be03c2c26d04f3",
-          "shortSha": "cb084bf",
-          "message": "Update YouTube Filter Pro to version 1.0.71: Incremented version number and added new localization messages for user support and feedback. Enhanced feedback widget with a compact star rating feature for user reviews. Improved telemetry handling during onboarding and tutorial processes, ensuring better tracking of user interactions. Refined UI elements for filter buttons and modal components to enhance user experience.",
-          "date": "2026-08-05T22:18:47Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/cb084bfa5c8db2511d7b795f88be03c2c26d04f3",
-          "version": "1.0.71"
-        },
-        {
-          "sha": "7cf7ee7d8a97a5924e2e19561be0a0c248f3951b",
-          "shortSha": "7cf7ee7",
-          "message": "Ship 1.0.68: replace FingerprintJS with local UUID identity and tighten telemetry.",
-          "date": "2026-08-01T23:23:20Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/7cf7ee7d8a97a5924e2e19561be0a0c248f3951b",
-          "version": "1.0.67"
-        },
-        {
-          "sha": "9cf1e61fb7110d2562b8c87c3d0e57948de21480",
-          "shortSha": "9cf1e61",
-          "message": "Update YouTube Filter Pro to version 1.0.67: Added telemetry for results export functionality, allowing tracking of export events in JSON, CSV, and XLSX formats. Enhanced analytics capabilities by recording the number of results exported and the filter state during the export process. Updated relevant imports and function calls to integrate the new telemetry features.",
-          "date": "2026-07-30T23:21:04Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/9cf1e61fb7110d2562b8c87c3d0e57948de21480",
-          "version": "1.0.67"
-        },
-        {
-          "sha": "848700553f977014833c0f32a293d960c9b5e1fa",
-          "shortSha": "8487005",
-          "message": "Update YouTube Filter Pro to version 1.0.66: Incremented version number and added new localization messages for search functionality. Enhanced filtering mechanisms with improved handling of cardless video metadata and optimized UI elements for better user experience. Introduced new settings for debugging yfp-data loading behavior and refined conditions for managing filtering sessions.",
-          "date": "2026-07-30T23:07:42Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/848700553f977014833c0f32a293d960c9b5e1fa",
-          "version": "1.0.66"
-        },
-        {
-          "sha": "d767c7679772cd1bfbafa82f90a3b285e4eab1c5",
-          "shortSha": "d767c76",
-          "message": "Refactor filtering mechanisms and enhance auto-scroll functionality: Updated localization messages for JSON export option, improved internal pause handling during slow fetch mode, and refined conditions for managing filtering sessions. Introduced new functions for handling title exclude keywords in search queries and optimized UI elements for better user experience.",
-          "date": "2026-07-30T17:45:54Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/d767c7679772cd1bfbafa82f90a3b285e4eab1c5",
-          "version": "1.0.65"
-        },
-        {
-          "sha": "43013997dc52ec04e140e2ff16043deae0da241f",
-          "shortSha": "4301399",
-          "message": "Update YouTube Filter Pro to version 1.0.65: Incremented version number and added new localization messages for export options, including CSV, Excel, and JSON formats. Enhanced auto-scroll functionality with a new slow fetch mode to improve data loading efficiency. Refactored filtering mechanisms to support additional channel metadata handling and improved user interface elements for better accessibility and clarity.",
-          "date": "2026-07-30T16:30:22Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/43013997dc52ec04e140e2ff16043deae0da241f",
-          "version": "1.0.65"
-        },
-        {
-          "sha": "6ebdbea8ab0f9d2e0773d9cffed715284876fdfc",
-          "shortSha": "6ebdbea",
-          "message": "Update YouTube Filter Pro to version 1.0.64: Incremented version number and added new localization messages for filtering status. Enhanced user feedback with a new toast notification for filtering initiation and improved handling of existing notifications. Refactored related functions for better clarity and user experience in the filtering process.",
-          "date": "2026-07-29T12:01:29Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/6ebdbea8ab0f9d2e0773d9cffed715284876fdfc",
-          "version": "1.0.64"
-        },
-        {
-          "sha": "a9af0d27c81878b5b1f59a6cfa033ed42e581f73",
-          "shortSha": "a9af0d2",
-          "message": "Update YouTube Filter Pro to version 1.0.63: Incremented version number and added new localization messages for filtering options in German, Spanish, French, Japanese, and Korean. Enhanced user guidance with updated helper texts and improved clarity in filter functionalities. Introduced new settings for channel country filtering and refined existing messages for better user experience. Improved overall UI consistency and accessibility in filtering mechanisms.",
-          "date": "2026-07-27T14:02:10Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/a9af0d27c81878b5b1f59a6cfa033ed42e581f73",
-          "version": "1.0.63"
         }
       ]
     },
@@ -1149,7 +1176,7 @@
           "date": "2026-05-25T20:18:09Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-dm-exporter/commit/96721ee79bae5412b79898e32c4b99114abc28d3",
-          "version": "1.0.43"
+          "version": "1.0.431"
         }
       ]
     },

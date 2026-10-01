@@ -17,7 +17,10 @@ import UninstallPage from './pages/UninstallPage'
 import WorkPage from './pages/WorkPage'
 import ContactPage from './pages/ContactPage'
 import AffiliatePage from './pages/AffiliatePage'
+import LinksPage from './pages/LinksPage'
 import NotFoundPage from './pages/NotFoundPage'
+import StoreRedirectPage from './pages/StoreRedirectPage'
+import { YT_FILTER_PRO_STORE_URL } from './constants/chromeWebStore'
 import { pluginPath, pluginsIndexPath } from './utils/plugins'
 
 function PluginSlugRedirect() {
@@ -53,6 +56,25 @@ function AppRoutes() {
         <Route path="/work" element={<WorkPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/affiliate" element={<AffiliatePage />} />
+        <Route path="/links" element={<LinksPage />} />
+        <Route
+          path="/YFP"
+          element={
+            <StoreRedirectPage
+              url={YT_FILTER_PRO_STORE_URL}
+              title="YT Filter Pro — Chrome Web Store"
+            />
+          }
+        />
+        <Route
+          path="/yfp"
+          element={
+            <StoreRedirectPage
+              url={YT_FILTER_PRO_STORE_URL}
+              title="YT Filter Pro — Chrome Web Store"
+            />
+          }
+        />
         <Route path="/stats" element={<Navigate to="/live-stats" replace />} />
         <Route path="/extensions" element={<Navigate to="/apps" replace />} />
         <Route path="*" element={<NotFoundPage />} />

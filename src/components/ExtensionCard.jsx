@@ -146,13 +146,36 @@ export default function ExtensionCard({
     navigate(`/apps/${app.slug}`)
   }
 
+  const openChromeWebStore = () => {
+    if (!storeUrl) return
+    window.open(storeUrl, '_blank', 'noopener,noreferrer')
+  }
+
   const openCardTarget = () => {
     if (!live) return
     if (openStoreOnClick && storeUrl) {
-      window.open(storeUrl, '_blank', 'noopener,noreferrer')
+      openChromeWebStore()
       return
     }
     openAppPage()
+  }
+
+  const handleCtaClick = (event) => {
+    event.stopPropagation()
+    if (!live) return
+    if (storeUrl) {
+      openChromeWebStore()
+      return
+    }
+    openAppPage()
+  }
+
+  const handleCtaKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      event.stopPropagation()
+      handleCtaClick(event)
+    }
   }
 
   const handleCardClick = () => {
@@ -338,10 +361,15 @@ export default function ExtensionCard({
 
       {showViewMore ? (
         live ? (
-          <span className="CC__ext-cta CC__ext-cta--visible" aria-hidden="true">
+          <button
+            type="button"
+            className="CC__ext-cta CC__ext-cta--visible"
+            onClick={handleCtaClick}
+            onKeyDown={handleCtaKeyDown}
+          >
             View more
             {ARROW_ICON}
-          </span>
+          </button>
         ) : (
           <span className="CC__ext-cta CC__ext-cta--visible CC__ext-cta--disabled" aria-disabled="true">
             Coming soon

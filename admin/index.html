@@ -63,6 +63,17 @@
         IG DM Exporter
         <span class="admin__tab-status" id="idme-tab-status" hidden aria-hidden="true"></span>
       </button>
+      <button
+        type="button"
+        class="admin__tab"
+        role="tab"
+        aria-selected="false"
+        data-tab="ge"
+        id="tab-ge"
+      >
+        Gmail
+        <span class="admin__tab-status" id="ge-tab-status" hidden aria-hidden="true"></span>
+      </button>
     </nav>
 
     <!-- FEEDBACK -->
@@ -74,7 +85,8 @@
     >
       <div class="admin__status" id="feedback-status">Loading feedback…</div>
 
-      <div class="admin__panel-actions">
+      <div class="admin__panel-actions admin__panel-actions--with-url">
+        <span class="admin__panel-supabase-url" id="feedback-supabase-url-label" title="Supabase project for Feedback"></span>
         <button type="button" class="admin__btn admin__btn--outline" id="feedback-refresh">
           Refresh feedback
         </button>
@@ -234,14 +246,17 @@
     >
       <div class="admin__status" id="yt-status">Loading YouTube Filter Pro data…</div>
 
-      <div class="admin__panel-actions" id="yt-panel-actions">
-        <span class="admin__copy-hint" id="yt-local-data-hint" hidden></span>
-        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-refresh-local">
-          Refresh local data
-        </button>
-        <button type="button" class="admin__btn admin__btn--sm" id="yt-refresh-supabase">
-          Refresh Supabase
-        </button>
+      <div class="admin__panel-actions admin__panel-actions--with-url" id="yt-panel-actions">
+        <span class="admin__panel-supabase-url" id="yt-supabase-url-label" title="Supabase project for YouTube Filter Pro"></span>
+        <div class="admin__panel-actions__cluster">
+          <span class="admin__copy-hint" id="yt-local-data-hint" hidden></span>
+          <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-refresh-local">
+            Refresh local data
+          </button>
+          <button type="button" class="admin__btn admin__btn--sm" id="yt-refresh-supabase">
+            Refresh Supabase
+          </button>
+        </div>
       </div>
 
       <nav class="admin__subtabs" role="tablist" aria-label="YouTube Filter Pro sections">
@@ -285,6 +300,16 @@
           id="yt-subtab-gifts"
         >
           Gift codes
+        </button>
+        <button
+          type="button"
+          class="admin__subtab"
+          role="tab"
+          aria-selected="false"
+          data-yt-subtab="api"
+          id="yt-subtab-api"
+        >
+          API
         </button>
         <button
           type="button"
@@ -939,6 +964,24 @@
         </section>
       </div>
 
+      <div id="yt-subpanel-api" role="tabpanel" aria-labelledby="yt-subtab-api" hidden>
+        <p class="admin__note">
+          Daily YouTube Data API quota for the four Worker secrets
+          (<code>YOUTUBE_API_KEY</code>, <code>YOUTUBE_API_KEY_V2</code>,
+          <code>YOUTUBE_API_KEY_V3</code>, <code>YOUTUBE_API_KEY_V4</code>).
+          Usage is tracked by the live <code>yfp-enrich</code> Worker (10K units / key / Pacific day).
+        </p>
+
+        <div class="admin__panel-actions">
+          <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="yt-api-refresh">
+            Refresh quota
+          </button>
+        </div>
+
+        <div class="admin__status" id="yt-api-status">Loading YouTube API quota…</div>
+        <div class="admin__chart-card admin__quota-card" id="yt-api-quota-card" hidden></div>
+      </div>
+
       <div id="yt-subpanel-dev" role="tabpanel" aria-labelledby="yt-subtab-dev" hidden>
         <div class="admin__status" id="yt-dev-status">Loading your YT Filter Pro data…</div>
 
@@ -987,7 +1030,8 @@
       aria-labelledby="tab-idme"
       hidden
     >
-      <div class="admin__panel-actions" id="idme-panel-actions">
+      <div class="admin__panel-actions admin__panel-actions--with-url" id="idme-panel-actions">
+        <span class="admin__panel-supabase-url" id="idme-supabase-url-label" title="Supabase project for IG DM Exporter"></span>
         <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="idme-users-refresh">
           Refresh users
         </button>
@@ -1132,6 +1176,161 @@
         </section>
       </div>
     </section>
+
+<!-- GMAIL EXPORTER -->
+    <section
+      class="admin__panel"
+      id="panel-ge"
+      role="tabpanel"
+      aria-labelledby="tab-ge"
+      hidden
+    >
+      <div class="admin__panel-actions admin__panel-actions--ge" id="ge-panel-actions">
+        <span class="admin__panel-supabase-url" id="ge-supabase-url-label" title="Gmail Exporter Supabase project"></span>
+        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="ge-users-refresh">
+          Refresh users
+        </button>
+      </div>
+
+      <nav class="admin__subtabs" role="tablist" aria-label="Gmail Exporter sections">
+        <button
+          type="button"
+          class="admin__subtab admin__subtab--active"
+          role="tab"
+          aria-selected="true"
+          data-ge-subtab="users"
+          id="ge-subtab-users"
+        >
+          Users
+        </button>
+        <button
+          type="button"
+          class="admin__subtab"
+          role="tab"
+          aria-selected="false"
+          data-ge-subtab="gifts"
+          id="ge-subtab-gifts"
+        >
+          Gift codes
+        </button>
+      </nav>
+
+      <div id="ge-subpanel-users" role="tabpanel" aria-labelledby="ge-subtab-users">
+        <p class="admin__note">
+          License device grants from <code>ge_license_device_grants</code>
+          (Lemon purchase → activate). Free-tier usage may also appear from
+          <code>ge_export_usage</code> when synced.
+        </p>
+        <p class="admin__status" id="ge-users-status" hidden></p>
+
+        <div class="admin__kpis" id="ge-users-kpis" hidden>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Grants</div>
+            <div class="admin__kpi-value" id="kpi-ge-users-total">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Active Pro</div>
+            <div class="admin__kpi-value admin__kpi-value--green" id="kpi-ge-users-active">0</div>
+          </div>
+          <div class="admin__kpi">
+            <div class="admin__kpi-label">Lifetime</div>
+            <div class="admin__kpi-value" id="kpi-ge-users-lifetime">0</div>
+          </div>
+        </div>
+
+        <div class="admin__users-toolbar" id="ge-users-toolbar" hidden>
+          <label class="admin__filter-group">
+            <span class="admin__filter-label">Search</span>
+            <input
+              type="search"
+              class="admin__users-search"
+              id="ge-users-search"
+              placeholder="device id or email"
+              autocomplete="off"
+            />
+          </label>
+        </div>
+
+        <div class="admin__users-table-wrap" id="ge-users-table-wrap" hidden>
+          <table class="admin__users-table">
+            <thead>
+              <tr>
+                <th><button type="button" class="admin__users-sort" data-sort="device">device</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="email">email</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="status">status</button></th>
+                <th>lifetime</th>
+                <th class="admin__users-num"><button type="button" class="admin__users-sort" data-sort="exports">exports</button></th>
+                <th class="admin__users-num">transcriptions</th>
+                <th><button type="button" class="admin__users-sort" data-sort="grant">grant until</button></th>
+                <th><button type="button" class="admin__users-sort" data-sort="activated">activated</button></th>
+                <th>lemon status</th>
+              </tr>
+            </thead>
+            <tbody id="ge-users-body"></tbody>
+          </table>
+        </div>
+        <p class="admin__status admin__status--empty" id="ge-users-empty" hidden></p>
+      </div>
+
+      <div id="ge-subpanel-gifts" role="tabpanel" aria-labelledby="ge-subtab-gifts" hidden>
+        <p class="admin__note">
+          Custom gift codes in <code>ge_gift_codes</code> (device redeem, no login).
+          Give each code a unique name on create. Hover a row to edit, then Save.
+        </p>
+        <section class="admin__gifts" id="ge-gifts">
+          <h3 class="admin__gifts-title">Create code</h3>
+          <form class="admin__gifts-form" id="ge-gifts-form">
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Name</span>
+              <input type="text" id="ge-gift-name" class="admin__users-search yt-gift-name" placeholder="e.g. BETA-CREATORS" autocomplete="off" spellcheck="false" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Kind</span>
+              <select id="ge-gift-kind" class="admin__select yt-gift-kind">
+                <option value="days">Days</option>
+                <option value="months">Months</option>
+                <option value="lifetime">Lifetime</option>
+              </select>
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label" id="ge-gift-duration-label">Days</span>
+              <input type="number" id="ge-gift-days" class="admin__users-search" min="1" value="60" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Max uses</span>
+              <input type="number" id="ge-gift-max" class="admin__users-search" min="1" value="1" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Note</span>
+              <input type="text" id="ge-gift-note" class="admin__users-search" placeholder="beta / 2 months" />
+            </label>
+            <button type="submit" class="admin__btn admin__btn--sm" id="ge-gift-create">Create code</button>
+          </form>
+          <p class="admin__copy-hint" id="ge-gift-expiration-preview" aria-live="polite"></p>
+          <div class="admin__users-table-wrap">
+            <table class="admin__users-table admin__gifts-table">
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>kind</th>
+                  <th>duration</th>
+                  <th>max uses</th>
+                  <th>used</th>
+                  <th>note</th>
+                  <th>created</th>
+                  <th>expiration</th>
+                  <th>redeemed by</th>
+                  <th>revoke</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="ge-gifts-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
   </div>
 
   <div class="admin__modal" id="fingerprint-modal" hidden>
@@ -1226,7 +1425,28 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>
   <script src="./admin.js"></script>
+  <script src="./yt-filter-pro-api-quota.js"></script>
   <script src="./yt-filter-pro-accounts.js"></script>
+  <div class="admin__modal" id="ge-gift-redemptions-modal" hidden>
+    <button type="button" class="admin__modal-backdrop" id="ge-gift-redemptions-modal-backdrop" aria-label="Close"></button>
+    <div
+      class="admin__modal-dialog admin__modal-dialog--yfp"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="ge-gift-redemptions-title"
+    >
+      <div class="admin__modal-header">
+        <div>
+          <p class="admin__eyebrow">IG DM gift redemptions</p>
+          <h2 class="admin__modal-title" id="ge-gift-redemptions-title">Code</h2>
+        </div>
+        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="ge-gift-redemptions-modal-close">
+          Close
+        </button>
+      </div>
+      <div class="admin__modal-body admin__modal-body--yfp" id="ge-gift-redemptions-body"></div>
+  <script src="./ge-admin-config.js"></script>
+  <script src="./gmail-exporter-accounts.js"></script>
   <script src="./ig-dm-exporter-accounts.js"></script>
 </body>
 </html>

@@ -141,6 +141,11 @@ function main() {
       priority: '0.7',
       lastmod: defaultLastmod,
     }),
+    urlEntry(`${SITE_URL}/links`, {
+      changefreq: 'monthly',
+      priority: '0.75',
+      lastmod: defaultLastmod,
+    }),
     urlEntry(`${SITE_URL}/blog`, {
       changefreq: 'weekly',
       priority: '0.8',

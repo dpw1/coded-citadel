@@ -1,0 +1,55 @@
+.CC__links-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.25rem 3rem;
+  background: var(--CC__color-bg);
+}
+
+.CC__links-page__inner {
+  width: 100%;
+  max-width: 22rem;
+  text-align: center;
+}
+
+.CC__links-page__avatar {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.25rem;
+  border: 1px solid var(--CC__color-border);
+  box-shadow: 0 0 0 1px rgba(255, 153, 0, 0.12);
+}
+
+.CC__links-page__title {
+  font-family: var(--CC__font-display);
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.65rem;
+  color: var(--CC__color-text-main);
+}
+
+.CC__links-page__desc {
+  font-size: 0.9rem;
+  color: var(--CC__color-text-muted);
+  line-height: 1.55;
+  margin-bottom: 1.75rem;
+}
+
+.CC__links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.CC__links-list__item {
+  margin-top: 0;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 0.85rem;
+  font-weight: 600;
+}

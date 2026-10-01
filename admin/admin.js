@@ -6,6 +6,19 @@ const SUPABASE_ANON_KEY =
 window.SUPABASE_URL = SUPABASE_URL
 window.SUPABASE_ANON_KEY = SUPABASE_ANON_KEY
 
+function updateSharedSupabaseUrlLabels() {
+  const url = String(window.SUPABASE_URL || '').replace(/\/+$/, '')
+  for (const id of [
+    'feedback-supabase-url-label',
+    'yt-supabase-url-label',
+    'idme-supabase-url-label',
+  ]) {
+    const el = document.getElementById(id)
+    if (el) el.textContent = url || 'Supabase: not configured'
+  }
+}
+window.updateSharedSupabaseUrlLabels = updateSharedSupabaseUrlLabels
+
 const READ_STORAGE_KEY = 'cc_admin_feedback_read' // legacy; migrated into settings store
 const SETTINGS_STORAGE_KEY = 'cc_admin_settings'
 const YT_CACHE_KEY = 'cc_admin_yt_filter_pro_cache'
@@ -19,6 +32,8 @@ const YT_CACHE_TTL_MS = 24 * 60 * 60 * 1000 // once a day; later pulls are incre
 const YT_INCREMENTAL_OVERLAP_MS = 2 * 60 * 1000
 const FEEDBACK_CACHE_KEY = 'cc_admin_feedback_cache'
 const FEEDBACK_CACHE_TTL_MS = 12 * 60 * 60 * 1000 // 12 hours
+/** When false, Supabase is only fetched via explicit refresh buttons (not on stale cache or TTL timers). */
+const AUTO_SUPABASE_REFRESH = false
 const FEEDBACK_CONVERSION_CUTOFF_DAY = '2026-07-21'
 
 /** Your extension fingerprint — YT Filter Pro Dev tab only. */
@@ -537,9 +552,10 @@ try {
 }
 
 const VALID_FILTERS = new Set(['all', 'unread', 'read'])
-const VALID_TABS = new Set(['feedback', 'yt', 'idme'])
-const VALID_YT_SUBTABS = new Set(['analytics', 'users', 'logged-in', 'gifts', 'dev'])
+const VALID_TABS = new Set(['feedback', 'yt', 'idme', 'ge'])
+const VALID_YT_SUBTABS = new Set(['analytics', 'users', 'logged-in', 'gifts', 'api', 'dev'])
 const VALID_IDME_SUBTABS = new Set(['users', 'gifts'])
+const VALID_GE_SUBTABS = new Set(['users', 'gifts'])
 const YT_CHART_KEYS = [
   'features',
   'featureDaily',
@@ -702,6 +718,17 @@ function getIdmeSubTab() {
 function setIdmeSubTab(value) {
   const next = VALID_IDME_SUBTABS.has(value) ? value : 'users'
   settings.set('idmeSubTab', next)
+  return next
+}
+
+function getGeSubTab() {
+  const value = settings.get('geSubTab')
+  return VALID_GE_SUBTABS.has(value) ? value : 'users'
+}
+
+function setGeSubTab(value) {
+  const next = VALID_GE_SUBTABS.has(value) ? value : 'users'
+  settings.set('geSubTab', next)
   return next
 }
 
@@ -1252,6 +1279,7 @@ function currentAdminPath() {
     if (sub === 'users') return '/yt-filter-pro/users'
     if (sub === 'logged-in') return '/yt-filter-pro/logged-in'
     if (sub === 'gifts') return '/yt-filter-pro/gifts'
+    if (sub === 'api') return '/yt-filter-pro/api'
     if (sub === 'dev') return '/yt-filter-pro/dev'
     return '/yt-filter-pro'
   }
@@ -1259,6 +1287,11 @@ function currentAdminPath() {
     const sub = getIdmeSubTab()
     if (sub === 'gifts') return '/ig-dm-exporter/gifts'
     return '/ig-dm-exporter/users'
+  }
+  if (tab === 'ge') {
+    const sub = getGeSubTab()
+    if (sub === 'gifts') return '/gmail-exporter/gifts'
+    return '/gmail-exporter/users'
   }
   return '/admin'
 }
@@ -1288,6 +1321,7 @@ function parseAdminPath(hash) {
   if (clean === 'yt-filter-pro/gifts' || clean === 'yt-filter-pro/gift-codes') {
     return { tab: 'yt', sub: 'gifts' }
   }
+  if (clean === 'yt-filter-pro/api') return { tab: 'yt', sub: 'api' }
   if (clean === 'yt-filter-pro/dev') return { tab: 'yt', sub: 'dev' }
   if (
     clean === 'ig-dm-exporter' ||
@@ -1304,6 +1338,16 @@ function parseAdminPath(hash) {
   ) {
     return { tab: 'idme', sub: 'gifts' }
   }
+  if (
+    clean === 'gmail-exporter' ||
+    clean === 'gmail-exporter/users' ||
+    clean === 'gmail/users'
+  ) {
+    return { tab: 'ge', sub: 'users' }
+  }
+  if (clean === 'gmail-exporter/gifts' || clean === 'gmail-exporter/gift-codes' || clean === 'gmail/gifts') {
+    return { tab: 'ge', sub: 'gifts' }
+  }
   return null
 }
 
@@ -1315,6 +1359,7 @@ function applyAdminRouteFromUrl() {
   applyingAdminRoute = true
   try {
     if (parsed.tab === 'idme' && parsed.sub) setIdmeSubTab(parsed.sub)
+    else if (parsed.tab === 'ge' && parsed.sub) setGeSubTab(parsed.sub)
     else if (parsed.sub) setYtSubTab(parsed.sub)
     switchTab(parsed.tab, { persist: true, skipUrl: true })
   } finally {
@@ -1339,12 +1384,21 @@ function switchTab(tab, { persist = true, skipUrl = false } = {}) {
   document.getElementById('panel-yt').hidden = active !== 'yt'
   const panelIdme = document.getElementById('panel-idme')
   if (panelIdme) panelIdme.hidden = active !== 'idme'
+  const panelGe = document.getElementById('panel-ge')
+  if (panelGe) panelGe.hidden = active !== 'ge'
 
   if (active === 'yt') {
     applyYtSubTab()
   }
   if (active === 'idme') {
     applyIdmeSubTab()
+  }
+  if (active === 'ge') {
+    applyGeSubTab()
+  }
+  updateSharedSupabaseUrlLabels()
+  if (typeof window.GeAdminAccounts?.updateSupabaseLabel === 'function') {
+    window.GeAdminAccounts.updateSupabaseLabel()
   }
   if (active === 'feedback' && state.loaded.feedback) {
     requestAnimationFrame(() => renderFeedbackGraph())
@@ -1394,6 +1448,51 @@ function applyIdmeSubTab() {
   }
 }
 
+function applyGeSubTab() {
+  const sub = getGeSubTab()
+  document.querySelectorAll('[data-ge-subtab]').forEach((btn) => {
+    const isActive = btn.dataset.geSubtab === sub
+    btn.classList.toggle('admin__subtab--active', isActive)
+    btn.setAttribute('aria-selected', isActive ? 'true' : 'false')
+  })
+  const users = document.getElementById('ge-subpanel-users')
+  const gifts = document.getElementById('ge-subpanel-gifts')
+  if (users) users.hidden = sub !== 'users'
+  if (gifts) gifts.hidden = sub !== 'gifts'
+  syncAdminUrl()
+
+  if (document.getElementById('panel-ge')?.hidden) return
+  if (typeof window.GeAdminAccounts?.updateSupabaseLabel === 'function') {
+    window.GeAdminAccounts.updateSupabaseLabel()
+  }
+  if (sub === 'users') {
+    const loadUsers = () => {
+      if (window.GeAdminAccounts) {
+        void window.GeAdminAccounts.render()
+        return true
+      }
+      return false
+    }
+    requestAnimationFrame(() => {
+      if (loadUsers()) return
+      setTimeout(loadUsers, 0)
+    })
+  }
+  if (sub === 'gifts') {
+    const loadGifts = () => {
+      if (window.GeAdminAccounts) {
+        void window.GeAdminAccounts.renderGifts()
+        return true
+      }
+      return false
+    }
+    requestAnimationFrame(() => {
+      if (loadGifts()) return
+      setTimeout(loadGifts, 0)
+    })
+  }
+}
+
 function applyYtSubTab() {
   const sub = getYtSubTab()
   document.querySelectorAll('[data-yt-subtab]').forEach((btn) => {
@@ -1405,11 +1504,13 @@ function applyYtSubTab() {
   const users = document.getElementById('yt-subpanel-users')
   const loggedIn = document.getElementById('yt-subpanel-logged-in')
   const gifts = document.getElementById('yt-subpanel-gifts')
+  const api = document.getElementById('yt-subpanel-api')
   const dev = document.getElementById('yt-subpanel-dev')
   if (analytics) analytics.hidden = sub !== 'analytics'
   if (users) users.hidden = sub !== 'users'
   if (loggedIn) loggedIn.hidden = sub !== 'logged-in'
   if (gifts) gifts.hidden = sub !== 'gifts'
+  if (api) api.hidden = sub !== 'api'
   if (dev) dev.hidden = sub !== 'dev'
   syncAdminUrl()
 
@@ -1439,6 +1540,20 @@ function applyYtSubTab() {
     requestAnimationFrame(() => {
       if (loadGifts()) return
       setTimeout(loadGifts, 0)
+    })
+  }
+  if (sub === 'api') {
+    const loadApiQuota = () => {
+      if (window.YfpAdminApiQuota) {
+        window.YfpAdminApiQuota.init()
+        void window.YfpAdminApiQuota.load()
+        return true
+      }
+      return false
+    }
+    requestAnimationFrame(() => {
+      if (loadApiQuota()) return
+      setTimeout(loadApiQuota, 0)
     })
   }
   if (!state.loaded.yt) return
@@ -1597,6 +1712,13 @@ function resolveYtCacheSavedAt() {
 }
 
 function updateCacheTimers() {
+  const root = document.getElementById('admin-cache-timers')
+  if (!AUTO_SUPABASE_REFRESH) {
+    if (root) root.hidden = true
+    return
+  }
+  if (root) root.hidden = false
+
   const feedbackEl = document.getElementById('cache-timer-feedback')
   const ytEl = document.getElementById('cache-timer-yt')
   if (!feedbackEl || !ytEl) return
@@ -1617,6 +1739,10 @@ function updateCacheTimers() {
 }
 
 function startCacheTimerTicker() {
+  if (!AUTO_SUPABASE_REFRESH) {
+    updateCacheTimers()
+    return
+  }
   updateCacheTimers()
   window.setInterval(updateCacheTimers, 1000)
 }
@@ -2987,6 +3113,7 @@ async function loadFeedback({ force = false } = {}) {
 
   if (!force && cached?.rows?.length) {
     applyFeedbackRows(cached.rows, { fromCache: true })
+    if (!AUTO_SUPABASE_REFRESH) return
   } else if (force && state.feedback.length) {
     // keep UI while refreshing
   } else {
@@ -5790,6 +5917,11 @@ async function loadYt({ force = false } = {}) {
   // Force refresh with existing data: keep UI, only show tab spinner.
   if (!force && cached?.rows?.length) {
     applyYtRows(cached.rows, { fromCache: true })
+    if (!AUTO_SUPABASE_REFRESH) {
+      setYtTabStatus('ready')
+      updateCacheTimers()
+      return
+    }
     setYtTabStatus('loading')
   } else if (force && state.ytRows.length) {
     setYtTabStatus('loading')
@@ -5995,6 +6127,13 @@ document.querySelectorAll('[data-idme-subtab]').forEach((btn) => {
   btn.addEventListener('click', () => {
     setIdmeSubTab(btn.dataset.idmeSubtab)
     applyIdmeSubTab()
+  })
+})
+
+document.querySelectorAll('[data-ge-subtab]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    setGeSubTab(btn.dataset.geSubtab)
+    applyGeSubTab()
   })
 })
 
@@ -6251,8 +6390,16 @@ else {
   switchTab(getActiveTab(), { persist: false })
   syncAdminUrl()
 }
+updateSharedSupabaseUrlLabels()
+if (typeof window.GeAdminAccounts?.updateSupabaseLabel === 'function') {
+  window.GeAdminAccounts.updateSupabaseLabel()
+}
 refreshAll({ forceYt: false, forceFeedback: false })
 updateYtLocalDataHint()
-scheduleYtCacheRefresh()
-scheduleFeedbackCacheRefresh()
-startCacheTimerTicker()
+if (AUTO_SUPABASE_REFRESH) {
+  scheduleYtCacheRefresh()
+  scheduleFeedbackCacheRefresh()
+  startCacheTimerTicker()
+} else {
+  updateCacheTimers()
+}
