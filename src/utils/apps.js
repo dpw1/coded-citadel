@@ -7,6 +7,8 @@ const SLUG_ALIASES = {
   'yt-comments-exporter': 'youtube-comments-exporter',
   'youtube-filter-pro-filter-by-views-duration-date-and-more': 'youtube-filter-pro',
   dfkkbbcdbjaecgnaocgfonoodmfmkmmm: 'claude-deep-search',
+  'ig-reels-insight': 'custom-data-flgffomd',
+  'ig-reels-insight-view-per': 'custom-data-flgffomd',
 }
 
 export function getAllApps() {
