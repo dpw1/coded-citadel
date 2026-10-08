@@ -1,0 +1,218 @@
+.CC__stripe-success-page {
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(255, 153, 0, 0.1), transparent 60%);
+}
+
+.CC__stripe-success-main {
+  padding: var(--CC__space-lg) 0 var(--CC__space-xl);
+}
+
+.CC__stripe-success-panel {
+  position: relative;
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 2rem 1.75rem;
+}
+
+.CC__stripe-success-panel .CC__cyber-accent__corner {
+  width: 32px;
+  height: 32px;
+}
+
+.CC__stripe-success-panel h1 {
+  font-family: var(--CC__font-display);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  margin: 0 0 var(--CC__space-sm);
+}
+
+.CC__stripe-success-panel h1 span {
+  color: var(--CC__color-primary);
+}
+
+.CC__stripe-success-product {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--CC__space-sm);
+}
+
+.CC__stripe-success-product-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--CC__color-icon-bg, #1a2030);
+  border: 1px solid var(--CC__color-icon-border, #252e42);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.CC__stripe-success-product-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.CC__stripe-success-product-name {
+  font-size: 0.95rem;
+  color: var(--CC__color-text-muted);
+  margin: 0;
+}
+
+.CC__stripe-success-lead {
+  color: var(--CC__color-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 0 0 var(--CC__space-md);
+}
+
+.CC__stripe-success-banner {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: var(--CC__space-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.CC__stripe-success-banner--test {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.45);
+}
+
+.CC__stripe-success-banner--live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  background: rgba(34, 197, 94, 0.08);
+  border-radius: 999px;
+  color: var(--CC__color-success, #22c55e);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.CC__stripe-success-banner--live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--CC__color-success, #22c55e);
+}
+
+.CC__stripe-success-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 0;
+  color: var(--CC__color-text-muted);
+  font-size: 0.95rem;
+}
+
+.CC__stripe-success-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--CC__color-border);
+  border-top-color: var(--CC__color-primary);
+  border-radius: 50%;
+  animation: CC__stripe-success-spin 0.85s linear infinite;
+}
+
+@keyframes CC__stripe-success-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.CC__stripe-success-key-label {
+  font-family: var(--CC__font-display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--CC__color-text-muted);
+  margin: 0 0 0.5rem;
+}
+
+.CC__stripe-success-key-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: var(--CC__space-md);
+}
+
+@media (min-width: 480px) {
+  .CC__stripe-success-key-row {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.CC__stripe-success-key {
+  flex: 1;
+  min-width: 0;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 0.85rem 1rem;
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: 8px;
+  word-break: break-all;
+  user-select: all;
+  color: var(--CC__color-text-main);
+}
+
+.CC__stripe-success-copy-btn {
+  flex-shrink: 0;
+  min-height: 48px;
+  min-width: 7rem;
+}
+
+.CC__stripe-success-hint,
+.CC__stripe-success-grant {
+  font-size: 0.9rem;
+  color: var(--CC__color-text-muted);
+  line-height: 1.6;
+  margin: 0 0 var(--CC__space-sm);
+}
+
+.CC__stripe-success-error {
+  color: var(--CC__color-danger, #ef4444);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 var(--CC__space-md);
+}
+
+.CC__stripe-success-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: var(--CC__space-md);
+}
+
+.CC__stripe-success-support {
+  margin-top: var(--CC__space-md);
+  font-size: 0.88rem;
+  color: var(--CC__color-text-muted);
+}
+
+.CC__stripe-success-support a {
+  color: var(--CC__color-primary);
+}
+
+.CC__stripe-success-support a:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .CC__stripe-success-spinner {
+    animation: none;
+    border-top-color: var(--CC__color-primary);
+    opacity: 0.85;
+  }
+}

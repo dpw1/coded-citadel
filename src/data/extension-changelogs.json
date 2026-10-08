@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-10-01T15:05:00.043Z",
+  "updatedAt": "2026-10-08T20:30:38.281Z",
   "message": null,
   "apps": [
     {
@@ -295,6 +295,33 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "7d6fbee90d93e38969937c6ce1f5a207d9f31309",
+          "shortSha": "7d6fbee",
+          "message": "Implement channel page upload-date search feature and update localization",
+          "date": "2026-10-07T21:34:56Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/7d6fbee90d93e38969937c6ce1f5a207d9f31309",
+          "version": "2.0.168"
+        },
+        {
+          "sha": "8490d8788a67de2ef58c12f7e6a2910b93121e01",
+          "shortSha": "8490d87",
+          "message": "Enhance channel subscriber data handling and improve video enrichment logic",
+          "date": "2026-10-07T01:16:36Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/8490d8788a67de2ef58c12f7e6a2910b93121e01",
+          "version": "2.0.168"
+        },
+        {
+          "sha": "744689fd0478912aba9a8833c130d2740d0bdc9a",
+          "shortSha": "744689f",
+          "message": "Update version to 2.0.168, enhance MFR dashboard features, and improve filtering functionality",
+          "date": "2026-10-07T00:59:54Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/744689fd0478912aba9a8833c130d2740d0bdc9a",
+          "version": "2.0.168"
+        },
         {
           "sha": "555ebcf95577cc02aa413eb5420b17aeeed366e7",
           "shortSha": "555ebcf",
@@ -671,7 +698,7 @@
           "date": "2026-08-26T12:52:32Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/7afe3e9c20ddf6ef8df1d8a702c329a934c4e9e3",
-          "version": "1.0.80"
+          "version": "2.0.166"
         },
         {
           "sha": "93a4ba7015eb79788ca4c4714f32c2250aabad93",
@@ -680,7 +707,7 @@
           "date": "2026-08-25T21:17:34Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/93a4ba7015eb79788ca4c4714f32c2250aabad93",
-          "version": "1.0.80"
+          "version": "2.0.166"
         },
         {
           "sha": "5fc34b1b42e943834e1d9d9778b366357f0f19d5",
@@ -689,7 +716,7 @@
           "date": "2026-08-25T00:52:28Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/5fc34b1b42e943834e1d9d9778b366357f0f19d5",
-          "version": "1.0.80"
+          "version": "2.0.166"
         },
         {
           "sha": "63710fc73caa9c4fff1e3570fb35f4af613b41c7",
@@ -698,7 +725,7 @@
           "date": "2026-08-24T12:25:09Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/63710fc73caa9c4fff1e3570fb35f4af613b41c7",
-          "version": "1.0.80"
+          "version": "2.0.166"
         },
         {
           "sha": "fab135505c3f502abd8627083dff60f22c547af6",
@@ -707,7 +734,7 @@
           "date": "2026-08-22T18:17:13Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/fab135505c3f502abd8627083dff60f22c547af6",
-          "version": "1.0.80"
+          "version": "2.0.166"
         },
         {
           "sha": "cb01b054d904faf5b1d76246d0f234acfc985a52",
@@ -716,34 +743,7 @@
           "date": "2026-08-22T13:43:11Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/cb01b054d904faf5b1d76246d0f234acfc985a52",
-          "version": "1.0.80"
-        },
-        {
-          "sha": "44fdf2d755c272279167d7cac6b5638992963b13",
-          "shortSha": "44fdf2d",
-          "message": "Update to version 1.0.80: Incremented version number in manifest.json. Enhanced localization support by adding new messages for filter presets and search query functionalities across multiple languages. Improved modal UI with a new presets feature, allowing users to save and manage filter settings more effectively. Refined filtering mechanisms for better performance and user experience during search operations.",
-          "date": "2026-08-18T13:35:13Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/44fdf2d755c272279167d7cac6b5638992963b13",
-          "version": "1.0.80"
-        },
-        {
-          "sha": "e9c70d62bd07dc71c1f93cfe866eff105465ebbf",
-          "shortSha": "e9c70d6",
-          "message": "Refactor channel data reloading and filtering mechanisms: Improved handling of soft and hard reloads for channel data, ensuring smoother user experience during data fetching. Enhanced modal filtering to support incremental updates without full DOM rebuilds, optimizing performance during search continuation. Added new telemetry checks for analytics UUIDs and refined conditions for managing filter sessions. Updated comments for clarity and maintainability.",
-          "date": "2026-08-12T06:05:35Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/e9c70d62bd07dc71c1f93cfe866eff105465ebbf",
-          "version": "1.0.78"
-        },
-        {
-          "sha": "9d68b2933d1f89af7de9264a34efa2554ab616f3",
-          "shortSha": "9d68b29",
-          "message": "Update to version 1.0.78: Incremented version number and refined permissions formatting in manifest.json for improved readability. Enhanced Vite configuration to dynamically sync the manifest version during builds. Updated localization messages across multiple languages to ensure consistency and clarity in user prompts. Improved overall user experience with better structured code and localization support.",
-          "date": "2026-08-12T05:21:11Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/9d68b2933d1f89af7de9264a34efa2554ab616f3",
-          "version": "1.0.78"
+          "version": "2.0.166"
         }
       ]
     },
@@ -1106,6 +1106,15 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "823c8ddc7daa71e9db5f0caeb6da9da5589e5f56",
+          "shortSha": "823c8dd",
+          "message": "Release v1.0.432: Updated version number in manifest, added legal notice injection and JavaScript syntax verification in the packaging script, improved UI elements in content and background scripts, and enhanced export button functionality. Refined usage tracking with IndexedDB and cookie support, and localized UI text for better user experience.",
+          "date": "2026-10-03T16:09:09Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/823c8ddc7daa71e9db5f0caeb6da9da5589e5f56",
+          "version": "1.0.432"
+        },
         {
           "sha": "2633bff37bf482f827956290807ce1fcd2733110",
           "shortSha": "2633bff",
