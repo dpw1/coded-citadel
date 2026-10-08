@@ -2,10 +2,10 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
   "source": "src/data/portfolio-analytics.json",
   "slug": "youtube-filter-pro",
   "name": "YT Filter Pro: filter by views, duration, date, and more",
-  "updatedAt": "2026-10-01",
-  "extractedAt": "2026-10-01T15:04:20.419Z",
-  "totalInstalls": 3155,
-  "uninstallsTotal": 714,
+  "updatedAt": "2026-10-08",
+  "extractedAt": "2026-10-08T20:46:26.916Z",
+  "totalInstalls": 3676,
+  "uninstallsTotal": 728,
   "installs": [
     {
       "date": "2026-05-18",
@@ -464,6 +464,14 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
       "total": 43
     },
     {
+      "date": "2026-09-09",
+      "total": 39
+    },
+    {
+      "date": "2026-09-10",
+      "total": 36
+    },
+    {
       "date": "2026-09-11",
       "total": 43
     },
@@ -488,6 +496,10 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
       "total": 45
     },
     {
+      "date": "2026-09-17",
+      "total": 45
+    },
+    {
       "date": "2026-09-18",
       "total": 17
     },
@@ -506,6 +518,10 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
     {
       "date": "2026-09-22",
       "total": 39
+    },
+    {
+      "date": "2026-09-23",
+      "total": 77
     },
     {
       "date": "2026-09-24",
@@ -530,6 +546,34 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
     {
       "date": "2026-09-29",
       "total": 41
+    },
+    {
+      "date": "2026-09-30",
+      "total": 46
+    },
+    {
+      "date": "2026-10-01",
+      "total": 42
+    },
+    {
+      "date": "2026-10-02",
+      "total": 28
+    },
+    {
+      "date": "2026-10-03",
+      "total": 57
+    },
+    {
+      "date": "2026-10-04",
+      "total": 45
+    },
+    {
+      "date": "2026-10-05",
+      "total": 43
+    },
+    {
+      "date": "2026-10-06",
+      "total": 63
     }
   ],
   "uninstalls": [
@@ -938,6 +982,14 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
       "total": 28
     },
     {
+      "date": "2026-09-09",
+      "total": 55
+    },
+    {
+      "date": "2026-09-10",
+      "total": 35
+    },
+    {
       "date": "2026-09-11",
       "total": 34
     },
@@ -962,6 +1014,10 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
       "total": 22
     },
     {
+      "date": "2026-09-17",
+      "total": 16
+    },
+    {
       "date": "2026-09-18",
       "total": 11
     },
@@ -980,6 +1036,10 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
     {
       "date": "2026-09-22",
       "total": 19
+    },
+    {
+      "date": "2026-09-23",
+      "total": 24
     },
     {
       "date": "2026-09-24",
@@ -1004,6 +1064,34 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
     {
       "date": "2026-09-29",
       "total": 18
+    },
+    {
+      "date": "2026-09-30",
+      "total": 14
+    },
+    {
+      "date": "2026-10-01",
+      "total": 21
+    },
+    {
+      "date": "2026-10-02",
+      "total": 14
+    },
+    {
+      "date": "2026-10-03",
+      "total": 39
+    },
+    {
+      "date": "2026-10-04",
+      "total": 25
+    },
+    {
+      "date": "2026-10-05",
+      "total": 30
+    },
+    {
+      "date": "2026-10-06",
+      "total": 20
     }
   ]
 };

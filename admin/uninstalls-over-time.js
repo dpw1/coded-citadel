@@ -1,7 +1,7 @@
 window.CC_ADMIN_UNINSTALLS = {
   "source": "src/data/portfolio-analytics.json",
-  "updatedAt": "2026-10-01",
-  "extractedAt": "2026-10-01T15:04:20.419Z",
+  "updatedAt": "2026-10-08",
+  "extractedAt": "2026-10-08T20:46:26.916Z",
   "daily": [
     {
       "date": "2026-05-19",
@@ -448,6 +448,14 @@ window.CC_ADMIN_UNINSTALLS = {
       "total": 92
     },
     {
+      "date": "2026-09-09",
+      "total": 89
+    },
+    {
+      "date": "2026-09-10",
+      "total": 84
+    },
+    {
       "date": "2026-09-11",
       "total": 54
     },
@@ -472,6 +480,10 @@ window.CC_ADMIN_UNINSTALLS = {
       "total": 35
     },
     {
+      "date": "2026-09-17",
+      "total": 36
+    },
+    {
       "date": "2026-09-18",
       "total": 29
     },
@@ -490,6 +502,10 @@ window.CC_ADMIN_UNINSTALLS = {
     {
       "date": "2026-09-22",
       "total": 62
+    },
+    {
+      "date": "2026-09-23",
+      "total": 54
     },
     {
       "date": "2026-09-24",
@@ -514,6 +530,34 @@ window.CC_ADMIN_UNINSTALLS = {
     {
       "date": "2026-09-29",
       "total": 44
+    },
+    {
+      "date": "2026-09-30",
+      "total": 37
+    },
+    {
+      "date": "2026-10-01",
+      "total": 61
+    },
+    {
+      "date": "2026-10-02",
+      "total": 43
+    },
+    {
+      "date": "2026-10-03",
+      "total": 57
+    },
+    {
+      "date": "2026-10-04",
+      "total": 55
+    },
+    {
+      "date": "2026-10-05",
+      "total": 61
+    },
+    {
+      "date": "2026-10-06",
+      "total": 49
     }
   ]
 };

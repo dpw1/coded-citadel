@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T20:30:28.836Z",
+  "updatedAt": "2026-10-08T20:46:46.277Z",
   "daily": [
     {
       "date": "2026-06-03",
@@ -1138,12 +1138,12 @@
     },
     {
       "date": "2026-10-08",
-      "pageViews": 62,
-      "activeUsers": 52,
-      "sessions": 59,
+      "pageViews": 63,
+      "activeUsers": 53,
+      "sessions": 60,
       "blogViews": 0,
-      "avgSessionDurationSeconds": 57.1997856779661,
-      "bounceRate": 0.6271186440677966
+      "avgSessionDurationSeconds": 57.0598132,
+      "bounceRate": 0.6166666666666667
     }
   ],
   "snapshots": [
@@ -18166,23 +18166,23 @@
       }
     },
     {
-      "extractedAt": "2026-10-08T20:30:28.836Z",
+      "extractedAt": "2026-10-08T20:46:46.277Z",
       "analytics": {
         "available": true,
-        "updatedAt": "2026-10-08T20:30:28.836Z",
+        "updatedAt": "2026-10-08T20:46:46.277Z",
         "message": null,
-        "totalViews": 9042,
+        "totalViews": 9043,
         "blogViews": 174,
-        "averageTimeOnSiteSeconds": 152.31420241795394,
-        "uniqueVisitors": 5607,
+        "averageTimeOnSiteSeconds": 152.27693158930654,
+        "uniqueVisitors": 5608,
         "newVsReturning": {
-          "new": 5606,
+          "new": 5607,
           "returning": 835
         },
         "mostViewedPages": [
           {
             "path": "/thank-you/",
-            "views": 5041
+            "views": 5042
           },
           {
             "path": "/uninstall/",
@@ -18227,7 +18227,7 @@
             "name": "India",
             "gaCountry": "India",
             "gaCountryId": "IN",
-            "users": 1374
+            "users": 1375
           },
           {
             "code": "US",
@@ -18401,7 +18401,7 @@
         "trafficSources": [
           {
             "source": "Direct",
-            "sessions": 6241
+            "sessions": 6243
           },
           {
             "source": "Organic Search",
@@ -18431,7 +18431,7 @@
         "topReferrers": [
           {
             "referrer": "(direct)",
-            "sessions": 6241
+            "sessions": 6243
           },
           {
             "referrer": "chromewebstore.google.com",
