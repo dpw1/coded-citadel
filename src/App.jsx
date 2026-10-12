@@ -14,6 +14,7 @@ import StatsPage from './pages/StatsPage'
 import ProfitPage from './pages/ProfitPage'
 import ThankYouPage from './pages/ThankYouPage'
 import StripeSuccessPage from './pages/StripeSuccessPage'
+import IvdStripeSuccessPage from './pages/IvdStripeSuccessPage'
 import UninstallPage from './pages/UninstallPage'
 import WorkPage from './pages/WorkPage'
 import ContactPage from './pages/ContactPage'
@@ -53,6 +54,8 @@ function AppRoutes() {
         <Route path="/live-stats" element={<StatsPage />} />
         <Route path="/profit" element={<ProfitPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
+        <Route path="/success/ivd/" element={<IvdStripeSuccessPage />} />
+        <Route path="/success/ivd" element={<IvdStripeSuccessPage />} />
         <Route path="/success" element={<StripeSuccessPage />} />
         <Route path="/uninstall" element={<UninstallPage />} />
         <Route path="/work" element={<WorkPage />} />

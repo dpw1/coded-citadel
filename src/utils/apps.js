@@ -9,6 +9,7 @@ const SLUG_ALIASES = {
   dfkkbbcdbjaecgnaocgfonoodmfmkmmm: 'claude-deep-search',
   'ig-reels-insight': 'custom-data-flgffomd',
   'ig-reels-insight-view-per': 'custom-data-flgffomd',
+  ivd: 'custom-data-flgffomd',
 }
 
 export function getAllApps() {

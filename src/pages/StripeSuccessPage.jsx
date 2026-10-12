@@ -5,6 +5,10 @@ import PageSEO from '../components/PageSEO'
 import SiteFooter from '../components/SiteFooter'
 import SiteHeader from '../components/SiteHeader'
 import {
+  IVD_APP_SLUG,
+  IVD_FULFILL_URL,
+  IVD_STRIPE_APP_ID,
+  IVD_SUPABASE_ANON_KEY,
   YFP_FULFILL_URL,
   YFP_STRIPE_APP_ID,
 } from '../config/supabase'
@@ -15,18 +19,22 @@ import './ThankYouPage.css'
 import './StripeSuccessPage.css'
 
 const CONTACT_EMAIL = 'CodedCitadel@gmail.com'
-const DEFAULT_APP_LANDING = `/apps/${YFP_STRIPE_APP_ID}`
 
-function fulfillErrorMessage(error) {
+function fulfillErrorMessage(error, product) {
+  const isIvd = product === 'ivd'
   switch (error) {
     case 'payment_not_complete':
-      return 'Payment is still processing. Return to YouTube or try again shortly.'
+      return isIvd
+        ? 'Payment is still processing. Return to Instagram or try again shortly.'
+        : 'Payment is still processing. Return to YouTube or try again shortly.'
     case 'missing_session_id':
       return 'Invalid or incomplete link.'
     case 'unknown_app':
       return 'This product is not supported yet.'
     default:
-      return "Couldn't load your license yet. Return to the YouTube tab — Pro may still activate automatically."
+      return isIvd
+        ? "Couldn't load your license yet. Return to the Instagram tab — Pro may still activate automatically."
+        : "Couldn't load your license yet. Return to the YouTube tab — Pro may still activate automatically."
   }
 }
 
@@ -41,32 +49,46 @@ function formatGrantUntil(iso) {
   })
 }
 
-export default function StripeSuccessPage() {
+export default function StripeSuccessPage({ product: productProp = 'yfp' }) {
   const [searchParams] = useSearchParams()
   const cancelled = searchParams.get('cancelled') === '1'
   const sessionId = (searchParams.get('session_id') ?? '').trim()
   const appParam = (searchParams.get('app') ?? '').trim()
 
+  const product = productProp === 'ivd' || appParam === IVD_STRIPE_APP_ID ? 'ivd' : 'yfp'
+  const isIvd = product === 'ivd'
+
+  const defaultAppLanding = isIvd ? `/apps/${IVD_APP_SLUG}` : `/apps/${YFP_STRIPE_APP_ID}`
+
   const appRecord = useMemo(() => {
+    if (isIvd) {
+      return getAppBySource(IVD_STRIPE_APP_ID) || getAppBySource(IVD_APP_SLUG)
+    }
     const resolved = getAppBySource(appParam || YFP_STRIPE_APP_ID)
     if (resolved) return resolved
     if (appParam && appParam !== YFP_STRIPE_APP_ID) return null
     return getAppBySource(YFP_STRIPE_APP_ID)
-  }, [appParam])
+  }, [appParam, isIvd])
 
   const productName = appRecord
     ? appFilterLabel(appRecord)
-    : appParam
-      ? 'Your purchase'
-      : appFilterLabel(getAppBySource(YFP_STRIPE_APP_ID)) || 'YouTube Filter Pro'
+    : isIvd
+      ? 'IG Reels Insight'
+      : appParam
+        ? 'Your purchase'
+        : appFilterLabel(getAppBySource(YFP_STRIPE_APP_ID)) || 'YouTube Filter Pro'
 
   const appLandingPath = appRecord?.slug
     ? `/apps/${appRecord.slug}`
-    : appParam
-      ? `/apps/${appParam}`
-      : DEFAULT_APP_LANDING
+    : isIvd
+      ? defaultAppLanding
+      : appParam
+        ? `/apps/${appParam}`
+        : defaultAppLanding
 
-  const fulfillAppId = appParam || YFP_STRIPE_APP_ID
+  const fulfillAppId = isIvd ? IVD_STRIPE_APP_ID : appParam || YFP_STRIPE_APP_ID
+  const fulfillUrl = isIvd ? IVD_FULFILL_URL : YFP_FULFILL_URL
+  const canonicalPath = isIvd ? '/success/ivd' : '/success'
 
   const [phase, setPhase] = useState(() => {
     if (cancelled) return 'cancelled'
@@ -88,9 +110,15 @@ export default function StripeSuccessPage() {
       setFulfill(null)
 
       try {
-        const res = await fetch(YFP_FULFILL_URL, {
+        const headers = { 'Content-Type': 'application/json' }
+        if (isIvd) {
+          headers.Authorization = `Bearer ${IVD_SUPABASE_ANON_KEY}`
+          headers.apikey = IVD_SUPABASE_ANON_KEY
+        }
+
+        const res = await fetch(fulfillUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers,
           body: JSON.stringify({
             session_id: sessionId,
             app: fulfillAppId,
@@ -103,7 +131,7 @@ export default function StripeSuccessPage() {
 
         if (!data?.ok) {
           const code = typeof data?.error === 'string' ? data.error : ''
-          setErrorMessage(fulfillErrorMessage(code))
+          setErrorMessage(fulfillErrorMessage(code, product))
           setPhase('error')
           return
         }
@@ -112,7 +140,7 @@ export default function StripeSuccessPage() {
         setPhase('success')
       } catch {
         if (cancelledRequest) return
-        setErrorMessage(fulfillErrorMessage())
+        setErrorMessage(fulfillErrorMessage(undefined, product))
         setPhase('error')
       }
     }
@@ -122,7 +150,7 @@ export default function StripeSuccessPage() {
     return () => {
       cancelledRequest = true
     }
-  }, [cancelled, sessionId, fulfillAppId])
+  }, [cancelled, sessionId, fulfillAppId, fulfillUrl, isIvd, product])
 
   const handleCopy = useCallback(async () => {
     const key = fulfill?.licenseKey
@@ -152,7 +180,7 @@ export default function StripeSuccessPage() {
       <PageSEO
         title={pageTitle}
         description="Stripe checkout confirmation for Coded Citadel extensions."
-        canonicalPath="/success"
+        canonicalPath={canonicalPath}
         robots="noindex, follow"
       />
 
@@ -167,11 +195,13 @@ export default function StripeSuccessPage() {
                 <>
                   <h1>Checkout cancelled</h1>
                   <p className="CC__stripe-success-lead">
-                    Close this tab and try again from YouTube Filter Pro → Upgrade / Purchase.
+                    {isIvd
+                      ? 'Close this tab and try again from IG Reels Insight → Upgrade.'
+                      : 'Close this tab and try again from YouTube Filter Pro → Upgrade / Purchase.'}
                   </p>
                   <div className="CC__stripe-success-actions">
-                    <Link to={DEFAULT_APP_LANDING} className="CC__btn CC__btn--primary">
-                      YouTube Filter Pro
+                    <Link to={defaultAppLanding} className="CC__btn CC__btn--primary">
+                      {productName}
                     </Link>
                   </div>
                 </>
@@ -182,8 +212,8 @@ export default function StripeSuccessPage() {
                   <h1>Invalid link</h1>
                   <p className="CC__stripe-success-error">Invalid or incomplete link.</p>
                   <div className="CC__stripe-success-actions">
-                    <Link to={DEFAULT_APP_LANDING} className="CC__btn CC__btn--outline">
-                      YouTube Filter Pro
+                    <Link to={defaultAppLanding} className="CC__btn CC__btn--outline">
+                      {productName}
                     </Link>
                   </div>
                 </>
@@ -235,8 +265,9 @@ export default function StripeSuccessPage() {
                   ) : null}
 
                   <p className="CC__stripe-success-lead">
-                    You can close this tab and go back to YouTube — the extension usually activates
-                    Pro within a minute.
+                    {isIvd
+                      ? 'You can close this tab and go back to Instagram — Pro usually activates within a minute.'
+                      : 'You can close this tab and go back to YouTube — the extension usually activates Pro within a minute.'}
                   </p>
 
                   {grantLabel ? (
@@ -259,8 +290,9 @@ export default function StripeSuccessPage() {
                         </button>
                       </div>
                       <p className="CC__stripe-success-hint">
-                        If Pro didn&apos;t unlock on YouTube, paste this key in the extension checkout
-                        dialog (manual license field).
+                        {isIvd
+                          ? "If Pro didn't unlock on Instagram, paste this key in the extension Upgrade sidebar (license field)."
+                          : "If Pro didn't unlock on YouTube, paste this key in the extension checkout dialog (manual license field)."}
                       </p>
                     </>
                   ) : null}
@@ -278,9 +310,9 @@ export default function StripeSuccessPage() {
                   <h1>Almost there</h1>
                   <p className="CC__stripe-success-error">{errorMessage}</p>
                   <p className="CC__stripe-success-hint">
-                    Return to the YouTube tab — Pro may still activate automatically. If you have a
-                    receipt email, you can paste your license key in the extension checkout dialog when
-                    it arrives.
+                    {isIvd
+                      ? 'Return to the Instagram tab — Pro may still activate automatically. You can paste your license key in the Upgrade sidebar if needed.'
+                      : 'Return to the YouTube tab — Pro may still activate automatically. If you have a receipt email, you can paste your license key in the extension checkout dialog when it arrives.'}
                   </p>
                   <div className="CC__stripe-success-actions">
                     <Link to={appLandingPath} className="CC__btn CC__btn--outline">
