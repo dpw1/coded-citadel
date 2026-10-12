@@ -14,7 +14,6 @@ import StatsPage from './pages/StatsPage'
 import ProfitPage from './pages/ProfitPage'
 import ThankYouPage from './pages/ThankYouPage'
 import StripeSuccessPage from './pages/StripeSuccessPage'
-import IvdStripeSuccessPage from './pages/IvdStripeSuccessPage'
 import UninstallPage from './pages/UninstallPage'
 import WorkPage from './pages/WorkPage'
 import ContactPage from './pages/ContactPage'
@@ -28,6 +27,15 @@ import { pluginPath, pluginsIndexPath } from './utils/plugins'
 function PluginSlugRedirect() {
   const { slug } = useParams()
   return <Navigate to={pluginPath(slug)} replace />
+}
+
+/** Old IVD checkout URLs → /success?app=ivd&… */
+function IvdSuccessLegacyRedirect() {
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)
+  if (!params.has('app')) params.set('app', 'ivd')
+  const q = params.toString()
+  return <Navigate to={`/success?${q}`} replace />
 }
 
 function AppRoutes() {
@@ -54,8 +62,8 @@ function AppRoutes() {
         <Route path="/live-stats" element={<StatsPage />} />
         <Route path="/profit" element={<ProfitPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
-        <Route path="/success/ivd/" element={<IvdStripeSuccessPage />} />
-        <Route path="/success/ivd" element={<IvdStripeSuccessPage />} />
+        <Route path="/success/ivd/" element={<IvdSuccessLegacyRedirect />} />
+        <Route path="/success/ivd" element={<IvdSuccessLegacyRedirect />} />
         <Route path="/success" element={<StripeSuccessPage />} />
         <Route path="/uninstall" element={<UninstallPage />} />
         <Route path="/work" element={<WorkPage />} />

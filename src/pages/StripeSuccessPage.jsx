@@ -49,13 +49,13 @@ function formatGrantUntil(iso) {
   })
 }
 
-export default function StripeSuccessPage({ product: productProp = 'yfp' }) {
+export default function StripeSuccessPage() {
   const [searchParams] = useSearchParams()
   const cancelled = searchParams.get('cancelled') === '1'
   const sessionId = (searchParams.get('session_id') ?? '').trim()
   const appParam = (searchParams.get('app') ?? '').trim()
 
-  const product = productProp === 'ivd' || appParam === IVD_STRIPE_APP_ID ? 'ivd' : 'yfp'
+  const product = appParam === IVD_STRIPE_APP_ID ? 'ivd' : 'yfp'
   const isIvd = product === 'ivd'
 
   const defaultAppLanding = isIvd ? `/apps/${IVD_APP_SLUG}` : `/apps/${YFP_STRIPE_APP_ID}`
@@ -88,7 +88,7 @@ export default function StripeSuccessPage({ product: productProp = 'yfp' }) {
 
   const fulfillAppId = isIvd ? IVD_STRIPE_APP_ID : appParam || YFP_STRIPE_APP_ID
   const fulfillUrl = isIvd ? IVD_FULFILL_URL : YFP_FULFILL_URL
-  const canonicalPath = isIvd ? '/success/ivd' : '/success'
+  const canonicalPath = '/success'
 
   const [phase, setPhase] = useState(() => {
     if (cancelled) return 'cancelled'
