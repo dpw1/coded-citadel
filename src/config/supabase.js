@@ -9,3 +9,9 @@ export const IVD_SUPABASE_ANON_KEY =
 export const IVD_STRIPE_APP_ID = 'ivd'
 export const IVD_APP_SLUG = 'custom-data-flgffomd'
 export const IVD_FULFILL_URL = `${IVD_SUPABASE_URL}/functions/v1/ivd-stripe-checkout-fulfill`
+
+/** IG DM Exporter — Cloudflare billing Worker (checkout fulfill for success page) */
+export const IDME_STRIPE_APP_ID = 'instagram-dm-export'
+export const IDME_APP_SLUG = 'instagram-dm-exporter'
+export const IDME_FULFILL_URL =
+  'https://idme-billing.possesswithin.workers.dev/stripe/checkout-fulfill'

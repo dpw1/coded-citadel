@@ -10,6 +10,8 @@ const SLUG_ALIASES = {
   'ig-reels-insight': 'custom-data-flgffomd',
   'ig-reels-insight-view-per': 'custom-data-flgffomd',
   ivd: 'custom-data-flgffomd',
+  'instagram-dm-export': 'instagram-dm-exporter',
+  idme: 'instagram-dm-exporter',
 }
 
 export function getAllApps() {

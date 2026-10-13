@@ -5,13 +5,11 @@ import PageSEO from '../components/PageSEO'
 import SiteFooter from '../components/SiteFooter'
 import SiteHeader from '../components/SiteHeader'
 import {
-  IVD_APP_SLUG,
-  IVD_FULFILL_URL,
-  IVD_STRIPE_APP_ID,
-  IVD_SUPABASE_ANON_KEY,
-  YFP_FULFILL_URL,
-  YFP_STRIPE_APP_ID,
-} from '../config/supabase'
+  fulfillErrorMessage,
+  fulfillStripeCheckoutSession,
+  platformReturnLabel,
+  resolveStripeSuccessApp,
+} from '../config/stripeSuccessApps'
 import { appFilterLabel, appIconUrl, getAppBySource } from '../utils/apps'
 import '../App.css'
 import './ExtensionLandingPage.css'
@@ -19,24 +17,6 @@ import './ThankYouPage.css'
 import './StripeSuccessPage.css'
 
 const CONTACT_EMAIL = 'CodedCitadel@gmail.com'
-
-function fulfillErrorMessage(error, product) {
-  const isIvd = product === 'ivd'
-  switch (error) {
-    case 'payment_not_complete':
-      return isIvd
-        ? 'Payment is still processing. Return to Instagram or try again shortly.'
-        : 'Payment is still processing. Return to YouTube or try again shortly.'
-    case 'missing_session_id':
-      return 'Invalid or incomplete link.'
-    case 'unknown_app':
-      return 'This product is not supported yet.'
-    default:
-      return isIvd
-        ? "Couldn't load your license yet. Return to the Instagram tab — Pro may still activate automatically."
-        : "Couldn't load your license yet. Return to the YouTube tab — Pro may still activate automatically."
-  }
-}
 
 function formatGrantUntil(iso) {
   if (!iso) return null
@@ -55,52 +35,50 @@ export default function StripeSuccessPage() {
   const sessionId = (searchParams.get('session_id') ?? '').trim()
   const appParam = (searchParams.get('app') ?? '').trim()
 
-  const product = appParam === IVD_STRIPE_APP_ID ? 'ivd' : 'yfp'
-  const isIvd = product === 'ivd'
-
-  const defaultAppLanding = isIvd ? `/apps/${IVD_APP_SLUG}` : `/apps/${YFP_STRIPE_APP_ID}`
+  const billingApp = useMemo(() => resolveStripeSuccessApp(appParam), [appParam])
+  const platform = billingApp?.platform ?? 'other'
 
   const appRecord = useMemo(() => {
-    if (isIvd) {
-      return getAppBySource(IVD_STRIPE_APP_ID) || getAppBySource(IVD_APP_SLUG)
+    if (!billingApp) {
+      if (appParam) return getAppBySource(appParam)
+      return getAppBySource('youtube-filter-pro')
     }
-    const resolved = getAppBySource(appParam || YFP_STRIPE_APP_ID)
-    if (resolved) return resolved
-    if (appParam && appParam !== YFP_STRIPE_APP_ID) return null
-    return getAppBySource(YFP_STRIPE_APP_ID)
-  }, [appParam, isIvd])
+    return (
+      getAppBySource(billingApp.stripeAppId) ||
+      billingApp.aliases?.map((a) => getAppBySource(a)).find(Boolean) ||
+      null
+    )
+  }, [appParam, billingApp])
 
   const productName = appRecord
     ? appFilterLabel(appRecord)
-    : isIvd
-      ? 'IG Reels Insight'
-      : appParam
-        ? 'Your purchase'
-        : appFilterLabel(getAppBySource(YFP_STRIPE_APP_ID)) || 'YouTube Filter Pro'
+    : billingApp
+      ? billingApp.stripeAppId
+      : appParam || 'Your purchase'
 
   const appLandingPath = appRecord?.slug
     ? `/apps/${appRecord.slug}`
-    : isIvd
-      ? defaultAppLanding
-      : appParam
-        ? `/apps/${appParam}`
-        : defaultAppLanding
+    : appParam
+      ? `/apps/${appParam}`
+      : '/apps/youtube-filter-pro'
 
-  const fulfillAppId = isIvd ? IVD_STRIPE_APP_ID : appParam || YFP_STRIPE_APP_ID
-  const fulfillUrl = isIvd ? IVD_FULFILL_URL : YFP_FULFILL_URL
   const canonicalPath = '/success'
 
   const [phase, setPhase] = useState(() => {
     if (cancelled) return 'cancelled'
     if (!sessionId) return 'invalid'
+    if (appParam && !billingApp) return 'error'
+    if (!billingApp) return 'invalid'
     return 'loading'
   })
   const [fulfill, setFulfill] = useState(null)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState(() =>
+    appParam && !billingApp && sessionId ? fulfillErrorMessage('unsupported_app', 'other') : '',
+  )
   const [copyLabel, setCopyLabel] = useState('Copy key')
 
   useEffect(() => {
-    if (cancelled || !sessionId) return
+    if (cancelled || !sessionId || !billingApp) return
 
     let cancelledRequest = false
 
@@ -110,28 +88,13 @@ export default function StripeSuccessPage() {
       setFulfill(null)
 
       try {
-        const headers = { 'Content-Type': 'application/json' }
-        if (isIvd) {
-          headers.Authorization = `Bearer ${IVD_SUPABASE_ANON_KEY}`
-          headers.apikey = IVD_SUPABASE_ANON_KEY
-        }
-
-        const res = await fetch(fulfillUrl, {
-          method: 'POST',
-          headers,
-          body: JSON.stringify({
-            session_id: sessionId,
-            app: fulfillAppId,
-          }),
-        })
-
-        const data = await res.json().catch(() => ({}))
+        const data = await fulfillStripeCheckoutSession(billingApp, sessionId)
 
         if (cancelledRequest) return
 
         if (!data?.ok) {
           const code = typeof data?.error === 'string' ? data.error : ''
-          setErrorMessage(fulfillErrorMessage(code, product))
+          setErrorMessage(fulfillErrorMessage(code, platform))
           setPhase('error')
           return
         }
@@ -140,7 +103,7 @@ export default function StripeSuccessPage() {
         setPhase('success')
       } catch {
         if (cancelledRequest) return
-        setErrorMessage(fulfillErrorMessage(undefined, product))
+        setErrorMessage(fulfillErrorMessage(undefined, platform))
         setPhase('error')
       }
     }
@@ -150,7 +113,7 @@ export default function StripeSuccessPage() {
     return () => {
       cancelledRequest = true
     }
-  }, [cancelled, sessionId, fulfillAppId, fulfillUrl, isIvd, product])
+  }, [billingApp, cancelled, platform, sessionId])
 
   const handleCopy = useCallback(async () => {
     const key = fulfill?.licenseKey
@@ -174,6 +137,17 @@ export default function StripeSuccessPage() {
 
   const iconUrl = appRecord ? appIconUrl(appRecord) : null
   const grantLabel = formatGrantUntil(fulfill?.grantUntil)
+  const returnWhere = platformReturnLabel(platform)
+  const retryHint = billingApp
+    ? `Close this tab and try again from ${productName} → Upgrade.`
+    : 'Close this tab and open checkout again from the extension.'
+
+  const pasteHint =
+    platform === 'youtube'
+      ? "If Pro didn't unlock on YouTube, paste this key in the extension checkout or upgrade dialog."
+      : platform === 'instagram'
+        ? "If Pro didn't unlock on Instagram, paste this key in the extension Upgrade panel (license field)."
+        : "If Pro didn't unlock, paste this key in the extension's license field."
 
   return (
     <>
@@ -194,13 +168,9 @@ export default function StripeSuccessPage() {
               {phase === 'cancelled' ? (
                 <>
                   <h1>Checkout cancelled</h1>
-                  <p className="CC__stripe-success-lead">
-                    {isIvd
-                      ? 'Close this tab and try again from IG Reels Insight → Upgrade.'
-                      : 'Close this tab and try again from YouTube Filter Pro → Upgrade / Purchase.'}
-                  </p>
+                  <p className="CC__stripe-success-lead">{retryHint}</p>
                   <div className="CC__stripe-success-actions">
-                    <Link to={defaultAppLanding} className="CC__btn CC__btn--primary">
+                    <Link to={appLandingPath} className="CC__btn CC__btn--primary">
                       {productName}
                     </Link>
                   </div>
@@ -212,7 +182,7 @@ export default function StripeSuccessPage() {
                   <h1>Invalid link</h1>
                   <p className="CC__stripe-success-error">Invalid or incomplete link.</p>
                   <div className="CC__stripe-success-actions">
-                    <Link to={defaultAppLanding} className="CC__btn CC__btn--outline">
+                    <Link to={appLandingPath} className="CC__btn CC__btn--outline">
                       {productName}
                     </Link>
                   </div>
@@ -265,9 +235,8 @@ export default function StripeSuccessPage() {
                   ) : null}
 
                   <p className="CC__stripe-success-lead">
-                    {isIvd
-                      ? 'You can close this tab and go back to Instagram — Pro usually activates within a minute.'
-                      : 'You can close this tab and go back to YouTube — the extension usually activates Pro within a minute.'}
+                    You can close this tab and go back to {returnWhere} — the extension usually activates Pro
+                    within a minute.
                   </p>
 
                   {grantLabel ? (
@@ -289,11 +258,7 @@ export default function StripeSuccessPage() {
                           {copyLabel}
                         </button>
                       </div>
-                      <p className="CC__stripe-success-hint">
-                        {isIvd
-                          ? "If Pro didn't unlock on Instagram, paste this key in the extension Upgrade sidebar (license field)."
-                          : "If Pro didn't unlock on YouTube, paste this key in the extension checkout dialog (manual license field)."}
-                      </p>
+                      <p className="CC__stripe-success-hint">{pasteHint}</p>
                     </>
                   ) : null}
 
@@ -310,9 +275,7 @@ export default function StripeSuccessPage() {
                   <h1>Almost there</h1>
                   <p className="CC__stripe-success-error">{errorMessage}</p>
                   <p className="CC__stripe-success-hint">
-                    {isIvd
-                      ? 'Return to the Instagram tab — Pro may still activate automatically. You can paste your license key in the Upgrade sidebar if needed.'
-                      : 'Return to the YouTube tab — Pro may still activate automatically. If you have a receipt email, you can paste your license key in the extension checkout dialog when it arrives.'}
+                    Return to {returnWhere} — Pro may still activate automatically. {pasteHint}
                   </p>
                   <div className="CC__stripe-success-actions">
                     <Link to={appLandingPath} className="CC__btn CC__btn--outline">
