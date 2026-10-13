@@ -2,12 +2,87 @@ import blogData from '../data/blog.json'
 
 const SITE_URL = blogData.siteUrl || 'https://codedcitadel.com'
 
+/** Keep in sync with back-end/generate-sitemap.mjs */
+export const BLOG_INDEX_PAGE_SIZE = 20
+
 export function getBlogManifest() {
   return blogData
 }
 
 export function getAllBlogPosts() {
   return blogData.posts ?? []
+}
+
+export function getBlogPageCount(pageSize = BLOG_INDEX_PAGE_SIZE, posts = null) {
+  const total = (posts ?? getAllBlogPosts()).length
+  if (total === 0) return 1
+  return Math.max(1, Math.ceil(total / pageSize))
+}
+
+/** 1-based page number; clamps to valid range. */
+export function normalizeBlogPageNumber(
+  page,
+  pageSize = BLOG_INDEX_PAGE_SIZE,
+  posts = null,
+) {
+  const n = Number.parseInt(String(page), 10)
+  if (!Number.isFinite(n) || n < 1) return 1
+  const max = getBlogPageCount(pageSize, posts)
+  return Math.min(n, max)
+}
+
+export function getBlogPostsForPage(
+  page,
+  pageSize = BLOG_INDEX_PAGE_SIZE,
+  posts = null,
+) {
+  const list = posts ?? getAllBlogPosts()
+  const safePage = normalizeBlogPageNumber(page, pageSize, list)
+  const start = (safePage - 1) * pageSize
+  return list.slice(start, start + pageSize)
+}
+
+export function normalizeBlogSearchQuery(raw) {
+  if (raw == null) return ''
+  return String(raw).trim().slice(0, 120)
+}
+
+/** Case-insensitive search across title, description, slug, and tags. */
+export function searchBlogPosts(posts, query) {
+  const q = normalizeBlogSearchQuery(query).toLowerCase()
+  if (!q) return posts
+
+  const terms = q.split(/\s+/).filter(Boolean)
+  return posts.filter((post) => {
+    const haystack = [
+      post.title,
+      post.description,
+      post.slug,
+      ...(post.tags ?? []),
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase()
+    return terms.every((term) => haystack.includes(term))
+  })
+}
+
+/** Path for blog index pagination (page 1 → `/blog`). Preserves `?q=` when set. */
+export function getBlogIndexPath(page, { q } = {}) {
+  const n = Number.parseInt(String(page), 10)
+  const path = !Number.isFinite(n) || n <= 1 ? '/blog' : `/blog/page/${n}`
+  const query = normalizeBlogSearchQuery(q)
+  if (!query) return path
+  return `${path}?q=${encodeURIComponent(query)}`
+}
+
+export function getBlogIndexCanonicalUrl(page, { q } = {}) {
+  const searchQ = normalizeBlogSearchQuery(q)
+  if (searchQ) {
+    return `${SITE_URL}/blog`
+  }
+  const path = getBlogIndexPath(page)
+  return `${SITE_URL}${path.split('?')[0]}`
 }
 
 export function getBlogPostBySlug(slug) {

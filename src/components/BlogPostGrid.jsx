@@ -1,25 +1,22 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CyberCorners from './CyberCorners'
-import BlogCoverFallback from './BlogCoverFallback'
 import BlogReadingMeta from './BlogReadingMeta'
 import { formatBlogDate, getPostCoverUrl } from '../utils/blog'
 
 function BlogCardCover({ cover, title }) {
   const [imageFailed, setImageFailed] = useState(false)
 
+  if (!cover || imageFailed) return null
+
   return (
     <div className="CC__blog-card__cover">
-      {cover && !imageFailed ? (
-        <img
-          src={cover}
-          alt={`Cover image for ${title}`}
-          loading="lazy"
-          onError={() => setImageFailed(true)}
-        />
-      ) : (
-        <BlogCoverFallback title={title} />
-      )}
+      <img
+        src={cover}
+        alt={`Cover image for ${title}`}
+        loading="lazy"
+        onError={() => setImageFailed(true)}
+      />
     </div>
   )
 }

@@ -25,10 +25,7 @@
     "extract-chrome-apps": "node back-end/extract-chrome-apps.mjs",
     "generate-home-meta": "node back-end/generate-home-meta.mjs",
     "generate-sitemap": "node back-end/generate-sitemap.mjs",
-    "resize-favicon": "node back-end/resize-favicon.mjs",
-    "maybe-sync-devto": "node back-end/maybe-sync-devto.mjs",
-    "sync:devto": "node back-end/sync-devto.mjs",
-    "postbuild": "npm run maybe-sync-devto"
+    "resize-favicon": "node back-end/resize-favicon.mjs"
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^5.2.0",

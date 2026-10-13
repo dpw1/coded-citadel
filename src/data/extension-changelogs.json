@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-10-08T20:46:54.292Z",
+  "updatedAt": "2026-10-13T04:14:47.304Z",
   "message": null,
   "apps": [
     {
@@ -295,6 +295,42 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "39ac42c051676f9ef7241ce54c8aeea74ed8a99e",
+          "shortSha": "39ac42c",
+          "message": "Update version to 2.0.174, refine account panel logic, and enhance search result handling",
+          "date": "2026-10-12T23:51:19Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/39ac42c051676f9ef7241ce54c8aeea74ed8a99e",
+          "version": "2.0.174"
+        },
+        {
+          "sha": "fd8f67b56b6c5f21ed4670add5b22ae7fd8b565b",
+          "shortSha": "fd8f67b",
+          "message": "Update version to 2.0.172, enhance export functionality, and improve billing provider handling",
+          "date": "2026-10-11T19:03:37Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/fd8f67b56b6c5f21ed4670add5b22ae7fd8b565b",
+          "version": "2.0.172"
+        },
+        {
+          "sha": "f9433074728bfa8acedb07e0080012a09568773d",
+          "shortSha": "f943307",
+          "message": "Update documentation for Stripe and Lemon Squeezy payment systems",
+          "date": "2026-10-10T23:33:20Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/f9433074728bfa8acedb07e0080012a09568773d",
+          "version": "2.0.168"
+        },
+        {
+          "sha": "776efd5dcb9cc08ac7a2d8de47207ec7a12580cf",
+          "shortSha": "776efd5",
+          "message": "Enhance Stripe integration and update billing logic",
+          "date": "2026-10-08T23:30:15Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/776efd5dcb9cc08ac7a2d8de47207ec7a12580cf",
+          "version": "2.0.168"
+        },
         {
           "sha": "7d6fbee90d93e38969937c6ce1f5a207d9f31309",
           "shortSha": "7d6fbee",
@@ -698,7 +734,7 @@
           "date": "2026-08-26T12:52:32Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/7afe3e9c20ddf6ef8df1d8a702c329a934c4e9e3",
-          "version": "2.0.170"
+          "version": "2.0.172"
         },
         {
           "sha": "93a4ba7015eb79788ca4c4714f32c2250aabad93",
@@ -707,43 +743,7 @@
           "date": "2026-08-25T21:17:34Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/93a4ba7015eb79788ca4c4714f32c2250aabad93",
-          "version": "2.0.170"
-        },
-        {
-          "sha": "5fc34b1b42e943834e1d9d9778b366357f0f19d5",
-          "shortSha": "5fc34b1",
-          "message": "Implement Google account integration and enhance localization: Added support for Google sign-in functionality, including session management and error handling. Updated localization files to include new account-related messages across multiple languages. Incremented version number in manifest.json to 1.0.83 and added necessary permissions for identity management.",
-          "date": "2026-08-25T00:52:28Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/5fc34b1b42e943834e1d9d9778b366357f0f19d5",
-          "version": "2.0.170"
-        },
-        {
-          "sha": "63710fc73caa9c4fff1e3570fb35f4af613b41c7",
-          "shortSha": "63710fc",
-          "message": "Enhance feedback widget and localization support: Introduced a new checkbox in the feedback widget to optionally include search query and results in bug reports. Updated localization files across multiple languages to reflect new feedback options and hints, ensuring clarity and consistency. Incremented version number in manifest.json to 1.0.82.",
-          "date": "2026-08-24T12:25:09Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/63710fc73caa9c4fff1e3570fb35f4af613b41c7",
-          "version": "2.0.170"
-        },
-        {
-          "sha": "fab135505c3f502abd8627083dff60f22c547af6",
-          "shortSha": "fab1355",
-          "message": "Stop flashing Search complete after closing results, and fill remaining translations.",
-          "date": "2026-08-22T18:17:13Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/fab135505c3f502abd8627083dff60f22c547af6",
-          "version": "2.0.170"
-        },
-        {
-          "sha": "cb01b054d904faf5b1d76246d0f234acfc985a52",
-          "shortSha": "cb01b05",
-          "message": "Enhance localization support across multiple languages: Updated messages for search query editing, filtering hints, and modal UI prompts. Added new presets-related messages and refined existing ones for clarity. Improved user experience with clearer instructions and feedback during the filtering process. This update aims to provide a more intuitive interface for users interacting with the filtering features.",
-          "date": "2026-08-22T13:43:11Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/cb01b054d904faf5b1d76246d0f234acfc985a52",
-          "version": "2.0.170"
+          "version": "2.0.172"
         }
       ]
     },

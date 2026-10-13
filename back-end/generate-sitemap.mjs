@@ -15,6 +15,8 @@ const BLOG_FILE = resolve(ROOT, 'src', 'data', 'blog.json')
 const OUT_FILE = resolve(ROOT, 'public', 'sitemap.xml')
 const SITE_URL = (process.env.SITE_URL || 'https://codedcitadel.com').replace(/\/$/, '')
 const PLUGINS_BASE_PATH = '/davinci-resolve-plugins'
+/** Keep in sync with src/utils/blog.js BLOG_INDEX_PAGE_SIZE */
+const BLOG_INDEX_PAGE_SIZE = 20
 
 /** Keep in sync with src/utils/privacyPolicies.js */
 const PRIVACY_POLICY_SLUGS = [
@@ -151,6 +153,22 @@ function main() {
       priority: '0.8',
       lastmod: blogPosts[0]?.date || defaultLastmod,
     }),
+    ...(blogPosts.length > BLOG_INDEX_PAGE_SIZE
+      ? Array.from(
+          { length: Math.ceil(blogPosts.length / BLOG_INDEX_PAGE_SIZE) - 1 },
+          (_, i) => {
+            const page = i + 2
+            const start = (page - 1) * BLOG_INDEX_PAGE_SIZE
+            const pagePosts = blogPosts.slice(start, start + BLOG_INDEX_PAGE_SIZE)
+            const lastmod = pagePosts[0]?.date || blogPosts[0]?.date || defaultLastmod
+            return urlEntry(`${SITE_URL}/blog/page/${page}`, {
+              changefreq: 'weekly',
+              priority: '0.75',
+              lastmod,
+            })
+          },
+        )
+      : []),
     ...blogPosts.map((post) =>
       urlEntry(`${SITE_URL}/blog/${post.slug}`, {
         lastmod: post.date || defaultLastmod,

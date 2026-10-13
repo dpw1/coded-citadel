@@ -57,6 +57,7 @@ function AppRoutes() {
           path="/save-directly-to-drive"
           element={<Navigate to="/apps/save-directly-to-drive" replace />}
         />
+        <Route path="/blog/page/:page" element={<BlogIndexPage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/live-stats" element={<StatsPage />} />

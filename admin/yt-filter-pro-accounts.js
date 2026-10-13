@@ -6,6 +6,7 @@ const YFP_WEEK_MS = 7 * 24 * 60 * 60 * 1000
 let yfpInitDone = false
 let yfpProfileCache = []
 let yfpGiftCache = []
+let yfpPaidStripeCache = []
 let yfpGiftModalId = null
 let yfpSortKey = 'created'
 let yfpSortDir = 'desc'
@@ -100,6 +101,161 @@ function yfpRest(path) {
 
 function yfpFunctionsUrl(name) {
   return `${String(window.SUPABASE_URL || SUPABASE_URL || '').replace(/\/+$/, '')}/functions/v1/${name}`
+}
+
+function yfpEscapeHtml(text) {
+  return String(text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+function yfpFormatIso(value) {
+  const ms = Date.parse(String(value || ''))
+  if (!Number.isFinite(ms)) return '—'
+  return new Date(ms).toLocaleString()
+}
+
+function yfpLicenseCheckSetStatus(message, type) {
+  const el = document.getElementById('yt-license-check-status')
+  if (!el) return
+  const text = String(message || '').trim()
+  el.hidden = !text
+  el.textContent = text
+  el.classList.toggle('admin__status--error', type === 'error')
+  el.classList.toggle('admin__status--empty', type === 'empty')
+}
+
+function yfpFlattenForSummary(obj, prefix = '') {
+  const rows = []
+  if (!obj || typeof obj !== 'object') return rows
+  for (const [key, value] of Object.entries(obj)) {
+    const label = prefix ? `${prefix}.${key}` : key
+    if (value === null || value === undefined) {
+      rows.push([label, '—'])
+    } else if (Array.isArray(value)) {
+      rows.push([label, value.length ? `${value.length} item(s) — see JSON below` : '[]'])
+    } else if (typeof value === 'object') {
+      rows.push(...yfpFlattenForSummary(value, label))
+    } else {
+      rows.push([label, String(value)])
+    }
+  }
+  return rows
+}
+
+function yfpRenderLicenseCheckResult(json) {
+  const summaryEl = document.getElementById('yt-license-check-summary')
+  const jsonEl = document.getElementById('yt-license-check-json')
+  if (!summaryEl || !jsonEl) return
+
+  const valid = Boolean(json.valid)
+  const found = Boolean(json.found)
+  const provider = String(json.provider || json.result?.provider || '—')
+  const note = String(json.valid_note || json.result?.valid_note || json.message || '')
+
+  let badgeClass = 'admin__license-badge--bad'
+  let badgeText = 'Not valid'
+  if (!found) {
+    badgeClass = 'admin__license-badge--muted'
+    badgeText = 'Not found'
+  } else if (valid) {
+    badgeClass = 'admin__license-badge--ok'
+    badgeText = 'Valid'
+  }
+
+  const flatSource = json.result || json
+  const rows = yfpFlattenForSummary(flatSource.pending || flatSource.gift || json.lemon_validate_orphan || {})
+  const lemon = flatSource.lemon_validate
+  if (lemon && typeof lemon === 'object') {
+    rows.push(...yfpFlattenForSummary(lemon, 'lemon'))
+  }
+  const subLive = flatSource.subscription_live
+  if (subLive && typeof subLive === 'object') {
+    rows.push(...yfpFlattenForSummary(subLive, 'stripe_subscription'))
+  }
+  if (flatSource.pending?.created_at) {
+    rows.unshift(['created_at', yfpFormatIso(flatSource.pending.created_at)])
+  }
+  if (flatSource.pending?.email || flatSource.lemon_validate?.customer_email) {
+    rows.unshift([
+      'email',
+      String(flatSource.pending?.email || flatSource.lemon_validate?.customer_email),
+    ])
+  }
+
+  const tableRows = rows
+    .map(
+      ([label, value]) =>
+        `<tr><th scope="row">${yfpEscapeHtml(label)}</th><td>${yfpEscapeHtml(value)}</td></tr>`,
+    )
+    .join('')
+
+  summaryEl.innerHTML = `
+    <div class="admin__license-badges">
+      <span class="admin__license-badge ${badgeClass}">${yfpEscapeHtml(badgeText)}</span>
+      <span class="admin__license-badge admin__license-badge--provider">${yfpEscapeHtml(provider)}</span>
+    </div>
+    ${note ? `<p class="admin__copy-hint">${yfpEscapeHtml(note)}</p>` : ''}
+    ${
+      tableRows
+        ? `<table class="admin__users-table admin__license-table"><tbody>${tableRows}</tbody></table>`
+        : ''
+    }
+  `
+  summaryEl.hidden = false
+
+  jsonEl.textContent = JSON.stringify(json, null, 2)
+  jsonEl.hidden = false
+}
+
+async function yfpCheckLicenseKey() {
+  const input = document.getElementById('yt-license-check-input')
+  const live = document.getElementById('yt-license-check-live')
+  const btn = document.getElementById('yt-license-check-btn')
+  const key = String(input?.value || '').trim()
+  if (!key) {
+    yfpLicenseCheckSetStatus('Enter a license key or gift code.', 'error')
+    return
+  }
+
+  yfpLicenseCheckSetStatus('Checking…', 'empty')
+  const summaryEl = document.getElementById('yt-license-check-summary')
+  const jsonEl = document.getElementById('yt-license-check-json')
+  if (summaryEl) summaryEl.hidden = true
+  if (jsonEl) jsonEl.hidden = true
+  if (btn) btn.disabled = true
+
+  try {
+    const res = await fetch(yfpFunctionsUrl('admin-license-check'), {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${yfpAnonKey()}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        license_key: key,
+        refresh_live: Boolean(live?.checked),
+      }),
+    })
+    let json = null
+    try {
+      json = await res.json()
+    } catch {
+      json = null
+    }
+    if (!res.ok) {
+      const msg = json?.error || res.statusText || `HTTP ${res.status}`
+      throw new Error(msg)
+    }
+    yfpRenderLicenseCheckResult(json)
+    yfpLicenseCheckSetStatus('', 'empty')
+  } catch (err) {
+    yfpLicenseCheckSetStatus(err instanceof Error ? err.message : String(err), 'error')
+  } finally {
+    if (btn) btn.disabled = false
+  }
 }
 
 async function yfpSyncBillingFromLemon(emails) {
@@ -303,6 +459,126 @@ async function yfpLoadGifts() {
     `${yfpRest('yt_filter_pro_gift_codes')}?select=*,yt_filter_pro_gift_redemptions(id,user_id,email,redeemed_at,grant_until),yt_filter_pro_gift_device_redemptions(id,device_id,redeemed_at,grant_until)&order=created_at.desc`,
     { headers: yfpHeaders() },
   )
+}
+
+async function yfpLoadStripeLicenses() {
+  const rows = await yfpFetchJson(`${yfpRest('rpc/yt_filter_pro_admin_list_stripe_licenses')}`, {
+    method: 'POST',
+    headers: yfpHeaders(),
+    body: '{}',
+  })
+  return Array.isArray(rows) ? rows : []
+}
+
+function yfpStripeLicenseActivated(row) {
+  const status = String(row?.status || '').toLowerCase()
+  const devices = Number(row?.device_activations) || 0
+  return status === 'activated' || devices > 0
+}
+
+function yfpPaidUsersMode() {
+  const mode = String(document.getElementById('yt-paid-users-mode')?.value || 'all')
+  return mode === 'test' || mode === 'live' ? mode : 'all'
+}
+
+function yfpSetPaidUsersStatus(message, type) {
+  const el = document.getElementById('yt-paid-users-status')
+  if (!el) return
+  el.hidden = !message
+  el.textContent = message || ''
+  el.classList.toggle('admin__status--error', type === 'error')
+  el.classList.toggle('admin__status--empty', type === 'empty')
+}
+
+function yfpRenderPaidStripeLicenses(rows) {
+  yfpPaidStripeCache = Array.isArray(rows) ? rows : []
+  const mode = yfpPaidUsersMode()
+  const query = String(document.getElementById('yt-paid-users-search')?.value || '')
+    .trim()
+    .toLowerCase()
+  const filtered = yfpPaidStripeCache.filter((row) => {
+    const isTest = row?.test_mode === true
+    if (mode === 'test' && !isTest) return false
+    if (mode === 'live' && isTest) return false
+    if (!query) return true
+    const key = String(row?.license_key || '').toLowerCase()
+    const email = String(row?.email || '').toLowerCase()
+    return key.includes(query) || email.includes(query)
+  })
+
+  const badge = document.getElementById('yt-paid-users-badge')
+  if (badge) {
+    if (yfpPaidStripeCache.length > 0) {
+      badge.hidden = false
+      badge.textContent = yfpPaidStripeCache.length.toLocaleString('en-US')
+    } else {
+      badge.hidden = true
+      badge.textContent = '0'
+    }
+  }
+
+  const wrap = document.getElementById('yt-paid-users-table-wrap')
+  const empty = document.getElementById('yt-paid-users-empty')
+  const body = document.getElementById('yt-paid-users-body')
+  if (!body) return
+
+  if (!filtered.length) {
+    if (wrap) wrap.hidden = true
+    if (empty) {
+      empty.hidden = false
+      empty.textContent = yfpPaidStripeCache.length
+        ? 'No license keys match this filter.'
+        : 'No Stripe license keys yet. Run yt_filter_pro_admin_list_stripe_licenses SQL in Supabase if the RPC is missing.'
+    }
+    body.innerHTML = ''
+    return
+  }
+
+  if (empty) empty.hidden = true
+  if (wrap) wrap.hidden = false
+  body.innerHTML = filtered
+    .map((row) => {
+      const activated = yfpStripeLicenseActivated(row)
+      const status = String(row.status || '—')
+      const devices = Number(row.device_activations) || 0
+      const key = String(row.license_key || '')
+      const created = yfpFormatIso(row.created_at)
+      const activatedAt = yfpFormatIso(row.activated_at || row.last_device_activated_at)
+      const grantUntil = yfpFormatIso(row.grant_until)
+      return `<tr>
+        <td><code class="admin__users-id">${escapeHtmlAdmin(key)}</code></td>
+        <td>${escapeHtmlAdmin(row.email || '—')}</td>
+        <td><span class="admin__users-pill ${activated ? 'admin__users-pill--yes' : 'admin__users-pill--no'}">${activated ? 'yes' : 'no'}</span></td>
+        <td>${escapeHtmlAdmin(status)}</td>
+        <td class="admin__users-num">${devices}</td>
+        <td><span class="admin__users-pill ${row.test_mode ? 'admin__users-pill--yes' : 'admin__users-pill--no'}">${row.test_mode ? 'yes' : 'no'}</span></td>
+        <td>${escapeHtmlAdmin(created)}</td>
+        <td>${escapeHtmlAdmin(activatedAt)}</td>
+        <td>${escapeHtmlAdmin(grantUntil)}</td>
+      </tr>`
+    })
+    .join('')
+}
+
+async function yfpRefreshPaidStripeLicenses() {
+  if (!yfpAnonKey()) {
+    yfpToast('Missing Supabase anon key.', 'error')
+    return
+  }
+  const refreshBtn = document.getElementById('yt-paid-users-refresh')
+  if (refreshBtn) refreshBtn.disabled = true
+  yfpSetPaidUsersStatus('Loading Stripe license keys…')
+  try {
+    const rows = await yfpLoadStripeLicenses()
+    yfpSetPaidUsersStatus('')
+    yfpRenderPaidStripeLicenses(rows)
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    yfpSetPaidUsersStatus(msg + yfpErrorHint(msg), 'error')
+    yfpRenderPaidStripeLicenses([])
+  } finally {
+    if (refreshBtn) refreshBtn.disabled = false
+  }
 }
 
 function yfpGiftRedemptionActive(redemption, giftKind) {
@@ -1090,11 +1366,14 @@ function yfpInit() {
       yfpSetLoggedInAudience(btn.dataset.yfpAudience || 'real')
     })
   })
-  document.getElementById('yt-loggedin-search')?.addEventListener('input', () => {
-    yfpRenderProfiles(yfpProfileCache)
+  document.getElementById('yt-paid-users-search')?.addEventListener('input', () => {
+    yfpRenderPaidStripeLicenses(yfpPaidStripeCache)
   })
-  document.getElementById('yt-loggedin-refresh')?.addEventListener('click', () => {
-    void yfpRefresh({ syncBilling: true, toast: true })
+  document.getElementById('yt-paid-users-mode')?.addEventListener('change', () => {
+    yfpRenderPaidStripeLicenses(yfpPaidStripeCache)
+  })
+  document.getElementById('yt-paid-users-refresh')?.addEventListener('click', () => {
+    void yfpRefreshPaidStripeLicenses()
   })
   document.getElementById('yt-loggedin-table-wrap')?.addEventListener('click', (event) => {
     const btn = event.target.closest('.admin__users-sort')
@@ -1138,6 +1417,10 @@ function yfpInit() {
       })
   })
   document.getElementById('yt-gifts-form')?.addEventListener('submit', yfpCreateGift)
+  document.getElementById('yt-license-check-form')?.addEventListener('submit', (event) => {
+    event.preventDefault()
+    void yfpCheckLicenseKey()
+  })
   document.getElementById('yt-gift-kind')?.addEventListener('change', yfpUpdateGiftExpirationPreview)
   document.getElementById('yt-gift-days')?.addEventListener('input', yfpUpdateGiftExpirationPreview)
   document.getElementById('yt-gift-name')?.addEventListener('blur', (event) => {
@@ -1254,6 +1537,7 @@ function yfpInit() {
 window.YfpAdminAccounts = {
   render: yfpRefresh,
   renderGifts: yfpRefreshGifts,
+  renderPaidUsers: yfpRefreshPaidStripeLicenses,
   init: yfpInit,
   refresh: yfpRefresh,
 }

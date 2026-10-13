@@ -10,7 +10,7 @@ Use this before the user pushes to GitHub / deploys. Goal: catch stale generated
 npm run build
 ```
 
-`npm run build` is not optional. It chains extraction, data sync, quick-start generation, stats, YouTube, live analytics, sitemap, Vite, and (postbuild) dev.to sync.
+`npm run build` is not optional. It chains extraction, data sync, quick-start generation, stats, YouTube, live analytics, sitemap, and Vite.
 
 If the build fails, fix it before publishing. Do not push with a broken build.
 
@@ -80,7 +80,6 @@ Generated fields (`quickStart`, `quickStartHash`) are build-owned. Everything el
 - [ ] New/changed files in [`blogs/`](../blogs/) are reflected in `blog.json` after build.
 - [ ] Frontmatter is valid: `title`, `slug`, `date`, `tags`, `download` (store URL), `thumbnail` / cover when used.
 - [ ] Screenshot imports: build log should not report missing `D:/GoogleChromeDownloads/...` sources if the post expects a cover.
-- [ ] **postbuild** `maybe-sync-devto` runs when `blogs/` changed — confirm dev.to sync succeeded if the user cares about dev.to.
 
 ---
 
@@ -137,7 +136,6 @@ Only commit when the user asks. When they do:
 - [ ] `git status` — expect changes in generated JSON, `apps-custom-data.json`, `dist/` is gitignored.
 - [ ] Meaningful commit message (why, not just “update files”).
 - [ ] Push triggers GitHub Pages deploy — if deploy fails with a transient Pages error, re-run the workflow.
-- [ ] After deploy, re-run dev.to sync if blog covers pointed at the live site and 404’d on first try.
 
 ---
 
@@ -160,7 +158,6 @@ npm run build                          # full pipeline
 npm run maybe-generate-quick-start     # quickStart only
 npm run sync-apps-custom-data          # merge custom data → apps.json
 npm run extract-chrome-apps            # force HTML scrape (when html/ has exports)
-npm run sync:devto                     # force dev.to publish
 npm run fetch-extension-changelogs:force
 npm run fetch-website-analytics:force
 ```

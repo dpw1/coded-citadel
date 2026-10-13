@@ -552,10 +552,18 @@ try {
 }
 
 const VALID_FILTERS = new Set(['all', 'unread', 'read'])
-const VALID_TABS = new Set(['feedback', 'yt', 'idme', 'ge'])
-const VALID_YT_SUBTABS = new Set(['analytics', 'users', 'logged-in', 'gifts', 'api', 'dev'])
+const VALID_TABS = new Set(['feedback', 'yt', 'idme', 'ge', 'ivd'])
+const VALID_YT_SUBTABS = new Set([
+  'analytics',
+  'users',
+  'gifts',
+  'paid-users',
+  'check-license',
+  'api',
+])
 const VALID_IDME_SUBTABS = new Set(['users', 'gifts'])
 const VALID_GE_SUBTABS = new Set(['users', 'gifts'])
+const VALID_IVD_SUBTABS = new Set(['gifts', 'check-license'])
 const YT_CHART_KEYS = [
   'features',
   'featureDaily',
@@ -679,7 +687,11 @@ function migrateLegacyYtDevTab() {
   if (settings.get('activeTab') !== 'yt-dev') return
   settings.set('activeTab', 'yt')
   const currentSub = settings.get('ytSubTab')
-  if (!VALID_YT_SUBTABS.has(currentSub)) settings.set('ytSubTab', 'dev')
+  if (currentSub === 'dev' || currentSub === 'logged-in') {
+    settings.set('ytSubTab', currentSub === 'logged-in' ? 'paid-users' : 'analytics')
+  } else if (!VALID_YT_SUBTABS.has(currentSub)) {
+    settings.set('ytSubTab', 'analytics')
+  }
 }
 
 function getActiveTab() {
@@ -729,6 +741,17 @@ function getGeSubTab() {
 function setGeSubTab(value) {
   const next = VALID_GE_SUBTABS.has(value) ? value : 'users'
   settings.set('geSubTab', next)
+  return next
+}
+
+function getIvdSubTab() {
+  const value = settings.get('ivdSubTab')
+  return VALID_IVD_SUBTABS.has(value) ? value : 'gifts'
+}
+
+function setIvdSubTab(value) {
+  const next = VALID_IVD_SUBTABS.has(value) ? value : 'gifts'
+  settings.set('ivdSubTab', next)
   return next
 }
 
@@ -1277,10 +1300,10 @@ function currentAdminPath() {
   if (tab === 'yt') {
     const sub = getYtSubTab()
     if (sub === 'users') return '/yt-filter-pro/users'
-    if (sub === 'logged-in') return '/yt-filter-pro/logged-in'
     if (sub === 'gifts') return '/yt-filter-pro/gifts'
+    if (sub === 'paid-users') return '/yt-filter-pro/paid-users'
+    if (sub === 'check-license') return '/yt-filter-pro/check-license'
     if (sub === 'api') return '/yt-filter-pro/api'
-    if (sub === 'dev') return '/yt-filter-pro/dev'
     return '/yt-filter-pro'
   }
   if (tab === 'idme') {
@@ -1292,6 +1315,11 @@ function currentAdminPath() {
     const sub = getGeSubTab()
     if (sub === 'gifts') return '/gmail-exporter/gifts'
     return '/gmail-exporter/users'
+  }
+  if (tab === 'ivd') {
+    const sub = getIvdSubTab()
+    if (sub === 'check-license') return '/ig-reels-insight/check-license'
+    return '/ig-reels-insight/gifts'
   }
   return '/admin'
 }
@@ -1316,13 +1344,23 @@ function parseAdminPath(hash) {
   }
   if (clean === 'yt-filter-pro/users') return { tab: 'yt', sub: 'users' }
   if (clean === 'yt-filter-pro/logged-in' || clean === 'yt-filter-pro/loggedin') {
-    return { tab: 'yt', sub: 'logged-in' }
+    return { tab: 'yt', sub: 'paid-users' }
+  }
+  if (clean === 'yt-filter-pro/paid-users' || clean === 'yt-filter-pro/paid') {
+    return { tab: 'yt', sub: 'paid-users' }
   }
   if (clean === 'yt-filter-pro/gifts' || clean === 'yt-filter-pro/gift-codes') {
     return { tab: 'yt', sub: 'gifts' }
   }
+  if (
+    clean === 'yt-filter-pro/check-license' ||
+    clean === 'yt-filter-pro/license-check' ||
+    clean === 'yt-filter-pro/licenses'
+  ) {
+    return { tab: 'yt', sub: 'check-license' }
+  }
   if (clean === 'yt-filter-pro/api') return { tab: 'yt', sub: 'api' }
-  if (clean === 'yt-filter-pro/dev') return { tab: 'yt', sub: 'dev' }
+  if (clean === 'yt-filter-pro/dev') return { tab: 'yt', sub: 'analytics' }
   if (
     clean === 'ig-dm-exporter' ||
     clean === 'ig-dm-exporter/users' ||
@@ -1348,6 +1386,16 @@ function parseAdminPath(hash) {
   if (clean === 'gmail-exporter/gifts' || clean === 'gmail-exporter/gift-codes' || clean === 'gmail/gifts') {
     return { tab: 'ge', sub: 'gifts' }
   }
+  if (clean === 'ig-reels-insight' || clean === 'ig-reels-insight/gifts' || clean === 'ivd/gifts') {
+    return { tab: 'ivd', sub: 'gifts' }
+  }
+  if (
+    clean === 'ig-reels-insight/check-license' ||
+    clean === 'ig-reels-insight/license-check' ||
+    clean === 'ivd/check-license'
+  ) {
+    return { tab: 'ivd', sub: 'check-license' }
+  }
   return null
 }
 
@@ -1360,6 +1408,7 @@ function applyAdminRouteFromUrl() {
   try {
     if (parsed.tab === 'idme' && parsed.sub) setIdmeSubTab(parsed.sub)
     else if (parsed.tab === 'ge' && parsed.sub) setGeSubTab(parsed.sub)
+    else if (parsed.tab === 'ivd' && parsed.sub) setIvdSubTab(parsed.sub)
     else if (parsed.sub) setYtSubTab(parsed.sub)
     switchTab(parsed.tab, { persist: true, skipUrl: true })
   } finally {
@@ -1369,7 +1418,7 @@ function applyAdminRouteFromUrl() {
 
 function switchTab(tab, { persist = true, skipUrl = false } = {}) {
   if (tab === 'yt-dev') {
-    setYtSubTab('dev')
+    setYtSubTab('analytics')
     tab = 'yt'
   }
   const next = persist ? setActiveTab(tab) : getActiveTab()
@@ -1386,6 +1435,8 @@ function switchTab(tab, { persist = true, skipUrl = false } = {}) {
   if (panelIdme) panelIdme.hidden = active !== 'idme'
   const panelGe = document.getElementById('panel-ge')
   if (panelGe) panelGe.hidden = active !== 'ge'
+  const panelIvd = document.getElementById('panel-ivd')
+  if (panelIvd) panelIvd.hidden = active !== 'ivd'
 
   if (active === 'yt') {
     applyYtSubTab()
@@ -1396,9 +1447,15 @@ function switchTab(tab, { persist = true, skipUrl = false } = {}) {
   if (active === 'ge') {
     applyGeSubTab()
   }
+  if (active === 'ivd') {
+    applyIvdSubTab()
+  }
   updateSharedSupabaseUrlLabels()
   if (typeof window.GeAdminAccounts?.updateSupabaseLabel === 'function') {
     window.GeAdminAccounts.updateSupabaseLabel()
+  }
+  if (typeof window.IvdAdminAccounts?.updateSupabaseLabel === 'function') {
+    window.IvdAdminAccounts.updateSupabaseLabel()
   }
   if (active === 'feedback' && state.loaded.feedback) {
     requestAnimationFrame(() => renderFeedbackGraph())
@@ -1493,6 +1550,38 @@ function applyGeSubTab() {
   }
 }
 
+function applyIvdSubTab() {
+  const sub = getIvdSubTab()
+  document.querySelectorAll('[data-ivd-subtab]').forEach((btn) => {
+    const isActive = btn.dataset.ivdSubtab === sub
+    btn.classList.toggle('admin__subtab--active', isActive)
+    btn.setAttribute('aria-selected', isActive ? 'true' : 'false')
+  })
+  const gifts = document.getElementById('ivd-subpanel-gifts')
+  const checkLicense = document.getElementById('ivd-subpanel-check-license')
+  if (gifts) gifts.hidden = sub !== 'gifts'
+  if (checkLicense) checkLicense.hidden = sub !== 'check-license'
+  syncAdminUrl()
+
+  if (document.getElementById('panel-ivd')?.hidden) return
+  if (typeof window.IvdAdminAccounts?.updateSupabaseLabel === 'function') {
+    window.IvdAdminAccounts.updateSupabaseLabel()
+  }
+  if (sub === 'gifts') {
+    const loadGifts = () => {
+      if (window.IvdAdminAccounts) {
+        void window.IvdAdminAccounts.renderGifts()
+        return true
+      }
+      return false
+    }
+    requestAnimationFrame(() => {
+      if (loadGifts()) return
+      setTimeout(loadGifts, 0)
+    })
+  }
+}
+
 function applyYtSubTab() {
   const sub = getYtSubTab()
   document.querySelectorAll('[data-yt-subtab]').forEach((btn) => {
@@ -1502,31 +1591,31 @@ function applyYtSubTab() {
   })
   const analytics = document.getElementById('yt-subpanel-analytics')
   const users = document.getElementById('yt-subpanel-users')
-  const loggedIn = document.getElementById('yt-subpanel-logged-in')
+  const paidUsers = document.getElementById('yt-subpanel-paid-users')
   const gifts = document.getElementById('yt-subpanel-gifts')
+  const checkLicense = document.getElementById('yt-subpanel-check-license')
   const api = document.getElementById('yt-subpanel-api')
-  const dev = document.getElementById('yt-subpanel-dev')
   if (analytics) analytics.hidden = sub !== 'analytics'
   if (users) users.hidden = sub !== 'users'
-  if (loggedIn) loggedIn.hidden = sub !== 'logged-in'
+  if (paidUsers) paidUsers.hidden = sub !== 'paid-users'
   if (gifts) gifts.hidden = sub !== 'gifts'
+  if (checkLicense) checkLicense.hidden = sub !== 'check-license'
   if (api) api.hidden = sub !== 'api'
-  if (dev) dev.hidden = sub !== 'dev'
   syncAdminUrl()
 
   if (document.getElementById('panel-yt')?.hidden) return
   if (sub === 'users') requestAnimationFrame(() => renderYtUsers())
-  if (sub === 'logged-in') {
-    const loadLoggedIn = () => {
+  if (sub === 'paid-users') {
+    const loadPaidUsers = () => {
       if (window.YfpAdminAccounts) {
-        void window.YfpAdminAccounts.render()
+        void window.YfpAdminAccounts.renderPaidUsers()
         return true
       }
       return false
     }
     requestAnimationFrame(() => {
-      if (loadLoggedIn()) return
-      setTimeout(loadLoggedIn, 0)
+      if (loadPaidUsers()) return
+      setTimeout(loadPaidUsers, 0)
     })
   }
   if (sub === 'gifts') {
@@ -1541,6 +1630,13 @@ function applyYtSubTab() {
       if (loadGifts()) return
       setTimeout(loadGifts, 0)
     })
+  }
+  if (sub === 'check-license') {
+    const focusLicense = () => {
+      document.getElementById('yt-license-check-input')?.focus()
+      return true
+    }
+    requestAnimationFrame(focusLicense)
   }
   if (sub === 'api') {
     const loadApiQuota = () => {
@@ -1558,7 +1654,6 @@ function applyYtSubTab() {
   }
   if (!state.loaded.yt) return
   if (sub === 'analytics') requestAnimationFrame(() => renderYtCharts())
-  if (sub === 'dev') requestAnimationFrame(() => renderYtDev())
 }
 
 function syncFeedbackFilterChips() {
@@ -6134,6 +6229,13 @@ document.querySelectorAll('[data-ge-subtab]').forEach((btn) => {
   btn.addEventListener('click', () => {
     setGeSubTab(btn.dataset.geSubtab)
     applyGeSubTab()
+  })
+})
+
+document.querySelectorAll('[data-ivd-subtab]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    setIvdSubTab(btn.dataset.ivdSubtab)
+    applyIvdSubTab()
   })
 })
 

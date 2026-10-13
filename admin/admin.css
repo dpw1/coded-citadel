@@ -2126,3 +2126,59 @@ code {
     font-size: 1.65rem;
   }
 }
+
+.admin__license-summary {
+  margin-top: 1rem;
+}
+.admin__license-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.admin__license-badge {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: #374151;
+  color: #f9fafb;
+}
+.admin__license-badge--ok {
+  background: #16a34a;
+}
+.admin__license-badge--bad {
+  background: #dc2626;
+}
+.admin__license-badge--muted {
+  background: #6b7280;
+}
+.admin__license-badge--provider {
+  background: #2563eb;
+  font-weight: 500;
+}
+.admin__license-table th {
+  width: 12rem;
+  font-weight: 500;
+  color: #9ca3af;
+  vertical-align: top;
+}
+.admin__license-table td {
+  word-break: break-word;
+}
+.admin__license-json {
+  margin-top: 1rem;
+  padding: 1rem;
+  max-height: 28rem;
+  overflow: auto;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  background: #111827;
+  color: #e5e7eb;
+  border-radius: 8px;
+  border: 1px solid #374151;
+}
+#yt-license-check-form .admin__users-search {
+  min-width: min(28rem, 100%);
+}
