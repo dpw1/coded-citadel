@@ -100,6 +100,27 @@ function ivdGiftNameTaken(name, exceptId) {
   )
 }
 
+function ivdGenerateGiftCode() {
+  const bytes = crypto.getRandomValues(new Uint8Array(4))
+  const hex = [...bytes].map((b) => b.toString(16).toUpperCase().padStart(2, '0')).join('')
+  return `IVD-GIFT-${hex.slice(0, 4)}-${hex.slice(4, 8)}`
+}
+
+function ivdSuggestGiftCode() {
+  let code = ivdGenerateGiftCode()
+  for (let i = 0; i < 12 && ivdGiftNameTaken(code); i++) {
+    code = ivdGenerateGiftCode()
+  }
+  return code
+}
+
+function ivdFillGiftName(force = false) {
+  const input = document.getElementById('ivd-gift-name')
+  if (!input) return
+  if (!force && ivdNormalizeGiftName(input.value)) return
+  input.value = ivdSuggestGiftCode()
+}
+
 function ivdFormatGiftAdminDate(value) {
   const ms = Date.parse(String(value || ''))
   if (!Number.isFinite(ms)) return '—'
@@ -252,6 +273,7 @@ async function ivdRefreshGifts() {
   try {
     const gifts = await ivdLoadGifts()
     ivdRenderGifts(Array.isArray(gifts) ? gifts : [])
+    ivdFillGiftName()
   } catch (err) {
     ivdToast(
       (err instanceof Error ? err.message : String(err)) +
@@ -332,7 +354,8 @@ async function ivdCreateGift(event) {
   const note = String(document.getElementById('ivd-gift-note')?.value || '').trim()
   const requiresLogin = Boolean(document.getElementById('ivd-gift-requires-login')?.checked)
   const nameInput = document.getElementById('ivd-gift-name')
-  const code = ivdNormalizeGiftName(nameInput?.value)
+  const code = ivdNormalizeGiftName(nameInput?.value) || ivdSuggestGiftCode()
+  if (nameInput) nameInput.value = code
   if (!code) {
     ivdToast('Enter a gift code name.', 'error')
     return
@@ -355,7 +378,7 @@ async function ivdCreateGift(event) {
       }),
     })
     ivdToast(`Created ${code}`, 'success')
-    if (nameInput) nameInput.value = ''
+    ivdFillGiftName(true)
     await ivdRefreshGifts()
   } catch (err) {
     ivdToast(err instanceof Error ? err.message : String(err), 'error')
@@ -479,6 +502,13 @@ function ivdInit() {
     void ivdCheckLicenseKey()
   })
   ivdUpdateGiftExpirationPreview()
+  ivdFillGiftName()
+
+  document.getElementById('ivd-gift-name')?.addEventListener('blur', (event) => {
+    const input = event.target
+    const normalized = ivdNormalizeGiftName(input.value)
+    if (normalized) input.value = normalized
+  })
 
   document.getElementById('ivd-gifts-body')?.addEventListener('change', (event) => {
     const kindSel = event.target.closest('.yt-gift-kind-input')

@@ -8,10 +8,13 @@
  */
 import {
   IDME_FULFILL_URL,
+  IDME_SUPABASE_FULFILL_URL,
+  ISP_FULFILL_URL,
   IVD_FULFILL_URL,
   IVD_SUPABASE_ANON_KEY,
   YFP_FULFILL_URL,
   YFP_STRIPE_APP_ID,
+  YFP_SUPABASE_ANON_KEY,
 } from './supabase'
 
 /** When `app` is omitted, default to YouTube Filter Pro (legacy links). */
@@ -26,6 +29,7 @@ export const DEFAULT_STRIPE_SUCCESS_APP_ID = YFP_STRIPE_APP_ID
  *   stripeAppId: string,
  *   aliases?: string[],
  *   fulfillUrl: string,
+ *   fulfillFallbackUrl?: string,
  *   fulfillAppId?: string,
  *   supabaseAnonKey?: string,
  *   platform: StripeSuccessPlatform,
@@ -51,6 +55,15 @@ export const STRIPE_SUCCESS_APPS = [
     stripeAppId: 'instagram-dm-export',
     aliases: ['idme'],
     fulfillUrl: IDME_FULFILL_URL,
+    fulfillFallbackUrl: IDME_SUPABASE_FULFILL_URL,
+    supabaseAnonKey: YFP_SUPABASE_ANON_KEY,
+    platform: 'instagram',
+    stripeTestModeFromSession: true,
+  },
+  {
+    stripeAppId: 'isp',
+    aliases: ['custom-data'],
+    fulfillUrl: ISP_FULFILL_URL,
     platform: 'instagram',
     stripeTestModeFromSession: true,
   },
@@ -78,9 +91,9 @@ export function resolveStripeSuccessApp(appParam) {
  * @param {string} sessionId
  * @returns {Promise<Record<string, unknown>>}
  */
-export async function fulfillStripeCheckoutSession(app, sessionId) {
+async function postStripeFulfill(url, app, sessionId, useAnon) {
   const headers = { 'Content-Type': 'application/json' }
-  if (app.supabaseAnonKey) {
+  if (useAnon && app.supabaseAnonKey) {
     headers.Authorization = `Bearer ${app.supabaseAnonKey}`
     headers.apikey = app.supabaseAnonKey
   }
@@ -93,7 +106,7 @@ export async function fulfillStripeCheckoutSession(app, sessionId) {
     body.stripe_test_mode = true
   }
 
-  const res = await fetch(app.fulfillUrl, {
+  const res = await fetch(url, {
     method: 'POST',
     headers,
     body: JSON.stringify(body),
@@ -104,6 +117,14 @@ export async function fulfillStripeCheckoutSession(app, sessionId) {
     return { ok: false, error: `http_${res.status}` }
   }
   return data
+}
+
+export async function fulfillStripeCheckoutSession(app, sessionId) {
+  const primary = await postStripeFulfill(app.fulfillUrl, app, sessionId, false)
+  if (primary?.ok || !app.fulfillFallbackUrl) {
+    return primary
+  }
+  return postStripeFulfill(app.fulfillFallbackUrl, app, sessionId, true)
 }
 
 export function platformReturnLabel(platform) {

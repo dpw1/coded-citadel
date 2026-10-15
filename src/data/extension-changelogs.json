@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-10-13T04:14:47.304Z",
+  "updatedAt": "2026-10-15T00:17:38.914Z",
   "message": null,
   "apps": [
     {
@@ -1107,6 +1107,42 @@
       "defaultBranch": "main",
       "commits": [
         {
+          "sha": "930542b7fd94ca48e2811b3d25d7e89cd026bf4b",
+          "shortSha": "930542b",
+          "message": "Update manifest version to 1.0.434, streamline permissions by removing 'tabs', and enhance paywall UI interactions with a new reset function. Improved documentation for Stripe checkout handling in the context of MV3. Added CSS styles for disabled purchase buttons to enhance user experience.",
+          "date": "2026-10-14T01:57:14Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/930542b7fd94ca48e2811b3d25d7e89cd026bf4b",
+          "version": "1.0.434"
+        },
+        {
+          "sha": "c23a4802157aa29a77c70025e0aaa43da12369d9",
+          "shortSha": "c23a480",
+          "message": "Update Stripe integration: Added support for managed payments configuration in environment variables and updated checkout session handling to include managed payments parameters. Enhanced .env.example documentation for clarity.",
+          "date": "2026-10-14T01:45:07Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/c23a4802157aa29a77c70025e0aaa43da12369d9",
+          "version": "1.0.434"
+        },
+        {
+          "sha": "5abadefcf4cf9b7ce45d01a29b745df91de549e1",
+          "shortSha": "5abadef",
+          "message": "Release v1.0.434: Enhanced license management with migration support for local grants, improved UI for paywall interactions, and added new download progress indicators. Updated attachment filtering options and refined background script handling for license synchronization. Improved CSS for better layout and user experience in modals. Updated documentation for billing deployment and success page handling.",
+          "date": "2026-10-14T01:26:39Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/5abadefcf4cf9b7ce45d01a29b745df91de549e1",
+          "version": "1.0.434"
+        },
+        {
+          "sha": "e43b0b6ee4999c3165f241eda25b5d916053ee42",
+          "shortSha": "e43b0b6",
+          "message": "Release v1.0.433: Updated environment configuration for Stripe integration, including new billing API URLs and test mode settings. Enhanced manifest permissions to support tab access and updated version number. Improved build process with additional scripts for environment handling. Refined license management with support for both Stripe and Lemon Squeezy, and enhanced UI elements for better user experience.",
+          "date": "2026-10-14T00:22:36Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/e43b0b6ee4999c3165f241eda25b5d916053ee42",
+          "version": "1.0.433"
+        },
+        {
           "sha": "823c8ddc7daa71e9db5f0caeb6da9da5589e5f56",
           "shortSha": "823c8dd",
           "message": "Release v1.0.432: Updated version number in manifest, added legal notice injection and JavaScript syntax verification in the packaging script, improved UI elements in content and background scripts, and enhanced export button functionality. Refined usage tracking with IndexedDB and cookie support, and localized UI text for better user experience.",
@@ -1185,7 +1221,7 @@
           "date": "2026-05-25T20:18:09Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-dm-exporter/commit/96721ee79bae5412b79898e32c4b99114abc28d3",
-          "version": "1.0.432"
+          "version": "1.0.434"
         }
       ]
     },
