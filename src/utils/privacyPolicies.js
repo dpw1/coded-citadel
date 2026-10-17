@@ -10,6 +10,7 @@ import YoutubeAiSummaryPrivacyContent from '../content/privacy/youtube-ai-summar
 import YtFilterProPrivacyContent from '../content/privacy/yt-filter-pro'
 import DexPrivacyContent from '../content/privacy/dex'
 import BlueskyHideRepostPrivacyContent from '../content/privacy/bluesky-hide-repost'
+import YoutubeCommentsPrivacyContent from '../content/privacy/youtube-comments'
 
 const PRIVACY_POLICIES = {
   'ai-bookmark': {
@@ -89,6 +90,18 @@ const PRIVACY_POLICIES = {
     lastUpdated: 'July 2, 2026',
     contact: 'CodedCitadel@gmail.com',
     Content: BlueskyHideRepostPrivacyContent,
+  },
+  'youtube-comments': {
+    appName: 'YouTube Comments Exporter',
+    lastUpdated: 'October 17, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: YoutubeCommentsPrivacyContent,
+  },
+  'youtube-comments-exporter': {
+    appName: 'YouTube Comments Exporter',
+    lastUpdated: 'October 17, 2026',
+    contact: 'CodedCitadel@gmail.com',
+    Content: YoutubeCommentsPrivacyContent,
   },
 }
 

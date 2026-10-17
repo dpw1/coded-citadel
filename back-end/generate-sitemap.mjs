@@ -31,6 +31,8 @@ const PRIVACY_POLICY_SLUGS = [
   'youtube-ai-summary',
   'dex',
   'bluesky-hide-repost',
+  'youtube-comments',
+  'youtube-comments-exporter',
 ]
 
 /** Keep in sync with src/utils/termsOfService.js */
