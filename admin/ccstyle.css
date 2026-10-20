@@ -1,0 +1,1362 @@
+/* ===========================================================================
+   CCSTYLE — Coded Citadel UI kit
+   ---------------------------------------------------------------------------
+   A self-contained, dependency-free dark design system.
+   Every class is prefixed `CCSTYLE__` and follows BEM:
+
+     block            .CCSTYLE__btn
+     block__element   .CCSTYLE__card__title
+     block--modifier  .CCSTYLE__btn--primary
+
+   Drop this file into any project and use the classes directly. All colors,
+   radii, shadows and easings are driven by the custom properties in :root, so
+   re-theming means overriding tokens, not rewriting rules.
+
+   See styleguide.html for a rendered catalog of every component.
+   =========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. TOKENS
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Surfaces — darkest to lightest, use in this order for depth. */
+  --CCSTYLE-bg-base: #090b10;
+  --CCSTYLE-bg-surface: #0e121a;
+  --CCSTYLE-bg-card: #131824;
+  --CCSTYLE-bg-raised: #161c28;
+
+  /* Brand + semantic colors. */
+  --CCSTYLE-primary: #ff9900;
+  --CCSTYLE-primary-hover: #ffb53d;
+  --CCSTYLE-primary-ink: #120c02; /* text on a primary fill */
+  --CCSTYLE-success: #22c55e;
+  --CCSTYLE-danger: #f06560;
+  --CCSTYLE-warning: #fbbf24;
+  --CCSTYLE-info: #3b82f6;
+
+  /* Text. */
+  --CCSTYLE-text: #ffffff;
+  --CCSTYLE-text-muted: #7a8599;
+
+  /* Lines. */
+  --CCSTYLE-border: #1f2636;
+  --CCSTYLE-border-glow: #303b54;
+  --CCSTYLE-divider: #1a2130;
+
+  /* Type. */
+  --CCSTYLE-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --CCSTYLE-font-display: 'Oswald', 'Inter', sans-serif;
+  --CCSTYLE-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Radii. */
+  --CCSTYLE-r-sm: 6px;
+  --CCSTYLE-r-md: 10px;
+  --CCSTYLE-r-lg: 14px;
+  --CCSTYLE-r-pill: 999px;
+
+  /* Elevation. */
+  --CCSTYLE-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --CCSTYLE-shadow-md: 0 6px 18px -6px rgba(0, 0, 0, 0.55);
+  --CCSTYLE-shadow-lg: 0 18px 48px -12px rgba(0, 0, 0, 0.7);
+
+  /* Focus ring + motion. */
+  --CCSTYLE-ring: 0 0 0 3px rgba(255, 153, 0, 0.22);
+  --CCSTYLE-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Reusable decorations: a soft top-down sheen and a 1px top highlight.
+     Layer `--CCSTYLE-surface` above a flat background color. */
+  --CCSTYLE-surface: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 255, 255, 0) 60%
+  );
+  --CCSTYLE-hairline: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ---------------------------------------------------------------------------
+   2. BASE
+   --------------------------------------------------------------------------- */
+
+.CCSTYLE__body {
+  margin: 0;
+  background: var(--CCSTYLE-bg-base);
+  color: var(--CCSTYLE-text);
+  font-family: var(--CCSTYLE-font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.CCSTYLE__code {
+  font-family: var(--CCSTYLE-font-mono);
+  font-size: 0.88em;
+  color: var(--CCSTYLE-primary);
+}
+
+/* Hides content visually while keeping it available to screen readers. */
+.CCSTYLE__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   3. TYPOGRAPHY
+   --------------------------------------------------------------------------- */
+
+/* Small uppercase label that sits above a title. */
+.CCSTYLE__eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--CCSTYLE-primary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.CCSTYLE__title {
+  margin: 0;
+  font-family: var(--CCSTYLE-font-display);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.CCSTYLE__subtitle {
+  margin: 0;
+  color: var(--CCSTYLE-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* Section heading with gradient rules on both sides. */
+.CCSTYLE__divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2.5rem 0 1.35rem;
+}
+
+.CCSTYLE__divider::before,
+.CCSTYLE__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--CCSTYLE-border) 12%,
+    var(--CCSTYLE-border) 88%,
+    transparent
+  );
+}
+
+.CCSTYLE__divider__label {
+  margin: 0;
+  color: var(--CCSTYLE-text);
+  font-family: var(--CCSTYLE-font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   4. BUTTONS
+   --------------------------------------------------------------------------- */
+
+.CCSTYLE__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.1rem;
+  font-family: var(--CCSTYLE-font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--CCSTYLE-text);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-md);
+  cursor: pointer;
+  transition:
+    background 0.18s var(--CCSTYLE-ease),
+    border-color 0.18s var(--CCSTYLE-ease),
+    box-shadow 0.18s var(--CCSTYLE-ease),
+    transform 0.12s var(--CCSTYLE-ease),
+    color 0.18s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--CCSTYLE-border-glow);
+  transform: translateY(-1px);
+}
+
+.CCSTYLE__btn:active {
+  transform: translateY(0);
+}
+
+.CCSTYLE__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--CCSTYLE-ring);
+}
+
+.CCSTYLE__btn:disabled,
+.CCSTYLE__btn--disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Solid brand fill — one per view, for the main action. */
+.CCSTYLE__btn--primary {
+  color: var(--CCSTYLE-primary-ink);
+  background: linear-gradient(180deg, #ffa71a, var(--CCSTYLE-primary));
+  border-color: transparent;
+  box-shadow:
+    var(--CCSTYLE-shadow-sm),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.CCSTYLE__btn--primary:hover {
+  background: linear-gradient(180deg, var(--CCSTYLE-primary-hover), var(--CCSTYLE-primary));
+  box-shadow:
+    0 6px 18px -6px rgba(255, 153, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Tinted brand outline — secondary actions sitting next to a primary. */
+.CCSTYLE__btn--outline {
+  color: var(--CCSTYLE-primary);
+  background: rgba(255, 153, 0, 0.06);
+  border-color: rgba(255, 153, 0, 0.35);
+}
+
+.CCSTYLE__btn--outline:hover {
+  background: rgba(255, 153, 0, 0.14);
+  border-color: rgba(255, 153, 0, 0.6);
+  box-shadow: 0 4px 14px -6px rgba(255, 153, 0, 0.45);
+}
+
+/* No border or fill until hovered — toolbar and icon actions. */
+.CCSTYLE__btn--ghost {
+  color: var(--CCSTYLE-text-muted);
+  background: transparent;
+  border-color: transparent;
+}
+
+.CCSTYLE__btn--ghost:hover {
+  color: var(--CCSTYLE-text);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: transparent;
+}
+
+/* Destructive actions: delete, revoke, reset. */
+.CCSTYLE__btn--danger {
+  color: #fecaca;
+  background: rgba(240, 101, 96, 0.12);
+  border-color: rgba(240, 101, 96, 0.4);
+}
+
+.CCSTYLE__btn--danger:hover {
+  color: #fff;
+  background: rgba(240, 101, 96, 0.22);
+  border-color: rgba(240, 101, 96, 0.7);
+}
+
+.CCSTYLE__btn--sm {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.68rem;
+  border-radius: var(--CCSTYLE-r-sm);
+}
+
+.CCSTYLE__btn--lg {
+  padding: 0.8rem 1.5rem;
+  font-size: 0.82rem;
+}
+
+.CCSTYLE__btn--block {
+  width: 100%;
+}
+
+/* Square icon-only button. Always pair with aria-label. */
+.CCSTYLE__btn--icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+}
+
+/* Horizontal group of related buttons. */
+.CCSTYLE__btn-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ---------------------------------------------------------------------------
+   5. CHIPS / PILLS / BADGES
+   --------------------------------------------------------------------------- */
+
+/* Toggleable filter chip. Add --active when selected. */
+.CCSTYLE__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.9rem;
+  font-family: var(--CCSTYLE-font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--CCSTYLE-text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-pill);
+  cursor: pointer;
+  transition:
+    color 0.18s var(--CCSTYLE-ease),
+    background 0.18s var(--CCSTYLE-ease),
+    border-color 0.18s var(--CCSTYLE-ease),
+    box-shadow 0.18s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__chip:hover {
+  color: var(--CCSTYLE-text);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--CCSTYLE-border-glow);
+}
+
+.CCSTYLE__chip:focus-visible {
+  outline: none;
+  box-shadow: var(--CCSTYLE-ring);
+}
+
+.CCSTYLE__chip--active {
+  color: var(--CCSTYLE-primary-ink);
+  background: linear-gradient(180deg, #ffa71a, var(--CCSTYLE-primary));
+  border-color: transparent;
+  box-shadow:
+    0 4px 14px -6px rgba(255, 153, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.CCSTYLE__chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Secondary count inside a chip, e.g. "All 475". */
+.CCSTYLE__chip__count {
+  opacity: 0.75;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.CCSTYLE__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Static, non-interactive status label. */
+.CCSTYLE__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--CCSTYLE-text-muted);
+  background: rgba(122, 133, 153, 0.1);
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-pill);
+}
+
+.CCSTYLE__badge--success {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.35);
+}
+
+.CCSTYLE__badge--danger {
+  color: #fca5a5;
+  background: rgba(240, 101, 96, 0.12);
+  border-color: rgba(240, 101, 96, 0.35);
+}
+
+.CCSTYLE__badge--warning {
+  color: var(--CCSTYLE-warning);
+  background: rgba(251, 191, 36, 0.12);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+.CCSTYLE__badge--info {
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+.CCSTYLE__badge--accent {
+  color: var(--CCSTYLE-primary);
+  background: rgba(255, 153, 0, 0.14);
+  border-color: rgba(255, 153, 0, 0.4);
+}
+
+/* Small round counter for nav items and tabs. */
+.CCSTYLE__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--CCSTYLE-primary);
+  background: rgba(255, 153, 0, 0.18);
+  border: 1px solid rgba(255, 153, 0, 0.35);
+  border-radius: var(--CCSTYLE-r-pill);
+}
+
+/* Colored dot for inline status. */
+.CCSTYLE__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--CCSTYLE-text-muted);
+  flex-shrink: 0;
+}
+
+.CCSTYLE__dot--success { background: var(--CCSTYLE-success); }
+.CCSTYLE__dot--danger { background: var(--CCSTYLE-danger); }
+.CCSTYLE__dot--warning { background: var(--CCSTYLE-warning); }
+.CCSTYLE__dot--accent { background: var(--CCSTYLE-primary); }
+
+/* ---------------------------------------------------------------------------
+   6. FORMS
+   --------------------------------------------------------------------------- */
+
+/* Vertical label + control pair. */
+.CCSTYLE__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.CCSTYLE__field--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.CCSTYLE__label {
+  color: var(--CCSTYLE-text-muted);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.CCSTYLE__input,
+.CCSTYLE__select,
+.CCSTYLE__textarea {
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  color: var(--CCSTYLE-text);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-md);
+  font-family: var(--CCSTYLE-font-sans);
+  font-size: 0.85rem;
+  transition:
+    border-color 0.18s var(--CCSTYLE-ease),
+    background 0.18s var(--CCSTYLE-ease),
+    box-shadow 0.18s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__input::placeholder,
+.CCSTYLE__textarea::placeholder {
+  color: rgba(122, 133, 153, 0.75);
+}
+
+.CCSTYLE__input:hover,
+.CCSTYLE__select:hover,
+.CCSTYLE__textarea:hover {
+  border-color: var(--CCSTYLE-border-glow);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.CCSTYLE__input:focus,
+.CCSTYLE__select:focus,
+.CCSTYLE__textarea:focus {
+  outline: none;
+  border-color: var(--CCSTYLE-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: var(--CCSTYLE-ring);
+}
+
+.CCSTYLE__input:disabled,
+.CCSTYLE__select:disabled,
+.CCSTYLE__textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.CCSTYLE__input--invalid,
+.CCSTYLE__select--invalid {
+  border-color: rgba(240, 101, 96, 0.6);
+}
+
+.CCSTYLE__input--invalid:focus,
+.CCSTYLE__select--invalid:focus {
+  border-color: var(--CCSTYLE-danger);
+  box-shadow: 0 0 0 3px rgba(240, 101, 96, 0.2);
+}
+
+.CCSTYLE__textarea {
+  min-height: 6rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+/* Native arrow is replaced with a CSS chevron for consistent cross-browser looks. */
+.CCSTYLE__select {
+  appearance: none;
+  padding-right: 2.1rem;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--CCSTYLE-text-muted) 50%),
+    linear-gradient(135deg, var(--CCSTYLE-text-muted) 50%, transparent 50%);
+  background-position: calc(100% - 14px) calc(50% - 2px), calc(100% - 9px) calc(50% - 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+/* Rounded search field. */
+.CCSTYLE__input--search {
+  border-radius: var(--CCSTYLE-r-pill);
+  padding-left: 1rem;
+}
+
+/* Help / error text under a control. */
+.CCSTYLE__hint {
+  font-size: 0.75rem;
+  color: var(--CCSTYLE-text-muted);
+}
+
+.CCSTYLE__hint--error {
+  color: #fca5a5;
+}
+
+.CCSTYLE__hint--success {
+  color: #86efac;
+}
+
+/* Checkbox / radio row. */
+.CCSTYLE__check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--CCSTYLE-text);
+  cursor: pointer;
+}
+
+.CCSTYLE__check__input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--CCSTYLE-primary);
+  cursor: pointer;
+}
+
+/* Knob-style boolean toggle. Wrap a visually hidden checkbox. */
+.CCSTYLE__switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.CCSTYLE__switch__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.CCSTYLE__switch__track {
+  position: relative;
+  width: 2.35rem;
+  height: 1.3rem;
+  border-radius: var(--CCSTYLE-r-pill);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--CCSTYLE-border);
+  transition:
+    background 0.2s var(--CCSTYLE-ease),
+    border-color 0.2s var(--CCSTYLE-ease);
+  flex-shrink: 0;
+}
+
+.CCSTYLE__switch__track::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0.18rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--CCSTYLE-text-muted);
+  transform: translateY(-50%);
+  transition:
+    transform 0.2s var(--CCSTYLE-ease),
+    background 0.2s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__switch__input:checked + .CCSTYLE__switch__track {
+  background: rgba(255, 153, 0, 0.3);
+  border-color: rgba(255, 153, 0, 0.6);
+}
+
+.CCSTYLE__switch__input:checked + .CCSTYLE__switch__track::after {
+  background: var(--CCSTYLE-primary);
+  transform: translateY(-50%) translateX(1.02rem);
+}
+
+.CCSTYLE__switch__input:focus-visible + .CCSTYLE__switch__track {
+  box-shadow: var(--CCSTYLE-ring);
+}
+
+/* Form shell: a padded surface holding a row of fields. */
+.CCSTYLE__form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.85rem 1.1rem;
+  padding: 1rem 1.1rem;
+  background: var(--CCSTYLE-surface), var(--CCSTYLE-bg-surface);
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-lg);
+  box-shadow: var(--CCSTYLE-hairline);
+}
+
+/* ---------------------------------------------------------------------------
+   7. SURFACES: CARDS, KPIs, PANELS
+   --------------------------------------------------------------------------- */
+
+.CCSTYLE__card {
+  padding: 1rem 1.15rem;
+  background: var(--CCSTYLE-surface), var(--CCSTYLE-bg-card);
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-lg);
+  box-shadow: var(--CCSTYLE-shadow-sm), var(--CCSTYLE-hairline);
+  transition:
+    border-color 0.2s var(--CCSTYLE-ease),
+    box-shadow 0.2s var(--CCSTYLE-ease),
+    transform 0.2s var(--CCSTYLE-ease);
+}
+
+/* Adds a lift on hover — use for clickable cards only. */
+.CCSTYLE__card--interactive:hover {
+  border-color: var(--CCSTYLE-border-glow);
+  box-shadow: var(--CCSTYLE-shadow-md), var(--CCSTYLE-hairline);
+  transform: translateY(-2px);
+}
+
+/* Left accent bar for unread / highlighted rows. */
+.CCSTYLE__card--accent {
+  border-color: rgba(255, 153, 0, 0.4);
+  box-shadow: inset 2px 0 0 var(--CCSTYLE-primary), var(--CCSTYLE-shadow-sm);
+}
+
+.CCSTYLE__card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.CCSTYLE__card__title {
+  margin: 0;
+  font-family: var(--CCSTYLE-font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.CCSTYLE__card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.85rem;
+  color: var(--CCSTYLE-text-muted);
+  font-size: 0.76rem;
+}
+
+.CCSTYLE__card__body {
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.CCSTYLE__card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--CCSTYLE-divider);
+}
+
+/* Responsive KPI grid. */
+.CCSTYLE__kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  gap: 0.85rem;
+}
+
+.CCSTYLE__kpi {
+  position: relative;
+  padding: 1rem 1.1rem;
+  background: var(--CCSTYLE-surface), var(--CCSTYLE-bg-card);
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-lg);
+  box-shadow: var(--CCSTYLE-shadow-sm), var(--CCSTYLE-hairline);
+  overflow: hidden;
+  transition:
+    border-color 0.2s var(--CCSTYLE-ease),
+    transform 0.2s var(--CCSTYLE-ease),
+    box-shadow 0.2s var(--CCSTYLE-ease);
+}
+
+/* Accent bar fades in on hover. */
+.CCSTYLE__kpi::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(255, 153, 0, 0.8), rgba(255, 153, 0, 0));
+  opacity: 0;
+  transition: opacity 0.2s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__kpi:hover {
+  border-color: var(--CCSTYLE-border-glow);
+  transform: translateY(-2px);
+  box-shadow: var(--CCSTYLE-shadow-md), var(--CCSTYLE-hairline);
+}
+
+.CCSTYLE__kpi:hover::before {
+  opacity: 1;
+}
+
+.CCSTYLE__kpi__label {
+  color: var(--CCSTYLE-text-muted);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.CCSTYLE__kpi__value {
+  font-family: var(--CCSTYLE-font-display);
+  font-size: 1.85rem;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.CCSTYLE__kpi__value--accent { color: var(--CCSTYLE-primary); }
+.CCSTYLE__kpi__value--success { color: var(--CCSTYLE-success); }
+.CCSTYLE__kpi__value--danger { color: var(--CCSTYLE-danger); }
+.CCSTYLE__kpi__value--info { color: var(--CCSTYLE-info); }
+
+.CCSTYLE__kpi__delta {
+  margin-top: 0.4rem;
+  font-size: 0.74rem;
+  color: var(--CCSTYLE-text-muted);
+}
+
+/* Right-aligned action bar that closes a section with a divider. */
+.CCSTYLE__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--CCSTYLE-divider);
+}
+
+.CCSTYLE__toolbar__group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ---------------------------------------------------------------------------
+   8. CALLOUTS
+   --------------------------------------------------------------------------- */
+
+/* Muted explanatory box with a brand accent edge. */
+.CCSTYLE__note {
+  padding: 0.85rem 1rem 0.85rem 1.1rem;
+  color: var(--CCSTYLE-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  background: var(--CCSTYLE-surface), var(--CCSTYLE-bg-surface);
+  border: 1px solid var(--CCSTYLE-border);
+  border-left: 2px solid rgba(255, 153, 0, 0.5);
+  border-radius: var(--CCSTYLE-r-md);
+  box-shadow: var(--CCSTYLE-hairline);
+}
+
+.CCSTYLE__note strong {
+  color: var(--CCSTYLE-text);
+}
+
+.CCSTYLE__note--success { border-left-color: var(--CCSTYLE-success); }
+.CCSTYLE__note--warning { border-left-color: var(--CCSTYLE-warning); }
+
+.CCSTYLE__note--danger {
+  border-left-color: var(--CCSTYLE-danger);
+  color: #fca5a5;
+  background: rgba(240, 101, 96, 0.08);
+  border-color: rgba(240, 101, 96, 0.35);
+}
+
+/* Centered empty / loading placeholder. */
+.CCSTYLE__empty {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--CCSTYLE-text-muted);
+  font-size: 0.88rem;
+}
+
+/* Spinning ring for inline loading. */
+.CCSTYLE__spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 153, 0, 0.25);
+  border-top-color: var(--CCSTYLE-primary);
+  border-radius: 50%;
+  animation: CCSTYLE-spin 0.7s linear infinite;
+}
+
+@keyframes CCSTYLE-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Determinate progress / quota bar. */
+.CCSTYLE__progress {
+  height: 0.5rem;
+  border-radius: var(--CCSTYLE-r-pill);
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.CCSTYLE__progress__fill {
+  height: 100%;
+  border-radius: var(--CCSTYLE-r-pill);
+  background: linear-gradient(90deg, var(--CCSTYLE-primary), #ffb53d);
+  transition: width 0.45s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__progress__fill--success {
+  background: linear-gradient(90deg, var(--CCSTYLE-success), #4ade80);
+}
+
+.CCSTYLE__progress__fill--danger {
+  background: linear-gradient(90deg, var(--CCSTYLE-danger), #fca5a5);
+}
+
+/* ---------------------------------------------------------------------------
+   9. TABLES
+   --------------------------------------------------------------------------- */
+
+/* Scroll container — gives the table its rounded border and shadow. */
+.CCSTYLE__table-wrap {
+  overflow-x: auto;
+  background: var(--CCSTYLE-bg-card);
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-lg);
+  box-shadow: var(--CCSTYLE-shadow-sm);
+  scrollbar-width: thin;
+  scrollbar-color: var(--CCSTYLE-border-glow) transparent;
+}
+
+.CCSTYLE__table-wrap::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.CCSTYLE__table-wrap::-webkit-scrollbar-thumb {
+  background: var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-pill);
+}
+
+.CCSTYLE__table-wrap::-webkit-scrollbar-thumb:hover {
+  background: var(--CCSTYLE-border-glow);
+}
+
+.CCSTYLE__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+
+/* Header sticks while the body scrolls. */
+.CCSTYLE__table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--CCSTYLE-text-muted);
+  white-space: nowrap;
+  background: var(--CCSTYLE-bg-raised);
+  border-bottom: 1px solid var(--CCSTYLE-border-glow);
+}
+
+.CCSTYLE__table td {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--CCSTYLE-divider);
+}
+
+.CCSTYLE__table tbody tr {
+  transition: background 0.14s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__table tbody tr:hover {
+  background: rgba(255, 153, 0, 0.06);
+}
+
+.CCSTYLE__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Right-aligned tabular numbers. */
+.CCSTYLE__table__num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Truncated monospace id cell. */
+.CCSTYLE__table__mono {
+  font-family: var(--CCSTYLE-font-mono);
+  font-size: 0.72rem;
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Sortable header button. Reflects aria-sort with an arrow. */
+.CCSTYLE__table__sort {
+  appearance: none;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.CCSTYLE__table__sort:hover {
+  color: var(--CCSTYLE-text);
+}
+
+.CCSTYLE__table__sort[aria-sort='ascending']::after { content: ' ↑'; }
+.CCSTYLE__table__sort[aria-sort='descending']::after { content: ' ↓'; }
+
+.CCSTYLE__pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.CCSTYLE__pager__label {
+  font-size: 0.76rem;
+  color: var(--CCSTYLE-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------------
+   10. NAVIGATION
+   --------------------------------------------------------------------------- */
+
+/* Horizontal underline tabs. */
+.CCSTYLE__tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--CCSTYLE-border);
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.CCSTYLE__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.1rem;
+  margin-bottom: -1px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--CCSTYLE-text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.18s var(--CCSTYLE-ease), border-color 0.18s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__tab:hover {
+  color: var(--CCSTYLE-text);
+}
+
+.CCSTYLE__tab--active {
+  color: var(--CCSTYLE-primary);
+  border-bottom-color: var(--CCSTYLE-primary);
+}
+
+/* Vertical sidebar nav with collapsible groups.
+   Toggle .CCSTYLE__sidebar--collapsed on the sidebar for the icon rail, and
+   .CCSTYLE__sidebar__group--open on a group to reveal its items. */
+.CCSTYLE__sidebar {
+  width: 16rem;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(255, 153, 0, 0.05), transparent 22rem),
+    var(--CCSTYLE-bg-surface);
+  border-right: 1px solid var(--CCSTYLE-border);
+  transition: width 0.28s var(--CCSTYLE-ease);
+  overflow: hidden;
+}
+
+.CCSTYLE__sidebar--collapsed {
+  width: 4.25rem;
+}
+
+.CCSTYLE__sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.85rem 0.6rem;
+}
+
+.CCSTYLE__sidebar__item,
+.CCSTYLE__sidebar__group-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0 0.6rem;
+  text-align: left;
+  font-family: var(--CCSTYLE-font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--CCSTYLE-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.18s var(--CCSTYLE-ease), background 0.18s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__sidebar__item:hover,
+.CCSTYLE__sidebar__group-head:hover {
+  color: var(--CCSTYLE-text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Glowing accent pill marking the current item. */
+.CCSTYLE__sidebar__item::before,
+.CCSTYLE__sidebar__group-head::before {
+  content: '';
+  position: absolute;
+  left: -0.35rem;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  border-radius: 0 3px 3px 0;
+  background: var(--CCSTYLE-primary);
+  box-shadow: 0 0 10px rgba(255, 153, 0, 0.6);
+  transform: translateY(-50%);
+  transition: height 0.24s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__sidebar__item--active::before,
+.CCSTYLE__sidebar__group--current > .CCSTYLE__sidebar__group-head::before {
+  height: 1.35rem;
+}
+
+.CCSTYLE__sidebar__item--active,
+.CCSTYLE__sidebar__group--current > .CCSTYLE__sidebar__group-head {
+  color: var(--CCSTYLE-text);
+  background: linear-gradient(90deg, rgba(255, 153, 0, 0.14), rgba(255, 153, 0, 0.02));
+}
+
+/* Monogram badge shown alongside the label, and alone when collapsed. */
+.CCSTYLE__sidebar__icon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 6px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--CCSTYLE-text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--CCSTYLE-border);
+  transition:
+    color 0.18s var(--CCSTYLE-ease),
+    background 0.18s var(--CCSTYLE-ease),
+    border-color 0.18s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__sidebar__item--active .CCSTYLE__sidebar__icon,
+.CCSTYLE__sidebar__group--current > .CCSTYLE__sidebar__group-head .CCSTYLE__sidebar__icon {
+  color: var(--CCSTYLE-primary);
+  background: rgba(255, 153, 0, 0.14);
+  border-color: rgba(255, 153, 0, 0.45);
+}
+
+.CCSTYLE__sidebar__label {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.CCSTYLE__sidebar__chevron {
+  flex: 0 0 auto;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  opacity: 0.55;
+  transition: transform 0.26s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__sidebar__group--open > .CCSTYLE__sidebar__group-head .CCSTYLE__sidebar__chevron {
+  transform: rotate(45deg);
+}
+
+/* Animated via max-height so the reveal is smooth. */
+.CCSTYLE__sidebar__group-items {
+  display: grid;
+  gap: 0.1rem;
+  position: relative;
+  margin-left: 1.55rem;
+  padding-left: 0.75rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.3s var(--CCSTYLE-ease),
+    opacity 0.22s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__sidebar__group-items::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  bottom: 0.3rem;
+  width: 1px;
+  background: linear-gradient(180deg, var(--CCSTYLE-border-glow), var(--CCSTYLE-border));
+}
+
+.CCSTYLE__sidebar__group--open > .CCSTYLE__sidebar__group-items {
+  max-height: 22rem;
+  opacity: 1;
+}
+
+.CCSTYLE__sidebar__subitem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.6rem;
+  font-family: var(--CCSTYLE-font-sans);
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: var(--CCSTYLE-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.18s var(--CCSTYLE-ease), background 0.18s var(--CCSTYLE-ease);
+}
+
+.CCSTYLE__sidebar__subitem:hover {
+  color: var(--CCSTYLE-text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.CCSTYLE__sidebar__subitem--active {
+  color: var(--CCSTYLE-primary);
+  background: rgba(255, 153, 0, 0.1);
+  font-weight: 600;
+}
+
+.CCSTYLE__sidebar--collapsed .CCSTYLE__sidebar__label,
+.CCSTYLE__sidebar--collapsed .CCSTYLE__sidebar__chevron,
+.CCSTYLE__sidebar--collapsed .CCSTYLE__sidebar__group-items {
+  display: none;
+}
+
+.CCSTYLE__sidebar--collapsed .CCSTYLE__sidebar__item,
+.CCSTYLE__sidebar--collapsed .CCSTYLE__sidebar__group-head {
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   11. MODAL
+   --------------------------------------------------------------------------- */
+
+.CCSTYLE__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.CCSTYLE__modal[hidden] {
+  display: none !important;
+}
+
+.CCSTYLE__modal__backdrop {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: none;
+  background: rgba(5, 7, 11, 0.72);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.CCSTYLE__modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(720px, 100%);
+  max-height: min(88vh, 900px);
+  display: flex;
+  flex-direction: column;
+  background: var(--CCSTYLE-bg-card);
+  border: 1px solid var(--CCSTYLE-border-glow);
+  border-radius: var(--CCSTYLE-r-lg);
+  box-shadow: var(--CCSTYLE-shadow-lg);
+  overflow: hidden;
+  animation: CCSTYLE-modal-in 0.22s var(--CCSTYLE-ease);
+}
+
+@keyframes CCSTYLE-modal-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+.CCSTYLE__modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--CCSTYLE-divider);
+}
+
+.CCSTYLE__modal__title {
+  margin: 0;
+  font-family: var(--CCSTYLE-font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.CCSTYLE__modal__body {
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+
+.CCSTYLE__modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--CCSTYLE-divider);
+}
+
+/* ---------------------------------------------------------------------------
+   12. UTILITIES
+   --------------------------------------------------------------------------- */
+
+.CCSTYLE__stack { display: flex; flex-direction: column; gap: 0.85rem; }
+.CCSTYLE__row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.CCSTYLE__row--between { justify-content: space-between; }
+.CCSTYLE__grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; }
+.CCSTYLE__mono { font-family: var(--CCSTYLE-font-mono); font-size: 0.78rem; }
+.CCSTYLE__muted { color: var(--CCSTYLE-text-muted); }
+.CCSTYLE__accent { color: var(--CCSTYLE-primary); }
+.CCSTYLE__nums { font-variant-numeric: tabular-nums; }
+.CCSTYLE__truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .CCSTYLE__btn,
+  .CCSTYLE__card,
+  .CCSTYLE__kpi,
+  .CCSTYLE__chip {
+    transition: none;
+  }
+
+  .CCSTYLE__btn:hover,
+  .CCSTYLE__card--interactive:hover,
+  .CCSTYLE__kpi:hover {
+    transform: none;
+  }
+
+  .CCSTYLE__modal__dialog { animation: none; }
+  .CCSTYLE__spinner { animation-duration: 2s; }
+}

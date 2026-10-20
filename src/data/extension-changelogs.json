@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-10-15T00:17:38.914Z",
+  "updatedAt": "2026-10-20T03:21:58.226Z",
   "message": null,
   "apps": [
     {
@@ -295,6 +295,24 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "579db0887709f93ce436be262c99af2fe4e077e5",
+          "shortSha": "579db08",
+          "message": "Update version to 2.0.180, enhance license key handling, and improve subscription management",
+          "date": "2026-10-20T02:54:49Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/579db0887709f93ce436be262c99af2fe4e077e5",
+          "version": "2.0.180"
+        },
+        {
+          "sha": "f617bc1cadb931e002ed8ad94a5ff43a7e86a3f9",
+          "shortSha": "f617bc1",
+          "message": "Update version to 2.0.177, refine free tier quotas, and enhance Stripe integration",
+          "date": "2026-10-15T19:45:45Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/f617bc1cadb931e002ed8ad94a5ff43a7e86a3f9",
+          "version": "2.0.177"
+        },
         {
           "sha": "39ac42c051676f9ef7241ce54c8aeea74ed8a99e",
           "shortSha": "39ac42c",
@@ -726,24 +744,6 @@
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/c19151321c6218eb8cfed15a58e7c8caa5e34bbe",
           "version": "1.0.85"
-        },
-        {
-          "sha": "7afe3e9c20ddf6ef8df1d8a702c329a934c4e9e3",
-          "shortSha": "7afe3e9",
-          "message": "Rename subscriber sort option to Subscriber and bump to 1.0.84.",
-          "date": "2026-08-26T12:52:32Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/7afe3e9c20ddf6ef8df1d8a702c329a934c4e9e3",
-          "version": "2.0.172"
-        },
-        {
-          "sha": "93a4ba7015eb79788ca4c4714f32c2250aabad93",
-          "shortSha": "93a4ba7",
-          "message": "Add Pro billing, early-user gift flow, and extra Sort presets.",
-          "date": "2026-08-25T21:17:34Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/93a4ba7015eb79788ca4c4714f32c2250aabad93",
-          "version": "2.0.172"
         }
       ]
     },
@@ -898,12 +898,30 @@
     {
       "key": "epokpidfnienjjfncmhnallghfhaijbj",
       "slug": "youtube-comments-exporter",
-      "name": "Youtube Comments Exporter: Bulk Export to CSV, XLSX & TXT",
+      "name": "YT Comments Search & Download",
       "status": "live",
       "github": "https://github.com/dpw1/youtube-comments-export",
       "githubPublic": false,
       "defaultBranch": "master",
       "commits": [
+        {
+          "sha": "80f39f2cf5405ef8bc737eea8e2c2d482e235ad1",
+          "shortSha": "80f39f2",
+          "message": "Refactor YouTube watch content script and enhance localization support",
+          "date": "2026-10-16T22:02:45Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/80f39f2cf5405ef8bc737eea8e2c2d482e235ad1",
+          "version": "1.0.366"
+        },
+        {
+          "sha": "c9fa4ab47d79c75e7e51b5d6d62442ea0f7cd11e",
+          "shortSha": "c9fa4ab",
+          "message": "Add watch-page comment search UI with nested replies and full locale sync.",
+          "date": "2026-10-16T20:40:54Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-comments-export/commit/c9fa4ab47d79c75e7e51b5d6d62442ea0f7cd11e",
+          "version": "1.0.366"
+        },
         {
           "sha": "e276b26b4d3405f96652081c5d855302b6d652e3",
           "shortSha": "e276b26",
@@ -911,7 +929,7 @@
           "date": "2026-08-01T22:05:58Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/e276b26b4d3405f96652081c5d855302b6d652e3",
-          "version": "1.0.36"
+          "version": "1.0.366"
         },
         {
           "sha": "602f92a885c1604d6e9e5088be334b6fcdf93874",
@@ -920,7 +938,7 @@
           "date": "2026-07-03T02:51:43Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/602f92a885c1604d6e9e5088be334b6fcdf93874",
-          "version": "1.0.36"
+          "version": "1.0.366"
         },
         {
           "sha": "ea1f86b4a98b8d3376f021dabbac1a679404ca63",
@@ -929,7 +947,7 @@
           "date": "2026-07-03T02:22:17Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/ea1f86b4a98b8d3376f021dabbac1a679404ca63",
-          "version": "1.0.36"
+          "version": "1.0.366"
         },
         {
           "sha": "8e0201ff9a17770ef637af1bd8dd32a5516dc904",
@@ -938,7 +956,7 @@
           "date": "2026-06-23T17:29:58Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/8e0201ff9a17770ef637af1bd8dd32a5516dc904",
-          "version": "1.0.36"
+          "version": "1.0.366"
         },
         {
           "sha": "eddc34013d01e1b61c24e4f759b1cfbb4345a4eb",
@@ -947,7 +965,7 @@
           "date": "2026-05-11T18:18:44Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/eddc34013d01e1b61c24e4f759b1cfbb4345a4eb",
-          "version": "1.0.36"
+          "version": "1.0.366"
         },
         {
           "sha": "ca5a4275ecc15b5fe1cbad890b5e5430bc205c3d",
@@ -956,7 +974,7 @@
           "date": "2026-05-10T23:31:30Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/ca5a4275ecc15b5fe1cbad890b5e5430bc205c3d",
-          "version": "1.0.36"
+          "version": "1.0.366"
         },
         {
           "sha": "2da65bb228be092b5cf8472ebce1303f28f08395",
@@ -965,7 +983,7 @@
           "date": "2026-05-10T22:26:04Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/2da65bb228be092b5cf8472ebce1303f28f08395",
-          "version": "1.0.36"
+          "version": "1.0.366"
         },
         {
           "sha": "42d5fcf7a8592d18ca65afffcbbe01cd42c600cf",
@@ -974,7 +992,7 @@
           "date": "2026-05-10T21:58:36Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/42d5fcf7a8592d18ca65afffcbbe01cd42c600cf",
-          "version": "1.0.36"
+          "version": "1.0.366"
         },
         {
           "sha": "af2fd189ac41639c983a8c2f4472600823e4cbff",
@@ -983,7 +1001,7 @@
           "date": "2026-05-08T18:28:30Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/af2fd189ac41639c983a8c2f4472600823e4cbff",
-          "version": "1.0.36"
+          "version": "1.0.366"
         },
         {
           "sha": "a3629248f3cd72c5614dab2fa17f99b57d63c302",
@@ -992,7 +1010,7 @@
           "date": "2026-05-08T13:02:19Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-comments-export/commit/a3629248f3cd72c5614dab2fa17f99b57d63c302",
-          "version": "1.0.36"
+          "version": "1.0.366"
         }
       ]
     },
@@ -1106,6 +1124,24 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "fd6f156a2c18f0721f63cd5ebcceabecbcee2a0f",
+          "shortSha": "fd6f156",
+          "message": "Refactor build process: Introduce 'sync-dist' script for better asset preparation and update 'dev' script to include it. Enhance 'prepare-dist' script to log manifest version and improve manifest handling. Update Vite configuration to call 'syncDist' during build.",
+          "date": "2026-10-15T19:21:34Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/fd6f156a2c18f0721f63cd5ebcceabecbcee2a0f",
+          "version": "1.0.435"
+        },
+        {
+          "sha": "15219b4fbc4c45b13d0dae94897331b3e2d987bd",
+          "shortSha": "15219b4",
+          "message": "Update manifest version to 1.0.435, enhance license synchronization logic by introducing new functions for managing legacy Lemon and Stripe billing grants, and improve documentation for billing deployment. Refactor background script to streamline license sync handling and ensure better performance for free users. Update paywall UI interactions to conditionally refresh local grants based on billing type.",
+          "date": "2026-10-15T19:18:02Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/instagram-dm-exporter/commit/15219b4fbc4c45b13d0dae94897331b3e2d987bd",
+          "version": "1.0.435"
+        },
         {
           "sha": "930542b7fd94ca48e2811b3d25d7e89cd026bf4b",
           "shortSha": "930542b",
@@ -1221,7 +1257,7 @@
           "date": "2026-05-25T20:18:09Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/instagram-dm-exporter/commit/96721ee79bae5412b79898e32c4b99114abc28d3",
-          "version": "1.0.434"
+          "version": "1.0.436"
         }
       ]
     },
@@ -1268,7 +1304,7 @@
           "date": "2026-07-16T17:12:51Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/af9c527d390649624b5cf58305f93824a0bb754d",
-          "version": "1.0.731"
+          "version": "1.0.732"
         },
         {
           "sha": "32f940aecda2bc4490eb36bc46064d034e789c81",
@@ -1277,7 +1313,7 @@
           "date": "2026-06-13T12:05:22Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/32f940aecda2bc4490eb36bc46064d034e789c81",
-          "version": "1.0.731"
+          "version": "1.0.732"
         },
         {
           "sha": "de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
@@ -1286,7 +1322,7 @@
           "date": "2026-06-13T11:34:26Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/de8a0d123cf4f629b409a2d2c7c3f6e78415dd44",
-          "version": "1.0.731"
+          "version": "1.0.732"
         },
         {
           "sha": "e68b1d247848af795b32ac5a2ac329608ba911ff",
@@ -1295,7 +1331,7 @@
           "date": "2026-06-02T20:40:15Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/claude-limit-monitor/commit/e68b1d247848af795b32ac5a2ac329608ba911ff",
-          "version": "1.0.731"
+          "version": "1.0.732"
         }
       ]
     },

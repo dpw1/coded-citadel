@@ -13,6 +13,267 @@
 </head>
 <body>
   <div class="admin">
+    <div class="admin__layout">
+      <aside class="admin__sidebar" id="admin-sidebar" aria-label="Admin navigation">
+        <div class="admin__sidebar-brand">
+          <span class="admin__sidebar-brand-mark" aria-hidden="true">CC</span>
+          <span class="admin__sidebar-brand-text">
+            <span class="admin__sidebar-brand-eyebrow">Private</span>
+            <span class="admin__sidebar-brand-title">Admin</span>
+          </span>
+          <button
+            type="button"
+            class="admin__sidebar-collapse"
+            id="admin-sidebar-collapse"
+            aria-expanded="true"
+            aria-controls="admin-sidebar-nav"
+            aria-label="Collapse sidebar"
+            title="Collapse sidebar"
+          >
+            <span class="admin__sidebar-collapse-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <nav class="admin__sidebar-nav" id="admin-sidebar-nav" role="tablist" aria-label="Admin sections">
+          <button
+            type="button"
+            class="admin__tab admin__sidebar-item admin__tab--active"
+            role="tab"
+            aria-selected="true"
+            data-tab="feedback"
+            id="tab-feedback"
+            title="Feedback"
+          >
+            <span class="admin__sidebar-icon" aria-hidden="true">FB</span>
+            <span class="admin__sidebar-item-label">Feedback</span>
+            <span class="admin__tab-badge" id="feedback-unread-badge" hidden>0</span>
+          </button>
+
+          <div class="admin__sidebar-group admin__sidebar-group--open" data-sidebar-group="yt">
+            <button
+              type="button"
+              class="admin__sidebar-group-head"
+              id="tab-yt"
+              aria-expanded="true"
+              aria-controls="sidebar-group-yt"
+              title="YouTube Filter Pro"
+            >
+              <span class="admin__sidebar-icon" aria-hidden="true">YT</span>
+              <span class="admin__sidebar-group-label">YouTube Filter Pro</span>
+              <span class="admin__tab-status" id="yt-tab-status" hidden aria-hidden="true"></span>
+              <span class="admin__sidebar-group-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="admin__sidebar-group-items" id="sidebar-group-yt" role="group" aria-label="YouTube Filter Pro sections">
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem admin__subtab--active"
+                role="tab"
+                aria-selected="true"
+                data-yt-subtab="analytics"
+                id="yt-subtab-analytics"
+              >
+                Analytics
+              </button>
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem"
+                role="tab"
+                aria-selected="false"
+                data-yt-subtab="users"
+                id="yt-subtab-users"
+              >
+                Users
+                <span class="admin__tab-badge" id="yt-users-badge" hidden>0</span>
+              </button>
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem"
+                role="tab"
+                aria-selected="false"
+                data-yt-subtab="gifts"
+                id="yt-subtab-gifts"
+              >
+                Gift codes
+              </button>
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem"
+                role="tab"
+                aria-selected="false"
+                data-yt-subtab="paid-users"
+                id="yt-subtab-paid-users"
+              >
+                Paid users
+                <span class="admin__tab-badge" id="yt-paid-users-badge" hidden>0</span>
+              </button>
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem"
+                role="tab"
+                aria-selected="false"
+                data-yt-subtab="check-license"
+                id="yt-subtab-check-license"
+              >
+                Check license
+              </button>
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem"
+                role="tab"
+                aria-selected="false"
+                data-yt-subtab="api"
+                id="yt-subtab-api"
+              >
+                API
+              </button>
+            </div>
+          </div>
+
+          <div class="admin__sidebar-group" data-sidebar-group="idme">
+            <button
+              type="button"
+              class="admin__sidebar-group-head"
+              id="tab-idme"
+              aria-expanded="false"
+              aria-controls="sidebar-group-idme"
+              title="IG DM Exporter"
+            >
+              <span class="admin__sidebar-icon" aria-hidden="true">DM</span>
+              <span class="admin__sidebar-group-label">IG DM Exporter</span>
+              <span class="admin__tab-status" id="idme-tab-status" hidden aria-hidden="true"></span>
+              <span class="admin__sidebar-group-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="admin__sidebar-group-items" id="sidebar-group-idme" role="group" aria-label="IG DM Exporter sections">
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem admin__subtab--active"
+                role="tab"
+                aria-selected="true"
+                data-idme-subtab="users"
+                id="idme-subtab-users"
+              >
+                Users
+              </button>
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem"
+                role="tab"
+                aria-selected="false"
+                data-idme-subtab="gifts"
+                id="idme-subtab-gifts"
+              >
+                Gift codes
+              </button>
+            </div>
+          </div>
+
+          <div class="admin__sidebar-group" data-sidebar-group="isp">
+            <button
+              type="button"
+              class="admin__sidebar-group-head"
+              id="tab-isp"
+              aria-expanded="false"
+              aria-controls="sidebar-group-isp"
+              title="IG Saved Posts"
+            >
+              <span class="admin__sidebar-icon" aria-hidden="true">SP</span>
+              <span class="admin__sidebar-group-label">IG Saved Posts</span>
+              <span class="admin__tab-status" id="isp-tab-status" hidden aria-hidden="true"></span>
+              <span class="admin__sidebar-group-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="admin__sidebar-group-items" id="sidebar-group-isp" role="group" aria-label="IG Saved Posts sections">
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem admin__subtab--active"
+                role="tab"
+                aria-selected="true"
+                data-isp-subtab="gifts"
+                id="isp-subtab-gifts"
+              >
+                Gift codes
+              </button>
+            </div>
+          </div>
+
+          <div class="admin__sidebar-group" data-sidebar-group="ge">
+            <button
+              type="button"
+              class="admin__sidebar-group-head"
+              id="tab-ge"
+              aria-expanded="false"
+              aria-controls="sidebar-group-ge"
+              title="Gmail"
+            >
+              <span class="admin__sidebar-icon" aria-hidden="true">GM</span>
+              <span class="admin__sidebar-group-label">Gmail</span>
+              <span class="admin__tab-status" id="ge-tab-status" hidden aria-hidden="true"></span>
+              <span class="admin__sidebar-group-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="admin__sidebar-group-items" id="sidebar-group-ge" role="group" aria-label="Gmail Exporter sections">
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem admin__subtab--active"
+                role="tab"
+                aria-selected="true"
+                data-ge-subtab="users"
+                id="ge-subtab-users"
+              >
+                Users
+              </button>
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem"
+                role="tab"
+                aria-selected="false"
+                data-ge-subtab="gifts"
+                id="ge-subtab-gifts"
+              >
+                Gift codes
+              </button>
+            </div>
+          </div>
+
+          <div class="admin__sidebar-group" data-sidebar-group="ivd">
+            <button
+              type="button"
+              class="admin__sidebar-group-head"
+              id="tab-ivd"
+              aria-expanded="false"
+              aria-controls="sidebar-group-ivd"
+              title="IG Reels Insight"
+            >
+              <span class="admin__sidebar-icon" aria-hidden="true">RI</span>
+              <span class="admin__sidebar-group-label">IG Reels Insight</span>
+              <span class="admin__tab-status" id="ivd-tab-status" hidden aria-hidden="true"></span>
+              <span class="admin__sidebar-group-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="admin__sidebar-group-items" id="sidebar-group-ivd" role="group" aria-label="IG Reels Insight sections">
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem admin__subtab--active"
+                role="tab"
+                aria-selected="true"
+                data-ivd-subtab="gifts"
+                id="ivd-subtab-gifts"
+              >
+                Gift codes
+              </button>
+              <button
+                type="button"
+                class="admin__subtab admin__sidebar-subitem"
+                role="tab"
+                aria-selected="false"
+                data-ivd-subtab="check-license"
+                id="ivd-subtab-check-license"
+              >
+                Check license
+              </button>
+            </div>
+          </div>
+        </nav>
+      </aside>
+
+      <div class="admin__main">
     <header class="admin__header">
       <div class="admin__header-left">
         <p class="admin__eyebrow">Private</p>
@@ -28,64 +289,6 @@
       <span class="admin__cache-timers__sep" aria-hidden="true">·</span>
       <span class="admin__cache-timer" id="cache-timer-yt">YouTube Filter Pro: —</span>
     </p>
-
-    <nav class="admin__tabs" role="tablist" aria-label="Admin sections">
-      <button
-        type="button"
-        class="admin__tab admin__tab--active"
-        role="tab"
-        aria-selected="true"
-        data-tab="feedback"
-        id="tab-feedback"
-      >
-        Feedback
-        <span class="admin__tab-badge" id="feedback-unread-badge" hidden>0</span>
-      </button>
-      <button
-        type="button"
-        class="admin__tab"
-        role="tab"
-        aria-selected="false"
-        data-tab="yt"
-        id="tab-yt"
-      >
-        YouTube Filter Pro
-        <span class="admin__tab-status" id="yt-tab-status" hidden aria-hidden="true"></span>
-      </button>
-      <button
-        type="button"
-        class="admin__tab"
-        role="tab"
-        aria-selected="false"
-        data-tab="idme"
-        id="tab-idme"
-      >
-        IG DM Exporter
-        <span class="admin__tab-status" id="idme-tab-status" hidden aria-hidden="true"></span>
-      </button>
-      <button
-        type="button"
-        class="admin__tab"
-        role="tab"
-        aria-selected="false"
-        data-tab="ge"
-        id="tab-ge"
-      >
-        Gmail
-        <span class="admin__tab-status" id="ge-tab-status" hidden aria-hidden="true"></span>
-      </button>
-      <button
-        type="button"
-        class="admin__tab"
-        role="tab"
-        aria-selected="false"
-        data-tab="ivd"
-        id="tab-ivd"
-      >
-        IG Reels Insight
-        <span class="admin__tab-status" id="ivd-tab-status" hidden aria-hidden="true"></span>
-      </button>
-    </nav>
 
     <!-- FEEDBACK -->
     <section
@@ -269,71 +472,6 @@
           </button>
         </div>
       </div>
-
-      <nav class="admin__subtabs" role="tablist" aria-label="YouTube Filter Pro sections">
-        <button
-          type="button"
-          class="admin__subtab admin__subtab--active"
-          role="tab"
-          aria-selected="true"
-          data-yt-subtab="analytics"
-          id="yt-subtab-analytics"
-        >
-          Analytics
-        </button>
-        <button
-          type="button"
-          class="admin__subtab"
-          role="tab"
-          aria-selected="false"
-          data-yt-subtab="users"
-          id="yt-subtab-users"
-        >
-          Users
-          <span class="admin__tab-badge" id="yt-users-badge" hidden>0</span>
-        </button>
-        <button
-          type="button"
-          class="admin__subtab"
-          role="tab"
-          aria-selected="false"
-          data-yt-subtab="gifts"
-          id="yt-subtab-gifts"
-        >
-          Gift codes
-        </button>
-        <button
-          type="button"
-          class="admin__subtab"
-          role="tab"
-          aria-selected="false"
-          data-yt-subtab="paid-users"
-          id="yt-subtab-paid-users"
-        >
-          Paid users
-          <span class="admin__tab-badge" id="yt-paid-users-badge" hidden>0</span>
-        </button>
-        <button
-          type="button"
-          class="admin__subtab"
-          role="tab"
-          aria-selected="false"
-          data-yt-subtab="check-license"
-          id="yt-subtab-check-license"
-        >
-          Check license
-        </button>
-        <button
-          type="button"
-          class="admin__subtab"
-          role="tab"
-          aria-selected="false"
-          data-yt-subtab="api"
-          id="yt-subtab-api"
-        >
-          API
-        </button>
-      </nav>
 
       <div id="yt-subpanel-analytics" role="tabpanel" aria-labelledby="yt-subtab-analytics">
       <div class="admin__yt-toolbar" id="yt-toolbar" hidden>
@@ -994,29 +1132,6 @@
         </button>
       </div>
 
-      <nav class="admin__subtabs" role="tablist" aria-label="IG DM Exporter sections">
-        <button
-          type="button"
-          class="admin__subtab admin__subtab--active"
-          role="tab"
-          aria-selected="true"
-          data-idme-subtab="users"
-          id="idme-subtab-users"
-        >
-          Users
-        </button>
-        <button
-          type="button"
-          class="admin__subtab"
-          role="tab"
-          aria-selected="false"
-          data-idme-subtab="gifts"
-          id="idme-subtab-gifts"
-        >
-          Gift codes
-        </button>
-      </nav>
-
       <div id="idme-subpanel-users" role="tabpanel" aria-labelledby="idme-subtab-users">
         <p class="admin__note">
           License device grants from <code>idme_license_device_grants</code>
@@ -1134,6 +1249,81 @@
       </div>
     </section>
 
+    <!-- IG SAVED POSTS (ISP) -->
+    <section
+      class="admin__panel"
+      id="panel-isp"
+      role="tabpanel"
+      aria-labelledby="tab-isp"
+      hidden
+    >
+      <div class="admin__panel-actions admin__panel-actions--with-url" id="isp-panel-actions">
+        <span class="admin__panel-supabase-url" id="isp-supabase-url-label" title="Supabase project for IG Saved Posts Exporter"></span>
+        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="isp-gifts-refresh">
+          Refresh gift codes
+        </button>
+      </div>
+
+      <div id="isp-subpanel-gifts" role="tabpanel" aria-labelledby="isp-subtab-gifts">
+        <p class="admin__note">
+          Custom gift codes in <code>isp_gift_codes</code> (device redeem, no login).
+          Give each code a unique name on create. Hover a row to edit, then Save.
+        </p>
+        <section class="admin__gifts" id="isp-gifts">
+          <h3 class="admin__gifts-title">Create code</h3>
+          <form class="admin__gifts-form" id="isp-gifts-form">
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Name</span>
+              <input type="text" id="isp-gift-name" class="admin__users-search yt-gift-name" placeholder="e.g. BETA-CREATORS" autocomplete="off" spellcheck="false" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Kind</span>
+              <select id="isp-gift-kind" class="admin__select yt-gift-kind">
+                <option value="days">Days</option>
+                <option value="months">Months</option>
+                <option value="lifetime">Lifetime</option>
+              </select>
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label" id="isp-gift-duration-label">Days</span>
+              <input type="number" id="isp-gift-days" class="admin__users-search" min="1" value="60" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Max uses</span>
+              <input type="number" id="isp-gift-max" class="admin__users-search" min="1" value="1" />
+            </label>
+            <label class="admin__filter-group">
+              <span class="admin__filter-label">Note</span>
+              <input type="text" id="isp-gift-note" class="admin__users-search" placeholder="beta / 2 months" />
+            </label>
+            <button type="submit" class="admin__btn admin__btn--sm" id="isp-gift-create">Create code</button>
+          </form>
+          <p class="admin__copy-hint" id="isp-gift-expiration-preview" aria-live="polite"></p>
+          <div class="admin__users-table-wrap">
+            <table class="admin__users-table admin__gifts-table">
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>kind</th>
+                  <th>duration</th>
+                  <th>max uses</th>
+                  <th>used</th>
+                  <th>note</th>
+                  <th>created</th>
+                  <th>expiration</th>
+                  <th>redeemed by</th>
+                  <th>revoke</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="isp-gifts-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
+
 <!-- GMAIL EXPORTER -->
     <section
       class="admin__panel"
@@ -1148,29 +1338,6 @@
           Refresh users
         </button>
       </div>
-
-      <nav class="admin__subtabs" role="tablist" aria-label="Gmail Exporter sections">
-        <button
-          type="button"
-          class="admin__subtab admin__subtab--active"
-          role="tab"
-          aria-selected="true"
-          data-ge-subtab="users"
-          id="ge-subtab-users"
-        >
-          Users
-        </button>
-        <button
-          type="button"
-          class="admin__subtab"
-          role="tab"
-          aria-selected="false"
-          data-ge-subtab="gifts"
-          id="ge-subtab-gifts"
-        >
-          Gift codes
-        </button>
-      </nav>
 
       <div id="ge-subpanel-users" role="tabpanel" aria-labelledby="ge-subtab-users">
         <p class="admin__note">
@@ -1304,29 +1471,6 @@
         </button>
       </div>
 
-      <nav class="admin__subtabs" role="tablist" aria-label="IG Reels Insight sections">
-        <button
-          type="button"
-          class="admin__subtab admin__subtab--active"
-          role="tab"
-          aria-selected="true"
-          data-ivd-subtab="gifts"
-          id="ivd-subtab-gifts"
-        >
-          Gift codes
-        </button>
-        <button
-          type="button"
-          class="admin__subtab"
-          role="tab"
-          aria-selected="false"
-          data-ivd-subtab="check-license"
-          id="ivd-subtab-check-license"
-        >
-          Check license
-        </button>
-      </nav>
-
       <div id="ivd-subpanel-gifts" role="tabpanel" aria-labelledby="ivd-subtab-gifts">
         <p class="admin__note">
           Custom gift codes in <code>ivd_gift_codes</code>.
@@ -1420,6 +1564,8 @@
         <pre class="admin__license-json" id="ivd-license-check-json" hidden></pre>
       </div>
     </section>
+      </div>
+    </div>
   </div>
 
   <div class="admin__modal" id="fingerprint-modal" hidden>
@@ -1506,6 +1652,27 @@
     </div>
   </div>
 
+  <div class="admin__modal" id="isp-gift-redemptions-modal" hidden>
+    <button type="button" class="admin__modal-backdrop" id="isp-gift-redemptions-modal-backdrop" aria-label="Close"></button>
+    <div
+      class="admin__modal-dialog admin__modal-dialog--yfp"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="isp-gift-redemptions-title"
+    >
+      <div class="admin__modal-header">
+        <div>
+          <p class="admin__eyebrow">IG Saved Posts gift redemptions</p>
+          <h2 class="admin__modal-title" id="isp-gift-redemptions-title">Code</h2>
+        </div>
+        <button type="button" class="admin__btn admin__btn--outline admin__btn--sm" id="isp-gift-redemptions-modal-close">
+          Close
+        </button>
+      </div>
+      <div class="admin__modal-body admin__modal-body--yfp" id="isp-gift-redemptions-body"></div>
+    </div>
+  </div>
+
   <div class="admin__modal" id="idme-gift-redemptions-modal" hidden>
     <button type="button" class="admin__modal-backdrop" id="idme-gift-redemptions-modal-backdrop" aria-label="Close"></button>
     <div
@@ -1555,9 +1722,14 @@
         </button>
       </div>
       <div class="admin__modal-body admin__modal-body--yfp" id="ge-gift-redemptions-body"></div>
+    </div>
+  </div>
+
   <script src="./ge-admin-config.js"></script>
   <script src="./gmail-exporter-accounts.js"></script>
   <script src="./ig-dm-exporter-accounts.js"></script>
+  <script src="./isp-admin-config.js"></script>
+  <script src="./ig-saved-posts-accounts.js"></script>
   <script src="./ivd-admin-config.js"></script>
   <script src="./ig-reels-insight-accounts.js"></script>
 </body>

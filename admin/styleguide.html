@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CCSTYLE — Coded Citadel UI Kit</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./ccstyle.css" />
+<link rel="stylesheet" href="./styleguide.css" />
+</head>
+<body class="CCSTYLE__body">
+
+<a class="SG__skip" href="#content">Skip to content</a>
+
+<div class="SG">
+  <!-- ============================ DOC SIDEBAR ============================ -->
+  <aside class="SG__nav">
+    <div class="SG__nav__brand">
+      <span class="SG__nav__mark">CC</span>
+      <span>
+        <span class="SG__nav__eyebrow">Design system</span>
+        <span class="SG__nav__title">CCSTYLE</span>
+      </span>
+    </div>
+    <nav class="SG__nav__links" aria-label="Components">
+      <a href="#intro">Getting started</a>
+      <a href="#tokens">Design tokens</a>
+      <a href="#typography">Typography</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#chips">Chips &amp; badges</a>
+      <a href="#forms">Forms</a>
+      <a href="#cards">Cards &amp; KPIs</a>
+      <a href="#callouts">Callouts &amp; progress</a>
+      <a href="#tables">Tables</a>
+      <a href="#nav">Navigation</a>
+      <a href="#modal">Modal</a>
+      <a href="#utilities">Utilities</a>
+    </nav>
+  </aside>
+
+  <!-- ============================== CONTENT ============================== -->
+  <main class="SG__main" id="content">
+
+    <header class="SG__hero">
+      <p class="CCSTYLE__eyebrow">Coded Citadel</p>
+      <h1 class="CCSTYLE__title">CCSTYLE UI Kit</h1>
+      <p class="CCSTYLE__subtitle SG__hero__lede">
+        A dark, dependency-free component library. Every class is prefixed
+        <code class="CCSTYLE__code">CCSTYLE__</code> and follows BEM, so it can be dropped
+        into any project without colliding with existing styles.
+      </p>
+    </header>
+
+    <!-- ============================== INTRO ============================== -->
+    <section class="SG__section" id="intro">
+      <h2 class="SG__h2">Getting started</h2>
+      <p class="SG__p">
+        Copy <code class="CCSTYLE__code">ccstyle.css</code> into your project and link it. It
+        ships its own tokens, so nothing else is required. The Inter and Oswald webfonts are
+        optional &mdash; without them the kit falls back to the system sans-serif.
+      </p>
+
+      <pre class="SG__code"><code>&lt;link rel="stylesheet" href="./ccstyle.css" /&gt;
+&lt;body class="CCSTYLE__body"&gt; … &lt;/body&gt;</code></pre>
+
+      <h3 class="SG__h3">Naming convention</h3>
+      <p class="SG__p">
+        Strict BEM. A block is a standalone component, an element is a child that only makes
+        sense inside that block, and a modifier changes appearance or state.
+      </p>
+
+      <div class="CCSTYLE__table-wrap SG__mb">
+        <table class="CCSTYLE__table">
+          <thead>
+            <tr><th>Pattern</th><th>Example</th><th>Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="CCSTYLE__code">CCSTYLE__block</code></td>
+              <td><code class="CCSTYLE__code">CCSTYLE__card</code></td>
+              <td>The component root.</td>
+            </tr>
+            <tr>
+              <td><code class="CCSTYLE__code">CCSTYLE__block__element</code></td>
+              <td><code class="CCSTYLE__code">CCSTYLE__card__title</code></td>
+              <td>A child of the component.</td>
+            </tr>
+            <tr>
+              <td><code class="CCSTYLE__code">CCSTYLE__block--modifier</code></td>
+              <td><code class="CCSTYLE__code">CCSTYLE__btn--primary</code></td>
+              <td>A variant. Always applied <em>alongside</em> the base class.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="CCSTYLE__note">
+        <strong>Rule of thumb for agents:</strong> never use a modifier on its own.
+        <code class="CCSTYLE__code">class="CCSTYLE__btn CCSTYLE__btn--primary"</code> is correct;
+        <code class="CCSTYLE__code">class="CCSTYLE__btn--primary"</code> will render unstyled.
+      </div>
+    </section>
+
+    <!-- ============================== TOKENS ============================== -->
+    <section class="SG__section" id="tokens">
+      <h2 class="SG__h2">Design tokens</h2>
+      <p class="SG__p">
+        Everything is driven by custom properties on <code class="CCSTYLE__code">:root</code>.
+        To re-theme the kit for another product, override the tokens &mdash; never the rules.
+      </p>
+
+      <h3 class="SG__h3">Surfaces</h3>
+      <p class="SG__p">
+        Four stacked greys. Use them in order to express depth: page background, then
+        panels/toolbars, then cards, then anything raised above a card (like a sticky table
+        header).
+      </p>
+      <div class="SG__swatches">
+        <div class="SG__swatch"><span class="SG__swatch__chip" style="background:#090b10"></span><code>--CCSTYLE-bg-base</code><small>Page background</small></div>
+        <div class="SG__swatch"><span class="SG__swatch__chip" style="background:#0e121a"></span><code>--CCSTYLE-bg-surface</code><small>Panels, toolbars</small></div>
+        <div class="SG__swatch"><span class="SG__swatch__chip" style="background:#131824"></span><code>--CCSTYLE-bg-card</code><small>Cards, modals</small></div>
+        <div class="SG__swatch"><span class="SG__swatch__chip" style="background:#161c28"></span><code>--CCSTYLE-bg-raised</code><small>Sticky headers</small></div>
+      </div>
+
+      <h3 class="SG__h3">Brand &amp; semantic</h3>
+      <p class="SG__p">
+        Amber is the only brand colour and it carries all emphasis. The semantic colours are
+        reserved for meaning &mdash; never decoration.
+      </p>
+      <div class="SG__swatches">
+        <div class="SG__swatch"><span class="SG__swatch__chip" style="background:#ff9900"></span><code>--CCSTYLE-primary</code><small>Brand, active state</small></div>
+        <div class="SG__swatch"><span class="SG__swatch__chip" style="background:#22c55e"></span><code>--CCSTYLE-success</code><small>Confirmations</small></div>
+        <div class="SG__swatch"><span class="SG__swatch__chip" style="background:#f06560"></span><code>--CCSTYLE-danger</code><small>Errors, destructive</small></div>
+        <div class="SG__swatch"><span class="SG__swatch__chip" style="background:#fbbf24"></span><code>--CCSTYLE-warning</code><small>Caution</small></div>
+        <div class="SG__swatch"><span class="SG__swatch__chip" style="background:#3b82f6"></span><code>--CCSTYLE-info</code><small>Neutral info</small></div>
+        <div class="SG__swatch"><span class="SG__swatch__chip" style="background:#7a8599"></span><code>--CCSTYLE-text-muted</code><small>Secondary text</small></div>
+      </div>
+
+      <h3 class="SG__h3">Radius, elevation, motion</h3>
+      <p class="SG__p">
+        Radii step <code class="CCSTYLE__code">6 / 10 / 14px</code> plus a pill. Shadows are
+        tight and dark rather than wide and soft, which keeps panels crisp on a near-black
+        background. All transitions share one easing curve so the whole UI feels like one piece.
+      </p>
+      <pre class="SG__code"><code>--CCSTYLE-r-sm: 6px;      /* chips, small buttons */
+--CCSTYLE-r-md: 10px;     /* inputs, buttons */
+--CCSTYLE-r-lg: 14px;     /* cards, tables, modals */
+--CCSTYLE-r-pill: 999px;  /* chips, badges, progress */
+
+--CCSTYLE-shadow-sm: 0 1px 2px rgba(0,0,0,.3);
+--CCSTYLE-shadow-md: 0 6px 18px -6px rgba(0,0,0,.55);
+--CCSTYLE-shadow-lg: 0 18px 48px -12px rgba(0,0,0,.7);
+
+--CCSTYLE-ring: 0 0 0 3px rgba(255,153,0,.22);   /* focus */
+--CCSTYLE-ease: cubic-bezier(.22,.61,.36,1);     /* every transition */</code></pre>
+
+      <h3 class="SG__h3">The two decoration tokens</h3>
+      <p class="SG__p">
+        Flat dark panels look dead, so every surface layers a near-invisible top-down sheen
+        (<code class="CCSTYLE__code">--CCSTYLE-surface</code>) over its background colour and a
+        1px inner highlight along the top edge
+        (<code class="CCSTYLE__code">--CCSTYLE-hairline</code>). This is what makes cards read as
+        physical rather than painted on.
+      </p>
+      <pre class="SG__code"><code>background: var(--CCSTYLE-surface), var(--CCSTYLE-bg-card);
+box-shadow: var(--CCSTYLE-shadow-sm), var(--CCSTYLE-hairline);</code></pre>
+    </section>
+
+    <!-- ============================ TYPOGRAPHY ============================ -->
+    <section class="SG__section" id="typography">
+      <h2 class="SG__h2">Typography</h2>
+      <p class="SG__p">
+        Two families. <strong>Oswald</strong> (condensed, uppercase) for titles, KPI numbers and
+        anything that should feel like signage. <strong>Inter</strong> for everything you
+        actually read. Body copy is never uppercase.
+      </p>
+
+      <div class="SG__demo">
+        <p class="CCSTYLE__eyebrow">Eyebrow</p>
+        <h3 class="CCSTYLE__title">Page title</h3>
+        <p class="CCSTYLE__subtitle">
+          A subtitle explains the page in one muted sentence.
+        </p>
+      </div>
+      <pre class="SG__code"><code>&lt;p class="CCSTYLE__eyebrow"&gt;Eyebrow&lt;/p&gt;
+&lt;h1 class="CCSTYLE__title"&gt;Page title&lt;/h1&gt;
+&lt;p class="CCSTYLE__subtitle"&gt;A subtitle…&lt;/p&gt;</code></pre>
+
+      <h3 class="SG__h3">Section divider</h3>
+      <p class="SG__p">
+        A centred uppercase label with gradient rules fading out to both sides. Use it to break
+        a long page into named regions.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__divider">
+          <h4 class="CCSTYLE__divider__label">Section label</h4>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;div class="CCSTYLE__divider"&gt;
+  &lt;h2 class="CCSTYLE__divider__label"&gt;Section label&lt;/h2&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ============================== BUTTONS ============================= -->
+    <section class="SG__section" id="buttons">
+      <h2 class="SG__h2">Buttons</h2>
+      <p class="SG__p">
+        All buttons are uppercase, letter-spaced and lift 1px on hover. The base
+        <code class="CCSTYLE__code">CCSTYLE__btn</code> is a neutral grey button; add a modifier
+        for intent.
+      </p>
+
+      <div class="SG__demo">
+        <div class="CCSTYLE__btn-group">
+          <button class="CCSTYLE__btn">Default</button>
+          <button class="CCSTYLE__btn CCSTYLE__btn--primary">Primary</button>
+          <button class="CCSTYLE__btn CCSTYLE__btn--outline">Outline</button>
+          <button class="CCSTYLE__btn CCSTYLE__btn--ghost">Ghost</button>
+          <button class="CCSTYLE__btn CCSTYLE__btn--danger">Danger</button>
+          <button class="CCSTYLE__btn" disabled>Disabled</button>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;button class="CCSTYLE__btn CCSTYLE__btn--primary"&gt;Primary&lt;/button&gt;
+&lt;button class="CCSTYLE__btn CCSTYLE__btn--outline"&gt;Outline&lt;/button&gt;
+&lt;button class="CCSTYLE__btn CCSTYLE__btn--ghost"&gt;Ghost&lt;/button&gt;
+&lt;button class="CCSTYLE__btn CCSTYLE__btn--danger"&gt;Danger&lt;/button&gt;</code></pre>
+
+      <div class="CCSTYLE__table-wrap SG__mb">
+        <table class="CCSTYLE__table">
+          <thead><tr><th>Variant</th><th>Looks like</th><th>Use for</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><code class="CCSTYLE__code">--primary</code></td>
+              <td>Solid amber gradient, dark ink, glowing shadow on hover</td>
+              <td>The single most important action in a view</td>
+            </tr>
+            <tr>
+              <td><code class="CCSTYLE__code">--outline</code></td>
+              <td>Amber text on a faint amber tint with an amber border</td>
+              <td>Secondary actions beside a primary, e.g. Refresh</td>
+            </tr>
+            <tr>
+              <td><code class="CCSTYLE__code">--ghost</code></td>
+              <td>Invisible until hovered, then a soft grey wash</td>
+              <td>Toolbar and icon actions, low-emphasis controls</td>
+            </tr>
+            <tr>
+              <td><code class="CCSTYLE__code">--danger</code></td>
+              <td>Pale red text on a red tint</td>
+              <td>Delete, revoke, reset &mdash; anything irreversible</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="SG__h3">Sizes</h3>
+      <p class="SG__p">
+        Three sizes plus full-width and icon-only. <code class="CCSTYLE__code">--icon</code> is a
+        square button and always needs an <code class="CCSTYLE__code">aria-label</code>.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__btn-group" style="align-items:center">
+          <button class="CCSTYLE__btn CCSTYLE__btn--primary CCSTYLE__btn--sm">Small</button>
+          <button class="CCSTYLE__btn CCSTYLE__btn--primary">Default</button>
+          <button class="CCSTYLE__btn CCSTYLE__btn--primary CCSTYLE__btn--lg">Large</button>
+          <button class="CCSTYLE__btn CCSTYLE__btn--outline CCSTYLE__btn--icon" aria-label="Refresh">&#8635;</button>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;button class="CCSTYLE__btn CCSTYLE__btn--primary CCSTYLE__btn--sm"&gt;Small&lt;/button&gt;
+&lt;button class="CCSTYLE__btn CCSTYLE__btn--primary CCSTYLE__btn--lg"&gt;Large&lt;/button&gt;
+&lt;button class="CCSTYLE__btn CCSTYLE__btn--block"&gt;Full width&lt;/button&gt;
+&lt;button class="CCSTYLE__btn CCSTYLE__btn--icon" aria-label="Refresh"&gt;&amp;#8635;&lt;/button&gt;</code></pre>
+    </section>
+
+    <!-- =========================== CHIPS & BADGES ========================= -->
+    <section class="SG__section" id="chips">
+      <h2 class="SG__h2">Chips &amp; badges</h2>
+      <p class="SG__p">
+        <strong>Chips</strong> are interactive filters &mdash; rounded pills that fill with amber
+        when selected. <strong>Badges</strong> look similar but are static labels you cannot
+        click. Keep the two visually distinct in your markup by using buttons for chips and
+        spans for badges.
+      </p>
+
+      <h3 class="SG__h3">Filter chips</h3>
+      <div class="SG__demo">
+        <div class="CCSTYLE__chips">
+          <button class="CCSTYLE__chip CCSTYLE__chip--active">All <span class="CCSTYLE__chip__count">475</span></button>
+          <button class="CCSTYLE__chip">Unread <span class="CCSTYLE__chip__count">12</span></button>
+          <button class="CCSTYLE__chip">Read</button>
+          <button class="CCSTYLE__chip" disabled>Has email</button>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;div class="CCSTYLE__chips"&gt;
+  &lt;button class="CCSTYLE__chip CCSTYLE__chip--active"&gt;
+    All &lt;span class="CCSTYLE__chip__count"&gt;475&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="CCSTYLE__chip"&gt;Unread&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+      <h3 class="SG__h3">Status badges</h3>
+      <p class="SG__p">
+        Tinted background, matching 1px border, coloured text. Semantic only &mdash; the colour
+        must mean something.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__row">
+          <span class="CCSTYLE__badge">Neutral</span>
+          <span class="CCSTYLE__badge CCSTYLE__badge--success">Active</span>
+          <span class="CCSTYLE__badge CCSTYLE__badge--danger">Revoked</span>
+          <span class="CCSTYLE__badge CCSTYLE__badge--warning">Expiring</span>
+          <span class="CCSTYLE__badge CCSTYLE__badge--info">Test mode</span>
+          <span class="CCSTYLE__badge CCSTYLE__badge--accent">Pro</span>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;span class="CCSTYLE__badge CCSTYLE__badge--success"&gt;Active&lt;/span&gt;
+&lt;span class="CCSTYLE__badge CCSTYLE__badge--danger"&gt;Revoked&lt;/span&gt;
+&lt;span class="CCSTYLE__badge CCSTYLE__badge--accent"&gt;Pro&lt;/span&gt;</code></pre>
+
+      <h3 class="SG__h3">Counters &amp; dots</h3>
+      <p class="SG__p">
+        A <strong>counter</strong> is a small amber pill for unread totals next to a nav item. A
+        <strong>dot</strong> is a 8px circle for inline status where a word would be too heavy.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__row" style="gap:1.25rem">
+          <span class="CCSTYLE__row" style="gap:.5rem">Feedback <span class="CCSTYLE__counter">12</span></span>
+          <span class="CCSTYLE__row" style="gap:.4rem"><span class="CCSTYLE__dot CCSTYLE__dot--success"></span> Operational</span>
+          <span class="CCSTYLE__row" style="gap:.4rem"><span class="CCSTYLE__dot CCSTYLE__dot--warning"></span> Degraded</span>
+          <span class="CCSTYLE__row" style="gap:.4rem"><span class="CCSTYLE__dot CCSTYLE__dot--danger"></span> Down</span>
+          <span class="CCSTYLE__row" style="gap:.4rem"><span class="CCSTYLE__dot"></span> Unknown</span>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;span class="CCSTYLE__counter"&gt;12&lt;/span&gt;
+&lt;span class="CCSTYLE__dot CCSTYLE__dot--success"&gt;&lt;/span&gt;</code></pre>
+    </section>
+
+    <!-- =============================== FORMS ============================== -->
+    <section class="SG__section" id="forms">
+      <h2 class="SG__h2">Forms</h2>
+      <p class="SG__p">
+        Controls sit on a barely-lighter translucent fill with a grey border. On focus the border
+        turns amber and a soft 3px amber ring appears &mdash; the same ring is used for keyboard
+        focus everywhere in the kit, so focus always looks identical.
+      </p>
+
+      <h3 class="SG__h3">Fields</h3>
+      <p class="SG__p">
+        <code class="CCSTYLE__code">CCSTYLE__field</code> stacks an uppercase
+        <code class="CCSTYLE__code">CCSTYLE__label</code> above its control. Selects get a
+        CSS-drawn chevron so they match across browsers.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__grid-2">
+          <label class="CCSTYLE__field">
+            <span class="CCSTYLE__label">Name</span>
+            <input class="CCSTYLE__input" type="text" placeholder="e.g. BETA-CREATORS" />
+          </label>
+          <label class="CCSTYLE__field">
+            <span class="CCSTYLE__label">Kind</span>
+            <select class="CCSTYLE__select">
+              <option>Days</option>
+              <option>Months</option>
+              <option>Lifetime</option>
+            </select>
+          </label>
+          <label class="CCSTYLE__field">
+            <span class="CCSTYLE__label">Search</span>
+            <input class="CCSTYLE__input CCSTYLE__input--search" type="search" placeholder="Search by id or email" />
+          </label>
+          <label class="CCSTYLE__field">
+            <span class="CCSTYLE__label">Max uses</span>
+            <input class="CCSTYLE__input CCSTYLE__input--invalid" type="number" value="0" />
+            <span class="CCSTYLE__hint CCSTYLE__hint--error">Must be at least 1.</span>
+          </label>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;label class="CCSTYLE__field"&gt;
+  &lt;span class="CCSTYLE__label"&gt;Name&lt;/span&gt;
+  &lt;input class="CCSTYLE__input" type="text" placeholder="e.g. BETA-CREATORS" /&gt;
+  &lt;span class="CCSTYLE__hint"&gt;Must be unique.&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- rounded search variant --&gt;
+&lt;input class="CCSTYLE__input CCSTYLE__input--search" type="search" /&gt;
+
+&lt;!-- invalid state --&gt;
+&lt;input class="CCSTYLE__input CCSTYLE__input--invalid" /&gt;
+&lt;span class="CCSTYLE__hint CCSTYLE__hint--error"&gt;Must be at least 1.&lt;/span&gt;</code></pre>
+
+      <h3 class="SG__h3">Checkbox &amp; switch</h3>
+      <p class="SG__p">
+        The checkbox is the native control tinted amber. The switch is a 38px track whose knob
+        slides right and turns amber when checked &mdash; use it for settings that apply
+        immediately, and a checkbox for anything you submit.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__row" style="gap:1.5rem">
+          <label class="CCSTYLE__check">
+            <input class="CCSTYLE__check__input" type="checkbox" checked />
+            Requires login
+          </label>
+          <label class="CCSTYLE__switch">
+            <input class="CCSTYLE__switch__input" type="checkbox" checked />
+            <span class="CCSTYLE__switch__track"></span>
+            <span>Live mode</span>
+          </label>
+          <label class="CCSTYLE__switch">
+            <input class="CCSTYLE__switch__input" type="checkbox" />
+            <span class="CCSTYLE__switch__track"></span>
+            <span>Auto refresh</span>
+          </label>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;label class="CCSTYLE__check"&gt;
+  &lt;input class="CCSTYLE__check__input" type="checkbox" /&gt; Requires login
+&lt;/label&gt;
+
+&lt;label class="CCSTYLE__switch"&gt;
+  &lt;input class="CCSTYLE__switch__input" type="checkbox" /&gt;
+  &lt;span class="CCSTYLE__switch__track"&gt;&lt;/span&gt;
+  &lt;span&gt;Live mode&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+      <h3 class="SG__h3">Form shell</h3>
+      <p class="SG__p">
+        <code class="CCSTYLE__code">CCSTYLE__form</code> is a padded panel that wraps a row of
+        fields and wraps them responsively, aligned along their bottom edge so labels of
+        different lengths still line up.
+      </p>
+      <div class="SG__demo">
+        <form class="CCSTYLE__form" onsubmit="return false">
+          <label class="CCSTYLE__field">
+            <span class="CCSTYLE__label">Code</span>
+            <input class="CCSTYLE__input" type="text" value="GIFT-A185" style="min-width:9rem" />
+          </label>
+          <label class="CCSTYLE__field">
+            <span class="CCSTYLE__label">Days</span>
+            <input class="CCSTYLE__input" type="number" value="60" style="min-width:5rem" />
+          </label>
+          <button class="CCSTYLE__btn CCSTYLE__btn--primary CCSTYLE__btn--sm" type="submit">Create</button>
+        </form>
+      </div>
+      <pre class="SG__code"><code>&lt;form class="CCSTYLE__form"&gt;
+  &lt;label class="CCSTYLE__field"&gt;…&lt;/label&gt;
+  &lt;label class="CCSTYLE__field"&gt;…&lt;/label&gt;
+  &lt;button class="CCSTYLE__btn CCSTYLE__btn--primary CCSTYLE__btn--sm"&gt;Create&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    </section>
+
+    <!-- ============================ CARDS & KPIs ========================== -->
+    <section class="SG__section" id="cards">
+      <h2 class="SG__h2">Cards &amp; KPIs</h2>
+      <p class="SG__p">
+        Cards are the primary container. They layer the sheen gradient over
+        <code class="CCSTYLE__code">--CCSTYLE-bg-card</code>, add a 1px top highlight and a tight
+        shadow, so they appear to sit slightly above the page.
+      </p>
+
+      <h3 class="SG__h3">Card</h3>
+      <p class="SG__p">
+        Add <code class="CCSTYLE__code">--interactive</code> only when the whole card is
+        clickable: it brightens the border and lifts 2px on hover. Add
+        <code class="CCSTYLE__code">--accent</code> for an amber bar down the left edge, which
+        reads as "unread" or "needs attention".
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__stack">
+          <article class="CCSTYLE__card CCSTYLE__card--interactive">
+            <div class="CCSTYLE__card__header">
+              <div>
+                <h4 class="CCSTYLE__card__title">Interactive card</h4>
+                <div class="CCSTYLE__card__meta">
+                  <span>Gmail to PDF</span><span>14/10 20:42</span>
+                </div>
+              </div>
+              <span class="CCSTYLE__badge CCSTYLE__badge--info">Read</span>
+            </div>
+            <div class="CCSTYLE__card__body">
+              Hover this card to see the lift. Use the interactive modifier only when the entire
+              surface is a link or button.
+            </div>
+            <div class="CCSTYLE__card__footer">
+              <button class="CCSTYLE__btn CCSTYLE__btn--ghost CCSTYLE__btn--sm">Dismiss</button>
+              <button class="CCSTYLE__btn CCSTYLE__btn--outline CCSTYLE__btn--sm">Open</button>
+            </div>
+          </article>
+
+          <article class="CCSTYLE__card CCSTYLE__card--accent">
+            <div class="CCSTYLE__card__header">
+              <div>
+                <h4 class="CCSTYLE__card__title">Accent card</h4>
+                <div class="CCSTYLE__card__meta"><span>Unread</span></div>
+              </div>
+              <span class="CCSTYLE__badge CCSTYLE__badge--accent">New</span>
+            </div>
+            <div class="CCSTYLE__card__body">An amber bar runs down the left edge.</div>
+          </article>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;article class="CCSTYLE__card CCSTYLE__card--interactive"&gt;
+  &lt;div class="CCSTYLE__card__header"&gt;
+    &lt;div&gt;
+      &lt;h3 class="CCSTYLE__card__title"&gt;Title&lt;/h3&gt;
+      &lt;div class="CCSTYLE__card__meta"&gt;&lt;span&gt;Meta&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;span class="CCSTYLE__badge"&gt;Status&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="CCSTYLE__card__body"&gt;Body copy.&lt;/div&gt;
+  &lt;div class="CCSTYLE__card__footer"&gt;
+    &lt;button class="CCSTYLE__btn CCSTYLE__btn--outline CCSTYLE__btn--sm"&gt;Open&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+
+      <h3 class="SG__h3">KPI tiles</h3>
+      <p class="SG__p">
+        A responsive auto-fit grid of metric tiles. The number uses the condensed display font
+        with tabular figures so digits never shift width as values update. Hovering reveals a
+        vertical amber gradient bar on the left edge.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__kpis">
+          <div class="CCSTYLE__kpi">
+            <div class="CCSTYLE__kpi__label">Total</div>
+            <div class="CCSTYLE__kpi__value">475</div>
+          </div>
+          <div class="CCSTYLE__kpi">
+            <div class="CCSTYLE__kpi__label">Unread</div>
+            <div class="CCSTYLE__kpi__value CCSTYLE__kpi__value--accent">12</div>
+            <div class="CCSTYLE__kpi__delta">+3 today</div>
+          </div>
+          <div class="CCSTYLE__kpi">
+            <div class="CCSTYLE__kpi__label">Active pro</div>
+            <div class="CCSTYLE__kpi__value CCSTYLE__kpi__value--success">1,284</div>
+          </div>
+          <div class="CCSTYLE__kpi">
+            <div class="CCSTYLE__kpi__label">Churned</div>
+            <div class="CCSTYLE__kpi__value CCSTYLE__kpi__value--danger">37</div>
+          </div>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;div class="CCSTYLE__kpis"&gt;
+  &lt;div class="CCSTYLE__kpi"&gt;
+    &lt;div class="CCSTYLE__kpi__label"&gt;Unread&lt;/div&gt;
+    &lt;div class="CCSTYLE__kpi__value CCSTYLE__kpi__value--accent"&gt;12&lt;/div&gt;
+    &lt;div class="CCSTYLE__kpi__delta"&gt;+3 today&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- value colors: --accent --success --danger --info --&gt;</code></pre>
+
+      <h3 class="SG__h3">Toolbar</h3>
+      <p class="SG__p">
+        A header strip that pushes groups to opposite ends and closes with a divider. Use it
+        above a table or list for filters on the left and actions on the right.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__toolbar">
+          <div class="CCSTYLE__toolbar__group">
+            <span class="CCSTYLE__mono CCSTYLE__muted">project.supabase.co</span>
+          </div>
+          <div class="CCSTYLE__toolbar__group">
+            <button class="CCSTYLE__btn CCSTYLE__btn--outline CCSTYLE__btn--sm">Refresh</button>
+            <button class="CCSTYLE__btn CCSTYLE__btn--primary CCSTYLE__btn--sm">Export</button>
+          </div>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;div class="CCSTYLE__toolbar"&gt;
+  &lt;div class="CCSTYLE__toolbar__group"&gt;…&lt;/div&gt;
+  &lt;div class="CCSTYLE__toolbar__group"&gt;…&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ======================= CALLOUTS & PROGRESS ======================== -->
+    <section class="SG__section" id="callouts">
+      <h2 class="SG__h2">Callouts &amp; progress</h2>
+
+      <h3 class="SG__h3">Notes</h3>
+      <p class="SG__p">
+        A muted panel with a 2px coloured bar on its left edge. This is the standard way to
+        explain a screen or warn about a side effect. The default bar is amber; modifiers change
+        only the bar colour, except <code class="CCSTYLE__code">--danger</code> which tints the
+        whole panel red.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__stack">
+          <p class="CCSTYLE__note">
+            Gift codes live in <code class="CCSTYLE__code">isp_gift_codes</code>. Give each code a
+            unique name on create, then hover a row to edit it.
+          </p>
+          <p class="CCSTYLE__note CCSTYLE__note--success">Changes saved automatically.</p>
+          <p class="CCSTYLE__note CCSTYLE__note--warning">
+            This key is in <strong>test mode</strong> and will not charge real cards.
+          </p>
+          <p class="CCSTYLE__note CCSTYLE__note--danger">
+            Revoking a licence takes effect on every device immediately.
+          </p>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;p class="CCSTYLE__note"&gt;Default, amber bar.&lt;/p&gt;
+&lt;p class="CCSTYLE__note CCSTYLE__note--success"&gt;…&lt;/p&gt;
+&lt;p class="CCSTYLE__note CCSTYLE__note--warning"&gt;…&lt;/p&gt;
+&lt;p class="CCSTYLE__note CCSTYLE__note--danger"&gt;…&lt;/p&gt;</code></pre>
+
+      <h3 class="SG__h3">Empty &amp; loading</h3>
+      <p class="SG__p">
+        <code class="CCSTYLE__code">CCSTYLE__empty</code> is generously padded and centred so a
+        table with no rows does not look broken. Pair it with a spinner while fetching.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__table-wrap">
+          <p class="CCSTYLE__empty">
+            <span class="CCSTYLE__spinner" aria-hidden="true"></span><br /><br />
+            Loading gift codes&hellip;
+          </p>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;p class="CCSTYLE__empty"&gt;
+  &lt;span class="CCSTYLE__spinner" aria-hidden="true"&gt;&lt;/span&gt;
+  Loading…
+&lt;/p&gt;</code></pre>
+
+      <h3 class="SG__h3">Progress</h3>
+      <p class="SG__p">
+        A pill-shaped track with an amber gradient fill. Width animates over 450ms, so updating
+        the inline <code class="CCSTYLE__code">width</code> is enough to get a smooth transition.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__stack">
+          <div>
+            <div class="CCSTYLE__row CCSTYLE__row--between">
+              <span class="CCSTYLE__label">API key 1</span><span class="CCSTYLE__muted CCSTYLE__nums">62%</span>
+            </div>
+            <div class="CCSTYLE__progress"><div class="CCSTYLE__progress__fill" style="width:62%"></div></div>
+          </div>
+          <div>
+            <div class="CCSTYLE__row CCSTYLE__row--between">
+              <span class="CCSTYLE__label">API key 2</span><span class="CCSTYLE__muted CCSTYLE__nums">18%</span>
+            </div>
+            <div class="CCSTYLE__progress"><div class="CCSTYLE__progress__fill CCSTYLE__progress__fill--success" style="width:18%"></div></div>
+          </div>
+          <div>
+            <div class="CCSTYLE__row CCSTYLE__row--between">
+              <span class="CCSTYLE__label">API key 3</span><span class="CCSTYLE__muted CCSTYLE__nums">97%</span>
+            </div>
+            <div class="CCSTYLE__progress"><div class="CCSTYLE__progress__fill CCSTYLE__progress__fill--danger" style="width:97%"></div></div>
+          </div>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;div class="CCSTYLE__progress"&gt;
+  &lt;div class="CCSTYLE__progress__fill" style="width:62%"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- fills: default (amber), --success, --danger --&gt;</code></pre>
+    </section>
+
+    <!-- =============================== TABLES ============================= -->
+    <section class="SG__section" id="tables">
+      <h2 class="SG__h2">Tables</h2>
+      <p class="SG__p">
+        A table is always wrapped in <code class="CCSTYLE__code">CCSTYLE__table-wrap</code>, which
+        owns the rounded border, the shadow and the horizontal scroll. The header is
+        <code class="CCSTYLE__code">position: sticky</code>, so column names stay visible while
+        the body scrolls. Rows highlight amber on hover.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__table-wrap">
+          <table class="CCSTYLE__table">
+            <thead>
+              <tr>
+                <th><button class="CCSTYLE__table__sort" aria-sort="descending">Device</button></th>
+                <th><button class="CCSTYLE__table__sort">Email</button></th>
+                <th>Status</th>
+                <th class="CCSTYLE__table__num">Exports</th>
+                <th>Grant until</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="CCSTYLE__table__mono">8f3c21d9-ac44-41be</td>
+                <td>ada@example.com</td>
+                <td><span class="CCSTYLE__badge CCSTYLE__badge--success">Active</span></td>
+                <td class="CCSTYLE__table__num">1,204</td>
+                <td class="CCSTYLE__nums">2027-01-14</td>
+              </tr>
+              <tr>
+                <td class="CCSTYLE__table__mono">14bb97ff-2210-4a0c</td>
+                <td>grace@example.com</td>
+                <td><span class="CCSTYLE__badge CCSTYLE__badge--warning">Expiring</span></td>
+                <td class="CCSTYLE__table__num">87</td>
+                <td class="CCSTYLE__nums">2026-11-02</td>
+              </tr>
+              <tr>
+                <td class="CCSTYLE__table__mono">c0ffee00-9f12-4d31</td>
+                <td class="CCSTYLE__muted">&mdash;</td>
+                <td><span class="CCSTYLE__badge CCSTYLE__badge--danger">Revoked</span></td>
+                <td class="CCSTYLE__table__num">3</td>
+                <td class="CCSTYLE__muted">&mdash;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <nav class="CCSTYLE__pager">
+          <button class="CCSTYLE__btn CCSTYLE__btn--outline CCSTYLE__btn--sm">Prev</button>
+          <span class="CCSTYLE__pager__label">Page 1 of 24</span>
+          <button class="CCSTYLE__btn CCSTYLE__btn--outline CCSTYLE__btn--sm">Next</button>
+        </nav>
+      </div>
+      <pre class="SG__code"><code>&lt;div class="CCSTYLE__table-wrap"&gt;
+  &lt;table class="CCSTYLE__table"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;button class="CCSTYLE__table__sort" aria-sort="descending"&gt;Device&lt;/button&gt;&lt;/th&gt;
+        &lt;th class="CCSTYLE__table__num"&gt;Exports&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td class="CCSTYLE__table__mono"&gt;8f3c21d9&lt;/td&gt;
+        &lt;td class="CCSTYLE__table__num"&gt;1,204&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;nav class="CCSTYLE__pager"&gt;
+  &lt;button class="CCSTYLE__btn CCSTYLE__btn--outline CCSTYLE__btn--sm"&gt;Prev&lt;/button&gt;
+  &lt;span class="CCSTYLE__pager__label"&gt;Page 1 of 24&lt;/span&gt;
+  &lt;button class="CCSTYLE__btn CCSTYLE__btn--outline CCSTYLE__btn--sm"&gt;Next&lt;/button&gt;
+&lt;/nav&gt;</code></pre>
+
+      <div class="CCSTYLE__note">
+        <strong>Cell helpers.</strong>
+        <code class="CCSTYLE__code">__num</code> right-aligns and uses tabular figures so columns
+        of numbers line up. <code class="CCSTYLE__code">__mono</code> renders truncated
+        monospace ids. <code class="CCSTYLE__code">__sort</code> turns a header into a button and
+        appends an arrow from its <code class="CCSTYLE__code">aria-sort</code> value.
+      </div>
+    </section>
+
+    <!-- ============================= NAVIGATION =========================== -->
+    <section class="SG__section" id="nav">
+      <h2 class="SG__h2">Navigation</h2>
+
+      <h3 class="SG__h3">Tabs</h3>
+      <p class="SG__p">
+        Horizontal uppercase tabs with a 2px amber underline on the active item. Best for three
+        to six peers at one level.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__tabs" role="tablist">
+          <button class="CCSTYLE__tab CCSTYLE__tab--active" role="tab" aria-selected="true">Analytics</button>
+          <button class="CCSTYLE__tab" role="tab" aria-selected="false">Users <span class="CCSTYLE__counter">8</span></button>
+          <button class="CCSTYLE__tab" role="tab" aria-selected="false">Gift codes</button>
+          <button class="CCSTYLE__tab" role="tab" aria-selected="false">API</button>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;div class="CCSTYLE__tabs" role="tablist"&gt;
+  &lt;button class="CCSTYLE__tab CCSTYLE__tab--active" role="tab" aria-selected="true"&gt;Analytics&lt;/button&gt;
+  &lt;button class="CCSTYLE__tab" role="tab" aria-selected="false"&gt;Users&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+      <h3 class="SG__h3">Collapsible sidebar</h3>
+      <p class="SG__p">
+        A full-height rail for many destinations grouped by product. Each item carries a
+        monogram badge, and the current item is marked by a glowing amber pill on the left edge.
+        Groups reveal their children by animating <code class="CCSTYLE__code">max-height</code>,
+        so expansion is smooth rather than instant.
+      </p>
+      <p class="SG__p">
+        Toggling <code class="CCSTYLE__code">CCSTYLE__sidebar--collapsed</code> shrinks the rail
+        to monograms only. Try both buttons below.
+      </p>
+      <div class="SG__demo">
+        <div class="CCSTYLE__row SG__mb">
+          <button class="CCSTYLE__btn CCSTYLE__btn--outline CCSTYLE__btn--sm" data-sg-collapse>Toggle collapsed</button>
+        </div>
+        <div class="SG__sidebar-demo">
+          <aside class="CCSTYLE__sidebar" id="sg-sidebar">
+            <nav class="CCSTYLE__sidebar__nav">
+              <button class="CCSTYLE__sidebar__item CCSTYLE__sidebar__item--active">
+                <span class="CCSTYLE__sidebar__icon">FB</span>
+                <span class="CCSTYLE__sidebar__label">Feedback</span>
+                <span class="CCSTYLE__counter">12</span>
+              </button>
+
+              <div class="CCSTYLE__sidebar__group CCSTYLE__sidebar__group--open" data-sg-group>
+                <button class="CCSTYLE__sidebar__group-head" aria-expanded="true">
+                  <span class="CCSTYLE__sidebar__icon">YT</span>
+                  <span class="CCSTYLE__sidebar__label">YouTube Filter Pro</span>
+                  <span class="CCSTYLE__sidebar__chevron"></span>
+                </button>
+                <div class="CCSTYLE__sidebar__group-items">
+                  <button class="CCSTYLE__sidebar__subitem CCSTYLE__sidebar__subitem--active">Analytics</button>
+                  <button class="CCSTYLE__sidebar__subitem">Users</button>
+                  <button class="CCSTYLE__sidebar__subitem">Gift codes</button>
+                </div>
+              </div>
+
+              <div class="CCSTYLE__sidebar__group" data-sg-group>
+                <button class="CCSTYLE__sidebar__group-head" aria-expanded="false">
+                  <span class="CCSTYLE__sidebar__icon">GM</span>
+                  <span class="CCSTYLE__sidebar__label">Gmail</span>
+                  <span class="CCSTYLE__sidebar__chevron"></span>
+                </button>
+                <div class="CCSTYLE__sidebar__group-items">
+                  <button class="CCSTYLE__sidebar__subitem">Users</button>
+                  <button class="CCSTYLE__sidebar__subitem">Gift codes</button>
+                </div>
+              </div>
+            </nav>
+          </aside>
+        </div>
+      </div>
+      <pre class="SG__code"><code>&lt;aside class="CCSTYLE__sidebar"&gt;
+  &lt;nav class="CCSTYLE__sidebar__nav"&gt;
+
+    &lt;!-- flat item --&gt;
+    &lt;button class="CCSTYLE__sidebar__item CCSTYLE__sidebar__item--active"&gt;
+      &lt;span class="CCSTYLE__sidebar__icon"&gt;FB&lt;/span&gt;
+      &lt;span class="CCSTYLE__sidebar__label"&gt;Feedback&lt;/span&gt;
+      &lt;span class="CCSTYLE__counter"&gt;12&lt;/span&gt;
+    &lt;/button&gt;
+
+    &lt;!-- collapsible group: add --open to expand, --current to mark active --&gt;
+    &lt;div class="CCSTYLE__sidebar__group CCSTYLE__sidebar__group--open"&gt;
+      &lt;button class="CCSTYLE__sidebar__group-head" aria-expanded="true"&gt;
+        &lt;span class="CCSTYLE__sidebar__icon"&gt;YT&lt;/span&gt;
+        &lt;span class="CCSTYLE__sidebar__label"&gt;YouTube Filter Pro&lt;/span&gt;
+        &lt;span class="CCSTYLE__sidebar__chevron"&gt;&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;div class="CCSTYLE__sidebar__group-items"&gt;
+        &lt;button class="CCSTYLE__sidebar__subitem CCSTYLE__sidebar__subitem--active"&gt;Analytics&lt;/button&gt;
+        &lt;button class="CCSTYLE__sidebar__subitem"&gt;Users&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/nav&gt;
+&lt;/aside&gt;</code></pre>
+    </section>
+
+    <!-- =============================== MODAL ============================== -->
+    <section class="SG__section" id="modal">
+      <h2 class="SG__h2">Modal</h2>
+      <p class="SG__p">
+        A centred dialog over a blurred dark backdrop. It fades and scales up over 220ms. The
+        body scrolls on its own, so the header and footer stay put with long content.
+      </p>
+      <div class="SG__demo">
+        <button class="CCSTYLE__btn CCSTYLE__btn--primary" data-sg-modal-open>Open modal</button>
+      </div>
+      <pre class="SG__code"><code>&lt;div class="CCSTYLE__modal"&gt;
+  &lt;button class="CCSTYLE__modal__backdrop" aria-label="Close"&gt;&lt;/button&gt;
+  &lt;div class="CCSTYLE__modal__dialog" role="dialog" aria-modal="true"&gt;
+    &lt;div class="CCSTYLE__modal__header"&gt;
+      &lt;div&gt;
+        &lt;p class="CCSTYLE__eyebrow"&gt;Licence&lt;/p&gt;
+        &lt;h2 class="CCSTYLE__modal__title"&gt;Revoke key&lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;button class="CCSTYLE__btn CCSTYLE__btn--ghost CCSTYLE__btn--sm"&gt;Close&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="CCSTYLE__modal__body"&gt;…&lt;/div&gt;
+    &lt;div class="CCSTYLE__modal__footer"&gt;
+      &lt;button class="CCSTYLE__btn CCSTYLE__btn--ghost"&gt;Cancel&lt;/button&gt;
+      &lt;button class="CCSTYLE__btn CCSTYLE__btn--danger"&gt;Revoke&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ============================= UTILITIES ============================ -->
+    <section class="SG__section" id="utilities">
+      <h2 class="SG__h2">Utilities</h2>
+      <p class="SG__p">
+        A deliberately small set of layout and text helpers. Everything else should be a
+        component.
+      </p>
+      <div class="CCSTYLE__table-wrap SG__mb">
+        <table class="CCSTYLE__table">
+          <thead><tr><th>Class</th><th>Does</th></tr></thead>
+          <tbody>
+            <tr><td><code class="CCSTYLE__code">CCSTYLE__stack</code></td><td>Vertical flex column with a 0.85rem gap.</td></tr>
+            <tr><td><code class="CCSTYLE__code">CCSTYLE__row</code></td><td>Horizontal wrapping flex row, vertically centred.</td></tr>
+            <tr><td><code class="CCSTYLE__code">CCSTYLE__row--between</code></td><td>Pushes children to opposite ends.</td></tr>
+            <tr><td><code class="CCSTYLE__code">CCSTYLE__grid-2</code></td><td>Auto-fit grid, min column 16rem.</td></tr>
+            <tr><td><code class="CCSTYLE__code">CCSTYLE__mono</code></td><td>Monospace at 0.78rem for ids and keys.</td></tr>
+            <tr><td><code class="CCSTYLE__code">CCSTYLE__muted</code></td><td>Secondary grey text.</td></tr>
+            <tr><td><code class="CCSTYLE__code">CCSTYLE__accent</code></td><td>Amber text.</td></tr>
+            <tr><td><code class="CCSTYLE__code">CCSTYLE__nums</code></td><td>Tabular figures so digits do not shift.</td></tr>
+            <tr><td><code class="CCSTYLE__code">CCSTYLE__truncate</code></td><td>Single line with an ellipsis.</td></tr>
+            <tr><td><code class="CCSTYLE__code">CCSTYLE__sr-only</code></td><td>Visually hidden, still read by screen readers.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="SG__h3">Accessibility &amp; motion</h3>
+      <p class="SG__p">
+        Every interactive component exposes the same amber focus ring via
+        <code class="CCSTYLE__code">:focus-visible</code>. All hover lifts, the modal animation
+        and the spinner are disabled under
+        <code class="CCSTYLE__code">prefers-reduced-motion: reduce</code>.
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<!-- Demo modal for the Modal section -->
+<div class="CCSTYLE__modal" id="sg-modal" hidden>
+  <button class="CCSTYLE__modal__backdrop" aria-label="Close" data-sg-modal-close></button>
+  <div class="CCSTYLE__modal__dialog" role="dialog" aria-modal="true" aria-labelledby="sg-modal-title">
+    <div class="CCSTYLE__modal__header">
+      <div>
+        <p class="CCSTYLE__eyebrow">Licence</p>
+        <h2 class="CCSTYLE__modal__title" id="sg-modal-title">Revoke key</h2>
+      </div>
+      <button class="CCSTYLE__btn CCSTYLE__btn--ghost CCSTYLE__btn--sm" data-sg-modal-close>Close</button>
+    </div>
+    <div class="CCSTYLE__modal__body">
+      <p class="CCSTYLE__note CCSTYLE__note--danger">
+        Revoking takes effect on every device immediately and cannot be undone.
+      </p>
+      <p class="CCSTYLE__subtitle" style="margin-top:1rem">
+        Key <span class="CCSTYLE__mono CCSTYLE__accent">YFP-8F3C-21D9-AC44</span> is active on
+        3 devices.
+      </p>
+    </div>
+    <div class="CCSTYLE__modal__footer">
+      <button class="CCSTYLE__btn CCSTYLE__btn--ghost" data-sg-modal-close>Cancel</button>
+      <button class="CCSTYLE__btn CCSTYLE__btn--danger" data-sg-modal-close>Revoke key</button>
+    </div>
+  </div>
+</div>
+
+<script src="./styleguide.js"></script>
+</body>
+</html>

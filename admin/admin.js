@@ -552,7 +552,7 @@ try {
 }
 
 const VALID_FILTERS = new Set(['all', 'unread', 'read'])
-const VALID_TABS = new Set(['feedback', 'yt', 'idme', 'ge', 'ivd'])
+const VALID_TABS = new Set(['feedback', 'yt', 'idme', 'isp', 'ge', 'ivd'])
 const VALID_YT_SUBTABS = new Set([
   'analytics',
   'users',
@@ -562,6 +562,7 @@ const VALID_YT_SUBTABS = new Set([
   'api',
 ])
 const VALID_IDME_SUBTABS = new Set(['users', 'gifts'])
+const VALID_ISP_SUBTABS = new Set(['gifts'])
 const VALID_GE_SUBTABS = new Set(['users', 'gifts'])
 const VALID_IVD_SUBTABS = new Set(['gifts', 'check-license'])
 const YT_CHART_KEYS = [
@@ -730,6 +731,17 @@ function getIdmeSubTab() {
 function setIdmeSubTab(value) {
   const next = VALID_IDME_SUBTABS.has(value) ? value : 'users'
   settings.set('idmeSubTab', next)
+  return next
+}
+
+function getIspSubTab() {
+  const value = settings.get('ispSubTab')
+  return VALID_ISP_SUBTABS.has(value) ? value : 'gifts'
+}
+
+function setIspSubTab(value) {
+  const next = VALID_ISP_SUBTABS.has(value) ? value : 'gifts'
+  settings.set('ispSubTab', next)
   return next
 }
 
@@ -1311,6 +1323,9 @@ function currentAdminPath() {
     if (sub === 'gifts') return '/ig-dm-exporter/gifts'
     return '/ig-dm-exporter/users'
   }
+  if (tab === 'isp') {
+    return '/ig-saved-posts/gifts'
+  }
   if (tab === 'ge') {
     const sub = getGeSubTab()
     if (sub === 'gifts') return '/gmail-exporter/gifts'
@@ -1377,6 +1392,14 @@ function parseAdminPath(hash) {
     return { tab: 'idme', sub: 'gifts' }
   }
   if (
+    clean === 'ig-saved-posts' ||
+    clean === 'ig-saved-posts/gifts' ||
+    clean === 'ig-saved-posts/gift-codes' ||
+    clean === 'isp/gifts'
+  ) {
+    return { tab: 'isp', sub: 'gifts' }
+  }
+  if (
     clean === 'gmail-exporter' ||
     clean === 'gmail-exporter/users' ||
     clean === 'gmail/users'
@@ -1407,6 +1430,7 @@ function applyAdminRouteFromUrl() {
   applyingAdminRoute = true
   try {
     if (parsed.tab === 'idme' && parsed.sub) setIdmeSubTab(parsed.sub)
+    else if (parsed.tab === 'isp' && parsed.sub) setIspSubTab(parsed.sub)
     else if (parsed.tab === 'ge' && parsed.sub) setGeSubTab(parsed.sub)
     else if (parsed.tab === 'ivd' && parsed.sub) setIvdSubTab(parsed.sub)
     else if (parsed.sub) setYtSubTab(parsed.sub)
@@ -1414,6 +1438,19 @@ function applyAdminRouteFromUrl() {
   } finally {
     applyingAdminRoute = false
   }
+}
+
+function syncSidebarForTab(active) {
+  document.querySelectorAll('.admin__sidebar-group').forEach((group) => {
+    const key = group.dataset.sidebarGroup
+    const isCurrent = key === active
+    group.classList.toggle('admin__sidebar-group--current', isCurrent)
+    if (!isCurrent) return
+    group.classList.add('admin__sidebar-group--open')
+    group
+      .querySelector('.admin__sidebar-group-head')
+      ?.setAttribute('aria-expanded', 'true')
+  })
 }
 
 function switchTab(tab, { persist = true, skipUrl = false } = {}) {
@@ -1429,10 +1466,13 @@ function switchTab(tab, { persist = true, skipUrl = false } = {}) {
     btn.classList.toggle('admin__tab--active', isActive)
     btn.setAttribute('aria-selected', isActive ? 'true' : 'false')
   })
+  syncSidebarForTab(active)
   document.getElementById('panel-feedback').hidden = active !== 'feedback'
   document.getElementById('panel-yt').hidden = active !== 'yt'
   const panelIdme = document.getElementById('panel-idme')
   if (panelIdme) panelIdme.hidden = active !== 'idme'
+  const panelIsp = document.getElementById('panel-isp')
+  if (panelIsp) panelIsp.hidden = active !== 'isp'
   const panelGe = document.getElementById('panel-ge')
   if (panelGe) panelGe.hidden = active !== 'ge'
   const panelIvd = document.getElementById('panel-ivd')
@@ -1443,6 +1483,9 @@ function switchTab(tab, { persist = true, skipUrl = false } = {}) {
   }
   if (active === 'idme') {
     applyIdmeSubTab()
+  }
+  if (active === 'isp') {
+    applyIspSubTab()
   }
   if (active === 'ge') {
     applyGeSubTab()
@@ -1456,6 +1499,9 @@ function switchTab(tab, { persist = true, skipUrl = false } = {}) {
   }
   if (typeof window.IvdAdminAccounts?.updateSupabaseLabel === 'function') {
     window.IvdAdminAccounts.updateSupabaseLabel()
+  }
+  if (typeof window.IspAdminAccounts?.updateSupabaseLabel === 'function') {
+    window.IspAdminAccounts.updateSupabaseLabel()
   }
   if (active === 'feedback' && state.loaded.feedback) {
     requestAnimationFrame(() => renderFeedbackGraph())
@@ -1503,6 +1549,34 @@ function applyIdmeSubTab() {
       setTimeout(loadGifts, 0)
     })
   }
+}
+
+function applyIspSubTab() {
+  const sub = getIspSubTab()
+  document.querySelectorAll('[data-isp-subtab]').forEach((btn) => {
+    const isActive = btn.dataset.ispSubtab === sub
+    btn.classList.toggle('admin__subtab--active', isActive)
+    btn.setAttribute('aria-selected', isActive ? 'true' : 'false')
+  })
+  const gifts = document.getElementById('isp-subpanel-gifts')
+  if (gifts) gifts.hidden = sub !== 'gifts'
+  syncAdminUrl()
+
+  if (document.getElementById('panel-isp')?.hidden) return
+  if (typeof window.IspAdminAccounts?.updateSupabaseLabel === 'function') {
+    window.IspAdminAccounts.updateSupabaseLabel()
+  }
+  const loadGifts = () => {
+    if (window.IspAdminAccounts) {
+      void window.IspAdminAccounts.renderGifts()
+      return true
+    }
+    return false
+  }
+  requestAnimationFrame(() => {
+    if (loadGifts()) return
+    setTimeout(loadGifts, 0)
+  })
 }
 
 function applyGeSubTab() {
@@ -6213,6 +6287,7 @@ document.querySelectorAll('.admin__tab').forEach((btn) => {
 
 document.querySelectorAll('[data-yt-subtab]').forEach((btn) => {
   btn.addEventListener('click', () => {
+    switchTab('yt')
     setYtSubTab(btn.dataset.ytSubtab)
     applyYtSubTab()
   })
@@ -6220,13 +6295,23 @@ document.querySelectorAll('[data-yt-subtab]').forEach((btn) => {
 
 document.querySelectorAll('[data-idme-subtab]').forEach((btn) => {
   btn.addEventListener('click', () => {
+    switchTab('idme')
     setIdmeSubTab(btn.dataset.idmeSubtab)
     applyIdmeSubTab()
   })
 })
 
+document.querySelectorAll('[data-isp-subtab]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    switchTab('isp')
+    setIspSubTab(btn.dataset.ispSubtab)
+    applyIspSubTab()
+  })
+})
+
 document.querySelectorAll('[data-ge-subtab]').forEach((btn) => {
   btn.addEventListener('click', () => {
+    switchTab('ge')
     setGeSubTab(btn.dataset.geSubtab)
     applyGeSubTab()
   })
@@ -6234,10 +6319,52 @@ document.querySelectorAll('[data-ge-subtab]').forEach((btn) => {
 
 document.querySelectorAll('[data-ivd-subtab]').forEach((btn) => {
   btn.addEventListener('click', () => {
+    switchTab('ivd')
     setIvdSubTab(btn.dataset.ivdSubtab)
     applyIvdSubTab()
   })
 })
+
+;(function initAdminSidebar() {
+  const root = document.querySelector('.admin')
+  const collapseBtn = document.getElementById('admin-sidebar-collapse')
+  const SIDEBAR_COLLAPSED_KEY = 'admin-sidebar-collapsed'
+  if (!root) return
+
+  function setCollapsed(collapsed) {
+    root.classList.toggle('admin--sidebar-collapsed', collapsed)
+    collapseBtn?.setAttribute('aria-expanded', collapsed ? 'false' : 'true')
+    collapseBtn?.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar')
+    collapseBtn?.setAttribute('title', collapsed ? 'Expand sidebar' : 'Collapse sidebar')
+    try {
+      localStorage.setItem(SIDEBAR_COLLAPSED_KEY, collapsed ? '1' : '')
+    } catch (_) {}
+  }
+
+  try {
+    if (localStorage.getItem(SIDEBAR_COLLAPSED_KEY) === '1') setCollapsed(true)
+  } catch (_) {}
+
+  collapseBtn?.addEventListener('click', () => {
+    setCollapsed(!root.classList.contains('admin--sidebar-collapsed'))
+  })
+
+  document.querySelectorAll('.admin__sidebar-group-head').forEach((head) => {
+    head.addEventListener('click', () => {
+      const group = head.closest('.admin__sidebar-group')
+      if (!group) return
+      // Collapsed rail: the first click just reopens the sidebar on this group.
+      if (root.classList.contains('admin--sidebar-collapsed')) {
+        setCollapsed(false)
+        group.classList.add('admin__sidebar-group--open')
+        head.setAttribute('aria-expanded', 'true')
+        return
+      }
+      const open = group.classList.toggle('admin__sidebar-group--open')
+      head.setAttribute('aria-expanded', open ? 'true' : 'false')
+    })
+  })
+})()
 
 document.getElementById('yt-users-search')?.addEventListener('input', (event) => {
   state.ytUsersQuery = event.currentTarget?.value || ''

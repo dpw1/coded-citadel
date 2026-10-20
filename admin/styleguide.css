@@ -1,0 +1,302 @@
+/* ===========================================================================
+   Styleguide chrome.
+   These `SG__` classes style the documentation page itself — the nav, section
+   headings, demo frames and code blocks. They are NOT part of the UI kit.
+   Only ccstyle.css needs to be copied into other projects.
+   =========================================================================== */
+
+.SG {
+  display: flex;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.SG__skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.SG__skip:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 50;
+  padding: 0.6rem 1rem;
+  background: var(--CCSTYLE-primary);
+  color: #000;
+  border-radius: var(--CCSTYLE-r-sm);
+}
+
+/* ---------- Doc sidebar ---------- */
+
+.SG__nav {
+  position: sticky;
+  top: 0;
+  flex: 0 0 auto;
+  width: 15rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(255, 153, 0, 0.05), transparent 20rem),
+    var(--CCSTYLE-bg-surface);
+  border-right: 1px solid var(--CCSTYLE-border);
+  overflow-y: auto;
+}
+
+.SG__nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  height: 4.5rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--CCSTYLE-divider);
+}
+
+.SG__nav__mark {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  flex: 0 0 auto;
+  border-radius: 7px;
+  font-family: var(--CCSTYLE-font-display);
+  font-size: 0.82rem;
+  color: #0b0d13;
+  background: linear-gradient(145deg, var(--CCSTYLE-primary), #ffb347);
+  box-shadow: 0 4px 14px rgba(255, 153, 0, 0.28);
+}
+
+.SG__nav__eyebrow {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--CCSTYLE-primary);
+}
+
+.SG__nav__title {
+  display: block;
+  font-family: var(--CCSTYLE-font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.SG__nav__links {
+  display: flex;
+  flex-direction: column;
+  padding: 0.85rem 0.6rem 2rem;
+  gap: 0.1rem;
+}
+
+.SG__nav__links a {
+  position: relative;
+  padding: 0.5rem 0.7rem;
+  border-radius: 8px;
+  color: var(--CCSTYLE-text-muted);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: color 0.18s var(--CCSTYLE-ease), background 0.18s var(--CCSTYLE-ease);
+}
+
+.SG__nav__links a:hover {
+  color: var(--CCSTYLE-text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.SG__nav__links a.is-active {
+  color: var(--CCSTYLE-text);
+  background: linear-gradient(90deg, rgba(255, 153, 0, 0.14), rgba(255, 153, 0, 0.02));
+}
+
+.SG__nav__links a.is-active::before {
+  content: '';
+  position: absolute;
+  left: -0.35rem;
+  top: 50%;
+  width: 3px;
+  height: 1.2rem;
+  border-radius: 0 3px 3px 0;
+  background: var(--CCSTYLE-primary);
+  box-shadow: 0 0 10px rgba(255, 153, 0, 0.6);
+  transform: translateY(-50%);
+}
+
+/* ---------- Content ---------- */
+
+.SG__main {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 60rem;
+  padding: 2.5rem 2.5rem 6rem;
+}
+
+.SG__hero {
+  padding-bottom: 1.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--CCSTYLE-divider);
+}
+
+.SG__hero__lede {
+  max-width: 44rem;
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.SG__section {
+  padding-top: 2.75rem;
+  scroll-margin-top: 1rem;
+}
+
+.SG__h2 {
+  margin: 0 0 0.75rem;
+  font-family: var(--CCSTYLE-font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.SG__h3 {
+  margin: 2rem 0 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--CCSTYLE-text);
+}
+
+.SG__p {
+  max-width: 46rem;
+  margin: 0 0 1rem;
+  color: var(--CCSTYLE-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.SG__p strong {
+  color: var(--CCSTYLE-text);
+}
+
+.SG__mb {
+  margin-bottom: 1rem;
+}
+
+/* Live preview frame. Subtle dot grid so transparent components stay visible. */
+.SG__demo {
+  padding: 1.5rem;
+  margin: 0 0 0.75rem;
+  background-color: var(--CCSTYLE-bg-base);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 14px 14px;
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-lg) var(--CCSTYLE-r-lg) 0 0;
+}
+
+/* Code block, visually joined to the demo frame above it. */
+.SG__code {
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  background: #0b0e14;
+  border: 1px solid var(--CCSTYLE-border);
+  border-top: none;
+  border-radius: 0 0 var(--CCSTYLE-r-lg) var(--CCSTYLE-r-lg);
+  font-family: var(--CCSTYLE-font-mono);
+  font-size: 0.76rem;
+  line-height: 1.7;
+  color: #c9d4e4;
+  scrollbar-width: thin;
+  scrollbar-color: var(--CCSTYLE-border-glow) transparent;
+}
+
+.SG__code code {
+  font: inherit;
+  color: inherit;
+  white-space: pre;
+}
+
+/* A code block with no demo above it gets all four corners. */
+.SG__section > .SG__code {
+  border-top: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-lg);
+}
+
+.SG__section > .SG__demo + .SG__code {
+  border-top: none;
+  border-radius: 0 0 var(--CCSTYLE-r-lg) var(--CCSTYLE-r-lg);
+}
+
+/* ---------- Token swatches ---------- */
+
+.SG__swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+}
+
+.SG__swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.75rem;
+  background: var(--CCSTYLE-surface), var(--CCSTYLE-bg-card);
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-md);
+}
+
+.SG__swatch__chip {
+  height: 2.75rem;
+  border-radius: var(--CCSTYLE-r-sm);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.SG__swatch code {
+  font-family: var(--CCSTYLE-font-mono);
+  font-size: 0.68rem;
+  color: var(--CCSTYLE-primary);
+  word-break: break-all;
+}
+
+.SG__swatch small {
+  font-size: 0.7rem;
+  color: var(--CCSTYLE-text-muted);
+}
+
+/* Fixed-height frame so the sidebar demo does not stretch the page. */
+.SG__sidebar-demo {
+  display: flex;
+  height: 21rem;
+  overflow: hidden;
+  border: 1px solid var(--CCSTYLE-border);
+  border-radius: var(--CCSTYLE-r-md);
+}
+
+.SG__sidebar-demo .CCSTYLE__sidebar {
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  .SG {
+    flex-direction: column;
+  }
+
+  .SG__nav {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--CCSTYLE-border);
+  }
+
+  .SG__nav__links {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .SG__nav__links a.is-active::before {
+    display: none;
+  }
+
+  .SG__main {
+    padding: 1.5rem 1.25rem 4rem;
+  }
+}
