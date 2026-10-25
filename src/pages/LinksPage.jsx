@@ -21,7 +21,7 @@ const LINK_PAGE_ITEMS = [
     chromeExtensionId: 'hgojieiehkjgjhdnbglfhbcojeeggigi',
     title: 'Instagram DM Exporter',
     summary:
-      'Download your Instagram conversations in one click. It can also convert all audio messages to text.',
+      'Download your Instagram conversations in one click, including all media. It can also convert all audio messages to text.',
   },
   {
     href: 'https://chromewebstore.google.com/detail/ig-reels-insight-view-per/flgffomdohbmbdcofkpoladpilbmohfj',
