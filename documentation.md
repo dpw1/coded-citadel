@@ -38,7 +38,7 @@ Defined in `src/App.jsx`:
 | `/thank-you`, `/uninstall`, `/success` | Extension flows | Query params for app feedback / Stripe |
 | `/privacy-policy/:slug`, `/terms-of-service/:slug` | Legal | Per-app content in `src/content/` |
 | `/davinci-resolve-plugins`, `/davinci-resolve-plugins/:slug` | DaVinci plugins | Separate product line |
-| `/YFP` | Short link | Redirect to YouTube Filter Pro CWS |
+| `/YFP`, `/yfp`, etc. | Short links | External URLs in `redirects.json` |
 
 ---
 
@@ -53,6 +53,7 @@ Defined in `src/App.jsx`:
 | **YouTube embeds** | Channel fetch | `src/data/youtube-videos.json` |
 | **Analytics snapshots** | GA / CWS scripts | `src/data/ga-db.json`, `website-analytics.json`, etc. |
 | **Blog redirects** | `blog-redirects.json` | Merged in blog manifest |
+| **Site short links** | `redirects.json` | External redirects in `src/App.jsx` via `StoreRedirectPage` |
 
 After changing **`blogs/*.md`**, run **`npm run generate-blog-manifest`** (or full `build`).
 
@@ -107,6 +108,7 @@ Also useful:
 
 - **`samples/seo-google-guide.md`** — Google Search fundamentals (local reference).
 - **`blog-redirects.json`** — old slug → new slug when renaming posts.
+- **`redirects.json`** — path → external URL for marketing short links (CWS, partner tools, etc.).
 
 Do **not** invent blog voice from generic SEO templates alone; follow **`writing-style.md`** and **`seo-documentation.md`** together.
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import PageSEO from '../components/PageSEO'
 
-export default function StoreRedirectPage({ url, title }) {
+export default function StoreRedirectPage({ url, title, continueLabel = 'Continue' }) {
   useEffect(() => {
     window.location.replace(url)
   }, [url])
@@ -10,7 +10,7 @@ export default function StoreRedirectPage({ url, title }) {
     <>
       <PageSEO
         title={title}
-        description="Redirecting to the Chrome Web Store."
+        description={`Redirecting to ${title}.`}
         canonicalUrl={url}
         robots="noindex, follow"
       />
@@ -19,7 +19,7 @@ export default function StoreRedirectPage({ url, title }) {
           <p className="CC__privacy-page__meta">
             Redirecting…{' '}
             <a href={url} rel="noopener noreferrer">
-              Continue to the Chrome Web Store
+              {continueLabel}
             </a>
           </p>
         </div>
