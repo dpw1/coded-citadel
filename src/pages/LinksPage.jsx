@@ -1,41 +1,55 @@
 import { useMemo } from 'react'
 import PageSEO from '../components/PageSEO'
-import { SOCIAL_LINKS } from '../constants/chromeWebStore'
-import {
-  appCardSummary,
-  appFilterLabel,
-  appIconUrl,
-  getAppBySource,
-} from '../utils/apps'
+import { YT_FILTER_PRO_STORE_URL } from '../constants/chromeWebStore'
+import { appIconUrl, getAppBySource } from '../utils/apps'
 import '../App.css'
 import './LinksPage.css'
 
 const LINKS_DESCRIPTION =
   'Chrome extensions to make your life easier. 100% privacy-friendly, built by a senior developer.'
 
-function chromeExtensionIdFromUrl(href) {
-  try {
-    const segment = new URL(href).pathname.split('/').filter(Boolean).pop()
-    if (segment && /^[a-p]{32}$/.test(segment)) return segment
-  } catch {
-    // ignore invalid URLs
-  }
-  return null
-}
+const LINK_PAGE_ITEMS = [
+  {
+    href: YT_FILTER_PRO_STORE_URL,
+    chromeExtensionId: 'dbkkcbfafkckhmefkpgnelikibobcabb',
+    title: 'YouTube Filter Pro',
+    summary:
+      'Adds 40+ filters to YouTube: views, duration, subscribers and much more. 9k+ weekly active users.',
+  },
+  {
+    href: 'https://chromewebstore.google.com/detail/hgojieiehkjgjhdnbglfhbcojeeggigi',
+    chromeExtensionId: 'hgojieiehkjgjhdnbglfhbcojeeggigi',
+    title: 'Instagram DM Exporter',
+    summary:
+      'Download your Instagram conversations in one click. It can also convert all audio messages to text.',
+  },
+  {
+    href: 'https://chromewebstore.google.com/detail/ig-reels-insight-view-per/flgffomdohbmbdcofkpoladpilbmohfj',
+    chromeExtensionId: 'flgffomdohbmbdcofkpoladpilbmohfj',
+    title: 'Instagram Reels Insight',
+    summary:
+      'Analyze the growth, engagement rate, most well-performing reels & more useful data of any Instagram account.',
+  },
+  {
+    href: 'https://chromewebstore.google.com/detail/saved-posts-exporter-for/ielboamnlillhhdacfhanhgmjgpamgck',
+    chromeExtensionId: 'ielboamnlillhhdacfhanhgmjgpamgck',
+    title: 'Instagram: Saved Posts Exporter',
+    summary: 'Easily download and manage your saved collections.',
+  },
+]
 
 export default function LinksPage() {
   const linkItems = useMemo(
     () =>
-      SOCIAL_LINKS.map((link) => {
-        const id = link.chromeExtensionId ?? chromeExtensionIdFromUrl(link.href)
-        const app = id ? getAppBySource(id) : null
+      LINK_PAGE_ITEMS.map((link) => {
+        const app = getAppBySource(link.chromeExtensionId)
         const iconUrl = app ? appIconUrl(app) : null
         return {
           href: link.href,
-          title: app ? appFilterLabel(app) : link.label,
-          summary: app ? appCardSummary(app) : '',
+          title: link.title,
+          summary: link.summary,
           iconUrl,
-          iconAlt: app ? `${appFilterLabel(app)} icon` : link.label,
+          iconAlt: `${link.title} icon`,
           fallbackIcon: app?.icon ?? '⚡',
         }
       }),

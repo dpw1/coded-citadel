@@ -13,13 +13,13 @@ export const SOCIAL_LINKS = [
     chromeExtensionId: 'hgojieiehkjgjhdnbglfhbcojeeggigi',
   },
   {
-    label: 'Gmail to PDF exporter',
-    href: 'https://chromewebstore.google.com/detail/gmail-to-pdf-save-emails/bhagkmlelgbjbklgafgdjeebkdhlibjf',
-    chromeExtensionId: 'bhagkmlelgbjbklgafgdjeebkdhlibjf',
-  },
-  {
     label: 'Instagram Reels Insight',
     href: 'https://chromewebstore.google.com/detail/ig-reels-insight-view-per/flgffomdohbmbdcofkpoladpilbmohfj',
     chromeExtensionId: 'flgffomdohbmbdcofkpoladpilbmohfj',
+  },
+  {
+    label: 'Instagram: Saved Posts Exporter',
+    href: 'https://chromewebstore.google.com/detail/saved-posts-exporter-for/ielboamnlillhhdacfhanhgmjgpamgck',
+    chromeExtensionId: 'ielboamnlillhhdacfhanhgmjgpamgck',
   },
 ]
