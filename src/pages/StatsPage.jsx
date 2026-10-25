@@ -12,7 +12,7 @@ export default function StatsPage() {
     <>
       <PageSEO
         title="Portfolio Stats — Live Extension Analytics | Coded Citadel"
-        description="Live install counts, active users, and portfolio metrics for every Coded Citadel Chrome extension — from Chrome Web Store and Google Analytics."
+        description="Live install counts, daily users, and portfolio metrics for every Coded Citadel Chrome extension — from Chrome Web Store and Google Analytics."
         canonicalPath="/live-stats"
       />
       <SiteHeader />

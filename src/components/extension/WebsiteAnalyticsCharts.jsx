@@ -99,7 +99,7 @@ function mountLineChart(canvas, series, tooltipLabel, height = 200) {
 
 const CHART_DEFS = [
   { key: 'pageViews', label: 'views' },
-  { key: 'activeUsers', label: 'users' },
+  { key: 'activeUsers', label: 'daily users' },
   { key: 'blogViews', label: 'blog views' },
   { key: 'sessions', label: 'sessions' },
 ]

@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-10-20T03:21:58.226Z",
+  "updatedAt": "2026-10-25T02:41:58.916Z",
   "message": null,
   "apps": [
     {
@@ -295,6 +295,24 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "c5101c96dc2428dfa8eb777d3f10e44e41e6757e",
+          "shortSha": "c5101c9",
+          "message": "Update version to 2.0.182, enhance filter sorting options, and improve UI kit documentation",
+          "date": "2026-10-23T04:59:08Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/c5101c96dc2428dfa8eb777d3f10e44e41e6757e",
+          "version": "2.0.182"
+        },
+        {
+          "sha": "02040ddd9d76442bf4b1f230ec16af6452b43f27",
+          "shortSha": "02040dd",
+          "message": "Update version to 2.0.181, enhance gift code handling, and improve UI kit documentation",
+          "date": "2026-10-23T04:42:26Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/02040ddd9d76442bf4b1f230ec16af6452b43f27",
+          "version": "2.0.181"
+        },
         {
           "sha": "579db0887709f93ce436be262c99af2fe4e077e5",
           "shortSha": "579db08",
@@ -689,7 +707,7 @@
           "date": "2026-09-02T09:12:15Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/7fdc74d9b38f41efed96e0adcfcea398d70aef4d",
-          "version": "1.0.86"
+          "version": "2.0.180"
         },
         {
           "sha": "a7a6500223902e872211422fc9f2591cbd139653",
@@ -698,7 +716,7 @@
           "date": "2026-09-01T05:18:20Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/a7a6500223902e872211422fc9f2591cbd139653",
-          "version": "1.0.86"
+          "version": "2.0.180"
         },
         {
           "sha": "6cc689aa98bf952807be65db2cbfad032ecc5704",
@@ -707,7 +725,7 @@
           "date": "2026-08-30T20:18:14Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/6cc689aa98bf952807be65db2cbfad032ecc5704",
-          "version": "1.0.86"
+          "version": "2.0.180"
         },
         {
           "sha": "512a5a6c496471a7182d601ac72290106be29758",
@@ -716,7 +734,7 @@
           "date": "2026-08-29T20:46:14Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/512a5a6c496471a7182d601ac72290106be29758",
-          "version": "1.0.86"
+          "version": "2.0.180"
         },
         {
           "sha": "11f5a306a717a83678b89dcf51dec96a7dd400db",
@@ -725,25 +743,7 @@
           "date": "2026-08-28T21:44:40Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/11f5a306a717a83678b89dcf51dec96a7dd400db",
-          "version": "1.0.86"
-        },
-        {
-          "sha": "2d0f865be732bc5c799754e50d48e35a94f0a3b8",
-          "shortSha": "2d0f865",
-          "message": "Weekly quota enforcement, export UX, and v1.0.86.",
-          "date": "2026-08-28T15:49:56Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/2d0f865be732bc5c799754e50d48e35a94f0a3b8",
-          "version": "1.0.86"
-        },
-        {
-          "sha": "c19151321c6218eb8cfed15a58e7c8caa5e34bbe",
-          "shortSha": "c191513",
-          "message": "Update to version 1.0.85: Added .env to cursorignore, removed logo-128.png, and enhanced background authentication handling. Introduced session management improvements in backgroundAuth.ts and updated Supabase client configuration to disable auto-refresh token. Co-authored-by: Cursor <cursoragent@cursor.com>",
-          "date": "2026-08-26T14:17:48Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/c19151321c6218eb8cfed15a58e7c8caa5e34bbe",
-          "version": "1.0.85"
+          "version": "2.0.180"
         }
       ]
     },

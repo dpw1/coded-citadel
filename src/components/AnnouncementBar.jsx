@@ -28,7 +28,7 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, duplicate = f
         className={`CC__announcement-bar__marquee-item${dupClass}`}
         tabIndex={duplicate ? -1 : undefined}
       >
-        {formatNumber(totalActiveUsers)} users
+        {formatNumber(totalActiveUsers)} daily users
       </Link>
       <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
       <Link
@@ -52,7 +52,7 @@ export default function AnnouncementBar() {
   const ariaLabel = [
     TAGLINE,
     `${formatNumber(liveApps)} apps`,
-    `${formatNumber(totalActiveUsers)} users`,
+    `${formatNumber(totalActiveUsers)} daily users`,
     `${formatNumber(totalInstalls)} installs`,
   ].join(' | ')
 
@@ -67,7 +67,7 @@ export default function AnnouncementBar() {
             <Link to="/live-stats">{formatNumber(liveApps)} apps</Link>
           </li>
           <li>
-            <Link to="/live-stats">{formatNumber(totalActiveUsers)} users</Link>
+            <Link to="/live-stats">{formatNumber(totalActiveUsers)} daily users</Link>
           </li>
           <li>
             <Link to="/live-stats">{formatNumber(totalInstalls)} installs</Link>

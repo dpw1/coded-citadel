@@ -329,12 +329,12 @@ export default function ExtensionCard({
             <div className="CC__ext-stat-sep" aria-hidden="true" />
           ) : null}
           {showUsers ? (
-            <div className="CC__ext-stat" title={`${activeUsers ?? 0} users`}>
+            <div className="CC__ext-stat" title={`${activeUsers ?? 0} daily users`}>
               <span className="CC__ext-stat__icon--users" aria-hidden="true">
                 {USERS_ICON}
               </span>
               <span className="CC__ext-stat__val">{formatExtensionStat(activeUsers)}</span>
-              <span className="CC__ext-stat__label">users</span>
+              <span className="CC__ext-stat__label">daily users</span>
             </div>
           ) : null}
           {showVideoStat && hasVideo && !youtubeInQuickRow ? (

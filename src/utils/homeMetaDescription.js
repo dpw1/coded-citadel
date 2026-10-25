@@ -25,7 +25,7 @@ export function buildHomeMetaDescriptionSocial(stats) {
 
   let description =
     `Coded Citadel — building social media and ecommerce tools in public. ` +
-    `${apps} free Chrome extensions with ${users} active users and ${installs} installs, ` +
+    `${apps} free Chrome extensions with ${users} daily users and ${installs} installs, ` +
     `each documented step by step on YouTube`
 
   if (stats.daysIntoJourney != null) {
@@ -35,7 +35,7 @@ export function buildHomeMetaDescriptionSocial(stats) {
   description += '.'
 
   if (stats.activeUsersDelta7d != null && stats.activeUsersDelta7d > 0) {
-    description += ` (+${formatMetaCount(stats.activeUsersDelta7d)} users this week).`
+    description += ` (+${formatMetaCount(stats.activeUsersDelta7d)} daily users this week).`
   }
 
   return description

@@ -11,7 +11,7 @@ import '../App.css'
 import './LinksPage.css'
 
 const LINKS_DESCRIPTION =
-  'Chrome extensions built by Coded Citadel. Install your pick from the Web Store.'
+  'Chrome extensions to make your life easier. 100% privacy-friendly, built by a senior developer.'
 
 function chromeExtensionIdFromUrl(href) {
   try {
@@ -59,7 +59,11 @@ export default function LinksPage() {
             height={88}
           />
           <h1 className="CC__links-page__title">Coded Citadel</h1>
-          <p className="CC__links-page__desc">{LINKS_DESCRIPTION}</p>
+          <p className="CC__links-page__desc">
+            Chrome extensions to make your life easier.
+            <br />
+            100% privacy-friendly, built by a senior developer.
+          </p>
           <nav className="CC__links-list" aria-label="Chrome extensions">
             {linkItems.map((item) => (
               <a

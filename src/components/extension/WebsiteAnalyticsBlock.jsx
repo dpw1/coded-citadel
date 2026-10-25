@@ -238,7 +238,7 @@ export default function WebsiteAnalyticsBlock({ data, loading = false, chartIds 
           </div>
           <div className="ext-chart-card CC__cyber-accent">
             <CyberCorners />
-            <div className="ext-chart-card__title">Active Users</div>
+            <div className="ext-chart-card__title">Daily Users</div>
             <div className="ext-chart-card__canvas-wrap" style={{ height: 200 }}>
               <canvas id={chartIds.activeUsers} />
             </div>

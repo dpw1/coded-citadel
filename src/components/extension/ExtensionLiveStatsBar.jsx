@@ -50,7 +50,7 @@ export default function ExtensionLiveStatsBar({
           </li>
           <li className="CC__stats-bar__item">
             <div className="CC__stats-bar__info">
-              <span className="CC__stats-bar__label">Active Users</span>
+              <span className="CC__stats-bar__label">Daily Users</span>
               <span className="CC__stats-bar__value">{formatNumber(activeUsers)}</span>
               <WeekPercentDelta delta={usersDelta} />
             </div>

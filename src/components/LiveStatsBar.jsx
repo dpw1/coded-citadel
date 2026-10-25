@@ -32,7 +32,7 @@ export default function LiveStatsBar() {
               </svg>
             </div>
             <div className="CC__stats-bar__info">
-              <span className="CC__stats-bar__label">Active Users</span>
+              <span className="CC__stats-bar__label">Daily Users</span>
               <span className="CC__stats-bar__value">{formatNumber(stats.totalActiveUsers)}</span>
               {stats.activeUsersDelta7d > 0 ? (
                 <span className="CC__stats-bar__delta">
