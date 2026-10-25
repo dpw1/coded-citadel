@@ -6,7 +6,7 @@ import '../App.css'
 import './LinksPage.css'
 
 const LINKS_DESCRIPTION =
-  'Chrome extensions that make your life easier. 100% privacy-friendly, built by a senior developer.'
+  'Chrome extensions that make your life easier. 100% privacy-friendly. Built by a senior developer.'
 
 const LINK_PAGE_ITEMS = [
   {
