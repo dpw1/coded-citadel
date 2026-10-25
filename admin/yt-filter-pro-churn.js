@@ -2,10 +2,10 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
   "source": "src/data/portfolio-analytics.json",
   "slug": "youtube-filter-pro",
   "name": "YT Filter Pro: filter by views, duration, date, and more",
-  "updatedAt": "2026-10-20",
-  "extractedAt": "2026-10-20T03:21:20.306Z",
-  "totalInstalls": 4384,
-  "uninstallsTotal": 712,
+  "updatedAt": "2026-10-25",
+  "extractedAt": "2026-10-25T15:46:33.116Z",
+  "totalInstalls": 4862,
+  "uninstallsTotal": 870,
   "installs": [
     {
       "date": "2026-05-18",
@@ -614,6 +614,38 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
     {
       "date": "2026-10-16",
       "total": 75
+    },
+    {
+      "date": "2026-10-17",
+      "total": 54
+    },
+    {
+      "date": "2026-10-18",
+      "total": 64
+    },
+    {
+      "date": "2026-10-19",
+      "total": 57
+    },
+    {
+      "date": "2026-10-20",
+      "total": 70
+    },
+    {
+      "date": "2026-10-21",
+      "total": 62
+    },
+    {
+      "date": "2026-10-22",
+      "total": 60
+    },
+    {
+      "date": "2026-10-23",
+      "total": 53
+    },
+    {
+      "date": "2026-10-24",
+      "total": 58
     }
   ],
   "uninstalls": [
@@ -1172,6 +1204,38 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
     {
       "date": "2026-10-16",
       "total": 46
+    },
+    {
+      "date": "2026-10-17",
+      "total": 32
+    },
+    {
+      "date": "2026-10-18",
+      "total": 25
+    },
+    {
+      "date": "2026-10-19",
+      "total": 35
+    },
+    {
+      "date": "2026-10-20",
+      "total": 25
+    },
+    {
+      "date": "2026-10-21",
+      "total": 37
+    },
+    {
+      "date": "2026-10-22",
+      "total": 43
+    },
+    {
+      "date": "2026-10-23",
+      "total": 26
+    },
+    {
+      "date": "2026-10-24",
+      "total": 42
     }
   ]
 };

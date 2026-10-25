@@ -91,8 +91,8 @@
         "youtube-keyword-alert",
         "instagram-comments-exporter"
       ],
-      "quickStart": "<ul><li>Pin the extension icon in Chrome’s toolbar for quick access (click the puzzle piece, then pin).</li><li>Click the extension icon in your toolbar to open it. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li><li>Easily export YouTube comments and analyze them with AI, so you can find potential products and apps ideas</li></ul>",
-      "quickStartHash": "18e528f6f9593b88",
+      "quickStart": "<ul><li>Pin the extension icon in Chrome’s toolbar for quick access (click the puzzle piece, then pin).</li><li>Click the extension icon in your toolbar to open it. <img src=\"/images/extension-toolbar-hint.jpg\" alt=\"Click the extension icon in the Chrome toolbar\" width=\"320\" loading=\"lazy\" /></li><li>Easily search through YouTube comments in any video and download the comments in one-click</li></ul>",
+      "quickStartHash": "cc15713e6b0ebd19",
       "buildStory": {
         "techStack": [
           "TypeScript",
@@ -458,6 +458,12 @@
       "slug": "custom-data-flgffomd",
       "quickStart": "<ul><li>Open Instagram while logged in</li><li>Go to any reel</li><li>Click on the &quot;Eye&quot; icon</li></ul>",
       "quickStartHash": "1057269565da83ae"
+    },
+    {
+      "id": "ihfiegcghhgbglkooalalegjmpmancfh",
+      "slug": "custom-data-ihfiegcg",
+      "quickStart": "<ul><li>Go to https://www.youtube.com/feed/history</li><li>Click “Comments” in the history sidebar or filters.</li><li>On the My Activity comments page, click “Search Comments” on the left.</li></ul>",
+      "quickStartHash": "772f6afb71930c7a"
     }
   ]
 }
