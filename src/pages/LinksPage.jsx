@@ -28,7 +28,7 @@ const LINK_PAGE_ITEMS = [
     chromeExtensionId: 'flgffomdohbmbdcofkpoladpilbmohfj',
     title: 'Instagram Reels Insight',
     summary:
-      'Analyze the growth, engagement rate, most well-performing reels & more useful data of any Instagram account.',
+      'Analyze the growth and engagement rate of any Instagram account. Find what reels helped the account grow.',
   },
   {
     href: 'https://chromewebstore.google.com/detail/saved-posts-exporter-for/ielboamnlillhhdacfhanhgmjgpamgck',
