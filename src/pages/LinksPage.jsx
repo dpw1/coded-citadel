@@ -6,7 +6,7 @@ import '../App.css'
 import './LinksPage.css'
 
 const LINKS_DESCRIPTION =
-  'Chrome extensions that make your life easier. 100% privacy-friendly. Built by a senior developer.'
+  'Chrome extensions that make your life easier. 100% privacy-friendly, no AI-slop. Built by a senior developer.'
 
 const LINK_PAGE_ITEMS = [
   {
@@ -14,7 +14,7 @@ const LINK_PAGE_ITEMS = [
     chromeExtensionId: 'dbkkcbfafkckhmefkpgnelikibobcabb',
     title: 'YouTube Filter Pro',
     summary:
-      'Adds 40+ filters to YouTube: views, duration, subscribers and much more. 9k+ weekly active users.',
+      'Add 40+ search filters & sorting to YouTube: upload date, duration, subscribers & more. 2k+ daily active users.',
   },
   {
     href: 'https://chromewebstore.google.com/detail/hgojieiehkjgjhdnbglfhbcojeeggigi',
@@ -74,9 +74,9 @@ export default function LinksPage() {
           />
           <h1 className="CC__links-page__title">Coded Citadel</h1>
           <p className="CC__links-page__desc">
-            Chrome extensions to make your life easier.
+            Chrome extensions that make your life easier.
             <br />
-            100% privacy-friendly, built by a senior developer.
+            100% privacy-friendly, no AI-slop. Built by a senior developer.
           </p>
           <nav className="CC__links-list" aria-label="Chrome extensions">
             {linkItems.map((item) => (

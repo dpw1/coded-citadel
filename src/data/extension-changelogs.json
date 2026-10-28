@@ -1,6 +1,6 @@
 {
   "available": true,
-  "updatedAt": "2026-10-25T15:47:01.189Z",
+  "updatedAt": "2026-10-28T21:02:28.789Z",
   "message": null,
   "apps": [
     {
@@ -295,6 +295,15 @@
       "githubPublic": false,
       "defaultBranch": "main",
       "commits": [
+        {
+          "sha": "536c3303a861d434b94df3276b237928cb9fd82e",
+          "shortSha": "536c330",
+          "message": "Update version to 2.0.184, enhance channel inclusion features, and improve localization",
+          "date": "2026-10-28T11:01:43Z",
+          "author": "dpw1",
+          "url": "https://github.com/dpw1/youtube-filter-pro/commit/536c3303a861d434b94df3276b237928cb9fd82e",
+          "version": "2.0.184"
+        },
         {
           "sha": "c5101c96dc2428dfa8eb777d3f10e44e41e6757e",
           "shortSha": "c5101c9",
@@ -734,15 +743,6 @@
           "date": "2026-08-29T20:46:14Z",
           "author": "dpw1",
           "url": "https://github.com/dpw1/youtube-filter-pro/commit/512a5a6c496471a7182d601ac72290106be29758",
-          "version": "2.0.182"
-        },
-        {
-          "sha": "11f5a306a717a83678b89dcf51dec96a7dd400db",
-          "shortSha": "11f5a30",
-          "message": "Raise free tier to 10/week, harden quota gates, and add Ask AI module.",
-          "date": "2026-08-28T21:44:40Z",
-          "author": "dpw1",
-          "url": "https://github.com/dpw1/youtube-filter-pro/commit/11f5a306a717a83678b89dcf51dec96a7dd400db",
           "version": "2.0.182"
         }
       ]

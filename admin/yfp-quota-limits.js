@@ -7,5 +7,5 @@ window.YFP_FREE_TIER_LIMITS = {
   "lifetimeAiChatCap": 9999,
   "lifetimeQuickViewCap": 9999,
   "source": "youtube-search-filters/src/shared/freeTierQuota.json",
-  "syncedAt": "2026-10-23T04:52:26.330Z"
+  "syncedAt": "2026-10-28T19:48:39.199Z"
 };

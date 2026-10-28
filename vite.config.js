@@ -1,4 +1,4 @@
-import { copyFileSync, readFileSync } from 'node:fs'
+import { copyFileSync, existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
@@ -65,9 +65,27 @@ function getPrerenderRoutes() {
   ]
 }
 
+/** GitHub Pages SPA fallback — must run after prerender (closeBundle is reverse plugin order). */
+function copyIndexTo404Plugin() {
+  return {
+    name: 'copy-index-to-404',
+    closeBundle() {
+      const indexPath = join(__dirname, 'dist', 'index.html')
+      const notFoundPath = join(__dirname, 'dist', '404.html')
+      if (!existsSync(indexPath)) {
+        throw new Error(
+          `copy-index-to-404: missing ${indexPath}. Ensure prerender finished and wrote the home route.`,
+        )
+      }
+      copyFileSync(indexPath, notFoundPath)
+    },
+  }
+}
+
 export default defineConfig({
   plugins: [
     react(),
+    copyIndexTo404Plugin(),
     blogDevPlugin(),
     portfolioAnalyticsDevPlugin(),
     liveStatsApiPlugin(),
@@ -79,12 +97,6 @@ export default defineConfig({
         headless: true,
       },
     }),
-    {
-      name: 'copy-index-to-404',
-      closeBundle() {
-        copyFileSync('./dist/index.html', './dist/404.html')
-      },
-    },
   ],
   base: '/',
 })

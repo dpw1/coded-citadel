@@ -64,6 +64,15 @@ export default function SiteFooter() {
               </a>
             </li>
             <li>
+              <a
+                href="https://www.tiktok.com/@codedcitadeldev"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                TikTok
+              </a>
+            </li>
+            <li>
               <a href="https://x.com/codedCitadel2" target="_blank" rel="noopener noreferrer">
                 X
               </a>

@@ -4,7 +4,7 @@ import './AnnouncementBar.css'
 
 const TAGLINE = 'Building Social Media & Ecom Tools in Public'
 
-function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, duplicate = false }) {
+function MarqueeStrip({ liveApps, totalActiveUsers, duplicate = false }) {
   const dupClass = duplicate ? ' CC__announcement-bar__marquee-duplicate' : ''
 
   return (
@@ -30,14 +30,6 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, duplicate = f
       >
         {formatNumber(totalActiveUsers)} daily users
       </Link>
-      <span className={`CC__announcement-bar__sep${dupClass}`} aria-hidden="true" />
-      <Link
-        to="/live-stats"
-        className={`CC__announcement-bar__marquee-item${dupClass}`}
-        tabIndex={duplicate ? -1 : undefined}
-      >
-        {formatNumber(totalInstalls)} installs
-      </Link>
       <span
         className={`CC__announcement-bar__sep CC__announcement-bar__sep--trail${dupClass}`}
         aria-hidden="true"
@@ -47,16 +39,15 @@ function MarqueeStrip({ liveApps, totalActiveUsers, totalInstalls, duplicate = f
 }
 
 export default function AnnouncementBar() {
-  const { liveApps, totalActiveUsers, totalInstalls } = getAnnouncementBarStats()
+  const { liveApps, totalActiveUsers } = getAnnouncementBarStats()
 
   const ariaLabel = [
     TAGLINE,
     `${formatNumber(liveApps)} apps`,
     `${formatNumber(totalActiveUsers)} daily users`,
-    `${formatNumber(totalInstalls)} installs`,
   ].join(' | ')
 
-  const stripProps = { liveApps, totalActiveUsers, totalInstalls }
+  const stripProps = { liveApps, totalActiveUsers }
 
   return (
     <div className="CC__announcement-bar" aria-label={ariaLabel}>
@@ -68,9 +59,6 @@ export default function AnnouncementBar() {
           </li>
           <li>
             <Link to="/live-stats">{formatNumber(totalActiveUsers)} daily users</Link>
-          </li>
-          <li>
-            <Link to="/live-stats">{formatNumber(totalInstalls)} installs</Link>
           </li>
         </ul>
       </div>

@@ -25,8 +25,8 @@ export default function YoutubeSection() {
     <section id="youtube" className="CC__youtube CC__container">
       <div className="CC__section-header-row">
         <div>
-          <p className="CC__section-eyebrow">YouTube Series</p>
-          <h2 className="CC__section-title">The Journey</h2>
+          <p className="CC__section-eyebrow">Learn tech tips n&apos; tricks on my social medias</p>
+          <h2 className="CC__section-title">YouTube</h2>
         </div>
         <a
           href="https://www.youtube.com/@CodedCitadel"

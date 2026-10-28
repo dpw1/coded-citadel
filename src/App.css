@@ -1445,7 +1445,8 @@ button.CC__ext-cta--visible {
 
 .CC__youtube-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 260px));
+  justify-content: center;
   gap: var(--CC__space-md);
 }
 
@@ -1470,10 +1471,10 @@ button.CC__ext-cta--visible {
   border-color: var(--CC__color-border-glow);
 }
 
-.CC__video-thumb-wrapper {
+.CC__youtube .CC__video-thumb-wrapper {
   position: relative;
   width: 100%;
-  padding-top: 56.25%;
+  padding-top: 177.78%;
   background-color: #000;
 }
 

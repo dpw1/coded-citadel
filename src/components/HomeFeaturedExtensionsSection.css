@@ -1,0 +1,194 @@
+.CC__home-featured {
+  padding-top: var(--CC__space-lg);
+  padding-bottom: var(--CC__space-md);
+  scroll-margin-top: 5.5rem;
+}
+
+.CC__home-featured__header {
+  margin-bottom: var(--CC__space-md);
+}
+
+.CC__home-featured__tabs-wrap {
+  margin-bottom: var(--CC__space-md);
+  margin-left: calc(-1 * var(--CC__container-padding, 1.25rem));
+  margin-right: calc(-1 * var(--CC__container-padding, 1.25rem));
+  padding-left: var(--CC__container-padding, 1.25rem);
+  padding-right: var(--CC__container-padding, 1.25rem);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.CC__home-featured__tabs-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.CC__home-featured__tabs {
+  flex-wrap: nowrap;
+  width: max-content;
+  max-width: 100%;
+  margin-bottom: 0;
+}
+
+.CC__home-featured__tabs .CC__tabs__btn {
+  flex-shrink: 0;
+  min-height: 44px;
+}
+
+.CC__home-featured__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--CC__space-md);
+}
+
+.CC__home-featured__empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--CC__color-text-muted);
+  font-size: 0.9rem;
+  padding: var(--CC__space-lg) 0;
+}
+
+.CC__home-featured__card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--CC__color-border);
+  border-radius: calc(var(--CC__radius) * 2);
+  background: var(--CC__color-bg-surface);
+  overflow: hidden;
+  transition:
+    border-color var(--CC__transition),
+    transform 0.2s ease;
+}
+
+.CC__home-featured__card:hover {
+  border-color: var(--CC__color-border-glow);
+}
+
+.CC__home-featured__card-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #000;
+}
+
+.CC__home-featured__card-play-hit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.CC__home-featured__card-play-hit .CC__home-featured__card-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.CC__home-featured__card-thumb--icon {
+  object-fit: contain;
+  padding: 1.5rem;
+  background: var(--CC__color-bg-card);
+}
+
+.CC__home-featured__card-thumb--placeholder {
+  display: block;
+  background: linear-gradient(145deg, #141820 0%, #0a0c12 100%);
+}
+
+.CC__home-featured__card-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 3rem;
+  height: 3rem;
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+.CC__home-featured__card-play svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-left: 2px;
+}
+
+.CC__home-featured__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.85rem 0.9rem 1rem;
+  flex: 1;
+}
+
+.CC__home-featured__card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.CC__home-featured__card-summary {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--CC__color-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.CC__home-featured__download {
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+  gap: 0.45rem;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.85rem;
+}
+
+.CC__home-featured__download-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 968px) {
+  .CC__home-featured__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .CC__home-featured__grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .CC__home-featured {
+    padding-bottom: var(--CC__space-sm);
+  }
+}
+
+@media (max-width: 580px) {
+  .CC__home-featured__tabs .CC__tabs__btn {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+    font-size: 0.8rem;
+  }
+}
