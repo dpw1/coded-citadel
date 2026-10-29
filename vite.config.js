@@ -45,6 +45,16 @@ function getPrerenderRoutes() {
 
   const pluginSlugs = getLiveDavinciPluginSlugs()
 
+  let guideSlugs = []
+  try {
+    const guides = JSON.parse(
+      readFileSync(join(__dirname, 'src', 'data', 'guides.json'), 'utf8'),
+    )
+    guideSlugs = (guides.guides ?? []).map((guide) => guide.url)
+  } catch {
+    guideSlugs = []
+  }
+
   return [
     '/',
     '/apps',

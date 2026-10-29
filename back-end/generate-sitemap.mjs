@@ -12,6 +12,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '..')
 const APPS_FILE = resolve(ROOT, 'src', 'data', 'apps.json')
 const BLOG_FILE = resolve(ROOT, 'src', 'data', 'blog.json')
+const GUIDES_FILE = resolve(ROOT, 'src', 'data', 'guides.json')
 const OUT_FILE = resolve(ROOT, 'public', 'sitemap.xml')
 const SITE_URL = (process.env.SITE_URL || 'https://codedcitadel.com').replace(/\/$/, '')
 const PLUGINS_BASE_PATH = '/davinci-resolve-plugins'
@@ -68,9 +69,19 @@ function loadBlogPosts() {
   }
 }
 
+function loadGuideSlugs() {
+  try {
+    const { guides } = JSON.parse(readFileSync(GUIDES_FILE, 'utf8'))
+    return (guides ?? []).map((guide) => guide.url).filter(Boolean)
+  } catch {
+    return []
+  }
+}
+
 function main() {
   const { updatedAt, apps } = JSON.parse(readFileSync(APPS_FILE, 'utf8'))
   const blogPosts = loadBlogPosts()
+  const guideSlugs = loadGuideSlugs()
   const defaultLastmod = updatedAt || new Date().toISOString().slice(0, 10)
 
   const entries = [
@@ -150,6 +161,18 @@ function main() {
       priority: '0.75',
       lastmod: defaultLastmod,
     }),
+    urlEntry(`${SITE_URL}/guides`, {
+      changefreq: 'weekly',
+      priority: '0.75',
+      lastmod: defaultLastmod,
+    }),
+    ...guideSlugs.map((slug) =>
+      urlEntry(`${SITE_URL}/guides/${slug}`, {
+        changefreq: 'weekly',
+        priority: '0.7',
+        lastmod: defaultLastmod,
+      }),
+    ),
     urlEntry(`${SITE_URL}/blog`, {
       changefreq: 'weekly',
       priority: '0.8',

@@ -1,9 +1,11 @@
 import { useMemo } from 'react'
 import PageSEO from '../components/PageSEO'
+import LinksHubCell from '../components/linksHub/LinksHubCell'
+import LinksHubHero from '../components/linksHub/LinksHubHero'
 import { YT_FILTER_PRO_STORE_URL } from '../constants/chromeWebStore'
 import { appIconUrl, getAppBySource } from '../utils/apps'
 import '../App.css'
-import './LinksPage.css'
+import '../components/linksHub/linksHub.css'
 
 const LINKS_DESCRIPTION =
   'Chrome extensions that make your life easier. 100% privacy-friendly, no AI-slop. Built by a senior developer.'
@@ -65,50 +67,30 @@ export default function LinksPage() {
       />
       <main className="CC__links-page">
         <div className="CC__links-page__inner">
-          <img
-            className="CC__links-page__avatar"
-            src="/avatar-citadel.jpg"
-            alt=""
-            width={88}
-            height={88}
+          <LinksHubHero
+            title="Coded Citadel"
+            description={
+              <>
+                Chrome extensions that make your life easier.
+                <br />
+                100% privacy-friendly, no AI-slop. Built by a senior developer.
+              </>
+            }
           />
-          <h1 className="CC__links-page__title">Coded Citadel</h1>
-          <p className="CC__links-page__desc">
-            Chrome extensions that make your life easier.
-            <br />
-            100% privacy-friendly, no AI-slop. Built by a senior developer.
-          </p>
           <nav className="CC__links-list" aria-label="Chrome extensions">
             {linkItems.map((item) => (
-              <a
+              <LinksHubCell
                 key={item.href}
+                as="a"
                 href={item.href}
-                className="CC__ext-cta CC__ext-cta--visible CC__links-list__item"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                <span className="CC__links-list__icon CC__ext-icon">
-                  {item.iconUrl ? (
-                    <img
-                      src={item.iconUrl}
-                      alt={item.iconAlt}
-                      width={48}
-                      height={48}
-                      loading="lazy"
-                      decoding="async"
-                      referrerPolicy="no-referrer"
-                    />
-                  ) : (
-                    item.fallbackIcon
-                  )}
-                </span>
-                <span className="CC__links-list__text">
-                  <span className="CC__links-list__title">{item.title}</span>
-                  {item.summary ? (
-                    <span className="CC__links-list__summary">{item.summary}</span>
-                  ) : null}
-                </span>
-              </a>
+                title={item.title}
+                subtitle={item.summary}
+                imageUrl={item.iconUrl}
+                imageAlt={item.iconAlt}
+                fallbackIcon={item.fallbackIcon}
+              />
             ))}
           </nav>
         </div>

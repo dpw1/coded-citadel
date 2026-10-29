@@ -34,7 +34,7 @@ Defined in `src/App.jsx`:
 | `/live-stats` | Public stats | Portfolio / install analytics |
 | `/profit` | Profit page | Build-in-public numbers |
 | `/work` | Hire / portfolio | Client work |
-| `/contact`, `/affiliate`, `/links` | Marketing | |
+| `/contact`, `/affiliate`, `/links`, `/guides` | Marketing | `/guides` cells from `src/data/guides.json` |
 | `/thank-you`, `/uninstall`, `/success` | Extension flows | Query params for app feedback / Stripe |
 | `/privacy-policy/:slug`, `/terms-of-service/:slug` | Legal | Per-app content in `src/content/` |
 | `/davinci-resolve-plugins`, `/davinci-resolve-plugins/:slug` | DaVinci plugins | Separate product line |
@@ -54,7 +54,7 @@ Defined in `src/App.jsx`:
 | **Analytics snapshots** | GA / CWS scripts | `src/data/ga-db.json`, `website-analytics.json`, etc. |
 | **Blog redirects** | `blog-redirects.json` | Merged in blog manifest |
 | **Site short links** | `redirects.json` | External redirects in `src/App.jsx` via `StoreRedirectPage` |
-
+| **Reel guides hub** | `src/data/guides.json` | `/guides` list; optional `content` (inline guide) or `redirectUrl` (same-tab outbound link). Images in `public/guides-images/` |
 After changing **`blogs/*.md`**, run **`npm run generate-blog-manifest`** (or full `build`).
 
 ---

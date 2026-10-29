@@ -19,12 +19,21 @@ import WorkPage from './pages/WorkPage'
 import ContactPage from './pages/ContactPage'
 import AffiliatePage from './pages/AffiliatePage'
 import LinksPage from './pages/LinksPage'
+import GuidesPage from './pages/GuidesPage'
 import NotFoundPage from './pages/NotFoundPage'
 import StoreRedirectPage from './pages/StoreRedirectPage'
 import { pluginPath, pluginsIndexPath } from './utils/plugins'
 import { getSiteRedirects } from './utils/siteRedirects'
 
 const siteRedirects = getSiteRedirects()
+
+/** Keep /guides list + detail mounted for slide transitions. */
+function routeTransitionKey(pathname) {
+  if (pathname === '/guides' || pathname.startsWith('/guides/')) {
+    return '/guides'
+  }
+  return pathname
+}
 
 function PluginSlugRedirect() {
   const { slug } = useParams()
@@ -44,7 +53,7 @@ function AppRoutes() {
   const location = useLocation()
 
   return (
-    <div key={location.pathname} className="CC__page-enter">
+    <div key={routeTransitionKey(location.pathname)} className="CC__page-enter">
       <Routes location={location}>
         <Route path="/" element={<HomePage />} />
         <Route path="/apps" element={<AppsPage />} />
@@ -73,6 +82,8 @@ function AppRoutes() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/affiliate" element={<AffiliatePage />} />
         <Route path="/links" element={<LinksPage />} />
+        <Route path="/guides" element={<GuidesPage />} />
+        <Route path="/guides/:slug" element={<GuidesPage />} />
         {siteRedirects.map(({ path, url, title, continueLabel }) => (
           <Route
             key={path}
