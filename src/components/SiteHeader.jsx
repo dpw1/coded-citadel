@@ -12,10 +12,17 @@ const APPS_DROPDOWN_LINKS = [
   { to: pluginsIndexPath(), label: 'DaVinci Resolve Plugins' },
 ]
 
+const TOOLS_DROPDOWN_LINKS = [{ to: '/image-search', label: 'Image search' }]
+
 const PLATFORM_MENU_GROUPS = [
   { id: 'instagram', label: 'Instagram' },
   { id: 'youtube', label: 'YouTube' },
 ]
+
+function navAppDisplayLabel(app) {
+  const label = appFilterLabel(app)
+  return label.replace(/\bYT\b/g, 'YouTube').replace(/\bIG\b/g, 'Instagram')
+}
 
 function ChevronIcon({ className = 'CC__nav-dropdown__chevron' }) {
   return (
@@ -38,11 +45,13 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [appsOpen, setAppsOpen] = useState(false)
   const [aboutOpen, setAboutOpen] = useState(false)
+  const [toolsOpen, setToolsOpen] = useState(false)
   const [platformOpen, setPlatformOpen] = useState(null)
   const { pathname, hash } = useLocation()
   const navigate = useNavigate()
   const appsMenuId = useId().replace(/:/g, '')
   const aboutMenuId = useId().replace(/:/g, '')
+  const toolsMenuId = useId().replace(/:/g, '')
   const isHome = pathname === '/'
   const appsNavActive =
     pathname === '/apps' ||
@@ -51,7 +60,8 @@ export default function SiteHeader() {
   const blogNavActive = pathname === '/blog' || pathname.startsWith('/blog/')
   const aboutSectionActive = isHome && hash === '#about'
   const aboutNavActive = blogNavActive || aboutSectionActive
-  const liveStatsNavActive = pathname === '/live-stats'
+  const toolsNavActive =
+    pathname === '/image-search' || pathname === '/reverse-image-search'
   const workNavActive = pathname === '/work' || pathname.startsWith('/work/')
   const contactNavActive = pathname === '/contact'
 
@@ -68,6 +78,7 @@ export default function SiteHeader() {
     setMenuOpen(false)
     setAppsOpen(false)
     setAboutOpen(false)
+    setToolsOpen(false)
     setPlatformOpen(null)
   }
 
@@ -85,6 +96,7 @@ export default function SiteHeader() {
     setMenuOpen(false)
     setAppsOpen(false)
     setAboutOpen(false)
+    setToolsOpen(false)
     setPlatformOpen(null)
   }, [pathname, hash])
 
@@ -92,6 +104,7 @@ export default function SiteHeader() {
     if (!menuOpen) {
       setAppsOpen(false)
       setAboutOpen(false)
+      setToolsOpen(false)
       setPlatformOpen(null)
       return undefined
     }
@@ -101,6 +114,8 @@ export default function SiteHeader() {
           setPlatformOpen(null)
         } else if (appsOpen) {
           setAppsOpen(false)
+        } else if (toolsOpen) {
+          setToolsOpen(false)
         } else if (aboutOpen) {
           setAboutOpen(false)
         } else {
@@ -114,7 +129,7 @@ export default function SiteHeader() {
       document.body.style.overflow = ''
       window.removeEventListener('keydown', onKeyDown)
     }
-  }, [menuOpen, appsOpen, aboutOpen, platformOpen])
+  }, [menuOpen, appsOpen, aboutOpen, toolsOpen, platformOpen])
 
   return (
     <>
@@ -163,6 +178,7 @@ export default function SiteHeader() {
                 onClick={() => {
                   setAppsOpen((open) => !open)
                   setAboutOpen(false)
+                  setToolsOpen(false)
                   setPlatformOpen(null)
                 }}
               >
@@ -235,7 +251,7 @@ export default function SiteHeader() {
                               }`}
                               onClick={closeMenu}
                             >
-                              {appFilterLabel(app)}
+                              {navAppDisplayLabel(app)}
                             </Link>
                           )
                         })}
@@ -272,6 +288,7 @@ export default function SiteHeader() {
                 onClick={() => {
                   setAboutOpen((open) => !open)
                   setAppsOpen(false)
+                  setToolsOpen(false)
                   setPlatformOpen(null)
                 }}
               >
@@ -311,21 +328,49 @@ export default function SiteHeader() {
                 </a>
               </div>
             </div>
-            <Link
-              to="/live-stats"
-              className={`CC__nav-link CC__nav-link--with-badge${
-                liveStatsNavActive ? ' CC__nav-link--active' : ''
+            <div
+              className={`CC__nav-dropdown${toolsOpen ? ' CC__nav-dropdown--open' : ''}${
+                toolsNavActive ? ' CC__nav-dropdown--active' : ''
               }`}
-              onClick={closeMenu}
             >
-              Live Stats
-              <span className="CC__nav-badge">
-                <span className="CC__nav-badge__fire" aria-hidden="true">
-                  🔥
-                </span>
-                <span className="CC__nav-badge__label">hot</span>
-              </span>
-            </Link>
+              <button
+                type="button"
+                className={`CC__nav-link CC__nav-dropdown__trigger${
+                  toolsNavActive ? ' CC__nav-link--active' : ''
+                }`}
+                aria-expanded={toolsOpen}
+                aria-controls={toolsMenuId}
+                aria-haspopup="true"
+                onClick={() => {
+                  setToolsOpen((open) => !open)
+                  setAppsOpen(false)
+                  setAboutOpen(false)
+                  setPlatformOpen(null)
+                }}
+              >
+                Tools
+                <ChevronIcon />
+              </button>
+              <div id={toolsMenuId} className="CC__nav-dropdown__menu" role="menu">
+                {TOOLS_DROPDOWN_LINKS.map((item) => {
+                  const itemActive =
+                    pathname === item.to || pathname.startsWith(`${item.to}/`)
+                  return (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      role="menuitem"
+                      className={`CC__nav-dropdown__item${
+                        itemActive ? ' CC__nav-dropdown__item--active' : ''
+                      }`}
+                      onClick={closeMenu}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
             <Link
               to="/work"
               className={`CC__nav-link${workNavActive ? ' CC__nav-link--active' : ''}`}

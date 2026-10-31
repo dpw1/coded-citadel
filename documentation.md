@@ -34,7 +34,7 @@ Defined in `src/App.jsx`:
 | `/live-stats` | Public stats | Portfolio / install analytics |
 | `/profit` | Profit page | Build-in-public numbers |
 | `/work` | Hire / portfolio | Client work |
-| `/contact`, `/affiliate`, `/links`, `/guides` | Marketing | `/guides` cells from `src/data/guides.json` |
+| `/contact`, `/affiliate`, `/links`, `/guides`, `/image-search` | Marketing | `/guides` cells from `src/data/guides.json`; `/image-search` = reverse image search tool (Cloudflare Worker API) |
 | `/thank-you`, `/uninstall`, `/success` | Extension flows | Query params for app feedback / Stripe |
 | `/privacy-policy/:slug`, `/terms-of-service/:slug` | Legal | Per-app content in `src/content/` |
 | `/davinci-resolve-plugins`, `/davinci-resolve-plugins/:slug` | DaVinci plugins | Separate product line |

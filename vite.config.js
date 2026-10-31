@@ -1,7 +1,7 @@
 import { copyFileSync, existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import prerender from '@prerenderer/rollup-plugin'
 import blogDevPlugin from './back-end/vite-plugin-blog-dev.mjs'
@@ -67,6 +67,7 @@ function getPrerenderRoutes() {
     '/work',
     '/contact',
     '/links',
+    '/image-search',
     ...(apps || []).map((app) => `/apps/${app.slug}`),
     ...pluginSlugs.map((slug) => `/davinci-resolve-plugins/${slug}`),
     ...PRIVACY_POLICY_SLUGS.map((slug) => `/privacy-policy/${slug}`),
@@ -92,7 +93,23 @@ function copyIndexTo404Plugin() {
   }
 }
 
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+  const define = {}
+
+  if (env.SUPABASE_URL && !env.VITE_SUPABASE_URL) {
+    define['import.meta.env.VITE_SUPABASE_URL'] = JSON.stringify(env.SUPABASE_URL.replace(/\/$/, ''))
+  }
+  const publishable =
+    env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+    env.SUPABASE_PUBLISHABLE_KEY ||
+    env.VITE_SUPABASE_ANON_KEY
+  if (publishable && !env.VITE_SUPABASE_PUBLISHABLE_KEY && !env.VITE_SUPABASE_ANON_KEY) {
+    define['import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY'] = JSON.stringify(publishable)
+  }
+
+  return {
+  define,
   plugins: [
     react(),
     copyIndexTo404Plugin(),
@@ -109,4 +126,5 @@ export default defineConfig({
     }),
   ],
   base: '/',
+  }
 })

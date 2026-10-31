@@ -1,0 +1,108 @@
+.CC__image-search-page {
+  padding-bottom: var(--CC__space-lg);
+}
+
+.CC__image-search-page__hero {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 1.5rem 0 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .CC__image-search-page__hero {
+    padding-top: 5rem;
+  }
+}
+
+.CC__image-search-page__hero-gradient {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -6rem;
+  height: 18rem;
+  background: linear-gradient(to bottom, rgba(255, 153, 0, 0.08), transparent);
+}
+
+.CC__image-search-page__hero-inner {
+  position: relative;
+  max-width: 64rem;
+}
+
+.CC__image-search-page__title {
+  font-family: var(--CC__font-display);
+  font-size: clamp(1.625rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.CC__image-search-page__title-break {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .CC__image-search-page__title-break {
+    display: block;
+  }
+}
+
+.CC__image-search-page__hero-stack {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+}
+
+@media (min-width: 640px) {
+  .CC__image-search-page__hero-stack {
+    flex-direction: column;
+  }
+}
+
+.CC__image-search-page__intro {
+  margin-top: 1.25rem;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.125rem;
+  color: var(--CC__color-text-muted);
+}
+
+.CC__image-search-page__intro strong {
+  color: var(--CC__color-text-main);
+  font-weight: 600;
+}
+
+.CC__image-search-page__promo {
+  margin-top: var(--CC__space-xl);
+  padding-top: var(--CC__space-md);
+  border-top: 1px solid var(--CC__color-border);
+}
+
+.CC__image-search-page__promo-header {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto var(--CC__space-md);
+}
+
+.CC__image-search-page__promo-title {
+  font-family: var(--CC__font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+}
+
+.CC__image-search-page__promo-meta {
+  margin-top: 0.75rem;
+  color: var(--CC__color-text-muted);
+}
+
+.CC__image-search-page__promo-meta a {
+  color: var(--CC__color-primary);
+  text-decoration: underline;
+}
+
+.CC__image-search-page__apps-grid {
+  margin-top: var(--CC__space-md);
+}

@@ -1,0 +1,310 @@
+.CC__image-search {
+  margin-top: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 42rem;
+  scroll-margin-top: 6rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  text-align: center;
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border-glow);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.CC__image-search__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--CC__color-border);
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.CC__image-search__header-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--CC__color-success);
+}
+
+.CC__image-search__header-title {
+  font-family: var(--CC__font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--CC__color-success);
+}
+
+.CC__image-search__body {
+  position: relative;
+  padding: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .CC__image-search__body {
+    padding: 1.5rem;
+  }
+}
+
+.CC__image-search__controls {
+  min-width: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.CC__image-search__controls:disabled {
+  opacity: 0.55;
+}
+
+.CC__image-search__controls:disabled * {
+  cursor: default;
+}
+
+.CC__image-search__dropzone {
+  border-radius: 0.75rem;
+  border: 2px dashed var(--CC__color-border-glow);
+  background: var(--CC__color-bg-surface);
+  padding: 1.75rem 1.25rem;
+}
+
+.CC__image-search__drop-icon {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto;
+  color: var(--CC__color-text-sub);
+}
+
+.CC__image-search__drop-label {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--CC__color-text-muted);
+}
+
+.CC__image-search__choose {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  color: var(--CC__color-bg-base);
+  background: var(--CC__color-success);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.25);
+  transition: var(--CC__transition);
+}
+
+.CC__image-search__choose:hover {
+  filter: brightness(1.05);
+}
+
+.CC__image-search__choose:focus-within {
+  outline: 2px solid var(--CC__color-success);
+  outline-offset: 2px;
+}
+
+.CC__image-search__choose-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.CC__image-search__file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.CC__image-search__url-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.CC__image-search__url-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--CC__color-border);
+}
+
+.CC__image-search__url-divider-text {
+  font-size: 0.75rem;
+  color: var(--CC__color-text-sub);
+}
+
+.CC__image-search__url-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  text-align: left;
+}
+
+.CC__image-search__url-input {
+  min-width: 0;
+  flex: 1;
+  border-radius: 0.5rem;
+  border: 1px solid var(--CC__color-border-glow);
+  background: var(--CC__color-bg-base);
+  color: var(--CC__color-text-main);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.CC__image-search__url-input::placeholder {
+  color: var(--CC__color-text-sub);
+}
+
+.CC__image-search__url-input:focus {
+  outline: none;
+  border-color: var(--CC__color-success);
+  box-shadow: 0 0 0 1px var(--CC__color-success);
+}
+
+.CC__image-search__url-submit {
+  flex: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--CC__color-success);
+  background: transparent;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  cursor: pointer;
+  transition: var(--CC__transition);
+}
+
+.CC__image-search__url-submit:hover {
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.CC__image-search__privacy {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--CC__color-text-sub);
+  text-align: left;
+}
+
+.CC__image-search__notice {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--CC__color-text-muted);
+  text-align: left;
+}
+
+.CC__image-search__error {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(240, 101, 96, 0.12);
+  color: var(--CC__color-danger);
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.CC__image-search__results {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--CC__color-border);
+  text-align: left;
+}
+
+.CC__image-search__results-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.CC__image-search__thumb {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  border: 1px solid var(--CC__color-border-glow);
+  display: none;
+}
+
+.CC__image-search__thumb--visible {
+  display: block;
+}
+
+.CC__image-search__status {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--CC__color-text-main);
+}
+
+.CC__image-search__engines-label {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.CC__image-search__engines {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.CC__image-search__engine {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--CC__color-border-glow);
+  border-left-width: 4px;
+  background: var(--CC__color-bg-surface);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--CC__transition);
+}
+
+.CC__image-search__engine:hover {
+  background: var(--CC__color-bg-base);
+}
+
+.CC__image-search__engine--google {
+  border-left-color: #3b82f6;
+}
+
+.CC__image-search__engine--yandex {
+  border-left-color: #ef4444;
+}
+
+.CC__image-search__engine--bing {
+  border-left-color: #0891b2;
+}
+
+.CC__image-search__engine--tineye {
+  border-left-color: #f59e0b;
+}
+
+.CC__image-search__engine-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+}
+
+.CC__image-search__reset {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--CC__color-text-muted);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.CC__image-search__reset:hover {
+  color: var(--CC__color-text-main);
+}

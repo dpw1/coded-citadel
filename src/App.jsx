@@ -20,6 +20,7 @@ import ContactPage from './pages/ContactPage'
 import AffiliatePage from './pages/AffiliatePage'
 import LinksPage from './pages/LinksPage'
 import GuidesPage from './pages/GuidesPage'
+import ImageSearchPage from './pages/ImageSearchPage'
 import NotFoundPage from './pages/NotFoundPage'
 import StoreRedirectPage from './pages/StoreRedirectPage'
 import { pluginPath, pluginsIndexPath } from './utils/plugins'
@@ -84,6 +85,8 @@ function AppRoutes() {
         <Route path="/links" element={<LinksPage />} />
         <Route path="/guides" element={<GuidesPage />} />
         <Route path="/guides/:slug" element={<GuidesPage />} />
+        <Route path="/image-search" element={<ImageSearchPage />} />
+        <Route path="/reverse-image-search" element={<Navigate to="/image-search" replace />} />
         {siteRedirects.map(({ path, url, title, continueLabel }) => (
           <Route
             key={path}

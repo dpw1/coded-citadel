@@ -1,0 +1,24 @@
+name = "image-search-api"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+# Replace with your Cloudflare account ID (dashboard sidebar).
+account_id = "f237d767876319cfa2da39c745d005b3"
+
+[[r2_buckets]]
+binding = "UPLOADS"
+bucket_name = "codedcitadel-image-search-uploads"
+
+# Create in Workers & Pages → KV, then paste the namespace id here.
+[[kv_namespaces]]
+binding = "UPLOAD_INDEX"
+id = "YOUR_KV_NAMESPACE_ID"
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[vars]
+MAX_BYTES = "15728640"
+LINK_TTL_SECONDS = "900"
+PURGE_AGE_SECONDS = "900"
+R2_BUCKET_NAME = "codedcitadel-image-search-uploads"

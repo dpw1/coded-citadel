@@ -161,6 +161,11 @@ function main() {
       priority: '0.75',
       lastmod: defaultLastmod,
     }),
+    urlEntry(`${SITE_URL}/image-search`, {
+      changefreq: 'monthly',
+      priority: '0.85',
+      lastmod: defaultLastmod,
+    }),
     urlEntry(`${SITE_URL}/guides`, {
       changefreq: 'weekly',
       priority: '0.75',
