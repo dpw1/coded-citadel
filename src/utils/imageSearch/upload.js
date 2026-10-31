@@ -5,7 +5,7 @@ import {
   isSupabaseUploadConfigured,
 } from './constants'
 import { getImageSearchSupabase } from '../../config/imageSearchSupabase'
-import { errorKeyFor } from './validation'
+import { errorKeyFor, normalizeImageFile } from './validation'
 
 const MIME_EXT = {
   'image/jpeg': 'jpg',
@@ -20,6 +20,7 @@ function storagePathFor(file) {
 }
 
 async function uploadViaSupabase(file) {
+  const normalized = normalizeImageFile(file)
   const supabase = getImageSearchSupabase()
   if (!supabase) {
     const err = new Error('unavailable')
@@ -27,20 +28,22 @@ async function uploadViaSupabase(file) {
     throw err
   }
 
-  const path = storagePathFor(file)
+  const path = storagePathFor(normalized)
   const { error: uploadError } = await supabase.storage
     .from(IMAGE_SEARCH_STORAGE_BUCKET)
-    .upload(path, file, {
-      contentType: file.type,
-      cacheControl: `${LINK_TTL_SECONDS}`,
+    .upload(path, normalized, {
+      contentType: normalized.type,
+      cacheControl: 'max-age=900',
       upsert: false,
     })
 
   if (uploadError) {
     const err = new Error(uploadError.message)
+    const code = uploadError.statusCode ?? uploadError.status
     if (/payload too large|413|exceeded/i.test(uploadError.message)) err.status = 422
     else if (/rate|429/i.test(uploadError.message)) err.status = 429
-    else err.status = 503
+    else if (code === 403 || /row-level security|policy/i.test(uploadError.message)) err.status = 403
+    else err.status = typeof code === 'number' ? code : 503
     throw err
   }
 

@@ -115,23 +115,25 @@ export default function ImageSearchWidget() {
   const handleFile = useCallback(
     async (file) => {
       if (!file) return
+      if (!uploadsEnabled) {
+        showError('uploadNotConfigured')
+        return
+      }
+
       const validation = validateFile(file)
       if (!validation.valid) {
         showError(validation.reason)
         return
       }
 
-      if (!uploadsEnabled) {
-        showError('unavailable')
-        return
-      }
+      const imageFile = validation.file
 
       clearExpiryTimer()
       revokeObjectUrl()
       setBusy(true)
       setErrorKey(null)
 
-      const objectUrl = URL.createObjectURL(file)
+      const objectUrl = URL.createObjectURL(imageFile)
       objectUrlRef.current = objectUrl
       setThumbSrc(objectUrl)
       setThumbVisible(false)
@@ -139,11 +141,14 @@ export default function ImageSearchWidget() {
       setStatusText(STATUSES.uploading)
 
       try {
-        const { getUrl, key } = await uploadFile(file)
+        const { getUrl, key } = await uploadFile(imageFile)
         setStatusText(STATUSES.ready)
         renderEngineLinks(getUrl)
         startExpiryTimer(key)
       } catch (err) {
+        if (import.meta.env.DEV) {
+          console.error('[image-search] upload failed:', err)
+        }
         revokeObjectUrl()
         setThumbSrc('')
         setShowResults(false)

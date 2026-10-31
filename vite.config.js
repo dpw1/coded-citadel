@@ -95,17 +95,18 @@ function copyIndexTo404Plugin() {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  const define = {}
-
-  if (env.SUPABASE_URL && !env.VITE_SUPABASE_URL) {
-    define['import.meta.env.VITE_SUPABASE_URL'] = JSON.stringify(env.SUPABASE_URL.replace(/\/$/, ''))
-  }
-  const publishable =
+  const supabaseUrl = (env.VITE_SUPABASE_URL || env.SUPABASE_URL || '').replace(/\/$/, '')
+  const supabaseKey = (
     env.VITE_SUPABASE_PUBLISHABLE_KEY ||
     env.SUPABASE_PUBLISHABLE_KEY ||
-    env.VITE_SUPABASE_ANON_KEY
-  if (publishable && !env.VITE_SUPABASE_PUBLISHABLE_KEY && !env.VITE_SUPABASE_ANON_KEY) {
-    define['import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY'] = JSON.stringify(publishable)
+    env.VITE_SUPABASE_ANON_KEY ||
+    env.SUPABASE_ANON_KEY ||
+    ''
+  ).trim()
+
+  const define = {
+    'import.meta.env.VITE_SUPABASE_URL': JSON.stringify(supabaseUrl),
+    'import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY': JSON.stringify(supabaseKey),
   }
 
   return {

@@ -13,7 +13,10 @@ export const MESSAGES = {
   size: 'That image is too large. The limit is 15 MB.',
   rateLimited: 'Too many searches from your network. Please try again in a minute.',
   unavailable: 'Image search is temporarily unavailable. Please try again later.',
-  uploadFailed: 'Upload failed. Please try again.',
+  uploadNotConfigured:
+    'File upload is not configured on this site. Add Supabase keys to your build, or paste a public image URL below.',
+  uploadFailed:
+    'Upload failed. Check that the image-search-uploads bucket exists and storage policies are applied (see supabase/image-search-storage.sql).',
   offline: 'You appear to be offline. Check your connection and try again.',
   expired: 'That upload expired. Please choose the image again.',
   invalidUrl: 'Enter a valid http or https image URL.',
@@ -81,8 +84,10 @@ export function getSupabaseUrl() {
 
 export function getSupabasePublishableKey() {
   const raw =
-    import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY
-  return typeof raw === 'string' ? raw : ''
+    import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+    import.meta.env.VITE_SUPABASE_ANON_KEY ||
+    import.meta.env.VITE_IMAGE_SEARCH_SUPABASE_ANON_KEY
+  return typeof raw === 'string' ? raw.trim() : ''
 }
 
 export function isSupabaseUploadConfigured() {
