@@ -69,8 +69,9 @@ export default function ImageSearchPage() {
 
             <div className="CC__image-search-page__hero-stack">
               <p className="CC__image-search-page__intro">
-                Search any image across Google Lens, Yandex, Bing Visual and TinEye at once. Find
-                results across the entire web (Google, Instagram, Pinterest, Websites &amp; More)
+                Search any image across{' '}
+                <b>Google Lens, Yandex, Bing Visual and TinEye at once</b>. Find results across the
+                entire web (Google, Instagram, Pinterest, Websites &amp; More)
               </p>
 
               <ImageSearchWidget />
@@ -82,7 +83,7 @@ export default function ImageSearchPage() {
           <div className="CC__container">
             <header className="CC__image-search-page__promo-header">
               <p className="CC__section-eyebrow">Chrome extensions</p>
-              <h2 className="CC__image-search-page__promo-title">More free tools from Coded Citadel</h2>
+              <h2 className="CC__image-search-page__promo-title">More tools from Coded Citadel</h2>
               <p className="CC__image-search-page__promo-meta">
                 I build privacy-friendly browser extensions in public — filters, exporters, and workflow
                 shortcuts. <Link to="/apps">Browse all extensions</Link>.
