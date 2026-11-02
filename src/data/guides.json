@@ -1,6 +1,13 @@
 {
   "guides": [
     {
+      "url": "search-youtube-comments",
+      "image": "/guides-images/youtube.png",
+      "title": "Search through your own YouTube comments",
+      "subtitle": "Privacy-friendly Chrome extension to search comments in your YouTube history.",
+      "content": "<ol><li><p>Install <a href=\"https://chromewebstore.google.com/detail/yt-search-tools-search-th/ihfiegcghhgbglkooalalegjmpmancfh\" target=\"_blank\" rel=\"noopener noreferrer\">YouTube Search Tools</a>.</p></li><li><p>Go to your <a href=\"https://www.youtube.com/feed/history\" target=\"_blank\" rel=\"noopener noreferrer\">YouTube history</a> and click on &quot;Comments&quot;.</p><p><img src=\"/guides-images/youtube-search-comments-step2.jpg\" alt=\"YouTube history page with the Comments tab selected\" loading=\"lazy\" /></p></li><li><p>Click on &quot;Search comments&quot;.</p><p><img src=\"/guides-images/youtube-search-comments-step3.jpg\" alt=\"Search comments button on YouTube history\" loading=\"lazy\" /></p></li></ol>"
+    },
+    {
       "url": "spotify-playlist-search",
       "image": "/guides-images/spotify.png",
       "title": "Search for playlists that contain a specific song on Spotify",

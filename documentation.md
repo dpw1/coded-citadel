@@ -10,7 +10,7 @@ Live site: **https://codedcitadel.com** (GitHub Pages; `CNAME` in repo root).
 
 | Layer | Tech |
 |--------|------|
-| UI | React 18 + Vite |
+| UI | React 18 + Vite; icons on `/guides` social row use **`@tabler/icons-react`** |
 | Routing | `react-router-dom` (`src/App.jsx`) |
 | Data | JSON under `src/data/` (generated + hand-edited) |
 | Backend-ish | Node scripts in `back-end/` (build time, not a runtime server) |
@@ -34,7 +34,7 @@ Defined in `src/App.jsx`:
 | `/live-stats` | Public stats | Portfolio / install analytics |
 | `/profit` | Profit page | Build-in-public numbers |
 | `/work` | Hire / portfolio | Client work |
-| `/contact`, `/affiliate`, `/links`, `/guides`, `/image-search` | Marketing | `/guides` cells from `src/data/guides.json`; `/image-search` = reverse image search tool (Cloudflare Worker API) |
+| `/contact`, `/affiliate`, `/links`, `/guides`, `/image-search` | Marketing | See **Link-in-bio** and **Image search** below |
 | `/thank-you`, `/uninstall`, `/success` | Extension flows | Query params for app feedback / Stripe |
 | `/privacy-policy/:slug`, `/terms-of-service/:slug` | Legal | Per-app content in `src/content/` |
 | `/davinci-resolve-plugins`, `/davinci-resolve-plugins/:slug` | DaVinci plugins | Separate product line |
@@ -49,13 +49,64 @@ Defined in `src/App.jsx`:
 | **Blog posts** | `blogs/*.md` (YAML frontmatter + Markdown) | `src/data/blog.json`, `public/blog-content/*.html` via `npm run generate-blog-manifest` |
 | **Blog images** | Often imported from `blogs/` paths | `public/blog-images/` (`import-blog-screenshots`) |
 | **Extension catalog** | Chrome Web Store scrape + overrides | `src/data/apps.json` (`extract-chrome-apps`, `sync-apps-custom-data`) |
-| **Sitemap** | Routes + blog slugs | `public/sitemap.xml` (`generate-sitemap`) |
+| **Sitemap** | Routes + blog slugs + guide slugs | `public/sitemap.xml` (`generate-sitemap`); prerender list in `vite.config.js` |
 | **YouTube embeds** | Channel fetch | `src/data/youtube-videos.json` |
 | **Analytics snapshots** | GA / CWS scripts | `src/data/ga-db.json`, `website-analytics.json`, etc. |
 | **Blog redirects** | `blog-redirects.json` | Merged in blog manifest |
 | **Site short links** | `redirects.json` | External redirects in `src/App.jsx` via `StoreRedirectPage` |
-| **Reel guides hub** | `src/data/guides.json` | `/guides` list; optional `content` (inline guide) or `redirectUrl` (same-tab outbound link). Images in `public/guides-images/` |
+| **Reel guides hub** | `src/data/guides.json` | `/guides` + `/guides/:slug` — see **Link-in-bio pages** below |
+
 After changing **`blogs/*.md`**, run **`npm run generate-blog-manifest`** (or full `build`).
+
+After changing **`src/data/guides.json`**, run **`npm run generate-sitemap`** (or full `build`).
+
+---
+
+## Link-in-bio pages (`/links`, `/guides`)
+
+Minimal layouts (no site header/footer). Shared UI lives in **`src/components/linksHub/`**:
+
+| File | Role |
+|------|------|
+| `linksHub.css` | Shared cell/list styles (`CC__links-*`). List cells use a subtler hover than global `CC__ext-cta`. |
+| `LinksHubCell.jsx` | Icon + title + optional subtitle; render as `<a>` or `<button>`. |
+| `LinksHubHero.jsx` | Avatar + title + tagline. |
+| `LinksHubSocial.jsx` | “Follow me on social media” + brand icons via **`@tabler/icons-react`**. **`/guides` only**. |
+
+| Route | Page | Content |
+|-------|------|---------|
+| `/links` | `src/pages/LinksPage.jsx` | Extension links hard-coded in the page |
+| `/guides` | `src/pages/GuidesPage.jsx` | `src/data/guides.json` + `src/utils/guides.js` |
+
+**`/guides` behavior**
+
+- Hero, tutorial cells, social footer (footer sits below the list/detail slider).
+- **`url`**: slug → share **`/guides/{url}`** in reels.
+- **`redirectUrl`**: opens in the **same tab** (list tap or direct URL). No slide panel.
+- **`content`**: trusted HTML for inline guides; horizontal slide to detail; client-side routing (no full page reload).
+- Thumbnails: **`public/guides-images/`** (or any path under `public/`).
+- **`App.jsx`**: `routeTransitionKey()` treats `/guides` and `/guides/:slug` as one mount so transitions work.
+
+**`guides.json` fields** (array under `"guides"`):
+
+| Field | Required | Purpose |
+|-------|----------|---------|
+| `url` | yes | URL slug |
+| `image` | yes | Cell thumbnail (public path) |
+| `title` | yes | Cell title |
+| `subtitle` | no | Second line on the cell |
+| `redirectUrl` | no* | External tool link (same tab) |
+| `content` | no* | HTML body for inline guide |
+
+\*Use **`redirectUrl`** or **`content`** per entry, not both.
+
+---
+
+## Image search (`/image-search`)
+
+Reverse-image upload/URL tool: `src/pages/ImageSearchPage.jsx`, `src/components/imageSearch/`. **`/reverse-image-search`** redirects here.
+
+Setup and env (Supabase Storage primary; optional Cloudflare Worker + R2): **`supabase/README-image-search.md`**, **`workers/image-search-api/README.md`**.
 
 ---
 
@@ -65,14 +116,14 @@ After changing **`blogs/*.md`**, run **`npm run generate-blog-manifest`** (or fu
 src/
   App.jsx              # Routes
   pages/               # One file per route
-  components/          # Shared UI (header, blog grid, extension charts, …)
+  components/          # Shared UI (header, blog grid, linksHub/, imageSearch/, …)
   content/             # Privacy / terms JSX per slug
-  data/                # apps.json, blog.json, analytics JSON (mostly generated)
-  utils/               # apps.js, blog.js helpers
+  data/                # apps.json, blog.json, guides.json, analytics JSON
+  utils/               # apps.js, blog.js, guides.js, …
   config/              # e.g. Supabase client
 ```
 
-Static assets: **`public/`** (favicon, `blog-images/`, downloads).
+Static assets: **`public/`** (favicon, `blog-images/`, `guides-images/`, `image-search/`, downloads).
 
 ---
 
@@ -124,5 +175,6 @@ Site is static output from Vite (`dist/`). `publish-to-github.bat` / CI pushes t
 
 - [ ] Read this file for scope (SPA vs `blogs/` vs `back-end/`).
 - [ ] Blog change → edit `blogs/*.md` → `npm run generate-blog-manifest`.
+- [ ] Reel / guides hub → edit `src/data/guides.json` (+ images in `public/guides-images/`) → `npm run generate-sitemap`.
 - [ ] Extension page copy → often `apps.json` or store scrape + `sync-apps-custom-data`.
 - [ ] SEO / blog writing task → open **`back-end/seo-documentation.md`** and **`back-end/writing-style.md`**.

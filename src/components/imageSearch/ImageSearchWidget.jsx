@@ -146,9 +146,7 @@ export default function ImageSearchWidget() {
         renderEngineLinks(getUrl)
         startExpiryTimer(key)
       } catch (err) {
-        if (import.meta.env.DEV) {
-          console.error('[image-search] upload failed:', err)
-        }
+        console.error('[image-search] upload failed:', err)
         revokeObjectUrl()
         setThumbSrc('')
         setShowResults(false)

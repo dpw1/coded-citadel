@@ -47,13 +47,19 @@ export function isSearchableUrl(value) {
 export function errorKeyFor(err) {
   if (!err) return 'uploadFailed'
   const message = typeof err.message === 'string' ? err.message.toLowerCase() : ''
+  if (/failed to fetch|networkerror|network error|load failed|err_internet_disconnected/.test(message)) {
+    return 'uploadBlocked'
+  }
   if (/row-level security|policy|jwt|invalid api key|apikey|bucket not found|does not exist/.test(message)) {
     return 'uploadFailed'
   }
   const status = err.status ?? err
   if (status === 429) return 'rateLimited'
   if (status === 403) return 'uploadFailed'
-  if (status === 503) return 'unavailable'
+  if (status === 503) {
+    if (/failed to fetch|network|timeout|fetch/i.test(message)) return 'uploadBlocked'
+    return 'unavailable'
+  }
   if (status === 422) return 'type'
   if (status === 0) return 'offline'
   return 'uploadFailed'

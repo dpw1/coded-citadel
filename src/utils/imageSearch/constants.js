@@ -13,6 +13,8 @@ export const MESSAGES = {
   size: 'That image is too large. The limit is 15 MB.',
   rateLimited: 'Too many searches from your network. Please try again in a minute.',
   unavailable: 'Image search is temporarily unavailable. Please try again later.',
+  uploadBlocked:
+    'Upload could not connect to storage (often caused by ad or privacy blockers). Allow codedcitadel.com and supabase.co, or paste a public image URL below.',
   uploadNotConfigured:
     'File upload is not configured on this site. Add Supabase keys to your build, or paste a public image URL below.',
   uploadFailed:
