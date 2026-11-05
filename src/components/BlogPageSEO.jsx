@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { CODED_CITADEL_INSTAGRAM_URL } from '../constants/socialUrls'
 import {
   BLOG_SITE_URL,
   getBlogIndexCanonicalUrl,
@@ -284,7 +285,7 @@ export function BlogPostSEO({ post }) {
         url: BLOG_SITE_URL,
         sameAs: [
           'https://www.youtube.com/@CodedCitadel',
-          'https://www.instagram.com/codedcitadel',
+          CODED_CITADEL_INSTAGRAM_URL,
           'https://x.com/codedCitadel2',
         ],
       },

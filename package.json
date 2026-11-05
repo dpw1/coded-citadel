@@ -17,6 +17,7 @@
     "maybe-extract-chrome-apps": "node back-end/maybe-extract-chrome-apps.mjs",
     "preview": "vite preview",
     "fetch-youtube": "npm install --prefix back-end && node back-end/fetch-youtube-videos.mjs",
+    "sync-home-instagram-reels": "node back-end/sync-home-instagram-reels.mjs",
     "fetch-website-analytics": "node back-end/maybe-fetch-website-analytics.mjs",
     "fetch-website-analytics:force": "node back-end/fetch-website-analytics.mjs",
     "fetch-extension-changelogs": "node back-end/maybe-fetch-extension-changelogs.mjs",

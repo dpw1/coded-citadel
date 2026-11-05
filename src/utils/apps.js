@@ -120,13 +120,18 @@ export function appCardSummary(app) {
   return appTagline(app)
 }
 
+/** Homepage extension cards — Chrome Web Store tagline before scraped description. */
+export function appHomeExtensionSummary(app) {
+  return appTagline(app, { preferStoreTagline: true })
+}
+
 /** Public-facing tagline — always English when possible. */
-export function appTagline(app) {
+export function appTagline(app, options) {
   const custom = findCustomAppEntry(app)
   if (custom?.tagline && isLikelyEnglish(custom.tagline)) {
     return custom.tagline.trim()
   }
-  return resolveEnglishTagline(app)
+  return resolveEnglishTagline(app, options)
 }
 
 /** Short label for filters and compact UI (Chrome listing title before colon). */

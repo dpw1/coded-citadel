@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { CODED_CITADEL_INSTAGRAM_URL } from '../constants/socialUrls'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import PageSEO from '../components/PageSEO'
@@ -169,7 +170,7 @@ export default function PluginLandingPage() {
     plugin.seo?.description || plugin.description || plugin.tagline
   const downloadLabel = plugin.download?.label || 'Download Now'
   const youtubeLink = plugin.links?.youtube || 'https://www.youtube.com/@CodedCitadel'
-  const instagramLink = plugin.links?.instagram || 'https://www.instagram.com/codedcitadel'
+  const instagramLink = plugin.links?.instagram || CODED_CITADEL_INSTAGRAM_URL
   const liveLabel = `Live · ${plugin.price || 'Free'} ${pluginCategory(plugin)}`
   const browserUrl =
     downloadUrl?.replace(/^https?:\/\//, '') ||

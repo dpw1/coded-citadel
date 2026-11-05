@@ -2,10 +2,10 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
   "source": "src/data/portfolio-analytics.json",
   "slug": "youtube-filter-pro",
   "name": "YT Filter Pro: filter by views, duration, date, and more",
-  "updatedAt": "2026-10-25",
-  "extractedAt": "2026-10-25T15:46:33.116Z",
-  "totalInstalls": 4862,
-  "uninstallsTotal": 870,
+  "updatedAt": "2026-11-05",
+  "extractedAt": "2026-11-05T13:02:03.578Z",
+  "totalInstalls": 5544,
+  "uninstallsTotal": 921,
   "installs": [
     {
       "date": "2026-05-18",
@@ -646,6 +646,46 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
     {
       "date": "2026-10-24",
       "total": 58
+    },
+    {
+      "date": "2026-10-25",
+      "total": 82
+    },
+    {
+      "date": "2026-10-26",
+      "total": 51
+    },
+    {
+      "date": "2026-10-27",
+      "total": 53
+    },
+    {
+      "date": "2026-10-28",
+      "total": 63
+    },
+    {
+      "date": "2026-10-29",
+      "total": 53
+    },
+    {
+      "date": "2026-10-30",
+      "total": 63
+    },
+    {
+      "date": "2026-10-31",
+      "total": 73
+    },
+    {
+      "date": "2026-11-01",
+      "total": 83
+    },
+    {
+      "date": "2026-11-02",
+      "total": 82
+    },
+    {
+      "date": "2026-11-03",
+      "total": 79
     }
   ],
   "uninstalls": [
@@ -1236,6 +1276,46 @@ window.CC_ADMIN_YT_FILTER_CHURN = {
     {
       "date": "2026-10-24",
       "total": 42
+    },
+    {
+      "date": "2026-10-25",
+      "total": 33
+    },
+    {
+      "date": "2026-10-26",
+      "total": 29
+    },
+    {
+      "date": "2026-10-27",
+      "total": 31
+    },
+    {
+      "date": "2026-10-28",
+      "total": 30
+    },
+    {
+      "date": "2026-10-29",
+      "total": 31
+    },
+    {
+      "date": "2026-10-30",
+      "total": 38
+    },
+    {
+      "date": "2026-10-31",
+      "total": 32
+    },
+    {
+      "date": "2026-11-01",
+      "total": 29
+    },
+    {
+      "date": "2026-11-02",
+      "total": 34
+    },
+    {
+      "date": "2026-11-03",
+      "total": 25
     }
   ]
 };

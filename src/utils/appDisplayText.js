@@ -22,21 +22,32 @@ function firstSentence(text) {
 }
 
 /** Best-effort English tagline for cards, hero, and SEO. */
-export function resolveEnglishTagline(app) {
+export function resolveEnglishTagline(app, options = {}) {
   if (!app) return ''
 
-  const candidates = [
-    app.taglineEn,
-    app.description?.short,
-    app.tagline,
-    firstSentence(app.description?.full),
-  ]
+  const { preferStoreTagline = false } = options
+
+  const candidates = preferStoreTagline
+    ? [
+        app.taglineEn,
+        app.tagline,
+        app.description?.short,
+        firstSentence(app.description?.full),
+      ]
+    : [
+        app.taglineEn,
+        app.description?.short,
+        app.tagline,
+        firstSentence(app.description?.full),
+      ]
 
   for (const candidate of candidates) {
     if (isLikelyEnglish(candidate)) return candidate.trim()
   }
 
-  return (app.description?.short || app.tagline || '').trim()
+  return preferStoreTagline
+    ? (app.tagline || app.description?.short || '').trim()
+    : (app.description?.short || app.tagline || '').trim()
 }
 
 /** English listing title (Chrome name before colon when that part is English). */

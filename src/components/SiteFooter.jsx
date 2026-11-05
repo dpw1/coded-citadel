@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { CODED_CITADEL_INSTAGRAM_URL } from '../constants/socialUrls'
 import { pluginsIndexPath } from '../utils/plugins'
 
 export default function SiteFooter() {
@@ -59,7 +60,7 @@ export default function SiteFooter() {
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/codedcitadel" target="_blank" rel="noopener noreferrer">
+              <a href={CODED_CITADEL_INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
                 Instagram
               </a>
             </li>

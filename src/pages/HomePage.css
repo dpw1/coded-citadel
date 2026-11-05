@@ -141,50 +141,156 @@ a.CC__home-tools__item:hover {
   line-height: var(--CC__leading-relaxed);
 }
 
+.CC__home-instagram__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: var(--CC__space-sm);
+}
+
+.CC__home-instagram__profile-link {
+  font-size: var(--CC__text-sm);
+  color: var(--CC__color-primary);
+  text-decoration: none;
+}
+
+.CC__home-instagram__profile-link:hover {
+  text-decoration: underline;
+}
+
 .CC__home .CC__home-instagram {
   padding-top: var(--CC__space-section);
   padding-bottom: var(--CC__space-section);
 }
 
+.CC__home-reels-scroll {
+  position: relative;
+  margin-top: var(--CC__space-sm);
+  margin-inline: calc(-1 * var(--CC__container-gutter, 1rem));
+  padding-inline: var(--CC__container-gutter, 1rem);
+}
+
+.CC__home-reels-scroll::before,
+.CC__home-reels-scroll::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0.65rem;
+  width: clamp(1.25rem, 4vw, 2.5rem);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.CC__home-reels-scroll::before {
+  left: 0;
+  background: linear-gradient(to right, var(--CC__color-bg-base) 20%, transparent);
+}
+
+.CC__home-reels-scroll::after {
+  right: 0;
+  background: linear-gradient(to left, var(--CC__color-bg-base) 20%, transparent);
+}
+
 .CC__home-reels {
   display: flex;
-  gap: 0.875rem;
+  gap: 1rem;
   overflow-x: auto;
-  padding-bottom: 0.5rem;
-  margin-top: var(--CC__space-sm);
+  overflow-y: hidden;
+  padding: 0.35rem 0.15rem 0.85rem;
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 0.15rem;
   scrollbar-width: thin;
+  scrollbar-color: var(--CC__color-primary-subtle, rgba(99, 102, 241, 0.45)) transparent;
+}
+
+.CC__home-reels::-webkit-scrollbar {
+  height: 5px;
+}
+
+.CC__home-reels::-webkit-scrollbar-track {
+  margin-inline: 0.15rem;
+  background: transparent;
+}
+
+.CC__home-reels::-webkit-scrollbar-thumb {
+  border-radius: var(--CC__radius-pill);
+  background: var(--CC__color-border);
+}
+
+.CC__home-reels::-webkit-scrollbar-thumb:hover {
+  background: var(--CC__color-primary-subtle, rgba(99, 102, 241, 0.5));
 }
 
 .CC__home-reels__item {
-  flex: 0 0 9.375rem;
+  position: relative;
+  flex: 0 0 clamp(9.5rem, 28vw, 11.25rem);
   aspect-ratio: 9 / 16;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0.75rem;
-  border-radius: var(--CC__radius-lg);
-  border: 1px solid var(--CC__color-border);
+  padding: 0.65rem 0.6rem;
+  border-radius: var(--CC__radius-xl);
+  border: 1px solid rgb(255 255 255 / 0.08);
   background: var(--CC__gradient-surface);
-  font-size: var(--CC__text-sm);
-  line-height: var(--CC__leading-tight);
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  scroll-snap-align: start;
+  box-shadow: var(--CC__shadow-sm);
   transition:
     border-color var(--CC__duration-base) var(--CC__ease-out),
-    box-shadow var(--CC__duration-base) var(--CC__ease-out);
+    box-shadow var(--CC__duration-base) var(--CC__ease-out),
+    transform var(--CC__duration-base) var(--CC__ease-out);
+}
+
+.CC__home-reels__thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition: transform 0.45s var(--CC__ease-out);
+}
+
+.CC__home-reels__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(8 10 18 / 0.9) 0%,
+    rgb(8 10 18 / 0.25) 45%,
+    transparent 68%
+  );
+  pointer-events: none;
+}
+
+.CC__home-reels__uploaded {
+  position: relative;
+  z-index: 1;
+  font-size: var(--CC__text-xs);
+  line-height: var(--CC__leading-tight);
+  font-weight: var(--CC__weight-medium);
+  color: rgb(255 255 255 / 0.92);
+  text-shadow: 0 1px 6px rgb(0 0 0 / 0.65);
 }
 
 .CC__home-reels__item:hover {
   border-color: var(--CC__color-primary-ring);
-  box-shadow: var(--CC__shadow-sm);
+  box-shadow: var(--CC__shadow-md);
+  transform: translateY(-3px);
 }
 
-.CC__home-reels__label {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: var(--CC__text-xs);
-  color: var(--CC__color-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.CC__home-reels__item:hover .CC__home-reels__thumb {
+  transform: scale(1.04);
+}
+
+.CC__home-reels__item:focus-visible {
+  outline: 2px solid var(--CC__color-primary);
+  outline-offset: 3px;
 }
 
 .CC__home .CC__home-email {

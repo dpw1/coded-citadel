@@ -8,7 +8,7 @@ export const HOME_CATALOG_FILTERS = [
   'All',
   'Instagram',
   'YouTube',
-  'AI Assistant',
+  'Claude',
   'Gmail',
   'Discord',
 ]
@@ -25,9 +25,9 @@ const CATEGORY_BY_SLUG = {
   'instagram-dm-exporter': 'Instagram',
   'custom-data': 'Instagram',
   'custom-data-flgffomd': 'Instagram',
-  'claude-limit-monitor': 'AI Assistant',
-  'claude-deep-search': 'AI Assistant',
-  'instagram-comments-exporter': 'AI Assistant',
+  'claude-limit-monitor': 'Claude',
+  'claude-deep-search': 'Claude',
+  'instagram-comments-exporter': 'Instagram',
   'gmail-to-pdf': 'Gmail',
   dex: 'Discord',
 }
@@ -40,6 +40,30 @@ export function isHomeCatalogExtensionVisible(app) {
 export function homeExtensionCategory(app) {
   if (!app?.slug) return null
   return CATEGORY_BY_SLUG[app.slug] ?? null
+}
+
+const TAG_TO_HOME_FILTER = {
+  youtube: 'YouTube',
+  instagram: 'Instagram',
+  gmail: 'Gmail',
+  discord: 'Discord',
+  claude: 'Claude',
+}
+
+/** Pill label on homepage extension cards — matches catalog filter names. */
+export function homeExtensionCardTag(app, tags = []) {
+  const fromSlug = homeExtensionCategory(app)
+  if (fromSlug) return fromSlug
+
+  for (const raw of tags) {
+    const tag = String(raw).toLowerCase()
+    if (TAG_TO_HOME_FILTER[tag]) return TAG_TO_HOME_FILTER[tag]
+  }
+
+  const tagKeys = tags.map((t) => String(t).toLowerCase())
+  if (tagKeys.some((t) => t === 'ai' || t.includes('assistant'))) return 'Claude'
+
+  return null
 }
 
 /** @param {*} app */

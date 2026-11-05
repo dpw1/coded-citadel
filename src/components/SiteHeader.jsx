@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { appFilterLabel, getAppsForPlatform } from '../utils/apps'
 import { isPluginsPath, pluginsIndexPath } from '../utils/plugins'
 import { scrollToSection } from '../utils/scroll'
-import AnnouncementBar from './AnnouncementBar'
+// import AnnouncementBar from './AnnouncementBar'
 
 const YOUTUBE_URL = 'https://www.youtube.com/@CodedCitadel'
 
@@ -137,7 +137,7 @@ export default function SiteHeader() {
         <button type="button" className="CC__nav-backdrop" aria-label="Close menu" onClick={closeMenu} />
       ) : null}
       <div className="CC__site-top">
-        {!workNavActive ? <AnnouncementBar /> : null}
+        {/* {!workNavActive ? <AnnouncementBar /> : null} */}
         <header className="CC__header CC__container">
           <div className="CC__header-brand">
             <Link to="/" className="CC__logo" onClick={closeMenu}>

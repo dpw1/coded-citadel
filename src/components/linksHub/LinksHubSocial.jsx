@@ -5,6 +5,8 @@ import {
   IconBrandYoutube,
 } from '@tabler/icons-react'
 
+import { CODED_CITADEL_INSTAGRAM_URL } from '../../constants/socialUrls'
+
 const SOCIAL_ITEMS = [
   {
     id: 'youtube',
@@ -14,8 +16,8 @@ const SOCIAL_ITEMS = [
   },
   {
     id: 'instagram',
-    label: 'Instagram @codedcitadel',
-    href: 'https://www.instagram.com/codedcitadel',
+    label: 'Instagram @CodedCitadel',
+    href: CODED_CITADEL_INSTAGRAM_URL,
     Icon: IconBrandInstagram,
   },
   {

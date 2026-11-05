@@ -1,3 +1,5 @@
+import { CODED_CITADEL_INSTAGRAM_URL } from '../../constants/socialUrls'
+
 export default function HomeHeroSection() {
   return (
     <section
@@ -13,16 +15,18 @@ export default function HomeHeroSection() {
           I build Chrome extensions that make your life easier.
         </h1>
         <p className="CC__home-hero__lede">
-          If you are on social media, whether professionally or just for fun, I have tools that will
-          improve your experience. Check them out!
+          If you&apos;re on social media - whether professionally or just for fun - I have tools that
+          will improve your experience. Check them out!
         </p>
         <div className="CC__home-hero__actions">
           <a href="#ext" className="CC__btn CC__btn--primary CC__home-hero__btn">
             Browse extensions
           </a>
           <a
-            href="#tips"
+            href={CODED_CITADEL_INSTAGRAM_URL}
             className="CC__btn CC__btn--outline CC__btn--instagram CC__home-hero__btn"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             View on Instagram
           </a>

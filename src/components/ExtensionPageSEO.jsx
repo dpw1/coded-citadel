@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+import { CODED_CITADEL_INSTAGRAM_URL } from '../constants/socialUrls'
 import { appTagline } from '../utils/apps'
 import { isLikelyEnglish } from '../utils/appDisplayText'
 
@@ -133,7 +134,7 @@ export default function ExtensionPageSEO({ extension, canonicalUrl }) {
         url: SITE_URL,
         sameAs: [
           'https://www.youtube.com/@CodedCitadel',
-          'https://www.instagram.com/codedcitadel',
+          CODED_CITADEL_INSTAGRAM_URL,
         ],
       },
     }

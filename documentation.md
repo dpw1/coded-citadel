@@ -77,6 +77,7 @@ Wrapped in **`.CC__home`** (`src/pages/HomePage.css`). Design tokens and primiti
 | Most popular | `HomeExtensionsSection.jsx` | `#ext` | Four curated cards; shared grid/card CSS with catalog |
 | All extensions | same | — | Filter pills (`HOME_CATALOG_FILTERS`), pagination; full listed catalog |
 | Tools | `HomeWebToolsSection.jsx` | `#tools` | Driven by `home-tools.json` |
+| Instagram reels | `HomeInstagramReelsSection.jsx` | `#reels` | `src/data/home-instagram-reels.json` + `public/home-instagram-reels/` — refresh with **`npm run sync-home-instagram-reels`** (no Meta API; build-time og scrape) |
 | About | inline in `HomePage.jsx` | `#about` | Legacy **`AppsGridSection`** (`#apps`) is commented out — use extension sections above instead |
 
 **Shared section spacing:** add **`CC__home-section`** to homepage blocks; use **`CC__home-section--follow`** when a section sits directly under another (e.g. All extensions after Most popular). Tokens on **`.CC__home`**: `--CC__home-section-gap-top`, `--CC__home-section-pad-bottom`.
@@ -204,6 +205,7 @@ Site is static output from Vite (`dist/`). `publish-to-github.bat` / CI pushes t
 - [ ] Reel / guides hub → edit `src/data/guides.json` (+ images in `public/guides-images/`) → `npm run generate-sitemap`.
 - [ ] Homepage hero / sections / spacing → `HomePage.css`, `CC__home-section`, `src/components/home/*`.
 - [ ] Homepage tools row → edit `src/data/home-tools.json`.
+- [ ] Homepage Instagram reels → edit `src/data/home-instagram-reels.json` or run **`npm run sync-home-instagram-reels`**.
 - [ ] Homepage “Most popular” → `src/constants/featuredExtensionSlugs.js`.
 - [ ] Homepage extension pills / hidden apps → `src/components/home/homeExtensionFilters.js`.
 - [ ] Extension card or landing tagline/title → **`appTagline()`** / **`appFilterLabel()`**; fix English in `apps.json` or `apps-custom-data.json` after scrape if needed.

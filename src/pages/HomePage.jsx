@@ -7,6 +7,7 @@ import CyberCorners from '../components/CyberCorners'
 import HomePageSEO from '../components/HomePageSEO'
 import HomeHeroSection from '../components/home/HomeHeroSection'
 import HomeExtensionsSection from '../components/home/HomeExtensionsSection'
+import HomeInstagramReelsSection from '../components/home/HomeInstagramReelsSection'
 import HomeWebToolsSection from '../components/home/HomeWebToolsSection'
 import { scrollToSection } from '../utils/scroll'
 import '../App.css'
@@ -36,6 +37,7 @@ export default function HomePage() {
 
       <HomeHeroSection />
       <HomeExtensionsSection />
+      <HomeInstagramReelsSection />
       <HomeWebToolsSection />
 
       {/*

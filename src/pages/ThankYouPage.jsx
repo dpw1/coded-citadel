@@ -22,8 +22,9 @@ import '../App.css'
 import './ExtensionLandingPage.css'
 import './ThankYouPage.css'
 
+import { CODED_CITADEL_INSTAGRAM_URL } from '../constants/socialUrls'
+
 const YOUTUBE_URL = 'https://www.youtube.com/@CodedCitadel'
-const INSTAGRAM_URL = 'https://www.instagram.com/codedcitadel'
 const CONTACT_EMAIL = 'CodedCitadel@gmail.com'
 const AVATAR_SRC = `${import.meta.env.BASE_URL}avatar-citadel.jpg`
 
@@ -38,7 +39,7 @@ const SOCIAL_LINKS = [
   {
     id: 'instagram',
     label: 'Instagram',
-    href: INSTAGRAM_URL,
+    href: CODED_CITADEL_INSTAGRAM_URL,
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <rect x="3" y="3" width="18" height="18" rx="5" />

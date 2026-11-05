@@ -1,13 +1,14 @@
 import {
   appActiveUsers,
-  appCardSummary,
-  appCategory,
+  appHomeExtensionSummary,
   appFilterLabel,
   appHeroPreviewUrl,
   appIconUrl,
   appStoreUrl,
+  appTags,
   formatNumber,
 } from '../../utils/apps'
+import { homeExtensionCardTag } from './homeExtensionFilters'
 import { cardThumbUrl, resolveYoutubeVideoId } from './homeExtensionShowcaseUtils'
 
 /* Video playback disabled for now — thumbnails only.
@@ -21,7 +22,7 @@ const PLAY_ICON = (
 function formatDailyUsers(app) {
   const count = appActiveUsers(app)
   if (count == null || count <= 0) return null
-  return `${formatNumber(count)} daily users`
+  return `${formatNumber(count)} active users`
 }
 
 export default function HomeExtensionShowcaseCard({
@@ -34,9 +35,9 @@ export default function HomeExtensionShowcaseCard({
   const videoIdForThumb = resolveYoutubeVideoId(app)
   const thumbUrl = cardThumbUrl(app, videoIdForThumb)
   const displayName = appFilterLabel(app)
-  const summary = appCardSummary(app)
+  const summary = appHomeExtensionSummary(app)
   const storeUrl = appStoreUrl(app)
-  const categoryLabel = appCategory(app)
+  const tagLabel = homeExtensionCardTag(app, appTags(app))
   const dailyUsers = formatDailyUsers(app)
   const iconOnlyThumb = !videoIdForThumb && !appHeroPreviewUrl(app) && appIconUrl(app)
 
@@ -63,7 +64,7 @@ export default function HomeExtensionShowcaseCard({
     .join(' ')
 
   return (
-    <article className={cardClassName} role="listitem" data-category={categoryLabel}>
+    <article className={cardClassName} role="listitem" data-category={tagLabel ?? ''}>
       <div className="CC__home-featured__card-media">
         {dailyUsers ? (
           <span className="CC__badge CC__home-featured__card-badge">{dailyUsers}</span>
@@ -108,7 +109,7 @@ export default function HomeExtensionShowcaseCard({
       <div className="CC__home-featured__card-body">
         <div className="CC__home-featured__card-head">
           <h3 className="CC__home-featured__card-title">{displayName}</h3>
-          <span className="CC__home-featured__card-tag">{categoryLabel}</span>
+          {tagLabel ? <span className="CC__home-featured__card-tag">{tagLabel}</span> : null}
         </div>
         {summary ? <p className="CC__home-featured__card-summary">{summary}</p> : null}
         <div className="CC__home-featured__card-foot">
