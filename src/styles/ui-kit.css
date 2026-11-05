@@ -1,0 +1,442 @@
+/* ==========================================================================
+   Coded Citadel UI kit — design tokens + primitives (source of truth)
+   Edit tokens here; global.css imports this file. See ui-kit.html for reference.
+   ========================================================================== */
+
+:root {
+  /* --- Colors (legacy names unchanged for non-home pages) --- */
+  --CC__color-bg-base: #090b10;
+  --CC__color-bg-surface: #0e121a;
+  --CC__color-bg-card: #131824;
+  --CC__color-bg-elevated: #161c28;
+  --CC__color-primary: #ff9900;
+  --CC__color-primary-hover: #e68a00;
+  --CC__color-primary-soft: rgba(255, 153, 0, 0.12);
+  --CC__color-primary-subtle: rgba(255, 153, 0, 0.06);
+  --CC__color-primary-ring: rgba(255, 153, 0, 0.28);
+  --CC__color-text-main: #ffffff;
+  --CC__color-text-muted: #7a8599;
+  --CC__color-border: #1f2636;
+  --CC__color-border-glow: #303b54;
+  --CC__color-border-subtle: #181e2a;
+  --CC__color-success: #22c55e;
+  --CC__color-danger: #f06560;
+
+  --CC__font-sans: 'Inter', sans-serif;
+  /* Matches codedcitadel.com — condensed display for headings and KPIs */
+  --CC__font-display: 'Oswald', sans-serif;
+
+  --CC__max-width: 1200px;
+  --CC__space-2xs: 0.35rem;
+  --CC__space-xs: 0.5rem;
+  --CC__space-sm: 1rem;
+  --CC__space-md: 2rem;
+  --CC__space-lg: 4rem;
+  --CC__space-xl: 6rem;
+  --CC__space-section: clamp(3rem, 6vw, 5.5rem);
+  --CC__container-gutter: var(--CC__space-md);
+  --CC__container-padding: var(--CC__container-gutter);
+  /* Height of the sticky announcement bar + header, so nested sticky bars can clear it. */
+  --CC__sticky-offset: 4.375rem;
+
+  --CC__radius: 4px;
+  --CC__radius-sm: 4px;
+  --CC__radius-md: 6px;
+  --CC__radius-lg: 12px;
+  --CC__radius-xl: 16px;
+  --CC__radius-pill: 999px;
+
+  --CC__transition: all 0.25s ease;
+  --CC__ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --CC__ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --CC__duration-fast: 0.15s;
+  --CC__duration-base: 0.25s;
+  --CC__duration-slow: 0.35s;
+
+  --CC__text-xs: clamp(0.68rem, 0.65rem + 0.1vw, 0.75rem);
+  --CC__text-sm: clamp(0.78rem, 0.75rem + 0.15vw, 0.875rem);
+  --CC__text-base: 1rem;
+  --CC__text-lg: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --CC__text-xl: clamp(1.05rem, 1rem + 0.35vw, 1.25rem);
+  --CC__text-2xl: clamp(1.35rem, 1.2rem + 0.6vw, 1.75rem);
+  --CC__text-3xl: clamp(1.85rem, 1.5rem + 1.2vw, 2.5rem);
+  --CC__text-4xl: clamp(2rem, 1.6rem + 1.8vw, 3.25rem);
+
+  --CC__leading-tight: 1.15;
+  --CC__leading-normal: 1.5;
+  --CC__leading-relaxed: 1.65;
+  --CC__weight-medium: 500;
+  --CC__weight-semibold: 600;
+  --CC__weight-bold: 700;
+
+  --CC__shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --CC__shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --CC__shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.45);
+  --CC__shadow-modal: 0 32px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--CC__color-primary-subtle);
+
+  --CC__gradient-surface: linear-gradient(
+    145deg,
+    var(--CC__color-bg-card) 0%,
+    var(--CC__color-bg-surface) 100%
+  );
+  --CC__gradient-accent: linear-gradient(
+    135deg,
+    var(--CC__color-primary) 0%,
+    #ffb347 100%
+  );
+  --CC__gradient-glow: radial-gradient(
+    ellipse 80% 60% at 50% -20%,
+    rgba(255, 153, 0, 0.12) 0%,
+    transparent 70%
+  );
+  --CC__gradient-hairline: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--CC__color-border-glow) 50%,
+    transparent 100%
+  );
+
+  --CC__color-corner-bracket: #ff9900;
+  --CC__color-icon-bg: #1a2030;
+  --CC__color-icon-border: #252e42;
+  --CC__color-divider: #1a2130;
+  --CC__color-live-dot: #ff9900;
+  --CC__color-text-sub: #5a6880;
+  --CC__color-info: #3b82f6;
+
+  --CC__hero-left-rail-color: #ff9900;
+  --CC__hero-side-rail-width: 2px;
+  --CC__hero-content-width: 42%;
+
+  --CC__btn-padding-y: 0.625rem;
+  --CC__btn-padding-x: 1.15rem;
+  --CC__btn-icon-size: 1.125rem;
+  --CC__btn-gap: 0.45rem;
+
+  --CC__focus-ring: 2px solid var(--CC__color-primary);
+  --CC__focus-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --CC__container-gutter: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --CC__transition: none;
+    --CC__duration-fast: 0.01ms;
+    --CC__duration-base: 0.01ms;
+    --CC__duration-slow: 0.01ms;
+  }
+}
+
+/* --- Focus --- */
+:where(a, button, input, [tabindex]:not([tabindex='-1'])):focus-visible {
+  outline: var(--CC__focus-ring);
+  outline-offset: var(--CC__focus-offset);
+}
+
+/* --- Layout --- */
+.CC__container {
+  max-width: var(--CC__max-width);
+  margin: 0 auto;
+  padding: 0 var(--CC__container-gutter);
+}
+
+/* --- Buttons --- */
+.CC__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--CC__btn-gap);
+  padding: var(--CC__btn-padding-y) var(--CC__btn-padding-x);
+  font-family: var(--CC__font-sans);
+  font-weight: var(--CC__weight-medium);
+  font-size: var(--CC__text-sm);
+  line-height: 1.2;
+  border-radius: var(--CC__radius-lg);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--CC__duration-fast) var(--CC__ease-out),
+    border-color var(--CC__duration-fast) var(--CC__ease-out),
+    color var(--CC__duration-fast) var(--CC__ease-out);
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+.CC__btn--primary {
+  background-color: var(--CC__color-primary);
+  color: #111111;
+  border-color: transparent;
+}
+
+.CC__btn--primary:hover:not(:disabled) {
+  background-color: var(--CC__color-primary-hover);
+}
+
+.CC__btn--outline {
+  background-color: transparent;
+  border-color: var(--CC__color-border-glow);
+  color: var(--CC__color-text-main);
+}
+
+.CC__btn--outline:hover:not(:disabled) {
+  border-color: var(--CC__color-text-muted);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.CC__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* BEM: icon before label (no extra markup) */
+.CC__btn--chrome-extension::before,
+.CC__btn--instagram::before {
+  content: '';
+  flex-shrink: 0;
+  width: var(--CC__btn-icon-size);
+  height: var(--CC__btn-icon-size);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.CC__btn--chrome-extension::before {
+  background-image: url('../assets/chrome.svg');
+}
+
+.CC__btn--instagram::before {
+  background-image: url('../assets/instagram.svg');
+  opacity: 0.92;
+}
+
+.CC__btn--outline.CC__btn--instagram::before {
+  opacity: 1;
+}
+
+/* Optional explicit icon element (same size as ::before) */
+.CC__btn__icon {
+  flex-shrink: 0;
+  width: var(--CC__btn-icon-size);
+  height: var(--CC__btn-icon-size);
+  object-fit: contain;
+}
+
+.CC__home .CC__btn--primary {
+  background: var(--CC__color-primary-subtle);
+  color: var(--CC__color-text-main);
+  border-color: var(--CC__color-border);
+}
+
+.CC__home .CC__btn--primary:hover:not(:disabled) {
+  background: var(--CC__color-primary-soft);
+  border-color: var(--CC__color-primary-ring);
+}
+
+.CC__home .CC__btn--outline:hover:not(:disabled) {
+  border-color: var(--CC__color-primary-ring);
+  background: var(--CC__color-primary-subtle);
+  color: var(--CC__color-text-main);
+}
+
+/* --- Section typography --- */
+.CC__section-eyebrow {
+  color: var(--CC__color-primary);
+  font-size: 0.8rem;
+  font-weight: var(--CC__weight-semibold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: var(--CC__space-xs);
+}
+
+.CC__section-title {
+  font-family: var(--CC__font-display);
+  font-size: 2.5rem;
+  font-weight: var(--CC__weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: var(--CC__leading-tight);
+}
+
+.CC__home .CC__section-eyebrow {
+  letter-spacing: 0.12em;
+  font-size: var(--CC__text-xs);
+}
+
+.CC__home .CC__section-title {
+  font-size: var(--CC__text-2xl);
+  text-transform: none;
+  letter-spacing: -0.015em;
+  font-weight: var(--CC__weight-bold);
+}
+
+/* --- Card primitive --- */
+.CC__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--CC__gradient-surface);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+  overflow: hidden;
+  transition:
+    border-color var(--CC__duration-base) var(--CC__ease-out),
+    box-shadow var(--CC__duration-base) var(--CC__ease-out),
+    transform var(--CC__duration-base) var(--CC__ease-out);
+}
+
+.CC__card:hover {
+  border-color: var(--CC__color-border-glow);
+}
+
+.CC__home .CC__card--lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--CC__shadow-md);
+}
+
+/* --- Chip / pill filter --- */
+.CC__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  min-height: 44px;
+  font-family: var(--CC__font-sans);
+  font-size: var(--CC__text-sm);
+  font-weight: var(--CC__weight-medium);
+  color: var(--CC__color-text-muted);
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--CC__duration-fast) var(--CC__ease-out),
+    border-color var(--CC__duration-fast) var(--CC__ease-out),
+    background var(--CC__duration-fast) var(--CC__ease-out);
+}
+
+.CC__chip:hover {
+  color: var(--CC__color-text-main);
+  border-color: var(--CC__color-border-glow);
+}
+
+.CC__chip--on,
+.CC__chip[aria-pressed='true'] {
+  color: var(--CC__color-bg-base);
+  background: var(--CC__color-text-main);
+  border-color: var(--CC__color-text-main);
+}
+
+/* --- Form input --- */
+.CC__input {
+  padding: 0.75rem 1rem;
+  font-family: var(--CC__font-sans);
+  font-size: var(--CC__text-base);
+  color: var(--CC__color-text-main);
+  background: var(--CC__color-bg-base);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+  transition: border-color var(--CC__duration-fast) var(--CC__ease-out);
+}
+
+.CC__input::placeholder {
+  color: var(--CC__color-text-sub);
+}
+
+.CC__input:focus {
+  outline: none;
+  border-color: var(--CC__color-border-glow);
+}
+
+.CC__input:focus-visible {
+  border-color: var(--CC__color-primary);
+}
+
+/* --- Badge --- */
+.CC__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.55rem;
+  font-size: var(--CC__text-xs);
+  font-weight: var(--CC__weight-semibold);
+  line-height: 1.2;
+  color: var(--CC__color-primary);
+  background: var(--CC__color-primary-soft);
+  border: 1px solid var(--CC__color-primary-ring);
+  border-radius: var(--CC__radius-pill);
+}
+
+.CC__badge--muted {
+  color: var(--CC__color-text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--CC__color-border);
+}
+
+/* --- Cyber accent frame --- */
+.CC__cyber-accent {
+  position: relative;
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: calc(var(--CC__radius) * 1.5);
+}
+
+.CC__cyber-accent__corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.CC__cyber-accent__corner--tl {
+  top: -2px;
+  left: -2px;
+}
+
+.CC__cyber-accent__corner--tr {
+  top: -2px;
+  right: -2px;
+  transform: scaleX(-1);
+}
+
+.CC__cyber-accent__corner--bl {
+  bottom: -2px;
+  left: -2px;
+  transform: scaleY(-1);
+}
+
+.CC__cyber-accent__corner--br {
+  bottom: -2px;
+  right: -2px;
+  transform: scale(-1);
+}
+
+/* --- Skeleton --- */
+.CC__skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--CC__color-bg-card) 0%,
+    var(--CC__color-bg-elevated) 50%,
+    var(--CC__color-bg-card) 100%
+  );
+  background-size: 200% 100%;
+  animation: CC__skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--CC__radius-md);
+}
+
+@keyframes CC__skeleton-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .CC__skeleton {
+    animation: none;
+  }
+}

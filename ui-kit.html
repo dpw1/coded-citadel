@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coded Citadel — UI kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/styles/ui-kit.css">
+  <link rel="stylesheet" href="ui-kit-page.css">
+</head>
+<body class="CC__home">
+
+<a class="KIT__skip" href="#main">Skip to content</a>
+
+<aside class="KIT__sidebar" id="sidebar" aria-label="UI kit sections">
+  <div class="KIT__sidebar-head">
+    <button type="button" class="KIT__toggle" id="toggle" aria-expanded="false" aria-controls="sidebar" aria-label="Expand navigation">
+      <span class="KIT__toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    <span class="KIT__brand">Coded Citadel</span>
+  </div>
+
+  <nav class="KIT__nav">
+    <p class="KIT__nav-group">Foundations</p>
+    <a href="#colors" data-nav><span class="KIT__dot" style="background:var(--CC__color-primary)"></span><span class="KIT__nav-text">Colors</span></a>
+    <a href="#gradients" data-nav><span class="KIT__dot" style="background:var(--CC__gradient-accent)"></span><span class="KIT__nav-text">Gradients</span></a>
+    <a href="#type" data-nav><span class="KIT__dot KIT__dot--glyph">Aa</span><span class="KIT__nav-text">Typography</span></a>
+    <a href="#spacing" data-nav><span class="KIT__dot KIT__dot--glyph">↔</span><span class="KIT__nav-text">Spacing</span></a>
+    <a href="#radius" data-nav><span class="KIT__dot KIT__dot--radius"></span><span class="KIT__nav-text">Radius</span></a>
+    <a href="#shadows" data-nav><span class="KIT__dot KIT__dot--shadow"></span><span class="KIT__nav-text">Shadows</span></a>
+    <a href="#motion" data-nav><span class="KIT__dot KIT__dot--glyph">~</span><span class="KIT__nav-text">Motion</span></a>
+
+    <p class="KIT__nav-group">Components</p>
+    <a href="#buttons" data-nav><span class="KIT__dot KIT__dot--glyph">B</span><span class="KIT__nav-text">Buttons</span></a>
+    <a href="#cards" data-nav><span class="KIT__dot KIT__dot--glyph">▭</span><span class="KIT__nav-text">Cards</span></a>
+    <a href="#chips" data-nav><span class="KIT__dot KIT__dot--glyph">◍</span><span class="KIT__nav-text">Chips &amp; tabs</span></a>
+    <a href="#inputs" data-nav><span class="KIT__dot KIT__dot--glyph">▤</span><span class="KIT__nav-text">Inputs</span></a>
+    <a href="#badges" data-nav><span class="KIT__dot KIT__dot--glyph">●</span><span class="KIT__nav-text">Badges</span></a>
+    <a href="#modal" data-nav><span class="KIT__dot KIT__dot--glyph">◰</span><span class="KIT__nav-text">Modal</span></a>
+    <a href="#states" data-nav><span class="KIT__dot KIT__dot--glyph">◌</span><span class="KIT__nav-text">States</span></a>
+
+    <p class="KIT__nav-group">Usage</p>
+    <a href="#rules" data-nav><span class="KIT__dot KIT__dot--glyph">!</span><span class="KIT__nav-text">Agent rules</span></a>
+  </nav>
+</aside>
+
+<main class="KIT__main" id="main">
+
+  <header class="KIT__hero">
+    <span class="KIT__eyebrow">Design system</span>
+    <h1 class="KIT__h1">Coded Citadel UI kit</h1>
+    <p class="KIT__lede">
+      Every token and primitive the site is built from. Tokens live in
+      <code>src/styles/ui-kit.css</code> — the single source of truth, imported by
+      <code>global.css</code>. Edit values there and the site follows.
+    </p>
+    <div class="KIT__hero-meta">
+      <span><strong>Oswald</strong> display</span>
+      <span><strong>Inter</strong> body</span>
+      <span><strong>.CC__home</strong> scope</span>
+    </div>
+  </header>
+
+  <!-- ===================== COLORS ===================== -->
+  <section id="colors" class="KIT__section">
+    <h2 class="KIT__h2">Colors</h2>
+    <p class="KIT__note">Orange is the only accent. Green is reserved for live status and positive deltas — never marketing copy.</p>
+
+    <div class="KIT__swatches">
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-bg-base)"></span><b>bg-base</b><code>#090b10</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-bg-surface)"></span><b>bg-surface</b><code>#0e121a</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-bg-card)"></span><b>bg-card</b><code>#131824</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-bg-elevated)"></span><b>bg-elevated</b><code>#161c28</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-primary)"></span><b>primary</b><code>#ff9900</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-primary-hover)"></span><b>primary-hover</b><code>#e68a00</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-primary-soft)"></span><b>primary-soft</b><code>12% orange</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-text-main)"></span><b>text-main</b><code>#ffffff</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-text-muted)"></span><b>text-muted</b><code>#7a8599</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-text-sub)"></span><b>text-sub</b><code>#5a6880</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-border)"></span><b>border</b><code>#1f2636</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-border-glow)"></span><b>border-glow</b><code>#303b54</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-success)"></span><b>success</b><code>status only</code></div>
+      <div class="KIT__swatch"><span class="KIT__chipcolor" style="background:var(--CC__color-danger)"></span><b>danger</b><code>#f06560</code></div>
+    </div>
+  </section>
+
+  <!-- ===================== GRADIENTS ===================== -->
+  <section id="gradients" class="KIT__section">
+    <h2 class="KIT__h2">Gradients</h2>
+    <p class="KIT__note">Kept subtle. Surface and hairline are near-flat; accent is only for primary CTAs; glow sits behind the hero.</p>
+
+    <div class="KIT__grads">
+      <figure><div class="KIT__grad" style="background:var(--CC__gradient-surface)"></div><figcaption><b>--CC__gradient-surface</b>Cards, panels, reels</figcaption></figure>
+      <figure><div class="KIT__grad" style="background:var(--CC__gradient-accent)"></div><figcaption><b>--CC__gradient-accent</b>Primary CTA only</figcaption></figure>
+      <figure><div class="KIT__grad" style="background:var(--CC__gradient-glow)"></div><figcaption><b>--CC__gradient-glow</b>Hero backdrop</figcaption></figure>
+      <figure><div class="KIT__grad" style="background:var(--CC__gradient-hairline)"></div><figcaption><b>--CC__gradient-hairline</b>Fading dividers</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ===================== TYPOGRAPHY ===================== -->
+  <section id="type" class="KIT__section">
+    <h2 class="KIT__h2">Typography</h2>
+    <p class="KIT__note"><strong>Oswald</strong> for titles and display numbers (condensed, uppercase on legacy pages), <strong>Inter</strong> for body and UI. All sizes are fluid <code>clamp()</code> tokens.</p>
+
+    <div class="KIT__panel">
+      <div class="KIT__typerow"><span class="KIT__token">--CC__text-4xl</span><p style="font-family:var(--CC__font-display);font-size:var(--CC__text-4xl);font-weight:800;line-height:1.1;letter-spacing:-0.02em">Page headline</p></div>
+      <div class="KIT__typerow"><span class="KIT__token">--CC__text-3xl</span><p style="font-family:var(--CC__font-display);font-size:var(--CC__text-3xl);font-weight:700;line-height:1.15;letter-spacing:-0.015em">Section headline</p></div>
+      <div class="KIT__typerow"><span class="KIT__token">--CC__text-2xl</span><p style="font-family:var(--CC__font-display);font-size:var(--CC__text-2xl);font-weight:700">Subsection title</p></div>
+      <div class="KIT__typerow"><span class="KIT__token">--CC__text-xl</span><p style="font-size:var(--CC__text-xl);font-weight:600">Card title</p></div>
+      <div class="KIT__typerow"><span class="KIT__token">--CC__text-lg</span><p style="font-size:var(--CC__text-lg)">Lede / intro paragraph</p></div>
+      <div class="KIT__typerow"><span class="KIT__token">--CC__text-base</span><p style="font-size:var(--CC__text-base)">Body copy — the default reading size.</p></div>
+      <div class="KIT__typerow"><span class="KIT__token">--CC__text-sm</span><p style="font-size:var(--CC__text-sm);color:var(--CC__color-text-muted)">Secondary text, card summaries, captions.</p></div>
+      <div class="KIT__typerow"><span class="KIT__token">--CC__text-xs</span><p style="font-size:var(--CC__text-xs);color:var(--CC__color-text-muted)">Tags, badges, eyebrows.</p></div>
+    </div>
+
+    <div class="KIT__panel KIT__panel--pad">
+      <p class="CC__section-eyebrow">Section eyebrow</p>
+      <p class="CC__section-title">Section title</p>
+      <p class="KIT__note" style="margin-top:0.75rem">On <code>.CC__home</code> the title is sentence case; legacy pages keep uppercase.</p>
+    </div>
+
+    <pre class="KIT__code">&lt;p class="CC__section-eyebrow"&gt;About me&lt;/p&gt;
+&lt;h2 class="CC__section-title"&gt;Welcome&lt;/h2&gt;</pre>
+  </section>
+
+  <!-- ===================== SPACING ===================== -->
+  <section id="spacing" class="KIT__section">
+    <h2 class="KIT__h2">Spacing</h2>
+    <p class="KIT__note">Use <code>--CC__space-section</code> between page sections and the smaller steps inside them.</p>
+
+    <div class="KIT__panel KIT__panel--pad KIT__spacing">
+      <div><span class="KIT__token">--CC__space-2xs</span><i style="width:var(--CC__space-2xs)"></i><code>0.35rem</code></div>
+      <div><span class="KIT__token">--CC__space-xs</span><i style="width:var(--CC__space-xs)"></i><code>0.5rem</code></div>
+      <div><span class="KIT__token">--CC__space-sm</span><i style="width:var(--CC__space-sm)"></i><code>1rem</code></div>
+      <div><span class="KIT__token">--CC__space-md</span><i style="width:var(--CC__space-md)"></i><code>2rem</code></div>
+      <div><span class="KIT__token">--CC__space-lg</span><i style="width:var(--CC__space-lg)"></i><code>4rem</code></div>
+      <div><span class="KIT__token">--CC__space-xl</span><i style="width:var(--CC__space-xl)"></i><code>6rem</code></div>
+      <div><span class="KIT__token">--CC__space-section</span><i style="width:var(--CC__space-section)"></i><code>clamp 3→5.5rem</code></div>
+    </div>
+  </section>
+
+  <!-- ===================== RADIUS ===================== -->
+  <section id="radius" class="KIT__section">
+    <h2 class="KIT__h2">Radius</h2>
+    <p class="KIT__note">Never write <code>calc(var(--CC__radius) * 2)</code> — use a named step.</p>
+
+    <div class="KIT__radii">
+      <div><span style="border-radius:var(--CC__radius-sm)"></span><b>sm</b><code>4px</code></div>
+      <div><span style="border-radius:var(--CC__radius-md)"></span><b>md</b><code>6px</code></div>
+      <div><span style="border-radius:var(--CC__radius-lg)"></span><b>lg</b><code>12px</code></div>
+      <div><span style="border-radius:var(--CC__radius-xl)"></span><b>xl</b><code>16px</code></div>
+      <div><span style="border-radius:var(--CC__radius-pill)"></span><b>pill</b><code>999px</code></div>
+    </div>
+  </section>
+
+  <!-- ===================== SHADOWS ===================== -->
+  <section id="shadows" class="KIT__section">
+    <h2 class="KIT__h2">Elevation</h2>
+    <div class="KIT__shadows">
+      <div style="box-shadow:var(--CC__shadow-sm)"><b>shadow-sm</b><code>hover on small tiles</code></div>
+      <div style="box-shadow:var(--CC__shadow-md)"><b>shadow-md</b><code>card hover lift</code></div>
+      <div style="box-shadow:var(--CC__shadow-lg)"><b>shadow-lg</b><code>popovers</code></div>
+      <div style="box-shadow:var(--CC__shadow-modal)"><b>shadow-modal</b><code>dialogs</code></div>
+    </div>
+  </section>
+
+  <!-- ===================== MOTION ===================== -->
+  <section id="motion" class="KIT__section">
+    <h2 class="KIT__h2">Motion</h2>
+    <p class="KIT__note">Hover the tiles. All durations collapse to near-zero under <code>prefers-reduced-motion</code>.</p>
+    <div class="KIT__motion">
+      <div class="KIT__motion-tile" style="transition:transform var(--CC__duration-fast) var(--CC__ease-out)"><b>duration-fast</b><code>0.15s · ease-out</code></div>
+      <div class="KIT__motion-tile" style="transition:transform var(--CC__duration-base) var(--CC__ease-out)"><b>duration-base</b><code>0.25s · ease-out</code></div>
+      <div class="KIT__motion-tile" style="transition:transform var(--CC__duration-slow) var(--CC__ease-spring)"><b>duration-slow</b><code>0.35s · ease-spring</code></div>
+    </div>
+  </section>
+
+  <!-- ===================== BUTTONS ===================== -->
+  <section id="buttons" class="KIT__section">
+    <h2 class="KIT__h2">Buttons</h2>
+    <p class="KIT__note">Flat, quiet primary on <code>.CC__home</code> (tint + border). Icon modifiers use <code>::before</code> — no extra markup. Chrome uses <code>src/assets/chrome.svg</code>; Instagram uses <code>src/assets/instagram.svg</code>. React pages can still use <code>ChromeIcon</code> with <code>CC__btn__icon</code>.</p>
+
+    <div class="KIT__panel KIT__panel--pad">
+      <div class="KIT__row">
+        <button type="button" class="CC__btn CC__btn--primary CC__btn--chrome-extension">Add to Chrome</button>
+        <button type="button" class="CC__btn CC__btn--outline CC__btn--instagram">View on Instagram</button>
+        <button type="button" class="CC__btn CC__btn--outline">Browse extensions</button>
+        <button type="button" class="CC__btn CC__btn--primary CC__btn--chrome-extension" disabled>Disabled</button>
+      </div>
+      <p class="KIT__caption">Modifiers: <code>CC__btn--chrome-extension</code> · <code>CC__btn--instagram</code></p>
+    </div>
+
+    <pre class="KIT__code">&lt;button class="CC__btn CC__btn--primary CC__btn--chrome-extension"&gt;Add to Chrome&lt;/button&gt;
+&lt;a class="CC__btn CC__btn--outline CC__btn--instagram" href="#instagram"&gt;View on Instagram&lt;/a&gt;</pre>
+  </section>
+
+  <!-- ===================== CARDS ===================== -->
+  <section id="cards" class="KIT__section">
+    <h2 class="KIT__h2">Cards</h2>
+    <p class="KIT__note">Add <code>CC__card--lift</code> for the hover elevation used by extension cards.</p>
+
+    <div class="KIT__cards">
+      <article class="CC__card CC__card--lift">
+        <div class="KIT__card-media"><span class="KIT__play">▶</span></div>
+        <div class="KIT__card-body">
+          <div class="KIT__card-head"><h3>YouTube Filter Pro</h3><span>YouTube</span></div>
+          <p>Filter YouTube search by duration, views, date and channel so you only see what is worth watching.</p>
+          <a class="CC__btn CC__btn--primary CC__btn--chrome-extension KIT__card-cta" href="#cards">Add to Chrome</a>
+        </div>
+      </article>
+
+      <article class="CC__card CC__card--lift">
+        <div class="KIT__card-media KIT__card-media--flat"></div>
+        <div class="KIT__card-body">
+          <div class="KIT__card-head"><h3>Gmail to PDF</h3><span>Email</span></div>
+          <p>Save any email as PDF, HTML, TXT or JSON.</p>
+          <span class="CC__badge CC__badge--muted">133 daily users</span>
+        </div>
+      </article>
+    </div>
+
+    <pre class="KIT__code">&lt;article class="CC__card CC__card--lift"&gt;…&lt;/article&gt;</pre>
+  </section>
+
+  <!-- ===================== CHIPS ===================== -->
+  <section id="chips" class="KIT__section">
+    <h2 class="KIT__h2">Chips &amp; tabs</h2>
+    <p class="KIT__note">Filter chips must expose state with <code>aria-pressed</code> and announce the result count in a live region.</p>
+
+    <div class="KIT__panel KIT__panel--pad">
+      <div class="KIT__row">
+        <button type="button" class="CC__chip CC__chip--on" aria-pressed="true">All <span class="KIT__count">15</span></button>
+        <button type="button" class="CC__chip" aria-pressed="false">Instagram <span class="KIT__count">4</span></button>
+        <button type="button" class="CC__chip" aria-pressed="false">YouTube <span class="KIT__count">6</span></button>
+        <button type="button" class="CC__chip" aria-pressed="false">Email and apps <span class="KIT__count">5</span></button>
+      </div>
+      <p class="KIT__caption">Active chip inverts to white. Minimum 44px tap target.</p>
+    </div>
+
+    <pre class="KIT__code">&lt;button class="CC__chip" aria-pressed="true"&gt;All&lt;/button&gt;
+&lt;p aria-live="polite" class="visually-hidden"&gt;15 extensions shown&lt;/p&gt;</pre>
+  </section>
+
+  <!-- ===================== INPUTS ===================== -->
+  <section id="inputs" class="KIT__section">
+    <h2 class="KIT__h2">Form inputs</h2>
+    <div class="KIT__panel KIT__panel--pad">
+      <form class="KIT__form" onsubmit="return false">
+        <input class="CC__input" type="email" placeholder="you@email.com" aria-label="Email">
+        <button type="submit" class="CC__btn CC__btn--primary">Send me the link</button>
+      </form>
+      <p class="KIT__caption">Focus the field: border brightens, focus ring appears for keyboard users only.</p>
+    </div>
+    <pre class="KIT__code">&lt;input class="CC__input" type="email" placeholder="you@email.com" aria-label="Email" /&gt;</pre>
+  </section>
+
+  <!-- ===================== BADGES ===================== -->
+  <section id="badges" class="KIT__section">
+    <h2 class="KIT__h2">Badges</h2>
+    <p class="KIT__note">Accent badge carries social proof on card media. Muted badge is for secondary metadata.</p>
+    <div class="KIT__panel KIT__panel--pad">
+      <div class="KIT__row">
+        <span class="CC__badge">9.4k daily users</span>
+        <span class="CC__badge">New</span>
+        <span class="CC__badge CC__badge--muted">133 daily users</span>
+        <span class="CC__badge CC__badge--muted">Coming soon</span>
+      </div>
+    </div>
+    <pre class="KIT__code">&lt;span class="CC__badge"&gt;9.4k daily users&lt;/span&gt;</pre>
+  </section>
+
+  <!-- ===================== MODAL ===================== -->
+  <section id="modal" class="KIT__section">
+    <h2 class="KIT__h2">Modal</h2>
+    <p class="KIT__note">Video dialog from <code>ExtensionVideoModal.jsx</code>. It traps focus, restores focus on close, and closes on Escape or backdrop click.</p>
+
+    <div class="KIT__modal-demo">
+      <div class="KIT__modal">
+        <div class="KIT__modal-head">
+          <span class="KIT__modal-title">Instagram DM Exporter</span>
+          <span class="KIT__modal-close">✕</span>
+        </div>
+        <div class="KIT__modal-video"><span class="KIT__play">▶</span></div>
+        <div class="KIT__modal-foot"><span class="CC__btn CC__btn--primary CC__btn--chrome-extension">Add to Chrome</span></div>
+      </div>
+    </div>
+
+    <pre class="KIT__code">CC__modal-backdrop · CC__modal-backdrop--open
+CC__modal CC__modal--video CC__modal--open
+CC__modal__header · CC__modal__video · CC__modal__footer</pre>
+  </section>
+
+  <!-- ===================== STATES ===================== -->
+  <section id="states" class="KIT__section">
+    <h2 class="KIT__h2">States</h2>
+
+    <div class="KIT__states">
+      <div class="KIT__panel KIT__panel--pad">
+        <b class="KIT__sub">Loading</b>
+        <div class="CC__skeleton" style="height:9rem;margin-bottom:0.6rem"></div>
+        <div class="CC__skeleton" style="height:0.9rem;width:70%;margin-bottom:0.4rem"></div>
+        <div class="CC__skeleton" style="height:0.9rem;width:45%"></div>
+      </div>
+
+      <div class="KIT__panel KIT__panel--pad">
+        <b class="KIT__sub">Empty</b>
+        <p class="KIT__empty">No extensions in this category yet.</p>
+      </div>
+
+      <div class="KIT__panel KIT__panel--pad">
+        <b class="KIT__sub">Focus</b>
+        <p class="KIT__caption" style="margin-bottom:0.75rem">Tab into this button — ring uses <code>--CC__focus-ring</code>.</p>
+        <button type="button" class="CC__btn CC__btn--outline">Focus me</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RULES ===================== -->
+  <section id="rules" class="KIT__section">
+    <h2 class="KIT__h2">Agent rules</h2>
+    <ul class="KIT__rules">
+      <li><b>Edit tokens, not values.</b> Change <code>src/styles/ui-kit.css</code>; never hardcode hex, px radius, shadows or durations in page CSS.</li>
+      <li><b>One accent.</b> Orange only. <code>--CC__color-success</code> is for live status and positive deltas.</li>
+      <li><b>Named radius steps.</b> Use <code>--CC__radius-lg</code> / <code>-xl</code>, not <code>calc()</code> on the base radius.</li>
+      <li><b>Oswald titles, Inter body.</b> Use <code>--CC__font-display</code> for headings and display numbers only.</li>
+      <li><b>Button icons.</b> <code>CC__btn--chrome-extension</code> and <code>CC__btn--instagram</code> prepend SVG in CSS; in React you can use <code>ChromeIcon</code> with <code>CC__btn__icon</code>.</li>
+      <li><b>Homepage is scoped.</b> Refreshed styling lives under <code>.CC__home</code>. Other routes still use legacy styling — migrate them with this kit.</li>
+      <li><b>Every interactive element needs a visible focus state</b> and a 44px minimum tap target.</li>
+    </ul>
+  </section>
+
+  <footer class="KIT__footer">
+    <span>Coded Citadel UI kit</span>
+    <span>src/styles/ui-kit.css</span>
+  </footer>
+</main>
+
+<script>
+  var sidebar = document.getElementById('sidebar')
+  var toggle = document.getElementById('toggle')
+
+  toggle.addEventListener('click', function () {
+    var open = sidebar.classList.toggle('KIT__sidebar--open')
+    toggle.setAttribute('aria-expanded', String(open))
+    toggle.setAttribute('aria-label', open ? 'Collapse navigation' : 'Expand navigation')
+  })
+
+  var links = [].slice.call(document.querySelectorAll('[data-nav]'))
+  var sections = links.map(function (link) {
+    return document.querySelector(link.getAttribute('href'))
+  })
+
+  function setActive() {
+    var index = 0
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i] && sections[i].getBoundingClientRect().top <= 140) index = i
+    }
+    links.forEach(function (link, i) {
+      link.classList.toggle('KIT__nav--active', i === index)
+    })
+  }
+
+  setActive()
+  window.addEventListener('scroll', setActive, { passive: true })
+
+  links.forEach(function (link) {
+    link.addEventListener('click', function () {
+      sidebar.classList.remove('KIT__sidebar--open')
+      toggle.setAttribute('aria-expanded', 'false')
+    })
+  })
+</script>
+</body>
+</html>

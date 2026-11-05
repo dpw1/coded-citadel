@@ -1,6 +1,11 @@
 import appsData from '../data/apps.json'
 import { dedupeAnalyticsSeriesByDate } from './analyticsSeries'
 import appsCustomData from '../data/apps-custom-data.json'
+import {
+  isLikelyEnglish,
+  resolveEnglishFilterLabel,
+  resolveEnglishTagline,
+} from './appDisplayText'
 
 const SLUG_ALIASES = {
   test: 'youtube-comments-exporter',
@@ -112,14 +117,21 @@ export function appStoreUrl(app) {
 }
 
 export function appCardSummary(app) {
-  return app.tagline ?? ''
+  return appTagline(app)
+}
+
+/** Public-facing tagline — always English when possible. */
+export function appTagline(app) {
+  const custom = findCustomAppEntry(app)
+  if (custom?.tagline && isLikelyEnglish(custom.tagline)) {
+    return custom.tagline.trim()
+  }
+  return resolveEnglishTagline(app)
 }
 
 /** Short label for filters and compact UI (Chrome listing title before colon). */
 export function appFilterLabel(app) {
-  const name = app?.name ?? ''
-  const short = name.split(':')[0]?.trim()
-  return short || name || app?.slug || 'Extension'
+  return resolveEnglishFilterLabel(app)
 }
 
 export function appIconUrl(app) {

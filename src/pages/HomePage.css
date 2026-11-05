@@ -1,0 +1,249 @@
+.CC__home {
+  --CC__home-section-gap-top: clamp(0.75rem, 2.5vw, 1.25rem);
+  --CC__home-section-pad-bottom: var(--CC__space-md);
+}
+
+/* Shared vertical rhythm for homepage blocks (Most popular, All extensions, Tools, …) */
+.CC__home-section {
+  scroll-margin-top: 5.5rem;
+  padding-top: var(--CC__home-section-gap-top);
+  padding-bottom: var(--CC__home-section-pad-bottom);
+}
+
+/* Back-to-back sections (e.g. All extensions after Most popular) */
+.CC__home-section--follow {
+  padding-top: 0;
+}
+
+.CC__home .CC__home-hero {
+  position: relative;
+  scroll-margin-top: 5.5rem;
+  margin-top: 0;
+  padding-top: clamp(2.25rem, 5vw + 1.25rem, 3.75rem);
+  padding-bottom: var(--CC__home-section-pad-bottom);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.CC__home-hero::before {
+  content: '';
+  position: absolute;
+  inset: -2rem 0 auto;
+  height: min(28rem, 70vh);
+  background: var(--CC__gradient-glow);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.CC__home-hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.CC__home-hero__title {
+  max-width: 47.5rem;
+  margin: 0 0 0.75rem;
+  font-family: var(--CC__font-display);
+  font-size: var(--CC__text-4xl);
+  font-weight: var(--CC__weight-bold);
+  line-height: var(--CC__leading-tight);
+  letter-spacing: -0.02em;
+}
+
+.CC__home-hero__lede {
+  max-width: 38.75rem;
+  margin: 0 0 1.35rem;
+  font-size: var(--CC__text-lg);
+  line-height: var(--CC__leading-relaxed);
+  color: var(--CC__color-text-muted);
+}
+
+.CC__home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--CC__space-xs);
+}
+
+/* Legacy global.css still ships uppercase pill buttons; the homepage uses the kit shape. */
+.CC__home .CC__btn {
+  min-height: 44px;
+  padding: var(--CC__btn-padding-y) var(--CC__btn-padding-x);
+  font-size: var(--CC__text-sm);
+  font-weight: var(--CC__weight-medium);
+  letter-spacing: 0.01em;
+  text-transform: none;
+  border-radius: var(--CC__radius-lg);
+}
+
+.CC__home .CC__home-extensions--catalog {
+  padding-bottom: var(--CC__home-section-pad-bottom);
+}
+
+.CC__home-tools,
+.CC__home-instagram,
+.CC__home-email {
+  scroll-margin-top: 5.5rem;
+}
+
+.CC__home-tools__card--soon {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.CC__home-tools__grid {
+  display: grid;
+  gap: 0.875rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin-top: var(--CC__space-sm);
+}
+
+.CC__home-tools__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem;
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+  background: var(--CC__gradient-surface);
+  transition:
+    border-color var(--CC__duration-base) var(--CC__ease-out),
+    box-shadow var(--CC__duration-base) var(--CC__ease-out),
+    transform var(--CC__duration-base) var(--CC__ease-out);
+}
+
+a.CC__home-tools__item:hover {
+  border-color: var(--CC__color-border-glow);
+  box-shadow: var(--CC__shadow-sm);
+  transform: translateY(-1px);
+  color: var(--CC__color-text-main);
+}
+
+.CC__home-tools__item--placeholder {
+  opacity: 0.65;
+  cursor: default;
+  border-style: dashed;
+  background: var(--CC__color-bg-surface);
+}
+
+.CC__home-tools__item--placeholder:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.CC__home-tools__item-title {
+  font-size: var(--CC__text-base);
+  font-weight: var(--CC__weight-semibold);
+}
+
+.CC__home-tools__item-desc {
+  font-size: var(--CC__text-sm);
+  color: var(--CC__color-text-muted);
+  line-height: var(--CC__leading-relaxed);
+}
+
+.CC__home .CC__home-instagram {
+  padding-top: var(--CC__space-section);
+  padding-bottom: var(--CC__space-section);
+}
+
+.CC__home-reels {
+  display: flex;
+  gap: 0.875rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-top: var(--CC__space-sm);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.CC__home-reels__item {
+  flex: 0 0 9.375rem;
+  aspect-ratio: 9 / 16;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  border-radius: var(--CC__radius-lg);
+  border: 1px solid var(--CC__color-border);
+  background: var(--CC__gradient-surface);
+  font-size: var(--CC__text-sm);
+  line-height: var(--CC__leading-tight);
+  transition:
+    border-color var(--CC__duration-base) var(--CC__ease-out),
+    box-shadow var(--CC__duration-base) var(--CC__ease-out);
+}
+
+.CC__home-reels__item:hover {
+  border-color: var(--CC__color-primary-ring);
+  box-shadow: var(--CC__shadow-sm);
+}
+
+.CC__home-reels__label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: var(--CC__text-xs);
+  color: var(--CC__color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.CC__home .CC__home-email {
+  padding-top: var(--CC__space-section);
+  padding-bottom: var(--CC__space-xl);
+}
+
+.CC__home-email__panel {
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-xl);
+  padding: clamp(1.25rem, 3vw, 1.65rem);
+  background: var(--CC__gradient-surface);
+  box-shadow: var(--CC__shadow-sm);
+}
+
+.CC__home-email__panel .CC__section-title {
+  margin-bottom: 0.5rem;
+}
+
+.CC__home-email__blurb {
+  margin-bottom: 1rem;
+  max-width: 42rem;
+}
+
+.CC__home-email__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--CC__space-xs);
+}
+
+.CC__home-email__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.CC__home-email__input {
+  flex: 1 1 13.75rem;
+  min-width: 0;
+}
+
+.CC__home-email__success {
+  margin: 0.75rem 0 0;
+  color: var(--CC__color-success);
+  font-size: var(--CC__text-sm);
+}
+
+.CC__home .CC__about {
+  padding-bottom: var(--CC__space-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.CC__home-tools__item:hover {
+    transform: none;
+  }
+}

@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import prerender from '@prerenderer/rollup-plugin'
-import blogDevPlugin from './back-end/vite-plugin-blog-dev.mjs'
 import portfolioAnalyticsDevPlugin from './back-end/vite-plugin-portfolio-analytics-dev.mjs'
 import liveStatsApiPlugin from './back-end/vite-plugin-live-stats-api.mjs'
 import { getLiveDavinciPluginSlugs } from './back-end/lib/davinci-plugins.mjs'
@@ -114,7 +113,6 @@ export default defineConfig(({ mode }) => {
   plugins: [
     react(),
     copyIndexTo404Plugin(),
-    blogDevPlugin(),
     portfolioAnalyticsDevPlugin(),
     liveStatsApiPlugin(),
     prerender({

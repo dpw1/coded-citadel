@@ -1,45 +1,10 @@
+@import './ui-kit.css';
+
 /* ==========================================================================
-   CSS VARIABLES & RESET
+   RESET & site layout
+   Design tokens (including Oswald + Inter) live in ui-kit.css.
    ========================================================================== */
-:root {
-  --CC__color-bg-base: #090b10;
-  --CC__color-bg-surface: #0e121a;
-  --CC__color-bg-card: #131824;
-  --CC__color-primary: #ff9900;
-  --CC__color-primary-hover: #e68a00;
-  --CC__color-text-main: #ffffff;
-  --CC__color-text-muted: #7a8599;
-  --CC__color-border: #1f2636;
-  --CC__color-border-glow: #303b54;
-  --CC__color-success: #22c55e;
-  --CC__color-danger: #f06560;
 
-  --CC__font-sans: 'Inter', sans-serif;
-  --CC__font-display: 'Oswald', sans-serif;
-
-  --CC__max-width: 1200px;
-  --CC__container-gutter: var(--CC__space-md);
-  --CC__space-xs: 0.5rem;
-  --CC__space-sm: 1rem;
-  --CC__space-md: 2rem;
-  --CC__space-lg: 4rem;
-  --CC__space-xl: 6rem;
-
-  --CC__radius: 4px;
-  --CC__transition: all 0.25s ease;
-
-  --CC__color-corner-bracket: #ff9900;
-  --CC__color-icon-bg: #1a2030;
-  --CC__color-icon-border: #252e42;
-  --CC__color-divider: #1a2130;
-  --CC__color-live-dot: #ff9900;
-  --CC__color-text-sub: #5a6880;
-  --CC__color-info: #3b82f6;
-
-  --CC__hero-left-rail-color: #ff9900;
-  --CC__hero-side-rail-width: 2px;
-  --CC__hero-content-width: 42%;
-}
 /* RESET */
 * {
   margin: 0;

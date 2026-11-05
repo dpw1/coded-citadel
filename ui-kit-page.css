@@ -1,0 +1,850 @@
+/* ==========================================================================
+   UI kit reference page chrome. Not shipped with the app — ui-kit.html only.
+   Typography: Inter (body) + Oswald (display), same as the public site.
+   All visual values below come from tokens in src/styles/ui-kit.css.
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+body {
+  background: var(--CC__color-bg-base);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 15% -5%, rgba(255, 153, 0, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 95% 10%, rgba(48, 59, 84, 0.25) 0%, transparent 70%);
+  background-attachment: fixed;
+  color: var(--CC__color-text-main);
+  font-family: var(--CC__font-sans);
+  line-height: var(--CC__leading-normal);
+  -webkit-font-smoothing: antialiased;
+  padding-left: 4.5rem;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78em;
+  color: var(--CC__color-primary);
+}
+
+.KIT__skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.KIT__skip:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 50;
+  padding: 0.6rem 1rem;
+  background: var(--CC__color-bg-card);
+  border-radius: var(--CC__radius-md);
+}
+
+/* ---------- Sidebar ---------- */
+.KIT__sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 40;
+  width: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  background: rgba(14, 18, 26, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid var(--CC__color-border);
+  overflow: hidden;
+  transition: width var(--CC__duration-slow) var(--CC__ease-out);
+}
+
+.KIT__sidebar:hover,
+.KIT__sidebar:focus-within,
+.KIT__sidebar--open {
+  width: 15.5rem;
+  box-shadow: var(--CC__shadow-lg);
+}
+
+.KIT__sidebar-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 0.25rem 0.85rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid var(--CC__color-border);
+}
+
+.KIT__toggle {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+  color: var(--CC__color-text-main);
+  cursor: pointer;
+  transition: border-color var(--CC__duration-fast) var(--CC__ease-out);
+}
+
+.KIT__toggle:hover {
+  border-color: var(--CC__color-primary);
+}
+
+.KIT__toggle-bars {
+  display: grid;
+  gap: 3px;
+}
+
+.KIT__toggle-bars span {
+  display: block;
+  width: 14px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.KIT__brand {
+  font-family: var(--CC__font-display);
+  font-weight: 800;
+  font-size: var(--CC__text-sm);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--CC__duration-fast) var(--CC__ease-out);
+}
+
+.KIT__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.KIT__nav-group {
+  margin: 0.85rem 0 0.3rem 0.65rem;
+  font-size: 0.62rem;
+  font-weight: var(--CC__weight-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--CC__color-text-sub);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--CC__duration-fast) var(--CC__ease-out);
+}
+
+.KIT__nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--CC__radius-lg);
+  color: var(--CC__color-text-muted);
+  text-decoration: none;
+  font-size: var(--CC__text-sm);
+  white-space: nowrap;
+  transition:
+    background var(--CC__duration-fast) var(--CC__ease-out),
+    color var(--CC__duration-fast) var(--CC__ease-out);
+}
+
+.KIT__nav a:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--CC__color-text-main);
+}
+
+.KIT__nav a.KIT__nav--active {
+  background: var(--CC__color-primary-soft);
+  color: var(--CC__color-primary);
+}
+
+.KIT__nav-text {
+  opacity: 0;
+  transition: opacity var(--CC__duration-fast) var(--CC__ease-out);
+}
+
+.KIT__sidebar:hover .KIT__brand,
+.KIT__sidebar:hover .KIT__nav-text,
+.KIT__sidebar:hover .KIT__nav-group,
+.KIT__sidebar:focus-within .KIT__brand,
+.KIT__sidebar:focus-within .KIT__nav-text,
+.KIT__sidebar:focus-within .KIT__nav-group,
+.KIT__sidebar--open .KIT__brand,
+.KIT__sidebar--open .KIT__nav-text,
+.KIT__sidebar--open .KIT__nav-group {
+  opacity: 1;
+}
+
+.KIT__dot {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  font-weight: var(--CC__weight-bold);
+  color: var(--CC__color-text-muted);
+}
+
+.KIT__dot--glyph {
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+}
+
+.KIT__nav--active .KIT__dot--glyph {
+  border-color: var(--CC__color-primary-ring);
+  color: var(--CC__color-primary);
+}
+
+.KIT__dot--radius {
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border-glow);
+  border-radius: var(--CC__radius-md) 50% var(--CC__radius-md) 50%;
+}
+
+.KIT__dot--shadow {
+  background: var(--CC__color-bg-elevated);
+  box-shadow: var(--CC__shadow-md);
+}
+
+/* ---------- Layout ---------- */
+.KIT__main {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: var(--CC__space-md) clamp(1rem, 4vw, 3rem) var(--CC__space-xl);
+}
+
+.KIT__hero {
+  padding: clamp(2rem, 6vw, 4.5rem) 0 var(--CC__space-md);
+}
+
+.KIT__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  padding: 0.3rem 0.8rem;
+  font-size: var(--CC__text-xs);
+  font-weight: var(--CC__weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--CC__color-primary);
+  background: var(--CC__color-primary-subtle);
+  border: 1px solid var(--CC__color-primary-ring);
+  border-radius: var(--CC__radius-pill);
+}
+
+.KIT__h1 {
+  font-family: var(--CC__font-display);
+  font-size: var(--CC__text-4xl);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: var(--CC__leading-tight);
+  margin-bottom: 0.85rem;
+}
+
+.KIT__lede {
+  max-width: 44rem;
+  font-size: var(--CC__text-lg);
+  color: var(--CC__color-text-muted);
+  line-height: var(--CC__leading-relaxed);
+}
+
+.KIT__hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.KIT__hero-meta span {
+  padding: 0.4rem 0.8rem;
+  font-size: var(--CC__text-xs);
+  color: var(--CC__color-text-muted);
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-pill);
+}
+
+.KIT__hero-meta strong {
+  color: var(--CC__color-text-main);
+}
+
+.KIT__section {
+  padding: var(--CC__space-section) 0 0;
+  scroll-margin-top: 1.5rem;
+}
+
+.KIT__h2 {
+  position: relative;
+  font-family: var(--CC__font-display);
+  font-size: var(--CC__text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.KIT__h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--CC__gradient-hairline);
+  background-position: left;
+}
+
+.KIT__note {
+  max-width: 48rem;
+  margin-bottom: 1.35rem;
+  color: var(--CC__color-text-muted);
+  font-size: var(--CC__text-sm);
+  line-height: var(--CC__leading-relaxed);
+}
+
+.KIT__caption {
+  margin-top: 0.85rem;
+  font-size: var(--CC__text-xs);
+  color: var(--CC__color-text-sub);
+}
+
+.KIT__sub {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: var(--CC__text-xs);
+  font-weight: var(--CC__weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--CC__color-text-sub);
+}
+
+.KIT__panel {
+  background: var(--CC__gradient-surface);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-xl);
+  overflow: hidden;
+}
+
+.KIT__panel--pad {
+  padding: 1.35rem;
+}
+
+.KIT__panel + .KIT__panel,
+.KIT__panel + .KIT__code {
+  margin-top: 1rem;
+}
+
+.KIT__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.KIT__code {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--CC__color-text-muted);
+  background: var(--CC__color-bg-base);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+  overflow-x: auto;
+}
+
+.KIT__token {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  color: var(--CC__color-primary);
+}
+
+/* ---------- Colors ---------- */
+.KIT__swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 0.75rem;
+}
+
+.KIT__swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.75rem;
+  background: var(--CC__gradient-surface);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+  font-size: var(--CC__text-xs);
+}
+
+.KIT__swatch b {
+  font-weight: var(--CC__weight-semibold);
+}
+
+.KIT__swatch code {
+  color: var(--CC__color-text-sub);
+}
+
+.KIT__chipcolor {
+  display: block;
+  height: 2.75rem;
+  margin-bottom: 0.5rem;
+  border-radius: var(--CC__radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- Gradients ---------- */
+.KIT__grads {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.85rem;
+}
+
+.KIT__grads figure {
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+  overflow: hidden;
+}
+
+.KIT__grad {
+  height: 5.5rem;
+}
+
+.KIT__grads figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.7rem 0.85rem;
+  font-size: var(--CC__text-xs);
+  color: var(--CC__color-text-sub);
+}
+
+.KIT__grads figcaption b {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--CC__color-primary);
+}
+
+/* ---------- Typography ---------- */
+.KIT__typerow {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.9rem 1.35rem;
+  border-bottom: 1px solid var(--CC__color-border-subtle);
+}
+
+.KIT__typerow:last-child {
+  border-bottom: none;
+}
+
+/* ---------- Spacing ---------- */
+.KIT__spacing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.KIT__spacing > div {
+  display: grid;
+  grid-template-columns: 10rem 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.KIT__spacing i {
+  display: block;
+  height: 0.75rem;
+  border-radius: var(--CC__radius-sm);
+  background: var(--CC__gradient-accent);
+}
+
+.KIT__spacing code {
+  color: var(--CC__color-text-sub);
+}
+
+/* ---------- Radius ---------- */
+.KIT__radii {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.85rem;
+}
+
+.KIT__radii > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.1rem 0.75rem;
+  background: var(--CC__gradient-surface);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+  font-size: var(--CC__text-xs);
+}
+
+.KIT__radii span {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--CC__color-bg-elevated);
+  border: 1px solid var(--CC__color-border-glow);
+}
+
+.KIT__radii code {
+  color: var(--CC__color-text-sub);
+}
+
+/* ---------- Shadows ---------- */
+.KIT__shadows {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1.5rem;
+}
+
+.KIT__shadows > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  justify-content: flex-end;
+  min-height: 7rem;
+  padding: 1rem;
+  background: var(--CC__color-bg-card);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+  font-size: var(--CC__text-xs);
+}
+
+.KIT__shadows code {
+  color: var(--CC__color-text-sub);
+}
+
+/* ---------- Motion ---------- */
+.KIT__motion {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.85rem;
+}
+
+.KIT__motion-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.1rem;
+  background: var(--CC__gradient-surface);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+  font-size: var(--CC__text-xs);
+  cursor: pointer;
+}
+
+.KIT__motion-tile:hover {
+  transform: translateY(-6px);
+}
+
+.KIT__motion-tile code {
+  color: var(--CC__color-text-sub);
+}
+
+/* ---------- Cards ---------- */
+.KIT__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1rem;
+}
+
+.KIT__card-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #1b2030 0%, #0c0f16 100%);
+}
+
+.KIT__card-media--flat {
+  background: var(--CC__color-bg-base);
+}
+
+.KIT__play {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.72);
+  border: 2px solid var(--CC__color-primary-ring);
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.KIT__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem;
+  align-items: flex-start;
+}
+
+.KIT__card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.KIT__card-head h3 {
+  font-size: var(--CC__text-xl);
+  font-weight: var(--CC__weight-semibold);
+}
+
+.KIT__card-head span {
+  font-size: var(--CC__text-xs);
+  color: var(--CC__color-text-muted);
+}
+
+.KIT__card-body p {
+  font-size: var(--CC__text-sm);
+  color: var(--CC__color-text-muted);
+  line-height: var(--CC__leading-relaxed);
+}
+
+.KIT__card-cta {
+  width: 100%;
+  margin-top: 0.2rem;
+  text-decoration: none;
+}
+
+/* ---------- Chips ---------- */
+.KIT__count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.3rem;
+  border-radius: var(--CC__radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.62rem;
+  font-weight: var(--CC__weight-bold);
+}
+
+.CC__chip--on .KIT__count {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Form ---------- */
+.KIT__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.KIT__form .CC__input {
+  flex: 1 1 14rem;
+}
+
+/* ---------- Modal demo ---------- */
+.KIT__modal-demo {
+  display: grid;
+  place-items: center;
+  padding: 2.25rem 1.25rem;
+  background: rgba(9, 11, 16, 0.75);
+  border: 1px solid var(--CC__color-border);
+  border-radius: var(--CC__radius-xl);
+}
+
+.KIT__modal {
+  width: 100%;
+  max-width: 30rem;
+  background: var(--CC__color-bg-surface);
+  border: 1px solid var(--CC__color-border-glow);
+  border-radius: var(--CC__radius-xl);
+  box-shadow: var(--CC__shadow-modal);
+  overflow: hidden;
+}
+
+.KIT__modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--CC__gradient-surface);
+  border-bottom: 1px solid var(--CC__color-border);
+}
+
+.KIT__modal-title {
+  font-size: var(--CC__text-lg);
+  font-weight: var(--CC__weight-semibold);
+}
+
+.KIT__modal-close {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid var(--CC__color-border-glow);
+  border-radius: var(--CC__radius-md);
+  color: var(--CC__color-text-muted);
+  font-size: 0.8rem;
+}
+
+.KIT__modal-video {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.KIT__modal-foot {
+  display: flex;
+  justify-content: center;
+  padding: 0.9rem 1.1rem 1.1rem;
+  border-top: 1px solid var(--CC__color-border);
+  background: var(--CC__color-bg-base);
+}
+
+.KIT__modal-foot .CC__btn {
+  width: 100%;
+  max-width: 16rem;
+}
+
+/* ---------- States ---------- */
+.KIT__states {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.KIT__empty {
+  padding: 2.25rem 1rem;
+  text-align: center;
+  font-size: var(--CC__text-sm);
+  color: var(--CC__color-text-muted);
+  border: 1px dashed var(--CC__color-border);
+  border-radius: var(--CC__radius-lg);
+}
+
+/* ---------- Rules ---------- */
+.KIT__rules {
+  display: grid;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+.KIT__rules li {
+  padding: 0.9rem 1.1rem;
+  background: var(--CC__gradient-surface);
+  border: 1px solid var(--CC__color-border);
+  border-left: 2px solid var(--CC__color-primary);
+  border-radius: var(--CC__radius-lg);
+  font-size: var(--CC__text-sm);
+  color: var(--CC__color-text-muted);
+  line-height: var(--CC__leading-relaxed);
+}
+
+.KIT__rules b {
+  color: var(--CC__color-text-main);
+}
+
+/* ---------- Footer ---------- */
+.KIT__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: var(--CC__space-section);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--CC__color-border);
+  font-size: var(--CC__text-xs);
+  color: var(--CC__color-text-sub);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  body {
+    padding-left: 0;
+    padding-top: 3.75rem;
+  }
+
+  .KIT__sidebar {
+    bottom: auto;
+    width: 100%;
+    height: 3.75rem;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 1rem;
+    border-right: none;
+    border-bottom: 1px solid var(--CC__color-border);
+  }
+
+  .KIT__sidebar--open {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+
+  .KIT__sidebar-head {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .KIT__sidebar--open .KIT__sidebar-head {
+    border-bottom: 1px solid var(--CC__color-border);
+    padding-bottom: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .KIT__brand {
+    opacity: 1;
+  }
+
+  .KIT__nav {
+    display: none;
+  }
+
+  .KIT__sidebar--open .KIT__nav {
+    display: flex;
+  }
+
+  .KIT__sidebar:hover {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .KIT__typerow,
+  .KIT__spacing > div {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .KIT__motion-tile:hover {
+    transform: none;
+  }
+}

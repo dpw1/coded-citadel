@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
 
+import { appTagline } from '../utils/apps'
+import { isLikelyEnglish } from '../utils/appDisplayText'
+
 const SITE_URL = 'https://codedcitadel.com'
 const DEFAULT_IMAGE = `${SITE_URL}/cc-logo.png`
 const JSON_LD_ATTR = 'data-extension-page-seo'
@@ -76,8 +79,12 @@ export default function ExtensionPageSEO({ extension, canonicalUrl }) {
     if (!extension) return undefined
 
     const pageUrl = canonicalUrl ?? `${SITE_URL}/apps/${extension.slug}`
-    const title = `${extension.name} — ${extension.tagline} | Coded Citadel`
-    const description = extension.description?.short ?? ''
+    const tagline = appTagline(extension)
+    const title = `${extension.name} — ${tagline} | Coded Citadel`
+    const description =
+      (extension.description?.short && isLikelyEnglish(extension.description.short)
+        ? extension.description.short
+        : tagline) || ''
     const image =
       extension.chromeExtensionIcon ||
       extension.screenshots?.[0] ||

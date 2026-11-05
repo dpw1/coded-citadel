@@ -16,7 +16,7 @@ Live site: **https://codedcitadel.com** (GitHub Pages; `CNAME` in repo root).
 | Backend-ish | Node scripts in `back-end/` (build time, not a runtime server) |
 | Admin | Static `admin/` (extension ops dashboards; separate from public SPA) |
 
-Dev: `npm run dev` · Production build: `npm run build` (runs several generators before `vite build`).
+Dev: `npm run dev` · Production build: `npm run build` (generators for apps/analytics/sitemap — **no** blog manifest regen). Blog pipeline scripts remain for manual use (`generate-blog-manifest`, `import-blog-screenshots`, `apply-blog-views`).
 
 ---
 
@@ -26,7 +26,7 @@ Defined in `src/App.jsx`:
 
 | Path | Page | Notes |
 |------|------|--------|
-| `/` | Home | Extensions showcase, meta from generated home SEO |
+| `/` | Home | New layout: hero + extension showcase + tools (`src/pages/HomePage.jsx`, `src/components/home/`) |
 | `/apps` | Apps grid | All Chrome extensions |
 | `/apps/:slug` | Extension landing | Copy from `src/data/apps.json` |
 | `/blog` | Blog index | Posts from `src/data/blog.json` |
@@ -46,7 +46,7 @@ Defined in `src/App.jsx`:
 
 | What | Source of truth | Generated into |
 |------|-----------------|----------------|
-| **Blog posts** | `blogs/*.md` (YAML frontmatter + Markdown) | `src/data/blog.json`, `public/blog-content/*.html` via `npm run generate-blog-manifest` |
+| **Blog posts** | `blogs/*.md` (YAML frontmatter + Markdown) | `src/data/blog.json`, `public/blog-content/*.html` via **`npm run generate-blog-manifest`** (manual — not run on `dev` or `build`) |
 | **Blog images** | Often imported from `blogs/` paths | `public/blog-images/` (`import-blog-screenshots`) |
 | **Extension catalog** | Chrome Web Store scrape + overrides | `src/data/apps.json` (`extract-chrome-apps`, `sync-apps-custom-data`) |
 | **Sitemap** | Routes + blog slugs + guide slugs | `public/sitemap.xml` (`generate-sitemap`); prerender list in `vite.config.js` |
@@ -55,10 +55,35 @@ Defined in `src/App.jsx`:
 | **Blog redirects** | `blog-redirects.json` | Merged in blog manifest |
 | **Site short links** | `redirects.json` | External redirects in `src/App.jsx` via `StoreRedirectPage` |
 | **Reel guides hub** | `src/data/guides.json` | `/guides` + `/guides/:slug` — see **Link-in-bio pages** below |
+| **Homepage web tools** | `src/data/home-tools.json` | Tools block on `/` (`#tools`) — `path` is an in-app route (e.g. `/image-search`) |
+| **Home “Most popular”** | `src/constants/featuredExtensionSlugs.js` | Curated slugs for `#ext` (keep aligned with `/links` flagship order when possible) |
+| **Home extension filters** | `src/components/home/homeExtensionFilters.js` | Category pills + hidden slugs for “All extensions”; not the raw store scrape |
 
-After changing **`blogs/*.md`**, run **`npm run generate-blog-manifest`** (or full `build`).
+After changing **`blogs/*.md`**, run **`npm run generate-blog-manifest`** (and **`npm run apply-blog-views`** if you refresh GA view counts). These steps are **not** hooked to `npm run dev` or `npm run build`.
 
 After changing **`src/data/guides.json`**, run **`npm run generate-sitemap`** (or full `build`).
+
+**Extension catalog note:** `extract-chrome-apps` may pull **pt-BR** taglines into `apps.json`. Public UI must stay **English** — use `appTagline()` / `appCardSummary()` and `appFilterLabel()` from `src/utils/apps.js` (see **Homepage** below), not raw `app.tagline` in React.
+
+---
+
+## Homepage (`/`)
+
+Wrapped in **`.CC__home`** (`src/pages/HomePage.css`). Design tokens and primitives: **`src/styles/ui-kit.css`** (reference: **`ui-kit.html`**).
+
+| Section | Component | Anchor | Notes |
+|---------|-----------|--------|--------|
+| Hero | `src/components/home/HomeHeroSection.jsx` | — | Top spacing on `.CC__home-hero` (inner uses `.CC__container`; avoid putting vertical padding on the same node as `.CC__container` — shorthand `padding: 0 …` resets `padding-top`) |
+| Most popular | `HomeExtensionsSection.jsx` | `#ext` | Four curated cards; shared grid/card CSS with catalog |
+| All extensions | same | — | Filter pills (`HOME_CATALOG_FILTERS`), pagination; full listed catalog |
+| Tools | `HomeWebToolsSection.jsx` | `#tools` | Driven by `home-tools.json` |
+| About | inline in `HomePage.jsx` | `#about` | Legacy **`AppsGridSection`** (`#apps`) is commented out — use extension sections above instead |
+
+**Shared section spacing:** add **`CC__home-section`** to homepage blocks; use **`CC__home-section--follow`** when a section sits directly under another (e.g. All extensions after Most popular). Tokens on **`.CC__home`**: `--CC__home-section-gap-top`, `--CC__home-section-pad-bottom`.
+
+**Shared extension UI:** `src/components/home/HomeExtensionShowcaseCard.jsx`, **`HomeExtensionShowcase.css`**, grid class **`CC__home-extensions__grid`** (3 columns desktop). Thumbnail links to Chrome Web Store; video modal is disabled for now (commented in section).
+
+**English copy on cards and `/apps/:slug`:** `src/utils/appDisplayText.js` + **`appTagline()`** / **`appFilterLabel()`** in `apps.js`. Prefer English `description.short` when store `tagline` is non-English; optional overrides in `apps-custom-data.json` (`tagline` on matching slug/id).
 
 ---
 
@@ -116,10 +141,11 @@ Setup and env (Supabase Storage primary; optional Cloudflare Worker + R2): **`su
 src/
   App.jsx              # Routes
   pages/               # One file per route
-  components/          # Shared UI (header, blog grid, linksHub/, imageSearch/, …)
+  components/          # Shared UI (header, blog grid, linksHub/, imageSearch/, home/, …)
+  constants/           # e.g. featuredExtensionSlugs.js
   content/             # Privacy / terms JSX per slug
   data/                # apps.json, blog.json, guides.json, analytics JSON
-  utils/               # apps.js, blog.js, guides.js, …
+  utils/               # apps.js, appDisplayText.js, blog.js, guides.js, …
   config/              # e.g. Supabase client
 ```
 
@@ -174,7 +200,12 @@ Site is static output from Vite (`dist/`). `publish-to-github.bat` / CI pushes t
 ## Quick agent checklist
 
 - [ ] Read this file for scope (SPA vs `blogs/` vs `back-end/`).
-- [ ] Blog change → edit `blogs/*.md` → `npm run generate-blog-manifest`.
+- [ ] Blog change → edit `blogs/*.md` → **`npm run generate-blog-manifest`** manually (optional **`npm run apply-blog-views`**).
 - [ ] Reel / guides hub → edit `src/data/guides.json` (+ images in `public/guides-images/`) → `npm run generate-sitemap`.
-- [ ] Extension page copy → often `apps.json` or store scrape + `sync-apps-custom-data`.
+- [ ] Homepage hero / sections / spacing → `HomePage.css`, `CC__home-section`, `src/components/home/*`.
+- [ ] Homepage tools row → edit `src/data/home-tools.json`.
+- [ ] Homepage “Most popular” → `src/constants/featuredExtensionSlugs.js`.
+- [ ] Homepage extension pills / hidden apps → `src/components/home/homeExtensionFilters.js`.
+- [ ] Extension card or landing tagline/title → **`appTagline()`** / **`appFilterLabel()`**; fix English in `apps.json` or `apps-custom-data.json` after scrape if needed.
+- [ ] Extension page copy (long body) → often `apps.json` or store scrape + `sync-apps-custom-data`.
 - [ ] SEO / blog writing task → open **`back-end/seo-documentation.md`** and **`back-end/writing-style.md`**.

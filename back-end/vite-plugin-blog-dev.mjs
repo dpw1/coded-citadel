@@ -1,5 +1,6 @@
 /**
  * Dev-only: watch blogs/ and re-run generate-blog-manifest on save.
+ * Not registered in vite.config.js — run npm run generate-blog-manifest manually when editing blogs.
  */
 
 import { spawnSync } from 'node:child_process'

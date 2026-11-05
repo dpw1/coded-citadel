@@ -47,7 +47,7 @@ export const ENGINES = [
     id: 'bing',
     name: 'Bing Visual',
     template: 'https://www.bing.com/images/searchbyimage?cbir=sbi&imgurl={url}',
-    mobile: false,
+    mobile: true,
     hint: '',
     icon: '/image-search/engines/bing.svg',
     borderClass: 'CC__image-search__engine--bing',
