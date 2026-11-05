@@ -1,4 +1,3 @@
-import { useFinePointer } from '../../hooks/useFinePointer'
 import {
   appActiveUsers,
   appCardSummary,
@@ -29,9 +28,6 @@ export default function HomeExtensionShowcaseCard({
   app,
   /* onPlayVideo, onMediaActivate, */
 }) {
-  const finePointer = useFinePointer()
-  // const mediaButtonRef = useRef(null)
-
   if (!app) return null
 
   // const videoId = resolveYoutubeVideoId(app)
@@ -53,14 +49,14 @@ export default function HomeExtensionShowcaseCard({
   }
   */
 
-  const ctaHref = finePointer && storeUrl ? storeUrl : '#email'
-  const ctaExternal = finePointer && Boolean(storeUrl)
-  const ctaLabel = finePointer && storeUrl ? 'Add to Chrome' : 'Send to my computer'
+  const ctaHref = storeUrl ?? '#email'
+  const ctaExternal = Boolean(storeUrl)
+  const ctaLabel = storeUrl ? 'Add to Chrome' : 'Send to my computer'
   const ctaClassName = [
     'CC__btn',
     'CC__btn--primary',
-    finePointer && storeUrl ? 'CC__btn--chrome-extension' : null,
-    finePointer && storeUrl ? null : 'CC__btn--outline',
+    storeUrl ? 'CC__btn--chrome-extension' : null,
+    storeUrl ? null : 'CC__btn--outline',
     'CC__home-featured__download',
   ]
     .filter(Boolean)
