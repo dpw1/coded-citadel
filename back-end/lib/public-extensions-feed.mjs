@@ -6,6 +6,10 @@
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {
+  buildHomeCatalogFilterCounts,
+  resolveHomeExtensionCategory,
+} from '../../shared/home-extension-catalog.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '../..')
@@ -226,6 +230,9 @@ function buildPublicExtensionRecord(app, { customApps, blogPosts, siteUrl }) {
   const blogPost = blogPostForApp(app, blogPosts)
   const privacySlug = resolvePrivacyPolicySlug(app.slug)
   const buildStory = app.buildStory ?? custom?.buildStory ?? null
+  const tags = Array.isArray(custom?.tags ?? app.tags)
+    ? (custom?.tags ?? app.tags).filter((t) => typeof t === 'string' && t)
+    : []
 
   return {
     slug: app.slug,
@@ -245,9 +252,8 @@ function buildPublicExtensionRecord(app, { customApps, blogPosts, siteUrl }) {
     version: app.version ?? null,
     lastUpdated: app.lastUpdated ?? null,
     category: normalizeCategory(custom?.category ?? app.category),
-    tags: Array.isArray(custom?.tags ?? app.tags)
-      ? (custom?.tags ?? app.tags).filter((t) => typeof t === 'string' && t)
-      : [],
+    homeCategory: resolveHomeExtensionCategory(app.slug, tags),
+    tags,
     platform: app.platform ?? 'Google Chrome',
     urls: {
       landing: `${siteUrl}/apps/${app.slug}`,
@@ -309,14 +315,17 @@ export function loadPublicExtensionsFeed(options = {}) {
 
   const catalog = (apps ?? []).filter((app) => isAppListed(app) || isAppDiscontinued(app))
 
+  const extensions = catalog.map((app) =>
+    buildPublicExtensionRecord(app, { customApps, blogPosts, siteUrl }),
+  )
+
   return {
     schemaVersion: 1,
     generatedAt: new Date().toISOString(),
     catalogUpdatedAt: updatedAt ?? null,
     siteUrl,
-    count: catalog.length,
-    extensions: catalog.map((app) =>
-      buildPublicExtensionRecord(app, { customApps, blogPosts, siteUrl }),
-    ),
+    count: extensions.length,
+    homeCatalogFilters: buildHomeCatalogFilterCounts(extensions),
+    extensions,
   }
 }

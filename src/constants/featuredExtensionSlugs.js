@@ -5,3 +5,6 @@ export const FEATURED_EXTENSION_SLUGS = [
   'custom-data-flgffomd',
   'custom-data',
 ]
+
+/** Homepage “Most popular” row (first N from {@link FEATURED_EXTENSION_SLUGS}). */
+export const HOME_MOST_POPULAR_LIMIT = 3

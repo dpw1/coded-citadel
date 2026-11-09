@@ -1,9 +1,35 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-09T03:53:39.607Z",
+  "generatedAt": "2026-11-09T18:38:59.376Z",
   "catalogUpdatedAt": "2026-11-05",
   "siteUrl": "https://codedcitadel.com",
   "count": 15,
+  "homeCatalogFilters": [
+    {
+      "filter": "All",
+      "count": 13
+    },
+    {
+      "filter": "Instagram",
+      "count": 4
+    },
+    {
+      "filter": "YouTube",
+      "count": 5
+    },
+    {
+      "filter": "Claude",
+      "count": 2
+    },
+    {
+      "filter": "Gmail",
+      "count": 1
+    },
+    {
+      "filter": "Discord",
+      "count": 1
+    }
+  ],
   "extensions": [
     {
       "slug": "hide-reposts-for-bluesky",
@@ -26,6 +52,7 @@
       "version": "1.0.2",
       "lastUpdated": "2026-11-05",
       "category": "Social Media",
+      "homeCategory": null,
       "tags": [
         "chromeExtension",
         "bluesky",
@@ -87,6 +114,7 @@
       "version": "1.0.903",
       "lastUpdated": "2026-11-05",
       "category": "Productivity",
+      "homeCategory": "Gmail",
       "tags": [
         "chromeExtension",
         "gmail",
@@ -149,6 +177,7 @@
       "version": "1.0.06",
       "lastUpdated": "2026-11-05",
       "category": "Social Media",
+      "homeCategory": "Discord",
       "tags": [
         "chromeExtension",
         "discord",
@@ -212,6 +241,7 @@
       "version": "2.0.185",
       "lastUpdated": "2026-11-05",
       "category": "Social Media",
+      "homeCategory": "YouTube",
       "tags": [
         "chromeExtension",
         "youtube",
@@ -274,6 +304,7 @@
       "version": "1.0.13",
       "lastUpdated": "2026-11-05",
       "category": "AI Assistant",
+      "homeCategory": "Claude",
       "tags": [
         "chromeExtension",
         "claude",
@@ -332,6 +363,7 @@
       "version": "1.0.15",
       "lastUpdated": "2026-11-05",
       "category": "Social Media",
+      "homeCategory": "Instagram",
       "tags": [
         "chromeExtension",
         "instagram",
@@ -393,6 +425,7 @@
       "version": "1.0.366",
       "lastUpdated": "2026-11-05",
       "category": "Social Media",
+      "homeCategory": "YouTube",
       "tags": [
         "chromeExtension",
         "youtube",
@@ -464,6 +497,7 @@
       "version": "1.0.119",
       "lastUpdated": "2026-11-05",
       "category": "Productivity",
+      "homeCategory": "Instagram",
       "tags": [],
       "platform": "Google Chrome",
       "urls": {
@@ -508,6 +542,7 @@
       "version": "1.0.02",
       "lastUpdated": "2026-11-05",
       "category": "Productivity",
+      "homeCategory": "YouTube",
       "tags": [],
       "platform": "Google Chrome",
       "urls": {
@@ -551,6 +586,7 @@
       "version": "1.0.38",
       "lastUpdated": "2026-11-05",
       "category": "AI Assistant",
+      "homeCategory": "Claude",
       "tags": [
         "chromeExtension",
         "aiAssistant",
@@ -615,6 +651,7 @@
       "version": "1.0.436",
       "lastUpdated": "2026-11-05",
       "category": "Social Media",
+      "homeCategory": "Instagram",
       "tags": [
         "chromeExtension",
         "instagram",
@@ -676,6 +713,7 @@
       "version": "1.0.833",
       "lastUpdated": "2026-11-05",
       "category": "Productivity",
+      "homeCategory": "Instagram",
       "tags": [],
       "platform": "Google Chrome",
       "urls": {
@@ -719,6 +757,7 @@
       "version": "1.0.104",
       "lastUpdated": "2026-11-05",
       "category": "Productivity",
+      "homeCategory": "YouTube",
       "tags": [],
       "platform": "Google Chrome",
       "urls": {
@@ -762,6 +801,7 @@
       "version": "1.0.732",
       "lastUpdated": "2026-11-05",
       "category": "AI Assistant",
+      "homeCategory": "Claude",
       "tags": [
         "chromeExtension",
         "claude",
@@ -824,6 +864,7 @@
       "version": "1.0.07",
       "lastUpdated": "2026-11-05",
       "category": "Social Media",
+      "homeCategory": "YouTube",
       "tags": [
         "chromeExtension",
         "youtube",

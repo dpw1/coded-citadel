@@ -162,7 +162,7 @@ Important scripts:
 
 - `generate-blog-manifest.mjs` — blog pipeline
 - `generate-sitemap.mjs`
-- `generate-all-extensions.mjs` — public `all-extensions.json` catalog (safe fields only; regenerated each build)
+- `generate-all-extensions.mjs` — public catalog in `src/data/all-extensions.json` (app source of truth for marketing UI) and `public/all-extensions.json` (URL feed)
 - `extract-chrome-apps.mjs` / `sync-apps-custom-data.mjs`
 - `fetch-website-analytics.mjs`, `fetch-youtube-videos.mjs`, …
 

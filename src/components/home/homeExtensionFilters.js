@@ -1,69 +1,28 @@
-/** Extensions removed from the web store — hide on the home catalog. */
-export const HOME_HIDDEN_EXTENSION_SLUGS = new Set([
-  'ai-bookmark',
-  'hide-reposts-for-bluesky',
-])
+import {
+  HOME_CATALOG_FILTERS,
+  HOME_HIDDEN_EXTENSION_SLUGS,
+  homeExtensionCategoryBySlug,
+  isHomeCatalogExtensionVisible as isHomeCatalogSlugVisible,
+  resolveHomeExtensionCategory,
+} from '../../constants/homeExtensionCatalog'
 
-export const HOME_CATALOG_FILTERS = [
-  'All',
-  'Instagram',
-  'YouTube',
-  'Claude',
-  'Gmail',
-  'Discord',
-]
+export { HOME_CATALOG_FILTERS, HOME_HIDDEN_EXTENSION_SLUGS }
 
 export const HOME_EXTENSIONS_PER_PAGE = 9
 
-/** Primary home catalog category per extension slug. */
-const CATEGORY_BY_SLUG = {
-  'youtube-filter-pro': 'YouTube',
-  'youtube-comments-exporter': 'YouTube',
-  'youtube-keyword-alert': 'YouTube',
-  'custom-data-gflljmlm': 'YouTube',
-  'custom-data-ihfiegcg': 'YouTube',
-  'instagram-dm-exporter': 'Instagram',
-  'custom-data': 'Instagram',
-  'custom-data-flgffomd': 'Instagram',
-  'claude-limit-monitor': 'Claude',
-  'claude-deep-search': 'Claude',
-  'instagram-comments-exporter': 'Instagram',
-  'gmail-to-pdf': 'Gmail',
-  dex: 'Discord',
-}
-
 export function isHomeCatalogExtensionVisible(app) {
   if (!app?.slug) return false
-  return !HOME_HIDDEN_EXTENSION_SLUGS.has(app.slug)
+  return isHomeCatalogSlugVisible(app.slug)
 }
 
 export function homeExtensionCategory(app) {
-  if (!app?.slug) return null
-  return CATEGORY_BY_SLUG[app.slug] ?? null
-}
-
-const TAG_TO_HOME_FILTER = {
-  youtube: 'YouTube',
-  instagram: 'Instagram',
-  gmail: 'Gmail',
-  discord: 'Discord',
-  claude: 'Claude',
+  return homeExtensionCategoryBySlug(app?.slug)
 }
 
 /** Pill label on homepage extension cards — matches catalog filter names. */
 export function homeExtensionCardTag(app, tags = []) {
-  const fromSlug = homeExtensionCategory(app)
-  if (fromSlug) return fromSlug
-
-  for (const raw of tags) {
-    const tag = String(raw).toLowerCase()
-    if (TAG_TO_HOME_FILTER[tag]) return TAG_TO_HOME_FILTER[tag]
-  }
-
-  const tagKeys = tags.map((t) => String(t).toLowerCase())
-  if (tagKeys.some((t) => t === 'ai' || t.includes('assistant'))) return 'Claude'
-
-  return null
+  const tagList = tags.length ? tags : app?.tags ?? []
+  return resolveHomeExtensionCategory(app?.slug, tagList)
 }
 
 /** @param {*} app */

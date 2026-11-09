@@ -1,12 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 // import ExtensionVideoModal from '../ExtensionVideoModal'
-import { FEATURED_EXTENSION_SLUGS } from '../../constants/featuredExtensionSlugs'
 import {
-  appActiveUsers,
-  appStoreUrl,
-  getAppBySlug,
-  getListedApps,
-} from '../../utils/apps'
+  FEATURED_EXTENSION_SLUGS,
+  HOME_MOST_POPULAR_LIMIT,
+} from '../../constants/featuredExtensionSlugs'
+import { appStoreUrl } from '../../utils/apps'
+import {
+  getHomeCatalogExtensionViews,
+  getPublicExtensionAsAppBySlug,
+  sortExtensionViewsByUsers,
+} from '../../utils/publicExtensions'
 import HomeExtensionShowcaseCard from './HomeExtensionShowcaseCard'
 import {
   HOME_CATALOG_FILTERS,
@@ -55,20 +58,22 @@ export default function HomeExtensionsSection() {
 
   const listedApps = useMemo(
     () =>
-      getListedApps().filter(
+      getHomeCatalogExtensionViews().filter(
         (app) => appStoreUrl(app) && isHomeCatalogExtensionVisible(app),
       ),
     [],
   )
 
   const featuredApps = useMemo(
-    () => FEATURED_EXTENSION_SLUGS.map((slug) => getAppBySlug(slug)).filter(Boolean),
+    () =>
+      FEATURED_EXTENSION_SLUGS.slice(0, HOME_MOST_POPULAR_LIMIT)
+        .map((slug) => getPublicExtensionAsAppBySlug(slug))
+        .filter(Boolean),
     [],
   )
 
   const catalogPool = useMemo(
-    () =>
-      [...listedApps].sort((a, b) => (appActiveUsers(b) ?? 0) - (appActiveUsers(a) ?? 0)),
+    () => sortExtensionViewsByUsers(listedApps),
     [listedApps],
   )
 
