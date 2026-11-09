@@ -48,6 +48,7 @@ jobs:
       - name: Verify production bundle
         run: |
           test -f dist/index.html
+          test -f dist/all-extensions.json
           test -f dist/favicon-32x32.png
           test -f dist/favicon.ico
           if test -d dist/admin; then

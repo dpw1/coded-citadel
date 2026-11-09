@@ -7,7 +7,7 @@
     "dev": "vite",
     "prebuild": "npm run generate-portfolio-analytics",
     "import-blog-screenshots": "node back-end/import-blog-screenshots.mjs",
-    "build": "npm run maybe-extract-chrome-apps && npm run sync-apps-custom-data && npm run maybe-generate-quick-start && npm run sync-apps-custom-data && npm run compute-portfolio-stats && npm run generate-home-meta && npm run fetch-youtube && npm run fetch-live-stats && npm run generate-sitemap && vite build",
+    "build": "npm run maybe-extract-chrome-apps && npm run sync-apps-custom-data && npm run maybe-generate-quick-start && npm run sync-apps-custom-data && npm run compute-portfolio-stats && npm run generate-home-meta && npm run fetch-youtube && npm run fetch-live-stats && npm run generate-sitemap && npm run generate-all-extensions && vite build",
     "sync-apps-custom-data": "node back-end/sync-apps-custom-data.mjs",
     "maybe-generate-quick-start": "node back-end/generate-quick-start.mjs",
     "generate-portfolio-analytics": "node back-end/generate-portfolio-analytics.mjs",
@@ -26,6 +26,7 @@
     "extract-chrome-apps": "node back-end/extract-chrome-apps.mjs",
     "generate-home-meta": "node back-end/generate-home-meta.mjs",
     "generate-sitemap": "node back-end/generate-sitemap.mjs",
+    "generate-all-extensions": "node back-end/generate-all-extensions.mjs",
     "resize-favicon": "node back-end/resize-favicon.mjs"
   },
   "dependencies": {
