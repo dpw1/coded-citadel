@@ -36,6 +36,7 @@ Defined in `src/App.jsx`:
 | `/work` | Hire / portfolio | Client work |
 | `/contact`, `/affiliate`, `/links`, `/guides`, `/image-search` | Marketing | See **Link-in-bio** and **Image search** below |
 | `/thank-you`, `/uninstall`, `/success` | Extension flows | Query params for app feedback / Stripe |
+| `/privacy-policies` | Legal index | List of extension privacy policies (`PrivacyPoliciesIndexPage`) |
 | `/privacy-policy/:slug`, `/terms-of-service/:slug` | Legal | Per-app content in `src/content/` |
 | `/davinci-resolve-plugins`, `/davinci-resolve-plugins/:slug` | DaVinci plugins | Separate product line |
 | `/YFP`, `/yfp`, etc. | Short links | External URLs in `redirects.json` |

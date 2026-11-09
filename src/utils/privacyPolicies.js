@@ -112,3 +112,33 @@ export function getPrivacyPolicyBySlug(slug) {
 export function getAllPrivacyPolicySlugs() {
   return Object.keys(PRIVACY_POLICIES)
 }
+
+/** Prefer store/landing URLs when the same policy exists under multiple slugs. */
+const PRIVACY_POLICY_INDEX_SLUG_PRIORITY = {
+  'youtube-filter-pro': 10,
+  'yt-filter-pro': 1,
+  'youtube-comments-exporter': 10,
+  'youtube-comments': 1,
+}
+
+function privacyPolicyIndexSlugPriority(slug) {
+  return PRIVACY_POLICY_INDEX_SLUG_PRIORITY[slug] ?? 5
+}
+
+/** One row per extension — sorted by app name — for /privacy-policies. */
+export function getPrivacyPolicyIndexEntries() {
+  const byAppName = new Map()
+
+  for (const [slug, policy] of Object.entries(PRIVACY_POLICIES)) {
+    const existing = byAppName.get(policy.appName)
+    if (!existing) {
+      byAppName.set(policy.appName, { slug, ...policy })
+      continue
+    }
+    if (privacyPolicyIndexSlugPriority(slug) > privacyPolicyIndexSlugPriority(existing.slug)) {
+      byAppName.set(policy.appName, { slug, ...policy })
+    }
+  }
+
+  return [...byAppName.values()].sort((a, b) => a.appName.localeCompare(b.appName))
+}

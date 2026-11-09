@@ -7,6 +7,7 @@ import ExtensionLandingPage from './pages/ExtensionLandingPage'
 import PluginsIndexPage from './pages/PluginsIndexPage'
 import PluginLandingPage from './pages/PluginLandingPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
+import PrivacyPoliciesIndexPage from './pages/PrivacyPoliciesIndexPage'
 import TermsOfServicePage from './pages/TermsOfServicePage'
 import BlogIndexPage from './pages/BlogIndexPage'
 import BlogPostPage from './pages/BlogPostPage'
@@ -63,6 +64,7 @@ function AppRoutes() {
         <Route path="/davinci-resolve-plugins/:slug" element={<PluginLandingPage />} />
         <Route path="/plugins" element={<Navigate to={pluginsIndexPath()} replace />} />
         <Route path="/plugins/:slug" element={<PluginSlugRedirect />} />
+        <Route path="/privacy-policies" element={<PrivacyPoliciesIndexPage />} />
         <Route path="/privacy-policy/:slug" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service/:slug" element={<TermsOfServicePage />} />
         <Route

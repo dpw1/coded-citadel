@@ -65,6 +65,7 @@ function getPrerenderRoutes() {
     '/uninstall',
     '/work',
     '/contact',
+    '/privacy-policies',
     '/links',
     '/image-search',
     ...(apps || []).map((app) => `/apps/${app.slug}`),

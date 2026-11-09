@@ -127,6 +127,11 @@ function main() {
           priority: '0.9',
         }),
       ),
+    urlEntry(`${SITE_URL}/privacy-policies`, {
+      lastmod: defaultLastmod,
+      changefreq: 'yearly',
+      priority: '0.55',
+    }),
     ...PRIVACY_POLICY_SLUGS.map((slug) =>
       urlEntry(`${SITE_URL}/privacy-policy/${slug}`, {
         lastmod: defaultLastmod,

@@ -12,7 +12,7 @@ function PrivacyNotFound() {
       <PageSEO
         title="Privacy Policy — Coded Citadel"
         description="Privacy policy not found."
-        canonicalPath="/privacy-policy"
+        canonicalPath="/privacy-policies"
         robots="noindex, follow"
       />
       <SiteHeader />
@@ -20,8 +20,8 @@ function PrivacyNotFound() {
         <div className="CC__container CC__privacy-page__inner">
           <h1 className="CC__privacy-page__title">Privacy policy not found</h1>
           <p className="CC__privacy-page__meta">No policy matches this URL.</p>
-          <Link to="/" className="CC__btn CC__btn--primary">
-            Back to home
+          <Link to="/privacy-policies" className="CC__btn CC__btn--primary">
+            All privacy policies
           </Link>
         </div>
       </main>
