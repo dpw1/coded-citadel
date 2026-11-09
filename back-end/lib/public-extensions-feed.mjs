@@ -35,38 +35,13 @@ const PRIVACY_POLICY_SLUGS = new Set([
   'youtube-comments-exporter',
 ])
 
-const NON_ENGLISH_MARKERS =
-  /\b(mostra|pesquise|gerencie|engajamento|visualiza|curtidos|assistir|minha atividade|seus|suas|não|para o|com um|estilo do|vídeos|comentários)\b/i
-const NON_ENGLISH_DIACRITICS = /[àáâãéêíóôõúç]/i
-
-function isLikelyEnglish(text) {
-  if (!text || typeof text !== 'string') return false
-  const trimmed = text.trim()
-  if (!trimmed) return false
-  if (NON_ENGLISH_DIACRITICS.test(trimmed)) return false
-  if (NON_ENGLISH_MARKERS.test(trimmed)) return false
-  return true
-}
-
-function firstSentence(text) {
-  if (!text || typeof text !== 'string') return ''
-  const line = text.trim().split('\n')[0]?.trim() ?? ''
-  const match = line.match(/^[^.!?]+[.!?]?/)
-  return match ? match[0].trim() : line
-}
-
-function resolveEnglishTagline(app) {
-  if (!app) return ''
-  const candidates = [
-    app.taglineEn,
-    app.description?.short,
-    app.tagline,
-    firstSentence(app.description?.full),
-  ]
+/** `shortDescription` in the public feed — Chrome Web Store tagline (not `description.short`). */
+function resolveShortDescriptionAsTagline(app, custom) {
+  const candidates = [custom?.tagline, app?.taglineEn, app?.tagline]
   for (const candidate of candidates) {
-    if (isLikelyEnglish(candidate)) return candidate.trim()
+    if (typeof candidate === 'string' && candidate.trim()) return candidate.trim()
   }
-  return (app.description?.short || app.tagline || '').trim()
+  return ''
 }
 
 function isPinnedLastApp(app) {
@@ -214,11 +189,7 @@ function storeUrl(app) {
 
 function buildPublicExtensionRecord(app, { customApps, blogPosts, siteUrl }) {
   const custom = findCustomAppEntry(app, customApps)
-  const taglineCustom = custom?.tagline
-  const shortDescription =
-    taglineCustom && isLikelyEnglish(taglineCustom)
-      ? taglineCustom.trim()
-      : resolveEnglishTagline(app)
+  const shortDescription = resolveShortDescriptionAsTagline(app, custom)
   const fullDescription =
     typeof app.description?.full === 'string' && app.description.full.trim()
       ? app.description.full.trim()

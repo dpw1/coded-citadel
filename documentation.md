@@ -49,6 +49,7 @@ Defined in `src/App.jsx`:
 | **Blog posts** | `blogs/*.md` (YAML frontmatter + Markdown) | `src/data/blog.json`, `public/blog-content/*.html` via **`npm run generate-blog-manifest`** (manual — not run on `dev` or `build`) |
 | **Blog images** | Often imported from `blogs/` paths | `public/blog-images/` (`import-blog-screenshots`) |
 | **Extension catalog** | Chrome Web Store scrape + overrides | `src/data/apps.json` (`extract-chrome-apps`, `sync-apps-custom-data`) |
+| **Public extension API + homepage catalog** | `apps.json` + `apps-custom-data.json` + `blog.json` | `src/data/all-extensions.json` and `public/all-extensions.json` via **`npm run generate-all-extensions`** (runs on full `build`) |
 | **Sitemap** | Routes + blog slugs + guide slugs | `public/sitemap.xml` (`generate-sitemap`); prerender list in `vite.config.js` |
 | **YouTube embeds** | Channel fetch | `src/data/youtube-videos.json` |
 | **Analytics snapshots** | GA / CWS scripts | `src/data/ga-db.json`, `website-analytics.json`, etc. |
@@ -56,8 +57,8 @@ Defined in `src/App.jsx`:
 | **Site short links** | `redirects.json` | External redirects in `src/App.jsx` via `StoreRedirectPage` |
 | **Reel guides hub** | `src/data/guides.json` | `/guides` + `/guides/:slug` — see **Link-in-bio pages** below |
 | **Homepage web tools** | `src/data/home-tools.json` | Tools block on `/` (`#tools`) — `path` is an in-app route (e.g. `/image-search`) |
-| **Home “Most popular”** | `src/constants/featuredExtensionSlugs.js` | Curated slugs for `#ext` (keep aligned with `/links` flagship order when possible) |
-| **Home extension filters** | `src/components/home/homeExtensionFilters.js` | Category pills + hidden slugs for “All extensions”; not the raw store scrape |
+| **Home “Most popular”** | `src/constants/featuredExtensionSlugs.js` | First **`HOME_MOST_POPULAR_LIMIT`** (3) curated slugs for `#ext`; full slug list kept for `/links` alignment |
+| **Home extension filters** | `shared/home-extension-catalog.mjs` | Category pills, counts, `homeCategory`; mirrored in `homeExtensionFilters.js` |
 
 After changing **`blogs/*.md`**, run **`npm run generate-blog-manifest`** (and **`npm run apply-blog-views`** if you refresh GA view counts). These steps are **not** hooked to `npm run dev` or `npm run build`.
 
@@ -74,8 +75,8 @@ Wrapped in **`.CC__home`** (`src/pages/HomePage.css`). Design tokens and primiti
 | Section | Component | Anchor | Notes |
 |---------|-----------|--------|--------|
 | Hero | `src/components/home/HomeHeroSection.jsx` | — | Top spacing on `.CC__home-hero` (inner uses `.CC__container`; avoid putting vertical padding on the same node as `.CC__container` — shorthand `padding: 0 …` resets `padding-top`) |
-| Most popular | `HomeExtensionsSection.jsx` | `#ext` | Four curated cards; shared grid/card CSS with catalog |
-| All extensions | same | — | Filter pills (`HOME_CATALOG_FILTERS`), pagination; full listed catalog |
+| Most popular | `HomeExtensionsSection.jsx` | `#ext` | Three curated cards from `all-extensions.json` via `publicExtensions.js` |
+| All extensions | same | — | Same catalog JSON; filter pills (`HOME_CATALOG_FILTERS`), pagination |
 | Tools | `HomeWebToolsSection.jsx` | `#tools` | Driven by `home-tools.json` |
 | Instagram reels | `HomeInstagramReelsSection.jsx` | `#reels` | `src/data/home-instagram-reels.json` + `public/home-instagram-reels/` — refresh with **`npm run sync-home-instagram-reels`** (no Meta API; build-time og scrape) |
 | About | inline in `HomePage.jsx` | `#about` | Legacy **`AppsGridSection`** (`#apps`) is commented out — use extension sections above instead |
@@ -85,6 +86,37 @@ Wrapped in **`.CC__home`** (`src/pages/HomePage.css`). Design tokens and primiti
 **Shared extension UI:** `src/components/home/HomeExtensionShowcaseCard.jsx`, **`HomeExtensionShowcase.css`**, grid class **`CC__home-extensions__grid`** (3 columns desktop). Thumbnail links to Chrome Web Store; video modal is disabled for now (commented in section).
 
 **English copy on cards and `/apps/:slug`:** `src/utils/appDisplayText.js` + **`appTagline()`** / **`appFilterLabel()`** in `apps.js`. Prefer English `description.short` when store `tagline` is non-English; optional overrides in `apps-custom-data.json` (`tagline` on matching slug/id).
+
+**Home extension data:** Marketing sections read **`src/data/all-extensions.json`** (not raw `apps.json`). Use **`src/utils/publicExtensions.js`** (`getHomeCatalogExtensionViews`, `getPublicExtensionAsAppBySlug`, etc.). Extension landing pages, charts, and `/apps` grid still use **`apps.json`**.
+
+---
+
+## Public extension catalog (`all-extensions.json`)
+
+Cross-site feed and **source of truth for homepage extension UI** (safe, public fields only).
+
+| Output | Purpose |
+|--------|---------|
+| **`src/data/all-extensions.json`** | Imported by the React app at build time |
+| **`https://codedcitadel.com/all-extensions.json`** | Same JSON copied to `public/` for third-party `fetch` |
+
+**Generator:** `npm run generate-all-extensions` · **Logic:** `back-end/lib/public-extensions-feed.mjs` · **Home categories:** `shared/home-extension-catalog.mjs` (shared with `homeExtensionFilters.js`).
+
+**Pipeline (full `build`):** After `apps.json` is synced and stats computed → `generate-all-extensions` writes both JSON files → Vite bundles `src/data/all-extensions.json` into the SPA and copies `public/all-extensions.json` to `dist/`.
+
+**Top-level fields:**
+
+- `schemaVersion`, `generatedAt`, `catalogUpdatedAt`, `siteUrl`, `count`
+- **`homeCatalogFilters`** — chip counts for All / Instagram / YouTube / Claude / Gmail / Discord (homepage-visible extensions only; respects hidden slugs)
+- **`extensions[]`** — one object per listed (or discontinued) extension
+
+**Per extension (high level):** `slug`, `title`, **`shortDescription`** (Chrome **`tagline`**: `apps-custom-data.json` → `taglineEn` → `apps.json` `tagline`; not `description.short`), `description` (full store/listing body), `image`, `heroImage`, `screenshots`, `users`, `totalInstalls`, `homeCategory`, store `category`, `tags`, `urls` (landing, Chrome Web Store, blog, GitHub, YouTube, privacy), `build`, `quickStartHtml`, etc.
+
+**Omitted (not public):** Revenue, analytics time series, regional breakdowns, internal hashes.
+
+**CORS:** GitHub Pages does not add `Access-Control-Allow-Origin` by default. Server-side consumers can read the URL as-is; browser `fetch` from other origins may need a CDN header rule (e.g. Cloudflare) on `/all-extensions.json`.
+
+After changing category rules, hidden slugs, or feed shape → edit **`shared/home-extension-catalog.mjs`** and/or **`public-extensions-feed.mjs`**, then **`npm run generate-all-extensions`** (or full build). Commit **`src/data/all-extensions.json`** and **`public/all-extensions.json`** together.
 
 ---
 
@@ -207,8 +239,9 @@ Site is static output from Vite (`dist/`). `publish-to-github.bat` / CI pushes t
 - [ ] Homepage hero / sections / spacing → `HomePage.css`, `CC__home-section`, `src/components/home/*`.
 - [ ] Homepage tools row → edit `src/data/home-tools.json`.
 - [ ] Homepage Instagram reels → edit `src/data/home-instagram-reels.json` or run **`npm run sync-home-instagram-reels`**.
-- [ ] Homepage “Most popular” → `src/constants/featuredExtensionSlugs.js`.
-- [ ] Homepage extension pills / hidden apps → `src/components/home/homeExtensionFilters.js`.
+- [ ] Homepage “Most popular” → `src/constants/featuredExtensionSlugs.js` (`HOME_MOST_POPULAR_LIMIT`).
+- [ ] Homepage extension pills / hidden apps / `homeCategory` → **`shared/home-extension-catalog.mjs`** (re-exported in `homeExtensionFilters.js`).
+- [ ] Public extension feed or homepage catalog data → **`back-end/lib/public-extensions-feed.mjs`** → **`npm run generate-all-extensions`** → commit `src/data/all-extensions.json` + `public/all-extensions.json`.
 - [ ] Extension card or landing tagline/title → **`appTagline()`** / **`appFilterLabel()`**; fix English in `apps.json` or `apps-custom-data.json` after scrape if needed.
 - [ ] Extension page copy (long body) → often `apps.json` or store scrape + `sync-apps-custom-data`.
 - [ ] SEO / blog writing task → open **`back-end/seo-documentation.md`** and **`back-end/writing-style.md`**.
